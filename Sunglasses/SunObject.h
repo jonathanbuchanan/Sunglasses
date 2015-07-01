@@ -16,8 +16,10 @@ using namespace std;
 
 #include "glm/gtx/string_cast.hpp"
 
+// Definition of PropertyPointer (CONVERT TO SMART POINTERS!)
 typedef void * PropertyPointer;
 
+// Definition of SunObjectPropertyType
 enum SunObjectPropertyType {
     SunObjectPropertyTypeBool,
     SunObjectPropertyTypeInt,
@@ -26,6 +28,7 @@ enum SunObjectPropertyType {
     SunObjectPropertyTypeVec3
 };
 
+// Definition of SunObjectProperty
 struct SunObjectProperty {
     PropertyPointer pointer;
     SunObjectPropertyType type;
@@ -110,6 +113,7 @@ public:
     }
     
     void initializeDefaultPropertyMap() {
+        // Map position, rotation, and scale to the property map
         properties["position"] = SunObjectProperty(&position, SunObjectPropertyTypeVec3);
         properties["rotation"] = SunObjectProperty(&rotation, SunObjectPropertyTypeVec3);
         properties["scale"] = SunObjectProperty(&scale, SunObjectPropertyTypeVec3);

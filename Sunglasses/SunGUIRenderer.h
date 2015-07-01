@@ -22,14 +22,17 @@ public:
     }
     
     void initialize() {
+        // Initialize the text renderer
         textRenderer = SunTextRenderer();
         textRenderer.initialize();
     }
     
     void renderSystem(SunGUISystem *_system) {
+        // Check to see if the GUI system's fonts have been loaded
         if (_system->fontsLoaded == false)
             _system->loadFonts(&textRenderer);
         
+        // Force the system to render
         _system->render(&textRenderer);
     }
     

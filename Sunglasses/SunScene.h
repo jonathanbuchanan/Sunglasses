@@ -23,6 +23,8 @@ using namespace std;
 #include "SunCubemapObject.h"
 #include "SunButtonState.h"
 
+// Definition of SunObjectType (NEEDS A HOME)
+
 enum SunObjectType {
     SunObjectTypePhysical,
     SunObjectTypePointLight,
@@ -31,27 +33,35 @@ enum SunObjectType {
 
 class SunScene : public SunObject {
 public:
+    // GUIsystem
     SunGUISystem GUIsystem;
     
+    // Pointer to window
     GLFWwindow *window;
     
     SunScene() {
+        // Normalize all physical properties
         position = glm::vec3(0, 0, 0);
         rotation = glm::vec3(0, 0, 0);
         scale = glm::vec3(1.0, 1.0, 1.0);
         
+        // Initialize the property map
         initializeDefaultPropertyMap();
     }
     
     SunScene(const char *filepath, GLFWwindow *_window) {
+        // Normalize all physical properties
         position = glm::vec3(0, 0, 0);
         rotation = glm::vec3(0, 0, 0);
         scale = glm::vec3(1.0, 1.0, 1.0);
         
+        // Set the window
         window = _window;
         
+        // Initialize the property map
         initializeDefaultPropertyMap();
         
+        // Set up the XML Parsing
         pugi::xml_document document;
         document.load_file(filepath);
         
@@ -65,6 +75,7 @@ public:
             }
         }
         
+        // Process the XML scene node
         processXMLSceneNode(scene);
     }
     
@@ -237,6 +248,7 @@ public:
     }
     
     void update(map<int, SunButtonState> _buttons) {
+        // Get the position of the mouse
         GLdouble xPosition, yPosition;
         glfwGetCursorPos(window, &xPosition, &yPosition);
         
@@ -247,12 +259,15 @@ public:
         normalizedXPosition = (xPosition - 400) / 400;
         normalizedYPosition = -(yPosition - 300) / 300;
         
+        // Force the GUI system to update
         GUIsystem.update(_buttons, normalizedXPosition, normalizedYPosition);
         
+        // Force sub-objects to update
         SunObject::update();
     }
     
     void render(SunShader _shader, GLfloat _deltaTime) {
+        // Force sub-objects to render
         SunObject::render(_shader, _deltaTime);
     }
     

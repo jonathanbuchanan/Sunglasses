@@ -23,6 +23,9 @@ GLfloat lastX = 400;
 GLfloat lastY = 300;
 bool firstMouseTime = true;
 
+// Maps containing GLFW button ids and their respective states
+// NOTE: CLEAN UP OLDBUTTONS
+
 map<int, SunButtonState> buttons;
 map<int, SunButtonState> oldButtons;
 
@@ -35,12 +38,18 @@ GLfloat yOffset;
 GLfloat lastXOffset;
 GLfloat lastYOffset;
 
+// Called when a key is pressed
+
 void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mode) {
+    // If it had a transition, change its state
+    
     if (action == GLFW_PRESS && buttons[key] != SunButtonStatePressedEdge) {
         buttons[key] = SunButtonStatePressedEdge;
     } else if (action == GLFW_RELEASE)
         buttons[key] = SunButtonStateReleased;
 }
+
+// Calculate the mouse position when it changes
 
 void mouseCallback(GLFWwindow *window, double xpos, double ypos) {
     if (firstMouseTime) {
@@ -60,7 +69,11 @@ void mouseCallback(GLFWwindow *window, double xpos, double ypos) {
     yOffset *= sensitivity;
 }
 
+// Called when a mouse button is pressed
+
 void mouseButtonCallback(GLFWwindow *window, int button, int action, int mods) {
+    // If it had a transition, change its state
+    
     if (action == GLFW_PRESS)
         buttons[button] = SunButtonStatePressedEdge;
     else if (action == GLFW_RELEASE)
@@ -81,14 +94,23 @@ public:
     }
     
     void loop() {
+        // Loop until the game is set to close
         while (!glfwWindowShouldClose(window)) {
+            // Calculate the frame time (NEEDS CLEAN UP)
+            
             GLfloat currentFrame = glfwGetTime();
             deltaTime = currentFrame - lastFrame;
             lastFrame = currentFrame;
             
+            // Set old buttons (NEEDS CLEAN UP)
+            
             oldButtons = buttons;
             
+            // Poll GLFW events to check for any input
+            
             glfwPollEvents();
+            
+            // Set any button that is pressed for the second cycle on to a different state (NEEDS CLEAN UP)
             
             for (auto iterator = buttons.begin(); iterator != buttons.end(); ++iterator) {
                 int currentButton = iterator->first;
@@ -100,6 +122,8 @@ public:
                     buttons[currentButton] = SunButtonStatePressed;
                 }
             }
+            
+            // Tell the camera to do movement (NEEDS CLEAN UP)
             
             if (lastXOffset != xOffset && lastYOffset != yOffset)
                 renderer.camera.doCameraMovement(buttons, deltaTime, xOffset, yOffset);
@@ -113,12 +137,16 @@ public:
             lastXOffset = xOffset;
             lastYOffset = yOffset;
             
+            // Tell the renderer to do its cycle
+            
             renderer.cycle(buttons, deltaTime);
         }
         glfwTerminate();
     }
     
     void initializeGLFWandGLEW(bool _useMSAA, GLint _MSAASampleCount) {
+        // Initialize GLFW and give window hints
+        
         glfwInit();
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -136,38 +164,47 @@ public:
             return -1;
         }
         
-        glewExperimental = GL_TRUE;
+        glewExperimental = GL_FALSE;
         if (glewInit() != GLEW_OK) {
             std::cout << "Failed to initialize GLEW" << std::endl;
             return -1;
         }
         
+        // Set the viewport size (NEEDS CLEAN UP)
         glViewport(0, 0, screenWidth * 2, screenHeight * 2);
         
+        // Set the input callbacks
         glfwSetKeyCallback(window, keyCallback);
         glfwSetCursorPosCallback(window, mouseCallback);
         glfwSetMouseButtonCallback(window, mouseButtonCallback);
         
+        // Set the mouse input mode
         glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
         
+        // Enable depth testing
         glEnable(GL_DEPTH_TEST);
         glDepthFunc(GL_LESS);
         
+        // Enable multisampling
         if (_useMSAA == true) {
             glEnable(GL_MULTISAMPLE);
             glfwWindowHint(GLFW_SAMPLES, _MSAASampleCount);
         }
-        // Enable Hardware Gamma Correction
+        
+        // Enable hardware gamma correction
         glEnable(GL_FRAMEBUFFER_SRGB);
         
+        // Enable blending;
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         
+        // Set some properties of the renderer
         renderer.window = window;
         
         renderer.screenWidth = screenWidth;
         renderer.screenHeight = screenHeight;
         
+        // Tell the renderer to initialize
         renderer.initialize();
     }
     
