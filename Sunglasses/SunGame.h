@@ -164,7 +164,7 @@ public:
             return -1;
         }
         
-        glewExperimental = GL_FALSE;
+        glewExperimental = GL_TRUE;
         if (glewInit() != GLEW_OK) {
             std::cout << "Failed to initialize GLEW" << std::endl;
             return -1;
