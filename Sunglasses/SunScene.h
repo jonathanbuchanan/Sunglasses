@@ -16,6 +16,7 @@ using namespace std;
 
 #include "pugixml.hpp"
 
+#include "SunCamera.h"
 #include "SunObject.h"
 #include "SunDirectionalLightObject.h"
 #include "SunPointLightObject.h"
@@ -35,6 +36,9 @@ class SunScene : public SunObject {
 public:
     // GUIsystem
     SunGUISystem GUIsystem;
+    
+    // Camera
+    SunCamera camera;
     
     // Pointer to window
     GLFWwindow *window;
@@ -83,8 +87,50 @@ public:
         for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
             if (strcmp(node.name(), "objects") == 0) {
                 processXMLObjectsNode(node, this);
+            } else if (strcmp(node.name(), "camera") == 0) {
+                processXMLCameraNode(node);
             }
         }
+    }
+    
+    void processXMLCameraNode(pugi::xml_node _node) {
+        // Projection type and FOV
+        SunCameraProjectionType projection;
+        GLfloat FOV;
+        
+        // Loop through the attributes
+        for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
+            if (strcmp(attribute.name(), "projection") == 0) {
+                if (strcmp(attribute.value(), "perspective") == 0)
+                    projection = SunCameraProjectionTypePerspective;
+                else if (strcmp(attribute.value(), "orthographic") == 0)
+                    projection = SunCameraProjectionTypeOrthographic;
+            } else if (strcmp(attribute.name(), "FOV") == 0)
+                FOV = attribute.as_float();
+        }
+        
+        // Create the camera object
+        camera = SunCamera(projection, FOV);
+        
+        // Loop through property nodes
+        for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
+            processXMLCameraPropertyNode(node, &camera);
+        }
+    }
+    
+    void processXMLCameraPropertyNode(pugi::xml_node _node, SunCamera *_camera) {
+        if (strcmp(_node.name(), "position-x") == 0)
+            _camera->position.x = _node.text().as_float();
+        else if (strcmp(_node.name(), "position-y") == 0)
+            _camera->position.y = _node.text().as_float();
+        else if (strcmp(_node.name(), "position-z") == 0)
+            _camera->position.z = _node.text().as_float();
+        else if (strcmp(_node.name(), "direction-x") == 0)
+            _camera->direction.x = _node.text().as_float();
+        else if (strcmp(_node.name(), "direction-y") == 0)
+            _camera->direction.y = _node.text().as_float();
+        else if (strcmp(_node.name(), "direction-z") == 0)
+            _camera->direction.z = _node.text().as_float();
     }
     
     void processXMLObjectsNode(pugi::xml_node _node, SunObject *_superObject) {

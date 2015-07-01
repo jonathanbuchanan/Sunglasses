@@ -17,22 +17,49 @@ using namespace std;
 
 #include "SunButtonState.h"
 
+// Definition of SunCameraProjectionType
+enum SunCameraProjectionType {
+    SunCameraProjectionTypePerspective = 0,
+    SunCameraProjectionTypeOrthographic
+};
+
 class SunCamera {
 public:
     // Position
     glm::vec3 position = glm::vec3(0.0, 0.0, 0.0);
     
     // Direction
-    glm::vec3 cameraDirection = glm::vec3(1.0, 0.0, 0.0);
+    glm::vec3 direction = glm::vec3(1.0, 0.0, 0.0);
     
     // Up, Camera Right, and Camera Up
     glm::vec3 up = glm::vec3(0.0, 1.0, 0.0);
-    glm::vec3 cameraRight = glm::normalize(glm::cross(up, -cameraDirection));
-    glm::vec3 cameraUp = glm::normalize(glm::cross(-cameraDirection, cameraRight));
+    glm::vec3 cameraRight = glm::normalize(glm::cross(up, -direction));
+    glm::vec3 cameraUp = glm::normalize(glm::cross(-direction, cameraRight));
     
     // Yaw and Pitch
     GLfloat yaw;
     GLfloat pitch;
+    
+    // Projection Type
+    SunCameraProjectionType projection;
+    
+    // FOV (in degrees)
+    GLfloat FOV = 45.0f;
+    
+    SunCamera() {
+        
+    }
+    
+    SunCamera(SunCameraProjectionType _projection, GLfloat _FOV) {
+        projection = _projection;
+        FOV = _FOV;
+    }
+    
+    SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, glm::vec3 _position) {
+        projection = _projection;
+        FOV = _FOV;
+        position = _position;
+    }
     
     // Adjust the position of the camera for the given keys pressed, frame rate, and mouse/trackpad movement
     void doCameraMovement(map<int, SunButtonState> _keys, GLfloat _deltaTime, GLfloat _xOffset, GLfloat _yOffset) {
@@ -41,16 +68,16 @@ public:
         
         // Check for pressed keys and adjust position accordingly
         if (isPressed(_keys[GLFW_KEY_W])) {
-            position += speed * cameraDirection;
+            position += speed * direction;
         }
         if (isPressed(_keys[GLFW_KEY_S])) {
-            position -= speed * cameraDirection;
+            position -= speed * direction;
         }
         if (isPressed(_keys[GLFW_KEY_D])) {
-            position += speed * glm::normalize(glm::cross(cameraDirection, cameraUp));
+            position += speed * glm::normalize(glm::cross(direction, cameraUp));
         }
         if (isPressed(_keys[GLFW_KEY_A])) {
-            position -= speed * glm::normalize(glm::cross(cameraDirection, cameraUp));
+            position -= speed * glm::normalize(glm::cross(direction, cameraUp));
         }
         if (isPressed(_keys[GLFW_KEY_SPACE])) {
             position += speed * up;
@@ -74,22 +101,29 @@ public:
         front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
         front.y = sin(glm::radians(pitch));
         front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
-        cameraDirection = glm::normalize(front);
+        direction = glm::normalize(front);
     }
     
     glm::mat4 viewMatrix() {
         // Recalculate the camera's right and the camera's up
-        cameraRight = glm::normalize(glm::cross(up, -cameraDirection));
-        cameraUp = glm::normalize(glm::cross(-cameraDirection, cameraRight));
+        cameraRight = glm::normalize(glm::cross(up, -direction));
+        cameraUp = glm::normalize(glm::cross(-direction, cameraRight));
         
         // Create the view matrix for the camera's position and direction
-        glm::mat4 matrix = glm::lookAt(position, position + cameraDirection, cameraUp);
+        glm::mat4 matrix = glm::lookAt(position, position + direction, cameraUp);
         return matrix;
     }
     
     glm::mat4 projectionMatrix(GLfloat _aspectRatio) {
-        // Create the projection matrix for the given aspect ratio
-        glm::mat4 matrix = glm::perspective(45.0f, _aspectRatio, 0.01f, 100.0f);
+        // Create the projection matrix
+        glm::mat4 matrix;
+        
+        // Check the type of projection
+        if (projection == SunCameraProjectionTypePerspective)
+            matrix = glm::perspective(FOV, _aspectRatio, 0.01f, 100.0f);
+        else if (projection == SunCameraProjectionTypeOrthographic)
+            matrix = glm::ortho(0.0f, 800.0f, 0.0f, 600.0f, 0.1f, 100.0f);
+        
         return matrix;
     }
     

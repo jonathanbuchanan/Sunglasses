@@ -31,7 +31,6 @@ public:
     SunDirectionalLightShadowMapRenderer shadowMapRenderer;
     
     SunScene *scene;
-    SunCamera camera;
     
     SunShader shader;
     
@@ -61,10 +60,10 @@ public:
         shadowMapRenderer.passLightSpaceMatrix(shader, dlight, glm::vec3(0.0, 0.0, 0.0));
         
         // Pass the matrix uniforms
-        camera.setUpMatrixUniforms(shader, screenWidth / screenHeight);
+        scene->camera.setUpMatrixUniforms(shader, screenWidth / screenHeight);
         
         // Pass the camera uniforms
-        camera.passPerFrameUniforms(shader);
+        scene->camera.passPerFrameUniforms(shader);
         
         // Make the scene pass per-frame uniforms
         scene->passPerFrameUniforms(shader);
