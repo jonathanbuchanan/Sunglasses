@@ -12,47 +12,17 @@
 #include <vector>
 using namespace std;
 
+#include "SunNode.h"
+
 #include "SunModel.h"
 
 #include "glm/gtx/string_cast.hpp"
 
-// Definition of PropertyPointer (CONVERT TO SMART POINTERS!)
-typedef void * PropertyPointer;
-
-// Definition of SunObjectPropertyType
-enum SunObjectPropertyType {
-    SunObjectPropertyTypeBool,
-    SunObjectPropertyTypeInt,
-    SunObjectPropertyTypeFloat,
-    SunObjectPropertyTypeVec2,
-    SunObjectPropertyTypeVec3
-};
-
-// Definition of SunObjectProperty
-struct SunObjectProperty {
-    PropertyPointer pointer;
-    SunObjectPropertyType type;
-    
-    SunObjectProperty() {
-        
-    }
-    
-    SunObjectProperty(PropertyPointer _pointer, SunObjectPropertyType _type) {
-        pointer = _pointer;
-        type = _type;
-    }
-    
-};
-
-class SunObject {
+class SunObject : public SunNode {
 public:
     // Tag and name
     int tag;
     string name;
-    
-    // Super-object and sub-objects
-    SunObject *superObject;
-    vector<SunObject *> subObjects;
     
     // Object position and rotation
     glm::vec3 position;
@@ -62,94 +32,76 @@ public:
     // Sub-models
     vector<SunModel> models;
     
-    // Properties
-    map<string, SunObjectProperty> properties;
     SunObjectMaterial material;
     
     SunObject() {
-        initializeDefaultPropertyMap();
+        initializeDefaultPropertyAndFunctionMap();
     }
     
-    SunObject(SunObject *_superObject, int _tag) {
-        superObject = _superObject;
+    SunObject(int _tag) {
         tag = _tag;
         
-        initializeDefaultPropertyMap();
-        
-        superObject->addSubObject(this);
+        initializeDefaultPropertyAndFunctionMap();
     }
     
-    SunObject(SunObject *_superObject, int _tag, string _name) {
-        superObject = _superObject;
+    SunObject(int _tag, string _name) {
         tag = _tag;
         name = _name;
         
-        initializeDefaultPropertyMap();
-        
-        superObject->addSubObject(this);
-    }
-    
-    SunObject(SunObject *_superObject, int _tag, string _name, string _modelPath) {
-        superObject = _superObject;
-        tag = _tag;
-        name = _name;
-        
-        initializeDefaultPropertyMap();
-        
-        superObject->addSubObject(this);
-        
-        SunModel model = SunModel(_modelPath);
-        models.push_back(model);
+        initializeDefaultPropertyAndFunctionMap();
     }
     
     SunObject(int _tag, string _name, string _modelPath) {
         tag = _tag;
         name = _name;
         
-        initializeDefaultPropertyMap();
+        initializeDefaultPropertyAndFunctionMap();
         
         SunModel model = SunModel(_modelPath);
         models.push_back(model);
     }
     
-    void initializeDefaultPropertyMap() {
+    virtual void initializeDefaultPropertyAndFunctionMap() {
         // Map position, rotation, and scale to the property map
-        properties["position"] = SunObjectProperty(&position, SunObjectPropertyTypeVec3);
-        properties["rotation"] = SunObjectProperty(&rotation, SunObjectPropertyTypeVec3);
-        properties["scale"] = SunObjectProperty(&scale, SunObjectPropertyTypeVec3);
+        propertyMap["position"] = SunNodeProperty(&position, SunNodePropertyTypeVec3);
+        propertyMap["rotation"] = SunNodeProperty(&rotation, SunNodePropertyTypeVec3);
+        propertyMap["scale"] = SunNodeProperty(&scale, SunNodePropertyTypeVec3);
+        
+        // Add the "render" function to the function map
+        functionMap["render"] = bind(&SunObject::render, this, std::placeholders::_1);
+        functionMap["passPerFrameUniforms"] = bind(&SunObject::passPerFrameUniforms, this, std::placeholders::_1);
     }
     
-    virtual void addSubObject(SunObject *_subObject) {
-        // Add the sub-object and set the sub-object's super-object to this object
-        subObjects.push_back(_subObject);
-        _subObject->superObject = this;
-    }
-    
-    virtual void update() {
+    /*virtual void update() {
         // Loop through the sub-objects and force them to update
         for (int i = 0; i < subObjects.size(); ++i) {
             subObjects[i]->update();
         }
-    }
+    }*/
     
-    virtual void render(SunShader _shader, GLfloat _deltaTime) {
+    virtual void render(SunNodeSentAction _action) {
+        SunShader _shader = *(SunShader *)_action.parameters["shader"];
+        GLfloat _deltaTime = *(GLfloat *)_action.parameters["deltaTime"];
+        
         // Loop through the models and render them
         for (int i = 0; i < models.size(); ++i) {
             models[i].render(_shader, _deltaTime, position, rotation, scale, material);
         }
         
         // Loop through the sub-objects and force them to render
-        for (int i = 0; i < subObjects.size(); ++i) {
-            subObjects[i]->render(_shader, _deltaTime);
+        for (int i = 0; i < subNodes.size(); ++i) {
+            sendAction(_action, subNodes[i]);
         }
     }
     
-    virtual void passPerFrameUniforms(SunShader _shader) {
-        // Loop through the sub-objects and force them to pass their uniforms
-        for (int i = 0; i < subObjects.size(); ++i) {
-            subObjects[i]->passPerFrameUniforms(_shader);
+    virtual void passPerFrameUniforms(SunNodeSentAction _action) {
+        SunShader _shader = *(SunShader *)_action.parameters["shader"];
+        
+        for (int i = 0; i < subNodes.size(); ++i) {
+            sendAction(_action, subNodes[i]);
         }
     }
+    
 private:
     
 };

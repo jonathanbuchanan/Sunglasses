@@ -31,7 +31,7 @@ struct SunGUIMenuSentAction {
 typedef void (SunGUIMenu::*SunGUIMenuFunctionPointer)(SunGUIMenuSentAction);
 typedef void *SunGUIMenuPropertyPointer;
 
-class SunGUIMenu {
+class SunGUIMenu : public SunNode {
 public:
     vector<SunGUIItem *> items;
     

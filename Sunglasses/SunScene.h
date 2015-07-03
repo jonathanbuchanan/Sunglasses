@@ -21,7 +21,6 @@ using namespace std;
 #include "SunDirectionalLightObject.h"
 #include "SunPointLightObject.h"
 #include "SunSpotlightObject.h"
-#include "SunCubemapObject.h"
 #include "SunButtonState.h"
 
 // Definition of SunObjectType (NEEDS A HOME)
@@ -35,10 +34,11 @@ enum SunObjectType {
 class SunScene : public SunObject {
 public:
     // GUIsystem
-    SunGUISystem GUIsystem;
+    SunGUISystem *GUIsystem;
     
     // Camera
     SunCamera camera;
+    GLboolean doCameraInput;
     
     // Pointer to window
     GLFWwindow *window;
@@ -75,12 +75,19 @@ public:
             if (strcmp(attribute.name(), "name") == 0) {
                 name = attribute.value();
             } else if (strcmp(attribute.name() ,"GUISystem") == 0) {
-                GUIsystem = SunGUISystem(attribute.value(), window);
+                GUIsystem = new SunGUISystem(attribute.value(), window);
+                addSubNode(GUIsystem);
             }
         }
         
         // Process the XML scene node
         processXMLSceneNode(scene);
+    }
+    
+    void initializeDefaultPropertyMap() {
+        SunObject::initializeDefaultPropertyAndFunctionMap();
+        
+        propertyMap["doCameraInput"] = SunNodeProperty(&doCameraInput, SunNodePropertyTypeBool);
     }
     
     void processXMLSceneNode(pugi::xml_node _node) {
@@ -184,7 +191,7 @@ public:
                     processXMLPhysicalObjectPropertyNode(node, object);
             }
             
-            _superObject->addSubObject(object);
+            _superObject->addSubNode(object);
         } else if (type == SunObjectTypePointLight) {
             SunPointLightObject *object = new SunPointLightObject(tag, name);
             
@@ -195,7 +202,7 @@ public:
                     processXMLPointLightObjectPropertyNode(node, object);
             }
             
-            _superObject->addSubObject(object);
+            _superObject->addSubNode(object);
         } else if (type == SunObjectTypeDirectionaLight) {
             SunDirectionalLightObject *object = new SunDirectionalLightObject(tag, name);
             
@@ -206,7 +213,7 @@ public:
                     processXMLDirectionalLightObjectPropertyNode(node, object);
             }
             
-            _superObject->addSubObject(object);
+            _superObject->addSubNode(object);
         }
     }
     
@@ -306,15 +313,29 @@ public:
         normalizedYPosition = -(yPosition - 300) / 300;
         
         // Force the GUI system to update
-        GUIsystem.update(_buttons, normalizedXPosition, normalizedYPosition);
+        GUIsystem->update(_buttons, normalizedXPosition, normalizedYPosition);
         
         // Force sub-objects to update
-        SunObject::update();
+        //SunObject::update();
     }
     
     void render(SunShader _shader, GLfloat _deltaTime) {
         // Force sub-objects to render
-        SunObject::render(_shader, _deltaTime);
+        
+        SunNodeSentAction action;
+        action.action = "render";
+        action.parameters["shader"] = &_shader;
+        action.parameters["deltaTime"] = &_deltaTime;
+        
+        SunObject::render(action);
+    }
+    
+    void passPerFrameUniforms(SunShader _shader) {
+        SunNodeSentAction action;
+        action.action = "passPerFrameUniforms";
+        action.parameters["shader"] = &_shader;
+        
+        SunObject::passPerFrameUniforms(action);
     }
     
 private:

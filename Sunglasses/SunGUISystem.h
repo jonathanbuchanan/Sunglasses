@@ -23,7 +23,7 @@ struct SunGUIFont {
     string name;
 };
 
-class SunGUISystem {
+class SunGUISystem : public SunNode {
 public:
     vector<SunGUIMenu *> menus;
     string name;

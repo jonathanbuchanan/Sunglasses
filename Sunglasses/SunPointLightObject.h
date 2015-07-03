@@ -42,11 +42,13 @@ public:
         tag = _tag;
         name = _name;
         
-        initializeDefaultPropertyMap();
+        initializeDefaultPropertyAndFunctionMap();
     }
     
-    void passPerFrameUniforms(SunShader _shader) {
-        SunObject::passPerFrameUniforms(_shader);
+    void passPerFrameUniforms(SunNodeSentAction _action) {
+        SunObject::passPerFrameUniforms(_action);
+        
+        SunShader _shader = *(SunShader *)_action.parameters["shader"];
         
         // Set the uniforms for the point light's diffuse and specular colors
         glUniform3f(glGetUniformLocation(_shader.program, "pointLight.color"), color.r, color.g, color.b);

@@ -72,7 +72,7 @@ public:
         scene->render(shader, deltaTime);
         
         // Render GUI
-        GUIRenderer.renderSystem(&scene->GUIsystem);
+        GUIRenderer.renderSystem(scene->GUIsystem);
         
         // Swap the buffers
         swapBuffers();

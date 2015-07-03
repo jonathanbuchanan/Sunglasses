@@ -350,7 +350,6 @@
 		AB57CDFA1B1B911F00730692 /* DebugQuadVertex.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = DebugQuadVertex.vert; sourceTree = "<group>"; };
 		AB57CDFB1B1B912900730692 /* DebugQuadFragment.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = DebugQuadFragment.frag; sourceTree = "<group>"; };
 		AB596D661B23938C006C5E7F /* Penguins.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Penguins.jpg; sourceTree = "<group>"; };
-		AB61BC211B15673800C6A69C /* SunCubemapObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunCubemapObject.h; sourceTree = "<group>"; };
 		AB688F141B13D52900375EB1 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfreetype.a; sourceTree = "<group>"; };
 		AB7CD50F1B2C9D4000EEB2B2 /* SunGUIItemMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunGUIItemMesh.h; sourceTree = "<group>"; };
 		AB800A6D1B1EA11400D751E3 /* BrickWall.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BrickWall.mtl; sourceTree = "<group>"; };
@@ -384,6 +383,7 @@
 		ABE3FA961B2BA2CF004E67FE /* pugixml.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = pugixml.hpp; sourceTree = "<group>"; };
 		ABE784381B2CB8EE00289A3C /* 2DQuadVertex.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = 2DQuadVertex.vert; sourceTree = "<group>"; };
 		ABE784391B2CB8F800289A3C /* 2DQuadFragment.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = 2DQuadFragment.frag; sourceTree = "<group>"; };
+		ABEB98681B44FEE5007B87A6 /* SunNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunNode.h; sourceTree = "<group>"; };
 		ABED2BD71B40B85400C2F5CF /* BlinnPhongMaterialBoneless.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = BlinnPhongMaterialBoneless.vert; sourceTree = "<group>"; };
 		ABED2BD81B40B88300C2F5CF /* BlinnPhongMaterialBoneless.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = BlinnPhongMaterialBoneless.frag; sourceTree = "<group>"; };
 		ABED2BD91B40B89500C2F5CF /* BlinnPhongMaterialBone.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = BlinnPhongMaterialBone.vert; sourceTree = "<group>"; };
@@ -765,6 +765,7 @@
 		AB4CA2111B02EA7500FFF4F5 /* Structure */ = {
 			isa = PBXGroup;
 			children = (
+				ABEB98681B44FEE5007B87A6 /* SunNode.h */,
 				AB4CA2131B02EA8F00FFF4F5 /* SunScene.h */,
 				AB4CA2101B02E7E600FFF4F5 /* SunObject.h */,
 				ABC74C6C1B1280E400A286F5 /* SunDirectionalLightObject.h */,
@@ -866,7 +867,6 @@
 		AB61BC201B1566AA00C6A69C /* Pre-Defined Primitives */ = {
 			isa = PBXGroup;
 			children = (
-				AB61BC211B15673800C6A69C /* SunCubemapObject.h */,
 				ABD9A0B61B41B45D00CC5613 /* Cube.dae */,
 				ABD9A0B51B41B3D500CC5613 /* Plane.dae */,
 				ABD9A0B81B41B4D500CC5613 /* Monkey.dae */,

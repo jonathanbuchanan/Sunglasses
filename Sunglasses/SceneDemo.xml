@@ -51,7 +51,7 @@
             <material-shininess>2048</material-shininess>
         </object>
     </objects>
-    <camera projection="orthographic" FOV="45">
+    <camera projection="perspective" FOV="45">
         <position-x>-2</position-x>
         <position-y>1</position-y>
         <position-z>0</position-z>

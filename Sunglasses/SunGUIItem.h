@@ -9,6 +9,8 @@
 #ifndef Sunglasses_SunGUIItem_h
 #define Sunglasses_SunGUIItem_h
 
+#include "SunNode.h"
+
 #include "SunGUIItemMesh.h"
 
 #include <map>
@@ -31,7 +33,7 @@ struct SunGUIItemSentAction {
 typedef void (SunGUIItem::*SunGUIItemFunctionPointer)(SunGUIItemSentAction);
 typedef void *SunGUIItemPropertyPointer;
 
-class SunGUIItem {
+class SunGUIItem : public SunNode {
 public:
     string name;
     string text;
