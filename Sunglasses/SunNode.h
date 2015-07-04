@@ -49,6 +49,7 @@ struct SunNodeProperty {
 typedef void * SunNodeSentActionParameter;
 
 struct SunNodeSentAction {
+    map<string, void *> properties;
     map<string, SunNodeSentActionParameter> parameters;
     string action;
 };
@@ -81,31 +82,33 @@ public:
         _receiver->receiveAction(_action);
     }
     
+    virtual void sendActionToAllSubNodes(SunNodeSentAction _action) {
+        for (int i = 0; i < subNodes.size(); ++i)
+            sendAction(_action, subNodes[i]);
+    }
+    
     virtual void addSubNode(SunNode *_subNode) {
         // Add the Sub-Node
         subNodes.push_back(_subNode);
         _subNode->parent = this;
         _subNode->level = level + 1;
+        _subNode->rootNode = rootNode;
     }
     
-    virtual void findNode(string _path, vector<string> _levels, SunNode &_node) {
-        vector<string> levels = _levels;
-        
-        if (levels.size() == 0) {
-            levels = splitString(_path, *"/");
-        }
+    virtual void findNode(string _path, SunNode *&_node) {
+        vector<string> levels = splitString(_path, *"/");
         
         GLboolean done = false;
         
-        if (level + 1 == _levels.size() && levels[level] == name) {
-            _node = *this;
+        if (level + 1 == levels.size() && levels[level] == name) {
+            _node = this;
             done = true;
         }
         
         if (!done) {
             if (levels[level] == name || level == 0) {
                 for (int i = 0; i < subNodes.size(); i++) {
-                    subNodes[i]->findNode(_path, _levels, _node);
+                    subNodes[i]->findNode(_path, _node);
                 }
             }
         }

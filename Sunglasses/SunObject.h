@@ -68,16 +68,17 @@ public:
         propertyMap["scale"] = SunNodeProperty(&scale, SunNodePropertyTypeVec3);
         
         // Add the "render" function to the function map
+        functionMap["update"] = bind(&SunObject::update, this, std::placeholders::_1);
         functionMap["render"] = bind(&SunObject::render, this, std::placeholders::_1);
         functionMap["passPerFrameUniforms"] = bind(&SunObject::passPerFrameUniforms, this, std::placeholders::_1);
     }
     
-    /*virtual void update() {
+    virtual void update(SunNodeSentAction _action) {
         // Loop through the sub-objects and force them to update
-        for (int i = 0; i < subObjects.size(); ++i) {
-            subObjects[i]->update();
+        for (int i = 0; i < subNodes.size(); ++i) {
+            sendAction(_action, subNodes[i]);
         }
-    }*/
+    }
     
     virtual void render(SunNodeSentAction _action) {
         SunShader _shader = *(SunShader *)_action.parameters["shader"];

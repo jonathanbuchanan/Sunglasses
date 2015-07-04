@@ -36,6 +36,9 @@ public:
     // GUIsystem
     SunGUISystem *GUIsystem;
     
+    // Root renderable node
+    SunObject *rootRenderableNode;
+    
     // Camera
     SunCamera camera;
     GLboolean doCameraInput;
@@ -48,9 +51,10 @@ public:
         position = glm::vec3(0, 0, 0);
         rotation = glm::vec3(0, 0, 0);
         scale = glm::vec3(1.0, 1.0, 1.0);
+        rootNode = this;
         
         // Initialize the property map
-        initializeDefaultPropertyMap();
+        initializeDefaultPropertyAndFunctionMap();
     }
     
     SunScene(const char *filepath, GLFWwindow *_window) {
@@ -58,12 +62,13 @@ public:
         position = glm::vec3(0, 0, 0);
         rotation = glm::vec3(0, 0, 0);
         scale = glm::vec3(1.0, 1.0, 1.0);
+        rootNode = this;
         
         // Set the window
         window = _window;
         
         // Initialize the property map
-        initializeDefaultPropertyMap();
+        initializeDefaultPropertyAndFunctionMap();
         
         // Set up the XML Parsing
         pugi::xml_document document;
@@ -80,11 +85,14 @@ public:
             }
         }
         
+        rootRenderableNode = new SunObject();
+        addSubNode(rootRenderableNode);
+        
         // Process the XML scene node
         processXMLSceneNode(scene);
     }
     
-    void initializeDefaultPropertyMap() {
+    void initializeDefaultPropertyAndFunctionMap() {
         SunObject::initializeDefaultPropertyAndFunctionMap();
         
         propertyMap["doCameraInput"] = SunNodeProperty(&doCameraInput, SunNodePropertyTypeBool);
@@ -93,7 +101,7 @@ public:
     void processXMLSceneNode(pugi::xml_node _node) {
         for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
             if (strcmp(node.name(), "objects") == 0) {
-                processXMLObjectsNode(node, this);
+                processXMLObjectsNode(node, rootRenderableNode);
             } else if (strcmp(node.name(), "camera") == 0) {
                 processXMLCameraNode(node);
             }
@@ -306,17 +314,18 @@ public:
         glfwGetCursorPos(window, &xPosition, &yPosition);
         
         // Map Cursor Position to NDC
+        GLdouble normalizedXPosition = (xPosition - 400) / 400;
+        GLdouble normalizedYPosition = -(yPosition - 300) / 300;
         
-        GLdouble normalizedXPosition, normalizedYPosition;
+        glm::vec2 *mousePosition = new glm::vec2(normalizedXPosition, normalizedYPosition);
         
-        normalizedXPosition = (xPosition - 400) / 400;
-        normalizedYPosition = -(yPosition - 300) / 300;
-        
-        // Force the GUI system to update
-        GUIsystem->update(_buttons, normalizedXPosition, normalizedYPosition);
+        SunNodeSentAction action;
+        action.action = "update";
+        action.parameters["mousePosition"] = mousePosition;
+        action.parameters["buttons"] = &_buttons;
         
         // Force sub-objects to update
-        //SunObject::update();
+        SunObject::update(action);
     }
     
     void render(SunShader _shader, GLfloat _deltaTime) {
@@ -327,7 +336,8 @@ public:
         action.parameters["shader"] = &_shader;
         action.parameters["deltaTime"] = &_deltaTime;
         
-        SunObject::render(action);
+        sendAction(action, rootRenderableNode);
+        sendAction(action, GUIsystem);
     }
     
     void passPerFrameUniforms(SunShader _shader) {

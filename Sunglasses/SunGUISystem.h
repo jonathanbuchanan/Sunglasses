@@ -10,6 +10,7 @@
 #define Sunglasses_SunGUISystem_h
 
 #include <vector>
+#include <string>
 
 #include "Utility.h"
 
@@ -18,6 +19,8 @@
 #include "SunGUIMenu.h"
 #include "SunGUIItem.h"
 
+using namespace std;
+
 struct SunGUIFont {
     string file;
     string name;
@@ -25,7 +28,6 @@ struct SunGUIFont {
 
 class SunGUISystem : public SunNode {
 public:
-    vector<SunGUIMenu *> menus;
     string name;
     
     vector<SunGUIFont> fonts;
@@ -34,11 +36,13 @@ public:
     GLFWwindow *window;
     
     SunGUISystem() {
-        
+        initializeDefaultPropertyAndFunctionMap();
     }
     
     SunGUISystem(const char *filepath, GLFWwindow *_window) {
         window = _window;
+        
+        initializeDefaultPropertyAndFunctionMap();
         
         pugi::xml_document document;
         document.load_file(filepath);
@@ -56,13 +60,25 @@ public:
         mapSentActionTargets();
     }
     
-    void update(map<int, SunButtonState> _buttons, GLdouble _mouseXPosition, GLdouble _mouseYPosition) {
-        for (int i = 0; i < menus.size(); i++)
-            menus[i]->update(_buttons, _mouseXPosition, _mouseYPosition);
+    virtual void initializeDefaultPropertyAndFunctionMap() {
+        // Add the "render" function to the function map
+        functionMap["update"] = bind(&SunGUISystem::update, this, std::placeholders::_1);
+        functionMap["render"] = bind(&SunGUISystem::render, this, std::placeholders::_1);
     }
     
-    void render(SunTextRenderer *_textRenderer) {
-        menus[0]->render(_textRenderer);
+    virtual void update(SunNodeSentAction _action) {
+        // Loop through the sub-objects and force them to update
+        sendActionToAllSubNodes(_action);
+    }
+    
+    virtual void render(SunNodeSentAction _action) {
+        SunShader _shader = *(SunShader *)_action.parameters["shader"];
+        GLfloat _deltaTime = *(GLfloat *)_action.parameters["deltaTime"];
+        
+        // Loop through the sub-objects and force them to render
+        for (int i = 0; i < subNodes.size(); ++i) {
+            sendAction(_action, subNodes[i]);
+        }
     }
     
     void loadFonts(SunTextRenderer *_textRenderer) {
@@ -131,7 +147,7 @@ public:
             }
         }
         
-        menus.push_back(menu);
+        addSubNode(menu);
     }
     
     void processXMLMenuActionsNode(pugi::xml_node _node, SunGUIMenu *_menu) {
@@ -142,32 +158,32 @@ public:
     }
     
     void processXMLMenuActionNode(pugi::xml_node _node, SunGUIMenu *_menu) {
-        SunGUIMenuSentAction action;
+        SunNodeSentAction action;
         
-        string tempValue;
+        string temporaryValue;
         
         for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
             if (strcmp(attribute.name(), "trigger") == 0) {
-                action.trigger = attribute.value();
+                action.properties["trigger"] = new std::string(attribute.value());
             } else if (strcmp(attribute.name(), "target-path") == 0) {
-                action.targetPath = attribute.value();
-                if (action.targetPath == "@self")
-                    action.receiver = _menu;
+                action.properties["target-path"] = new std::string(attribute.value());
+                if (strcmp(attribute.value(), "@self") == 0)
+                    action.properties["receiver"] = _menu;
             } else if (strcmp(attribute.name(), "action") == 0) {
                 action.action = attribute.value();
             } else if (strcmp(attribute.name(), "targetProperty") == 0) {
-                action.targetProperty = attribute.value();
+                action.parameters["targetProperty"] = new std::string(attribute.value());
             } else if (strcmp(attribute.name(), "valueType") == 0) {
-                action.valueType = attribute.value();
+                action.properties["valueType"] = new std::string(attribute.value());
             } else if (strcmp(attribute.name(), "value") == 0) {
-                tempValue = attribute.value();
+                temporaryValue = attribute.value();
             }
         }
         
-        if (action.valueType == "vec3") {
-            vector<string> values = splitString(tempValue, *",");
+        if (*(string *)action.properties["valueType"] == "vec3") {
+            vector<string> values = splitString(temporaryValue, *",");
             
-            action.value = new glm::vec3(stod(values[0]), stod(values[1]), stod(values[2]));
+            action.parameters["value"] = new glm::vec3(stod(values[0]), stod(values[1]), stod(values[2]));
         }
         
         _menu->sentActions.push_back(action);
@@ -202,7 +218,7 @@ public:
         if (item->textured == true)
             item->loadTexture();
         
-        _menu->items.push_back(item);
+        _menu->addSubNode(item);
     }
     
     void processXMLItemPropertyNode(pugi::xml_node _node, SunGUIItem *_item) {
@@ -247,61 +263,55 @@ public:
     }
     
     void processXMLItemActionNode(pugi::xml_node _node, SunGUIItem *_item) {
-        SunGUIItemSentAction action;
+        SunNodeSentAction action;
         
-        string tempValue;
+        string temporaryValue;
         
         for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
             if (strcmp(attribute.name(), "trigger") == 0) {
-                action.trigger = attribute.value();
+                action.properties["trigger"] = new std::string(attribute.value());
             } else if (strcmp(attribute.name(), "target-path") == 0) {
-                action.targetPath = attribute.value();
-                if (action.targetPath == "@self")
-                    action.receiver = _item;
+                action.properties["target-path"] = new std::string(attribute.value());
+                if (strcmp(attribute.value(), "@self") == 0)
+                    action.properties["receiver"] = _item;
             } else if (strcmp(attribute.name(), "action") == 0) {
                 action.action = attribute.value();
             } else if (strcmp(attribute.name(), "targetProperty") == 0) {
-                action.targetProperty = attribute.value();
+                action.parameters["targetProperty"] = new std::string(attribute.value());
             } else if (strcmp(attribute.name(), "valueType") == 0) {
-                action.valueType = attribute.value();
+                action.properties["valueType"] = new std::string(attribute.value());
             } else if (strcmp(attribute.name(), "value") == 0) {
-                tempValue = attribute.value();
+                temporaryValue = attribute.value();
             }
         }
         
-        if (action.valueType == "vec3") {
-            vector<string> values = splitString(tempValue, *",");
+        if (*(string *)action.properties["valueType"] == "vec3") {
+            vector<string> values = splitString(temporaryValue, *",");
             
-            action.value = new glm::vec3(stod(values[0]), stod(values[1]), stod(values[2]));
+            action.parameters["value"] = new glm::vec3(stod(values[0]), stod(values[1]), stod(values[2]));
         }
         
         _item->sentActions.push_back(action);
     }
     
-    void itemFromSystemPath(string _path, SunGUIItem *&_item) {
-        vector<string> strings = splitString(_path, *"/");
-        for (int i = 0; i < menus.size(); i++) {
-            if (menus[i]->name == strings[0]) {
-                for (int j = 0; j < menus[i]->items.size(); j++) {
-                    if (menus[i]->items[j]->name == strings[1]) {
-                        _item = menus[i]->items[j];
-                        return;
-                    }
-                }
-            }
-        }
-    }
-    
     void mapSentActionTargets() {
-        for (int i = 0; i < menus.size(); i++) {
-            for (int j = 0; j < menus[i]->items.size(); j++) {
-                for (int k = 0; k < menus[i]->items[j]->sentActions.size(); k++) {
-                    if (menus[i]->items[j]->sentActions[k].targetPath != "@self") {
-                        SunGUIItem *item;
-                        
-                        itemFromSystemPath(menus[i]->items[j]->sentActions[k].targetPath, item);
-                        
-                        menus[i]->items[j]->sentActions[k].receiver = item;
+        for (int i = 0; i < subNodes.size(); ++i) {
+            if (dynamic_cast<SunGUIMenu *>(subNodes[i]) != NULL) {
+                for (int j = 0; j < ((SunGUIMenu *)subNodes[i])->subNodes.size(); ++j) {
+                    if (dynamic_cast<SunGUIItem *>(subNodes[i]->subNodes[j])) {
+                        for (int k = 0; k < ((SunGUIItem *)subNodes[i]->subNodes[j])->sentActions.size(); ++k) {
+                            SunNodeSentAction *action = &((SunGUIItem *)subNodes[i]->subNodes[j])->sentActions[k];
+                            
+                            SunNode *target;
+                            
+                            string targetPath = *(string *)action->properties["target-path"];
+                            
+                            if (targetPath != "@self") {
+                                rootNode->findNode(*(string *)action->properties["target-path"], target);
+                                
+                                ((SunGUIItem *)subNodes[i]->subNodes[j])->sentActions[k].properties["receiver"] = target;
+                            }
+                        }
                     }
                 }
             }

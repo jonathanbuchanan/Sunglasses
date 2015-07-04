@@ -30,7 +30,7 @@ public:
         if (_system->fontsLoaded == false)
             _system->loadFonts(&textRenderer);
         
-        _system->render(&textRenderer);
+        //_system->render(&textRenderer);
     }
     
 private:
