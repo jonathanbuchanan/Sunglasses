@@ -68,8 +68,11 @@ public:
         // Make the scene pass per-frame uniforms
         scene->passPerFrameUniforms(shader);
         
+        if (scene->GUIsystem->fontsLoaded == false)
+            scene->GUIsystem->loadFonts(&GUIRenderer.textRenderer);
+        
         // Render the scene
-        scene->render(shader, deltaTime);
+        scene->render(shader, deltaTime, &GUIRenderer.textRenderer);
         
         // Swap the buffers
         swapBuffers();

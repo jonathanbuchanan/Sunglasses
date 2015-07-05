@@ -39,8 +39,9 @@ public:
         initializeDefaultPropertyAndFunctionMap();
     }
     
-    SunGUISystem(const char *filepath, GLFWwindow *_window) {
+    SunGUISystem(const char *filepath, GLFWwindow *_window, SunNode *_rootNode) {
         window = _window;
+        rootNode = _rootNode;
         
         initializeDefaultPropertyAndFunctionMap();
         
@@ -61,6 +62,8 @@ public:
     }
     
     virtual void initializeDefaultPropertyAndFunctionMap() {
+        SunNode::initializeDefaultPropertyAndFunctionMap();
+        
         // Add the "render" function to the function map
         functionMap["update"] = bind(&SunGUISystem::update, this, std::placeholders::_1);
         functionMap["render"] = bind(&SunGUISystem::render, this, std::placeholders::_1);
@@ -297,19 +300,35 @@ public:
     void mapSentActionTargets() {
         for (int i = 0; i < subNodes.size(); ++i) {
             if (dynamic_cast<SunGUIMenu *>(subNodes[i]) != NULL) {
+                for (int j = 0; j < ((SunGUIMenu *)subNodes[i])->sentActions.size(); ++j) {
+                    SunNodeSentAction *action = &((SunGUIMenu *)subNodes[i])->sentActions[j];
+                    
+                    SunNode target;
+                    
+                    string targetPath = *(string *)action->properties["target-path"];
+                    
+                    if (targetPath != "@self") {
+                        rootNode->findNode(targetPath, target);
+                        
+                        cout << target.name;
+                        
+                        ((SunGUIMenu *)subNodes[i])->sentActions[j].properties["receiver"] = rootNode;
+                    }
+                }
+                
                 for (int j = 0; j < ((SunGUIMenu *)subNodes[i])->subNodes.size(); ++j) {
                     if (dynamic_cast<SunGUIItem *>(subNodes[i]->subNodes[j])) {
                         for (int k = 0; k < ((SunGUIItem *)subNodes[i]->subNodes[j])->sentActions.size(); ++k) {
                             SunNodeSentAction *action = &((SunGUIItem *)subNodes[i]->subNodes[j])->sentActions[k];
                             
-                            SunNode *target;
+                            SunNode target;
                             
                             string targetPath = *(string *)action->properties["target-path"];
                             
                             if (targetPath != "@self") {
                                 rootNode->findNode(*(string *)action->properties["target-path"], target);
                                 
-                                ((SunGUIItem *)subNodes[i]->subNodes[j])->sentActions[k].properties["receiver"] = target;
+                                ((SunGUIItem *)subNodes[i]->subNodes[j])->sentActions[k].properties["receiver"] = &target;
                             }
                         }
                     }

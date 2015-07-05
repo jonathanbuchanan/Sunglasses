@@ -62,6 +62,8 @@ public:
     }
     
     virtual void initializeDefaultPropertyAndFunctionMap() {
+        SunNode::initializeDefaultPropertyAndFunctionMap();
+        
         // Map position, rotation, and scale to the property map
         propertyMap["position"] = SunNodeProperty(&position, SunNodePropertyTypeVec3);
         propertyMap["rotation"] = SunNodeProperty(&rotation, SunNodePropertyTypeVec3);

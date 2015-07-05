@@ -34,25 +34,6 @@ public:
         visible = true;
     }
     
-    void changeValue(SunNodeSentAction _action) {
-        string targetProperty = *(string *)_action.parameters["targetProperty"];
-        
-        if (propertyMap.find(targetProperty) != propertyMap.end()) {
-            if (propertyMap[targetProperty].type == SunNodePropertyTypeVec3) {
-                *((glm::vec3 *)propertyMap[targetProperty].pointer) = *((glm::vec3 *)_action.parameters["targetValuePointer"]);
-            }
-        }
-    }
-    
-    void toggleBool(SunNodeSentAction _action) {
-        string targetProperty = *(string *)_action.parameters["targetProperty"];
-        
-        if (propertyMap.find(targetProperty) != propertyMap.end()) {
-            if (propertyMap[targetProperty].type == SunNodePropertyTypeBool)
-                *((GLboolean *)propertyMap[targetProperty].pointer) = !*((GLboolean *)propertyMap[targetProperty].pointer);
-        }
-    }
-    
     void toggleMouse(SunNodeSentAction _action) {
         if (glfwGetInputMode(window, GLFW_CURSOR) == GLFW_CURSOR_DISABLED)
             glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
@@ -65,14 +46,14 @@ public:
     }
     
     void initializeDefaultPropertyAndFunctionMap() {
+        SunNode::initializeDefaultPropertyAndFunctionMap();
+        
         propertyMap["visible"] = SunNodeProperty(&visible, SunNodePropertyTypeBool);
         
         functionMap["render"] = bind(&SunGUIMenu::render, this, std::placeholders::_1);
         functionMap["update"] = bind(&SunGUIMenu::update, this, std::placeholders::_1);
         functionMap["hide"] = bind(&SunGUIMenu::hide, this, std::placeholders::_1);
         functionMap["show"] = bind(&SunGUIMenu::show, this, std::placeholders::_1);
-        functionMap["changeValue"] = bind(&SunGUIMenu::changeValue, this, std::placeholders::_1);
-        functionMap["toggleBool"] = bind(&SunGUIMenu::toggleBool, this, std::placeholders::_1);
         functionMap["toggleMouse"] = bind(&SunGUIMenu::toggleMouse, this, std::placeholders::_1);
         functionMap["closeWindow"] = bind(&SunGUIMenu::closeWindow, this, std::placeholders::_1);
     }

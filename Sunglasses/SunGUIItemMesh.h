@@ -146,7 +146,8 @@ public:
         glBindVertexArray(0);
         
         // Render the text
-        //_renderer->renderText(_text, _font, (_position.x + 1) * 400, (_position.y + 1) * 300, 1, glm::vec3(0.0, 0.0, 0.0));
+        if (_renderer != NULL)
+            _renderer->renderText(_text, _font, (_position.x + 1) * 400, (_position.y + 1) * 300, 1, glm::vec3(0.0, 0.0, 0.0));
     }
     
 private:

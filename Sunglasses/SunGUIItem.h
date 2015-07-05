@@ -55,25 +55,6 @@ public:
         visible = true;
     }
     
-    void changeValue(SunNodeSentAction _action) {
-        string targetProperty = *(string *)_action.parameters["targetProperty"];
-        
-        if (propertyMap.find(targetProperty) != propertyMap.end()) {
-            if (propertyMap[targetProperty].type == SunNodePropertyTypeVec3) {
-                *((glm::vec3 *)propertyMap[targetProperty].pointer) = *((glm::vec3 *)_action.parameters["targetValuePointer"]);
-            }
-        }
-    }
-    
-    void toggleBool(SunNodeSentAction _action) {
-        string targetProperty = *(string *)_action.parameters["targetProperty"];
-        
-        if (propertyMap.find(targetProperty) != propertyMap.end()) {
-            if (propertyMap[targetProperty].type == SunNodePropertyTypeBool)
-                *((GLboolean *)propertyMap[targetProperty].pointer) = !*((GLboolean *)propertyMap[targetProperty].pointer);
-        }
-    }
-    
     void toggleMouse(SunNodeSentAction _action) {
         if (glfwGetInputMode(window, GLFW_CURSOR) == GLFW_CURSOR_DISABLED)
             glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
@@ -86,12 +67,12 @@ public:
     }
     
     void initializeDefaultPropertyAndFunctionMap() {
+        SunNode::initializeDefaultPropertyAndFunctionMap();
+        
         functionMap["render"] = bind(&SunGUIItem::render, this, std::placeholders::_1);
         functionMap["update"] = bind(&SunGUIItem::update, this, std::placeholders::_1);
         functionMap["hide"] = bind(&SunGUIItem::hide, this, std::placeholders::_1);
         functionMap["show"] = bind(&SunGUIItem::show, this, std::placeholders::_1);
-        functionMap["changeValue"] = bind(&SunGUIItem::changeValue, this, std::placeholders::_1);
-        functionMap["toggleBool"] = bind(&SunGUIItem::toggleBool, this, std::placeholders::_1);
         functionMap["toggleMouse"] = bind(&SunGUIItem::toggleMouse, this, std::placeholders::_1);
         functionMap["closeWindow"] = bind(&SunGUIItem::closeWindow, this, std::placeholders::_1);
     }

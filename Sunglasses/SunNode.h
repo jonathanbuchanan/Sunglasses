@@ -67,8 +67,29 @@ public:
     
     SunNode *rootNode;
     
-    virtual void initializeDefaultPropertyAndFunctionMap() {
+    virtual void changeValue(SunNodeSentAction _action) {
+        string targetProperty = *(string *)_action.parameters["targetProperty"];
         
+        if (propertyMap.find(targetProperty) != propertyMap.end()) {
+            if (propertyMap[targetProperty].type == SunNodePropertyTypeVec3)
+                *((glm::vec3 *)propertyMap[targetProperty].pointer) = *((glm::vec3 *)_action.parameters["targetValuePointer"]);
+            else if (propertyMap[targetProperty].type == SunNodePropertyTypeBool)
+                *((GLboolean *)propertyMap[targetProperty].pointer) = *((GLboolean *)_action.parameters["targetValuePOinter"]);
+        }
+    }
+    
+    virtual void toggleBool(SunNodeSentAction _action) {
+        string targetProperty = *(string *)_action.parameters["targetProperty"];
+        
+        if (propertyMap.find(targetProperty) != propertyMap.end()) {
+            if (propertyMap[targetProperty].type == SunNodePropertyTypeBool)
+                *((GLboolean *)propertyMap[targetProperty].pointer) = !*((GLboolean *)propertyMap[targetProperty].pointer);
+        }
+    }
+    
+    virtual void initializeDefaultPropertyAndFunctionMap() {
+        functionMap["changeValue"] = bind(&SunNode::changeValue, this, std::placeholders::_1);
+        functionMap["toggleBool"] = bind(&SunNode::toggleBool, this, std::placeholders::_1);
     }
     
     virtual void receiveAction(SunNodeSentAction _action) {
@@ -95,13 +116,13 @@ public:
         _subNode->rootNode = rootNode;
     }
     
-    virtual void findNode(string _path, SunNode *&_node) {
+    virtual void findNode(string _path, SunNode &_node) {
         vector<string> levels = splitString(_path, *"/");
         
         GLboolean done = false;
         
         if (level + 1 == levels.size() && levels[level] == name) {
-            _node = this;
+            _node = *this;
             done = true;
         }
         

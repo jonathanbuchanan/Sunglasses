@@ -41,7 +41,7 @@ public:
     
     // Camera
     SunCamera camera;
-    GLboolean doCameraInput;
+    GLboolean doCameraInput = true;
     
     // Pointer to window
     GLFWwindow *window;
@@ -74,13 +74,15 @@ public:
         pugi::xml_document document;
         document.load_file(filepath);
         
+        name = "hi";
+        
         pugi::xml_node scene = document.child("scene");
         
         for (pugi::xml_attribute attribute = scene.first_attribute(); attribute; attribute = attribute.next_attribute()) {
             if (strcmp(attribute.name(), "name") == 0) {
                 name = attribute.value();
             } else if (strcmp(attribute.name() ,"GUISystem") == 0) {
-                GUIsystem = new SunGUISystem(attribute.value(), window);
+                GUIsystem = new SunGUISystem(attribute.value(), window, this);
                 addSubNode(GUIsystem);
             }
         }
@@ -335,6 +337,19 @@ public:
         action.action = "render";
         action.parameters["shader"] = &_shader;
         action.parameters["deltaTime"] = &_deltaTime;
+        
+        sendAction(action, rootRenderableNode);
+        sendAction(action, GUIsystem);
+    }
+    
+    void render(SunShader _shader, GLfloat _deltaTime, SunTextRenderer *_textRenderer) {
+        // Force sub-objects to render
+        
+        SunNodeSentAction action;
+        action.action = "render";
+        action.parameters["shader"] = &_shader;
+        action.parameters["deltaTime"] = &_deltaTime;
+        action.parameters["textRenderer"] = _textRenderer;
         
         sendAction(action, rootRenderableNode);
         sendAction(action, GUIsystem);

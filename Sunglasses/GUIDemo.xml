@@ -5,8 +5,9 @@
     <menus>
         <menu name="ESCMenu" visible="false">
             <actions>
-                <action trigger="escape" target-type="menu" target-path="@self" action="toggleBool" targetProperty="visible" valueType="" value="" />
-                <action trigger="escape" target-type="menu" target-path="@self" action="toggleMouse" targetProperty="" valueType="" value="" />
+                <action trigger="escape" target-path="@self" action="toggleBool" targetProperty="visible" valueType="" value="" />
+                <action trigger="escape" target-path="@self" action="toggleMouse" targetProperty="" valueType="" value="" />
+                <action trigger="escape" target-path="DemoScene" action="toggleBool" targetProperty="doCameraInput" valueType="" value="" />
             </actions>
             
             <items>
@@ -35,69 +36,10 @@
                     <texturepath-highlighted></texturepath-highlighted>
                     
                     <actions>
-                        <action trigger="click" target-type="item" target-path="@self" action="closeWindow" targetProperty="" valueType="" value="" />
+                        <action trigger="click" target-path="@self" action="closeWindow" targetProperty="" valueType="" value="" />
                     </actions>
                 </item>
             </items>
         </menu>
-        <!--<menu name="MainMenu" visible="false">
-            <items>
-                <item name="Mike">
-                    <text>DVD</text>
-                    <font>Arial</font>
-                    
-                    <width>.9</width>
-                    <height>.9</height>
-                    
-                    <x>0</x>
-                    <y>0</y>
-                    
-                    <r>1</r>
-                    <g>1</g>
-                    <b>0</b>
-                    
-                    <textured>false</textured>
-                    <texturepath></texturepath>
-                    
-                    <r-highlighted>0</r-highlighted>
-                    <g-highlighted>1</g-highlighted>
-                    <b-highlighted>0</b-highlighted>
-                    
-                    <textured-highlighted>false</textured-highlighted>
-                    <texturepath-highlighted></texturepath-highlighted>
-                    
-                    <actions>
-                        <action trigger="click" target-type="item" target-path="MainMenu/Bob" action="changeValue" targetProperty="color" valueType="vec3" value="1,1,1" />
-                    </actions>
-                </item>
-                <item name="Bob">
-                    <text>CD</text>
-                    <font>Arial</font>
-                    
-                    <width>.9</width>
-                    <height>.1</height>
-                    
-                    <x>-0.9</x>
-                    <y>-0.9</y>
-                    
-                    <r>0</r>
-                    <g>1</g>
-                    <b>1</b>
-                    
-                    <r-highlighted>0</r-highlighted>
-                    <g-highlighted>0</g-highlighted>
-                    <b-highlighted>1</b-highlighted>
-                    
-                    <textured>false</textured>
-                    <texturepath></texturepath>
-                    
-                    <textured-highlighted>true</textured-highlighted>
-                    <texturepath-highlighted>brickwall.jpg</texturepath-highlighted>
-                    
-                    <actions>
-                    </actions>
-                </item>
-            </items>
-        </menu>-->
     </menus>
 </GUISystem>
