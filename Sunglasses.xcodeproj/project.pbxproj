@@ -331,7 +331,6 @@
 		AB0F40631B1BCD280089F109 /* SunPointLightShadowMapRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunPointLightShadowMapRenderer.h; sourceTree = "<group>"; };
 		AB100EE01B16C15F0084C126 /* CubemapVertex.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = CubemapVertex.vert; sourceTree = "<group>"; };
 		AB100EE11B16C18C0084C126 /* CubemapFragment.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = CubemapFragment.frag; sourceTree = "<group>"; };
-		AB1B61801B48CD8D00C2CF7D /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		AB29CD201B3DF4C0004B835D /* SceneDemo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SceneDemo.xml; sourceTree = "<group>"; };
 		AB329F2F1B1BDD6200AD49CA /* PointShadowMapVertex.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PointShadowMapVertex.vert; sourceTree = "<group>"; };
 		AB329F301B1BDD7200AD49CA /* PointShadowMapGeometry.geom */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PointShadowMapGeometry.geom; sourceTree = "<group>"; };
@@ -972,7 +971,6 @@
 				AB8EB9B61B3B2743006BBC44 /* Utility */,
 				AB4CA2121B02EA7F00FFF4F5 /* Graphics */,
 				AB4CA2111B02EA7500FFF4F5 /* Structure */,
-				AB1B61801B48CD8D00C2CF7D /* .gitignore */,
 			);
 			path = Sunglasses;
 			sourceTree = "<group>";
