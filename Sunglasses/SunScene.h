@@ -16,11 +16,11 @@ using namespace std;
 
 #include "pugixml.hpp"
 
+#include "SunCamera.h"
 #include "SunObject.h"
 #include "SunDirectionalLightObject.h"
 #include "SunPointLightObject.h"
 #include "SunSpotlightObject.h"
-#include "SunCubemapObject.h"
 #include "SunButtonState.h"
 
 // Definition of SunObjectType (NEEDS A HOME)
@@ -34,7 +34,14 @@ enum SunObjectType {
 class SunScene : public SunObject {
 public:
     // GUIsystem
-    SunGUISystem GUIsystem;
+    SunGUISystem *GUIsystem;
+    
+    // Root renderable node
+    SunObject *rootRenderableNode;
+    
+    // Camera
+    SunCamera camera;
+    GLboolean doCameraInput = true;
     
     // Pointer to window
     GLFWwindow *window;
@@ -44,9 +51,10 @@ public:
         position = glm::vec3(0, 0, 0);
         rotation = glm::vec3(0, 0, 0);
         scale = glm::vec3(1.0, 1.0, 1.0);
+        rootNode = this;
         
         // Initialize the property map
-        initializeDefaultPropertyMap();
+        initializeDefaultPropertyAndFunctionMap();
     }
     
     SunScene(const char *filepath, GLFWwindow *_window) {
@@ -54,16 +62,19 @@ public:
         position = glm::vec3(0, 0, 0);
         rotation = glm::vec3(0, 0, 0);
         scale = glm::vec3(1.0, 1.0, 1.0);
+        rootNode = this;
         
         // Set the window
         window = _window;
         
         // Initialize the property map
-        initializeDefaultPropertyMap();
+        initializeDefaultPropertyAndFunctionMap();
         
         // Set up the XML Parsing
         pugi::xml_document document;
         document.load_file(filepath);
+        
+        name = "hi";
         
         pugi::xml_node scene = document.child("scene");
         
@@ -71,20 +82,72 @@ public:
             if (strcmp(attribute.name(), "name") == 0) {
                 name = attribute.value();
             } else if (strcmp(attribute.name() ,"GUISystem") == 0) {
-                GUIsystem = SunGUISystem(attribute.value(), window);
+                GUIsystem = new SunGUISystem(attribute.value(), window, this);
+                addSubNode(GUIsystem);
             }
         }
+        
+        rootRenderableNode = new SunObject();
+        addSubNode(rootRenderableNode);
         
         // Process the XML scene node
         processXMLSceneNode(scene);
     }
     
+    void initializeDefaultPropertyAndFunctionMap() {
+        SunObject::initializeDefaultPropertyAndFunctionMap();
+        
+        propertyMap["doCameraInput"] = SunNodeProperty(&doCameraInput, SunNodePropertyTypeBool);
+    }
+    
     void processXMLSceneNode(pugi::xml_node _node) {
         for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
             if (strcmp(node.name(), "objects") == 0) {
-                processXMLObjectsNode(node, this);
+                processXMLObjectsNode(node, rootRenderableNode);
+            } else if (strcmp(node.name(), "camera") == 0) {
+                processXMLCameraNode(node);
             }
         }
+    }
+    
+    void processXMLCameraNode(pugi::xml_node _node) {
+        // Projection type and FOV
+        SunCameraProjectionType projection;
+        GLfloat FOV;
+        
+        // Loop through the attributes
+        for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
+            if (strcmp(attribute.name(), "projection") == 0) {
+                if (strcmp(attribute.value(), "perspective") == 0)
+                    projection = SunCameraProjectionTypePerspective;
+                else if (strcmp(attribute.value(), "orthographic") == 0)
+                    projection = SunCameraProjectionTypeOrthographic;
+            } else if (strcmp(attribute.name(), "FOV") == 0)
+                FOV = attribute.as_float();
+        }
+        
+        // Create the camera object
+        camera = SunCamera(projection, FOV);
+        
+        // Loop through property nodes
+        for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
+            processXMLCameraPropertyNode(node, &camera);
+        }
+    }
+    
+    void processXMLCameraPropertyNode(pugi::xml_node _node, SunCamera *_camera) {
+        if (strcmp(_node.name(), "position-x") == 0)
+            _camera->position.x = _node.text().as_float();
+        else if (strcmp(_node.name(), "position-y") == 0)
+            _camera->position.y = _node.text().as_float();
+        else if (strcmp(_node.name(), "position-z") == 0)
+            _camera->position.z = _node.text().as_float();
+        else if (strcmp(_node.name(), "direction-x") == 0)
+            _camera->direction.x = _node.text().as_float();
+        else if (strcmp(_node.name(), "direction-y") == 0)
+            _camera->direction.y = _node.text().as_float();
+        else if (strcmp(_node.name(), "direction-z") == 0)
+            _camera->direction.z = _node.text().as_float();
     }
     
     void processXMLObjectsNode(pugi::xml_node _node, SunObject *_superObject) {
@@ -138,7 +201,7 @@ public:
                     processXMLPhysicalObjectPropertyNode(node, object);
             }
             
-            _superObject->addSubObject(object);
+            _superObject->addSubNode(object);
         } else if (type == SunObjectTypePointLight) {
             SunPointLightObject *object = new SunPointLightObject(tag, name);
             
@@ -149,7 +212,7 @@ public:
                     processXMLPointLightObjectPropertyNode(node, object);
             }
             
-            _superObject->addSubObject(object);
+            _superObject->addSubNode(object);
         } else if (type == SunObjectTypeDirectionaLight) {
             SunDirectionalLightObject *object = new SunDirectionalLightObject(tag, name);
             
@@ -160,7 +223,7 @@ public:
                     processXMLDirectionalLightObjectPropertyNode(node, object);
             }
             
-            _superObject->addSubObject(object);
+            _superObject->addSubNode(object);
         }
     }
     
@@ -253,22 +316,51 @@ public:
         glfwGetCursorPos(window, &xPosition, &yPosition);
         
         // Map Cursor Position to NDC
+        GLdouble normalizedXPosition = (xPosition - 400) / 400;
+        GLdouble normalizedYPosition = -(yPosition - 300) / 300;
         
-        GLdouble normalizedXPosition, normalizedYPosition;
+        glm::vec2 *mousePosition = new glm::vec2(normalizedXPosition, normalizedYPosition);
         
-        normalizedXPosition = (xPosition - 400) / 400;
-        normalizedYPosition = -(yPosition - 300) / 300;
-        
-        // Force the GUI system to update
-        GUIsystem.update(_buttons, normalizedXPosition, normalizedYPosition);
+        SunNodeSentAction action;
+        action.action = "update";
+        action.parameters["mousePosition"] = mousePosition;
+        action.parameters["buttons"] = &_buttons;
         
         // Force sub-objects to update
-        SunObject::update();
+        SunObject::update(action);
     }
     
     void render(SunShader _shader, GLfloat _deltaTime) {
         // Force sub-objects to render
-        SunObject::render(_shader, _deltaTime);
+        
+        SunNodeSentAction action;
+        action.action = "render";
+        action.parameters["shader"] = &_shader;
+        action.parameters["deltaTime"] = &_deltaTime;
+        
+        sendAction(action, rootRenderableNode);
+        sendAction(action, GUIsystem);
+    }
+    
+    void render(SunShader _shader, GLfloat _deltaTime, SunTextRenderer *_textRenderer) {
+        // Force sub-objects to render
+        
+        SunNodeSentAction action;
+        action.action = "render";
+        action.parameters["shader"] = &_shader;
+        action.parameters["deltaTime"] = &_deltaTime;
+        action.parameters["textRenderer"] = _textRenderer;
+        
+        sendAction(action, rootRenderableNode);
+        sendAction(action, GUIsystem);
+    }
+    
+    void passPerFrameUniforms(SunShader _shader) {
+        SunNodeSentAction action;
+        action.action = "passPerFrameUniforms";
+        action.parameters["shader"] = &_shader;
+        
+        SunObject::passPerFrameUniforms(action);
     }
     
 private:

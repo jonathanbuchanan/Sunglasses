@@ -9,29 +9,13 @@
 #ifndef Sunglasses_SunGUIItem_h
 #define Sunglasses_SunGUIItem_h
 
+#include "SunNode.h"
+
 #include "SunGUIItemMesh.h"
 
 #include <map>
 
-class SunGUIItem;
-
-typedef void *SunGUIItemSentActionValue;
-
-struct SunGUIItemSentAction {
-    string trigger;
-    string targetPath;
-    string action;
-    string targetProperty;
-    string valueType;
-    SunGUIItemSentActionValue value;
-    
-    SunGUIItem *receiver;
-};
-
-typedef void (SunGUIItem::*SunGUIItemFunctionPointer)(SunGUIItemSentAction);
-typedef void *SunGUIItemPropertyPointer;
-
-class SunGUIItem {
+class SunGUIItem : public SunNode {
 public:
     string name;
     string text;
@@ -53,67 +37,48 @@ public:
     
     GLboolean visible = true;
     
-    map<string, SunGUIItemFunctionPointer> functions;
-    map<string, SunGUIItemPropertyPointer> properties;
-    
-    vector<SunGUIItemSentAction> sentActions;
+    vector<SunNodeSentAction> sentActions;
     
     GLFWwindow *window;
     
     SunGUIItem() {
-        setUpReceivedFunctionsAndProperties();
+        initializeDefaultPropertyAndFunctionMap();
         
         mesh.setUpGL();
     }
     
-    void hide(SunGUIItemSentAction _action) {
+    void hide(SunNodeSentAction _action) {
+        visible = false;
+    }
+    
+    void show(SunNodeSentAction _action) {
+        visible = true;
+    }
+    
+    void toggleMouse(SunNodeSentAction _action) {
+        if (glfwGetInputMode(window, GLFW_CURSOR) == GLFW_CURSOR_DISABLED)
+            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+        else
+            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    }
+    
+    void closeWindow(SunNodeSentAction _action) {
+        glfwSetWindowShouldClose(window, true);
+    }
+    
+    void initializeDefaultPropertyAndFunctionMap() {
+        SunNode::initializeDefaultPropertyAndFunctionMap();
         
+        functionMap["render"] = bind(&SunGUIItem::render, this, std::placeholders::_1);
+        functionMap["update"] = bind(&SunGUIItem::update, this, std::placeholders::_1);
+        functionMap["hide"] = bind(&SunGUIItem::hide, this, std::placeholders::_1);
+        functionMap["show"] = bind(&SunGUIItem::show, this, std::placeholders::_1);
+        functionMap["toggleMouse"] = bind(&SunGUIItem::toggleMouse, this, std::placeholders::_1);
+        functionMap["closeWindow"] = bind(&SunGUIItem::closeWindow, this, std::placeholders::_1);
     }
     
-    void changeValue(SunGUIItemSentAction _action) {
-        string targetProperty = _action.targetProperty;
-        string valueType = _action.valueType;
-        
-        if (valueType == "vec3") {
-            *((glm::vec3 *)properties[targetProperty]) = *(glm::vec3 *)_action.value;
-        }
-    }
-    
-    void toggleBool(SunGUIItemSentAction _action) {
-        
-    }
-    
-    void closeWindow(SunGUIItemSentAction _action) {
-        glfwSetWindowShouldClose(window, GL_TRUE);
-    }
-    
-    void setUpReceivedFunctionsAndProperties() {
-        functions["hide"] = &SunGUIItem::hide;
-        functions["changeValue"] = &SunGUIItem::changeValue;
-        functions["toggleBool"] = &SunGUIItem::toggleBool;
-        functions["closeWindow"] = &SunGUIItem::closeWindow;
-        
-        properties["color"] = &color;
-    }
-    
-    void receiveAction(SunGUIItemSentAction _action) {
-        SunGUIItemFunctionPointer pointer = functions[_action.action];
-        (this->*pointer)(_action);
-    }
-    
-    void loadTexture() {
-        mesh.loadTexture(texturePath);
-    }
-    
-    void sendActions(map<string, bool> _triggers) {
-        for (int i = 0; i < sentActions.size(); i++) {
-            if (_triggers[sentActions[i].trigger] == true)
-                sentActions[i].receiver->receiveAction(sentActions[i]);
-        }
-    }
-    
-    map<string, bool> activeTriggers(map<int, SunButtonState> _buttons, GLboolean _containsMouse) {
-        map<string, bool> triggers;
+    map<string, GLboolean> activeTriggers(map<int, SunButtonState> _buttons, GLboolean _containsMouse) {
+        map<string, GLboolean> triggers;
         
         triggers["click"] = false;
         triggers["escape"] = false;
@@ -122,19 +87,31 @@ public:
             triggers["click"] = true;
         if (_buttons[GLFW_KEY_ESCAPE] == SunButtonStatePressedEdge)
             triggers["escape"] = true;
-            
+        
         return triggers;
     }
     
-    void update(map<int, SunButtonState> _buttons, GLdouble _mouseXPosition, GLdouble _mouseYPosition) {
-        highlighted = pointInItem(glm::vec2(_mouseXPosition, _mouseYPosition));
-        
-        sendActions(activeTriggers(_buttons, highlighted));
+    void sendActions(map<string, GLboolean> _activeTriggers) {
+        for (int i = 0; i < sentActions.size(); ++i) {
+            if (_activeTriggers[*(string *)sentActions[i].properties["trigger"]] == true) {
+                sendAction(sentActions[i], (SunNode *)sentActions[i].properties["receiver"]);
+            }
+        }
     }
     
-    void render(SunTextRenderer *_renderer) {
+    void update(SunNodeSentAction _action) {
+        highlighted = pointInItem(*(glm::vec2 *)_action.parameters["mousePosition"]);
+        
+        sendActions(activeTriggers(*(map<int, SunButtonState> *)_action.parameters["buttons"], highlighted));
+    }
+    
+    void render(SunNodeSentAction _action) {
         if (visible)
-            mesh.render(position, size, color, textured, highlightColor, highlighted, text, font, _renderer);
+            mesh.render(position, size, color, textured, highlightColor, highlighted, text, font, (SunTextRenderer *)_action.parameters["textRenderer"]);
+    }
+    
+    void loadTexture() {
+        mesh.loadTexture(texturePath);
     }
     
     GLboolean pointInItem(glm::vec2 _point) {

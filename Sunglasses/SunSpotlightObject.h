@@ -43,15 +43,10 @@ class SunSpotlightObject : public SunObject {
         spotlight = _spotlight;
     }
     
-    SunSpotlightObject(SunObject *_superObject, SunSpotlight _spotlight) {
-        superObject = _superObject;
-        superObject->addSubObject(this);
+    void passPerFrameUniforms(SunNodeSentAction _action) {
+        SunObject::passPerFrameUniforms(_action);
         
-        spotlight = _spotlight;
-    }
-    
-    void passPerFrameUniforms(SunShader _shader) {
-        SunObject::passPerFrameUniforms(_shader);
+        SunShader _shader = *(SunShader *)_action.parameters["shader"];
         
         // Set the uniforms for the spotlight's diffuse and specular colors and cutoff value
         glUniform3f(glGetUniformLocation(_shader.program, "spotlight.diffuseColor"), spotlight.diffuseColor.x, spotlight.diffuseColor.y, spotlight.diffuseColor.z);

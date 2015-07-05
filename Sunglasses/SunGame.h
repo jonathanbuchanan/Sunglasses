@@ -123,19 +123,24 @@ public:
                 }
             }
             
-            // Tell the camera to do movement (NEEDS CLEAN UP)
-            
-            if (lastXOffset != xOffset && lastYOffset != yOffset)
-                renderer.camera.doCameraMovement(buttons, deltaTime, xOffset, yOffset);
-            if (lastXOffset == xOffset && lastYOffset != yOffset)
-                renderer.camera.doCameraMovement(buttons, deltaTime, 0, yOffset);
-            if (lastXOffset != xOffset && lastYOffset != yOffset)
-                renderer.camera.doCameraMovement(buttons, deltaTime, xOffset, 0);
-            else
-                renderer.camera.doCameraMovement(buttons, deltaTime, 0, 0);
-            
-            lastXOffset = xOffset;
-            lastYOffset = yOffset;
+            if (renderer.scene->doCameraInput == true) {
+                // Tell the camera to do movement (NEEDS CLEAN UP)
+                
+                if (lastXOffset != xOffset && lastYOffset != yOffset)
+                    renderer.scene->camera.doCameraMovement(buttons, deltaTime, xOffset, yOffset);
+                if (lastXOffset == xOffset && lastYOffset != yOffset)
+                    renderer.scene->camera.doCameraMovement(buttons, deltaTime, 0, yOffset);
+                if (lastXOffset != xOffset && lastYOffset != yOffset)
+                    renderer.scene->camera.doCameraMovement(buttons, deltaTime, xOffset, 0);
+                else
+                    renderer.scene->camera.doCameraMovement(buttons, deltaTime, 0, 0);
+                
+                lastXOffset = xOffset;
+                lastYOffset = yOffset;
+            } else {
+                xOffset = lastXOffset;
+                yOffset = lastYOffset;
+            }
             
             // Tell the renderer to do its cycle
             
