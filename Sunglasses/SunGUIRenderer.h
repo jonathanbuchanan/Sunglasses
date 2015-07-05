@@ -13,6 +13,8 @@
 
 #include "SunGUISystem.h"
 
+// SunGUIRenderer
+
 class SunGUIRenderer {
 public:
     SunTextRenderer textRenderer;
