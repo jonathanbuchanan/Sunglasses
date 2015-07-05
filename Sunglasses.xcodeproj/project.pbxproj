@@ -350,6 +350,7 @@
 		AB57CDFA1B1B911F00730692 /* DebugQuadVertex.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = DebugQuadVertex.vert; sourceTree = "<group>"; };
 		AB57CDFB1B1B912900730692 /* DebugQuadFragment.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = DebugQuadFragment.frag; sourceTree = "<group>"; };
 		AB596D661B23938C006C5E7F /* Penguins.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Penguins.jpg; sourceTree = "<group>"; };
+		AB673A421B4998BC00FF6A57 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		AB688F141B13D52900375EB1 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfreetype.a; sourceTree = "<group>"; };
 		AB7CD50F1B2C9D4000EEB2B2 /* SunGUIItemMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunGUIItemMesh.h; sourceTree = "<group>"; };
 		AB800A6D1B1EA11400D751E3 /* BrickWall.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BrickWall.mtl; sourceTree = "<group>"; };
@@ -971,6 +972,7 @@
 				AB8EB9B61B3B2743006BBC44 /* Utility */,
 				AB4CA2121B02EA7F00FFF4F5 /* Graphics */,
 				AB4CA2111B02EA7500FFF4F5 /* Structure */,
+				AB673A421B4998BC00FF6A57 /* .gitignore */,
 			);
 			path = Sunglasses;
 			sourceTree = "<group>";
