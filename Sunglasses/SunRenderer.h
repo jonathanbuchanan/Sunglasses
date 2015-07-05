@@ -31,6 +31,7 @@ public:
     SunDirectionalLightShadowMapRenderer shadowMapRenderer;
     
     SunScene *scene;
+    SunCamera camera;
     
     SunShader shader;
     
