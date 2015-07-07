@@ -188,7 +188,6 @@ public:
         
         // Enable depth testing
         glEnable(GL_DEPTH_TEST);
-        glDepthFunc(GL_LESS);
         
         // Enable multisampling
         if (_useMSAA == true) {

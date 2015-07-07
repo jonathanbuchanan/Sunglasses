@@ -124,7 +124,7 @@ public:
         if (projection == SunCameraProjectionTypePerspective)
             matrix = glm::perspective(FOV, _aspectRatio, 0.01f, 100.0f);
         else if (projection == SunCameraProjectionTypeOrthographic)
-            matrix = glm::ortho(0.0f, 800.0f, 0.0f, 600.0f, 0.1f, 100.0f);
+            matrix = glm::ortho(-5.0f, 5.0f, -5.0f, 5.0f, 0.1f, 100.0f);
         
         return matrix;
     }

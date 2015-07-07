@@ -11,10 +11,14 @@
 
 using namespace std;
 
+#include "SunHDRRenderer.h"
+
 #include "SunTextRenderer.h"
 #include "SunGUIRenderer.h"
 #include "SunDirectionalLightShadowMapRenderer.h"
 #include "SunPointLightShadowMapRenderer.h"
+
+#include "SunTexturedQuad.h"
 
 #include "SunScene.h"
 #include "SunCamera.h"
@@ -27,8 +31,11 @@ public:
     GLfloat screenWidth;
     GLfloat screenHeight;
     
+    SunHDRRenderer HDRrenderer;
     SunGUIRenderer GUIRenderer;
     SunDirectionalLightShadowMapRenderer shadowMapRenderer;
+    
+    SunTexturedQuad quad;
     
     SunScene *scene;
     SunCamera camera;
@@ -41,39 +48,40 @@ public:
     SunObject *plane;
     
     void cycle(map<int, SunButtonState> _buttons, GLfloat deltaTime) {
+        // Update the scene
         scene->update(_buttons);
         
         // Clear
         clear();
         
-        //shadowMapRenderer.renderDirectionalLight(dlight, deltaTime, glm::vec3(0.0, 0.0, 0.0), scene);
+        // Render the scene
+        HDRrenderer.renderScene(scene, deltaTime, shaderMap);
         
-        /*glViewport(0, 0, screenWidth * 2, screenHeight * 2);
-        clear();*/
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        clear();
         
-        /*glActiveTexture(GL_TEXTURE15);
-        glBindTexture(GL_TEXTURE_2D, shadowMapRenderer.depthMap);
-        glUniform1i(glGetUniformLocation(shader.program, "shadowMap"), 15);
+        quad.render(HDRrenderer.colorBuffer);
         
-        shadowMapRenderer.passLightSpaceMatrix(shader, dlight, glm::vec3(0.0, 0.0, 0.0));*/
-        
-        // Pass the camera uniforms
-        //scene->camera.passPerFrameUniforms(shaderMap, screenWidth / screenHeight);
-        
-        // Make the scene pass per-frame uniforms
-        //scene->passPerFrameUniforms(shaderMap);
-        
+        // Load the fonts if they aren't loaded
         if (scene->GUIsystem->fontsLoaded == false)
             scene->GUIsystem->loadFonts(&GUIRenderer.textRenderer);
         
-        // Render the scene
-        scene->render(shaderMap, deltaTime, &GUIRenderer.textRenderer);
+        // Render the GUI
+        scene->renderGUISystem(&GUIRenderer.textRenderer);
         
         // Swap the buffers
         swapBuffers();
     }
     
+    void renderFullscreenQuad(GLuint _texture) {
+        
+    }
+    
     void initialize() {
+        // Set up the HDR renderer
+        HDRrenderer = SunHDRRenderer();
+        HDRrenderer.initialize();
+        
         // Set up the GUI renderer
         GUIRenderer = SunGUIRenderer();
         GUIRenderer.initialize();
@@ -81,6 +89,9 @@ public:
         // Set up the shadow map renderer
         shadowMapRenderer = SunDirectionalLightShadowMapRenderer();
         shadowMapRenderer.initialize();
+        
+        quad = SunTexturedQuad();
+        quad.setUpGL();
         
         scene = new SunScene("SceneDemo.xml", window);
         

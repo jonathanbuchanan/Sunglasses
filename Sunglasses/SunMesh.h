@@ -19,55 +19,7 @@ using namespace std;
 #include "glm/gtx/quaternion.hpp"
 #include "glm/gtx/string_cast.hpp"
 
-// SunVertex Declaration
-struct SunVertex {
-    // Position, normal, and texture coordinates
-    glm::vec3 position;
-    glm::vec3 normal;
-    glm::vec3 tangent;
-    glm::vec2 textureCoordinates;
-    GLuint boneIDs[4];
-    GLfloat boneWeights[4];
-    
-    SunVertex() {
-        
-    }
-};
-
-// SunBone Declaration
-struct SunBone {
-    string name;
-    GLint parentID;
-    
-    glm::mat4 relativeTransform;
-    glm::mat4 globalTransform;
-    glm::mat4 bindPose;
-    glm::mat4 inverseBindPose;
-};
-
-// SunAnimationChannel Declaration
-struct SunAnimationChannel {
-    GLuint boneID;
-    
-    vector<GLdouble> rotationKeyTicks;
-    vector<glm::quat> rotationKeyValues;
-};
-
-// SunAnimation Declaration
-struct SunAnimation {
-    GLdouble length;
-    GLdouble ticksPerSecond;
-    
-    vector<SunAnimationChannel> channels;
-};
-
-// SunTexture Declaration
-struct SunTexture {
-    // Id, type, and path
-    GLuint id;
-    string type;
-    aiString path;
-};
+#include "SunPrimitives.h"
 
 // SunObjectMaterial Declaration
 struct SunObjectMaterial {
@@ -167,9 +119,6 @@ public:
             } else {
                 bones[i].globalTransform = bones[bones[i].parentID].globalTransform * bones[i].relativeTransform;
             }
-            
-            //bones[i].bindPose = bones[i].globalTransform;
-            //bones[i].inverseBindPose = glm::inverse(bones[i].bindPose);
         }
     }
     
@@ -290,64 +239,6 @@ public:
             // Unbind the VAO
             glBindVertexArray(0);
         }
-        
-        /*for (GLuint i = 0; i < textures.size(); i++) {
-            glBindTexture(GL_TEXTURE_2D, textures[i].id);
-            
-            if (i == 0)
-                glActiveTexture(GL_TEXTURE0);
-            if (i == 1)
-                glActiveTexture(GL_TEXTURE1);
-            
-            glUniform1f(glGetUniformLocation(_shader.program, ("material." + textures[i].type).c_str()), i);
-        }*/
-        
-        /*if (_material.animated == true) {
-            GLfloat tick = glfwGetTime() * animations[0].ticksPerSecond;
-            
-            calculateBoneGlobalTransforms(fmod(tick, animations[0].length * animations[0].ticksPerSecond));
-            passGlobalTransformUniforms(_shader);
-        }
-        
-        if (_material.textured == true) {
-            glActiveTexture(GL_TEXTURE0);
-            glBindTexture(GL_TEXTURE_2D, textures[0].id);
-            glUniform1i(glGetUniformLocation(_shader.program, "material.diffuse"), 0);
-            
-            glActiveTexture(GL_TEXTURE1);
-             glBindTexture(GL_TEXTURE_2D, textures[1].id);
-             glUniform1i(glGetUniformLocation(_shader.program, "material.normal"), 1);*/
-        /*} else {
-            glUniform3f(glGetUniformLocation(_shader.program, "material.color"), _material.color.r, _material.color.g, _material.color.b);
-        }*/
-        
-        /*glUniform1f(glGetUniformLocation(_shader.program, "material.shininess"), _material.shininess);
-        
-        // Calculate the model matrix
-        glm::mat4 modelMatrix;
-        modelMatrix = glm::translate(modelMatrix, _position);
-        modelMatrix = glm::rotate(modelMatrix, glm::radians(_rotation.x), glm::vec3(1.0, 0.0, 0.0));
-        modelMatrix = glm::rotate(modelMatrix, glm::radians(_rotation.y), glm::vec3(0.0, 1.0, 0.0));
-        modelMatrix = glm::rotate(modelMatrix, glm::radians(_rotation.z), glm::vec3(0.0, 0.0, 1.0));
-        modelMatrix = glm::scale(modelMatrix, _scale);
-        
-        // Pass the model matrix uniform
-        glUniformMatrix4fv(glGetUniformLocation(_shader.program, "model"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
-        
-        // Calculate the normal matrix
-        glm::mat3 normalMatrix = glm::mat3(glm::transpose(glm::inverse(modelMatrix)));
-        
-        // Pass the normal matrix
-        glUniformMatrix3fv(glGetUniformLocation(_shader.program, "normalMatrix"), 1, GL_FALSE, glm::value_ptr(normalMatrix));
-        
-        // Bind the VAO
-        glBindVertexArray(VAO);
-        
-        // Draw the triangles
-        glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
-        
-        // Unbind the VAO
-        glBindVertexArray(0);*/
     }
 private:
     
