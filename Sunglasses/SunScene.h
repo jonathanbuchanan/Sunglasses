@@ -157,16 +157,14 @@ public:
     }
     
     void processXMLObjectNode(pugi::xml_node _node, SunObject *_superObject) {
-        int tag;
         string name;
         string model;
         SunObjectType type;
         SunObjectMaterial material;
+        SunMeshRenderType renderType;
         
         for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
-            if (strcmp(attribute.name(), "tag") == 0)
-                tag = attribute.as_int();
-            else if (strcmp(attribute.name(), "name") == 0)
+            if (strcmp(attribute.name(), "name") == 0)
                 name = attribute.value();
             else if (strcmp(attribute.name(), "model") == 0)
                 model = attribute.value();
@@ -179,20 +177,20 @@ public:
                     type = SunObjectTypeDirectionaLight;
             } else if (strcmp(attribute.name(), "textured") == 0) {
                 if (attribute.as_bool() == true)
-                    material.textured = true;
+                    renderType = SunMeshRenderTypeTextured;
                 else
-                    material.textured = false;
+                    renderType = SunMeshRenderTypeSolid;
             } else if (strcmp(attribute.name(), "animated") == 0) {
-                if (attribute.as_bool() == true)
-                    material.animated = true;
-                else
-                    material.animated = false;
+                
             }
         }
         
         if (type == SunObjectTypePhysical) {
-            SunObject *object = new SunObject(tag, name, model);
+            SunObject *object;
+            object = new SunObject(name, model);
+            
             object->material = material;
+            object->renderType = renderType;
             
             for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
                 if (strcmp(node.name(), "objects") == 0)
@@ -203,7 +201,7 @@ public:
             
             _superObject->addSubNode(object);
         } else if (type == SunObjectTypePointLight) {
-            SunPointLightObject *object = new SunPointLightObject(tag, name);
+            SunPointLightObject *object = new SunPointLightObject(name);
             
             for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
                 if (strcmp(node.name(), "objects") == 0)
@@ -214,7 +212,7 @@ public:
             
             _superObject->addSubNode(object);
         } else if (type == SunObjectTypeDirectionaLight) {
-            SunDirectionalLightObject *object = new SunDirectionalLightObject(tag, name);
+            SunDirectionalLightObject *object = new SunDirectionalLightObject(name);
             
             for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
                 if (strcmp(node.name(), "objects") == 0)
@@ -330,32 +328,49 @@ public:
         SunObject::update(action);
     }
     
-    void render(SunShader _shader, GLfloat _deltaTime) {
+    void render(map<string, SunShader> _shaders, GLfloat _deltaTime) {
         // Force sub-objects to render
         
         SunNodeSentAction action;
         action.action = "render";
-        action.parameters["shader"] = &_shader;
+        action.parameters["shaders"] = &_shaders;
         action.parameters["deltaTime"] = &_deltaTime;
         
         sendAction(action, rootRenderableNode);
         sendAction(action, GUIsystem);
     }
     
-    void render(SunShader _shader, GLfloat _deltaTime, SunTextRenderer *_textRenderer) {
+    void render(map<string, SunShader> _shaders, GLfloat _deltaTime, SunTextRenderer *_textRenderer) {
         // Force sub-objects to render
         
-        SunNodeSentAction action;
-        action.action = "render";
-        action.parameters["shader"] = &_shader;
-        action.parameters["deltaTime"] = &_deltaTime;
-        action.parameters["textRenderer"] = _textRenderer;
+        SunNodeSentAction solidAction;
+        solidAction.action = "render";
+        solidAction.parameters["shader"] = &_shaders["solid"];
+        solidAction.parameters["renderType"] = new int(SunMeshRenderTypeSolid);
+        solidAction.parameters["deltaTime"] = &_deltaTime;
+        solidAction.parameters["textRenderer"] = _textRenderer;
         
-        sendAction(action, rootRenderableNode);
-        sendAction(action, GUIsystem);
+        SunNodeSentAction texturedAction;
+        texturedAction.action = "render";
+        texturedAction.parameters["shader"] = &_shaders["textured"];
+        texturedAction.parameters["rendertype"] = new int(SunMeshRenderTypeTextured);
+        texturedAction.parameters["deltaTime"] = &_deltaTime;
+        texturedAction.parameters["textRenderer"] = _textRenderer;
+        
+        _shaders["solid"].use();
+        passPerFrameUniforms(_shaders["solid"]);
+        sendAction(solidAction, rootRenderableNode);
+        
+        _shaders["textured"].use();
+        passPerFrameUniforms(_shaders["textured"]);
+        sendAction(texturedAction, rootRenderableNode);
+        
+        sendAction(solidAction, GUIsystem);
     }
     
     void passPerFrameUniforms(SunShader _shader) {
+        camera.passPerFrameUniforms(_shader);
+        
         SunNodeSentAction action;
         action.action = "passPerFrameUniforms";
         action.parameters["shader"] = &_shader;

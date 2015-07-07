@@ -62,7 +62,10 @@ public:
         
         passLightSpaceMatrix(shader, _pointLight);
         
-        _scene->render(shader, _deltaTime);
+        map<string, SunShader> shaderMap;
+        shaderMap["all"] = shader;
+        
+        _scene->render(shaderMap, _deltaTime);
         
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }

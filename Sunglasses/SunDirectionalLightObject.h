@@ -32,8 +32,7 @@ public:
         direction = _direction;
     }
     
-    SunDirectionalLightObject(int _tag, string _name) {
-        tag = _tag;
+    SunDirectionalLightObject(string _name) {
         name = _name;
         
         initializeDefaultPropertyAndFunctionMap();

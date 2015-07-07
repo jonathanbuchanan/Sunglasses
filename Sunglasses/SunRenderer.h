@@ -33,7 +33,7 @@ public:
     SunScene *scene;
     SunCamera camera;
     
-    SunShader shader;
+    map<string, SunShader> shaderMap;
     
     SunObject *watch;
     
@@ -51,29 +51,23 @@ public:
         /*glViewport(0, 0, screenWidth * 2, screenHeight * 2);
         clear();*/
         
-        // Use the shader
-        shader.use();
-        
-        glActiveTexture(GL_TEXTURE15);
+        /*glActiveTexture(GL_TEXTURE15);
         glBindTexture(GL_TEXTURE_2D, shadowMapRenderer.depthMap);
         glUniform1i(glGetUniformLocation(shader.program, "shadowMap"), 15);
         
-        shadowMapRenderer.passLightSpaceMatrix(shader, dlight, glm::vec3(0.0, 0.0, 0.0));
-        
-        // Pass the matrix uniforms
-        scene->camera.setUpMatrixUniforms(shader, screenWidth / screenHeight);
+        shadowMapRenderer.passLightSpaceMatrix(shader, dlight, glm::vec3(0.0, 0.0, 0.0));*/
         
         // Pass the camera uniforms
-        scene->camera.passPerFrameUniforms(shader);
+        //scene->camera.passPerFrameUniforms(shaderMap, screenWidth / screenHeight);
         
         // Make the scene pass per-frame uniforms
-        scene->passPerFrameUniforms(shader);
+        //scene->passPerFrameUniforms(shaderMap);
         
         if (scene->GUIsystem->fontsLoaded == false)
             scene->GUIsystem->loadFonts(&GUIRenderer.textRenderer);
         
         // Render the scene
-        scene->render(shader, deltaTime, &GUIRenderer.textRenderer);
+        scene->render(shaderMap, deltaTime, &GUIRenderer.textRenderer);
         
         // Swap the buffers
         swapBuffers();
@@ -90,8 +84,9 @@ public:
         
         scene = new SunScene("SceneDemo.xml", window);
         
-        // Set up shader
-        shader = SunShader("BlinnPhongMaterialBoneless.vert", "BlinnPhongMaterialBoneless.frag");
+        // Set up shader map
+        shaderMap["solid"] = SunShader("BlinnPhongMaterialBoneless.vert", "BlinnPhongMaterialBoneless.frag");
+        shaderMap["textured"] = SunShader("BlinnPhongTextureBoneless.vert", "BlinnPhongTextureBoneless.frag");
     }
     
     void clear() {

@@ -15,6 +15,8 @@ using namespace std;
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
+#include "Utility.h"
+
 #include "SunButtonState.h"
 
 // Definition of SunCameraProjectionType
@@ -129,16 +131,15 @@ public:
     
     void passPerFrameUniforms(SunShader _shader) {
         glUniform3f(glGetUniformLocation(_shader.program, "viewPosition"), position.x, position.y, position.z);
-    }
-    
-    void setUpMatrixUniforms(SunShader _shader, GLfloat _aspectRatio) {
+        
         // Pass the view and projection matrices to the shader
         GLint viewMatrixLocation = glGetUniformLocation(_shader.program, "view");
         glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, glm::value_ptr(viewMatrix()));
         
         GLint projectionMatrixLocation = glGetUniformLocation(_shader.program, "projection");
-        glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(projectionMatrix(_aspectRatio)));
+        glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(projectionMatrix(800.0f / 600.0f)));
     }
+    
 private:
     
 };

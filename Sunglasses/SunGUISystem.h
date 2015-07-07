@@ -75,13 +75,8 @@ public:
     }
     
     virtual void render(SunNodeSentAction _action) {
-        SunShader _shader = *(SunShader *)_action.parameters["shader"];
-        GLfloat _deltaTime = *(GLfloat *)_action.parameters["deltaTime"];
-        
         // Loop through the sub-objects and force them to render
-        for (int i = 0; i < subNodes.size(); ++i) {
-            sendAction(_action, subNodes[i]);
-        }
+        sendActionToAllSubNodes(_action);
     }
     
     void loadFonts(SunTextRenderer *_textRenderer) {
@@ -309,8 +304,6 @@ public:
                     
                     if (targetPath != "@self") {
                         rootNode->findNode(targetPath, target);
-                        
-                        cout << target.name;
                         
                         ((SunGUIMenu *)subNodes[i])->sentActions[j].properties["receiver"] = rootNode;
                     }

@@ -64,7 +64,10 @@ public:
         glBindFramebuffer(GL_FRAMEBUFFER, FBO);
         glClear(GL_DEPTH_BUFFER_BIT);
         
-        _scene->render(shader, _deltaTime);
+        map<string, SunShader> shaderMap;
+        shaderMap["all"] = shader;
+        
+        _scene->render(shaderMap, _deltaTime);
         
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
         

@@ -38,8 +38,7 @@ public:
         position = _position;
     }
     
-    SunPointLightObject(int _tag, string _name) {
-        tag = _tag;
+    SunPointLightObject(string _name) {
         name = _name;
         
         initializeDefaultPropertyAndFunctionMap();

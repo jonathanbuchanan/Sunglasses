@@ -352,6 +352,7 @@
 		AB596D661B23938C006C5E7F /* Penguins.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Penguins.jpg; sourceTree = "<group>"; };
 		AB673A421B4998BC00FF6A57 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		AB688F141B13D52900375EB1 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfreetype.a; sourceTree = "<group>"; };
+		AB6BAC681B4B199F00A6EBFF /* Cube.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = Cube.dae; sourceTree = "<group>"; };
 		AB7CD50F1B2C9D4000EEB2B2 /* SunGUIItemMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunGUIItemMesh.h; sourceTree = "<group>"; };
 		AB800A6D1B1EA11400D751E3 /* BrickWall.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BrickWall.mtl; sourceTree = "<group>"; };
 		AB800A6E1B1EA11400D751E3 /* BrickWall.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BrickWall.obj; sourceTree = "<group>"; };
@@ -372,7 +373,6 @@
 		ABD2170E1B044C8700CEF185 /* SunModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunModel.h; sourceTree = "<group>"; };
 		ABD2170F1B044C9300CEF185 /* SunMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunMesh.h; sourceTree = "<group>"; };
 		ABD9A0B51B41B3D500CC5613 /* Plane.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = Plane.dae; sourceTree = "<group>"; };
-		ABD9A0B61B41B45D00CC5613 /* Cube.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = Cube.dae; sourceTree = "<group>"; };
 		ABD9A0B81B41B4D500CC5613 /* Monkey.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = Monkey.dae; sourceTree = "<group>"; };
 		ABDE814B1B059CA200BB61CA /* SunCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunCamera.h; sourceTree = "<group>"; };
 		ABE1C84C1AE31EBD00A77DD4 /* Sunglasses */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Sunglasses; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -868,7 +868,7 @@
 		AB61BC201B1566AA00C6A69C /* Pre-Defined Primitives */ = {
 			isa = PBXGroup;
 			children = (
-				ABD9A0B61B41B45D00CC5613 /* Cube.dae */,
+				AB6BAC681B4B199F00A6EBFF /* Cube.dae */,
 				ABD9A0B51B41B3D500CC5613 /* Plane.dae */,
 				ABD9A0B81B41B4D500CC5613 /* Monkey.dae */,
 			);

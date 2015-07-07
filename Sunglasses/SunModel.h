@@ -78,10 +78,10 @@ public:
         processMeshNode(node, scene);
     }
     
-    void render(SunShader _shader, GLfloat _deltaTime, glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale, SunObjectMaterial _material) {
+    void render(SunShader _shader, GLfloat _deltaTime, glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale, SunObjectMaterial _material, SunMeshRenderType _renderType) {
         // Loop through sub-meshes and render
         for (int i = 0; i < meshes.size(); i++)
-            meshes[i].render(_shader, _deltaTime, _position, _rotation, _scale, _material);
+            meshes[i].render(_shader, _deltaTime, _position, _rotation, _scale, _material, _renderType);
     }
 private:
     // Textures

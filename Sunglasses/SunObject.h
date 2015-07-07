@@ -17,13 +17,10 @@ using namespace std;
 #include "SunModel.h"
 
 #include "glm/gtx/string_cast.hpp"
+#include "Utility.h"
 
 class SunObject : public SunNode {
 public:
-    // Tag and name
-    int tag;
-    string name;
-    
     // Object position and rotation
     glm::vec3 position;
     glm::vec3 rotation;
@@ -33,26 +30,13 @@ public:
     vector<SunModel> models;
     
     SunObjectMaterial material;
+    SunMeshRenderType renderType;
     
     SunObject() {
         initializeDefaultPropertyAndFunctionMap();
     }
     
-    SunObject(int _tag) {
-        tag = _tag;
-        
-        initializeDefaultPropertyAndFunctionMap();
-    }
-    
-    SunObject(int _tag, string _name) {
-        tag = _tag;
-        name = _name;
-        
-        initializeDefaultPropertyAndFunctionMap();
-    }
-    
-    SunObject(int _tag, string _name, string _modelPath) {
-        tag = _tag;
+    SunObject(string _name, string _modelPath) {
         name = _name;
         
         initializeDefaultPropertyAndFunctionMap();
@@ -83,26 +67,32 @@ public:
     }
     
     virtual void render(SunNodeSentAction _action) {
-        SunShader _shader = *(SunShader *)_action.parameters["shader"];
-        GLfloat _deltaTime = *(GLfloat *)_action.parameters["deltaTime"];
-        
-        // Loop through the models and render them
-        for (int i = 0; i < models.size(); ++i) {
-            models[i].render(_shader, _deltaTime, position, rotation, scale, material);
+        if (_action.parameters.find("renderType") != _action.parameters.end()) {
+            if (renderType == *(int *)_action.parameters["renderType"]) {
+                SunShader _shader = *(SunShader *)_action.parameters["shader"];
+                GLfloat _deltaTime = *(GLfloat *)_action.parameters["deltaTime"];
+                
+                // Loop through the models and render them
+                for (int i = 0; i < models.size(); ++i) {
+                    models[i].render(_shader, _deltaTime, position, rotation, scale, material, renderType);
+                }
+            }
+        } else {
+            SunShader _shader = *(SunShader *)_action.parameters["shader"];
+            GLfloat _deltaTime = *(GLfloat *)_action.parameters["deltaTime"];
+            
+            // Loop through the models and render them
+            for (int i = 0; i < models.size(); ++i) {
+                models[i].render(_shader, _deltaTime, position, rotation, scale, material, renderType);
+            }
         }
         
         // Loop through the sub-objects and force them to render
-        for (int i = 0; i < subNodes.size(); ++i) {
-            sendAction(_action, subNodes[i]);
-        }
+        sendActionToAllSubNodes(_action);
     }
     
     virtual void passPerFrameUniforms(SunNodeSentAction _action) {
-        SunShader _shader = *(SunShader *)_action.parameters["shader"];
-        
-        for (int i = 0; i < subNodes.size(); ++i) {
-            sendAction(_action, subNodes[i]);
-        }
+        sendActionToAllSubNodes(_action);
     }
     
 private:

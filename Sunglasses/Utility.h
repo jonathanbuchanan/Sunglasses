@@ -15,6 +15,8 @@ using namespace std;
 #include <vector>
 #include <algorithm>
 
+typedef map<string, SunShader>::iterator ShaderMapIterator;
+
 vector<string> splitString(const string &_string, const char &_delimeter) {
     typedef string::const_iterator Iterator;
     Iterator beginning = _string.begin();
