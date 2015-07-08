@@ -80,8 +80,15 @@ public:
         glBindVertexArray(0);
     }
     
-    void render(GLuint _textureID) {
+    void render(GLuint _textureID, vector<SunShaderUniform> _uniforms) {
         shader.use();
+        
+        for (int i = 0; i < _uniforms.size(); i++) {
+            if (_uniforms[i].type == "float")
+                glUniform1f(glGetUniformLocation(shader.program, _uniforms[i].name.c_str()), *(GLfloat *)_uniforms[i].value);
+            else if (_uniforms[i].type == "boolean")
+                glUniform1i(glGetUniformLocation(shader.program, _uniforms[i].name.c_str()), *(GLboolean *)_uniforms[i].value);
+        }
         
         glBindTexture(GL_TEXTURE_2D, _textureID);
         glActiveTexture(GL_TEXTURE0);

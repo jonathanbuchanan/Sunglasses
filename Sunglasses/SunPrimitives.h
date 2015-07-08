@@ -69,10 +69,30 @@ struct SunAnimation {
 
 // SunTexture Declaration
 struct SunTexture {
-    // Id, type, and path
+    // ID, type, and path
     GLuint id;
     string type;
     aiString path;
+};
+
+typedef void * SunShaderUniformValuePointer;
+
+// SunShaderUniform Declaration
+struct SunShaderUniform {
+    // Name, type, and value pointer;
+    string name;
+    string type;
+    SunShaderUniformValuePointer value;
+    
+    SunShaderUniform() {
+        
+    }
+    
+    SunShaderUniform(string _name, string _type, SunShaderUniformValuePointer _value) {
+        name = _name;
+        type = _type;
+        value = _value;
+    }
 };
 
 #endif

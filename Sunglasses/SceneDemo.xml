@@ -25,9 +25,9 @@
                     <position-y>4</position-y>
                     <position-z>0</position-z>
                     
-                    <color-r>100</color-r>
-                    <color-g>100</color-g>
-                    <color-b>100</color-b>
+                    <color-r>10</color-r>
+                    <color-g>10</color-g>
+                    <color-b>10</color-b>
                 </object>
             </objects>
         </object>

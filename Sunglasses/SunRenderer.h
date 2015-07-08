@@ -42,6 +42,8 @@ public:
     
     map<string, SunShader> shaderMap;
     
+    vector<SunShaderUniform> HDRShaderMap;
+    
     SunObject *watch;
     
     SunDirectionalLightObject *dlight;
@@ -60,7 +62,7 @@ public:
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
         clear();
         
-        quad.render(HDRrenderer.colorBuffer);
+        quad.render(HDRrenderer.colorBuffer, HDRShaderMap);
         
         // Load the fonts if they aren't loaded
         if (scene->GUIsystem->fontsLoaded == false)
@@ -71,10 +73,6 @@ public:
         
         // Swap the buffers
         swapBuffers();
-    }
-    
-    void renderFullscreenQuad(GLuint _texture) {
-        
     }
     
     void initialize() {
@@ -98,6 +96,9 @@ public:
         // Set up shader map
         shaderMap["solid"] = SunShader("BlinnPhongMaterialBoneless.vert", "BlinnPhongMaterialBoneless.frag");
         shaderMap["textured"] = SunShader("BlinnPhongTextureBoneless.vert", "BlinnPhongTextureBoneless.frag");
+        
+        HDRShaderMap.push_back(SunShaderUniform("exposure", "float", new GLfloat(1)));
+        HDRShaderMap.push_back(SunShaderUniform("doHDR", "boolean", new GLboolean(true)));
     }
     
     void clear() {
