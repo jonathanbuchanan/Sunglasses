@@ -177,12 +177,7 @@ private:
             normal.z = _mesh->mNormals[i].z;
             
             // Tangent
-            /*glm::vec3 tangent;
-            
-            // Set the position's tangent's x, y, and z from the mesh data
-            tangent.x = _mesh->mTangents[i].x;
-            tangent.y = _mesh->mTangents[i].y;
-            tangent.z = _mesh->mTangents[i].z;*/
+            glm::vec3 tangent = glm::vec3(0.0, 0.0, 0.0);
             
             // Texture Coordinates
             glm::vec2 textureCoordinates = glm::vec2(0.0, 0.0);
@@ -192,12 +187,17 @@ private:
                 // Set the texture coordinates' x and y from the mesh data
                 textureCoordinates.x = _mesh->mTextureCoords[0][i].x;
                 textureCoordinates.y = _mesh->mTextureCoords[0][i].y;
+                
+                // Set the position's tangent's x, y, and z from the mesh data
+                tangent.x = _mesh->mTangents[i].x;
+                tangent.y = _mesh->mTangents[i].y;
+                tangent.z = _mesh->mTangents[i].z;
             }
             
             // Assign the position, normal, and texture coordinates to the vertex
             vertex.position = position;
             vertex.normal = normal;
-            //vertex.tangent = tangent;
+            vertex.tangent = tangent;
             vertex.textureCoordinates = textureCoordinates;
             
             vertex.boneIDs[0] = 0;
