@@ -21,13 +21,13 @@
             
             <objects>
                 <object name="Light" type="PointLight">
-                    <position-x>0</position-x>
+                    <position-x>-3</position-x>
                     <position-y>4</position-y>
                     <position-z>0</position-z>
                     
-                    <color-r>10</color-r>
-                    <color-g>10</color-g>
-                    <color-b>10</color-b>
+                    <color-r>5</color-r>
+                    <color-g>5</color-g>
+                    <color-b>5</color-b>
                 </object>
             </objects>
         </object>

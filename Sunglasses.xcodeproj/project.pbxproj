@@ -354,7 +354,6 @@
 		AB688F141B13D52900375EB1 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfreetype.a; sourceTree = "<group>"; };
 		AB6BAC681B4B199F00A6EBFF /* Cube.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = Cube.dae; sourceTree = "<group>"; };
 		AB7CD50F1B2C9D4000EEB2B2 /* SunGUIItemMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunGUIItemMesh.h; sourceTree = "<group>"; };
-		AB7F0CCA1B4C41E800B9AA0E /* SunHDRRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunHDRRenderer.h; sourceTree = "<group>"; };
 		AB7F0CCB1B4C569B00B9AA0E /* SunTexturedQuad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunTexturedQuad.h; sourceTree = "<group>"; };
 		AB7F0CCC1B4C579C00B9AA0E /* SunPrimitives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunPrimitives.h; sourceTree = "<group>"; };
 		AB7F0CCD1B4C5B6100B9AA0E /* 2DFullscreenQuadVertex.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = 2DFullscreenQuadVertex.vert; sourceTree = "<group>"; };
@@ -373,6 +372,8 @@
 		ABADE9681B2B9EC800A8BADB /* SunGUISystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunGUISystem.h; sourceTree = "<group>"; };
 		ABADE9691B2B9ED700A8BADB /* SunGUIMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunGUIMenu.h; sourceTree = "<group>"; };
 		ABADE96A1B2B9EE800A8BADB /* SunGUIItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunGUIItem.h; sourceTree = "<group>"; };
+		ABB8B5D81B4CB71300428EC6 /* 2DFullscreenBlurVertex.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = 2DFullscreenBlurVertex.vert; sourceTree = "<group>"; };
+		ABB8B5D91B4CB72100428EC6 /* 2DFullscreenBlurFragment.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = 2DFullscreenBlurFragment.frag; sourceTree = "<group>"; };
 		ABC74C6C1B1280E400A286F5 /* SunDirectionalLightObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunDirectionalLightObject.h; sourceTree = "<group>"; };
 		ABC74C6D1B12833C00A286F5 /* SunPointLightObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunPointLightObject.h; sourceTree = "<group>"; };
 		ABD2170E1B044C8700CEF185 /* SunModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunModel.h; sourceTree = "<group>"; };
@@ -792,7 +793,6 @@
 				AB4DBDF81B13DB06004D7575 /* Text */,
 				AB800A6B1B1E85FA00D751E3 /* Models */,
 				AB4CA20F1B02E70800FFF4F5 /* SunRenderer.h */,
-				AB7F0CCA1B4C41E800B9AA0E /* SunHDRRenderer.h */,
 				AB911C341B195EDA002BDCD0 /* SunDirectionalLightShadowMapRenderer.h */,
 				AB0F40631B1BCD280089F109 /* SunPointLightShadowMapRenderer.h */,
 				ABDE814B1B059CA200BB61CA /* SunCamera.h */,
@@ -845,6 +845,7 @@
 				AB57CDF91B1B90FF00730692 /* Debug Quad */,
 				ABE784371B2CB8D400289A3C /* 2D Quad */,
 				AB7F0CCE1B4C5B6800B9AA0E /* 2D Fullscreen Quad */,
+				ABB8B5D71B4CB6CF00428EC6 /* 2D Blur */,
 				AB4DBDFC1B13E33B004D7575 /* Text */,
 				AB8FB9A61B13B3F300215484 /* Phong */,
 				AB8FB9A81B13B45E00215484 /* Blinn-Phong */,
@@ -952,6 +953,15 @@
 				AB7CD50F1B2C9D4000EEB2B2 /* SunGUIItemMesh.h */,
 			);
 			name = GUI;
+			sourceTree = "<group>";
+		};
+		ABB8B5D71B4CB6CF00428EC6 /* 2D Blur */ = {
+			isa = PBXGroup;
+			children = (
+				ABB8B5D81B4CB71300428EC6 /* 2DFullscreenBlurVertex.vert */,
+				ABB8B5D91B4CB72100428EC6 /* 2DFullscreenBlurFragment.frag */,
+			);
+			name = "2D Blur";
 			sourceTree = "<group>";
 		};
 		ABE1C8431AE31EBD00A77DD4 = {

@@ -18,6 +18,8 @@
 
 #include "SunPrimitives.h"
 
+typedef map<string, GLuint>::iterator SunTextureMapIterator;
+
 class SunTexturedQuad {
 public:
     // Vertices, indices, and textures
@@ -37,16 +39,11 @@ public:
     GLuint EBO;
     GLuint VAO;
     
-    // Shader
-    SunShader shader;
-    
     SunTexturedQuad() {
         
     }
     
     void setUpGL() {
-        shader = SunShader("2DFullscreenQuadVertex.vert", "2DFullscreenQuadFragment.frag");
-        
         // Generate the VAO
         glGenVertexArrays(1, &VAO);
         
@@ -80,19 +77,36 @@ public:
         glBindVertexArray(0);
     }
     
-    void render(GLuint _textureID, vector<SunShaderUniform> _uniforms) {
-        shader.use();
+    void render(map<string, GLuint> _textures, SunShader _shader, vector<SunShaderUniform> _uniforms, bool yes) {
+        _shader.use();
         
         for (int i = 0; i < _uniforms.size(); i++) {
             if (_uniforms[i].type == "float")
-                glUniform1f(glGetUniformLocation(shader.program, _uniforms[i].name.c_str()), *(GLfloat *)_uniforms[i].value);
+                glUniform1f(glGetUniformLocation(_shader.program, _uniforms[i].name.c_str()), *(GLfloat *)_uniforms[i].value);
             else if (_uniforms[i].type == "boolean")
-                glUniform1i(glGetUniformLocation(shader.program, _uniforms[i].name.c_str()), *(GLboolean *)_uniforms[i].value);
+                glUniform1i(glGetUniformLocation(_shader.program, _uniforms[i].name.c_str()), *(GLboolean *)_uniforms[i].value);
         }
         
-        glBindTexture(GL_TEXTURE_2D, _textureID);
-        glActiveTexture(GL_TEXTURE0);
-        glUniform1i(glGetUniformLocation(shader.program, "backgroundTexture"), 0);
+        if (yes == false) {
+            int iteratorIndex = 0;
+            for (SunTextureMapIterator iterator = _textures.begin(); iterator != _textures.end(); iterator++) {
+                glActiveTexture(GL_TEXTURE0 + iteratorIndex);
+                glBindTexture(GL_TEXTURE_2D, iterator->second);
+                glUniform1i(glGetUniformLocation(_shader.program, iterator->first.c_str()), iteratorIndex);
+                //glBindTexture(GL_TEXTURE_2D, 0);
+                
+                iteratorIndex++;
+            }
+        } else {
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, _textures["backgroundTexture"]);
+            glUniform1i(glGetUniformLocation(_shader.program, "t.backgroundTexture"), 0);
+            
+            glActiveTexture(GL_TEXTURE1);
+            glBindTexture(GL_TEXTURE_2D, _textures["bloomTexture"]);
+            glUniform1i(glGetUniformLocation(_shader.program, "t.bloomTexture"), 1);
+        }
+        
         
         // Bind the VAO
         glBindVertexArray(VAO);
@@ -102,6 +116,9 @@ public:
         
         // Unbind the VAO
         glBindVertexArray(0);
+        
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, 0);
     }
     
 private:

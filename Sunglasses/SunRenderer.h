@@ -11,8 +11,6 @@
 
 using namespace std;
 
-#include "SunHDRRenderer.h"
-
 #include "SunTextRenderer.h"
 #include "SunGUIRenderer.h"
 #include "SunDirectionalLightShadowMapRenderer.h"
@@ -26,12 +24,22 @@ using namespace std;
 
 class SunRenderer {
 public:
+    GLuint HDRframebuffer;
+    GLuint colorBuffers[2];
+    GLuint depthBuffer;
+    
+    SunShader final;
+    
+    GLuint blurFramebuffers[2];
+    GLuint blurBuffers[2];
+    
+    SunShader blur;
+    
     GLFWwindow *window;
     
     GLfloat screenWidth;
     GLfloat screenHeight;
     
-    SunHDRRenderer HDRrenderer;
     SunGUIRenderer GUIRenderer;
     SunDirectionalLightShadowMapRenderer shadowMapRenderer;
     
@@ -42,7 +50,7 @@ public:
     
     map<string, SunShader> shaderMap;
     
-    vector<SunShaderUniform> HDRShaderMap;
+    vector<SunShaderUniform> HDRUniforms;
     
     SunObject *watch;
     
@@ -57,12 +65,43 @@ public:
         clear();
         
         // Render the scene
-        HDRrenderer.renderScene(scene, deltaTime, shaderMap);
+        glBindFramebuffer(GL_FRAMEBUFFER, HDRframebuffer);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        
+        scene->render(shaderMap, deltaTime);
+        
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        
+        GLboolean horizontal = true;
+        GLboolean firstIteration = true;
+        GLuint amount = 10;
+        
+        for (int i = 0; i < amount; i++) {
+            glBindFramebuffer(GL_FRAMEBUFFER, blurFramebuffers[horizontal]);
+            
+            vector<SunShaderUniform> uniforms;
+            uniforms.push_back(SunShaderUniform("horizontal", "boolean", &horizontal));
+            
+            map<string, GLuint> textureMap;
+            textureMap["backgroundTexture"] = firstIteration ? colorBuffers[1] : blurBuffers[!horizontal];
+            
+            quad.render(textureMap, blur, uniforms, false);
+            
+            horizontal = !horizontal;
+            
+            if (firstIteration)
+                firstIteration = false;
+        }
         
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
         clear();
         
-        quad.render(HDRrenderer.colorBuffer, HDRShaderMap);
+        map<string, GLuint> textureMap;
+        
+        textureMap["backgroundTexture"] = colorBuffers[0];
+        textureMap["bloomTexture"] = blurBuffers[!horizontal];
+        
+        quad.render(textureMap, final, HDRUniforms, true);
         
         // Load the fonts if they aren't loaded
         if (scene->GUIsystem->fontsLoaded == false)
@@ -76,9 +115,7 @@ public:
     }
     
     void initialize() {
-        // Set up the HDR renderer
-        HDRrenderer = SunHDRRenderer();
-        HDRrenderer.initialize();
+        setUpGL();
         
         // Set up the GUI renderer
         GUIRenderer = SunGUIRenderer();
@@ -97,8 +134,61 @@ public:
         shaderMap["solid"] = SunShader("BlinnPhongMaterialBoneless.vert", "BlinnPhongMaterialBoneless.frag");
         shaderMap["textured"] = SunShader("BlinnPhongTextureBoneless.vert", "BlinnPhongTextureBoneless.frag");
         
-        HDRShaderMap.push_back(SunShaderUniform("exposure", "float", new GLfloat(1)));
-        HDRShaderMap.push_back(SunShaderUniform("doHDR", "boolean", new GLboolean(true)));
+        HDRUniforms.push_back(SunShaderUniform("exposure", "float", new GLfloat(1)));
+        HDRUniforms.push_back(SunShaderUniform("doHDR", "boolean", new GLboolean(true)));
+        
+        final = SunShader("2DFullscreenQuadVertex.vert", "2DFullscreenQuadFragment.frag");
+        blur = SunShader("2DFullscreenBlurVertex.vert", "2dFullscreenBlurFragment.frag");
+    }
+    
+    void setUpGL() {
+        glGenFramebuffers(1, &HDRframebuffer);
+        glBindFramebuffer(GL_FRAMEBUFFER, HDRframebuffer);
+        
+        glGenTextures(2, colorBuffers);
+        
+        for (int i = 0; i < 2; i++) {
+            glBindTexture(GL_TEXTURE_2D, colorBuffers[i]);
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16F, 1600, 1200, 0, GL_RGB, GL_FLOAT, NULL);
+            
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+            
+            glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, GL_TEXTURE_2D, colorBuffers[i], 0);
+        }
+        
+        glBindTexture(GL_TEXTURE_2D, 0);
+        
+        glGenRenderbuffers(1, &depthBuffer);
+        glBindRenderbuffer(GL_RENDERBUFFER, depthBuffer);
+        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, 1600, 1200);
+        
+        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthBuffer);
+        
+        GLuint colorAttachments[2] = {GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1};
+        glDrawBuffers(2, colorAttachments);
+        
+        if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+            std::cout << "Framebuffer not complete!" << std::endl;
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        
+        glGenFramebuffers(2, blurFramebuffers);
+        glGenTextures(2, blurBuffers);
+        
+        for (int i = 0; i < 2; i++) {
+            glBindFramebuffer(GL_FRAMEBUFFER, blurFramebuffers[i]);
+            glBindTexture(GL_TEXTURE_2D, blurBuffers[i]);
+            
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16F, 1600, 1200, 0, GL_RGB, GL_FLOAT, NULL);
+            
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+            glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, blurBuffers[i], 0);
+        }
     }
     
     void clear() {
