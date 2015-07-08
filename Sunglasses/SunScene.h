@@ -16,6 +16,8 @@ using namespace std;
 
 #include "pugixml.hpp"
 
+#include "SunTextRenderer.h"
+#include "SunGUISystem.h"
 #include "SunCamera.h"
 #include "SunObject.h"
 #include "SunDirectionalLightObject.h"
@@ -74,8 +76,6 @@ public:
         pugi::xml_document document;
         document.load_file(filepath);
         
-        name = "hi";
-        
         pugi::xml_node scene = document.child("scene");
         
         for (pugi::xml_attribute attribute = scene.first_attribute(); attribute; attribute = attribute.next_attribute()) {
@@ -83,7 +83,6 @@ public:
                 name = attribute.value();
             } else if (strcmp(attribute.name() ,"GUISystem") == 0) {
                 GUIsystem = new SunGUISystem(attribute.value(), window, this);
-                addSubNode(GUIsystem);
             }
         }
         
@@ -325,22 +324,11 @@ public:
         action.parameters["buttons"] = &_buttons;
         
         // Force sub-objects to update
+        sendAction(action, GUIsystem);
         SunObject::update(action);
     }
     
     void render(map<string, SunShader> _shaders, GLfloat _deltaTime) {
-        // Force sub-objects to render
-        
-        SunNodeSentAction action;
-        action.action = "render";
-        action.parameters["shaders"] = &_shaders;
-        action.parameters["deltaTime"] = &_deltaTime;
-        
-        sendAction(action, rootRenderableNode);
-        sendAction(action, GUIsystem);
-    }
-    
-    void render(map<string, SunShader> _shaders, GLfloat _deltaTime, SunTextRenderer *_textRenderer) {
         // Force sub-objects to render
         
         SunNodeSentAction solidAction;
@@ -348,14 +336,12 @@ public:
         solidAction.parameters["shader"] = &_shaders["solid"];
         solidAction.parameters["renderType"] = new int(SunMeshRenderTypeSolid);
         solidAction.parameters["deltaTime"] = &_deltaTime;
-        solidAction.parameters["textRenderer"] = _textRenderer;
         
         SunNodeSentAction texturedAction;
         texturedAction.action = "render";
         texturedAction.parameters["shader"] = &_shaders["textured"];
         texturedAction.parameters["rendertype"] = new int(SunMeshRenderTypeTextured);
         texturedAction.parameters["deltaTime"] = &_deltaTime;
-        texturedAction.parameters["textRenderer"] = _textRenderer;
         
         _shaders["solid"].use();
         passPerFrameUniforms(_shaders["solid"]);
@@ -364,8 +350,14 @@ public:
         _shaders["textured"].use();
         passPerFrameUniforms(_shaders["textured"]);
         sendAction(texturedAction, rootRenderableNode);
+    }
+    
+    void renderGUISystem(SunTextRenderer *_textRenderer) {
+        SunNodeSentAction GUIAction;
+        GUIAction.action = "render";
+        GUIAction.parameters["textRenderer"] = _textRenderer;
         
-        sendAction(solidAction, GUIsystem);
+        sendAction(GUIAction, GUIsystem);
     }
     
     void passPerFrameUniforms(SunShader _shader) {

@@ -1,4 +1,6 @@
 #version 330 core
+layout (location = 0) out vec4 fragmentColor;
+layout (location = 1) out vec4 bloomColor;
 
 struct Material {
     vec3 color;
@@ -55,8 +57,6 @@ struct Spotlight {
 
 uniform DirectionalLight directionalLight;
 uniform PointLight pointLight;
-
-out vec4 outColor;
 
 float calculateShadow(PointLight _pointLight) {
     vec3 fragmentToLight = outFragmentPosition - _pointLight.position;
@@ -147,5 +147,10 @@ void main() {
     
     vec3 result = ambient + (color * pointLightColor);
     
-    outColor = vec4(result, 1.0);
+    fragmentColor = vec4(result, 1.0);
+    
+    float brightness = dot(fragmentColor.rgb, vec3(0.2126, 0.7152, 0.0722));
+    
+    if (brightness > 1.0)
+        bloomColor = vec4(result, 1.0);
 }

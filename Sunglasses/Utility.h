@@ -12,8 +12,11 @@
 using namespace std;
 
 #include <string>
+#include <map>
 #include <vector>
 #include <algorithm>
+
+#include "SunShader.h"
 
 typedef map<string, SunShader>::iterator ShaderMapIterator;
 
