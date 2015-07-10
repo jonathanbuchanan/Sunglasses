@@ -22,12 +22,12 @@ using namespace std;
 
 #include "SunShader.h"
 
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-#include "glm/gtc/type_ptr.hpp"
-#include "glm/gtc/quaternion.hpp"
-#include "glm/gtx/quaternion.hpp"
-#include "glm/gtx/string_cast.hpp"
+#include "../glm/glm.hpp"
+#include "../glm/gtc/matrix_transform.hpp"
+#include "../glm/gtc/type_ptr.hpp"
+#include "../glm/gtc/quaternion.hpp"
+#include "../glm/gtx/quaternion.hpp"
+#include "../glm/gtx/string_cast.hpp"
 
 struct SunCharacter {
     GLuint texture;
@@ -53,7 +53,7 @@ public:
     GLuint VBO;
     
     void initialize() {
-        shader = SunShader("TextVertex.vert", "TextFragment.frag");
+        shader = SunShader("Graphics/TextVertex.vert", "Graphics/TextFragment.frag");
         
         glGenVertexArrays(1, &VAO);
         glGenBuffers(1, &VBO);

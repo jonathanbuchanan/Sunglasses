@@ -13,11 +13,11 @@
 using namespace std;
 
 #include <GL/glew.h>
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-#include "glm/gtc/quaternion.hpp"
-#include "glm/gtx/quaternion.hpp"
-#include "glm/gtx/string_cast.hpp"
+#include "../glm/glm.hpp"
+#include "../glm/gtc/matrix_transform.hpp"
+#include "../glm/gtc/quaternion.hpp"
+#include "../glm/gtx/quaternion.hpp"
+#include "../glm/gtx/string_cast.hpp"
 #include "SOIL.h"
 
 struct SunBasicVertex {
@@ -50,7 +50,7 @@ public:
     vector<GLuint> textures;
     
     // Shader
-    SunShader shader = SunShader("2DQuadVertex.vert", "2DQuadFragment.frag");
+    SunShader shader = SunShader("Graphics/2DQuadVertex.vert", "Graphics/2DQuadFragment.frag");
     
     // VBO, EBO, and VAO
     GLuint VBO;

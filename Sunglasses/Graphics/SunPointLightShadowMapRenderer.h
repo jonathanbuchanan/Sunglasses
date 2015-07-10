@@ -12,8 +12,8 @@
 using namespace std;
 
 #include <GL/glew.h>
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
+#include "../glm/glm.hpp"
+#include "../glm/gtc/matrix_transform.hpp"
 
 #include "SunShader.h"
 
@@ -32,7 +32,7 @@ public:
     }
     
     void initialize() {
-        shader = SunShader("PointShadowMapVertex.vert", "PointShadowMapGeometry.geom", "PointShadowMapFragment.frag");
+        shader = SunShader("Graphics/PointShadowMapVertex.vert", "Graphics/PointShadowMapGeometry.geom", "Graphics/PointShadowMapFragment.frag");
         
         glGenFramebuffers(1, &FBO);
         
