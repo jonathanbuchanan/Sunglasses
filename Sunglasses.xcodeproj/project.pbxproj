@@ -360,8 +360,8 @@
 		AB7F0CCF1B4C5B9C00B9AA0E /* 2DFullscreenQuadFragment.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = 2DFullscreenQuadFragment.frag; sourceTree = "<group>"; };
 		AB800A6D1B1EA11400D751E3 /* BrickWall.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BrickWall.mtl; sourceTree = "<group>"; };
 		AB800A6E1B1EA11400D751E3 /* BrickWall.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BrickWall.obj; sourceTree = "<group>"; };
-		AB800A6F1B1EA1B400D751E3 /* brickwall_normal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = brickwall_normal.jpg; sourceTree = "<group>"; };
-		AB800A701B1EA1B400D751E3 /* brickwall.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = brickwall.jpg; sourceTree = "<group>"; };
+		AB800A6F1B1EA1B400D751E3 /* brickwall_normal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = brickwall_normal.jpg; path = "/Users/jonathan/Dev/OpenGL-C++/Sunglasses/Sunglasses/Graphics/BrickWall/brickwall_normal.jpg"; sourceTree = "<absolute>"; };
+		AB800A701B1EA1B400D751E3 /* brickwall.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = brickwall.jpg; path = "../../../../../Blender Files/brickwall.jpg"; sourceTree = "<group>"; };
 		AB8EB9B71B3B2753006BBC44 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		AB8FB9A71B13B45500215484 /* BlinnPhongVertex.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = BlinnPhongVertex.vert; sourceTree = "<group>"; };
 		AB8FB9AA1B13B48900215484 /* BlinnPhongFragment.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = BlinnPhongFragment.frag; sourceTree = "<group>"; };
@@ -801,7 +801,7 @@
 				AB7F0CCB1B4C569B00B9AA0E /* SunTexturedQuad.h */,
 				AB7F0CCC1B4C579C00B9AA0E /* SunPrimitives.h */,
 			);
-			name = Graphics;
+			path = Graphics;
 			sourceTree = "<group>";
 		};
 		AB4DBDF81B13DB06004D7575 /* Text */ = {
