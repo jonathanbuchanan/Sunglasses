@@ -32,7 +32,7 @@ public:
     }
     
     void initialize() {
-        shader = SunShader("Graphics/PointShadowMapVertex.vert", "Graphics/PointShadowMapGeometry.geom", "Graphics/PointShadowMapFragment.frag");
+        shader = SunShader("Graphics/Shaders/PointShadowMapVertex.vert", "Graphics/Shaders/PointShadowMapGeometry.geom", "Graphics/Shaders/PointShadowMapFragment.frag");
         
         glGenFramebuffers(1, &FBO);
         

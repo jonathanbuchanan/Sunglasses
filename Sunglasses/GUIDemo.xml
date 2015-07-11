@@ -1,6 +1,6 @@
 <GUISystem name="GUIDemoSystem">
     <fonts>
-        <font file="Graphics/arial.ttf" name="Arial" />
+        <font file="Graphics/Fonts/arial.ttf" name="Arial" />
     </fonts>
     <menus>
         <menu name="ESCMenu" visible="false">

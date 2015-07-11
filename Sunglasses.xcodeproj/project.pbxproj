@@ -790,9 +790,10 @@
 				ABADE9661B2B9C5600A8BADB /* GUI */,
 				AB5120891B0ACB4A008C09C2 /* Shaders */,
 				AB61BC201B1566AA00C6A69C /* Pre-Defined Primitives */,
-				AB4DBDF81B13DB06004D7575 /* Text */,
+				AB4DBDF91B13DB11004D7575 /* Fonts */,
 				AB800A6B1B1E85FA00D751E3 /* Models */,
 				AB4CA20F1B02E70800FFF4F5 /* SunRenderer.h */,
+				AB4DBDFB1B13DB72004D7575 /* SunTextRenderer.h */,
 				AB911C341B195EDA002BDCD0 /* SunDirectionalLightShadowMapRenderer.h */,
 				AB0F40631B1BCD280089F109 /* SunPointLightShadowMapRenderer.h */,
 				ABDE814B1B059CA200BB61CA /* SunCamera.h */,
@@ -804,29 +805,12 @@
 			path = Graphics;
 			sourceTree = "<group>";
 		};
-		AB4DBDF81B13DB06004D7575 /* Text */ = {
-			isa = PBXGroup;
-			children = (
-				AB4DBDF91B13DB11004D7575 /* Fonts */,
-				AB4DBDFA1B13DB1B004D7575 /* Renderer */,
-			);
-			name = Text;
-			sourceTree = "<group>";
-		};
 		AB4DBDF91B13DB11004D7575 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
 				AB4DBDF71B13D923004D7575 /* arial.ttf */,
 			);
-			name = Fonts;
-			sourceTree = "<group>";
-		};
-		AB4DBDFA1B13DB1B004D7575 /* Renderer */ = {
-			isa = PBXGroup;
-			children = (
-				AB4DBDFB1B13DB72004D7575 /* SunTextRenderer.h */,
-			);
-			name = Renderer;
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		AB4DBDFC1B13E33B004D7575 /* Text */ = {
@@ -854,7 +838,7 @@
 				AB329F2E1B1BDD2C00AD49CA /* Point Shadow Map */,
 				ABED2BD61B40B4BF00C2F5CF /* Final */,
 			);
-			name = Shaders;
+			path = Shaders;
 			sourceTree = "<group>";
 		};
 		AB57CDF61B1B794A00730692 /* Shadow Map */ = {
@@ -952,7 +936,7 @@
 				ABADE96A1B2B9EE800A8BADB /* SunGUIItem.h */,
 				AB7CD50F1B2C9D4000EEB2B2 /* SunGUIItemMesh.h */,
 			);
-			name = GUI;
+			path = GUI;
 			sourceTree = "<group>";
 		};
 		ABB8B5D71B4CB6CF00428EC6 /* 2D Blur */ = {

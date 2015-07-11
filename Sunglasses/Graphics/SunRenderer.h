@@ -131,14 +131,14 @@ public:
         scene = new SunScene("SceneDemo.xml", window);
         
         // Set up shader map
-        shaderMap["solid"] = SunShader("Graphics/BlinnPhongMaterialBoneless.vert", "Graphics/BlinnPhongMaterialBoneless.frag");
-        shaderMap["textured"] = SunShader("Graphics/BlinnPhongTextureBoneless.vert", "Graphics/BlinnPhongTextureBoneless.frag");
+        shaderMap["solid"] = SunShader("Graphics/Shaders/BlinnPhongMaterialBoneless.vert", "Graphics/Shaders/BlinnPhongMaterialBoneless.frag");
+        shaderMap["textured"] = SunShader("Graphics/Shaders/BlinnPhongTextureBoneless.vert", "Graphics/Shaders/BlinnPhongTextureBoneless.frag");
         
         HDRUniforms.push_back(SunShaderUniform("exposure", "float", new GLfloat(1)));
         HDRUniforms.push_back(SunShaderUniform("doHDR", "boolean", new GLboolean(true)));
         
-        final = SunShader("Graphics/2DFullscreenQuadVertex.vert", "Graphics/2DFullscreenQuadFragment.frag");
-        blur = SunShader("Graphics/2DFullscreenBlurVertex.vert", "Graphics/2DFullscreenBlurFragment.frag");
+        final = SunShader("Graphics/Shaders/2DFullscreenQuadVertex.vert", "Graphics/Shaders/2DFullscreenQuadFragment.frag");
+        blur = SunShader("Graphics/Shaders/2DFullscreenBlurVertex.vert", "Graphics/Shaders/2DFullscreenBlurFragment.frag");
     }
     
     void setUpGL() {

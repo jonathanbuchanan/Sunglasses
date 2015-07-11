@@ -53,7 +53,7 @@ public:
     GLuint VBO;
     
     void initialize() {
-        shader = SunShader("Graphics/TextVertex.vert", "Graphics/TextFragment.frag");
+        shader = SunShader("Graphics/Shaders/TextVertex.vert", "Graphics/Shaders/TextFragment.frag");
         
         glGenVertexArrays(1, &VAO);
         glGenBuffers(1, &VBO);

@@ -32,7 +32,7 @@ public:
     }
     
     void initialize() {
-        shader = SunShader("Graphics/ShadowMapVertex.vert", "Graphics/ShadowMapFragment.frag");
+        shader = SunShader("Graphics/Shaders/ShadowMapVertex.vert", "Graphics/Shaders/ShadowMapFragment.frag");
         
         glGenFramebuffers(1, &FBO);
         
