@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>50360A0C-938F-4527-9047-92B93EE68508</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>Sunglasses</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>AAF34C2278DE7ADEF76CA57D8BBB467D8E3E27A3</key>
 		<string>github.com:jonathanbuchanan/Sunglasses.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Sunglasses.xcodeproj/project.xcworkspace</string>
+	<string>Sunglasses.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>AAF34C2278DE7ADEF76CA57D8BBB467D8E3E27A3</key>

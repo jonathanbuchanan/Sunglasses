@@ -1,8 +1,6 @@
-## Build generated
+# Xcode
+.DS_Store
 build/
-DerivedData
-
-## Various settings
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -11,10 +9,10 @@ DerivedData
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
+*.xcworkspace
+!default.xcworkspace
 xcuserdata
-.xccheckout
-
-## Other
-*.xccheckout
+profile
 *.moved-aside
-*.xcuserstate
+DerivedData
+.idea/
