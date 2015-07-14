@@ -17,7 +17,7 @@ using namespace std;
 
 #include "./Shaders/SunShader.h"
 
-#include "../SunScene.h"
+#include "../SunNode.h"
 #include "../SunObject.h"
 #include "../SunPointLightObject.h"
 
@@ -53,7 +53,7 @@ public:
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }
     
-    void renderPointLight(SunPointLightObject *_pointLight, GLfloat _deltaTime, SunScene *_scene) {
+    void renderPointLight(SunPointLightObject *_pointLight, GLfloat _deltaTime, SunNode *_scene) {
         glViewport(0, 0, 2048, 2048);
         glBindFramebuffer(GL_FRAMEBUFFER, FBO);
         glClear(GL_DEPTH_BUFFER_BIT);
@@ -62,10 +62,15 @@ public:
         
         passLightSpaceMatrix(shader, _pointLight);
         
+        SunNodeSentAction action;
+        action.action = "render";
+        
         map<string, SunShader> shaderMap;
         shaderMap["all"] = shader;
         
-        _scene->render(shaderMap, _deltaTime);
+        action.parameters["shaderMap"] = &shaderMap;
+        
+        sendAction(action, _scene);
         
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }

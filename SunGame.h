@@ -17,7 +17,7 @@
 
 #include "./SunButtonState.h"
 
-#include "./Graphics/SunRenderer.h"
+#include "./SunScene.h"
 
 GLfloat lastX = 400;
 GLfloat lastY = 300;
@@ -82,7 +82,7 @@ void mouseButtonCallback(GLFWwindow *window, int button, int action, int mods) {
 
 class SunGame {
 public:
-    SunRenderer renderer;
+    SunScene *scene;
     
     GLFWwindow *window;
     
@@ -90,7 +90,7 @@ public:
     GLfloat screenHeight = 600;
     
     SunGame() {
-        renderer = SunRenderer();
+        
     }
     
     void loop() {
@@ -123,17 +123,17 @@ public:
                 }
             }
             
-            if (renderer.scene->doCameraInput == true) {
+            if (scene->doCameraInput == true) {
                 // Tell the camera to do movement (NEEDS CLEAN UP)
                 
                 if (lastXOffset != xOffset && lastYOffset != yOffset)
-                    renderer.scene->camera.doCameraMovement(buttons, deltaTime, xOffset, yOffset);
+                    scene->camera.doCameraMovement(buttons, deltaTime, xOffset, yOffset);
                 if (lastXOffset == xOffset && lastYOffset != yOffset)
-                    renderer.scene->camera.doCameraMovement(buttons, deltaTime, 0, yOffset);
+                    scene->camera.doCameraMovement(buttons, deltaTime, 0, yOffset);
                 if (lastXOffset != xOffset && lastYOffset != yOffset)
-                    renderer.scene->camera.doCameraMovement(buttons, deltaTime, xOffset, 0);
+                    scene->camera.doCameraMovement(buttons, deltaTime, xOffset, 0);
                 else
-                    renderer.scene->camera.doCameraMovement(buttons, deltaTime, 0, 0);
+                    scene->camera.doCameraMovement(buttons, deltaTime, 0, 0);
                 
                 lastXOffset = xOffset;
                 lastYOffset = yOffset;
@@ -144,7 +144,7 @@ public:
             
             // Tell the renderer to do its cycle
             
-            renderer.cycle(buttons, deltaTime);
+            scene->cycle(buttons, deltaTime);
         }
         glfwTerminate();
     }
@@ -200,14 +200,16 @@ public:
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         
-        // Set some properties of the renderer
-        renderer.window = window;
+        scene = new SunScene("./SceneDemo.xml", window);
         
-        renderer.screenWidth = screenWidth;
-        renderer.screenHeight = screenHeight;
+        // Set some properties of the renderer
+        //renderer.window = window;
+        
+        //renderer.screenWidth = screenWidth;
+        //renderer.screenHeight = screenHeight;
         
         // Tell the renderer to initialize
-        renderer.initialize();
+        //renderer.initialize();
     }
     
 private:

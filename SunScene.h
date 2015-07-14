@@ -16,9 +16,13 @@ using namespace std;
 
 #include "pugixml.hpp"
 
+#include <functional>
+
 #include "./Graphics/SunTextRenderer.h"
 #include "./Graphics/GUI/SunGUISystem.h"
 #include "./Graphics/SunCamera.h"
+#include "./Graphics/SunRenderer.h"
+#include "./Graphics/SunTextRenderer.h"
 #include "./SunObject.h"
 #include "./SunDirectionalLightObject.h"
 #include "./SunPointLightObject.h"
@@ -44,6 +48,10 @@ public:
     // Camera
     SunCamera camera;
     GLboolean doCameraInput = true;
+    
+    // Renderer and Text Renderer
+    SunRenderer renderer;
+    SunTextRenderer textRenderer;
     
     // Pointer to window
     GLFWwindow *window;
@@ -86,17 +94,25 @@ public:
             }
         }
         
+        textRenderer = SunTextRenderer();
+        textRenderer.initialize();
+        
         rootRenderableNode = new SunObject();
         addSubNode(rootRenderableNode);
         
         // Process the XML scene node
         processXMLSceneNode(scene);
+        
+        GUIsystem->loadFonts(&textRenderer);
     }
     
     void initializeDefaultPropertyAndFunctionMap() {
         SunObject::initializeDefaultPropertyAndFunctionMap();
         
         propertyMap["doCameraInput"] = SunNodeProperty(&doCameraInput, SunNodePropertyTypeBool);
+        
+        functionMap["render"] = bind(&SunScene::render, this, std::placeholders::_1);
+        functionMap["renderGUISystem"] = bind(&SunScene::renderGUISystem, this, std::placeholders::_1);
     }
     
     void processXMLSceneNode(pugi::xml_node _node) {
@@ -105,7 +121,8 @@ public:
                 processXMLObjectsNode(node, rootRenderableNode);
             } else if (strcmp(node.name(), "camera") == 0) {
                 processXMLCameraNode(node);
-            }
+            } else if (strcmp(node.name(), "renderer") == 0)
+                processXMLRendererNode(node);
         }
     }
     
@@ -144,6 +161,26 @@ public:
         for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
             processXMLCameraPropertyNode(node, &camera);
         }
+    }
+    
+    void processXMLRendererNode(pugi::xml_node _node) {
+        SunRenderingMode renderMode;
+        
+        for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
+            if (strcmp(attribute.name(), "mode") == 0) {
+                if (strcmp(attribute.value(), "deferred-shading") == 0)
+                    renderMode = SunRenderingModeDeferredShading;
+                else if (strcmp(attribute.value(), "forward") == 0)
+                    renderMode = SunRenderingModeForward;
+            }
+        }
+        
+        renderer = SunRenderer(renderMode);
+        
+        renderer.scene = this;
+        renderer.window = window;
+        
+        renderer.initialize();
     }
     
     void processXMLCameraPropertyNode(pugi::xml_node _node, SunCamera *_camera) {
@@ -313,6 +350,11 @@ public:
             _object->color.b = _node.text().as_float();
     }
     
+    void cycle(map<int, SunButtonState> _buttons, GLfloat _deltaTime) {
+        update(_buttons);
+        renderer.render(_deltaTime);
+    }
+    
     void update(map<int, SunButtonState> _buttons) {
         // Get the position of the mouse
         GLdouble xPosition, yPosition;
@@ -334,34 +376,37 @@ public:
         SunObject::update(action);
     }
     
-    void render(map<string, SunShader> _shaders, GLfloat _deltaTime) {
-        // Force sub-objects to render
+    virtual void render(SunNodeSentAction _action) {
+        map<string, SunShader> _shaders = *(map<string, SunShader> *)_action.parameters["shaderMap"];
+        GLfloat _deltaTime = *(GLfloat *)_action.parameters["deltaTime"];
         
+        // Force sub-objects to render
+
         SunNodeSentAction solidAction;
         solidAction.action = "render";
         solidAction.parameters["shader"] = &_shaders["solid"];
         solidAction.parameters["renderType"] = new int(SunMeshRenderTypeSolid);
         solidAction.parameters["deltaTime"] = &_deltaTime;
-        
+
         SunNodeSentAction texturedAction;
         texturedAction.action = "render";
         texturedAction.parameters["shader"] = &_shaders["textured"];
         texturedAction.parameters["rendertype"] = new int(SunMeshRenderTypeTextured);
         texturedAction.parameters["deltaTime"] = &_deltaTime;
-        
+
         _shaders["solid"].use();
         passPerFrameUniforms(_shaders["solid"]);
         sendAction(solidAction, rootRenderableNode);
-        
+
         _shaders["textured"].use();
         passPerFrameUniforms(_shaders["textured"]);
         sendAction(texturedAction, rootRenderableNode);
     }
     
-    void renderGUISystem(SunTextRenderer *_textRenderer) {
+    void renderGUISystem(SunNodeSentAction _action) {
         SunNodeSentAction GUIAction;
         GUIAction.action = "render";
-        GUIAction.parameters["textRenderer"] = _textRenderer;
+        GUIAction.parameters["textRenderer"] = &textRenderer;
         
         sendAction(GUIAction, GUIsystem);
     }

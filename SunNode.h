@@ -143,4 +143,8 @@ private:
     
 };
 
+void sendAction(SunNodeSentAction _action, SunNode *_receiver) {
+        _receiver->receiveAction(_action);
+}
+
 #endif

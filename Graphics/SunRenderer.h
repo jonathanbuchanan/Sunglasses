@@ -17,13 +17,19 @@ using namespace std;
 #include "./SunPointLightShadowMapRenderer.h"
 
 #include "./SunTexturedQuad.h"
-
-#include "../SunScene.h"
+#include "../SunNode.h"
 #include "./SunCamera.h"
 #include "../SunButtonState.h"
 
+enum SunRenderingMode {
+    SunRenderingModeForward,
+    SunRenderingModeDeferredShading
+};
+
 class SunRenderer {
 public:
+    SunRenderingMode renderMode;
+    
     GLuint HDRframebuffer;
     GLuint colorBuffers[2];
     GLuint depthBuffer;
@@ -45,90 +51,99 @@ public:
     
     SunTexturedQuad quad;
     
-    SunScene *scene;
-    SunCamera camera;
-    
     map<string, SunShader> shaderMap;
     
     vector<SunShaderUniform> HDRUniforms;
     
-    SunObject *watch;
+    // Scene Objects
+    SunNode *scene;
     
-    SunDirectionalLightObject *dlight;
-    SunObject *plane;
+    SunRenderer() {
+        
+    }
+    
+    SunRenderer(SunRenderingMode _renderMode) {
+        renderMode = _renderMode;
+        
+        //initialize();
+    }
     
     void cycle(map<int, SunButtonState> _buttons, GLfloat deltaTime) {
-        // Update the scene
-        scene->update(_buttons);
+        render(deltaTime);
+    }
+    
+    void render(GLfloat _deltaTime) {
+        if (renderMode == SunRenderingModeForward) {
+            // Clear
+            clear();
         
-        // Clear
-        clear();
-        
-        // Render the scene
-        glBindFramebuffer(GL_FRAMEBUFFER, HDRframebuffer);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        
-        scene->render(shaderMap, deltaTime);
-        
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
-        
-        GLboolean horizontal = true;
-        GLboolean firstIteration = true;
-        GLuint amount = 10;
-        
-        for (int i = 0; i < amount; i++) {
-            glBindFramebuffer(GL_FRAMEBUFFER, blurFramebuffers[horizontal]);
+            // Render the scene
+            glBindFramebuffer(GL_FRAMEBUFFER, HDRframebuffer);
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             
-            vector<SunShaderUniform> uniforms;
-            uniforms.push_back(SunShaderUniform("horizontal", "boolean", &horizontal));
+            SunNodeSentAction renderAction;
+            renderAction.action = "render";
+            renderAction.parameters["renderType"] = new int(SunMeshRenderTypeSolid);
+            renderAction.parameters["shaderMap"] = &shaderMap;
+            renderAction.parameters["deltaTime"] = &_deltaTime;
+            
+            sendAction(renderAction, scene);
+            
+            glBindFramebuffer(GL_FRAMEBUFFER, 0);
+            
+            GLboolean horizontal = true;
+            GLboolean firstIteration = true;
+            GLuint amount = 10;
+            
+            for (int i = 0; i < amount; i++) {
+                glBindFramebuffer(GL_FRAMEBUFFER, blurFramebuffers[horizontal]);
+                
+                vector<SunShaderUniform> uniforms;
+                uniforms.push_back(SunShaderUniform("horizontal", "boolean", &horizontal));
+                
+                map<string, GLuint> textureMap;
+                textureMap["backgroundTexture"] = firstIteration ? colorBuffers[1] : blurBuffers[!horizontal];
+                
+                quad.render(textureMap, blur, uniforms, false);
+                
+                horizontal = !horizontal;
+                
+                if (firstIteration)
+                    firstIteration = false;
+            }
+            
+            glBindFramebuffer(GL_FRAMEBUFFER, 0);
+            clear();
             
             map<string, GLuint> textureMap;
-            textureMap["backgroundTexture"] = firstIteration ? colorBuffers[1] : blurBuffers[!horizontal];
             
-            quad.render(textureMap, blur, uniforms, false);
+            textureMap["backgroundTexture"] = colorBuffers[0];
+            textureMap["bloomTexture"] = blurBuffers[!horizontal];
             
-            horizontal = !horizontal;
+            quad.render(textureMap, final, HDRUniforms, true);
             
-            if (firstIteration)
-                firstIteration = false;
+            // Load the fonts if they aren't loaded
+            //if (scene->GUIsystem->fontsLoaded == false)
+            //    scene->GUIsystem->loadFonts(&GUIRenderer.textRenderer);
+            
+            // Render the GUI
+            SunNodeSentAction action;
+            action.action = "renderGUISystem";
+            
+            sendAction(action, scene);
+            
+            // Swap the buffers
+            swapBuffers();
+        } else if (renderMode == SunRenderingModeDeferredShading) {
+            
         }
-        
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
-        clear();
-        
-        map<string, GLuint> textureMap;
-        
-        textureMap["backgroundTexture"] = colorBuffers[0];
-        textureMap["bloomTexture"] = blurBuffers[!horizontal];
-        
-        quad.render(textureMap, final, HDRUniforms, true);
-        
-        // Load the fonts if they aren't loaded
-        if (scene->GUIsystem->fontsLoaded == false)
-            scene->GUIsystem->loadFonts(&GUIRenderer.textRenderer);
-        
-        // Render the GUI
-        scene->renderGUISystem(&GUIRenderer.textRenderer);
-        
-        // Swap the buffers
-        swapBuffers();
     }
     
     void initialize() {
         setUpGL();
         
-        // Set up the GUI renderer
-        GUIRenderer = SunGUIRenderer();
-        GUIRenderer.initialize();
-        
-        // Set up the shadow map renderer
-        shadowMapRenderer = SunDirectionalLightShadowMapRenderer();
-        shadowMapRenderer.initialize();
-        
         quad = SunTexturedQuad();
         quad.setUpGL();
-        
-        scene = new SunScene("SceneDemo.xml", window);
         
         // Set up shader map
         shaderMap["solid"] = SunShader("./Graphics/Shaders/BlinnPhongMaterialBoneless.vert", "./Graphics/Shaders/BlinnPhongMaterialBoneless.frag");
@@ -202,10 +217,6 @@ public:
     void swapBuffers() {
         // Swap the buffers
         glfwSwapBuffers(window);
-    }
-    
-    SunRenderer() {
-        
     }
     
 private:

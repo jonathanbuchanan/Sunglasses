@@ -17,7 +17,7 @@ using namespace std;
 
 #include "./Shaders/SunShader.h"
 
-#include "../SunScene.h"
+#include "../SunNode.h"
 #include "../SunObject.h"
 #include "../SunDirectionalLightObject.h"
 
@@ -53,7 +53,7 @@ public:
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }
     
-    void renderDirectionalLight(SunDirectionalLightObject *_directionalLight, GLfloat _deltaTime, glm::vec3 _target, SunScene *_scene) {
+    void renderDirectionalLight(SunDirectionalLightObject *_directionalLight, GLfloat _deltaTime, glm::vec3 _target, SunNode *_scene) {
         glCullFace(GL_FRONT);
         
         shader.use();
@@ -64,10 +64,15 @@ public:
         glBindFramebuffer(GL_FRAMEBUFFER, FBO);
         glClear(GL_DEPTH_BUFFER_BIT);
         
+        SunNodeSentAction action;
+        action.action = "render";
+        
         map<string, SunShader> shaderMap;
         shaderMap["all"] = shader;
         
-        _scene->render(shaderMap, _deltaTime);
+        action.parameters["shaderMap"] = &shaderMap;
+        
+        sendAction(action, _scene);
         
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
         
