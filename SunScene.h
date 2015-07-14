@@ -113,6 +113,8 @@ public:
         // Projection type and FOV
         SunCameraProjectionType projection;
         GLfloat FOV;
+        GLfloat width = 0.0f;
+        GLfloat height = 0.0f;
         GLfloat yaw = 0.0f;
         GLfloat pitch = 0.0f;
         
@@ -129,10 +131,14 @@ public:
                 yaw = attribute.as_float();
             else if (strcmp(attribute.name(), "pitch") == 0)
                 pitch = attribute.as_float();
+            else if (strcmp(attribute.name(), "width") == 0)
+                width = attribute.as_float();
+            else if (strcmp(attribute.name(), "height") == 0)
+                height = attribute.as_float();
         }
         
         // Create the camera object
-        camera = SunCamera(projection, FOV, yaw, pitch);
+        camera = SunCamera(projection, FOV, width, height, yaw, pitch);
         
         // Loop through property nodes
         for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {

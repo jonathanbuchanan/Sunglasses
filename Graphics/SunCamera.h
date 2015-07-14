@@ -48,6 +48,10 @@ public:
     // FOV (in degrees)
     GLfloat FOV = 45.0f;
     
+    // Width and height
+    GLfloat width = 10.0f;
+    GLfloat height = 10.0f;
+    
     SunCamera() {
         
     }
@@ -74,6 +78,15 @@ public:
         projection = _projection;
         FOV = _FOV;
         position = _position;
+        yaw = _yaw;
+        pitch = _pitch;
+    }
+    
+    SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, GLfloat _width, GLfloat _height, GLfloat _yaw, GLfloat _pitch) {
+        projection = _projection;
+        FOV = _FOV;
+        width = _width;
+        height = _height;
         yaw = _yaw;
         pitch = _pitch;
     }
@@ -139,7 +152,7 @@ public:
         if (projection == SunCameraProjectionTypePerspective)
             matrix = glm::perspective(FOV, _aspectRatio, 0.01f, 100.0f);
         else if (projection == SunCameraProjectionTypeOrthographic)
-            matrix = glm::ortho(-5.0f, 5.0f, -5.0f, 5.0f, 0.1f, 100.0f);
+            matrix = glm::ortho(-((width * _aspectRatio) / 2.0f), (width * _aspectRatio) / 2.0f, -(height / 2.0f), (height / 2.0f), 0.1f, 100.0f);
         
         return matrix;
     }
