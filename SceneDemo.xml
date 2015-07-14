@@ -32,13 +32,9 @@
             </objects>
         </object>
     </objects>
-    <camera projection="perspective" FOV="45">
+    <camera projection="perspective" FOV="45" yaw="0" pitch="0">
         <position-x>-2</position-x>
         <position-y>1</position-y>
         <position-z>0</position-z>
-        
-        <direction-x>0</direction-x>
-        <direction-y>0</direction-y>
-        <direction-z>0</direction-z>
     </camera>
 </scene>

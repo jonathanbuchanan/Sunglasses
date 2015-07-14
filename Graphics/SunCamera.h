@@ -39,8 +39,8 @@ public:
     glm::vec3 cameraUp = glm::normalize(glm::cross(-direction, cameraRight));
     
     // Yaw and Pitch
-    GLfloat yaw;
-    GLfloat pitch;
+    GLfloat yaw = 0.0f;
+    GLfloat pitch = 0.0f;
     
     // Projection Type
     SunCameraProjectionType projection;
@@ -61,6 +61,21 @@ public:
         projection = _projection;
         FOV = _FOV;
         position = _position;
+    }
+    
+    SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, GLfloat _yaw, GLfloat _pitch) {
+        projection = _projection;
+        FOV = _FOV;
+        yaw = _yaw;
+        pitch = _pitch;
+    }
+    
+    SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, glm::vec3 _position, GLfloat _yaw, GLfloat _pitch) {
+        projection = _projection;
+        FOV = _FOV;
+        position = _position;
+        yaw = _yaw;
+        pitch = _pitch;
     }
     
     // Adjust the position of the camera for the given keys pressed, frame rate, and mouse/trackpad movement

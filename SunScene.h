@@ -113,6 +113,8 @@ public:
         // Projection type and FOV
         SunCameraProjectionType projection;
         GLfloat FOV;
+        GLfloat yaw = 0.0f;
+        GLfloat pitch = 0.0f;
         
         // Loop through the attributes
         for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
@@ -123,10 +125,14 @@ public:
                     projection = SunCameraProjectionTypeOrthographic;
             } else if (strcmp(attribute.name(), "FOV") == 0)
                 FOV = attribute.as_float();
+            else if (strcmp(attribute.name(), "yaw") == 0)
+                yaw = attribute.as_float();
+            else if (strcmp(attribute.name(), "pitch") == 0)
+                pitch = attribute.as_float();
         }
         
         // Create the camera object
-        camera = SunCamera(projection, FOV);
+        camera = SunCamera(projection, FOV, yaw, pitch);
         
         // Loop through property nodes
         for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
@@ -141,12 +147,6 @@ public:
             _camera->position.y = _node.text().as_float();
         else if (strcmp(_node.name(), "position-z") == 0)
             _camera->position.z = _node.text().as_float();
-        else if (strcmp(_node.name(), "direction-x") == 0)
-            _camera->direction.x = _node.text().as_float();
-        else if (strcmp(_node.name(), "direction-y") == 0)
-            _camera->direction.y = _node.text().as_float();
-        else if (strcmp(_node.name(), "direction-z") == 0)
-            _camera->direction.z = _node.text().as_float();
     }
     
     void processXMLObjectsNode(pugi::xml_node _node, SunObject *_superObject) {
