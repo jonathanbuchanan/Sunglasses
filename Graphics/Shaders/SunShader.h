@@ -16,9 +16,32 @@
 
 #include <GL/glew.h>
 
+typedef void * SunShaderUniformValuePointer;
+
+// SunShaderUniform Declaration
+struct SunShaderUniform {
+    // Name, type, and value pointer;
+    string name;
+    string type;
+    SunShaderUniformValuePointer value;
+    
+    SunShaderUniform() {
+        
+    }
+    
+    SunShaderUniform(string _name, string _type, SunShaderUniformValuePointer _value) {
+        name = _name;
+        type = _type;
+        value = _value;
+    }
+};
+
+typedef map<string, SunShaderUniform>::iterator SunShaderUniformMapIterator;
+
 class SunShader {
 public:
     GLuint program;
+    map<string, SunShaderUniform> uniforms;
     
     SunShader() {
         
@@ -142,6 +165,16 @@ public:
     
     void use() {
         glUseProgram(this->program);
+        passPerShaderUniforms(this->program);
+    }
+    
+    void passPerShaderUniforms(GLuint _program) {
+        for (SunShaderUniformMapIterator iterator = uniforms.begin(); iterator != uniforms.end(); iterator++) {
+            if (iterator->second.type == "float")
+                glUniform1f(glGetUniformLocation(_program, iterator->second.name.c_str()), *(GLfloat *)iterator->second.value);
+            else if (iterator->second.type == "boolean")
+                glUniform1i(glGetUniformLocation(_program, iterator->second.name.c_str()), *(GLboolean *)iterator->second.value);
+        }
     }
 };
 

@@ -121,6 +121,43 @@ public:
         glBindTexture(GL_TEXTURE_2D, 0);
     }
     
+    void render(map<string, GLuint> _textures, SunShader _shader, bool yes) {
+        _shader.use();
+        
+        if (yes == false) {
+            int iteratorIndex = 0;
+            for (SunTextureMapIterator iterator = _textures.begin(); iterator != _textures.end(); iterator++) {
+                glActiveTexture(GL_TEXTURE0 + iteratorIndex);
+                glBindTexture(GL_TEXTURE_2D, iterator->second);
+                glUniform1i(glGetUniformLocation(_shader.program, iterator->first.c_str()), iteratorIndex);
+                //glBindTexture(GL_TEXTURE_2D, 0);
+                
+                iteratorIndex++;
+            }
+        } else {
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, _textures["backgroundTexture"]);
+            glUniform1i(glGetUniformLocation(_shader.program, "t.backgroundTexture"), 0);
+            
+            glActiveTexture(GL_TEXTURE1);
+            glBindTexture(GL_TEXTURE_2D, _textures["bloomTexture"]);
+            glUniform1i(glGetUniformLocation(_shader.program, "t.bloomTexture"), 1);
+        }
+        
+        
+        // Bind the VAO
+        glBindVertexArray(VAO);
+        
+        // Draw the triangles
+        glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+        
+        // Unbind the VAO
+        glBindVertexArray(0);
+        
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, 0);
+    }
+    
 private:
     
 };

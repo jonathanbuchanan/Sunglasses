@@ -70,22 +70,22 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: ${OBJECTFILES}
 ${OBJECTDIR}/Libraries/SOIL/SOIL.o: Libraries/SOIL/SOIL.c 
 	${MKDIR} -p ${OBJECTDIR}/Libraries/SOIL
 	${RM} "$@.d"
-	$(COMPILE.c) -g -I/usr/local/lib -I/usr/lib -I/opt/local/lib -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Libraries/SOIL/SOIL.o Libraries/SOIL/SOIL.c
+	$(COMPILE.c) -g -I/usr/local/lib -I/usr/lib -I/opt/local/lib -std=c11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Libraries/SOIL/SOIL.o Libraries/SOIL/SOIL.c
 
 ${OBJECTDIR}/Libraries/SOIL/image_DXT.o: Libraries/SOIL/image_DXT.c 
 	${MKDIR} -p ${OBJECTDIR}/Libraries/SOIL
 	${RM} "$@.d"
-	$(COMPILE.c) -g -I/usr/local/lib -I/usr/lib -I/opt/local/lib -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Libraries/SOIL/image_DXT.o Libraries/SOIL/image_DXT.c
+	$(COMPILE.c) -g -I/usr/local/lib -I/usr/lib -I/opt/local/lib -std=c11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Libraries/SOIL/image_DXT.o Libraries/SOIL/image_DXT.c
 
 ${OBJECTDIR}/Libraries/SOIL/image_helper.o: Libraries/SOIL/image_helper.c 
 	${MKDIR} -p ${OBJECTDIR}/Libraries/SOIL
 	${RM} "$@.d"
-	$(COMPILE.c) -g -I/usr/local/lib -I/usr/lib -I/opt/local/lib -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Libraries/SOIL/image_helper.o Libraries/SOIL/image_helper.c
+	$(COMPILE.c) -g -I/usr/local/lib -I/usr/lib -I/opt/local/lib -std=c11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Libraries/SOIL/image_helper.o Libraries/SOIL/image_helper.c
 
 ${OBJECTDIR}/Libraries/SOIL/stb_image_aug.o: Libraries/SOIL/stb_image_aug.c 
 	${MKDIR} -p ${OBJECTDIR}/Libraries/SOIL
 	${RM} "$@.d"
-	$(COMPILE.c) -g -I/usr/local/lib -I/usr/lib -I/opt/local/lib -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Libraries/SOIL/stb_image_aug.o Libraries/SOIL/stb_image_aug.c
+	$(COMPILE.c) -g -I/usr/local/lib -I/usr/lib -I/opt/local/lib -std=c11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Libraries/SOIL/stb_image_aug.o Libraries/SOIL/stb_image_aug.c
 
 ${OBJECTDIR}/Libraries/glm/detail/glm.o: Libraries/glm/detail/glm.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Libraries/glm/detail

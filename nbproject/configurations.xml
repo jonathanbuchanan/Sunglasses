@@ -44,6 +44,14 @@
           <itemPath>Graphics/Nanosuit/nanosuit.obj</itemPath>
         </logicalFolder>
         <logicalFolder name="Shaders" displayName="Shaders" projectFiles="true">
+          <logicalFolder name="f1"
+                         displayName="Deferred Shading Pass One"
+                         projectFiles="true">
+            <itemPath>Graphics/Shaders/DeferredShadingPassOneMaterial.frag</itemPath>
+            <itemPath>Graphics/Shaders/DeferredShadingPassOneMaterial.vert</itemPath>
+            <itemPath>Graphics/Shaders/DeferredShadingPassOneTexture.frag</itemPath>
+            <itemPath>Graphics/Shaders/DeferredShadingPassOneTexture.vert</itemPath>
+          </logicalFolder>
           <itemPath>Graphics/Shaders/2DFullscreenBlurFragment.frag</itemPath>
           <itemPath>Graphics/Shaders/2DFullscreenBlurVertex.vert</itemPath>
           <itemPath>Graphics/Shaders/2DFullscreenQuadFragment.frag</itemPath>
@@ -512,6 +520,7 @@
       </toolsSet>
       <compileType>
         <cTool>
+          <standard>10</standard>
           <incDir>
             <pElem>/usr/local/lib</pElem>
             <pElem>/usr/lib</pElem>
@@ -734,6 +743,26 @@
             flavor2="0">
       </item>
       <item path="Graphics/Shaders/DebugQuadVertex.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Graphics/Shaders/DeferredShadingPassOneMaterial.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Graphics/Shaders/DeferredShadingPassOneMaterial.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Graphics/Shaders/DeferredShadingPassOneTexture.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Graphics/Shaders/DeferredShadingPassOneTexture.vert"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2240,6 +2269,26 @@
             flavor2="0">
       </item>
       <item path="Graphics/Shaders/DebugQuadVertex.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Graphics/Shaders/DeferredShadingPassOneMaterial.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Graphics/Shaders/DeferredShadingPassOneMaterial.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Graphics/Shaders/DeferredShadingPassOneTexture.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Graphics/Shaders/DeferredShadingPassOneTexture.vert"
             ex="false"
             tool="3"
             flavor2="0">
