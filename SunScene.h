@@ -109,10 +109,13 @@ public:
     void initializeDefaultPropertyAndFunctionMap() {
         SunObject::initializeDefaultPropertyAndFunctionMap();
         
+        type = "scene";
+        
         propertyMap["doCameraInput"] = SunNodeProperty(&doCameraInput, SunNodePropertyTypeBool);
         
         functionMap["render"] = bind(&SunScene::render, this, std::placeholders::_1);
         functionMap["renderGUISystem"] = bind(&SunScene::renderGUISystem, this, std::placeholders::_1);
+        functionMap["passPerFrameUniforms"] = bind(&SunScene::passPerFrameUniformsAction, this, std::placeholders::_1);
     }
     
     void processXMLSceneNode(pugi::xml_node _node) {
@@ -387,12 +390,14 @@ public:
         solidAction.parameters["shader"] = &_shaders["solid"];
         solidAction.parameters["renderType"] = new int(SunMeshRenderTypeSolid);
         solidAction.parameters["deltaTime"] = &_deltaTime;
+        solidAction.recursive = true;
 
         SunNodeSentAction texturedAction;
         texturedAction.action = "render";
         texturedAction.parameters["shader"] = &_shaders["textured"];
         texturedAction.parameters["rendertype"] = new int(SunMeshRenderTypeTextured);
         texturedAction.parameters["deltaTime"] = &_deltaTime;
+        texturedAction.recursive = true;
 
         _shaders["solid"].use();
         passPerFrameUniforms(_shaders["solid"]);
@@ -417,8 +422,36 @@ public:
         SunNodeSentAction action;
         action.action = "passPerFrameUniforms";
         action.parameters["shader"] = &_shader;
+        action.recursive = true;
         
-        SunObject::passPerFrameUniforms(action);
+        sendAction(action, rootRenderableNode);
+    }
+    
+    void passPerFrameUniforms(SunShader _shader, vector<SunNodeSentActionCondition> _conditions) {
+        camera.passPerFrameUniforms(_shader);
+        
+        SunNodeSentAction action;
+        action.action = "passPerFrameUniforms";
+        action.parameters["shader"] = &_shader;
+        action.conditions = _conditions;
+        action.recursive = true;
+        
+        sendAction(action, rootRenderableNode);
+    }
+    
+    void passPerFrameUniformsAction(SunNodeSentAction _action) {
+        SunShader _shader = *(SunShader *)_action.parameters["shader"];
+        vector<SunNodeSentActionCondition> _conditions = *(vector<SunNodeSentActionCondition> *)_action.parameters["conditions"];
+        
+        camera.passPerFrameUniforms(_shader);
+        
+        SunNodeSentAction action;
+        action.action = "passPerFrameUniforms";
+        action.parameters["shader"] = &_shader;
+        action.conditions = _conditions;
+        action.recursive = true;
+        
+        sendAction(action, rootRenderableNode);
     }
     
 private:

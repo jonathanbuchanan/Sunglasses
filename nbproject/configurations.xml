@@ -52,6 +52,12 @@
             <itemPath>Graphics/Shaders/DeferredShadingPassOneTexture.frag</itemPath>
             <itemPath>Graphics/Shaders/DeferredShadingPassOneTexture.vert</itemPath>
           </logicalFolder>
+          <logicalFolder name="f2"
+                         displayName="Deferred Shading Pass Two"
+                         projectFiles="true">
+            <itemPath>Graphics/Shaders/DeferredShadingPassTwo.frag</itemPath>
+            <itemPath>Graphics/Shaders/DeferredShadingPassTwo.vert</itemPath>
+          </logicalFolder>
           <itemPath>Graphics/Shaders/2DFullscreenBlurFragment.frag</itemPath>
           <itemPath>Graphics/Shaders/2DFullscreenBlurVertex.vert</itemPath>
           <itemPath>Graphics/Shaders/2DFullscreenQuadFragment.frag</itemPath>
@@ -763,6 +769,16 @@
             flavor2="0">
       </item>
       <item path="Graphics/Shaders/DeferredShadingPassOneTexture.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Graphics/Shaders/DeferredShadingPassTwo.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Graphics/Shaders/DeferredShadingPassTwo.vert"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2289,6 +2305,16 @@
             flavor2="0">
       </item>
       <item path="Graphics/Shaders/DeferredShadingPassOneTexture.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Graphics/Shaders/DeferredShadingPassTwo.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Graphics/Shaders/DeferredShadingPassTwo.vert"
             ex="false"
             tool="3"
             flavor2="0">

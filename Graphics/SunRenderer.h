@@ -11,6 +11,8 @@
 
 using namespace std;
 
+#include <iostream>
+
 #include "./SunTextRenderer.h"
 #include "./GUI/SunGUIRenderer.h"
 #include "./SunDirectionalLightShadowMapRenderer.h"
@@ -48,8 +50,6 @@ public:
     
     map<string, SunShader> shaderMap;
     
-    vector<SunShaderUniform> HDRUniforms;
-    
     SunTexturedQuad quad;
     
     // Window and window size
@@ -68,8 +68,6 @@ public:
     
     SunRenderer(SunRenderingMode _renderMode) {
         renderMode = _renderMode;
-        
-        //initialize();
     }
     
     void cycle(map<int, SunButtonState> _buttons, GLfloat deltaTime) {
@@ -83,11 +81,10 @@ public:
         
             // Render the scene
             glBindFramebuffer(GL_FRAMEBUFFER, framebuffers["HDR"].framebuffer);
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            clear();
             
             SunNodeSentAction renderAction;
             renderAction.action = "render";
-            renderAction.parameters["renderType"] = new int(SunMeshRenderTypeSolid);
             renderAction.parameters["shaderMap"] = &shaderMap;
             renderAction.parameters["deltaTime"] = &_deltaTime;
             
@@ -120,7 +117,7 @@ public:
                 map<string, GLuint> textureMap;
                 textureMap["backgroundTexture"] = firstIteration ? framebuffers["HDR"].textures["bloom"] : otherFramebuffer.textures["color"];
                 
-                quad.render(textureMap, shaderMap["blur"], uniforms, false);
+                quad.render(textureMap, shaderMap["blur"], uniforms);
                 
                 horizontal = !horizontal;
                 
@@ -133,10 +130,10 @@ public:
             
             map<string, GLuint> textureMap;
             
-            textureMap["backgroundTexture"] = framebuffers["HDR"].textures["HDR"];
-            textureMap["bloomTexture"] = framebuffers["blur1"].textures["color"];
+            textureMap["t.backgroundTexture"] = framebuffers["HDR"].textures["HDR"];
+            textureMap["t.bloomTexture"] = framebuffers["blur1"].textures["color"];
             
-            quad.render(textureMap, shaderMap["final"], HDRUniforms, true);
+            quad.render(textureMap, shaderMap["final"]);
             
             // Render the GUI
             SunNodeSentAction action;
@@ -149,6 +146,55 @@ public:
         } else if (renderMode == SunRenderingModeDeferredShading) {
             // Clear
             clear();
+        
+            // Render the scene
+            glBindFramebuffer(GL_FRAMEBUFFER, framebuffers["GBuffer"].framebuffer);
+            clear();
+            
+            SunNodeSentAction renderAction;
+            renderAction.action = "render";
+            renderAction.parameters["shaderMap"] = &shaderMap;
+            renderAction.parameters["deltaTime"] = &_deltaTime;
+            
+            sendAction(renderAction, scene);
+            
+            glBindFramebuffer(GL_FRAMEBUFFER, 0);
+            clear();
+            
+            map<string, GLuint> textureMap;
+            
+            textureMap["g_position"] = framebuffers["GBuffer"].textures["position"];
+            textureMap["g_normal"] = framebuffers["GBuffer"].textures["normal"];
+            textureMap["g_color"] = framebuffers["GBuffer"].textures["color"];
+            
+            shaderMap["final"].use();
+            
+            SunNodeSentAction uniformAction;
+            uniformAction.action = "passPerFrameUniforms";
+            uniformAction.parameters["shader"] = &shaderMap["final"];
+            
+            SunNodeSentActionCondition condition;
+            condition.nodeProperty = "type";
+            condition.comparativeProperty = SunNodeProperty(new string("light"), SunNodePropertyTypeString);
+            condition.conditionType = SunNodeSentActionConditionTypeEqualTo;
+            
+            vector<SunNodeSentActionCondition> conditions;
+            conditions.push_back(condition);
+            
+            uniformAction.parameters["conditions"] = &conditions;
+            
+            sendAction(uniformAction, scene);
+            
+            quad.renderWithUsedShader(textureMap, shaderMap["final"]);
+            
+            // Render the GUI
+            SunNodeSentAction action;
+            action.action = "renderGUISystem";
+            
+            sendAction(action, scene);
+            
+            // Swap the buffers
+            swapBuffers();
         }
     }
     
@@ -247,9 +293,6 @@ public:
             // Set up shader map
             shaderMap["solid"] = SunShader("./Graphics/Shaders/BlinnPhongMaterialBoneless.vert", "./Graphics/Shaders/BlinnPhongMaterialBoneless.frag");
             shaderMap["textured"] = SunShader("./Graphics/Shaders/BlinnPhongTextureBoneless.vert", "./Graphics/Shaders/BlinnPhongTextureBoneless.frag");
-            
-            HDRUniforms.push_back(SunShaderUniform("exposure", "float", new GLfloat(1)));
-            HDRUniforms.push_back(SunShaderUniform("doHDR", "boolean", new GLboolean(true)));
 
             shaderMap["final"] = SunShader("./Graphics/Shaders/2DFullscreenQuadVertex.vert", "./Graphics/Shaders/2DFullscreenQuadFragment.frag");
             shaderMap["final"].uniforms["exposure"] = SunShaderUniform("exposure", "float", new GLfloat(1));
@@ -257,7 +300,72 @@ public:
             
             shaderMap["blur"] = SunShader("./Graphics/Shaders/2DFullscreenBlurVertex.vert", "./Graphics/Shaders/2DFullscreenBlurFragment.frag");
         } else if (renderMode == SunRenderingModeDeferredShading) {
+            SunFramebuffer GBuffer;
             
+            glGenFramebuffers(1, &GBuffer.framebuffer);
+            glBindFramebuffer(GL_FRAMEBUFFER, GBuffer.framebuffer);
+            
+            glGenTextures(1, &GBuffer.textures["position"]);
+            glBindTexture(GL_TEXTURE_2D, GBuffer.textures["position"]);
+            
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16F, 1600, 1200, 0, GL_RGB, GL_FLOAT, NULL);
+            
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+            glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, GBuffer.textures["position"], 0);
+            
+            
+            glGenTextures(1, &GBuffer.textures["normal"]);
+            glBindTexture(GL_TEXTURE_2D, GBuffer.textures["normal"]);
+            
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16F, 1600, 1200, 0, GL_RGB, GL_FLOAT, NULL);
+
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+            glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_2D, GBuffer.textures["normal"], 0);
+            
+            
+            glGenTextures(1, &GBuffer.textures["color"]);
+            glBindTexture(GL_TEXTURE_2D, GBuffer.textures["color"]);
+            
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1600, 1200, 0, GL_RGBA, GL_FLOAT, NULL);
+
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+            glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT2, GL_TEXTURE_2D, GBuffer.textures["color"], 0);
+            
+            glBindTexture(GL_TEXTURE_2D, 0);
+
+            glGenRenderbuffers(1, &GBuffer.renderbuffer);
+            glBindRenderbuffer(GL_RENDERBUFFER, GBuffer.renderbuffer);
+            glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, 1600, 1200);
+
+            glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, GBuffer.renderbuffer);
+
+            GLuint colorAttachments[3] = {GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1, GL_COLOR_ATTACHMENT2};
+            glDrawBuffers(3, colorAttachments);
+            
+            if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+                std::cout << "Framebuffer not complete!" << std::endl;
+            
+            glBindFramebuffer(GL_FRAMEBUFFER, 0);
+            
+            framebuffers["GBuffer"] = GBuffer;
+            
+            quad = SunTexturedQuad();
+            quad.setUpGL();
+            
+            // Set up shader map
+            shaderMap["solid"] = SunShader("./Graphics/Shaders/DeferredShadingPassOneMaterial.vert", "./Graphics/Shaders/DeferredShadingPassOneMaterial.frag");
+            shaderMap["textured"] = SunShader("./Graphics/Shaders/DeferredShadingPassOneTexture.vert", "./Graphics/Shaders/DeferredShadingPassOneTexture.frag");
+            
+            shaderMap["final"] = SunShader("./Graphics/Shaders/DeferredShadingPassTwo.vert", "./Graphics/Shaders/DeferredShadingPassTwo.frag");
         }
     }
     

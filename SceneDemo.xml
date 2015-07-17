@@ -37,6 +37,6 @@
         <position-y>1</position-y>
         <position-z>0</position-z>
     </camera>
-    <renderer mode="forward">
+    <renderer mode="deferred-shading">
     </renderer>
 </scene>

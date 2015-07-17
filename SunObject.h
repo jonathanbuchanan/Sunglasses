@@ -48,6 +48,8 @@ public:
     virtual void initializeDefaultPropertyAndFunctionMap() {
         SunNode::initializeDefaultPropertyAndFunctionMap();
         
+        type = "object";
+        
         // Map position, rotation, and scale to the property map
         propertyMap["position"] = SunNodeProperty(&position, SunNodePropertyTypeVec3);
         propertyMap["rotation"] = SunNodeProperty(&rotation, SunNodePropertyTypeVec3);
@@ -60,10 +62,7 @@ public:
     }
     
     virtual void update(SunNodeSentAction _action) {
-        // Loop through the sub-objects and force them to update
-        for (int i = 0; i < subNodes.size(); ++i) {
-            sendAction(_action, subNodes[i]);
-        }
+        
     }
     
     virtual void render(SunNodeSentAction _action) {
@@ -86,13 +85,10 @@ public:
                 models[i].render(_shader, _deltaTime, position, rotation, scale, material, renderType);
             }
         }
-        
-        // Loop through the sub-objects and force them to render
-        sendActionToAllSubNodes(_action);
     }
     
     virtual void passPerFrameUniforms(SunNodeSentAction _action) {
-        sendActionToAllSubNodes(_action);
+        
     }
     
 private:

@@ -25,6 +25,7 @@ typedef void * SunNodePropertyPointer;
 enum SunNodePropertyType {
     SunNodePropertyTypeBool,
     SunNodePropertyTypeInt,
+    SunNodePropertyTypeString,
     SunNodePropertyTypeFloat,
     SunNodePropertyTypeVec2,
     SunNodePropertyTypeVec3
@@ -44,14 +45,84 @@ struct SunNodeProperty {
         type = _type;
     }
     
+    bool isIntOrFloat() {
+        if (type == SunNodePropertyTypeInt || type == SunNodePropertyTypeFloat)
+            return true;
+        return false;
+    }
+    
 };
 
 typedef void * SunNodeSentActionParameter;
 
+enum SunNodeSentActionConditionType {
+    SunNodeSentActionConditionTypeLessThan,
+    SunNodeSentActionConditionTypeGreaterThan,
+    SunNodeSentActionConditionTypeEqualTo,
+    SunNodeSentActionConditionTypeTrue,
+    SunNodeSentActionConditionTypeFalse
+};
+
+struct SunNodeSentActionCondition {
+    SunNodeSentActionConditionType conditionType;
+    string nodeProperty;
+    SunNodeProperty comparativeProperty;
+    
+    SunNodeSentActionCondition() {
+        
+    }
+    
+    bool evaluate(SunNodeProperty propertyOne) {
+        switch (conditionType) {
+            case SunNodeSentActionConditionTypeLessThan:
+                if (propertyOne.isIntOrFloat() == true && comparativeProperty.isIntOrFloat()) {
+                    if (*(float *) propertyOne.pointer <= *(float *)comparativeProperty.pointer)
+                        return true;
+                }
+                return false;
+                break;
+            case SunNodeSentActionConditionTypeGreaterThan:
+                if (propertyOne.isIntOrFloat() == true && comparativeProperty.isIntOrFloat()) {
+                    if (*(float *) propertyOne.pointer >= *(float *)comparativeProperty.pointer)
+                        return true;
+                }
+                return false;
+                break;
+            case SunNodeSentActionConditionTypeEqualTo:
+                if (propertyOne.isIntOrFloat() == true && comparativeProperty.isIntOrFloat()) {
+                    if (*(float *)propertyOne.pointer == *(float *)comparativeProperty.pointer)
+                        return true;
+                } else if (propertyOne.type == SunNodePropertyTypeString && comparativeProperty.type == SunNodePropertyTypeString) {
+                    if (*(string *)propertyOne.pointer == *(string *)comparativeProperty.pointer)
+                        return true;
+                }
+                
+                return false;
+                break;
+            case SunNodeSentActionConditionTypeTrue:
+                if (propertyOne.type == SunNodePropertyTypeBool)
+                    if (*(bool *)propertyOne.pointer == true)
+                        return true;
+                return false;
+                break;
+            case SunNodeSentActionConditionTypeFalse:
+                if (propertyOne.type == SunNodePropertyTypeBool)
+                    if (*(bool *)propertyOne.pointer == false)
+                        return true;
+                return false;
+                break;
+        }
+        return false;
+    }
+    
+};
+
 struct SunNodeSentAction {
     map<string, void *> properties;
     map<string, SunNodeSentActionParameter> parameters;
+    vector<SunNodeSentActionCondition> conditions;
     string action;
+    GLboolean recursive = false;
 };
 
 typedef function<void(SunNodeSentAction)>SunNodeFunctionPointer;
@@ -64,6 +135,7 @@ public:
     SunNode *parent;
     int level;
     string name;
+    string type;
     
     SunNode *rootNode;
     
@@ -92,15 +164,32 @@ public:
     }
     
     virtual void initializeDefaultPropertyAndFunctionMap() {
+        type = "node";
+        
+        propertyMap["type"] = SunNodeProperty(&type, SunNodePropertyTypeString);
+        
         functionMap["changeValue"] = bind(&SunNode::changeValue, this, std::placeholders::_1);
         functionMap["toggleBool"] = bind(&SunNode::toggleBool, this, std::placeholders::_1);
     }
     
     virtual void receiveAction(SunNodeSentAction _action) {
         if (functionMap.find(_action.action) != functionMap.end()) {
-            SunNodeFunctionPointer function = functionMap[_action.action];
-            function(_action);
+            int conditionsMet = 0;
+            for (int i = 0; i < _action.conditions.size(); i++) {
+                bool condition = _action.conditions[i].evaluate(propertyMap[_action.conditions[i].nodeProperty]);
+                if (condition == true) {
+                    conditionsMet += 1;
+                }
+            }
+        
+            if (conditionsMet == _action.conditions.size()) {
+                SunNodeFunctionPointer function = functionMap[_action.action];
+                function(_action);
+            }
         }
+        
+        if (_action.recursive)
+            sendActionToAllSubNodes(_action);
     }
     
     virtual void sendAction(SunNodeSentAction _action, SunNode *_receiver) {

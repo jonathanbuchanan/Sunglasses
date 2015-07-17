@@ -20,5 +20,5 @@ void main() {
     
     vec3 result = vec3(1.0f) - exp(-nonclamped * exposure);
     
-    color = vec4(result, 1.0f);
+    color = vec4(vec3(texture(t.backgroundTexture, outTextureCoordinates)), 1.0f);
 }

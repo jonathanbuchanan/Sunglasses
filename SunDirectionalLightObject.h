@@ -38,6 +38,12 @@ public:
         initializeDefaultPropertyAndFunctionMap();
     }
     
+    virtual void initializeDefaultPropertyAndFunctionMap() {
+        SunObject::initializeDefaultPropertyAndFunctionMap();
+        
+        type = "light";
+    }
+    
     void passPerFrameUniforms(SunNodeSentAction _action) {
         SunObject::passPerFrameUniforms(_action);
         
