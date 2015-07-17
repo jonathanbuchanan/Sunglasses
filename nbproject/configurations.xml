@@ -44,20 +44,6 @@
           <itemPath>Graphics/Nanosuit/nanosuit.obj</itemPath>
         </logicalFolder>
         <logicalFolder name="Shaders" displayName="Shaders" projectFiles="true">
-          <logicalFolder name="f1"
-                         displayName="Deferred Shading Pass One"
-                         projectFiles="true">
-            <itemPath>Graphics/Shaders/DeferredShadingPassOneMaterial.frag</itemPath>
-            <itemPath>Graphics/Shaders/DeferredShadingPassOneMaterial.vert</itemPath>
-            <itemPath>Graphics/Shaders/DeferredShadingPassOneTexture.frag</itemPath>
-            <itemPath>Graphics/Shaders/DeferredShadingPassOneTexture.vert</itemPath>
-          </logicalFolder>
-          <logicalFolder name="f2"
-                         displayName="Deferred Shading Pass Two"
-                         projectFiles="true">
-            <itemPath>Graphics/Shaders/DeferredShadingPassTwo.frag</itemPath>
-            <itemPath>Graphics/Shaders/DeferredShadingPassTwo.vert</itemPath>
-          </logicalFolder>
           <itemPath>Graphics/Shaders/2DFullscreenBlurFragment.frag</itemPath>
           <itemPath>Graphics/Shaders/2DFullscreenBlurVertex.vert</itemPath>
           <itemPath>Graphics/Shaders/2DFullscreenQuadFragment.frag</itemPath>
@@ -78,6 +64,12 @@
           <itemPath>Graphics/Shaders/CubemapVertex.vert</itemPath>
           <itemPath>Graphics/Shaders/DebugQuadFragment.frag</itemPath>
           <itemPath>Graphics/Shaders/DebugQuadVertex.vert</itemPath>
+          <itemPath>Graphics/Shaders/DeferredShadingPassOneMaterial.frag</itemPath>
+          <itemPath>Graphics/Shaders/DeferredShadingPassOneMaterial.vert</itemPath>
+          <itemPath>Graphics/Shaders/DeferredShadingPassOneTexture.frag</itemPath>
+          <itemPath>Graphics/Shaders/DeferredShadingPassOneTexture.vert</itemPath>
+          <itemPath>Graphics/Shaders/DeferredShadingPassTwo.frag</itemPath>
+          <itemPath>Graphics/Shaders/DeferredShadingPassTwo.vert</itemPath>
           <itemPath>Graphics/Shaders/Fragment.frag</itemPath>
           <itemPath>Graphics/Shaders/PointShadowMapFragment.frag</itemPath>
           <itemPath>Graphics/Shaders/PointShadowMapGeometry.geom</itemPath>
@@ -100,8 +92,10 @@
         <itemPath>Graphics/SunPointLightShadowMapRenderer.h</itemPath>
         <itemPath>Graphics/SunPrimitives.h</itemPath>
         <itemPath>Graphics/SunRenderer.h</itemPath>
+        <itemPath>Graphics/SunRenderingNode.h</itemPath>
         <itemPath>Graphics/SunTextRenderer.h</itemPath>
         <itemPath>Graphics/SunTexturedQuad.h</itemPath>
+        <itemPath>Graphics/Teapot.dae</itemPath>
         <itemPath>Graphics/TestAnim.dae</itemPath>
         <itemPath>Graphics/TestAnimationModel.dae</itemPath>
       </logicalFolder>
@@ -508,8 +502,40 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
   </logicalFolder>
   <sourceRootList>
+    <Elem>../OpenGL-C++/Sunglasses</Elem>
+    <Elem>Graphics</Elem>
+    <Elem>Libraries/glm</Elem>
+    <Elem>Libraries/SOIL</Elem>
+    <Elem>Libraries/FreeType</Elem>
+    <Elem>../OpenGL-C++/Sunglasses</Elem>
+    <Elem>Graphics</Elem>
+    <Elem>Libraries/glm</Elem>
+    <Elem>Libraries/SOIL</Elem>
+    <Elem>Libraries/FreeType</Elem>
     <Elem>../OpenGL-C++/Sunglasses</Elem>
     <Elem>Graphics</Elem>
     <Elem>Libraries/glm</Elem>
@@ -838,9 +864,13 @@
       </item>
       <item path="Graphics/SunRenderer.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Graphics/SunRenderingNode.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Graphics/SunTextRenderer.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Graphics/SunTexturedQuad.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Graphics/Teapot.dae" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Graphics/TestAnim.dae" ex="false" tool="3" flavor2="0">
       </item>
@@ -2374,9 +2404,13 @@
       </item>
       <item path="Graphics/SunRenderer.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Graphics/SunRenderingNode.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Graphics/SunTextRenderer.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Graphics/SunTexturedQuad.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Graphics/Teapot.dae" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Graphics/TestAnim.dae" ex="false" tool="3" flavor2="0">
       </item>

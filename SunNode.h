@@ -132,7 +132,7 @@ public:
     map<string, SunNodeProperty> propertyMap;
     map<string, SunNodeFunctionPointer> functionMap;
     vector<SunNode *> subNodes;
-    SunNode *parent;
+    vector<SunNode *> parents;
     int level;
     string name;
     string type;
@@ -204,7 +204,7 @@ public:
     virtual void addSubNode(SunNode *_subNode) {
         // Add the Sub-Node
         subNodes.push_back(_subNode);
-        _subNode->parent = this;
+        _subNode->parents.push_back(this);
         _subNode->level = level + 1;
         _subNode->rootNode = rootNode;
     }

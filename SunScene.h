@@ -22,6 +22,7 @@ using namespace std;
 #include "./Graphics/GUI/SunGUISystem.h"
 #include "./Graphics/SunCamera.h"
 #include "./Graphics/SunRenderer.h"
+#include "./Graphics/SunRenderingNode.h"
 #include "./Graphics/SunTextRenderer.h"
 #include "./SunObject.h"
 #include "./SunDirectionalLightObject.h"
