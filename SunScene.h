@@ -166,6 +166,14 @@ public:
             processXMLCameraPropertyNode(node, &camera);
         }
     }
+    void processXMLCameraPropertyNode(pugi::xml_node _node, SunCamera *_camera) {
+        if (strcmp(_node.name(), "position-x") == 0)
+            _camera->position.x = _node.text().as_float();
+        else if (strcmp(_node.name(), "position-y") == 0)
+            _camera->position.y = _node.text().as_float();
+        else if (strcmp(_node.name(), "position-z") == 0)
+            _camera->position.z = _node.text().as_float();
+    }
     
     void processXMLRendererNode(pugi::xml_node _node) {
         SunRenderingMode renderMode;
@@ -185,15 +193,179 @@ public:
         renderer.window = window;
         
         renderer.initialize();
+        
+        for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
+            if (strcmp(node.name(), "pipeline") == 0)
+                processXMLRendererPipelineNode(node, &renderer);
+        }
     }
     
-    void processXMLCameraPropertyNode(pugi::xml_node _node, SunCamera *_camera) {
-        if (strcmp(_node.name(), "position-x") == 0)
-            _camera->position.x = _node.text().as_float();
-        else if (strcmp(_node.name(), "position-y") == 0)
-            _camera->position.y = _node.text().as_float();
-        else if (strcmp(_node.name(), "position-z") == 0)
-            _camera->position.z = _node.text().as_float();
+    void processXMLRendererPipelineNode(pugi::xml_node _node, SunRenderer *_renderer) {
+        vector<SunRenderingNode> renderNodes;
+        
+        for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
+            if (strcmp(node.name(), "rendernode") == 0)
+                renderNodes.push_back(processXMLRenderNode(node, _renderer));
+        }
+        
+        SunRenderingNode *root;
+        
+        for (int i = 0; i < renderNodes.size(); i++) {
+            switch(renderNodes[i].type) {
+                case SunRenderingNodeTypeRoot:
+                    renderNodes[i].rootNode = &renderNodes[i];
+                    root = &renderNodes[i];
+                    break;
+                case SunRenderingNodeTypeIntermediate:
+                    for (int j = 0; j < renderNodes[i].inputs.size(); j++) {
+                        SunNode *parent;
+                        root->findPointerNodeWithName(renderNodes[i].inputs[j].linkName, parent);
+                        renderNodes[i].inputs[j].link = (SunRenderingNode *)parent;
+                        parent->addSubNode(&renderNodes[i]);
+                    }
+                    break;
+                case SunRenderingNodeTypeEnd:
+                    for (int j = 0; j < renderNodes[i].inputs.size(); j++) {
+                        SunNode *parent;
+                        root->findPointerNodeWithName(renderNodes[i].inputs[j].linkName, parent);
+                        renderNodes[i].inputs[j].link = (SunRenderingNode *)parent;
+                        parent->addSubNode(&renderNodes[i]);
+                    }
+                    break;
+                case SunRenderingNodeTypeOnly:
+                  
+                break;
+            }
+        }
+        
+        renderer.rootRenderNode = *root;
+   }
+    
+    SunRenderingNode processXMLRenderNode(pugi::xml_node _node, SunRenderer *_renderer) {
+        string name;
+        SunRenderingNodeType type;
+        
+        for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
+            if (strcmp(attribute.name(), "name") == 0)
+                name = attribute.value();
+            if (strcmp(attribute.name(), "type") == 0) {
+                if (strcmp(attribute.value(), "root") == 0)
+                    type = SunRenderingNodeTypeRoot;
+                else if (strcmp(attribute.value(), "intermediate") == 0)
+                    type = SunRenderingNodeTypeIntermediate;
+                else if (strcmp(attribute.value(), "end") == 0)
+                    type = SunRenderingNodeTypeEnd;
+            }
+        }
+        
+        SunRenderingNode renderNode = SunRenderingNode(name);
+        renderNode.type = type;
+        renderNode.rootNode = &renderNode;
+        renderNode.scene = this;
+        
+        for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
+            if (strcmp(node.name(), "inputs") == 0)
+                processXMLRenderNodeInputs(node, &renderNode);
+            else if (strcmp(node.name(), "outputs") == 0)
+                processXMLRenderNodeOutputs(node, &renderNode);
+            else if (strcmp(node.name(), "shaders") == 0)
+                processXMLRenderNodeShaders(node, &renderNode);
+        }
+        
+        renderNode.initialize();
+        return renderNode;
+    }
+    
+    void processXMLRenderNodeInputs(pugi::xml_node _node, SunRenderingNode *_renderNode) {
+        for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling())
+            processXMLRenderNodeInput(node, _renderNode);
+    }
+    
+    void processXMLRenderNodeInput(pugi::xml_node _node, SunRenderingNode *_renderNode) {
+        SunRenderingNodeInput input;
+        
+        for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
+            if (strcmp(attribute.name(), "node") == 0)
+                input.linkName = attribute.value();
+            else if (strcmp(attribute.name(), "data") == 0) {
+                if (strcmp(attribute.value(), "position") == 0)
+                    input.type = SunRenderingNodeDataTypePosition;
+                else if (strcmp(attribute.value(), "normal") == 0)
+                    input.type = SunRenderingNodeDataTypeNormal;
+                else if (strcmp(attribute.value(), "color") == 0)
+                    input.type = SunRenderingNodeDataTypeColor;
+            } else if (strcmp(attribute.name(), "format") == 0) {
+                if (strcmp(attribute.value(), "RGB16F") == 0)
+                    input.format = SunRenderingNodeDataFormatRGB16F;
+                else if (strcmp(attribute.value(), "RGBA16F") == 0)
+                    input.format = SunRenderingNodeDataFormatRGBA16F;
+            } else if (strcmp(attribute.name(), "slot") == 0)
+                input.slot = attribute.as_int();
+        }
+        
+        _renderNode->inputs.push_back(input);
+    }
+    
+    void processXMLRenderNodeOutputs(pugi::xml_node _node, SunRenderingNode *_renderNode) {
+        for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling())
+            processXMLRenderNodeOutput(node, _renderNode);
+    }
+    
+    void processXMLRenderNodeOutput(pugi::xml_node _node, SunRenderingNode *_renderNode) {
+        SunRenderingNodeOutput output;
+        
+        for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
+            if (strcmp(attribute.name(), "data") == 0) {
+                if (strcmp(attribute.value(), "position") == 0)
+                    output.type = SunRenderingNodeDataTypePosition;
+                else if (strcmp(attribute.value(), "normal") == 0)
+                    output.type = SunRenderingNodeDataTypeNormal;
+                else if (strcmp(attribute.value(), "color") == 0)
+                    output.type = SunRenderingNodeDataTypeColor;
+            } else if (strcmp(attribute.name(), "format") == 0) {
+                if (strcmp(attribute.value(), "RGB16F") == 0)
+                    output.format = SunRenderingNodeDataFormatRGB16F;
+                else if (strcmp(attribute.value(), "RGBA16F") == 0)
+                    output.format = SunRenderingNodeDataFormatRGBA16F;
+            } else if (strcmp(attribute.name(), "slot") == 0)
+                output.slot = attribute.as_int();
+        }
+        
+        _renderNode->outputs.push_back(output);
+    }
+    
+    void processXMLRenderNodeShaders(pugi::xml_node _node, SunRenderingNode *_renderNode) {
+        for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling())
+            processXMLRenderNodeShader(node, _renderNode);
+    }
+    
+    void processXMLRenderNodeShader(pugi::xml_node _node, SunRenderingNode *_renderNode) {
+        string vertex;
+        string fragment;
+        string preprocessor;
+        SunRenderingNodeShaderType type;
+        string _type;
+        
+        for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
+            if (strcmp(attribute.name(), "type") == 0) {
+                _type = attribute.value();
+                if (strcmp(attribute.value(), "scene_textured") == 0)
+                    type = SunRenderingNodeShaderTypeSceneTextured;
+                else if (strcmp(attribute.value(), "scene_solid") == 0)
+                    type = SunRenderingNodeShaderTypeSceneSolid;
+                else if (strcmp(attribute.value(), "quad") == 0)
+                    type = SunRenderingNodeShaderTypeQuad;
+            } else if (strcmp(attribute.name(), "vertex") == 0)
+                vertex = attribute.value();
+            else if (strcmp(attribute.name(), "fragment") == 0)
+                fragment = attribute.value();
+            else if (strcmp(attribute.name(), "preprocessor") == 0)
+                preprocessor = attribute.value();
+        }
+        
+        SunRenderingNodeShader shader = SunRenderingNodeShader(vertex, fragment, preprocessor, type);
+        
+        _renderNode->shaders[_type] = shader;
     }
     
     void processXMLObjectsNode(pugi::xml_node _node, SunObject *_superObject) {

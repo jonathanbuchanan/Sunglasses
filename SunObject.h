@@ -54,6 +54,7 @@ public:
         propertyMap["position"] = SunNodeProperty(&position, SunNodePropertyTypeVec3);
         propertyMap["rotation"] = SunNodeProperty(&rotation, SunNodePropertyTypeVec3);
         propertyMap["scale"] = SunNodeProperty(&scale, SunNodePropertyTypeVec3);
+        propertyMap["renderType"] = SunNodeProperty(&renderType, SunNodePropertyTypeInt);
         
         // Add the "render" function to the function map
         functionMap["update"] = bind(&SunObject::update, this, std::placeholders::_1);

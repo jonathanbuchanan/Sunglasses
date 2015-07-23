@@ -1,6 +1,6 @@
 <scene name="DemoScene" GUISystem="GUIDemo.xml">
     <objects>
-        <object name="Cube" model="Graphics/Teapot.dae" type="Physical" textured="false" animated="false">
+        <object name="Cube" model="Graphics/Cube.dae" type="Physical" textured="true" animated="false">
             <position-x>0</position-x>
             <position-y>0</position-y>
             <position-z>0</position-z>
@@ -37,6 +37,34 @@
         <position-y>1</position-y>
         <position-z>0</position-z>
     </camera>
-    <renderer mode="deferred-shading">
+    <renderer>
+        <pipeline>
+            <rendernode name="gbuffer" type="root">
+                <inputs>
+                </inputs>
+                <outputs>
+                    <output data="position" format="RGB16F" slot="0" />
+                    <output data="normal" format="RGB16F" slot="1" />
+                    <output date="color" format="RGBA16F" slot="2" />
+                </outputs>
+                <shaders>
+                    <shader type="scene_textured" vertex="./Graphics/Shaders/Variable Pipeline/Scene.vert" fragment="./Graphics/Shaders/Variable Pipeline/Scene.frag" preprocessor="#define RENDER_TEXTURED\n#define OUTPUT_POSITION_0\n#define OUTPUT_NORMAL_1\n#define OUTPUT_COLOR_2\n" />
+                    <shader type="scene_solid" vertex="./Graphics/Shaders/Variable Pipeline/Scene.vert" fragment="./Graphics/Shaders/Variable Pipeline/Scene.frag" preprocessor="#define RENDER_SOLID\n#define OUTPUT_POSITION_0\n#define OUTPUT_NORMAL_1\n#define OUTPUT_COLOR_2\n" />
+                </shaders>
+            </rendernode>
+            <rendernode name="final" type="end">
+                <inputs>
+                    <input node="gbuffer" data="position" format="RGB16F" slot="0" />
+                    <input node="gbuffer" data="normal" format="RGB16F" slot="1" />
+                    <input node="gbuffer" data="color" format="RGBA16F" slot="2" />
+                </inputs>
+                <outputs>
+                    <output data="color" format="RGBA16F" slot="0" />
+                </outputs>
+                <shaders>
+                    <shader type="quad" vertex="./Graphics/Shaders/Variable Pipeline/Quad.vert" fragment="./Graphics/Shaders/Variable Pipeline/Quad.frag" preprocessor="#define LIGHTING\n#define LIGHTING_DEFERRED\n#define INPUT_POSITION\n#define INPUT_NORMAL\n#define INPUT_COLOR\n#define OUTPUT_COLOR_0\n" />
+                </shaders>
+            </rendernode>
+        </pipeline>
     </renderer>
 </scene>

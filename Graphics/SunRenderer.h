@@ -17,9 +17,11 @@ using namespace std;
 #include "./GUI/SunGUIRenderer.h"
 #include "./SunDirectionalLightShadowMapRenderer.h"
 #include "./SunPointLightShadowMapRenderer.h"
+#include "./SunRenderingNode.h"
 
 #include "./SunTexturedQuad.h"
 #include "../SunNode.h"
+#include "./SunPrimitives.h"
 #include "./SunCamera.h"
 #include "../SunButtonState.h"
 
@@ -27,19 +29,6 @@ enum SunRenderingMode {
     SunRenderingModeForward,
     SunRenderingModeDeferredShading
 };
-
-typedef GLuint SunFramebufferObject;
-typedef GLuint SunFramebufferTextureObject;
-typedef GLuint SunFramebufferColorAttachmentObject;
-
-struct SunFramebuffer {
-    GLuint framebuffer;
-    GLuint renderbuffer;
-    vector<SunFramebufferColorAttachmentObject> colorAttachments;
-    map<string, SunFramebufferTextureObject> textures;
-};
-
-typedef map<string, SunFramebufferTextureObject>::iterator SunFramebufferTextureObjectIterator;
 
 class SunRenderer {
 public:
@@ -61,6 +50,7 @@ public:
     
     // Scene Objects
     SunNode *scene;
+    SunRenderingNode rootRenderNode;
     
     SunRenderer() {
         
@@ -75,7 +65,23 @@ public:
     }
     
     void render(GLfloat _deltaTime) {
-        if (renderMode == SunRenderingModeForward) {
+        
+        SunNodeSentAction renderAction;
+        renderAction.action = "render";
+        renderAction.parameters["deltaTime"] = &_deltaTime;
+        renderAction.recursive = true;
+        
+        sendAction(renderAction, &rootRenderNode);
+        
+        // Render the GUI
+        SunNodeSentAction action;
+        action.action = "renderGUISystem";
+
+        sendAction(action, scene);
+
+        // Swap the buffers
+        swapBuffers();
+        /*if (renderMode == SunRenderingModeForward) {
             // Clear
             clear();
         
@@ -195,7 +201,16 @@ public:
             
             // Swap the buffers
             swapBuffers();
-        }
+        }*/
+        
+    }
+    
+    void passSceneUniforms(SunShader *_shader) {
+        SunNodeSentAction uniformAction;
+        uniformAction.action = "passPerFrameUniforms";
+        uniformAction.parameters["shader"] = _shader;
+        
+        sendAction(uniformAction, scene);
     }
     
     void initialize() {
@@ -367,14 +382,6 @@ public:
             
             shaderMap["final"] = SunShader("./Graphics/Shaders/DeferredShadingPassTwo.vert", "./Graphics/Shaders/DeferredShadingPassTwo.frag");
         }
-    }
-    
-    void clear() {
-        // Clear the scene using this color
-        glClearColor(0.0, 0.0, 0.0, 1.0);
-        
-        // Clear the color and depth buffers
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
     
     void swapBuffers() {

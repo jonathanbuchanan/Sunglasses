@@ -28,7 +28,8 @@ enum SunNodePropertyType {
     SunNodePropertyTypeString,
     SunNodePropertyTypeFloat,
     SunNodePropertyTypeVec2,
-    SunNodePropertyTypeVec3
+    SunNodePropertyTypeVec3,
+    SunNodePropertyTypeNode
 };
 
 // Definition of SunNodeProperty
@@ -188,8 +189,8 @@ public:
             }
         }
         
-        if (_action.recursive)
-            sendActionToAllSubNodes(_action);
+        //if (_action.recursive)
+        //    sendActionToAllSubNodes(_action);
     }
     
     virtual void sendAction(SunNodeSentAction _action, SunNode *_receiver) {
@@ -203,10 +204,12 @@ public:
     
     virtual void addSubNode(SunNode *_subNode) {
         // Add the Sub-Node
-        subNodes.push_back(_subNode);
-        _subNode->parents.push_back(this);
-        _subNode->level = level + 1;
-        _subNode->rootNode = rootNode;
+        if (find(subNodes.begin(), subNodes.end(), _subNode) == subNodes.end()) {
+            subNodes.push_back(_subNode);
+            _subNode->parents.push_back(this);
+            _subNode->level = level + 1;
+            _subNode->rootNode = rootNode;
+        }
     }
     
     virtual void findNode(string _path, SunNode &_node) {
@@ -226,6 +229,43 @@ public:
                 }
             }
         }
+    }
+    
+    virtual void findNodeWithName(string _name, SunNode &_node) {
+        for (int i = 0; i < subNodes.size(); i++) {
+            if (subNodes[i]->name == _name) {
+                _node = *subNodes[i];
+                break;
+            } else {
+                subNodes[i]->findNodeWithName(_name, _node);
+            }
+        }
+    }
+    
+    virtual void findPointerNodeWithName(string _name, SunNode *&_node) {
+        if (name == _name) {
+            _node = this;
+        } else {
+            for (int i = 0; i < subNodes.size(); i++) {
+                subNodes[i]->findPointerNodeWithName(_name, _node);
+            }
+        }
+    }
+    
+    virtual void log() {
+        string log;
+        
+        for (int i = 0; i < level; i++) {
+            log += "    ";
+        }
+        
+        log += name;
+        log += "\n";
+        
+        cout << log << flush;
+        
+        for (int i = 0; i < subNodes.size(); i++)
+            subNodes[i]->log();
     }
     
 private:
