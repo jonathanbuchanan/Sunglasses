@@ -189,8 +189,8 @@ public:
             }
         }
         
-        //if (_action.recursive)
-        //    sendActionToAllSubNodes(_action);
+        if (_action.recursive)
+            sendActionToAllSubNodes(_action);
     }
     
     virtual void sendAction(SunNodeSentAction _action, SunNode *_receiver) {

@@ -201,35 +201,39 @@ public:
     }
     
     void processXMLRendererPipelineNode(pugi::xml_node _node, SunRenderer *_renderer) {
-        vector<SunRenderingNode> renderNodes;
+        vector<SunRenderingNode *> renderNodes;
         
         for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
-            if (strcmp(node.name(), "rendernode") == 0)
+            if (strcmp(node.name(), "rendernode") == 0) {
+                /*SunRenderingNode renderNode;
+                processXMLRenderNode(node, _renderer, renderNode);
+                renderNodes.push_back(renderNode);*/
                 renderNodes.push_back(processXMLRenderNode(node, _renderer));
+            }
         }
         
         SunRenderingNode *root;
         
         for (int i = 0; i < renderNodes.size(); i++) {
-            switch(renderNodes[i].type) {
+            switch(renderNodes[i]->type) {
                 case SunRenderingNodeTypeRoot:
-                    renderNodes[i].rootNode = &renderNodes[i];
-                    root = &renderNodes[i];
+                    renderNodes[i]->rootNode = renderNodes[i];
+                    root = renderNodes[i];
                     break;
                 case SunRenderingNodeTypeIntermediate:
-                    for (int j = 0; j < renderNodes[i].inputs.size(); j++) {
+                    for (int j = 0; j < renderNodes[i]->inputs.size(); j++) {
                         SunNode *parent;
-                        root->findPointerNodeWithName(renderNodes[i].inputs[j].linkName, parent);
-                        renderNodes[i].inputs[j].link = (SunRenderingNode *)parent;
-                        parent->addSubNode(&renderNodes[i]);
+                        root->findPointerNodeWithName(renderNodes[i]->inputs[j].linkName, parent);
+                        renderNodes[i]->inputs[j].link = (SunRenderingNode *)parent;
+                        parent->addSubNode(renderNodes[i]);
                     }
                     break;
                 case SunRenderingNodeTypeEnd:
-                    for (int j = 0; j < renderNodes[i].inputs.size(); j++) {
+                    for (int j = 0; j < renderNodes[i]->inputs.size(); j++) {
                         SunNode *parent;
-                        root->findPointerNodeWithName(renderNodes[i].inputs[j].linkName, parent);
-                        renderNodes[i].inputs[j].link = (SunRenderingNode *)parent;
-                        parent->addSubNode(&renderNodes[i]);
+                        root->findPointerNodeWithName(renderNodes[i]->inputs[j].linkName, parent);
+                        renderNodes[i]->inputs[j].link = (SunRenderingNode *)parent;
+                        parent->addSubNode(renderNodes[i]);
                     }
                     break;
                 case SunRenderingNodeTypeOnly:
@@ -238,10 +242,10 @@ public:
             }
         }
         
-        renderer.rootRenderNode = *root;
+        renderer.rootRenderNode = root;
    }
     
-    SunRenderingNode processXMLRenderNode(pugi::xml_node _node, SunRenderer *_renderer) {
+    void processXMLRenderNode(pugi::xml_node _node, SunRenderer *_renderer, SunRenderingNode &_renderingNode) {
         string name;
         SunRenderingNodeType type;
         
@@ -258,22 +262,55 @@ public:
             }
         }
         
-        SunRenderingNode renderNode = SunRenderingNode(name);
-        renderNode.type = type;
-        renderNode.rootNode = &renderNode;
-        renderNode.scene = this;
+        _renderingNode = SunRenderingNode(name);
+        _renderingNode.type = type;
+        _renderingNode.rootNode = &_renderingNode;
+        _renderingNode.scene = this;
         
         for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
             if (strcmp(node.name(), "inputs") == 0)
-                processXMLRenderNodeInputs(node, &renderNode);
+                processXMLRenderNodeInputs(node, &_renderingNode);
             else if (strcmp(node.name(), "outputs") == 0)
-                processXMLRenderNodeOutputs(node, &renderNode);
+                processXMLRenderNodeOutputs(node, &_renderingNode);
             else if (strcmp(node.name(), "shaders") == 0)
-                processXMLRenderNodeShaders(node, &renderNode);
+                processXMLRenderNodeShaders(node, &_renderingNode);
         }
         
-        renderNode.initialize();
-        return renderNode;
+        _renderingNode.initialize();
+    }
+   
+    SunRenderingNode * processXMLRenderNode(pugi::xml_node _node, SunRenderer *_renderer) {
+        string name;
+        SunRenderingNodeType type;
+        
+        for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
+            if (strcmp(attribute.name(), "name") == 0)
+                name = attribute.value();
+            if (strcmp(attribute.name(), "type") == 0) {
+                if (strcmp(attribute.value(), "root") == 0)
+                    type = SunRenderingNodeTypeRoot;
+                else if (strcmp(attribute.value(), "intermediate") == 0)
+                    type = SunRenderingNodeTypeIntermediate;
+                else if (strcmp(attribute.value(), "end") == 0)
+                    type = SunRenderingNodeTypeEnd;
+            }
+        }
+        
+        SunRenderingNode *_renderingNode = new SunRenderingNode(name);
+        _renderingNode->type = type;
+        _renderingNode->scene = this;
+        
+        for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
+            if (strcmp(node.name(), "inputs") == 0)
+                processXMLRenderNodeInputs(node, _renderingNode);
+            else if (strcmp(node.name(), "outputs") == 0)
+                processXMLRenderNodeOutputs(node, _renderingNode);
+            else if (strcmp(node.name(), "shaders") == 0)
+                processXMLRenderNodeShaders(node, _renderingNode);
+        }
+        
+        _renderingNode->initialize();
+        return _renderingNode;
     }
     
     void processXMLRenderNodeInputs(pugi::xml_node _node, SunRenderingNode *_renderNode) {

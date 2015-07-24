@@ -119,8 +119,12 @@ public:
         GLint success;
         GLchar infoLog[512];
         vertex = glCreateShader(GL_VERTEX_SHADER);
-        const GLchar *vertexSources[2] = {vShaderCode, _preprocessor};
-        glShaderSource(vertex, 1, vertexSources, NULL);
+        
+        string version = "#version 330 core\n";
+        
+        const GLchar *vertexSources[3] = {version.c_str(), _preprocessor, vShaderCode};
+        const GLint vertexSourcesLengths[3] = {(GLint)version.size(), (GLint)strlen(_preprocessor), (GLint)strlen(vShaderCode)};
+        glShaderSource(vertex, 3, vertexSources, (GLint *)vertexSourcesLengths);
         glCompileShader(vertex);
         glGetShaderiv(vertex, GL_COMPILE_STATUS, &success);
         if (!success) {
@@ -128,8 +132,9 @@ public:
             std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
         }
         fragment = glCreateShader(GL_FRAGMENT_SHADER);
-        const GLchar *fragmentSources[2] = {fShaderCode, _preprocessor};
-        glShaderSource(fragment, 1, fragmentSources, NULL);
+        const GLchar *fragmentSources[3] = {version.c_str(), _preprocessor, fShaderCode};
+        const GLint fragmentSourcesLengths[3] = {(GLint)version.size(), (GLint)strlen(_preprocessor), (GLint)strlen(fShaderCode)};
+        glShaderSource(fragment, 3, fragmentSources, fragmentSourcesLengths);
         glCompileShader(fragment);
         glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);
         if (!success) {

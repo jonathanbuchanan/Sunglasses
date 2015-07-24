@@ -1,7 +1,6 @@
-#version 330 core
 
 #ifdef OUTPUT_COLOR_0
-layout (location = 0) out vec4 color;
+layout (location = 0) out vecd4 color;
 #endif
 
 #ifdef INPUT_POSITION
@@ -35,6 +34,9 @@ struct PointLight {
 };
 
 uniform PointLight pointLight;
+
+uniform vec3 viewPosition;
+uniform vec3 viewDirection;
 
 vec3 calculateLighting(PointLight _pointLight, vec3 _position, vec3 _normal) {
     // Diffuse Lighting
@@ -79,6 +81,6 @@ void main() {
 
     result = vec4(ambient + lighting, 1.0f);
     
-    color = result;
+    color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
     #endif
 }

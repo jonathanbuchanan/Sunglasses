@@ -50,7 +50,7 @@ public:
     
     // Scene Objects
     SunNode *scene;
-    SunRenderingNode rootRenderNode;
+    SunRenderingNode *rootRenderNode;
     
     SunRenderer() {
         
@@ -65,13 +65,12 @@ public:
     }
     
     void render(GLfloat _deltaTime) {
-        
         SunNodeSentAction renderAction;
         renderAction.action = "render";
         renderAction.parameters["deltaTime"] = &_deltaTime;
         renderAction.recursive = true;
         
-        sendAction(renderAction, &rootRenderNode);
+        sendAction(renderAction, rootRenderNode);
         
         // Render the GUI
         SunNodeSentAction action;

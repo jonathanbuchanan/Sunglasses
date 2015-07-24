@@ -1,4 +1,3 @@
-#version 330 core
 
 #ifdef OUTPUT_COLOR_0
 layout (location = 0) out vec4 color;
