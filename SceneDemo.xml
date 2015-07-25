@@ -48,8 +48,8 @@
                     <output date="color" format="RGBA16F" slot="2" />
                 </outputs>
                 <shaders>
-                    <shader type="scene_textured" vertex="./Graphics/Shaders/Variable Pipeline/Scene.vert" fragment="./Graphics/Shaders/Variable Pipeline/Scene.frag" preprocessor="#define RENDER_TEXTURED\n#define OUTPUT_POSITION_0\n#define OUTPUT_NORMAL_1\n#define OUTPUT_COLOR_2\n" />
-                    <shader type="scene_solid" vertex="./Graphics/Shaders/Variable Pipeline/Scene.vert" fragment="./Graphics/Shaders/Variable Pipeline/Scene.frag" preprocessor="#define RENDER_SOLID\n#define OUTPUT_POSITION_0\n#define OUTPUT_NORMAL_1\n#define OUTPUT_COLOR_2\n" />
+                    <shader type="scene_textured" vertex="./Graphics/Shaders/Variable Pipeline/Scene.vert" fragment="./Graphics/Shaders/Variable Pipeline/Scene.frag" preprocessor="./TexturedScene.pre" />
+                    <shader type="scene_solid" vertex="./Graphics/Shaders/Variable Pipeline/Scene.vert" fragment="./Graphics/Shaders/Variable Pipeline/Scene.frag" preprocessor="./SolidScene.pre" />
                 </shaders>
             </rendernode>
             <rendernode name="final" type="end">
@@ -62,7 +62,7 @@
                     <output data="color" format="RGBA16F" slot="0" />
                 </outputs>
                 <shaders>
-                    <shader type="quad" vertex="./Graphics/Shaders/Variable Pipeline/Quad.vert" fragment="./Graphics/Shaders/Variable Pipeline/Quad.frag" preprocessor="#define LIGHTING\n#define LIGHTING_DEFERRED\n#define INPUT_POSITION\n#define INPUT_NORMAL\n#define INPUT_COLOR\n#define OUTPUT_COLOR_0\n" />
+                    <shader type="quad" vertex="./Graphics/Shaders/Variable Pipeline/Quad.vert" fragment="./Graphics/Shaders/Variable Pipeline/Quad.frag" preprocessor="./DeferredQuad.pre" />
                 </shaders>
             </rendernode>
         </pipeline>

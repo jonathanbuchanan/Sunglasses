@@ -97,24 +97,30 @@ public:
         glDeleteShader(fragment);
     }
     
-    SunShader(const GLchar *vertexPath, const GLchar *fragmentPath, const GLchar *_preprocessor, string _type) {
+    SunShader(const GLchar *vertexPath, const GLchar *fragmentPath, const GLchar *_preprocessorSource, string _type) {
         std::string vertexCode;
         std::string fragmentCode;
+        std::string preprocessorCode;
         try {
             std::ifstream vShaderFile(vertexPath);
             std::ifstream fShaderFile(fragmentPath);
-            std::stringstream vShaderStream, fShaderStream;
+            std::ifstream preprocessorFile(_preprocessorSource);
+            std::stringstream vShaderStream, fShaderStream, preprocessorStream;
             vShaderStream << vShaderFile.rdbuf();
             fShaderStream << fShaderFile.rdbuf();
+            preprocessorStream << preprocessorFile.rdbuf();
             vShaderFile.close();
             fShaderFile.close();
+            preprocessorFile.close();
             vertexCode = vShaderStream.str();
             fragmentCode = fShaderStream.str();
+            preprocessorCode = preprocessorStream.str();
         } catch (std::exception e) {
             std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
         }
         const GLchar *vShaderCode = vertexCode.c_str();
         const GLchar *fShaderCode = fragmentCode.c_str();
+        const GLchar *pCode = preprocessorCode.c_str();
         GLuint vertex, fragment;
         GLint success;
         GLchar infoLog[512];
@@ -122,8 +128,8 @@ public:
         
         string version = "#version 330 core\n";
         
-        const GLchar *vertexSources[3] = {version.c_str(), _preprocessor, vShaderCode};
-        const GLint vertexSourcesLengths[3] = {(GLint)version.size(), (GLint)strlen(_preprocessor), (GLint)strlen(vShaderCode)};
+        const GLchar *vertexSources[3] = {version.c_str(), pCode, vShaderCode};
+        const GLint vertexSourcesLengths[3] = {(GLint)version.size(), (GLint)strlen(pCode), (GLint)strlen(vShaderCode)};
         glShaderSource(vertex, 3, vertexSources, (GLint *)vertexSourcesLengths);
         glCompileShader(vertex);
         glGetShaderiv(vertex, GL_COMPILE_STATUS, &success);
@@ -132,9 +138,9 @@ public:
             std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
         }
         fragment = glCreateShader(GL_FRAGMENT_SHADER);
-        const GLchar *fragmentSources[3] = {version.c_str(), _preprocessor, fShaderCode};
-        const GLint fragmentSourcesLengths[3] = {(GLint)version.size(), (GLint)strlen(_preprocessor), (GLint)strlen(fShaderCode)};
-        glShaderSource(fragment, 3, fragmentSources, fragmentSourcesLengths);
+        const GLchar *fragmentSources[3] = {version.c_str(), pCode, fShaderCode};
+        const GLint fragmentSourcesLengths[3] = {(GLint)version.size(), (GLint)strlen(pCode), (GLint)strlen(fShaderCode)};
+        glShaderSource(fragment, 3, fragmentSources, (GLint *)fragmentSourcesLengths);
         glCompileShader(fragment);
         glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);
         if (!success) {

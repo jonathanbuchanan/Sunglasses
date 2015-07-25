@@ -148,9 +148,9 @@ public:
             
             // Swap the buffers
             swapBuffers();
-        } else if (renderMode == SunRenderingModeDeferredShading) {
+        } else if (renderMode == SunRenderingModeDeferredShading) {*/
             // Clear
-            clear();
+            /*clear();
         
             // Render the scene
             glBindFramebuffer(GL_FRAMEBUFFER, framebuffers["GBuffer"].framebuffer);
@@ -199,8 +199,8 @@ public:
             sendAction(action, scene);
             
             // Swap the buffers
-            swapBuffers();
-        }*/
+            swapBuffers();*/
+        /*}*/
         
     }
     
@@ -217,7 +217,7 @@ public:
     }
     
     void setUpGL() {
-        if (renderMode == SunRenderingModeForward) {
+        /*if (renderMode == SunRenderingModeForward) {
             SunFramebuffer HDR;
             
             glGenFramebuffers(1, &HDR.framebuffer);
@@ -313,7 +313,7 @@ public:
             shaderMap["final"].uniforms["doHDR"] = SunShaderUniform("doHDR", "boolean", new GLboolean(true));
             
             shaderMap["blur"] = SunShader("./Graphics/Shaders/2DFullscreenBlurVertex.vert", "./Graphics/Shaders/2DFullscreenBlurFragment.frag");
-        } else if (renderMode == SunRenderingModeDeferredShading) {
+        } else if (renderMode == SunRenderingModeDeferredShading) {*/
             SunFramebuffer GBuffer;
             
             glGenFramebuffers(1, &GBuffer.framebuffer);
@@ -380,7 +380,7 @@ public:
             shaderMap["textured"] = SunShader("./Graphics/Shaders/DeferredShadingPassOneTexture.vert", "./Graphics/Shaders/DeferredShadingPassOneTexture.frag");
             
             shaderMap["final"] = SunShader("./Graphics/Shaders/DeferredShadingPassTwo.vert", "./Graphics/Shaders/DeferredShadingPassTwo.frag");
-        }
+        //}
     }
     
     void swapBuffers() {

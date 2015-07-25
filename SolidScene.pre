@@ -1,0 +1,8 @@
+
+#define RENDER_SOLID
+#define OUTPUT_POSITION_0
+#define OUTPUT_NORMAL_1
+#define OUTPUT_COLOR_2
+#define OUTPUT_COLOR
+#define OUTPUT_NORMAL
+#define OUTPUT_POSITION

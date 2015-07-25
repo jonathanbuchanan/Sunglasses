@@ -1,0 +1,7 @@
+
+#define LIGHTING
+#define LIGHTING_DEFERRED
+#define INPUT_POSITION
+#define INPUT_NORMAL
+#define INPUT_COLOR
+#define OUTPUT_COLOR_0

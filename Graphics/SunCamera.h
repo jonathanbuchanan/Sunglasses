@@ -164,6 +164,8 @@ public:
         GLint viewMatrixLocation = glGetUniformLocation(_shader.program, "view");
         glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, glm::value_ptr(viewMatrix()));
         
+        //cout << to_string(glGetUniformLocation(_shader.program, "view")) + "a\n"  << flush;
+        
         GLint projectionMatrixLocation = glGetUniformLocation(_shader.program, "projection");
         glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(projectionMatrix(800.0f / 600.0f)));
     }

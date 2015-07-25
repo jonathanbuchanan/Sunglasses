@@ -237,8 +237,9 @@ public:
                     }
                     break;
                 case SunRenderingNodeTypeOnly:
-                  
-                break;
+                    renderNodes[i]->rootNode = renderNodes[i];
+                    root = renderNodes[i];
+                    break;
             }
         }
         
@@ -293,6 +294,8 @@ public:
                     type = SunRenderingNodeTypeIntermediate;
                 else if (strcmp(attribute.value(), "end") == 0)
                     type = SunRenderingNodeTypeEnd;
+                else if (strcmp(attribute.value(), "only") == 0)
+                    type = SunRenderingNodeTypeOnly;
             }
         }
         
@@ -325,6 +328,7 @@ public:
             if (strcmp(attribute.name(), "node") == 0)
                 input.linkName = attribute.value();
             else if (strcmp(attribute.name(), "data") == 0) {
+                input.name = attribute.value();
                 if (strcmp(attribute.value(), "position") == 0)
                     input.type = SunRenderingNodeDataTypePosition;
                 else if (strcmp(attribute.value(), "normal") == 0)
@@ -597,24 +601,24 @@ public:
 
         SunNodeSentAction solidAction;
         solidAction.action = "render";
-        solidAction.parameters["shader"] = &_shaders["solid"];
+        solidAction.parameters["shader"] = &_shaders["scene_solid"];
         solidAction.parameters["renderType"] = new int(SunMeshRenderTypeSolid);
         solidAction.parameters["deltaTime"] = &_deltaTime;
         solidAction.recursive = true;
 
         SunNodeSentAction texturedAction;
         texturedAction.action = "render";
-        texturedAction.parameters["shader"] = &_shaders["textured"];
+        texturedAction.parameters["shader"] = &_shaders["scene_textured"];
         texturedAction.parameters["rendertype"] = new int(SunMeshRenderTypeTextured);
         texturedAction.parameters["deltaTime"] = &_deltaTime;
         texturedAction.recursive = true;
-
-        _shaders["solid"].use();
-        passPerFrameUniforms(_shaders["solid"]);
+        
+        _shaders["scene_solid"].use();
+        passPerFrameUniforms(_shaders["scene_solid"]);
         sendAction(solidAction, rootRenderableNode);
 
-        _shaders["textured"].use();
-        passPerFrameUniforms(_shaders["textured"]);
+        _shaders["scene_textured"].use();
+        passPerFrameUniforms(_shaders["scene_textured"]);
         sendAction(texturedAction, rootRenderableNode);
     }
     

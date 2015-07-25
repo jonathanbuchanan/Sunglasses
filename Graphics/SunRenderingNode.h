@@ -73,9 +73,9 @@ public:
         
     }
     
-    SunRenderingNodeShader(string _vertexSource, string _fragmentSource, string _preprocessor, SunRenderingNodeShaderType _type) {
+    SunRenderingNodeShader(string _vertexSource, string _fragmentSource, string _preprocessorSource, SunRenderingNodeShaderType _type) {
         string hi = "hi";
-        shader = SunShader(_vertexSource.c_str(), _fragmentSource.c_str(), _preprocessor.c_str(), hi.c_str());
+        shader = SunShader(_vertexSource.c_str(), _fragmentSource.c_str(), _preprocessorSource.c_str(), hi.c_str());
         
         action.action = "render";
         action.parameters["shader"] = &shader;
@@ -131,6 +131,8 @@ public:
     void render(SunNodeSentAction _action) {
         GLfloat _deltaTime = *(GLfloat *)_action.parameters["deltaTime"];
         if (type == SunRenderingNodeTypeRoot) {
+            clear();
+            
             // Bind the framebuffer
             glBindFramebuffer(GL_FRAMEBUFFER, outputFramebuffer.framebuffer);
 
@@ -140,7 +142,13 @@ public:
             // Tell the scene to render with the shaders
             SunNodeSentAction renderAction;
             renderAction.action = "render";
-            renderAction.parameters["shaderMap"] = &shaders;
+            
+            map<string, SunShader> _shaders;
+            for (map<string, SunRenderingNodeShader>::iterator iterator = shaders.begin(); iterator != shaders.end(); iterator++) {
+                _shaders[iterator->first] = iterator->second.shader;
+            }
+            
+            renderAction.parameters["shaderMap"] = &_shaders;
             renderAction.parameters["deltaTime"] = &_deltaTime;
 
             sendAction(renderAction, scene);
@@ -178,8 +186,27 @@ public:
             renderQuad.renderWithUsedShader(textures, shaders["quad"].shader);
         } else if (type == SunRenderingNodeTypeOnly) {
             // Bind the screen-framebuffer
-            glBindFramebuffer(GL_FRAMEBUFFER, 0);
             clear();
+            
+            // Bind the framebuffer
+            glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+            // Clear
+            clear();
+
+            // Tell the scene to render with the shaders
+            SunNodeSentAction renderAction;
+            renderAction.action = "render";
+            
+            map<string, SunShader> _shaders;
+            for (map<string, SunRenderingNodeShader>::iterator iterator = shaders.begin(); iterator != shaders.end(); iterator++) {
+                _shaders[iterator->first] = iterator->second.shader;
+            }
+            
+            renderAction.parameters["shaderMap"] = &_shaders;
+            renderAction.parameters["deltaTime"] = &_deltaTime;
+
+            sendAction(renderAction, scene);
         }
     }
     
@@ -224,7 +251,7 @@ public:
             for (int i = 0; i < outputs.size(); i++)
                 colorAttachments[i] = GL_COLOR_ATTACHMENT0 + i;
             
-            glDrawBuffers(2, colorAttachments);
+            glDrawBuffers(outputs.size(), colorAttachments);
             
             if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
                 std::cout << "Frame buffer not complete!" << std::endl;
@@ -276,7 +303,7 @@ public:
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16F, 1600, 1200, 0, GL_RGB, GL_FLOAT, NULL);
         else if (_output->format == SunRenderingNodeDataFormatRGBA16F)
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, 1600, 1200, 0, GL_RGBA, GL_FLOAT, NULL);
-
+        
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);

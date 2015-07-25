@@ -120,8 +120,11 @@
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
+      <itemPath>DeferredQuad.pre</itemPath>
       <itemPath>GUIDemo.xml</itemPath>
       <itemPath>SceneDemo.xml</itemPath>
+      <itemPath>SolidScene.pre</itemPath>
+      <itemPath>TexturedScene.pre</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -587,6 +590,8 @@
           <commandLine>-framework OpenGL -framework CoreFoundation -framework CoreVideo -framework Cocoa -lz</commandLine>
         </linkerTool>
       </compileType>
+      <item path="DeferredQuad.pre" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="GUIDemo.xml" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Graphics/BrickWall/BrickWall.mtl" ex="false" tool="3" flavor2="0">
@@ -2106,6 +2111,8 @@
       </item>
       <item path="SceneDemo.xml" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="SolidScene.pre" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="SunButtonState.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SunDirectionalLightObject.h" ex="false" tool="3" flavor2="0">
@@ -2121,6 +2128,8 @@
       <item path="SunScene.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SunSpotlightObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TexturedScene.pre" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Utility.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -2147,6 +2156,8 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="DeferredQuad.pre" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="GUIDemo.xml" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Graphics/BrickWall/BrickWall.mtl" ex="false" tool="3" flavor2="0">
@@ -3666,6 +3677,8 @@
       </item>
       <item path="SceneDemo.xml" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="SolidScene.pre" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="SunButtonState.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SunDirectionalLightObject.h" ex="false" tool="3" flavor2="0">
@@ -3681,6 +3694,8 @@
       <item path="SunScene.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SunSpotlightObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TexturedScene.pre" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Utility.h" ex="false" tool="3" flavor2="0">
       </item>

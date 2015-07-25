@@ -41,15 +41,15 @@ void main() {
         color = vec4(texture(material.diffuse, _input.textureCoordinates));
     #endif
     #ifdef RENDER_SOLID
-        color = material.diffuse;
+        color = vec4(material.diffuse, 1.0);
     #endif
     #endif
     
     #ifdef OUTPUT_POSITION
-        position = _input.position;
+        position = vec4(_input.position, 1.0);
     #endif
     
     #ifdef OUTPUT_NORMAL
-        normal = _input.normal;
+        normal = vec4(_input.normal, 1.0);
     #endif
 }

@@ -1,6 +1,6 @@
 
 #ifdef OUTPUT_COLOR_0
-layout (location = 0) out vecd4 color;
+layout (location = 0) out vec4 color;
 #endif
 
 #ifdef INPUT_POSITION
@@ -12,7 +12,7 @@ uniform sampler2D normal;
 #endif
 
 #ifdef INPUT_COLOR
-uniform sampler2D color;
+uniform sampler2D _color;
 #endif
 
 in vertex_fragment {
@@ -73,14 +73,14 @@ void main() {
     
     vec3 position = texture(position, _input.textureCoordinates).xyz;
     vec3 normal = texture(normal, _input.textureCoordinates).xyz;
-    vec4 color = texture(color, _input.textureCoordinates).rgba;
+    vec3 __color = texture(_color, _input.textureCoordinates).rgb;
     
-    vec3 ambient = color * 0.1f;
+    vec3 ambient = __color * 0.1f;
     
-    vec3 lighting = color * calculateLighting(pointLight);
+    vec3 lighting = __color * calculateLighting(pointLight, position, normal);
 
     result = vec4(ambient + lighting, 1.0f);
     
-    color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
+    color = vec4(result);
     #endif
 }

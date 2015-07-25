@@ -136,13 +136,13 @@ public:
     
     void renderWithUsedShader(map<string, GLuint> _textures, SunShader _shader) {
         int iteratorIndex = 0;
-            for (SunTextureMapIterator iterator = _textures.begin(); iterator != _textures.end(); iterator++) {
-                glActiveTexture(GL_TEXTURE0 + iteratorIndex);
-                glBindTexture(GL_TEXTURE_2D, iterator->second);
-                glUniform1i(glGetUniformLocation(_shader.program, iterator->first.c_str()), iteratorIndex);
-                
-                iteratorIndex++;
-            }
+        for (SunTextureMapIterator iterator = _textures.begin(); iterator != _textures.end(); iterator++) {
+            glActiveTexture(GL_TEXTURE0 + iteratorIndex);
+            glBindTexture(GL_TEXTURE_2D, iterator->second);
+            glUniform1i(glGetUniformLocation(_shader.program, iterator->first.c_str()), iteratorIndex);
+
+            iteratorIndex++;
+        }
         
         // Bind the VAO
         glBindVertexArray(VAO);

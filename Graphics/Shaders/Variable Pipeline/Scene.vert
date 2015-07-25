@@ -19,7 +19,7 @@ uniform mat4 lightMatrix;
 void main() {
     gl_Position = projection * view * model * vec4(position, 1.0f);
     
-    _output.position = gl_Position.xyz;
+    _output.position = position;
     _output.textureCoordinates = textureCoordinates;
     _output.normal = normalMatrix * normal;
 }
