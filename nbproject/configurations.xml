@@ -85,6 +85,7 @@
           <itemPath>Graphics/Shaders/ShadowMapFragment.frag</itemPath>
           <itemPath>Graphics/Shaders/ShadowMapVertex.vert</itemPath>
           <itemPath>Graphics/Shaders/SunShader.h</itemPath>
+          <itemPath>Graphics/Shaders/SunShaderUniformObject.h</itemPath>
           <itemPath>Graphics/Shaders/TextFragment.frag</itemPath>
           <itemPath>Graphics/Shaders/TextVertex.vert</itemPath>
           <itemPath>Graphics/Shaders/Vertex.vert</itemPath>
@@ -93,6 +94,7 @@
         <itemPath>Graphics/Monkey.dae</itemPath>
         <itemPath>Graphics/Penguins.jpg</itemPath>
         <itemPath>Graphics/Plane.dae</itemPath>
+        <itemPath>Graphics/Pyramid-10.dae</itemPath>
         <itemPath>Graphics/SunCamera.h</itemPath>
         <itemPath>Graphics/SunDirectionalLightShadowMapRenderer.h</itemPath>
         <itemPath>Graphics/SunMesh.h</itemPath>
@@ -122,6 +124,8 @@
                    projectFiles="true">
       <itemPath>DeferredQuad.pre</itemPath>
       <itemPath>GUIDemo.xml</itemPath>
+      <itemPath>SSAOBlurQuad.pre</itemPath>
+      <itemPath>SSAOQuad.pre</itemPath>
       <itemPath>SceneDemo.xml</itemPath>
       <itemPath>SolidScene.pre</itemPath>
       <itemPath>TexturedScene.pre</itemPath>
@@ -695,6 +699,8 @@
       </item>
       <item path="Graphics/Plane.dae" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Graphics/Pyramid-10.dae" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Graphics/Shaders/2DFullscreenBlurFragment.frag"
             ex="false"
             tool="3"
@@ -850,6 +856,11 @@
             flavor2="0">
       </item>
       <item path="Graphics/Shaders/SunShader.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Graphics/Shaders/SunShaderUniformObject.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="Graphics/Shaders/TextFragment.frag" ex="false" tool="3" flavor2="0">
       </item>
@@ -2108,6 +2119,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="SSAOBlurQuad.pre" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SSAOQuad.pre" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SceneDemo.xml" ex="false" tool="3" flavor2="0">
       </item>
@@ -2261,6 +2276,8 @@
       </item>
       <item path="Graphics/Plane.dae" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Graphics/Pyramid-10.dae" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Graphics/Shaders/2DFullscreenBlurFragment.frag"
             ex="false"
             tool="3"
@@ -2416,6 +2433,11 @@
             flavor2="0">
       </item>
       <item path="Graphics/Shaders/SunShader.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Graphics/Shaders/SunShaderUniformObject.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="Graphics/Shaders/TextFragment.frag" ex="false" tool="3" flavor2="0">
       </item>
@@ -3674,6 +3696,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="SSAOBlurQuad.pre" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SSAOQuad.pre" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SceneDemo.xml" ex="false" tool="3" flavor2="0">
       </item>

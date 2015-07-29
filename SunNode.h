@@ -124,6 +124,7 @@ struct SunNodeSentAction {
     vector<SunNodeSentActionCondition> conditions;
     string action;
     GLboolean recursive = false;
+    GLboolean inOrder = false;
 };
 
 typedef function<void(SunNodeSentAction)>SunNodeFunctionPointer;
@@ -132,6 +133,7 @@ class SunNode {
 public:
     map<string, SunNodeProperty> propertyMap;
     map<string, SunNodeFunctionPointer> functionMap;
+    GLuint parentsReady = 0;
     vector<SunNode *> subNodes;
     vector<SunNode *> parents;
     int level;
@@ -174,6 +176,7 @@ public:
     }
     
     virtual void receiveAction(SunNodeSentAction _action) {
+        parentsReady = 0;
         if (functionMap.find(_action.action) != functionMap.end()) {
             int conditionsMet = 0;
             for (int i = 0; i < _action.conditions.size(); i++) {
@@ -182,15 +185,22 @@ public:
                     conditionsMet += 1;
                 }
             }
-        
+
             if (conditionsMet == _action.conditions.size()) {
                 SunNodeFunctionPointer function = functionMap[_action.action];
                 function(_action);
             }
         }
+
+        for (int i = 0; i < subNodes.size(); i++)
+            subNodes[i]->parentsReady += 1;
         
-        if (_action.recursive)
-            sendActionToAllSubNodes(_action);
+        if (_action.recursive) {
+            for (int i = 0; i < subNodes.size(); i++) {
+                if (subNodes[i]->parentsReady == subNodes[i]->parents.size())
+                    sendAction(_action, subNodes[i]);
+            }
+        }
     }
     
     virtual void sendAction(SunNodeSentAction _action, SunNode *_receiver) {

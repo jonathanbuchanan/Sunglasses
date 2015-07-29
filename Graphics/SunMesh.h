@@ -195,7 +195,7 @@ public:
             glUniformMatrix4fv(glGetUniformLocation(_shader.program, "model"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
             
             // Calculate the normal matrix
-            glm::mat3 normalMatrix = glm::mat3(glm::transpose(glm::inverse(modelMatrix)));
+            glm::mat3 normalMatrix = glm::transpose(glm::inverse(glm::mat3(modelMatrix)));
             
             // Pass the normal matrix
             glUniformMatrix3fv(glGetUniformLocation(_shader.program, "normalMatrix"), 1, GL_FALSE, glm::value_ptr(normalMatrix));

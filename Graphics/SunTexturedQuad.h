@@ -77,38 +77,6 @@ public:
         glBindVertexArray(0);
     }
     
-    void render(map<string, GLuint> _textures, SunShader _shader, vector<SunShaderUniform> _uniforms) {
-        _shader.use();
-        
-        for (int i = 0; i < _uniforms.size(); i++) {
-            if (_uniforms[i].type == "float")
-                glUniform1f(glGetUniformLocation(_shader.program, _uniforms[i].name.c_str()), *(GLfloat *)_uniforms[i].value);
-            else if (_uniforms[i].type == "boolean")
-                glUniform1i(glGetUniformLocation(_shader.program, _uniforms[i].name.c_str()), *(GLboolean *)_uniforms[i].value);
-        }
-        
-        int iteratorIndex = 0;
-        for (SunTextureMapIterator iterator = _textures.begin(); iterator != _textures.end(); iterator++) {
-            glActiveTexture(GL_TEXTURE0 + iteratorIndex);
-            glBindTexture(GL_TEXTURE_2D, iterator->second);
-            glUniform1i(glGetUniformLocation(_shader.program, iterator->first.c_str()), iteratorIndex);
-
-            iteratorIndex++;
-        }
-        
-        // Bind the VAO
-        glBindVertexArray(VAO);
-        
-        // Draw the triangles
-        glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
-        
-        // Unbind the VAO
-        glBindVertexArray(0);
-        
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, 0);
-    }
-    
     void render(map<string, GLuint> _textures, SunShader _shader) {
         _shader.use();
         

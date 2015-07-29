@@ -196,20 +196,13 @@ public:
         // Enable hardware gamma correction
         glEnable(GL_FRAMEBUFFER_SRGB);
         
-        // Enable blending;
-        glEnable(GL_BLEND);
+        // Set blending function
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         
+        // Set the clear color
+        glClearColor(0.0, 0.0, 0.0, 1.0);
+        
         scene = new SunScene("./SceneDemo.xml", window);
-        
-        // Set some properties of the renderer
-        //renderer.window = window;
-        
-        //renderer.screenWidth = screenWidth;
-        //renderer.screenHeight = screenHeight;
-        
-        // Tell the renderer to initialize
-        //renderer.initialize();
     }
     
 private:

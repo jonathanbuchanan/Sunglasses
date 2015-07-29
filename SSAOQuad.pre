@@ -1,0 +1,5 @@
+
+#define OUTPUT_AO_0
+#define CALCULATE_SSAO
+#define INPUT_POSITION
+#define INPUT_NORMAL

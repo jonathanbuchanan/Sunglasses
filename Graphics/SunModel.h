@@ -303,7 +303,6 @@ private:
             if (!skip) {
                 SunTexture texture;
                 texture.id = textureFromFile(string.C_Str(), directory);
-                texture.type = _typeName;
                 texture.path = string;
                 textures.push_back(texture);
                 this->loadedTextures.push_back(texture);

@@ -310,6 +310,10 @@ public:
                 processXMLRenderNodeOutputs(node, _renderingNode);
             else if (strcmp(node.name(), "shaders") == 0)
                 processXMLRenderNodeShaders(node, _renderingNode);
+            else if (strcmp(node.name(), "textures") == 0)
+                processXMLRenderNodeTextures(node, _renderingNode);
+            else if (strcmp(node.name(), "uniforms") == 0)
+                processXMLRenderNodeUniforms(node, _renderingNode);
         }
         
         _renderingNode->initialize();
@@ -363,6 +367,8 @@ public:
                     output.type = SunRenderingNodeDataTypeNormal;
                 else if (strcmp(attribute.value(), "color") == 0)
                     output.type = SunRenderingNodeDataTypeColor;
+                else if (strcmp(attribute.value(), "occlusion") == 0)
+                    output.type = SunRenderingNodeDataTypeOcclusion;
             } else if (strcmp(attribute.name(), "format") == 0) {
                 if (strcmp(attribute.value(), "RGB16F") == 0)
                     output.format = SunRenderingNodeDataFormatRGB16F;
@@ -407,6 +413,57 @@ public:
         SunRenderingNodeShader shader = SunRenderingNodeShader(vertex, fragment, preprocessor, type);
         
         _renderNode->shaders[_type] = shader;
+    }
+    
+    void processXMLRenderNodeTextures(pugi::xml_node _node, SunRenderingNode *_renderNode) {
+        for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling())
+            processXMLRenderNodeTexture(node, _renderNode);
+    }
+    
+    void processXMLRenderNodeTexture(pugi::xml_node _node, SunRenderingNode *_renderNode) {
+        string name;
+        SunTextureType type;
+        GLuint width;
+        GLuint height;
+        
+        for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
+            if (strcmp(attribute.name(), "name") == 0)
+                name = attribute.value();
+            else if (strcmp(attribute.name(), "type") == 0) {
+                if (strcmp(attribute.value(), "noise_hemisphere") == 0)
+                    type = SunTextureTypeNoiseHemisphere;
+            } else if (strcmp(attribute.name(), "width") == 0)
+                width = attribute.as_int();
+            else if (strcmp(attribute.name(), "height") == 0)
+                height = attribute.as_int();
+        }
+        
+        SunTexture texture = SunTexture(width, height, type);
+        
+        _renderNode->textures.push_back(texture);
+    }
+    
+    void processXMLRenderNodeUniforms(pugi::xml_node _node, SunRenderingNode *_renderNode) {
+        for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling())
+            if (strcmp(node.name(), "hemispheresamplekernel") == 0)
+                processXMLRenderNodeHemisphereSampleKernel(node, _renderNode);
+    }
+    
+    void processXMLRenderNodeHemisphereSampleKernel(pugi::xml_node _node, SunRenderingNode *_renderNode) {
+        string name;
+        GLuint sampleCount = 0;
+        
+        for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
+            if (strcmp(attribute.name(), "name") == 0)
+                name = attribute.value();
+            if (strcmp(attribute.name(), "samplecount") == 0)
+                sampleCount = attribute.as_int();
+        }
+        
+        SunShaderHemisphereKernelObject *kernel = new SunShaderHemisphereKernelObject(sampleCount);
+        kernel->uniformName = name;
+        
+        _renderNode->uniforms.push_back(kernel);
     }
     
     void processXMLObjectsNode(pugi::xml_node _node, SunObject *_superObject) {

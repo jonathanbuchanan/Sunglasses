@@ -75,8 +75,12 @@ public:
     }
     
     virtual void render(SunNodeSentAction _action) {
+        glEnable(GL_BLEND);
+        
         // Loop through the sub-objects and force them to render
         sendActionToAllSubNodes(_action);
+        
+        glDisable(GL_BLEND);
     }
     
     void loadFonts(SunTextRenderer *_textRenderer) {

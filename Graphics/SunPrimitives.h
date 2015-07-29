@@ -10,11 +10,15 @@
 #define Sunglasses_SunPrimitives_h
 
 #include <GL/glew.h>
+#include <random>
 #include "../Libraries/glm/glm.hpp"
 #include "../Libraries/glm/gtc/matrix_transform.hpp"
 #include "../Libraries/glm/gtc/quaternion.hpp"
 #include "../Libraries/glm/gtx/quaternion.hpp"
 #include "../Libraries/glm/gtx/string_cast.hpp"
+
+uniform_real_distribution<GLfloat> randomFloats(0.0, 1.0);
+default_random_engine generator;
 
 // SunVertex Declaration
 struct SunVertex {
@@ -67,12 +71,54 @@ struct SunAnimation {
     vector<SunAnimationChannel> channels;
 };
 
+enum SunTextureType {
+    SunTextureTypeImage,
+    SunTextureTypeNoiseFloat,
+    SunTextureTypeNoiseVec2,
+    SunTextureTypeNoiseVec3,
+    SunTextureTypeNoiseHemisphere
+};
+
 // SunTexture Declaration
 struct SunTexture {
     // ID, type, and path
     GLuint id;
-    string type;
+    string name;
     aiString path;
+    GLuint width;
+    GLuint height;
+    SunTextureType type;
+    
+    SunTexture() {
+        
+    }
+    
+    SunTexture(GLuint _width, GLuint _height, SunTextureType _type) {
+        width = _width;
+        height = _height;
+        type = _type;
+        
+        generate();
+    }
+    
+    void generate() {
+        if (type == SunTextureTypeNoiseHemisphere) {
+            vector<glm::vec3> noise;
+            for (int i = 0; i < width * height; i++) {
+                glm::vec3 value = glm::vec3(randomFloats(generator) * 2.0 - 1.0, randomFloats(generator) * 2.0 - 1.0, 0.0);
+                noise.push_back(value);
+            }
+            
+            glGenTextures(1, &id);
+            glBindTexture(GL_TEXTURE_2D, id);
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16F, width, height, 0, GL_RGB, GL_FLOAT, &noise[0]);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);  
+        }
+    }
+    
 };
 
 typedef GLuint SunFramebufferObject;
@@ -89,9 +135,6 @@ struct SunFramebuffer {
 typedef map<string, SunFramebufferTextureObject>::iterator SunFramebufferTextureObjectIterator;
 
 void clear() {
-    // Clear the scene using this color
-    glClearColor(0.0, 0.0, 0.0, 1.0);
-
     // Clear the color and depth buffers
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }

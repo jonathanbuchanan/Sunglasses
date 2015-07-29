@@ -13,6 +13,7 @@
 #include "./Shaders/SunShader.h"
 #include "../SunObject.h"
 #include "./SunTexturedQuad.h"
+#include "./Shaders/SunShaderUniformObject.h"
 
 #ifndef SunRenderingNode_h
 #define	SunRenderingNode_h
@@ -33,12 +34,14 @@ enum SunRenderingNodeType {
 enum SunRenderingNodeDataType {
     SunRenderingNodeDataTypeColor,
     SunRenderingNodeDataTypePosition,
-    SunRenderingNodeDataTypeNormal
+    SunRenderingNodeDataTypeNormal,
+    SunRenderingNodeDataTypeOcclusion
 };
 
 enum SunRenderingNodeDataFormat {
     SunRenderingNodeDataFormatRGB16F,
-    SunRenderingNodeDataFormatRGBA16F
+    SunRenderingNodeDataFormatRGBA16F,
+    SunRenderingNodeDataFormat16F
 };
 
 struct SunRenderingNodeOutput {
@@ -108,6 +111,8 @@ public:
     SunFramebuffer outputFramebuffer;
     map<int, SunRenderingNodeOutput *> outputSlotMap;
     map<string, SunRenderingNodeShader> shaders;
+    vector<SunTexture> textures;
+    vector<SunShaderUniformObject *> uniforms;
     
     SunNode *scene;
     SunTexturedQuad renderQuad;
@@ -145,7 +150,8 @@ public:
             
             map<string, SunShader> _shaders;
             for (map<string, SunRenderingNodeShader>::iterator iterator = shaders.begin(); iterator != shaders.end(); iterator++) {
-                _shaders[iterator->first] = iterator->second.shader;
+                SunRenderingNodeShader shader = iterator->second;
+                _shaders[iterator->first] = shader.shader;
             }
             
             renderAction.parameters["shaderMap"] = &_shaders;
@@ -154,9 +160,13 @@ public:
             sendAction(renderAction, scene);
         } else if (type == SunRenderingNodeTypeIntermediate) {
             // Get the input textures
-            map<string, GLuint> textures;
+            map<string, GLuint> _textures;
             for (int i = 0; i < inputs.size(); i++) {
-                textures[inputs[i].name] = inputs[i].link->outputSlotMap[inputs[i].slot]->texture;
+                _textures[inputs[i].name] = inputs[i].link->outputSlotMap[inputs[i].slot]->texture;
+            }
+            
+            for (int i = 0; i < textures.size(); i++) {
+                _textures[textures[i].name] = textures[i].id;
             }
 
             // Bind the framebuffer
@@ -164,15 +174,25 @@ public:
             clear();
 
             shaders["quad"].shader.use();
+            
+            glm::mat4 matrix;
+            matrix = glm::perspective(45.0f, 800.0f / 600.0f, 0.01f, 100.0f);
+            
+            GLint projectionMatrixLocation = glGetUniformLocation(shaders["quad"].shader.program, "projection");
+            glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(matrix));
 
             passUniforms(&shaders["quad"].shader);
 
-            renderQuad.renderWithUsedShader(textures, shaders["quad"].shader);
+            renderQuad.renderWithUsedShader(_textures, shaders["quad"].shader);
         } else if (type == SunRenderingNodeTypeEnd) {
             // Get a pointer to the input framebuffer
-            map<string, GLuint> textures;
+            map<string, GLuint> _textures;
             for (int i = 0; i < inputs.size(); i++) {
-                textures[inputs[i].name] = inputs[i].link->outputSlotMap[inputs[i].slot]->texture;
+                _textures[inputs[i].name] = inputs[i].link->outputSlotMap[inputs[i].slot]->texture;
+            }
+            
+            for (int i = 0; i < textures.size(); i++) {
+                _textures[textures[i].name] = textures[i].id;
             }
 
             // Bind the screen-framebuffer
@@ -183,7 +203,7 @@ public:
 
             passUniforms(&shaders["quad"].shader);
 
-            renderQuad.renderWithUsedShader(textures, shaders["quad"].shader);
+            renderQuad.renderWithUsedShader(_textures, shaders["quad"].shader);
         } else if (type == SunRenderingNodeTypeOnly) {
             // Bind the screen-framebuffer
             clear();
@@ -200,7 +220,8 @@ public:
             
             map<string, SunShader> _shaders;
             for (map<string, SunRenderingNodeShader>::iterator iterator = shaders.begin(); iterator != shaders.end(); iterator++) {
-                _shaders[iterator->first] = iterator->second.shader;
+                SunRenderingNodeShader shader = iterator->second;
+                _shaders[iterator->first] = shader.shader;
             }
             
             renderAction.parameters["shaderMap"] = &_shaders;
@@ -226,6 +247,13 @@ public:
         uniformAction.parameters["conditions"] = &conditions;
         
         sendAction(uniformAction, scene);
+        
+        SunNodeSentAction _uniformAction;
+        _uniformAction.action = "passUniform";
+        _uniformAction.parameters["shader"] = _shader;
+        
+        for (int i = 0; i < uniforms.size(); i++)
+            sendAction(_uniformAction, uniforms[i]);
     }
     
     void initialize() {
@@ -303,6 +331,8 @@ public:
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16F, 1600, 1200, 0, GL_RGB, GL_FLOAT, NULL);
         else if (_output->format == SunRenderingNodeDataFormatRGBA16F)
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, 1600, 1200, 0, GL_RGBA, GL_FLOAT, NULL);
+        else if (_output->format == SunRenderingNodeDataFormat16F)
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_R16F, 1600, 1200, 0, GL_RED, GL_FLOAT, NULL);
         
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
