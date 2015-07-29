@@ -1,7 +1,7 @@
 
 #define LIGHTING
 #define LIGHTING_DEFERRED
-#define USE_SSAO
+//#define USE_SSAO
 #define INPUT_POSITION
 #define INPUT_NORMAL
 #define INPUT_COLOR
