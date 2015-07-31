@@ -57,15 +57,25 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-lfreetype -lpugixml -lGLEW -lglfw3 -lassimp
+LDLIBSOPTIONS=Libraries/libassimp.a Libraries/libpugixml.a Libraries/libglfw3.a Libraries/libGLEW.a Libraries/libfreetype.a
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
 	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses
 
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: Libraries/libassimp.a
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: Libraries/libpugixml.a
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: Libraries/libglfw3.a
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: Libraries/libGLEW.a
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: Libraries/libfreetype.a
+
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses ${OBJECTFILES} ${LDLIBSOPTIONS} -framework OpenGL -framework CoreFoundation -framework CoreVideo -framework Cocoa -lz
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses ${OBJECTFILES} ${LDLIBSOPTIONS} -framework OpenGL -framework CoreFoundation -framework CoreVideo -framework Cocoa -lz -framework IOKit
 
 ${OBJECTDIR}/Libraries/SOIL/SOIL.o: Libraries/SOIL/SOIL.c 
 	${MKDIR} -p ${OBJECTDIR}/Libraries/SOIL
@@ -90,12 +100,12 @@ ${OBJECTDIR}/Libraries/SOIL/stb_image_aug.o: Libraries/SOIL/stb_image_aug.c
 ${OBJECTDIR}/Libraries/glm/detail/glm.o: Libraries/glm/detail/glm.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Libraries/glm/detail
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Libraries/glm/detail/glm.o Libraries/glm/detail/glm.cpp
+	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -I/usr/local/Cellar/glew/1.12.0/include -I/usr/local/Cellar/glfw3/3.1.1/include -ILibraries -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Libraries/glm/detail/glm.o Libraries/glm/detail/glm.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -I/usr/local/Cellar/glew/1.12.0/include -I/usr/local/Cellar/glfw3/3.1.1/include -ILibraries -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:

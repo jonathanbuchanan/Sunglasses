@@ -25,9 +25,7 @@ public:
     
     // Attenuation
     // Constant, linear, and quadratic terms
-    GLfloat constantTerm;
-    GLfloat linearTerm;
-    GLfloat quadraticTerm;
+    GLboolean attenuate;
     
     SunPointLightObject() {
         
@@ -62,9 +60,7 @@ public:
         glUniform3f(glGetUniformLocation(_shader.program, "pointLight.position"), position.x, position.y, position.z);
         
         // Set the uniforms for the point light's constant, linear, and quadratic terms
-        glUniform1f(glGetUniformLocation(_shader.program, "pointLight.constant"), constantTerm);
-        glUniform1f(glGetUniformLocation(_shader.program, "pointLight.linear"), linearTerm);
-        glUniform1f(glGetUniformLocation(_shader.program, "pointLight.quadratic"), quadraticTerm);
+        glUniform1i(glGetUniformLocation(_shader.program, "pointLight.attenuate"), attenuate);
     }
 private:
     

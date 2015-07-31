@@ -35,9 +35,7 @@ struct PointLight {
     vec3 position;
     
     // Attenuation
-    float constant;
-    float linear;
-    float quadratic;
+    bool attenuate;
 };
 
 uniform PointLight pointLight;
@@ -45,7 +43,19 @@ uniform PointLight pointLight;
 uniform vec3 viewPosition;
 uniform vec3 viewDirection;
 
+float constant = 1.0; 
+float linear = 0.22;
+float quadratic = 0.2;
+
 vec3 calculateLighting(PointLight _pointLight, vec3 _position, vec3 _normal) {
+    // Calculate Attenuation
+    
+    float attenuation = 1.0f;
+    if (_pointLight.attenuate == true) {
+        float distance = length(_pointLight.position - _position);
+        attenuation = 1.0f / (constant + linear * distance + quadratic * (distance * distance));
+    }
+    
     // Diffuse Lighting
     
     
@@ -54,7 +64,6 @@ vec3 calculateLighting(PointLight _pointLight, vec3 _position, vec3 _normal) {
     
     // Calculate the dot product of the normal and the light direction, then choose 0 if lower than 0
     float diffuse = max(dot(_normal, lightDirection), 0.0);
-    
     
     // Specular Lighting
     
@@ -66,10 +75,57 @@ vec3 calculateLighting(PointLight _pointLight, vec3 _position, vec3 _normal) {
     vec3 halfway = normalize(lightDirection + viewDirection);
     
     // Calculate the dot product of the normal and the halfway vector, then choose 0 if lower than 0, then raise to the shininess exponent
-    float specular = pow(max(dot(_normal, halfway), 0.0), 128);
+    float specular = pow(max(dot(_normal, halfway), 0.0), 1024);
     
     // Return the diffuse value + the specular value
-    return _pointLight.color * (diffuse + specular);
+    return _pointLight.color * (diffuse + specular) * attenuation;
+}
+
+float calculateDiffuse(PointLight _pointLight, vec3 _position, vec3 _normal) {
+    // Calculate Attenuation
+    
+    float attenuation = 1.0f;
+    if (_pointLight.attenuate == true) {
+        float distance = length(_pointLight.position - _position);
+        attenuation = 1.0f / (constant + linear * distance + quadratic * (distance * distance));
+    }
+    
+    // Diffuse Lighting
+    
+    
+    // Calculate the direction of the light to the fragment
+    vec3 lightDirection = normalize(_pointLight.position - _position);
+    
+    // Calculate the dot product of the normal and the light direction, then choose 0 if lower than 0
+    float diffuse = max(dot(_normal, lightDirection), 0.0);
+    
+    return diffuse * attenuation;
+}
+
+float calculateSpecular(PointLight _pointLight, vec3 _position, vec3 _normal) {
+    // Calculate Attenuation
+    
+    float attenuation = 1.0f;
+    if (_pointLight.attenuate == true) {
+        float distance = length(_pointLight.position - _position);
+        attenuation = 1.0f / (constant + linear * distance + quadratic * (distance * distance));
+    }
+    
+    // Specular Lighting
+    
+    // Calculate the direction of the view to the fragment
+    vec3 viewDirection = normalize(viewPosition - _position);
+    
+    // Calculate the direction of the light to the fragment
+    vec3 lightDirection = normalize(_pointLight.position - _position);
+    
+    // Calculate the halfway vector
+    vec3 halfway = normalize(lightDirection + viewDirection);
+    
+    // Calculate the dot product of the normal and the halfway vector, then choose 0 if lower than 0, then raise to the shininess exponent
+    float specular = pow(max(dot(_normal, halfway), 0.0), 128);
+    
+    return specular * attenuation;
 }
 #endif
 
@@ -104,6 +160,56 @@ void main() {
     result = vec4(lighting, 1.0f);
     
     color = result;
+    #endif
+    
+    #ifdef LIGHTING_DEFERRED_CEL
+    vec4 result;
+    
+    vec3 _position = texture(position, _input.textureCoordinates).rgb;
+    vec3 normal = texture(normal, _input.textureCoordinates).rgb;
+    vec3 __color = texture(_color, _input.textureCoordinates).rgb;
+    
+    #ifndef USE_SSAO
+    vec3 ambient = __color * 0.3f;
+    #endif
+    #ifdef USE_SSAO
+    vec3 ambient = __color * texture(occlusion, _input.textureCoordinates).r;
+    #endif
+    
+    const float diffuseSteps[4] = float[](0.1, 0.3, 0.6, 1.0);
+    
+    float diffuse = calculateDiffuse(pointLight, _position, normal);
+    
+    float E = fwidth(diffuse);
+    
+    if (diffuse > diffuseSteps[0] - E && diffuse < diffuseSteps[0] + E)
+        diffuse = mix(diffuseSteps[0], diffuseSteps[1], smoothstep(diffuseSteps[0] - E, diffuseSteps[0] + E, diffuse));
+    else if (diffuse > diffuseSteps[1] - E && diffuse < diffuseSteps[1] + E)
+        diffuse = mix(diffuseSteps[1], diffuseSteps[2], smoothstep(diffuseSteps[1] - E, diffuseSteps[1] + E, diffuse));
+    else if (diffuse > diffuseSteps[2] - E && diffuse < diffuseSteps[2] + E)
+        diffuse = mix(diffuseSteps[2], diffuseSteps[3], smoothstep(diffuseSteps[2] - E, diffuseSteps[2] + E, diffuse));
+    else if (diffuse < diffuseSteps[0])
+        diffuse = 0.0;
+    else if (diffuse < diffuseSteps[1])
+        diffuse = diffuseSteps[1];
+    else if (diffuse < diffuseSteps[2])
+        diffuse = diffuseSteps[2];
+    else
+        diffuse = diffuseSteps[3];
+    
+    float specular = calculateSpecular(pointLight, _position, normal);
+    
+    E = fwidth(specular);
+    if (specular > 0.5 - E && specular < 0.5 + E)
+        specular = clamp(0.5 * (specular - 0.5 + E) / E, 0.0, 1.0);
+    else
+        specular = step(0.5, specular);
+    
+    vec3 lighting = ambient + (__color * (diffuse + specular));
+    
+    result = vec4(lighting, 1.0f);
+    
+    color = vec4(result);
     #endif
     
     #ifdef CALCULATE_SSAO

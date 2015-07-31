@@ -205,9 +205,6 @@ public:
         
         for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
             if (strcmp(node.name(), "rendernode") == 0) {
-                /*SunRenderingNode renderNode;
-                processXMLRenderNode(node, _renderer, renderNode);
-                renderNodes.push_back(renderNode);*/
                 renderNodes.push_back(processXMLRenderNode(node, _renderer));
             }
         }
@@ -595,6 +592,8 @@ public:
             _object->color.g = _node.text().as_float();
         else if (strcmp(_node.name(), "color-b") == 0)
             _object->color.b = _node.text().as_float();
+        else if (strcmp(_node.name(), "attenuate") == 0)
+            _object->attenuate = _node.text().as_bool();
     }
     
     void processXMLDirectionalLightObjectPropertyNode(pugi::xml_node _node, SunDirectionalLightObject *_object) {

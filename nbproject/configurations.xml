@@ -122,6 +122,7 @@
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
+      <itemPath>DeferredCelQuad.pre</itemPath>
       <itemPath>DeferredQuad.pre</itemPath>
       <itemPath>GUIDemo.xml</itemPath>
       <itemPath>SSAOBlurQuad.pre</itemPath>
@@ -580,20 +581,25 @@
             <pElem>/System/Library/Frameworks</pElem>
             <pElem>Libraries/Freetype</pElem>
             <pElem>Libraries/Freetype/config</pElem>
+            <pElem>/usr/local/Cellar/glew/1.12.0/include</pElem>
+            <pElem>/usr/local/Cellar/glfw3/3.1.1/include</pElem>
+            <pElem>Libraries</pElem>
           </incDir>
           <commandLine>-std=c++11</commandLine>
         </ccTool>
         <linkerTool>
           <linkerLibItems>
-            <linkerLibLibItem>freetype</linkerLibLibItem>
-            <linkerLibLibItem>pugixml</linkerLibLibItem>
-            <linkerLibLibItem>GLEW</linkerLibLibItem>
-            <linkerLibLibItem>glfw3</linkerLibLibItem>
-            <linkerLibLibItem>assimp</linkerLibLibItem>
+            <linkerLibFileItem>Libraries/libassimp.a</linkerLibFileItem>
+            <linkerLibFileItem>Libraries/libpugixml.a</linkerLibFileItem>
+            <linkerLibFileItem>Libraries/libglfw3.a</linkerLibFileItem>
+            <linkerLibFileItem>Libraries/libGLEW.a</linkerLibFileItem>
+            <linkerLibFileItem>Libraries/libfreetype.a</linkerLibFileItem>
           </linkerLibItems>
-          <commandLine>-framework OpenGL -framework CoreFoundation -framework CoreVideo -framework Cocoa -lz</commandLine>
+          <commandLine>-framework OpenGL -framework CoreFoundation -framework CoreVideo -framework Cocoa -lz -framework IOKit</commandLine>
         </linkerTool>
       </compileType>
+      <item path="DeferredCelQuad.pre" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DeferredQuad.pre" ex="false" tool="3" flavor2="0">
       </item>
       <item path="GUIDemo.xml" ex="false" tool="3" flavor2="0">
@@ -2171,6 +2177,8 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="DeferredCelQuad.pre" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DeferredQuad.pre" ex="false" tool="3" flavor2="0">
       </item>
       <item path="GUIDemo.xml" ex="false" tool="3" flavor2="0">

@@ -209,7 +209,7 @@ public:
             // Unbind the VAO
             glBindVertexArray(0);
         } else {
-            glUniform3f(glGetUniformLocation(_shader.program, "material.color"), _material.color.r, _material.color.g, _material.color.b);
+            glUniform3f(glGetUniformLocation(_shader.program, "material.diffuse"), _material.color.r, _material.color.g, _material.color.b);
             
             glUniform1f(glGetUniformLocation(_shader.program, "material.shininess"), _material.shininess);
             
