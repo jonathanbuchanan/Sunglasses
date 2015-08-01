@@ -118,6 +118,7 @@
       <itemPath>SunScene.h</itemPath>
       <itemPath>SunSpotlightObject.h</itemPath>
       <itemPath>Utility.h</itemPath>
+      <itemPath>file1.wav</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -594,8 +595,9 @@
             <linkerLibFileItem>Libraries/libglfw3.a</linkerLibFileItem>
             <linkerLibFileItem>Libraries/libGLEW.a</linkerLibFileItem>
             <linkerLibFileItem>Libraries/libfreetype.a</linkerLibFileItem>
+            <linkerLibFileItem>Libraries/libalut.a</linkerLibFileItem>
           </linkerLibItems>
-          <commandLine>-framework OpenGL -framework CoreFoundation -framework CoreVideo -framework Cocoa -lz -framework IOKit</commandLine>
+          <commandLine>-framework OpenGL -framework CoreFoundation -framework CoreVideo -framework Cocoa -lz -framework IOKit -framework OpenAL</commandLine>
         </linkerTool>
       </compileType>
       <item path="DeferredCelQuad.pre" ex="false" tool="3" flavor2="0">
@@ -2153,6 +2155,8 @@
       <item path="TexturedScene.pre" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Utility.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="file1.wav" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -3732,6 +3736,8 @@
       <item path="TexturedScene.pre" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Utility.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="file1.wav" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

@@ -57,7 +57,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=Libraries/libassimp.a Libraries/libpugixml.a Libraries/libglfw3.a Libraries/libGLEW.a Libraries/libfreetype.a
+LDLIBSOPTIONS=Libraries/libassimp.a Libraries/libpugixml.a Libraries/libglfw3.a Libraries/libGLEW.a Libraries/libfreetype.a Libraries/libalut.a
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -73,9 +73,11 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: Libraries/libGLEW.a
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: Libraries/libfreetype.a
 
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: Libraries/libalut.a
+
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses ${OBJECTFILES} ${LDLIBSOPTIONS} -framework OpenGL -framework CoreFoundation -framework CoreVideo -framework Cocoa -lz -framework IOKit
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses ${OBJECTFILES} ${LDLIBSOPTIONS} -framework OpenGL -framework CoreFoundation -framework CoreVideo -framework Cocoa -lz -framework IOKit -framework OpenAL
 
 ${OBJECTDIR}/Libraries/SOIL/SOIL.o: Libraries/SOIL/SOIL.c 
 	${MKDIR} -p ${OBJECTDIR}/Libraries/SOIL
