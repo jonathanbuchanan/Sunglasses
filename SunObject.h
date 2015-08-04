@@ -13,6 +13,7 @@
 using namespace std;
 
 #include "./SunNode.h"
+#include "./Audio/SunSoundObject.h"
 
 #include "./Graphics/SunModel.h"
 

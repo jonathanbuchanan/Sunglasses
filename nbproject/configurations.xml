@@ -4,6 +4,9 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <logicalFolder name="Audio" displayName="Audio" projectFiles="true">
+        <itemPath>Audio/SunSoundObject.h</itemPath>
+      </logicalFolder>
       <logicalFolder name="Graphics" displayName="Graphics" projectFiles="true">
         <logicalFolder name="BrickWall" displayName="BrickWall" projectFiles="true">
           <itemPath>Graphics/BrickWall/BrickWall.mtl</itemPath>
@@ -118,7 +121,6 @@
       <itemPath>SunScene.h</itemPath>
       <itemPath>SunSpotlightObject.h</itemPath>
       <itemPath>Utility.h</itemPath>
-      <itemPath>file1.wav</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -541,6 +543,39 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
   </logicalFolder>
   <sourceRootList>
     <Elem>../OpenGL-C++/Sunglasses</Elem>
@@ -558,6 +593,22 @@
     <Elem>Libraries/glm</Elem>
     <Elem>Libraries/SOIL</Elem>
     <Elem>Libraries/FreeType</Elem>
+    <Elem>../OpenGL-C++/Sunglasses</Elem>
+    <Elem>Graphics</Elem>
+    <Elem>Libraries/glm</Elem>
+    <Elem>Libraries/SOIL</Elem>
+    <Elem>Libraries/FreeType</Elem>
+    <Elem>../OpenGL-C++/Sunglasses</Elem>
+    <Elem>Graphics</Elem>
+    <Elem>Libraries/glm</Elem>
+    <Elem>Libraries/SOIL</Elem>
+    <Elem>Libraries/FreeType</Elem>
+    <Elem>../OpenGL-C++/Sunglasses</Elem>
+    <Elem>Graphics</Elem>
+    <Elem>Libraries/glm</Elem>
+    <Elem>Libraries/SOIL</Elem>
+    <Elem>Libraries/FreeType</Elem>
+    <Elem>Audio</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -595,11 +646,19 @@
             <linkerLibFileItem>Libraries/libglfw3.a</linkerLibFileItem>
             <linkerLibFileItem>Libraries/libGLEW.a</linkerLibFileItem>
             <linkerLibFileItem>Libraries/libfreetype.a</linkerLibFileItem>
-            <linkerLibFileItem>Libraries/libalut.a</linkerLibFileItem>
+            <linkerLibFileItem>Libraries/libogg.a</linkerLibFileItem>
+            <linkerLibFileItem>Libraries/libFLAC.a</linkerLibFileItem>
+            <linkerLibFileItem>Libraries/libvorbis.a</linkerLibFileItem>
+            <linkerLibFileItem>Libraries/libsfml-audio-s.a</linkerLibFileItem>
+            <linkerLibFileItem>Libraries/libsfml-system-s.a</linkerLibFileItem>
+            <linkerLibFileItem>Libraries/libvorbisfile.a</linkerLibFileItem>
+            <linkerLibFileItem>Libraries/libvorbisenc.a</linkerLibFileItem>
           </linkerLibItems>
           <commandLine>-framework OpenGL -framework CoreFoundation -framework CoreVideo -framework Cocoa -lz -framework IOKit -framework OpenAL</commandLine>
         </linkerTool>
       </compileType>
+      <item path="Audio/SunSoundObject.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DeferredCelQuad.pre" ex="false" tool="3" flavor2="0">
       </item>
       <item path="DeferredQuad.pre" ex="false" tool="3" flavor2="0">
@@ -2155,8 +2214,6 @@
       <item path="TexturedScene.pre" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Utility.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="file1.wav" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -2181,6 +2238,8 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="Audio/SunSoundObject.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DeferredCelQuad.pre" ex="false" tool="3" flavor2="0">
       </item>
       <item path="DeferredQuad.pre" ex="false" tool="3" flavor2="0">
@@ -3736,8 +3795,6 @@
       <item path="TexturedScene.pre" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Utility.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="file1.wav" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

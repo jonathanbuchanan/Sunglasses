@@ -57,7 +57,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=Libraries/libassimp.a Libraries/libpugixml.a Libraries/libglfw3.a Libraries/libGLEW.a Libraries/libfreetype.a Libraries/libalut.a
+LDLIBSOPTIONS=Libraries/libassimp.a Libraries/libpugixml.a Libraries/libglfw3.a Libraries/libGLEW.a Libraries/libfreetype.a Libraries/libogg.a Libraries/libFLAC.a Libraries/libvorbis.a Libraries/libsfml-audio-s.a Libraries/libsfml-system-s.a Libraries/libvorbisfile.a Libraries/libvorbisenc.a
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -73,7 +73,19 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: Libraries/libGLEW.a
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: Libraries/libfreetype.a
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: Libraries/libalut.a
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: Libraries/libogg.a
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: Libraries/libFLAC.a
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: Libraries/libvorbis.a
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: Libraries/libsfml-audio-s.a
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: Libraries/libsfml-system-s.a
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: Libraries/libvorbisfile.a
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: Libraries/libvorbisenc.a
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}

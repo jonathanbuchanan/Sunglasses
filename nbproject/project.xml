@@ -25,6 +25,22 @@
                 <sourceRootElem>Libraries/glm</sourceRootElem>
                 <sourceRootElem>Libraries/SOIL</sourceRootElem>
                 <sourceRootElem>Libraries/FreeType</sourceRootElem>
+                <sourceRootElem>../OpenGL-C++/Sunglasses</sourceRootElem>
+                <sourceRootElem>Graphics</sourceRootElem>
+                <sourceRootElem>Libraries/glm</sourceRootElem>
+                <sourceRootElem>Libraries/SOIL</sourceRootElem>
+                <sourceRootElem>Libraries/FreeType</sourceRootElem>
+                <sourceRootElem>../OpenGL-C++/Sunglasses</sourceRootElem>
+                <sourceRootElem>Graphics</sourceRootElem>
+                <sourceRootElem>Libraries/glm</sourceRootElem>
+                <sourceRootElem>Libraries/SOIL</sourceRootElem>
+                <sourceRootElem>Libraries/FreeType</sourceRootElem>
+                <sourceRootElem>../OpenGL-C++/Sunglasses</sourceRootElem>
+                <sourceRootElem>Graphics</sourceRootElem>
+                <sourceRootElem>Libraries/glm</sourceRootElem>
+                <sourceRootElem>Libraries/SOIL</sourceRootElem>
+                <sourceRootElem>Libraries/FreeType</sourceRootElem>
+                <sourceRootElem>Audio</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

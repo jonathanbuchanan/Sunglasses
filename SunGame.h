@@ -14,7 +14,8 @@
 #define GLEW_STATIC
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include <AL/alut.h>
+
+#include <SFML/Audio.hpp>
 
 #include "./SunButtonState.h"
 
@@ -203,28 +204,7 @@ public:
         // Set the clear color
         glClearColor(0.0, 0.0, 0.0, 1.0);
         
-        alutInit(0, NULL);
         
-        alGetError();
-        
-        ALuint buffer, source;
-        ALint state;
-        
-        buffer = alutCreateBufferFromFile("file1.wav");
-        
-        alGenSources(1, &source);
-        alSourcei(source, AL_BUFFER, buffer);
-        
-        alSourcePlay(source);
-        
-        do {
-            alGetSourcei(source, AL_SOURCE_STATE, &state);
-        } while (state == AL_PLAYING);
-        
-        alDeleteSources(1, &source);
-        alDeleteBuffers(1, &buffer);
-        
-        alutExit();
         
         scene = new SunScene("./SceneDemo.xml", window);
     }
