@@ -26,6 +26,7 @@ using namespace std;
 #include "./Graphics/SunTextRenderer.h"
 #include "./Audio/SunSoundListener.h"
 #include "./Audio/SunSoundBufferStorage.h"
+#include "./Audio/SunMusicObject.h"
 #include "./SunObject.h"
 #include "./SunDirectionalLightObject.h"
 #include "./SunPointLightObject.h"
@@ -59,6 +60,10 @@ public:
     
     // Sound Storage
     SunSoundBufferStorage storage;
+    
+    // Music
+    SunMusicObject *music;
+    bool autoplay;
     
     // Pointer to window
     GLFWwindow *window;
@@ -112,12 +117,11 @@ public:
         
         GUIsystem->loadFonts(&textRenderer);
         
-        SunNodeSentAction test;
-        test.action = "playSound";
-        test.parameters["soundName"] = new string("test");
-        test.recursive = true;
+        SunNodeSentAction action;
+        action.action = "play";
         
-        sendAction(test, rootRenderableNode);
+        if (autoplay)
+            sendAction(action, music);
     }
     
     void initializeDefaultPropertyAndFunctionMap() {
@@ -192,7 +196,28 @@ public:
     }
     
     void processXMLListenerNode(pugi::xml_node _node) {
+        for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling())
+            if (strcmp(node.name(), "music") == 0)
+                processXMLMusicNode(node);
+    }
+    
+    void processXMLMusicNode(pugi::xml_node _node) {
+        string file;
+        string name;
+        bool loops;
         
+        for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
+            if (strcmp(attribute.name(), "file") == 0)
+                file = attribute.value();
+            else if (strcmp(attribute.name(), "name") == 0)
+                name = attribute.value();
+            else if (strcmp(attribute.name(), "loops") == 0)
+                loops = attribute.as_bool();
+            else if (strcmp(attribute.name(), "autoplay") == 0)
+                autoplay = attribute.as_bool();
+        }
+        
+        music = new SunMusicObject(file, name, loops);
     }
     
     void processXMLRendererNode(pugi::xml_node _node) {

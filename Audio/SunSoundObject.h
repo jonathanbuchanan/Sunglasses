@@ -17,7 +17,6 @@ struct SunSound {
     void play() {
         sound.play();
     }
-    
 };
 
 class SunSoundObject : public SunNode {
