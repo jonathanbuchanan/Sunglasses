@@ -122,6 +122,12 @@ public:
         
         if (autoplay)
             sendAction(action, music);
+        
+        action.action = "playSound";
+        action.parameters["soundName"] = new string("test");
+        action.recursive = true;
+        
+        sendAction(action, rootRenderableNode);
     }
     
     void initializeDefaultPropertyAndFunctionMap() {

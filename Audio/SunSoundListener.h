@@ -19,7 +19,7 @@ using namespace std;
 class SunSoundListener {
 public:
     glm::vec3 position = glm::vec3(0.0, 0.0, 0.0);
-    glm::vec3 direction = glm::vec3(1.0, 0.0, 0.0);
+    glm::vec3 direction = glm::vec3(0.0, 0.0, 1.0);
     
     void setPositionAndDirection() {
         sf::Listener::setPosition(position.x, position.y, position.z);

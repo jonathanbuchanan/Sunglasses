@@ -1,9 +1,9 @@
 <scene name="DemoScene" GUISystem="GUIDemo.xml">
     <objects>
         <object name="Cube0" model="Graphics/Cube.dae" type="Physical" textured="true" animated="false">
-            <position-x>-1</position-x>
+            <position-x>0</position-x>
             <position-y>0</position-y>
-            <position-z>-1</position-z>
+            <position-z>0</position-z>
             
             <rotation-x>0</rotation-x>
             <rotation-y>0</rotation-y>
@@ -27,33 +27,6 @@
                 <sound file="file1.wav" name="test" />
             </sounds>
         </object>
-        <object name="Cube1" model="Graphics/Cube.dae" type="Physical" textured="true" animated="false">
-            <position-x>1</position-x>
-            <position-y>0</position-y>
-            <position-z>1</position-z>
-            
-            <rotation-x>0</rotation-x>
-            <rotation-y>0</rotation-y>
-            <rotation-z>0</rotation-z>
-            
-            <scale-x>1</scale-x>
-            <scale-y>1</scale-y>
-            <scale-z>1</scale-z>
-            
-            <material-r>0</material-r>
-            <material-g>.8</material-g>
-            <material-b>.4</material-b>
-            
-            <material-shininess>8192</material-shininess>
-            
-            <objects>
-                
-            </objects>
-            
-            <sounds>
-                
-            </sounds>
-        </object>
         <object name="Light0" type="PointLight">
             <position-x>-1</position-x>
             <position-y>1.2</position-y>
@@ -72,7 +45,7 @@
         <position-z>0</position-z>
     </camera>
     <listener>
-        <music file="Test Song.wav" name="Test Music" loops="false" autoplay="true" />
+        <music file="Test Song.wav" name="Test Music" loops="false" autoplay="false" />
     </listener>
     <renderer>
         <pipeline>

@@ -94,6 +94,7 @@ public:
     }
     
     virtual void playSound(SunNodeSentAction _action) {
+        _action.parameters["position"] = &position;
         sendAction(_action, &sound);
     }
     
