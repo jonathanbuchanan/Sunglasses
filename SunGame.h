@@ -15,8 +15,6 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-#include <SFML/Audio.hpp>
-
 #include "./SunButtonState.h"
 
 #include "./SunScene.h"
@@ -144,6 +142,9 @@ public:
                 yOffset = lastYOffset;
             }
             
+            scene->listener.position = scene->camera.position;
+            scene->listener.direction = scene->camera.direction;
+            
             // Tell the renderer to do its cycle
             
             scene->cycle(buttons, deltaTime);
@@ -203,8 +204,6 @@ public:
         
         // Set the clear color
         glClearColor(0.0, 0.0, 0.0, 1.0);
-        
-        
         
         scene = new SunScene("./SceneDemo.xml", window);
     }

@@ -24,6 +24,8 @@ using namespace std;
 #include "./Graphics/SunRenderer.h"
 #include "./Graphics/SunRenderingNode.h"
 #include "./Graphics/SunTextRenderer.h"
+#include "./Audio/SunSoundListener.h"
+#include "./Audio/SunSoundBufferStorage.h"
 #include "./SunObject.h"
 #include "./SunDirectionalLightObject.h"
 #include "./SunPointLightObject.h"
@@ -48,11 +50,15 @@ public:
     
     // Camera
     SunCamera camera;
+    SunSoundListener listener;
     GLboolean doCameraInput = true;
     
     // Renderer and Text Renderer
     SunRenderer renderer;
     SunTextRenderer textRenderer;
+    
+    // Sound Storage
+    SunSoundBufferStorage storage;
     
     // Pointer to window
     GLFWwindow *window;
@@ -105,6 +111,13 @@ public:
         processXMLSceneNode(scene);
         
         GUIsystem->loadFonts(&textRenderer);
+        
+        SunNodeSentAction test;
+        test.action = "playSound";
+        test.parameters["soundName"] = new string("test");
+        test.recursive = true;
+        
+        sendAction(test, rootRenderableNode);
     }
     
     void initializeDefaultPropertyAndFunctionMap() {
@@ -125,6 +138,8 @@ public:
                 processXMLObjectsNode(node, rootRenderableNode);
             } else if (strcmp(node.name(), "camera") == 0) {
                 processXMLCameraNode(node);
+            } else if (strcmp(node.name(), "listener") == 0) {
+                processXMLListenerNode(node);
             } else if (strcmp(node.name(), "renderer") == 0)
                 processXMLRendererNode(node);
         }
@@ -166,6 +181,7 @@ public:
             processXMLCameraPropertyNode(node, &camera);
         }
     }
+    
     void processXMLCameraPropertyNode(pugi::xml_node _node, SunCamera *_camera) {
         if (strcmp(_node.name(), "position-x") == 0)
             _camera->position.x = _node.text().as_float();
@@ -173,6 +189,10 @@ public:
             _camera->position.y = _node.text().as_float();
         else if (strcmp(_node.name(), "position-z") == 0)
             _camera->position.z = _node.text().as_float();
+    }
+    
+    void processXMLListenerNode(pugi::xml_node _node) {
+        
     }
     
     void processXMLRendererNode(pugi::xml_node _node) {
@@ -508,6 +528,8 @@ public:
             for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
                 if (strcmp(node.name(), "objects") == 0)
                     processXMLObjectsNode(node, object);
+                else if (strcmp(node.name(), "sounds") == 0)
+                    processXMLObjectSoundsNode(node, object);
                 else
                     processXMLPhysicalObjectPropertyNode(node, object);
             }
@@ -536,6 +558,29 @@ public:
             
             _superObject->addSubNode(object);
         }
+    }
+    
+    void processXMLObjectSoundsNode(pugi::xml_node _node, SunObject *_object) {
+        for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling())
+            processXMLObjectSoundNode(node, _object);
+    }
+    
+    void processXMLObjectSoundNode(pugi::xml_node _node, SunObject *_object) {
+        string file;
+        string name;
+        
+        for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
+            if (strcmp(attribute.name(), "file") == 0)
+                file = attribute.value();
+            else if (strcmp(attribute.name(), "name") == 0)
+                name = attribute.value();
+        }
+        
+        if (storage.bufferMap.find(name) == storage.bufferMap.end()) {
+            storage.loadSoundFromFileWithName(file, name);
+        }
+        
+        _object->sound.addSoundFromBuffer(&storage, name);
     }
     
     void processXMLPhysicalObjectPropertyNode(pugi::xml_node _node, SunObject *_object) {
@@ -688,6 +733,7 @@ public:
     
     void passPerFrameUniforms(SunShader _shader) {
         camera.passPerFrameUniforms(_shader);
+        listener.setPositionAndDirection();
         
         SunNodeSentAction action;
         action.action = "passPerFrameUniforms";

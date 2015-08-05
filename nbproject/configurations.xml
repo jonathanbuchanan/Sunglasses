@@ -5,6 +5,8 @@
                    displayName="Header Files"
                    projectFiles="true">
       <logicalFolder name="Audio" displayName="Audio" projectFiles="true">
+        <itemPath>Audio/SunSoundBufferStorage.h</itemPath>
+        <itemPath>Audio/SunSoundListener.h</itemPath>
         <itemPath>Audio/SunSoundObject.h</itemPath>
       </logicalFolder>
       <logicalFolder name="Graphics" displayName="Graphics" projectFiles="true">
@@ -657,6 +659,10 @@
           <commandLine>-framework OpenGL -framework CoreFoundation -framework CoreVideo -framework Cocoa -lz -framework IOKit -framework OpenAL</commandLine>
         </linkerTool>
       </compileType>
+      <item path="Audio/SunSoundBufferStorage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Audio/SunSoundListener.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Audio/SunSoundObject.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="DeferredCelQuad.pre" ex="false" tool="3" flavor2="0">
@@ -2238,6 +2244,10 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="Audio/SunSoundBufferStorage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Audio/SunSoundListener.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Audio/SunSoundObject.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="DeferredCelQuad.pre" ex="false" tool="3" flavor2="0">

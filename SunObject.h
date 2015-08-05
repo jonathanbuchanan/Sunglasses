@@ -27,6 +27,9 @@ public:
     glm::vec3 rotation;
     glm::vec3 scale = glm::vec3(1.0f, 1.0f, 1.0f);
     
+    // SunSoundObject
+    SunSoundObject sound;
+    
     // Sub-models
     vector<SunModel> models;
     
@@ -60,6 +63,7 @@ public:
         // Add the "render" function to the function map
         functionMap["update"] = bind(&SunObject::update, this, std::placeholders::_1);
         functionMap["render"] = bind(&SunObject::render, this, std::placeholders::_1);
+        functionMap["playSound"] = bind(&SunObject::playSound, this, std::placeholders::_1);
         functionMap["passPerFrameUniforms"] = bind(&SunObject::passPerFrameUniforms, this, std::placeholders::_1);
     }
     
@@ -87,6 +91,10 @@ public:
                 models[i].render(_shader, _deltaTime, position, rotation, scale, material, renderType);
             }
         }
+    }
+    
+    virtual void playSound(SunNodeSentAction _action) {
+        sendAction(_action, &sound);
     }
     
     virtual void passPerFrameUniforms(SunNodeSentAction _action) {
