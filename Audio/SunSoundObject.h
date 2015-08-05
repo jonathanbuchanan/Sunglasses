@@ -16,8 +16,6 @@ struct SunSound {
     
     void play() {
         sound.play();
-        
-        sleep(3);
     }
     
 };
