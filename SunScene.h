@@ -597,19 +597,25 @@ public:
     void processXMLObjectSoundNode(pugi::xml_node _node, SunObject *_object) {
         string file;
         string name;
+        float minimumDistance;
+        float attenuation;
         
         for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
             if (strcmp(attribute.name(), "file") == 0)
                 file = attribute.value();
             else if (strcmp(attribute.name(), "name") == 0)
                 name = attribute.value();
+            else if (strcmp(attribute.name(), "minimumDistance") == 0)
+                minimumDistance = attribute.as_float();
+            else if (strcmp(attribute.name(), "attenuation") == 0)
+                attenuation = attribute.as_float();
         }
         
         if (storage.bufferMap.find(name) == storage.bufferMap.end()) {
             storage.loadSoundFromFileWithName(file, name);
         }
         
-        _object->sound.addSoundFromBuffer(&storage, name);
+        _object->sound.addSoundFromBuffer(&storage, name, minimumDistance, attenuation);
     }
     
     void processXMLPhysicalObjectPropertyNode(pugi::xml_node _node, SunObject *_object) {

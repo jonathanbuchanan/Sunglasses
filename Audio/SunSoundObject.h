@@ -33,11 +33,13 @@ public:
         functionMap["playSound"] = bind(&SunSoundObject::playSound, this, placeholders::_1);
     }
     
-    void addSoundFromBuffer(SunSoundBufferStorage *_storage, string _soundName) {
+    void addSoundFromBuffer(SunSoundBufferStorage *_storage, string _soundName, float _minimumDistance, float _attenuation) {
         SunSound newSound;
         newSound.name = _soundName;
         
         newSound.sound.setBuffer(_storage->bufferMap[_soundName].buffer);
+        newSound.sound.setMinDistance(_minimumDistance);
+        newSound.sound.setAttenuation(_attenuation);
         
         sounds[_soundName] = newSound;
     }

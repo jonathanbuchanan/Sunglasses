@@ -24,7 +24,7 @@
             </objects>
             
             <sounds>
-                <sound file="file1.wav" name="test" />
+                <sound file="file1.wav" name="test" minimumDistance="3" attenuation="100"/>
             </sounds>
         </object>
         <object name="Light0" type="PointLight">
