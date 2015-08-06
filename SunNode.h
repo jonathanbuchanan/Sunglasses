@@ -118,6 +118,8 @@ struct SunNodeSentActionCondition {
     
 };
 
+typedef map<string, void *>::iterator SunNodeSentActionPropertyMapIterator;
+
 struct SunNodeSentAction {
     map<string, void *> properties;
     map<string, SunNodeSentActionParameter> parameters;
@@ -229,6 +231,25 @@ public:
         
         if (level + 1 == levels.size() && levels[level] == name) {
             _node = *this;
+            done = true;
+        }
+        
+        if (!done) {
+            if (levels[level] == name || level == 0) {
+                for (int i = 0; i < subNodes.size(); i++) {
+                    subNodes[i]->findNode(_path, _node);
+                }
+            }
+        }
+    }
+    
+    virtual void findNode(string _path, SunNode *&_node) {
+        vector<string> levels = splitString(_path, *"/");
+        
+        GLboolean done = false;
+        
+        if (level + 1 == levels.size() && levels[level] == name) {
+            _node = this;
             done = true;
         }
         

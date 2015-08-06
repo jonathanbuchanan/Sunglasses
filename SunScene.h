@@ -103,6 +103,7 @@ public:
                 name = attribute.value();
             } else if (strcmp(attribute.name() ,"GUISystem") == 0) {
                 GUIsystem = new SunGUISystem(attribute.value(), window, this);
+                GUIsystem->rootNode = this;
             }
         }
         
@@ -110,24 +111,20 @@ public:
         textRenderer.initialize();
         
         rootRenderableNode = new SunObject();
+        rootRenderableNode->name = "RootRenderable";
         addSubNode(rootRenderableNode);
         
         // Process the XML scene node
         processXMLSceneNode(scene);
         
         GUIsystem->loadFonts(&textRenderer);
+        GUIsystem->mapSentActionTargets();
         
         SunNodeSentAction action;
         action.action = "play";
         
         if (autoplay)
             sendAction(action, music);
-        
-        action.action = "playSound";
-        action.parameters["soundName"] = new string("test");
-        action.recursive = true;
-        
-        sendAction(action, rootRenderableNode);
     }
     
     void initializeDefaultPropertyAndFunctionMap() {
@@ -553,6 +550,7 @@ public:
             SunObject *object;
             object = new SunObject(name, model);
             
+            object->name = name;
             object->material = material;
             object->renderType = renderType;
             

@@ -636,9 +636,9 @@
             <pElem>/System/Library/Frameworks</pElem>
             <pElem>Libraries/Freetype</pElem>
             <pElem>Libraries/Freetype/config</pElem>
-            <pElem>/usr/local/Cellar/glew/1.12.0/include</pElem>
-            <pElem>/usr/local/Cellar/glfw3/3.1.1/include</pElem>
             <pElem>Libraries</pElem>
+            <pElem>Libraries/GLFW</pElem>
+            <pElem>Libraries/GL</pElem>
           </incDir>
           <commandLine>-std=c++11</commandLine>
         </ccTool>

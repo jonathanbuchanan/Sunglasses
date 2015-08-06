@@ -114,12 +114,12 @@ ${OBJECTDIR}/Libraries/SOIL/stb_image_aug.o: Libraries/SOIL/stb_image_aug.c
 ${OBJECTDIR}/Libraries/glm/detail/glm.o: Libraries/glm/detail/glm.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Libraries/glm/detail
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -I/usr/local/Cellar/glew/1.12.0/include -I/usr/local/Cellar/glfw3/3.1.1/include -ILibraries -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Libraries/glm/detail/glm.o Libraries/glm/detail/glm.cpp
+	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -ILibraries -ILibraries/GLFW -ILibraries/GL -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Libraries/glm/detail/glm.o Libraries/glm/detail/glm.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -I/usr/local/Cellar/glew/1.12.0/include -I/usr/local/Cellar/glfw3/3.1.1/include -ILibraries -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -ILibraries -ILibraries/GLFW -ILibraries/GL -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:

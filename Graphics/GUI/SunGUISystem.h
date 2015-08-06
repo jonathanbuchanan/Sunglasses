@@ -57,8 +57,6 @@ public:
         }
         
         processXMLGUISystemNode(system);
-        
-        mapSentActionTargets();
     }
     
     virtual void initializeDefaultPropertyAndFunctionMap() {
@@ -164,6 +162,11 @@ public:
         
         string temporaryValue;
         
+        vector<string> parameterKeys;
+        vector<SunNodePropertyType> parameterValueTypes;
+        vector<string> tempParameterValues;
+        vector<void *> parameterValues;
+        
         for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
             if (strcmp(attribute.name(), "trigger") == 0) {
                 action.properties["trigger"] = new std::string(attribute.value());
@@ -179,7 +182,37 @@ public:
                 action.properties["valueType"] = new std::string(attribute.value());
             } else if (strcmp(attribute.name(), "value") == 0) {
                 temporaryValue = attribute.value();
+            } else if (strcmp(attribute.name(), "parameterKeys") == 0) {
+                parameterKeys = splitString(attribute.value(), *",");
+            } else if (strcmp(attribute.name(), "parameterValueTypes") == 0) {
+                vector<string> tempParameterValueTypes = splitString(attribute.value(), *",");
+                for (int i = 0; i < tempParameterValueTypes.size(); i++) {
+                    if (tempParameterValueTypes[i] == "vec3")
+                        parameterValueTypes.push_back(SunNodePropertyTypeVec3);
+                    else if (tempParameterValueTypes[i] == "bool")
+                        parameterValueTypes.push_back(SunNodePropertyTypeBool);
+                    else if (tempParameterValueTypes[i] == "string")
+                        parameterValueTypes.push_back(SunNodePropertyTypeString);
+                }
+            } else if (strcmp(attribute.name(), "parameterValues") == 0) {
+                tempParameterValues = splitString(attribute.value(), *",");
             }
+        }
+        
+        for (int i = 0; i < tempParameterValues.size(); i++) {
+            SunNodePropertyType type = parameterValueTypes[i];
+            if (type == SunNodePropertyTypeString)
+                parameterValues.push_back(new string(tempParameterValues[i]));
+        }
+        
+        map<string, void *> parameterMap;
+        
+        for (int i = 0; i < parameterKeys.size(); i++) {
+            parameterMap[parameterKeys[i]] = parameterValues[i];
+        }
+        
+        for (SunNodeSentActionPropertyMapIterator iterator = parameterMap.begin(); iterator != parameterMap.end(); iterator++) {
+            action.parameters[iterator->first] = iterator->second;
         }
         
         if (*(string *)action.properties["valueType"] == "vec3") {
@@ -269,6 +302,11 @@ public:
         
         string temporaryValue;
         
+        vector<string> parameterKeys;
+        vector<SunNodePropertyType> parameterValueTypes;
+        vector<string> tempParameterValues;
+        vector<void *> parameterValues;
+        
         for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
             if (strcmp(attribute.name(), "trigger") == 0) {
                 action.properties["trigger"] = new std::string(attribute.value());
@@ -284,7 +322,37 @@ public:
                 action.properties["valueType"] = new std::string(attribute.value());
             } else if (strcmp(attribute.name(), "value") == 0) {
                 temporaryValue = attribute.value();
+            } else if (strcmp(attribute.name(), "parameterKeys") == 0) {
+                parameterKeys = splitString(attribute.value(), *",");
+            } else if (strcmp(attribute.name(), "parameterValueTypes") == 0) {
+                vector<string> tempParameterValueTypes = splitString(attribute.value(), *",");
+                for (int i = 0; i < tempParameterValueTypes.size(); i++) {
+                    if (tempParameterValueTypes[i] == "vec3")
+                        parameterValueTypes.push_back(SunNodePropertyTypeVec3);
+                    else if (tempParameterValueTypes[i] == "bool")
+                        parameterValueTypes.push_back(SunNodePropertyTypeBool);
+                    else if (tempParameterValueTypes[i] == "string")
+                        parameterValueTypes.push_back(SunNodePropertyTypeString);
+                }
+            } else if (strcmp(attribute.name(), "parameterValues") == 0) {
+                tempParameterValues = splitString(attribute.value(), *",");
             }
+        }
+        
+        for (int i = 0; i < tempParameterValues.size(); i++) {
+            SunNodePropertyType type = parameterValueTypes[i];
+            if (type == SunNodePropertyTypeString)
+                parameterValues.push_back(new string(tempParameterValues[i]));
+        }
+        
+        map<string, void *> parameterMap;
+        
+        for (int i = 0; i < parameterKeys.size(); i++) {
+            parameterMap[parameterKeys[i]] = parameterValues[i];
+        }
+        
+        for (SunNodeSentActionPropertyMapIterator iterator = parameterMap.begin(); iterator != parameterMap.end(); iterator++) {
+            action.parameters[iterator->first] = iterator->second;
         }
         
         if (*(string *)action.properties["valueType"] == "vec3") {
@@ -318,14 +386,14 @@ public:
                         for (int k = 0; k < ((SunGUIItem *)subNodes[i]->subNodes[j])->sentActions.size(); ++k) {
                             SunNodeSentAction *action = &((SunGUIItem *)subNodes[i]->subNodes[j])->sentActions[k];
                             
-                            SunNode target;
+                            SunNode *target;
                             
                             string targetPath = *(string *)action->properties["target-path"];
                             
                             if (targetPath != "@self") {
                                 rootNode->findNode(*(string *)action->properties["target-path"], target);
                                 
-                                ((SunGUIItem *)subNodes[i]->subNodes[j])->sentActions[k].properties["receiver"] = &target;
+                                ((SunGUIItem *)subNodes[i]->subNodes[j])->sentActions[k].properties["receiver"] = target;
                             }
                         }
                     }

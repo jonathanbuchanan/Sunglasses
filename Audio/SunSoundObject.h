@@ -43,7 +43,8 @@ public:
     }
     
     void playSound(SunNodeSentAction _action) {
-        string soundName = *(string *)_action.parameters["soundName"];
+        string soundName = *(string *)_action.parameters["soundName"];  
+        
         if (_action.parameters.find("position") != _action.parameters.end()) {
             glm::vec3 position = *(glm::vec3 *)_action.parameters["position"];
             
