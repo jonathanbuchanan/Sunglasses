@@ -41,6 +41,7 @@
                 <sourceRootElem>Libraries/SOIL</sourceRootElem>
                 <sourceRootElem>Libraries/FreeType</sourceRootElem>
                 <sourceRootElem>Audio</sourceRootElem>
+                <sourceRootElem>Physics</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

@@ -115,6 +115,11 @@
         <itemPath>Graphics/TestAnim.dae</itemPath>
         <itemPath>Graphics/TestAnimationModel.dae</itemPath>
       </logicalFolder>
+      <logicalFolder name="Physics" displayName="Physics" projectFiles="true">
+        <itemPath>Audio/SunPhysicsCollider.h</itemPath>
+        <itemPath>Audio/SunPhysicsObject.h</itemPath>
+        <itemPath>Physics/SunPhysicsSimulator.h</itemPath>
+      </logicalFolder>
       <itemPath>SunButtonState.h</itemPath>
       <itemPath>SunDirectionalLightObject.h</itemPath>
       <itemPath>SunGame.h</itemPath>
@@ -612,6 +617,7 @@
     <Elem>Libraries/SOIL</Elem>
     <Elem>Libraries/FreeType</Elem>
     <Elem>Audio</Elem>
+    <Elem>Physics</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -661,6 +667,10 @@
         </linkerTool>
       </compileType>
       <item path="Audio/SunMusicObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Audio/SunPhysicsCollider.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Audio/SunPhysicsObject.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Audio/SunSoundBufferStorage.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -2195,6 +2205,8 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsSimulator.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SSAOBlurQuad.pre" ex="false" tool="3" flavor2="0">
       </item>
@@ -2249,6 +2261,10 @@
       </compileType>
       <item path="Audio/SunMusicObject.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Audio/SunPhysicsCollider.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Audio/SunPhysicsObject.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Audio/SunSoundBufferStorage.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Audio/SunSoundListener.h" ex="false" tool="3" flavor2="0">
@@ -3782,6 +3798,8 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsSimulator.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SSAOBlurQuad.pre" ex="false" tool="3" flavor2="0">
       </item>
