@@ -40,6 +40,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/Libraries/SOIL/image_helper.o \
 	${OBJECTDIR}/Libraries/SOIL/stb_image_aug.o \
 	${OBJECTDIR}/Libraries/glm/detail/glm.o \
+	${OBJECTDIR}/SunGame.o \
+	${OBJECTDIR}/SunNode.o \
+	${OBJECTDIR}/Utility.o \
 	${OBJECTDIR}/main.o
 
 
@@ -91,6 +94,21 @@ ${OBJECTDIR}/Libraries/glm/detail/glm.o: Libraries/glm/detail/glm.cpp
 	${MKDIR} -p ${OBJECTDIR}/Libraries/glm/detail
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Libraries/glm/detail/glm.o Libraries/glm/detail/glm.cpp
+
+${OBJECTDIR}/SunGame.o: SunGame.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SunGame.o SunGame.cpp
+
+${OBJECTDIR}/SunNode.o: SunNode.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SunNode.o SunNode.cpp
+
+${OBJECTDIR}/Utility.o: Utility.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Utility.o Utility.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}

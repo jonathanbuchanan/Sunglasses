@@ -17,8 +17,6 @@ using namespace std;
 
 #include "./Shaders/SunShader.h"
 
-#include "../SunNode.h"
-#include "../SunObject.h"
 #include "../SunPointLightObject.h"
 
 class SunPointLightShadowMapRenderer {

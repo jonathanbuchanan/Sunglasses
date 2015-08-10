@@ -516,6 +516,9 @@
         <itemPath>Libraries/SOIL/stbi_DDS_aug.h</itemPath>
         <itemPath>Libraries/SOIL/stbi_DDS_aug_c.h</itemPath>
       </logicalFolder>
+      <itemPath>SunGame.cpp</itemPath>
+      <itemPath>SunNode.cpp</itemPath>
+      <itemPath>Utility.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -586,32 +589,6 @@
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
-    <Elem>../OpenGL-C++/Sunglasses</Elem>
-    <Elem>Graphics</Elem>
-    <Elem>Libraries/glm</Elem>
-    <Elem>Libraries/SOIL</Elem>
-    <Elem>Libraries/FreeType</Elem>
-    <Elem>../OpenGL-C++/Sunglasses</Elem>
-    <Elem>Graphics</Elem>
-    <Elem>Libraries/glm</Elem>
-    <Elem>Libraries/SOIL</Elem>
-    <Elem>Libraries/FreeType</Elem>
-    <Elem>../OpenGL-C++/Sunglasses</Elem>
-    <Elem>Graphics</Elem>
-    <Elem>Libraries/glm</Elem>
-    <Elem>Libraries/SOIL</Elem>
-    <Elem>Libraries/FreeType</Elem>
-    <Elem>../OpenGL-C++/Sunglasses</Elem>
-    <Elem>Graphics</Elem>
-    <Elem>Libraries/glm</Elem>
-    <Elem>Libraries/SOIL</Elem>
-    <Elem>Libraries/FreeType</Elem>
-    <Elem>../OpenGL-C++/Sunglasses</Elem>
-    <Elem>Graphics</Elem>
-    <Elem>Libraries/glm</Elem>
-    <Elem>Libraries/SOIL</Elem>
-    <Elem>Libraries/FreeType</Elem>
-    <Elem>../OpenGL-C++/Sunglasses</Elem>
     <Elem>Graphics</Elem>
     <Elem>Libraries/glm</Elem>
     <Elem>Libraries/SOIL</Elem>
@@ -623,7 +600,7 @@
   <confs>
     <conf name="Debug" type="1">
       <toolsSet>
-        <compilerSet>default</compilerSet>
+        <compilerSet>GNU|GNU</compilerSet>
         <dependencyChecking>true</dependencyChecking>
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
@@ -2220,7 +2197,11 @@
       </item>
       <item path="SunDirectionalLightObject.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="SunGame.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="SunGame.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SunNode.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="SunNode.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -2233,6 +2214,8 @@
       <item path="SunSpotlightObject.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="TexturedScene.pre" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Utility.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Utility.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -3813,7 +3796,11 @@
       </item>
       <item path="SunDirectionalLightObject.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="SunGame.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="SunGame.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SunNode.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="SunNode.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -3826,6 +3813,8 @@
       <item path="SunSpotlightObject.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="TexturedScene.pre" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Utility.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Utility.h" ex="false" tool="3" flavor2="0">
       </item>

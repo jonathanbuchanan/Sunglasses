@@ -30,7 +30,7 @@ public:
     void initializeDefaultPropertyAndFunctionMap() {
         SunNode::initializeDefaultPropertyAndFunctionMap();
         
-        functionMap["playSound"] = bind(&SunSoundObject::playSound, this, placeholders::_1);
+        addToFunctionMap("playSound", bind(&SunSoundObject::playSound, this, placeholders::_1));
     }
     
     void addSoundFromBuffer(SunSoundBufferStorage *_storage, string _soundName, float _minimumDistance, float _attenuation) {

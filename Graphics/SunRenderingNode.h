@@ -9,7 +9,6 @@
 #include <map>
 #include <functional>
 
-#include "../SunNode.h"
 #include "./Shaders/SunShader.h"
 #include "../SunObject.h"
 #include "./SunTexturedQuad.h"
@@ -122,7 +121,7 @@ public:
     }
     
     SunRenderingNode(string _name) {
-        name = _name;
+        setName(_name);
         
         initializeDefaultPropertyAndFunctionMap();
     }
@@ -130,7 +129,7 @@ public:
     virtual void initializeDefaultPropertyAndFunctionMap() {
         SunNode::initializeDefaultPropertyAndFunctionMap();
         
-        functionMap["render"] = bind(&SunRenderingNode::render, this, std::placeholders::_1);
+        addToFunctionMap("render", bind(&SunRenderingNode::render, this, std::placeholders::_1));
     }
     
     void render(SunNodeSentAction _action) {

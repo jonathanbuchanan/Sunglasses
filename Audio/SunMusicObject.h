@@ -19,7 +19,7 @@ public:
     
     SunMusicObject(string _file, string _name) {
         loadFromFile(_file);
-        name = _name;
+        setName(_name);
         
         initializeDefaultPropertyAndFunctionMap();
     }
@@ -27,7 +27,7 @@ public:
     SunMusicObject(string _file, string _name, bool _loops) {
         loadFromFile(_file);
         setLoops(_loops);
-        name = _name;
+        setName(_name);
         
         initializeDefaultPropertyAndFunctionMap();
     }
@@ -35,9 +35,9 @@ public:
     virtual void initializeDefaultPropertyAndFunctionMap() {
         SunNode::initializeDefaultPropertyAndFunctionMap();
         
-        functionMap["play"] = bind(&SunMusicObject::play, this, placeholders::_1);
-        functionMap["pause"] = bind(&SunMusicObject::pause, this, placeholders::_1);
-        functionMap["stop"] = bind(&SunMusicObject::stop, this, placeholders::_1);
+        addToFunctionMap("play", bind(&SunMusicObject::play, this, placeholders::_1));
+        addToFunctionMap("pause", bind(&SunMusicObject::pause, this, placeholders::_1));
+        addToFunctionMap("stop", bind(&SunMusicObject::stop, this, placeholders::_1));
     }
     
     void setLoops(bool _loops) {

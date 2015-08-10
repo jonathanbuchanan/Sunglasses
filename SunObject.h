@@ -11,8 +11,7 @@
 
 #include <vector>
 using namespace std;
-
-#include "./SunNode.h"
+#include <functional>
 #include "./Audio/SunSoundObject.h"
 
 #include "./Graphics/SunModel.h"
@@ -41,7 +40,7 @@ public:
     }
     
     SunObject(string _name, string _modelPath) {
-        name = _name;
+        setName(_name);
         
         initializeDefaultPropertyAndFunctionMap();
         
@@ -52,19 +51,19 @@ public:
     virtual void initializeDefaultPropertyAndFunctionMap() {
         SunNode::initializeDefaultPropertyAndFunctionMap();
         
-        type = "object";
+        setType("object");
         
         // Map position, rotation, and scale to the property map
-        propertyMap["position"] = SunNodeProperty(&position, SunNodePropertyTypeVec3);
-        propertyMap["rotation"] = SunNodeProperty(&rotation, SunNodePropertyTypeVec3);
-        propertyMap["scale"] = SunNodeProperty(&scale, SunNodePropertyTypeVec3);
-        propertyMap["renderType"] = SunNodeProperty(&renderType, SunNodePropertyTypeInt);
+        addToPropertyMap("position", SunNodeProperty(&position, SunNodePropertyTypeVec3));
+        addToPropertyMap("rotation", SunNodeProperty(&rotation, SunNodePropertyTypeVec3));
+        addToPropertyMap("scale", SunNodeProperty(&scale, SunNodePropertyTypeVec3));
+        addToPropertyMap("renderType", SunNodeProperty(&renderType, SunNodePropertyTypeInt));
         
         // Add the "render" function to the function map
-        functionMap["update"] = bind(&SunObject::update, this, std::placeholders::_1);
-        functionMap["render"] = bind(&SunObject::render, this, std::placeholders::_1);
-        functionMap["playSound"] = bind(&SunObject::playSound, this, std::placeholders::_1);
-        functionMap["passPerFrameUniforms"] = bind(&SunObject::passPerFrameUniforms, this, std::placeholders::_1);
+        addToFunctionMap("update", bind(&SunObject::update, this, std::placeholders::_1));
+        addToFunctionMap("render", bind(&SunObject::render, this, std::placeholders::_1));
+        addToFunctionMap("playSound", bind(&SunObject::playSound, this, std::placeholders::_1));
+        addToFunctionMap("passPerFrameUniforms", bind(&SunObject::passPerFrameUniforms, this, std::placeholders::_1));
     }
     
     virtual void update(SunNodeSentAction _action) {

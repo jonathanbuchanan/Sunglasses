@@ -20,7 +20,6 @@ using namespace std;
 #include "./SunRenderingNode.h"
 
 #include "./SunTexturedQuad.h"
-#include "../SunNode.h"
 #include "./SunPrimitives.h"
 #include "./SunCamera.h"
 #include "../SunButtonState.h"

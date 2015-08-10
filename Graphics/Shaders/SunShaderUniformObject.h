@@ -23,7 +23,7 @@ public:
     virtual void initializeDefaultPropertyAndFunctionMap() {
         SunNode::initializeDefaultPropertyAndFunctionMap();
         
-        functionMap["passUniform"] = bind(&SunShaderUniformObject::passUniform, this, placeholders::_1);
+        addToFunctionMap("passUniform", bind(&SunShaderUniformObject::passUniform, this, placeholders::_1));
     }
     
     virtual void passUniform(SunNodeSentAction _action) {

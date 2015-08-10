@@ -69,12 +69,12 @@ public:
     void initializeDefaultPropertyAndFunctionMap() {
         SunNode::initializeDefaultPropertyAndFunctionMap();
         
-        functionMap["render"] = bind(&SunGUIItem::render, this, std::placeholders::_1);
-        functionMap["update"] = bind(&SunGUIItem::update, this, std::placeholders::_1);
-        functionMap["hide"] = bind(&SunGUIItem::hide, this, std::placeholders::_1);
-        functionMap["show"] = bind(&SunGUIItem::show, this, std::placeholders::_1);
-        functionMap["toggleMouse"] = bind(&SunGUIItem::toggleMouse, this, std::placeholders::_1);
-        functionMap["closeWindow"] = bind(&SunGUIItem::closeWindow, this, std::placeholders::_1);
+        addToFunctionMap("render", bind(&SunGUIItem::render, this, std::placeholders::_1));
+        addToFunctionMap("update", bind(&SunGUIItem::update, this, std::placeholders::_1));
+        addToFunctionMap("hide", bind(&SunGUIItem::hide, this, std::placeholders::_1));
+        addToFunctionMap("show", bind(&SunGUIItem::show, this, std::placeholders::_1));
+        addToFunctionMap("toggleMouse", bind(&SunGUIItem::toggleMouse, this, std::placeholders::_1));
+        addToFunctionMap("closeWindow", bind(&SunGUIItem::closeWindow, this, std::placeholders::_1));
     }
     
     map<string, GLboolean> activeTriggers(map<int, SunButtonState> _buttons, GLboolean _containsMouse) {

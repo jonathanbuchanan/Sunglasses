@@ -9,12 +9,13 @@
 #ifndef Sunglasses_SunNode_h
 #define Sunglasses_SunNode_h
 
-using namespace std;
-
+#include <vector>
+#include <string>
 #include <map>
-#include <functional>
-
+#include <GL/glew.h>
 #include "./Utility.h"
+
+using namespace std;
 
 class SunNode;
 
@@ -133,178 +134,68 @@ typedef function<void(SunNodeSentAction)>SunNodeFunctionPointer;
 
 class SunNode {
 public:
+    SunNode() {
+        
+    }
+    
+    virtual void changeValue(SunNodeSentAction _action);
+    
+    virtual void toggleBool(SunNodeSentAction _action);
+    
+    virtual void initializeDefaultPropertyAndFunctionMap();
+    
+    virtual void receiveAction(SunNodeSentAction _action);
+    
+    virtual void sendAction(SunNodeSentAction _action, SunNode *_receiver);
+    
+    virtual void sendActionToAllSubNodes(SunNodeSentAction _action);
+    
+    virtual void addSubNode(SunNode *_subNode);
+    
+    virtual void findNode(string _path, SunNode &_node);
+    
+    virtual void findNode(string _path, SunNode *&_node);
+    
+    virtual void findNodeWithName(string _name, SunNode &_node);
+    
+    virtual void findPointerNodeWithName(string _name, SunNode *&_node);
+    
+    virtual void log();
+    
+    inline map<string, SunNodeProperty> & getPropertyMap() { return propertyMap; }
+    inline void addToPropertyMap(string propertyName, SunNodeProperty property) { propertyMap[propertyName] = property; }
+    
+    inline map<string, SunNodeFunctionPointer> & getFunctionMap() { return functionMap; }
+    inline void addToFunctionMap(string functionName, SunNodeFunctionPointer function) { functionMap[functionName] = function; }
+    
+    inline vector<SunNode *> & getSubNodes() { return subNodes; }
+    inline int getSubNodesSize() { return subNodes.size(); }
+    inline SunNode * getSubNodeAtIndex(int i) { return subNodes[i]; }
+    
+    inline int getLevel() { return level; }
+    inline void setLevel(int _level) { level = _level; }
+    
+    inline string getName() { return name; }
+    inline void setName(string _name) { name = _name; }
+    
+    inline string getType() { return type; }
+    inline void setType(string _type) { type = _type; }
+    
+    inline SunNode * getRootNode() { return rootNode; }
+    inline void setRootNode(SunNode *_rootNode) { rootNode = _rootNode; } 
+private:
     map<string, SunNodeProperty> propertyMap;
     map<string, SunNodeFunctionPointer> functionMap;
     GLuint parentsReady = 0;
     vector<SunNode *> subNodes;
     vector<SunNode *> parents;
-    int level;
+    int level = 0;
     string name;
     string type;
     
     SunNode *rootNode;
-    
-    SunNode() {
-        level = 0;
-    }
-    
-    virtual void changeValue(SunNodeSentAction _action) {
-        string targetProperty = *(string *)_action.parameters["targetProperty"];
-        
-        if (propertyMap.find(targetProperty) != propertyMap.end()) {
-            if (propertyMap[targetProperty].type == SunNodePropertyTypeVec3)
-                *((glm::vec3 *)propertyMap[targetProperty].pointer) = *((glm::vec3 *)_action.parameters["targetValuePointer"]);
-            else if (propertyMap[targetProperty].type == SunNodePropertyTypeBool)
-                *((GLboolean *)propertyMap[targetProperty].pointer) = *((GLboolean *)_action.parameters["targetValuePOinter"]);
-        }
-    }
-    
-    virtual void toggleBool(SunNodeSentAction _action) {
-        string targetProperty = *(string *)_action.parameters["targetProperty"];
-        
-        if (propertyMap.find(targetProperty) != propertyMap.end()) {
-            if (propertyMap[targetProperty].type == SunNodePropertyTypeBool)
-                *((GLboolean *)propertyMap[targetProperty].pointer) = !*((GLboolean *)propertyMap[targetProperty].pointer);
-        }
-    }
-    
-    virtual void initializeDefaultPropertyAndFunctionMap() {
-        type = "node";
-        
-        propertyMap["type"] = SunNodeProperty(&type, SunNodePropertyTypeString);
-        
-        functionMap["changeValue"] = bind(&SunNode::changeValue, this, std::placeholders::_1);
-        functionMap["toggleBool"] = bind(&SunNode::toggleBool, this, std::placeholders::_1);
-    }
-    
-    virtual void receiveAction(SunNodeSentAction _action) {
-        parentsReady = 0;
-        if (functionMap.find(_action.action) != functionMap.end()) {
-            int conditionsMet = 0;
-            for (int i = 0; i < _action.conditions.size(); i++) {
-                bool condition = _action.conditions[i].evaluate(propertyMap[_action.conditions[i].nodeProperty]);
-                if (condition == true) {
-                    conditionsMet += 1;
-                }
-            }
-
-            if (conditionsMet == _action.conditions.size()) {
-                SunNodeFunctionPointer function = functionMap[_action.action];
-                function(_action);
-            }
-        }
-
-        for (int i = 0; i < subNodes.size(); i++)
-            subNodes[i]->parentsReady += 1;
-        
-        if (_action.recursive) {
-            for (int i = 0; i < subNodes.size(); i++) {
-                if (subNodes[i]->parentsReady == subNodes[i]->parents.size())
-                    sendAction(_action, subNodes[i]);
-            }
-        }
-    }
-    
-    virtual void sendAction(SunNodeSentAction _action, SunNode *_receiver) {
-        _receiver->receiveAction(_action);
-    }
-    
-    virtual void sendActionToAllSubNodes(SunNodeSentAction _action) {
-        for (int i = 0; i < subNodes.size(); ++i)
-            sendAction(_action, subNodes[i]);
-    }
-    
-    virtual void addSubNode(SunNode *_subNode) {
-        // Add the Sub-Node
-        if (find(subNodes.begin(), subNodes.end(), _subNode) == subNodes.end()) {
-            subNodes.push_back(_subNode);
-            _subNode->parents.push_back(this);
-            _subNode->level = level + 1;
-            _subNode->rootNode = rootNode;
-        }
-    }
-    
-    virtual void findNode(string _path, SunNode &_node) {
-        vector<string> levels = splitString(_path, *"/");
-        
-        GLboolean done = false;
-        
-        if (level + 1 == levels.size() && levels[level] == name) {
-            _node = *this;
-            done = true;
-        }
-        
-        if (!done) {
-            if (levels[level] == name || level == 0) {
-                for (int i = 0; i < subNodes.size(); i++) {
-                    subNodes[i]->findNode(_path, _node);
-                }
-            }
-        }
-    }
-    
-    virtual void findNode(string _path, SunNode *&_node) {
-        vector<string> levels = splitString(_path, *"/");
-        
-        GLboolean done = false;
-        
-        if (level + 1 == levels.size() && levels[level] == name) {
-            _node = this;
-            done = true;
-        }
-        
-        if (!done) {
-            if (levels[level] == name || level == 0) {
-                for (int i = 0; i < subNodes.size(); i++) {
-                    subNodes[i]->findNode(_path, _node);
-                }
-            }
-        }
-    }
-    
-    virtual void findNodeWithName(string _name, SunNode &_node) {
-        for (int i = 0; i < subNodes.size(); i++) {
-            if (subNodes[i]->name == _name) {
-                _node = *subNodes[i];
-                break;
-            } else {
-                subNodes[i]->findNodeWithName(_name, _node);
-            }
-        }
-    }
-    
-    virtual void findPointerNodeWithName(string _name, SunNode *&_node) {
-        if (name == _name) {
-            _node = this;
-        } else {
-            for (int i = 0; i < subNodes.size(); i++) {
-                subNodes[i]->findPointerNodeWithName(_name, _node);
-            }
-        }
-    }
-    
-    virtual void log() {
-        string log;
-        
-        for (int i = 0; i < level; i++) {
-            log += "    ";
-        }
-        
-        log += name;
-        log += "\n";
-        
-        cout << log << flush;
-        
-        for (int i = 0; i < subNodes.size(); i++)
-            subNodes[i]->log();
-    }
-    
-private:
-    
 };
 
-void sendAction(SunNodeSentAction _action, SunNode *_receiver) {
-        _receiver->receiveAction(_action);
-}
+extern void sendAction(SunNodeSentAction _action, SunNode *_receiver);
 
 #endif

@@ -37,7 +37,7 @@ public:
     }
     
     SunPointLightObject(string _name) {
-        name = _name;
+        setName(_name);
         
         initializeDefaultPropertyAndFunctionMap();
     }
@@ -45,7 +45,7 @@ public:
     virtual void initializeDefaultPropertyAndFunctionMap() {
         SunObject::initializeDefaultPropertyAndFunctionMap();
         
-        type = "light";
+        setType("light");
     }
     
     void passPerFrameUniforms(SunNodeSentAction _action) {

@@ -73,7 +73,7 @@ public:
         position = glm::vec3(0, 0, 0);
         rotation = glm::vec3(0, 0, 0);
         scale = glm::vec3(1.0, 1.0, 1.0);
-        rootNode = this;
+        setRootNode(this);
         
         // Initialize the property map
         initializeDefaultPropertyAndFunctionMap();
@@ -84,7 +84,7 @@ public:
         position = glm::vec3(0, 0, 0);
         rotation = glm::vec3(0, 0, 0);
         scale = glm::vec3(1.0, 1.0, 1.0);
-        rootNode = this;
+        setRootNode(this);
         
         // Set the window
         window = _window;
@@ -100,10 +100,10 @@ public:
         
         for (pugi::xml_attribute attribute = scene.first_attribute(); attribute; attribute = attribute.next_attribute()) {
             if (strcmp(attribute.name(), "name") == 0) {
-                name = attribute.value();
+                setName(attribute.value());
             } else if (strcmp(attribute.name() ,"GUISystem") == 0) {
                 GUIsystem = new SunGUISystem(attribute.value(), window, this);
-                GUIsystem->rootNode = this;
+                GUIsystem->setRootNode(this);
             }
         }
         
@@ -111,7 +111,7 @@ public:
         textRenderer.initialize();
         
         rootRenderableNode = new SunObject();
-        rootRenderableNode->name = "RootRenderable";
+        rootRenderableNode->setName("RootRenderableNode");
         addSubNode(rootRenderableNode);
         
         // Process the XML scene node
@@ -130,13 +130,13 @@ public:
     void initializeDefaultPropertyAndFunctionMap() {
         SunObject::initializeDefaultPropertyAndFunctionMap();
         
-        type = "scene";
+        setType("scene");
         
-        propertyMap["doCameraInput"] = SunNodeProperty(&doCameraInput, SunNodePropertyTypeBool);
+        addToPropertyMap("doCameraInput", SunNodeProperty(&doCameraInput, SunNodePropertyTypeBool));
         
-        functionMap["render"] = bind(&SunScene::render, this, std::placeholders::_1);
-        functionMap["renderGUISystem"] = bind(&SunScene::renderGUISystem, this, std::placeholders::_1);
-        functionMap["passPerFrameUniforms"] = bind(&SunScene::passPerFrameUniformsAction, this, std::placeholders::_1);
+        addToFunctionMap("render", bind(&SunScene::render, this, std::placeholders::_1));
+        addToFunctionMap("renderGUISystem", bind(&SunScene::renderGUISystem, this, std::placeholders::_1));
+        addToFunctionMap("passPerFrameUniforms", bind(&SunScene::passPerFrameUniformsAction, this, std::placeholders::_1));
     }
     
     void processXMLSceneNode(pugi::xml_node _node) {
@@ -262,7 +262,7 @@ public:
         for (int i = 0; i < renderNodes.size(); i++) {
             switch(renderNodes[i]->type) {
                 case SunRenderingNodeTypeRoot:
-                    renderNodes[i]->rootNode = renderNodes[i];
+                    renderNodes[i]->setRootNode(renderNodes[i]);
                     root = renderNodes[i];
                     break;
                 case SunRenderingNodeTypeIntermediate:
@@ -282,7 +282,7 @@ public:
                     }
                     break;
                 case SunRenderingNodeTypeOnly:
-                    renderNodes[i]->rootNode = renderNodes[i];
+                    renderNodes[i]->setRootNode(renderNodes[i]);
                     root = renderNodes[i];
                     break;
             }
@@ -310,7 +310,7 @@ public:
         
         _renderingNode = SunRenderingNode(name);
         _renderingNode.type = type;
-        _renderingNode.rootNode = &_renderingNode;
+        _renderingNode.setRootNode(&_renderingNode);
         _renderingNode.scene = this;
         
         for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
@@ -550,7 +550,7 @@ public:
             SunObject *object;
             object = new SunObject(name, model);
             
-            object->name = name;
+            object->setName(name);
             object->material = material;
             object->renderType = renderType;
             

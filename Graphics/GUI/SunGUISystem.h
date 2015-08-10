@@ -41,7 +41,7 @@ public:
     
     SunGUISystem(const char *filepath, GLFWwindow *_window, SunNode *_rootNode) {
         window = _window;
-        rootNode = _rootNode;
+        setRootNode(_rootNode);
         
         initializeDefaultPropertyAndFunctionMap();
         
@@ -63,8 +63,8 @@ public:
         SunNode::initializeDefaultPropertyAndFunctionMap();
         
         // Add the "render" function to the function map
-        functionMap["update"] = bind(&SunGUISystem::update, this, std::placeholders::_1);
-        functionMap["render"] = bind(&SunGUISystem::render, this, std::placeholders::_1);
+        addToFunctionMap("update", bind(&SunGUISystem::update, this, std::placeholders::_1));
+        addToFunctionMap("render", bind(&SunGUISystem::render, this, std::placeholders::_1));
     }
     
     virtual void update(SunNodeSentAction _action) {
@@ -365,35 +365,35 @@ public:
     }
     
     void mapSentActionTargets() {
-        for (int i = 0; i < subNodes.size(); ++i) {
-            if (dynamic_cast<SunGUIMenu *>(subNodes[i]) != NULL) {
-                for (int j = 0; j < ((SunGUIMenu *)subNodes[i])->sentActions.size(); ++j) {
-                    SunNodeSentAction *action = &((SunGUIMenu *)subNodes[i])->sentActions[j];
+        for (int i = 0; i < getSubNodesSize(); ++i) {
+            if (dynamic_cast<SunGUIMenu *>(getSubNodeAtIndex(i)) != NULL) {
+                for (int j = 0; j < ((SunGUIMenu *)getSubNodeAtIndex(i))->sentActions.size(); ++j) {
+                    SunNodeSentAction *action = &((SunGUIMenu *)getSubNodeAtIndex(i))->sentActions[j];
                     
                     SunNode target;
                     
                     string targetPath = *(string *)action->properties["target-path"];
                     
                     if (targetPath != "@self") {
-                        rootNode->findNode(targetPath, target);
+                        getRootNode()->findNode(targetPath, target);
                         
-                        ((SunGUIMenu *)subNodes[i])->sentActions[j].properties["receiver"] = rootNode;
+                        ((SunGUIMenu *)getSubNodeAtIndex(i))->sentActions[j].properties["receiver"] = getRootNode();
                     }
                 }
                 
-                for (int j = 0; j < ((SunGUIMenu *)subNodes[i])->subNodes.size(); ++j) {
-                    if (dynamic_cast<SunGUIItem *>(subNodes[i]->subNodes[j])) {
-                        for (int k = 0; k < ((SunGUIItem *)subNodes[i]->subNodes[j])->sentActions.size(); ++k) {
-                            SunNodeSentAction *action = &((SunGUIItem *)subNodes[i]->subNodes[j])->sentActions[k];
+                for (int j = 0; j < ((SunGUIMenu *)getSubNodeAtIndex(i))->getSubNodesSize(); ++j) {
+                    if (dynamic_cast<SunGUIItem *>(getSubNodeAtIndex(i)->getSubNodeAtIndex(j))) {
+                        for (int k = 0; k < ((SunGUIItem *)getSubNodeAtIndex(i)->getSubNodeAtIndex(j))->sentActions.size(); ++k) {
+                            SunNodeSentAction *action = &((SunGUIItem *)getSubNodeAtIndex(i)->getSubNodeAtIndex(i))->sentActions[k];
                             
                             SunNode *target;
                             
                             string targetPath = *(string *)action->properties["target-path"];
                             
                             if (targetPath != "@self") {
-                                rootNode->findNode(*(string *)action->properties["target-path"], target);
+                                getRootNode()->findNode(*(string *)action->properties["target-path"], target);
                                 
-                                ((SunGUIItem *)subNodes[i]->subNodes[j])->sentActions[k].properties["receiver"] = target;
+                                ((SunGUIItem *)getSubNodeAtIndex(i)->getSubNodeAtIndex(j))->sentActions[k].properties["receiver"] = target;
                             }
                         }
                     }

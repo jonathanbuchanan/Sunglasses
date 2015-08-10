@@ -48,14 +48,14 @@ public:
     void initializeDefaultPropertyAndFunctionMap() {
         SunNode::initializeDefaultPropertyAndFunctionMap();
         
-        propertyMap["visible"] = SunNodeProperty(&visible, SunNodePropertyTypeBool);
+        addToPropertyMap("visible", SunNodeProperty(&visible, SunNodePropertyTypeBool));
         
-        functionMap["render"] = bind(&SunGUIMenu::render, this, std::placeholders::_1);
-        functionMap["update"] = bind(&SunGUIMenu::update, this, std::placeholders::_1);
-        functionMap["hide"] = bind(&SunGUIMenu::hide, this, std::placeholders::_1);
-        functionMap["show"] = bind(&SunGUIMenu::show, this, std::placeholders::_1);
-        functionMap["toggleMouse"] = bind(&SunGUIMenu::toggleMouse, this, std::placeholders::_1);
-        functionMap["closeWindow"] = bind(&SunGUIMenu::closeWindow, this, std::placeholders::_1);
+        addToFunctionMap("render", bind(&SunGUIMenu::render, this, std::placeholders::_1));
+        addToFunctionMap("update", bind(&SunGUIMenu::update, this, std::placeholders::_1));
+        addToFunctionMap("hide", bind(&SunGUIMenu::hide, this, std::placeholders::_1));
+        addToFunctionMap("show", bind(&SunGUIMenu::show, this, std::placeholders::_1));
+        addToFunctionMap("toggleMouse", bind(&SunGUIMenu::toggleMouse, this, std::placeholders::_1));
+        addToFunctionMap("closeWindow", bind(&SunGUIMenu::closeWindow, this, std::placeholders::_1));
     }
     
     map<string, GLboolean> activeTriggers(map<int, SunButtonState> _buttons) {
