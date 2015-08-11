@@ -50,10 +50,10 @@ public:
         SunShader _shader = *(SunShader *)_action.parameters["shader"];
         
         // Set the uniforms for the directional light's diffuse and specular colors
-        glUniform3f(glGetUniformLocation(_shader.program, "directionalLight.color"), color.r, color.g, color.b);
+        glUniform3f(_shader.getUniformLocation("directionalLight.color"), color.r, color.g, color.b);
         
         // Set the unifrom for the directional light's direction
-        glUniform3f(glGetUniformLocation(_shader.program, "directionalLight.direction"), direction.x, direction.y, direction.z);
+        glUniform3f(_shader.getUniformLocation("directionalLight.direction"), direction.x, direction.y, direction.z);
     }
 private:
     

@@ -35,6 +35,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/Graphics/Shaders/SunShader.o \
+	${OBJECTDIR}/Graphics/Shaders/SunShaderUniformObject.o \
 	${OBJECTDIR}/Libraries/SOIL/SOIL.o \
 	${OBJECTDIR}/Libraries/SOIL/image_DXT.o \
 	${OBJECTDIR}/Libraries/SOIL/image_helper.o \
@@ -69,6 +71,16 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/Graphics/Shaders/SunShader.o: Graphics/Shaders/SunShader.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Graphics/Shaders
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Graphics/Shaders/SunShader.o Graphics/Shaders/SunShader.cpp
+
+${OBJECTDIR}/Graphics/Shaders/SunShaderUniformObject.o: Graphics/Shaders/SunShaderUniformObject.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Graphics/Shaders
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Graphics/Shaders/SunShaderUniformObject.o Graphics/Shaders/SunShaderUniformObject.cpp
 
 ${OBJECTDIR}/Libraries/SOIL/SOIL.o: Libraries/SOIL/SOIL.c 
 	${MKDIR} -p ${OBJECTDIR}/Libraries/SOIL

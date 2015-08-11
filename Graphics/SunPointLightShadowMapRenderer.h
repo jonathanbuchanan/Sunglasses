@@ -85,9 +85,9 @@ public:
         lightMatrices.push_back(projectionMatrix * glm::lookAt(_pointLight->position, _pointLight->position + glm::vec3(0.0, 0.0, -1.0), glm::vec3(0.0, -1.0, 0.0)));
         
         for (int i = 0; i < 6; ++i)
-            glUniformMatrix4fv(glGetUniformLocation(_shader.program, ("lightMatrices[" + std::to_string(i) + "]").c_str()), 1, GL_FALSE, glm::value_ptr(lightMatrices[i]));
-        glUniform1f(glGetUniformLocation(_shader.program, "farPlane"), 10.0f);
-        glUniform3fv(glGetUniformLocation(_shader.program, "lightPosition"), 1, &_pointLight->position[0]);
+            glUniformMatrix4fv(_shader.getUniformLocation("lightMatrices[" + std::to_string(i) + "]"), 1, GL_FALSE, glm::value_ptr(lightMatrices[i]));
+        glUniform1f(_shader.getUniformLocation("farPlane"), 10.0f);
+        glUniform3fv(_shader.getUniformLocation("lightPosition"), 1, &_pointLight->position[0]);
     }
 private:
     

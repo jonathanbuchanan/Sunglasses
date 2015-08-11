@@ -114,8 +114,8 @@ public:
     
     void renderText(string text, string _fontName, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color) {
         shader.use();
-        glUniform3f(glGetUniformLocation(shader.program, "textColor"), color.x, color.y, color.z);
-        glUniformMatrix4fv(glGetUniformLocation(shader.program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+        glUniform3f(shader.getUniformLocation("textColor"), color.x, color.y, color.z);
+        glUniformMatrix4fv(shader.getUniformLocation("projection"), 1, GL_FALSE, glm::value_ptr(projection));
         glActiveTexture(GL_TEXTURE0);
         glBindVertexArray(VAO);
         

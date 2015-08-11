@@ -158,18 +158,18 @@ public:
     }
     
     void passPerFrameUniforms(SunShader _shader) {
-        glUniform3f(glGetUniformLocation(_shader.program, "viewPosition"), position.x, position.y, position.z);
+        glUniform3f(_shader.getUniformLocation("viewPosition"), position.x, position.y, position.z);
         
         // Pass the view and projection matrices to the shader
-        GLint viewMatrixLocation = glGetUniformLocation(_shader.program, "view");
+        GLint viewMatrixLocation = _shader.getUniformLocation("view");
         glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, glm::value_ptr(viewMatrix()));
         
-        GLint projectionMatrixLocation = glGetUniformLocation(_shader.program, "projection");
+        GLint projectionMatrixLocation = _shader.getUniformLocation("projection");
         glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(projectionMatrix(800.0f / 600.0f)));
         
-        GLint FOVlocation = glGetUniformLocation(_shader.program, "camera.FOV");
-        GLint nearPlaneLocation = glGetUniformLocation(_shader.program, "camera.nearPlane");
-        GLint farPlaneLocation = glGetUniformLocation(_shader.program, "camera.farPlane");
+        GLint FOVlocation = _shader.getUniformLocation("camera.FOV");
+        GLint nearPlaneLocation = _shader.getUniformLocation("camera.nearPlane");
+        GLint farPlaneLocation = _shader.getUniformLocation("camera.farPlane");
         
         glUniform1f(FOVlocation, FOV);
         glUniform1f(nearPlaneLocation, 0.01f);

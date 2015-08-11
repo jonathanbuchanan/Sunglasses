@@ -177,7 +177,7 @@ public:
             glm::mat4 matrix;
             matrix = glm::perspective(45.0f, 800.0f / 600.0f, 0.01f, 100.0f);
             
-            GLint projectionMatrixLocation = glGetUniformLocation(shaders["quad"].shader.program, "projection");
+            GLint projectionMatrixLocation = shaders["quad"].shader.getUniformLocation("projection");
             glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(matrix));
 
             passUniforms(&shaders["quad"].shader);

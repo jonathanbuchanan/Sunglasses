@@ -49,18 +49,18 @@ class SunSpotlightObject : public SunObject {
         SunShader _shader = *(SunShader *)_action.parameters["shader"];
         
         // Set the uniforms for the spotlight's diffuse and specular colors and cutoff value
-        glUniform3f(glGetUniformLocation(_shader.program, "spotlight.diffuseColor"), spotlight.diffuseColor.x, spotlight.diffuseColor.y, spotlight.diffuseColor.z);
-        glUniform3f(glGetUniformLocation(_shader.program, "spotlight.specularColor"), spotlight.specularColor.x, spotlight.specularColor.y, spotlight.specularColor.z);
-        glUniform1f(glGetUniformLocation(_shader.program, "spotlight.cutoff"), spotlight.cutoff);
+        glUniform3f(_shader.getUniformLocation("spotlight.diffuseColor"), spotlight.diffuseColor.x, spotlight.diffuseColor.y, spotlight.diffuseColor.z);
+        glUniform3f(_shader.getUniformLocation("spotlight.specularColor"), spotlight.specularColor.x, spotlight.specularColor.y, spotlight.specularColor.z);
+        glUniform1f(_shader.getUniformLocation("spotlight.cutoff"), spotlight.cutoff);
         
         // Set the uniform for the spotlight's position and direction
-        glUniform3f(glGetUniformLocation(_shader.program, "spotlight.position"), spotlight.position.x, spotlight.position.y, spotlight.position.z);
-        glUniform3f(glGetUniformLocation(_shader.program, "spotlight.direction"), spotlight.direction.x, spotlight.direction.y, spotlight.direction.z);
+        glUniform3f(_shader.getUniformLocation("spotlight.position"), spotlight.position.x, spotlight.position.y, spotlight.position.z);
+        glUniform3f(_shader.getUniformLocation("spotlight.direction"), spotlight.direction.x, spotlight.direction.y, spotlight.direction.z);
 
         // Set the uniforms for the spotlight's constant, linear, and quadratic terms
-        glUniform1f(glGetUniformLocation(_shader.program, "spotlight.constant"), spotlight.constantTerm);
-        glUniform1f(glGetUniformLocation(_shader.program, "spotlight.linear"), spotlight.linearTerm);
-        glUniform1f(glGetUniformLocation(_shader.program, "spotlight.quadratic"), spotlight.quadraticTerm);
+        glUniform1f(_shader.getUniformLocation("spotlight.constant"), spotlight.constantTerm);
+        glUniform1f(_shader.getUniformLocation("spotlight.linear"), spotlight.linearTerm);
+        glUniform1f(_shader.getUniformLocation("spotlight.quadratic"), spotlight.quadraticTerm);
     }
 };
 

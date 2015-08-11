@@ -54,13 +54,13 @@ public:
         SunShader _shader = *(SunShader *)_action.parameters["shader"];
         
         // Set the uniforms for the point light's diffuse and specular colors
-        glUniform3f(glGetUniformLocation(_shader.program, "pointLight.color"), color.r, color.g, color.b);
+        glUniform3f(_shader.getUniformLocation("pointLight.color"), color.r, color.g, color.b);
         
         // Set the uniform for the point light's position
-        glUniform3f(glGetUniformLocation(_shader.program, "pointLight.position"), position.x, position.y, position.z);
+        glUniform3f(_shader.getUniformLocation("pointLight.position"), position.x, position.y, position.z);
         
         // Set the uniforms for the point light's constant, linear, and quadratic terms
-        glUniform1i(glGetUniformLocation(_shader.program, "pointLight.attenuate"), attenuate);
+        glUniform1i(_shader.getUniformLocation("pointLight.attenuate"), attenuate);
     }
 private:
     

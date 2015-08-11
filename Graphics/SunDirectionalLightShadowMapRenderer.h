@@ -83,7 +83,7 @@ public:
         
         glm::mat4 lightMatrix = projectionMatrix * viewMatrix;
         
-        glUniformMatrix4fv(glGetUniformLocation(_shader.program, "lightMatrix"), 1, GL_FALSE, glm::value_ptr(lightMatrix));
+        glUniformMatrix4fv(_shader.getUniformLocation("lightMatrix"), 1, GL_FALSE, glm::value_ptr(lightMatrix));
     }
     
 private:

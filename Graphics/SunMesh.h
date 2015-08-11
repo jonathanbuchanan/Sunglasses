@@ -171,7 +171,7 @@ public:
         for (int i = 0; i < bones.size(); i++) {
             glm::mat4 boneMatrix = bones[i].globalTransform * globalInverseTransform;
             
-            glUniformMatrix4fv(glGetUniformLocation(_shader.program, ("boneMatrices[" + to_string(i) + "]").c_str()), 1, GL_FALSE, glm::value_ptr(boneMatrix));
+            glUniformMatrix4fv(_shader.getUniformLocation(("boneMatrices[" + to_string(i) + "]")), 1, GL_FALSE, glm::value_ptr(boneMatrix));
         }
     }
     
@@ -179,9 +179,9 @@ public:
         if (_renderType == SunMeshRenderTypeTextured && textures.size() > 0) {
             glBindTexture(GL_TEXTURE_2D, textures[0].id);
             glActiveTexture(GL_TEXTURE0);
-            glUniform1i(glGetUniformLocation(_shader.program, "material.diffuse"), 0);
+            glUniform1i(_shader.getUniformLocation("material.diffuse"), 0);
             
-            glUniform1f(glGetUniformLocation(_shader.program, "material.shininess"), _material.shininess);
+            glUniform1f(_shader.getUniformLocation("material.shininess"), _material.shininess);
             
             // Calculate the model matrix
             glm::mat4 modelMatrix;
@@ -192,13 +192,13 @@ public:
             modelMatrix = glm::scale(modelMatrix, _scale);
             
             // Pass the model matrix uniform
-            glUniformMatrix4fv(glGetUniformLocation(_shader.program, "model"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
+            glUniformMatrix4fv(_shader.getUniformLocation("model"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
             
             // Calculate the normal matrix
             glm::mat3 normalMatrix = glm::transpose(glm::inverse(glm::mat3(modelMatrix)));
             
             // Pass the normal matrix
-            glUniformMatrix3fv(glGetUniformLocation(_shader.program, "normalMatrix"), 1, GL_FALSE, glm::value_ptr(normalMatrix));
+            glUniformMatrix3fv(_shader.getUniformLocation("normalMatrix"), 1, GL_FALSE, glm::value_ptr(normalMatrix));
             
             // Bind the VAO
             glBindVertexArray(VAO);
@@ -209,9 +209,9 @@ public:
             // Unbind the VAO
             glBindVertexArray(0);
         } else {
-            glUniform3f(glGetUniformLocation(_shader.program, "material.diffuse"), _material.color.r, _material.color.g, _material.color.b);
+            glUniform3f(_shader.getUniformLocation("material.diffuse"), _material.color.r, _material.color.g, _material.color.b);
             
-            glUniform1f(glGetUniformLocation(_shader.program, "material.shininess"), _material.shininess);
+            glUniform1f(_shader.getUniformLocation("material.shininess"), _material.shininess);
             
             // Calculate the model matrix
             glm::mat4 modelMatrix;
@@ -222,13 +222,13 @@ public:
             modelMatrix = glm::scale(modelMatrix, _scale);
             
             // Pass the model matrix uniform
-            glUniformMatrix4fv(glGetUniformLocation(_shader.program, "model"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
+            glUniformMatrix4fv(_shader.getUniformLocation("model"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
             
             // Calculate the normal matrix
             glm::mat3 normalMatrix = glm::mat3(glm::transpose(glm::inverse(modelMatrix)));
             
             // Pass the normal matrix
-            glUniformMatrix3fv(glGetUniformLocation(_shader.program, "normalMatrix"), 1, GL_FALSE, glm::value_ptr(normalMatrix));
+            glUniformMatrix3fv(_shader.getUniformLocation("normalMatrix"), 1, GL_FALSE, glm::value_ptr(normalMatrix));
             
             // Bind the VAO
             glBindVertexArray(VAO);

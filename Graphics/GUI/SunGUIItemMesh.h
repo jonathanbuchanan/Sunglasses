@@ -126,15 +126,15 @@ public:
         model = glm::translate(model, glm::vec3(_position, 0.0f));
         model = glm::scale(model, glm::vec3(_size, 1.0f));
         
-        glUniformMatrix4fv(glGetUniformLocation(shader.program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        glUniform3f(glGetUniformLocation(shader.program, "_color"), _color.r, _color.g, _color.b);
-        glUniform1i(glGetUniformLocation(shader.program, "_textured"), _textured);
-        glUniform3f(glGetUniformLocation(shader.program, "_highlightColor"), _highlightColor.r, _highlightColor.g, _highlightColor.b);
-        glUniform1i(glGetUniformLocation(shader.program, "_highlighted"), _highlighted);
+        glUniformMatrix4fv(shader.getUniformLocation("model"), 1, GL_FALSE, glm::value_ptr(model));
+        glUniform3f(shader.getUniformLocation("_color"), _color.r, _color.g, _color.b);
+        glUniform1i(shader.getUniformLocation("_textured"), _textured);
+        glUniform3f(shader.getUniformLocation("_highlightColor"), _highlightColor.r, _highlightColor.g, _highlightColor.b);
+        glUniform1i(shader.getUniformLocation("_highlighted"), _highlighted);
         
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture);
-        glUniform1i(glGetUniformLocation(shader.program, "_texture"), 0);
+        glUniform1i(shader.getUniformLocation("_texture"), 0);
         
         // Bind the VAO
         glBindVertexArray(VAO);

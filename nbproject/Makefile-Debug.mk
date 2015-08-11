@@ -35,6 +35,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/Graphics/Shaders/SunShader.o \
+	${OBJECTDIR}/Graphics/Shaders/SunShaderUniformObject.o \
 	${OBJECTDIR}/Libraries/SOIL/SOIL.o \
 	${OBJECTDIR}/Libraries/SOIL/image_DXT.o \
 	${OBJECTDIR}/Libraries/SOIL/image_helper.o \
@@ -93,6 +95,16 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: Libraries/libvorbisenc.a
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses ${OBJECTFILES} ${LDLIBSOPTIONS} -framework OpenGL -framework CoreFoundation -framework CoreVideo -framework Cocoa -lz -framework IOKit -framework OpenAL
+
+${OBJECTDIR}/Graphics/Shaders/SunShader.o: Graphics/Shaders/SunShader.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Graphics/Shaders
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -ILibraries -ILibraries/GLFW -ILibraries/GL -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Graphics/Shaders/SunShader.o Graphics/Shaders/SunShader.cpp
+
+${OBJECTDIR}/Graphics/Shaders/SunShaderUniformObject.o: Graphics/Shaders/SunShaderUniformObject.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Graphics/Shaders
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -ILibraries -ILibraries/GLFW -ILibraries/GL -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Graphics/Shaders/SunShaderUniformObject.o Graphics/Shaders/SunShaderUniformObject.cpp
 
 ${OBJECTDIR}/Libraries/SOIL/SOIL.o: Libraries/SOIL/SOIL.c 
 	${MKDIR} -p ${OBJECTDIR}/Libraries/SOIL

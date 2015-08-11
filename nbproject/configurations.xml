@@ -145,6 +145,8 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <logicalFolder name="Audio" displayName="Audio" projectFiles="true">
+      </logicalFolder>
       <logicalFolder name="Freetype" displayName="Freetype" projectFiles="true">
         <logicalFolder name="config" displayName="config" projectFiles="true">
           <itemPath>Libraries/Freetype/config/ftconfig.h</itemPath>
@@ -501,6 +503,26 @@
         <itemPath>Libraries/glm/vec3.hpp</itemPath>
         <itemPath>Libraries/glm/vec4.hpp</itemPath>
         <itemPath>Libraries/glm/vector_relational.hpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="Graphics" displayName="Graphics" projectFiles="true">
+        <logicalFolder name="BrickWall" displayName="BrickWall" projectFiles="true">
+        </logicalFolder>
+        <logicalFolder name="Fonts" displayName="Fonts" projectFiles="true">
+        </logicalFolder>
+        <logicalFolder name="GUI" displayName="GUI" projectFiles="true">
+        </logicalFolder>
+        <logicalFolder name="Nanosuit" displayName="Nanosuit" projectFiles="true">
+        </logicalFolder>
+        <logicalFolder name="Shaders" displayName="Shaders" projectFiles="true">
+          <logicalFolder name="Variable Pipeline"
+                         displayName="Variable Pipeline"
+                         projectFiles="true">
+          </logicalFolder>
+          <itemPath>Graphics/Shaders/SunShader.cpp</itemPath>
+          <itemPath>Graphics/Shaders/SunShaderUniformObject.cpp</itemPath>
+        </logicalFolder>
+      </logicalFolder>
+      <logicalFolder name="Physics" displayName="Physics" projectFiles="true">
       </logicalFolder>
       <logicalFolder name="SOIL" displayName="SOIL" projectFiles="true">
         <logicalFolder name="original" displayName="original" projectFiles="true">
@@ -918,7 +940,14 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="Graphics/Shaders/SunShader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Graphics/Shaders/SunShader.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Graphics/Shaders/SunShaderUniformObject.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="Graphics/Shaders/SunShaderUniformObject.h"
             ex="false"
@@ -2517,7 +2546,14 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="Graphics/Shaders/SunShader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Graphics/Shaders/SunShader.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Graphics/Shaders/SunShaderUniformObject.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="Graphics/Shaders/SunShaderUniformObject.h"
             ex="false"

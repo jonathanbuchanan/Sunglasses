@@ -69,7 +69,7 @@ public:
         SunShader shader = *(SunShader *)_action.parameters["shader"];
         
         for (int i = 0; i < sampleCount; i++) {
-            GLint location = glGetUniformLocation(shader.program, (uniformName + "[" + to_string(i) + "]").c_str());
+            GLint location = shader.getUniformLocation(uniformName + "[" + to_string(i) + "]");
             glUniform3f(location, samples[i].x, samples[i].y, samples[i].z);
         }
     }
