@@ -20,7 +20,7 @@ SunGUISystem::SunGUISystem(const char* filepath, GLFWwindow* _window, SunNode* _
     processXMLGUISystemNode(system);
 }
 
-SunGUISystem::initializeDefaultPropertyAndFunctionMap() {
+void SunGUISystem::initializeDefaultPropertyAndFunctionMap() {
     SunNode::initializeDefaultPropertyAndFunctionMap();
 
     // Add the "render" function to the function map

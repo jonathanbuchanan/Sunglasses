@@ -37,7 +37,7 @@ public:
         SunSound newSound;
         newSound.name = _soundName;
         
-        newSound.sound.setBuffer(_storage->bufferMap[_soundName].buffer);
+        newSound.sound.setBuffer(_storage->getBufferForString(_soundName).buffer);
         newSound.sound.setMinDistance(_minimumDistance);
         newSound.sound.setAttenuation(_attenuation);
         

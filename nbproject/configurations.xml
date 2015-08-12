@@ -11,42 +11,11 @@
         <itemPath>Audio/SunSoundObject.h</itemPath>
       </logicalFolder>
       <logicalFolder name="Graphics" displayName="Graphics" projectFiles="true">
-        <logicalFolder name="BrickWall" displayName="BrickWall" projectFiles="true">
-          <itemPath>Graphics/BrickWall/BrickWall.mtl</itemPath>
-          <itemPath>Graphics/BrickWall/BrickWall.obj</itemPath>
-          <itemPath>Graphics/BrickWall/brickwall.jpg</itemPath>
-          <itemPath>Graphics/BrickWall/brickwall_normal.jpg</itemPath>
-        </logicalFolder>
-        <logicalFolder name="Fonts" displayName="Fonts" projectFiles="true">
-          <itemPath>Graphics/Fonts/arial.ttf</itemPath>
-        </logicalFolder>
         <logicalFolder name="GUI" displayName="GUI" projectFiles="true">
           <itemPath>Graphics/GUI/SunGUIItem.h</itemPath>
           <itemPath>Graphics/GUI/SunGUIItemMesh.h</itemPath>
           <itemPath>Graphics/GUI/SunGUIMenu.h</itemPath>
           <itemPath>Graphics/GUI/SunGUISystem.h</itemPath>
-        </logicalFolder>
-        <logicalFolder name="Nanosuit" displayName="Nanosuit" projectFiles="true">
-          <itemPath>Graphics/Nanosuit/arm_dif.png</itemPath>
-          <itemPath>Graphics/Nanosuit/arm_showroom_ddn.png</itemPath>
-          <itemPath>Graphics/Nanosuit/arm_showroom_spec.png</itemPath>
-          <itemPath>Graphics/Nanosuit/body_dif.png</itemPath>
-          <itemPath>Graphics/Nanosuit/body_showroom_ddn.png</itemPath>
-          <itemPath>Graphics/Nanosuit/body_showroom_spec.png</itemPath>
-          <itemPath>Graphics/Nanosuit/glass_ddn.png</itemPath>
-          <itemPath>Graphics/Nanosuit/glass_dif.png</itemPath>
-          <itemPath>Graphics/Nanosuit/hand_dif.png</itemPath>
-          <itemPath>Graphics/Nanosuit/hand_showroom_ddn.png</itemPath>
-          <itemPath>Graphics/Nanosuit/hand_showroom_spec.png</itemPath>
-          <itemPath>Graphics/Nanosuit/helmet_diff.png</itemPath>
-          <itemPath>Graphics/Nanosuit/helmet_showroom_ddn.png</itemPath>
-          <itemPath>Graphics/Nanosuit/helmet_showroom_spec.png</itemPath>
-          <itemPath>Graphics/Nanosuit/leg_dif.png</itemPath>
-          <itemPath>Graphics/Nanosuit/leg_showroom_ddn.png</itemPath>
-          <itemPath>Graphics/Nanosuit/leg_showroom_spec.png</itemPath>
-          <itemPath>Graphics/Nanosuit/nanosuit.blend</itemPath>
-          <itemPath>Graphics/Nanosuit/nanosuit.mtl</itemPath>
-          <itemPath>Graphics/Nanosuit/nanosuit.obj</itemPath>
         </logicalFolder>
         <logicalFolder name="Shaders" displayName="Shaders" projectFiles="true">
           <logicalFolder name="Variable Pipeline"
@@ -95,11 +64,6 @@
           <itemPath>Graphics/Shaders/TextVertex.vert</itemPath>
           <itemPath>Graphics/Shaders/Vertex.vert</itemPath>
         </logicalFolder>
-        <itemPath>Graphics/Cube.dae</itemPath>
-        <itemPath>Graphics/Monkey.dae</itemPath>
-        <itemPath>Graphics/Penguins.jpg</itemPath>
-        <itemPath>Graphics/Plane.dae</itemPath>
-        <itemPath>Graphics/Pyramid-10.dae</itemPath>
         <itemPath>Graphics/SunCamera.h</itemPath>
         <itemPath>Graphics/SunDirectionalLightShadowMapRenderer.h</itemPath>
         <itemPath>Graphics/SunMesh.h</itemPath>
@@ -110,9 +74,6 @@
         <itemPath>Graphics/SunRenderingNode.h</itemPath>
         <itemPath>Graphics/SunTextRenderer.h</itemPath>
         <itemPath>Graphics/SunTexturedQuad.h</itemPath>
-        <itemPath>Graphics/Teapot.dae</itemPath>
-        <itemPath>Graphics/TestAnim.dae</itemPath>
-        <itemPath>Graphics/TestAnimationModel.dae</itemPath>
       </logicalFolder>
       <logicalFolder name="Physics" displayName="Physics" projectFiles="true">
         <itemPath>Audio/SunPhysicsCollider.h</itemPath>
@@ -145,6 +106,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="Audio" displayName="Audio" projectFiles="true">
+        <itemPath>Audio/SunSoundBufferStorage.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="Freetype" displayName="Freetype" projectFiles="true">
         <logicalFolder name="config" displayName="config" projectFiles="true">
@@ -504,17 +466,11 @@
         <itemPath>Libraries/glm/vector_relational.hpp</itemPath>
       </logicalFolder>
       <logicalFolder name="Graphics" displayName="Graphics" projectFiles="true">
-        <logicalFolder name="BrickWall" displayName="BrickWall" projectFiles="true">
-        </logicalFolder>
-        <logicalFolder name="Fonts" displayName="Fonts" projectFiles="true">
-        </logicalFolder>
         <logicalFolder name="GUI" displayName="GUI" projectFiles="true">
           <itemPath>Graphics/GUI/SunGUIItem.cpp</itemPath>
           <itemPath>Graphics/GUI/SunGUIItemMesh.cpp</itemPath>
           <itemPath>Graphics/GUI/SunGUIMenu.cpp</itemPath>
           <itemPath>Graphics/GUI/SunGUISystem.cpp</itemPath>
-        </logicalFolder>
-        <logicalFolder name="Nanosuit" displayName="Nanosuit" projectFiles="true">
         </logicalFolder>
         <logicalFolder name="Shaders" displayName="Shaders" projectFiles="true">
           <logicalFolder name="Variable Pipeline"
@@ -524,6 +480,8 @@
           <itemPath>Graphics/Shaders/SunShader.cpp</itemPath>
           <itemPath>Graphics/Shaders/SunShaderUniformObject.cpp</itemPath>
         </logicalFolder>
+        <itemPath>Graphics/SunMesh.cpp</itemPath>
+        <itemPath>Graphics/SunModel.cpp</itemPath>
         <itemPath>Graphics/SunPrimitives.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="Physics" displayName="Physics" projectFiles="true">
@@ -676,6 +634,8 @@
       </item>
       <item path="Audio/SunPhysicsObject.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Audio/SunSoundBufferStorage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Audio/SunSoundBufferStorage.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Audio/SunSoundListener.h" ex="false" tool="3" flavor2="0">
@@ -687,21 +647,6 @@
       <item path="DeferredQuad.pre" ex="false" tool="3" flavor2="0">
       </item>
       <item path="GUIDemo.xml" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/BrickWall/BrickWall.mtl" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/BrickWall/BrickWall.obj" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/BrickWall/brickwall.jpg" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/BrickWall/brickwall_normal.jpg"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="Graphics/Cube.dae" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Fonts/arial.ttf" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Graphics/GUI/SunGUIItem.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -718,84 +663,6 @@
       <item path="Graphics/GUI/SunGUISystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Graphics/GUI/SunGUISystem.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Monkey.dae" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/arm_dif.png" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/arm_showroom_ddn.png"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/arm_showroom_spec.png"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/body_dif.png" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/body_showroom_ddn.png"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/body_showroom_spec.png"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/glass_ddn.png" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/glass_dif.png" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/hand_dif.png" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/hand_showroom_ddn.png"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/hand_showroom_spec.png"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/helmet_diff.png" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/helmet_showroom_ddn.png"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/helmet_showroom_spec.png"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/leg_dif.png" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/leg_showroom_ddn.png"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/leg_showroom_spec.png"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/nanosuit.blend" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/nanosuit.mtl" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/nanosuit.obj" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Penguins.jpg" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Plane.dae" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Pyramid-10.dae" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Graphics/Shaders/2DFullscreenBlurFragment.frag"
             ex="false"
@@ -998,7 +865,11 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="Graphics/SunMesh.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Graphics/SunMesh.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Graphics/SunModel.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Graphics/SunModel.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -1018,12 +889,6 @@
       <item path="Graphics/SunTextRenderer.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Graphics/SunTexturedQuad.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Teapot.dae" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/TestAnim.dae" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/TestAnimationModel.dae" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Libraries/Freetype/config/ftconfig.h"
             ex="false"
@@ -2292,6 +2157,8 @@
       </item>
       <item path="Audio/SunPhysicsObject.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Audio/SunSoundBufferStorage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Audio/SunSoundBufferStorage.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Audio/SunSoundListener.h" ex="false" tool="3" flavor2="0">
@@ -2303,21 +2170,6 @@
       <item path="DeferredQuad.pre" ex="false" tool="3" flavor2="0">
       </item>
       <item path="GUIDemo.xml" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/BrickWall/BrickWall.mtl" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/BrickWall/BrickWall.obj" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/BrickWall/brickwall.jpg" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/BrickWall/brickwall_normal.jpg"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="Graphics/Cube.dae" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Fonts/arial.ttf" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Graphics/GUI/SunGUIItem.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -2334,84 +2186,6 @@
       <item path="Graphics/GUI/SunGUISystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Graphics/GUI/SunGUISystem.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Monkey.dae" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/arm_dif.png" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/arm_showroom_ddn.png"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/arm_showroom_spec.png"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/body_dif.png" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/body_showroom_ddn.png"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/body_showroom_spec.png"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/glass_ddn.png" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/glass_dif.png" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/hand_dif.png" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/hand_showroom_ddn.png"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/hand_showroom_spec.png"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/helmet_diff.png" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/helmet_showroom_ddn.png"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/helmet_showroom_spec.png"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/leg_dif.png" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/leg_showroom_ddn.png"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/leg_showroom_spec.png"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/nanosuit.blend" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/nanosuit.mtl" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Nanosuit/nanosuit.obj" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Penguins.jpg" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Plane.dae" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Pyramid-10.dae" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Graphics/Shaders/2DFullscreenBlurFragment.frag"
             ex="false"
@@ -2614,7 +2388,11 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="Graphics/SunMesh.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Graphics/SunMesh.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Graphics/SunModel.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Graphics/SunModel.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -2634,12 +2412,6 @@
       <item path="Graphics/SunTextRenderer.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Graphics/SunTexturedQuad.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/Teapot.dae" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/TestAnim.dae" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/TestAnimationModel.dae" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Libraries/Freetype/config/ftconfig.h"
             ex="false"

@@ -35,12 +35,15 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/Audio/SunSoundBufferStorage.o \
 	${OBJECTDIR}/Graphics/GUI/SunGUIItem.o \
 	${OBJECTDIR}/Graphics/GUI/SunGUIItemMesh.o \
 	${OBJECTDIR}/Graphics/GUI/SunGUIMenu.o \
 	${OBJECTDIR}/Graphics/GUI/SunGUISystem.o \
 	${OBJECTDIR}/Graphics/Shaders/SunShader.o \
 	${OBJECTDIR}/Graphics/Shaders/SunShaderUniformObject.o \
+	${OBJECTDIR}/Graphics/SunMesh.o \
+	${OBJECTDIR}/Graphics/SunModel.o \
 	${OBJECTDIR}/Graphics/SunPrimitives.o \
 	${OBJECTDIR}/Libraries/SOIL/SOIL.o \
 	${OBJECTDIR}/Libraries/SOIL/image_DXT.o \
@@ -102,6 +105,11 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses ${OBJECTFILES} ${LDLIBSOPTIONS} -framework OpenGL -framework CoreFoundation -framework CoreVideo -framework Cocoa -lz -framework IOKit -framework OpenAL
 
+${OBJECTDIR}/Audio/SunSoundBufferStorage.o: Audio/SunSoundBufferStorage.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Audio
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -ILibraries -ILibraries/GLFW -ILibraries/GL -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Audio/SunSoundBufferStorage.o Audio/SunSoundBufferStorage.cpp
+
 ${OBJECTDIR}/Graphics/GUI/SunGUIItem.o: Graphics/GUI/SunGUIItem.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Graphics/GUI
 	${RM} "$@.d"
@@ -131,6 +139,16 @@ ${OBJECTDIR}/Graphics/Shaders/SunShaderUniformObject.o: Graphics/Shaders/SunShad
 	${MKDIR} -p ${OBJECTDIR}/Graphics/Shaders
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -ILibraries -ILibraries/GLFW -ILibraries/GL -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Graphics/Shaders/SunShaderUniformObject.o Graphics/Shaders/SunShaderUniformObject.cpp
+
+${OBJECTDIR}/Graphics/SunMesh.o: Graphics/SunMesh.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Graphics
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -ILibraries -ILibraries/GLFW -ILibraries/GL -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Graphics/SunMesh.o Graphics/SunMesh.cpp
+
+${OBJECTDIR}/Graphics/SunModel.o: Graphics/SunModel.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Graphics
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -ILibraries -ILibraries/GLFW -ILibraries/GL -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Graphics/SunModel.o Graphics/SunModel.cpp
 
 ${OBJECTDIR}/Graphics/SunPrimitives.o: Graphics/SunPrimitives.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Graphics

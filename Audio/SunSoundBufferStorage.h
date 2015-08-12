@@ -22,18 +22,13 @@ struct SunSoundBuffer {
 
 class SunSoundBufferStorage {
 public:
-    map<string, SunSoundBuffer> bufferMap;
+    void loadSoundFromFileWithName(string _file, string _name);
     
-    void loadSoundFromFileWithName(string _file, string _name) {
-        SunSoundBuffer newBuffer;
-        
-        newBuffer.name = _name;
-        newBuffer.buffer.loadFromFile(_file);
-        
-        bufferMap[_name] = newBuffer;
-    }
+    inline map<string, SunSoundBuffer> & getBufferMap() { return bufferMap; }
+    inline SunSoundBuffer & getBufferForString(string s) { return bufferMap[s]; }
+    inline void addBufferForString(SunSoundBuffer _buffer, string s) { bufferMap[s] = _buffer; }
 private:
-    
+    map<string, SunSoundBuffer> bufferMap;
 };
 
 #endif

@@ -612,7 +612,7 @@ public:
                 attenuation = attribute.as_float();
         }
         
-        if (storage.bufferMap.find(name) == storage.bufferMap.end()) {
+        if (storage.getBufferMap().find(name) == storage.getBufferMap().end()) {
             storage.loadSoundFromFileWithName(file, name);
         }
         
