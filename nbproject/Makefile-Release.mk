@@ -35,13 +35,19 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/Graphics/GUI/SunGUIItem.o \
+	${OBJECTDIR}/Graphics/GUI/SunGUIItemMesh.o \
+	${OBJECTDIR}/Graphics/GUI/SunGUIMenu.o \
+	${OBJECTDIR}/Graphics/GUI/SunGUISystem.o \
 	${OBJECTDIR}/Graphics/Shaders/SunShader.o \
 	${OBJECTDIR}/Graphics/Shaders/SunShaderUniformObject.o \
+	${OBJECTDIR}/Graphics/SunPrimitives.o \
 	${OBJECTDIR}/Libraries/SOIL/SOIL.o \
 	${OBJECTDIR}/Libraries/SOIL/image_DXT.o \
 	${OBJECTDIR}/Libraries/SOIL/image_helper.o \
 	${OBJECTDIR}/Libraries/SOIL/stb_image_aug.o \
 	${OBJECTDIR}/Libraries/glm/detail/glm.o \
+	${OBJECTDIR}/SunButtonState.o \
 	${OBJECTDIR}/SunGame.o \
 	${OBJECTDIR}/SunNode.o \
 	${OBJECTDIR}/Utility.o \
@@ -72,6 +78,26 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/Graphics/GUI/SunGUIItem.o: Graphics/GUI/SunGUIItem.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Graphics/GUI
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Graphics/GUI/SunGUIItem.o Graphics/GUI/SunGUIItem.cpp
+
+${OBJECTDIR}/Graphics/GUI/SunGUIItemMesh.o: Graphics/GUI/SunGUIItemMesh.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Graphics/GUI
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Graphics/GUI/SunGUIItemMesh.o Graphics/GUI/SunGUIItemMesh.cpp
+
+${OBJECTDIR}/Graphics/GUI/SunGUIMenu.o: Graphics/GUI/SunGUIMenu.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Graphics/GUI
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Graphics/GUI/SunGUIMenu.o Graphics/GUI/SunGUIMenu.cpp
+
+${OBJECTDIR}/Graphics/GUI/SunGUISystem.o: Graphics/GUI/SunGUISystem.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Graphics/GUI
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Graphics/GUI/SunGUISystem.o Graphics/GUI/SunGUISystem.cpp
+
 ${OBJECTDIR}/Graphics/Shaders/SunShader.o: Graphics/Shaders/SunShader.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Graphics/Shaders
 	${RM} "$@.d"
@@ -81,6 +107,11 @@ ${OBJECTDIR}/Graphics/Shaders/SunShaderUniformObject.o: Graphics/Shaders/SunShad
 	${MKDIR} -p ${OBJECTDIR}/Graphics/Shaders
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Graphics/Shaders/SunShaderUniformObject.o Graphics/Shaders/SunShaderUniformObject.cpp
+
+${OBJECTDIR}/Graphics/SunPrimitives.o: Graphics/SunPrimitives.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Graphics
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Graphics/SunPrimitives.o Graphics/SunPrimitives.cpp
 
 ${OBJECTDIR}/Libraries/SOIL/SOIL.o: Libraries/SOIL/SOIL.c 
 	${MKDIR} -p ${OBJECTDIR}/Libraries/SOIL
@@ -106,6 +137,11 @@ ${OBJECTDIR}/Libraries/glm/detail/glm.o: Libraries/glm/detail/glm.cpp
 	${MKDIR} -p ${OBJECTDIR}/Libraries/glm/detail
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Libraries/glm/detail/glm.o Libraries/glm/detail/glm.cpp
+
+${OBJECTDIR}/SunButtonState.o: SunButtonState.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SunButtonState.o SunButtonState.cpp
 
 ${OBJECTDIR}/SunGame.o: SunGame.cpp 
 	${MKDIR} -p ${OBJECTDIR}

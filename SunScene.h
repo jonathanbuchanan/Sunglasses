@@ -118,6 +118,7 @@ public:
         processXMLSceneNode(scene);
         
         GUIsystem->loadFonts(&textRenderer);
+        
         GUIsystem->mapSentActionTargets();
         
         SunNodeSentAction action;
@@ -506,7 +507,7 @@ public:
         }
         
         SunShaderHemisphereKernelObject *kernel = new SunShaderHemisphereKernelObject(sampleCount);
-        kernel->uniformName = name;
+        kernel->setUniformName(name);
         
         _renderNode->uniforms.push_back(kernel);
     }

@@ -24,7 +24,6 @@
           <itemPath>Graphics/GUI/SunGUIItem.h</itemPath>
           <itemPath>Graphics/GUI/SunGUIItemMesh.h</itemPath>
           <itemPath>Graphics/GUI/SunGUIMenu.h</itemPath>
-          <itemPath>Graphics/GUI/SunGUIRenderer.h</itemPath>
           <itemPath>Graphics/GUI/SunGUISystem.h</itemPath>
         </logicalFolder>
         <logicalFolder name="Nanosuit" displayName="Nanosuit" projectFiles="true">
@@ -510,6 +509,10 @@
         <logicalFolder name="Fonts" displayName="Fonts" projectFiles="true">
         </logicalFolder>
         <logicalFolder name="GUI" displayName="GUI" projectFiles="true">
+          <itemPath>Graphics/GUI/SunGUIItem.cpp</itemPath>
+          <itemPath>Graphics/GUI/SunGUIItemMesh.cpp</itemPath>
+          <itemPath>Graphics/GUI/SunGUIMenu.cpp</itemPath>
+          <itemPath>Graphics/GUI/SunGUISystem.cpp</itemPath>
         </logicalFolder>
         <logicalFolder name="Nanosuit" displayName="Nanosuit" projectFiles="true">
         </logicalFolder>
@@ -521,6 +524,7 @@
           <itemPath>Graphics/Shaders/SunShader.cpp</itemPath>
           <itemPath>Graphics/Shaders/SunShaderUniformObject.cpp</itemPath>
         </logicalFolder>
+        <itemPath>Graphics/SunPrimitives.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="Physics" displayName="Physics" projectFiles="true">
       </logicalFolder>
@@ -538,6 +542,7 @@
         <itemPath>Libraries/SOIL/stbi_DDS_aug.h</itemPath>
         <itemPath>Libraries/SOIL/stbi_DDS_aug_c.h</itemPath>
       </logicalFolder>
+      <itemPath>SunButtonState.cpp</itemPath>
       <itemPath>SunGame.cpp</itemPath>
       <itemPath>SunNode.cpp</itemPath>
       <itemPath>Utility.cpp</itemPath>
@@ -698,13 +703,19 @@
       </item>
       <item path="Graphics/Fonts/arial.ttf" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Graphics/GUI/SunGUIItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Graphics/GUI/SunGUIItem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Graphics/GUI/SunGUIItemMesh.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Graphics/GUI/SunGUIItemMesh.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Graphics/GUI/SunGUIMenu.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Graphics/GUI/SunGUIMenu.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Graphics/GUI/SunGUIRenderer.h" ex="false" tool="3" flavor2="0">
+      <item path="Graphics/GUI/SunGUISystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Graphics/GUI/SunGUISystem.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -995,6 +1006,8 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="Graphics/SunPrimitives.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Graphics/SunPrimitives.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -2221,6 +2234,8 @@
       <item path="SceneDemo.xml" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SolidScene.pre" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SunButtonState.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="SunButtonState.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -2304,13 +2319,19 @@
       </item>
       <item path="Graphics/Fonts/arial.ttf" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Graphics/GUI/SunGUIItem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Graphics/GUI/SunGUIItem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Graphics/GUI/SunGUIItemMesh.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Graphics/GUI/SunGUIItemMesh.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Graphics/GUI/SunGUIMenu.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Graphics/GUI/SunGUIMenu.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Graphics/GUI/SunGUIRenderer.h" ex="false" tool="3" flavor2="0">
+      <item path="Graphics/GUI/SunGUISystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Graphics/GUI/SunGUISystem.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -2601,6 +2622,8 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="Graphics/SunPrimitives.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Graphics/SunPrimitives.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -3827,6 +3850,8 @@
       <item path="SceneDemo.xml" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SolidScene.pre" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SunButtonState.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="SunButtonState.h" ex="false" tool="3" flavor2="0">
       </item>

@@ -19,10 +19,6 @@ enum SunButtonState {
 
 // Convenience function to check if the state is pressed
 
-bool isPressed(SunButtonState _state) {
-    if (_state == SunButtonStatePressed || _state == SunButtonStatePressedEdge)
-        return true;
-    return false;
-}
+extern bool isPressed(SunButtonState _state);
 
 #endif

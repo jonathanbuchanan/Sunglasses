@@ -63,7 +63,7 @@
                     <texturepath-highlighted></texturepath-highlighted>
                     
                     <actions>
-                        <action trigger="click" target-path="DemoScene/RootRenderable/Cube0" action="playSound" targetProperty="" valueType="" value="" parameterKeys="soundName" parameterValueTypes="string" parameterValues="test" />
+                        <action trigger="click" target-path="DemoScene/RootRenderableNode/Cube0" action="playSound" targetProperty="" valueType="" value="" parameterKeys="soundName" parameterValueTypes="string" parameterValues="test" />
                     </actions>
                 </item>
             </items>

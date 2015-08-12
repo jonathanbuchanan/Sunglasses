@@ -12,116 +12,92 @@
 #include "../../SunNode.h"
 
 #include "./SunGUIItemMesh.h"
+#include "../../SunButtonState.h"
 
 #include <map>
 
 class SunGUIItem : public SunNode {
 public:
-    string name;
-    string text;
-    
-    string font;
-    
-    bool isButton;
-    
-    SunGUIItemMesh mesh;
-    
-    glm::vec2 position;
-    glm::vec2 size;
-    glm::vec3 color;
-    glm::vec3 highlightColor;
-    GLboolean textured;
-    string texturePath;
-    
-    GLboolean highlighted;
-    
-    GLboolean visible = true;
-    
-    vector<SunNodeSentAction> sentActions;
-    
-    GLFWwindow *window;
-    
     SunGUIItem() {
         initializeDefaultPropertyAndFunctionMap();
         
         mesh.setUpGL();
     }
     
-    void hide(SunNodeSentAction _action) {
-        visible = false;
-    }
+    void hide(SunNodeSentAction _action);
+    void show(SunNodeSentAction _action);
+    void toggleMouse(SunNodeSentAction _action);
+    void closeWindow(SunNodeSentAction _action);
+    void initializeDefaultPropertyAndFunctionMap();
+    map<string, GLboolean> activeTriggers(map<int, SunButtonState> _buttons, GLboolean _containsMouse);
+    void sendActions(map<string, GLboolean> _activeTriggers);
+    void update(SunNodeSentAction _action);
+    void render(SunNodeSentAction _action);
+    void loadTexture();
+    GLboolean pointInItem(glm::vec2 _point);
     
-    void show(SunNodeSentAction _action) {
-        visible = true;
-    }
+    inline string & getText() { return text; }
+    inline void setText(string _text) { text = _text; } 
     
-    void toggleMouse(SunNodeSentAction _action) {
-        if (glfwGetInputMode(window, GLFW_CURSOR) == GLFW_CURSOR_DISABLED)
-            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-        else
-            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-    }
+    inline string & getFont() { return font; }
+    inline void setFont(string _font) { font = _font; }
     
-    void closeWindow(SunNodeSentAction _action) {
-        glfwSetWindowShouldClose(window, true);
-    }
+    inline bool & getIsButton() { return isButton; }
+    inline void setIsButton(bool _isButton) { isButton = _isButton; }
     
-    void initializeDefaultPropertyAndFunctionMap() {
-        SunNode::initializeDefaultPropertyAndFunctionMap();
-        
-        addToFunctionMap("render", bind(&SunGUIItem::render, this, std::placeholders::_1));
-        addToFunctionMap("update", bind(&SunGUIItem::update, this, std::placeholders::_1));
-        addToFunctionMap("hide", bind(&SunGUIItem::hide, this, std::placeholders::_1));
-        addToFunctionMap("show", bind(&SunGUIItem::show, this, std::placeholders::_1));
-        addToFunctionMap("toggleMouse", bind(&SunGUIItem::toggleMouse, this, std::placeholders::_1));
-        addToFunctionMap("closeWindow", bind(&SunGUIItem::closeWindow, this, std::placeholders::_1));
-    }
+    inline glm::vec2 & getPosition() { return position; }
+    inline void setPosition(glm::vec2 _position) { position = _position; }
     
-    map<string, GLboolean> activeTriggers(map<int, SunButtonState> _buttons, GLboolean _containsMouse) {
-        map<string, GLboolean> triggers;
-        
-        triggers["click"] = false;
-        triggers["escape"] = false;
-        
-        if (_buttons[GLFW_MOUSE_BUTTON_LEFT] == SunButtonStatePressedEdge && _containsMouse)
-            triggers["click"] = true;
-        if (_buttons[GLFW_KEY_ESCAPE] == SunButtonStatePressedEdge)
-            triggers["escape"] = true;
-        
-        return triggers;
-    }
+    inline glm::vec2 & getSize() { return size; }
+    inline void setSize(glm::vec2 _size) { size = _size; }
     
-    void sendActions(map<string, GLboolean> _activeTriggers) {
-        for (int i = 0; i < sentActions.size(); ++i) {
-            if (_activeTriggers[*(string *)sentActions[i].properties["trigger"]] == true) {
-                sendAction(sentActions[i], (SunNode *)sentActions[i].properties["receiver"]);
-            }
-        }
-    }
+    inline glm::vec3 & getColor() { return color; }
+    inline void setColor(glm::vec3 _color) { color = _color; }
     
-    void update(SunNodeSentAction _action) {
-        highlighted = pointInItem(*(glm::vec2 *)_action.parameters["mousePosition"]);
-        
-        sendActions(activeTriggers(*(map<int, SunButtonState> *)_action.parameters["buttons"], highlighted));
-    }
+    inline glm::vec3 & getHighlightColor() { return highlightColor; }
+    inline void setHighlightColor(glm::vec3 _highlightColor) { highlightColor = _highlightColor; }
     
-    void render(SunNodeSentAction _action) {
-        if (visible)
-            mesh.render(position, size, color, textured, highlightColor, highlighted, text, font, (SunTextRenderer *)_action.parameters["textRenderer"]);
-    }
+    inline GLboolean & getTextured() { return textured; }
+    inline void setTextured(GLboolean _textured) { textured = _textured; }
     
-    void loadTexture() {
-        mesh.loadTexture(texturePath);
-    }
+    inline string & getTexturePath() { return texturePath; }
+    inline void setTexturePath(string _texturePath) { texturePath = _texturePath; }
     
-    GLboolean pointInItem(glm::vec2 _point) {
-        if (_point.x >= position.x && _point.x <= position.x + size.x && _point.y <= position.y + size.y && _point.y >= position.y)
-            return true;
-        return false;
-    }
+    inline GLboolean & getHighlighted() { return highlighted; }
+    inline void setHighlighted(GLboolean _highlighted) { highlighted = _highlighted; }
     
+    inline GLboolean & getVisible() { return visible; }
+    inline void setVisible(GLboolean _visible) { visible = _visible; }
+    
+    inline vector<SunNodeSentAction> & getSentActions() { return sentActions; }
+    inline SunNodeSentAction * getSentActionAtIndex(int i) { return &sentActions[i]; }
+    inline void addSentAction(SunNodeSentAction action) { sentActions.push_back(action); }
+    
+    inline GLFWwindow * getWindow() { return window; }
+    inline void setWindow(GLFWwindow *_window) { window = _window; }
 private:
-    
+    string text;
+
+    string font;
+
+    bool isButton;
+
+    SunGUIItemMesh mesh;
+
+    glm::vec2 position;
+    glm::vec2 size;
+    glm::vec3 color;
+    glm::vec3 highlightColor;
+    GLboolean textured;
+    string texturePath;
+
+    GLboolean highlighted;
+
+    GLboolean visible = true;
+
+    vector<SunNodeSentAction> sentActions;
+
+    GLFWwindow *window;
 };
 
 #endif

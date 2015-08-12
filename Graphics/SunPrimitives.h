@@ -10,15 +10,22 @@
 #define Sunglasses_SunPrimitives_h
 
 #include <GL/glew.h>
+#include <vector>
+#include <map>
 #include <random>
 #include "../Libraries/glm/glm.hpp"
 #include "../Libraries/glm/gtc/matrix_transform.hpp"
 #include "../Libraries/glm/gtc/quaternion.hpp"
 #include "../Libraries/glm/gtx/quaternion.hpp"
 #include "../Libraries/glm/gtx/string_cast.hpp"
+#include "../Libraries/assimp/Importer.hpp"
+#include "../Libraries/assimp/scene.h"
+#include "../Libraries/assimp/postprocess.h"
 
-uniform_real_distribution<GLfloat> randomFloats(0.0, 1.0);
-default_random_engine generator;
+using namespace std;
+
+extern uniform_real_distribution<GLfloat> randomFloats;
+extern default_random_engine generator;
 
 // SunVertex Declaration
 struct SunVertex {
@@ -134,9 +141,6 @@ struct SunFramebuffer {
 
 typedef map<string, SunFramebufferTextureObject>::iterator SunFramebufferTextureObjectIterator;
 
-void clear() {
-    // Clear the color and depth buffers
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-}
+extern void clear();
 
 #endif
