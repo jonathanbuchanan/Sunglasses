@@ -106,7 +106,10 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="Audio" displayName="Audio" projectFiles="true">
+        <itemPath>Audio/SunMusicObject.cpp</itemPath>
         <itemPath>Audio/SunSoundBufferStorage.cpp</itemPath>
+        <itemPath>Audio/SunSoundListener.cpp</itemPath>
+        <itemPath>Audio/SunSoundObject.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="Freetype" displayName="Freetype" projectFiles="true">
         <logicalFolder name="config" displayName="config" projectFiles="true">
@@ -628,6 +631,8 @@
           <commandLine>-framework OpenGL -framework CoreFoundation -framework CoreVideo -framework Cocoa -lz -framework IOKit -framework OpenAL</commandLine>
         </linkerTool>
       </compileType>
+      <item path="Audio/SunMusicObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Audio/SunMusicObject.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Audio/SunPhysicsCollider.h" ex="false" tool="3" flavor2="0">
@@ -638,7 +643,11 @@
       </item>
       <item path="Audio/SunSoundBufferStorage.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Audio/SunSoundListener.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Audio/SunSoundListener.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Audio/SunSoundObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Audio/SunSoundObject.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -2151,6 +2160,8 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="Audio/SunMusicObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Audio/SunMusicObject.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Audio/SunPhysicsCollider.h" ex="false" tool="3" flavor2="0">
@@ -2161,7 +2172,11 @@
       </item>
       <item path="Audio/SunSoundBufferStorage.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Audio/SunSoundListener.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Audio/SunSoundListener.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Audio/SunSoundObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Audio/SunSoundObject.h" ex="false" tool="3" flavor2="0">
       </item>

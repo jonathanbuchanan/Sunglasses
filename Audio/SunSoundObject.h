@@ -7,8 +7,12 @@
 
 #ifndef SUNSOUNDOBJECT_H
 #define	SUNSOUNDOBJECT_H
+
 #include "../SunNode.h"
 #include "./SunSoundBufferStorage.h"
+
+#include "../Libraries/glm/glm.hpp"
+#include "../Libraries/glm/gtc/matrix_transform.hpp"
 
 struct SunSound {
     string name;
@@ -21,43 +25,17 @@ struct SunSound {
 
 class SunSoundObject : public SunNode {
 public:
-    map<string, SunSound> sounds;
+    SunSoundObject();
     
-    SunSoundObject() {
-        initializeDefaultPropertyAndFunctionMap();
-    }
+    virtual void initializeDefaultPropertyAndFunctionMap();
+    void addSoundFromBuffer(SunSoundBufferStorage *_storage, string _soundName, float _minimumDistance, float _attenuation);
+    void playSound(SunNodeSentAction _action);
     
-    void initializeDefaultPropertyAndFunctionMap() {
-        SunNode::initializeDefaultPropertyAndFunctionMap();
-        
-        addToFunctionMap("playSound", bind(&SunSoundObject::playSound, this, placeholders::_1));
-    }
-    
-    void addSoundFromBuffer(SunSoundBufferStorage *_storage, string _soundName, float _minimumDistance, float _attenuation) {
-        SunSound newSound;
-        newSound.name = _soundName;
-        
-        newSound.sound.setBuffer(_storage->getBufferForString(_soundName).buffer);
-        newSound.sound.setMinDistance(_minimumDistance);
-        newSound.sound.setAttenuation(_attenuation);
-        
-        sounds[_soundName] = newSound;
-    }
-    
-    void playSound(SunNodeSentAction _action) {
-        string soundName = *(string *)_action.parameters["soundName"];  
-        
-        if (_action.parameters.find("position") != _action.parameters.end()) {
-            glm::vec3 position = *(glm::vec3 *)_action.parameters["position"];
-            
-            sounds[soundName].sound.setPosition(position.x, position.y, position.z);
-        }
-        
-        sounds[soundName].play();
-    }
-    
+    inline map<string, SunSound> & getSounds() { return sounds; }
+    inline SunSound & getSoundForString(string s) { return sounds[s]; }
+    inline void addSoundForString(SunSound _sound, string s) { sounds[s] = _sound; }
 private:
-    
+    map<string, SunSound> sounds;
 };
 
 #endif

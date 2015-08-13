@@ -18,16 +18,20 @@ using namespace std;
 
 class SunSoundListener {
 public:
+    SunSoundListener() { }
+    SunSoundListener(glm::vec3 _position, glm::vec3 _direction);
+    
+    void setPositionAndDirection();
+    
+    inline glm::vec3 & getPosition() { return position; }
+    inline void setPosition(glm::vec3 _position) { position = _position; }
+    
+    inline glm::vec3 & getDirection() { return direction; }
+    inline void setDirection(glm::vec3 _direction) { direction = _direction; }
+private:
+    // Position and Direction
     glm::vec3 position = glm::vec3(0.0, 0.0, 0.0);
     glm::vec3 direction = glm::vec3(0.0, 0.0, 1.0);
-    
-    void setPositionAndDirection() {
-        sf::Listener::setPosition(position.x, position.y, position.z);
-        sf::Listener::setDirection(direction.x, direction.y, direction.z);
-    }
-    
-private:
-    
 };
 
 #endif

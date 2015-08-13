@@ -35,7 +35,10 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/Audio/SunMusicObject.o \
 	${OBJECTDIR}/Audio/SunSoundBufferStorage.o \
+	${OBJECTDIR}/Audio/SunSoundListener.o \
+	${OBJECTDIR}/Audio/SunSoundObject.o \
 	${OBJECTDIR}/Graphics/GUI/SunGUIItem.o \
 	${OBJECTDIR}/Graphics/GUI/SunGUIItemMesh.o \
 	${OBJECTDIR}/Graphics/GUI/SunGUIMenu.o \
@@ -81,10 +84,25 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sunglasses ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/Audio/SunMusicObject.o: Audio/SunMusicObject.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Audio
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Audio/SunMusicObject.o Audio/SunMusicObject.cpp
+
 ${OBJECTDIR}/Audio/SunSoundBufferStorage.o: Audio/SunSoundBufferStorage.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Audio
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Audio/SunSoundBufferStorage.o Audio/SunSoundBufferStorage.cpp
+
+${OBJECTDIR}/Audio/SunSoundListener.o: Audio/SunSoundListener.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Audio
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Audio/SunSoundListener.o Audio/SunSoundListener.cpp
+
+${OBJECTDIR}/Audio/SunSoundObject.o: Audio/SunSoundObject.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Audio
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Audio/SunSoundObject.o Audio/SunSoundObject.cpp
 
 ${OBJECTDIR}/Graphics/GUI/SunGUIItem.o: Graphics/GUI/SunGUIItem.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Graphics/GUI
