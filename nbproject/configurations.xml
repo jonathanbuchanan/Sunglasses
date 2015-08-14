@@ -87,7 +87,6 @@
       <itemPath>SunObject.h</itemPath>
       <itemPath>SunPointLightObject.h</itemPath>
       <itemPath>SunScene.h</itemPath>
-      <itemPath>SunSpotlightObject.h</itemPath>
       <itemPath>Utility.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -509,6 +508,7 @@
       <itemPath>SunNode.cpp</itemPath>
       <itemPath>SunObject.cpp</itemPath>
       <itemPath>SunPointLightObject.cpp</itemPath>
+      <itemPath>SunScene.cpp</itemPath>
       <itemPath>Utility.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -2136,9 +2136,9 @@
       </item>
       <item path="SunPointLightObject.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="SunScene.h" ex="false" tool="3" flavor2="0">
+      <item path="SunScene.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="SunSpotlightObject.h" ex="false" tool="3" flavor2="0">
+      <item path="SunScene.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="TexturedScene.pre" ex="false" tool="3" flavor2="0">
       </item>
@@ -3671,9 +3671,9 @@
       </item>
       <item path="SunPointLightObject.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="SunScene.h" ex="false" tool="3" flavor2="0">
+      <item path="SunScene.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="SunSpotlightObject.h" ex="false" tool="3" flavor2="0">
+      <item path="SunScene.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="TexturedScene.pre" ex="false" tool="3" flavor2="0">
       </item>

@@ -9,15 +9,6 @@
 #ifndef OpenGL_Test_3_Scene_h
 #define OpenGL_Test_3_Scene_h
 
-using namespace std;
-
-#include "./Libraries/glm/glm.hpp"
-#include "./Libraries/glm/gtc/matrix_transform.hpp"
-
-#include "pugixml.hpp"
-
-#include <functional>
-
 #include "./Graphics/SunTextRenderer.h"
 #include "./Graphics/GUI/SunGUISystem.h"
 #include "./Graphics/SunCamera.h"
@@ -30,7 +21,6 @@ using namespace std;
 #include "./SunObject.h"
 #include "./SunDirectionalLightObject.h"
 #include "./SunPointLightObject.h"
-#include "./SunSpotlightObject.h"
 #include "./SunButtonState.h"
 
 // Definition of SunObjectType (NEEDS A HOME)
@@ -43,102 +33,10 @@ enum SunObjectType {
 
 class SunScene : public SunObject {
 public:
-    // GUIsystem
-    SunGUISystem *GUIsystem;
+    SunScene();
+    SunScene(const char *filepath, GLFWwindow *_window);
     
-    // Root renderable node
-    SunObject *rootRenderableNode;
-    
-    // Camera
-    SunCamera camera;
-    SunSoundListener listener;
-    GLboolean doCameraInput = true;
-    
-    // Renderer and Text Renderer
-    SunRenderer renderer;
-    SunTextRenderer textRenderer;
-    
-    // Sound Storage
-    SunSoundBufferStorage storage;
-    
-    // Music
-    SunMusicObject *music;
-    bool autoplay;
-    
-    // Pointer to window
-    GLFWwindow *window;
-    
-    SunScene() {
-        // Normalize all physical properties
-        setPosition(glm::vec3(0, 0, 0));
-        setRotation(glm::vec3(0, 0, 0));
-        setScale(glm::vec3(1.0, 1.0, 1.0));
-        setRootNode(this);
-        
-        // Initialize the property map
-        initializeDefaultPropertyAndFunctionMap();
-    }
-    
-    SunScene(const char *filepath, GLFWwindow *_window) {
-        // Normalize all physical properties
-        setPosition(glm::vec3(0, 0, 0));
-        setRotation(glm::vec3(0, 0, 0));
-        setScale(glm::vec3(1.0, 1.0, 1.0));
-        setRootNode(this);
-        
-        // Set the window
-        window = _window;
-        
-        // Initialize the property map
-        initializeDefaultPropertyAndFunctionMap();
-        
-        // Set up the XML Parsing
-        pugi::xml_document document;
-        document.load_file(filepath);
-        
-        pugi::xml_node scene = document.child("scene");
-        
-        for (pugi::xml_attribute attribute = scene.first_attribute(); attribute; attribute = attribute.next_attribute()) {
-            if (strcmp(attribute.name(), "name") == 0) {
-                setName(attribute.value());
-            } else if (strcmp(attribute.name() ,"GUISystem") == 0) {
-                GUIsystem = new SunGUISystem(attribute.value(), window, this);
-                GUIsystem->setRootNode(this);
-            }
-        }
-        
-        textRenderer = SunTextRenderer();
-        textRenderer.initialize();
-        
-        rootRenderableNode = new SunObject();
-        rootRenderableNode->setName("RootRenderableNode");
-        addSubNode(rootRenderableNode);
-        
-        // Process the XML scene node
-        processXMLSceneNode(scene);
-        
-        GUIsystem->loadFonts(&textRenderer);
-        
-        GUIsystem->mapSentActionTargets();
-        
-        SunNodeSentAction action;
-        action.action = "play";
-        
-        if (autoplay)
-            sendAction(action, music);
-    }
-    
-    void initializeDefaultPropertyAndFunctionMap() {
-        SunObject::initializeDefaultPropertyAndFunctionMap();
-        
-        setType("scene");
-        
-        addToPropertyMap("doCameraInput", SunNodeProperty(&doCameraInput, SunNodePropertyTypeBool));
-        
-        addToFunctionMap("render", bind(&SunScene::render, this, std::placeholders::_1));
-        addToFunctionMap("renderGUISystem", bind(&SunScene::renderGUISystem, this, std::placeholders::_1));
-        addToFunctionMap("passPerFrameUniforms", bind(&SunScene::passPerFrameUniformsAction, this, std::placeholders::_1));
-    }
+    void initializeDefaultPropertyAndFunctionMap();
     
     void processXMLSceneNode(pugi::xml_node _node) {
         for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
@@ -704,110 +602,60 @@ public:
             _object->setColorB(_node.text().as_float());
     }
     
-    void cycle(map<int, SunButtonState> _buttons, GLfloat _deltaTime) {
-        update(_buttons);
-        renderer.render(_deltaTime);
-    }
+    void cycle(map<int, SunButtonState> _buttons, GLfloat _deltaTime);
+    virtual void update(map<int, SunButtonState> _buttons);
+    virtual void render(SunNodeSentAction _action);
+    void renderGUISystem(SunNodeSentAction _action);
+    void passPerFrameUniforms(SunShader _shader);
+    void passPerFrameUniforms(SunShader _shader, vector<SunNodeSentActionCondition> _conditions);
+    void passPerFrameUniformsAction(SunNodeSentAction _action);
     
-    void update(map<int, SunButtonState> _buttons) {
-        // Get the position of the mouse
-        GLdouble xPosition, yPosition;
-        glfwGetCursorPos(window, &xPosition, &yPosition);
-        
-        // Map Cursor Position to NDC
-        GLdouble normalizedXPosition = (xPosition - 400) / 400;
-        GLdouble normalizedYPosition = -(yPosition - 300) / 300;
-        
-        glm::vec2 *mousePosition = new glm::vec2(normalizedXPosition, normalizedYPosition);
-        
-        SunNodeSentAction action;
-        action.action = "update";
-        action.parameters["mousePosition"] = mousePosition;
-        action.parameters["buttons"] = &_buttons;
-        
-        // Force sub-objects to update
-        sendAction(action, GUIsystem);
-        SunObject::update(action);
-    }
+    inline SunGUISystem * getGUISystem() { return GUIsystem; }
     
-    virtual void render(SunNodeSentAction _action) {
-        map<string, SunShader> _shaders = *(map<string, SunShader> *)_action.parameters["shaderMap"];
-        GLfloat _deltaTime = *(GLfloat *)_action.parameters["deltaTime"];
-        
-        // Force sub-objects to render
-
-        SunNodeSentAction solidAction;
-        solidAction.action = "render";
-        solidAction.parameters["shader"] = &_shaders["scene_solid"];
-        solidAction.parameters["renderType"] = new int(SunMeshRenderTypeSolid);
-        solidAction.parameters["deltaTime"] = &_deltaTime;
-        solidAction.recursive = true;
-
-        SunNodeSentAction texturedAction;
-        texturedAction.action = "render";
-        texturedAction.parameters["shader"] = &_shaders["scene_textured"];
-        texturedAction.parameters["rendertype"] = new int(SunMeshRenderTypeTextured);
-        texturedAction.parameters["deltaTime"] = &_deltaTime;
-        texturedAction.recursive = true;
-        
-        _shaders["scene_solid"].use();
-        passPerFrameUniforms(_shaders["scene_solid"]);
-        sendAction(solidAction, rootRenderableNode);
-
-        _shaders["scene_textured"].use();
-        passPerFrameUniforms(_shaders["scene_textured"]);
-        sendAction(texturedAction, rootRenderableNode);
-    }
+    inline SunObject * getRootRenderableNode() { return rootRenderableNode; }
     
-    void renderGUISystem(SunNodeSentAction _action) {
-        SunNodeSentAction GUIAction;
-        GUIAction.action = "render";
-        GUIAction.parameters["textRenderer"] = &textRenderer;
-        
-        sendAction(GUIAction, GUIsystem);
-    }
+    inline SunCamera & getCamera() { return camera; }
+    inline SunSoundListener & getListener() { return listener; }
     
-    void passPerFrameUniforms(SunShader _shader) {
-        camera.passPerFrameUniforms(_shader);
-        listener.setPositionAndDirection();
-        
-        SunNodeSentAction action;
-        action.action = "passPerFrameUniforms";
-        action.parameters["shader"] = &_shader;
-        action.recursive = true;
-        
-        sendAction(action, rootRenderableNode);
-    }
+    inline GLboolean & getDoCameraInput() { return doCameraInput; }
+    inline void setDoCameraInput(GLboolean _x) { doCameraInput = _x; }
     
-    void passPerFrameUniforms(SunShader _shader, vector<SunNodeSentActionCondition> _conditions) {
-        camera.passPerFrameUniforms(_shader);
-        
-        SunNodeSentAction action;
-        action.action = "passPerFrameUniforms";
-        action.parameters["shader"] = &_shader;
-        action.conditions = _conditions;
-        action.recursive = true;
-        
-        sendAction(action, rootRenderableNode);
-    }
+    inline SunRenderer & getRenderer() { return renderer; }
+    inline SunTextRenderer & getTextRenderer() { return textRenderer; }
     
-    void passPerFrameUniformsAction(SunNodeSentAction _action) {
-        SunShader _shader = *(SunShader *)_action.parameters["shader"];
-        vector<SunNodeSentActionCondition> _conditions = *(vector<SunNodeSentActionCondition> *)_action.parameters["conditions"];
-        
-        camera.passPerFrameUniforms(_shader);
-        
-        SunNodeSentAction action;
-        action.action = "passPerFrameUniforms";
-        action.parameters["shader"] = &_shader;
-        action.conditions = _conditions;
-        action.recursive = true;
-        
-        sendAction(action, rootRenderableNode);
-    }
+    inline SunSoundBufferStorage & getSoundStorage() { return storage; }
     
+    inline SunMusicObject * getMusic() { return music; }
+    inline bool & getAutoplay() { return autoplay; }
+    inline void setAutoplay(bool _autoplay) { autoplay = _autoplay; }
+    
+    inline GLFWwindow * getWindow() { return window; }
+    inline void setWindow(GLFWwindow *_window) { window = _window; }
 private:
-    
+    // GUIsystem
+    SunGUISystem *GUIsystem;
+
+    // Root renderable node
+    SunObject *rootRenderableNode;
+
+    // Camera
+    SunCamera camera;
+    SunSoundListener listener;
+    GLboolean doCameraInput = true;
+
+    // Renderer and Text Renderer
+    SunRenderer renderer;
+    SunTextRenderer textRenderer;
+
+    // Sound Storage
+    SunSoundBufferStorage storage;
+
+    // Music
+    SunMusicObject *music;
+    bool autoplay;
+
+    // Pointer to window
+    GLFWwindow *window;
 };
 
 #endif

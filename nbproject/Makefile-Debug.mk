@@ -59,6 +59,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/SunNode.o \
 	${OBJECTDIR}/SunObject.o \
 	${OBJECTDIR}/SunPointLightObject.o \
+	${OBJECTDIR}/SunScene.o \
 	${OBJECTDIR}/Utility.o \
 	${OBJECTDIR}/main.o
 
@@ -230,6 +231,11 @@ ${OBJECTDIR}/SunPointLightObject.o: SunPointLightObject.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -ILibraries -ILibraries/GLFW -ILibraries/GL -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SunPointLightObject.o SunPointLightObject.cpp
+
+${OBJECTDIR}/SunScene.o: SunScene.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -ILibraries -ILibraries/GLFW -ILibraries/GL -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SunScene.o SunScene.cpp
 
 ${OBJECTDIR}/Utility.o: Utility.cpp 
 	${MKDIR} -p ${OBJECTDIR}

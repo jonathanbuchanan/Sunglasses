@@ -94,17 +94,17 @@ void SunGame::loop() {
             }
         }
 
-        if (scene->doCameraInput == true) {
+        if (scene->getDoCameraInput() == true) {
             // Tell the camera to do movement (NEEDS CLEAN UP)
 
             if (lastXOffset != xOffset && lastYOffset != yOffset)
-                scene->camera.doCameraMovement(buttons, deltaTime, xOffset, yOffset);
+                scene->getCamera().doCameraMovement(buttons, deltaTime, xOffset, yOffset);
             if (lastXOffset == xOffset && lastYOffset != yOffset)
-                scene->camera.doCameraMovement(buttons, deltaTime, 0, yOffset);
+                scene->getCamera().doCameraMovement(buttons, deltaTime, 0, yOffset);
             if (lastXOffset != xOffset && lastYOffset != yOffset)
-                scene->camera.doCameraMovement(buttons, deltaTime, xOffset, 0);
+                scene->getCamera().doCameraMovement(buttons, deltaTime, xOffset, 0);
             else
-                scene->camera.doCameraMovement(buttons, deltaTime, 0, 0);
+                scene->getCamera().doCameraMovement(buttons, deltaTime, 0, 0);
 
             lastXOffset = xOffset;
             lastYOffset = yOffset;
@@ -113,8 +113,8 @@ void SunGame::loop() {
             yOffset = lastYOffset;
         }
 
-        scene->listener.setPosition(scene->camera.position);
-        scene->listener.setDirection(scene->camera.direction);
+        scene->getListener().setPosition(scene->getCamera().position);
+        scene->getListener().setDirection(scene->getCamera().direction);
 
         // Tell the renderer to do its cycle
 

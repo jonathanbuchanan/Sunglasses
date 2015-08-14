@@ -9,8 +9,6 @@
 #ifndef OpenGL_Test_3_SunTextRenderer_h
 #define OpenGL_Test_3_SunTextRenderer_h
 
-using namespace std;
-
 #include <map>
 #include <iostream>
 #define GLEW_STATIC
@@ -28,6 +26,8 @@ using namespace std;
 #include "../Libraries/glm/gtc/quaternion.hpp"
 #include "../Libraries/glm/gtx/quaternion.hpp"
 #include "../Libraries/glm/gtx/string_cast.hpp"
+
+using namespace std;
 
 struct SunCharacter {
     GLuint texture;
