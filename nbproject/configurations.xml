@@ -484,6 +484,10 @@
         <itemPath>Graphics/SunMesh.cpp</itemPath>
         <itemPath>Graphics/SunModel.cpp</itemPath>
         <itemPath>Graphics/SunPrimitives.cpp</itemPath>
+        <itemPath>Graphics/SunRenderer.cpp</itemPath>
+        <itemPath>Graphics/SunRenderingNode.cpp</itemPath>
+        <itemPath>Graphics/SunTextRenderer.cpp</itemPath>
+        <itemPath>Graphics/SunTexturedQuad.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="Physics" displayName="Physics" projectFiles="true">
       </logicalFolder>
@@ -885,11 +889,19 @@
       </item>
       <item path="Graphics/SunPrimitives.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Graphics/SunRenderer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Graphics/SunRenderer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Graphics/SunRenderingNode.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Graphics/SunRenderingNode.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Graphics/SunTextRenderer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Graphics/SunTextRenderer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Graphics/SunTexturedQuad.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Graphics/SunTexturedQuad.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -2412,11 +2424,19 @@
       </item>
       <item path="Graphics/SunPrimitives.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Graphics/SunRenderer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Graphics/SunRenderer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Graphics/SunRenderingNode.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Graphics/SunRenderingNode.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Graphics/SunTextRenderer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Graphics/SunTextRenderer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Graphics/SunTexturedQuad.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Graphics/SunTexturedQuad.h" ex="false" tool="3" flavor2="0">
       </item>

@@ -49,6 +49,10 @@ OBJECTFILES= \
 	${OBJECTDIR}/Graphics/SunMesh.o \
 	${OBJECTDIR}/Graphics/SunModel.o \
 	${OBJECTDIR}/Graphics/SunPrimitives.o \
+	${OBJECTDIR}/Graphics/SunRenderer.o \
+	${OBJECTDIR}/Graphics/SunRenderingNode.o \
+	${OBJECTDIR}/Graphics/SunTextRenderer.o \
+	${OBJECTDIR}/Graphics/SunTexturedQuad.o \
 	${OBJECTDIR}/Libraries/SOIL/SOIL.o \
 	${OBJECTDIR}/Libraries/SOIL/image_DXT.o \
 	${OBJECTDIR}/Libraries/SOIL/image_helper.o \
@@ -158,6 +162,26 @@ ${OBJECTDIR}/Graphics/SunPrimitives.o: Graphics/SunPrimitives.cpp
 	${MKDIR} -p ${OBJECTDIR}/Graphics
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Graphics/SunPrimitives.o Graphics/SunPrimitives.cpp
+
+${OBJECTDIR}/Graphics/SunRenderer.o: Graphics/SunRenderer.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Graphics
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Graphics/SunRenderer.o Graphics/SunRenderer.cpp
+
+${OBJECTDIR}/Graphics/SunRenderingNode.o: Graphics/SunRenderingNode.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Graphics
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Graphics/SunRenderingNode.o Graphics/SunRenderingNode.cpp
+
+${OBJECTDIR}/Graphics/SunTextRenderer.o: Graphics/SunTextRenderer.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Graphics
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Graphics/SunTextRenderer.o Graphics/SunTextRenderer.cpp
+
+${OBJECTDIR}/Graphics/SunTexturedQuad.o: Graphics/SunTexturedQuad.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Graphics
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Graphics/SunTexturedQuad.o Graphics/SunTexturedQuad.cpp
 
 ${OBJECTDIR}/Libraries/SOIL/SOIL.o: Libraries/SOIL/SOIL.c 
 	${MKDIR} -p ${OBJECTDIR}/Libraries/SOIL

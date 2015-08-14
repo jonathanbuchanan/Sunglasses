@@ -123,23 +123,10 @@ public:
     }
     
     void processXMLRendererNode(pugi::xml_node _node) {
-        SunRenderingMode renderMode;
+        renderer = SunRenderer();
         
-        for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
-            if (strcmp(attribute.name(), "mode") == 0) {
-                if (strcmp(attribute.value(), "deferred-shading") == 0)
-                    renderMode = SunRenderingModeDeferredShading;
-                else if (strcmp(attribute.value(), "forward") == 0)
-                    renderMode = SunRenderingModeForward;
-            }
-        }
-        
-        renderer = SunRenderer(renderMode);
-        
-        renderer.scene = this;
-        renderer.window = window;
-        
-        renderer.initialize();
+        renderer.setSceneNode(this);
+        renderer.setWindow(window);
         
         for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
             if (strcmp(node.name(), "pipeline") == 0)
@@ -159,24 +146,24 @@ public:
         SunRenderingNode *root;
         
         for (int i = 0; i < renderNodes.size(); i++) {
-            switch(renderNodes[i]->type) {
+            switch(renderNodes[i]->getRenderingType()) {
                 case SunRenderingNodeTypeRoot:
                     renderNodes[i]->setRootNode(renderNodes[i]);
                     root = renderNodes[i];
                     break;
                 case SunRenderingNodeTypeIntermediate:
-                    for (int j = 0; j < renderNodes[i]->inputs.size(); j++) {
+                    for (int j = 0; j < renderNodes[i]->getInputs().size(); j++) {
                         SunNode *parent;
-                        root->findPointerNodeWithName(renderNodes[i]->inputs[j].linkName, parent);
-                        renderNodes[i]->inputs[j].link = (SunRenderingNode *)parent;
+                        root->findPointerNodeWithName(renderNodes[i]->getInputAtIndex(j).linkName, parent);
+                        renderNodes[i]->getInputAtIndex(j).link = (SunRenderingNode *)parent;
                         parent->addSubNode(renderNodes[i]);
                     }
                     break;
                 case SunRenderingNodeTypeEnd:
-                    for (int j = 0; j < renderNodes[i]->inputs.size(); j++) {
+                    for (int j = 0; j < renderNodes[i]->getInputs().size(); j++) {
                         SunNode *parent;
-                        root->findPointerNodeWithName(renderNodes[i]->inputs[j].linkName, parent);
-                        renderNodes[i]->inputs[j].link = (SunRenderingNode *)parent;
+                        root->findPointerNodeWithName(renderNodes[i]->getInputAtIndex(j).linkName, parent);
+                        renderNodes[i]->getInputAtIndex(j).link = (SunRenderingNode *)parent;
                         parent->addSubNode(renderNodes[i]);
                     }
                     break;
@@ -187,7 +174,7 @@ public:
             }
         }
         
-        renderer.rootRenderNode = root;
+        renderer.setRootRenderNode(root);
    }
     
     void processXMLRenderNode(pugi::xml_node _node, SunRenderer *_renderer, SunRenderingNode &_renderingNode) {
@@ -208,9 +195,9 @@ public:
         }
         
         _renderingNode = SunRenderingNode(name);
-        _renderingNode.type = type;
+        _renderingNode.setRenderingType(type);
         _renderingNode.setRootNode(&_renderingNode);
-        _renderingNode.scene = this;
+        _renderingNode.setSceneNode(this);
         
         for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
             if (strcmp(node.name(), "inputs") == 0)
@@ -244,8 +231,8 @@ public:
         }
         
         SunRenderingNode *_renderingNode = new SunRenderingNode(name);
-        _renderingNode->type = type;
-        _renderingNode->scene = this;
+        _renderingNode->setRenderingType(type);
+        _renderingNode->setSceneNode(this);
         
         for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
             if (strcmp(node.name(), "inputs") == 0)
@@ -292,7 +279,7 @@ public:
                 input.slot = attribute.as_int();
         }
         
-        _renderNode->inputs.push_back(input);
+        _renderNode->addInputToInputs(input);
     }
     
     void processXMLRenderNodeOutputs(pugi::xml_node _node, SunRenderingNode *_renderNode) {
@@ -322,7 +309,7 @@ public:
                 output.slot = attribute.as_int();
         }
         
-        _renderNode->outputs.push_back(output);
+        _renderNode->addOutputToOutputs(output);
     }
     
     void processXMLRenderNodeShaders(pugi::xml_node _node, SunRenderingNode *_renderNode) {
@@ -356,7 +343,7 @@ public:
         
         SunRenderingNodeShader shader = SunRenderingNodeShader(vertex, fragment, preprocessor, type);
         
-        _renderNode->shaders[_type] = shader;
+        _renderNode->addShaderForString(_type, shader);
     }
     
     void processXMLRenderNodeTextures(pugi::xml_node _node, SunRenderingNode *_renderNode) {
@@ -384,7 +371,7 @@ public:
         
         SunTexture texture = SunTexture(width, height, type);
         
-        _renderNode->textures.push_back(texture);
+        _renderNode->addTextureToTextures(texture);
     }
     
     void processXMLRenderNodeUniforms(pugi::xml_node _node, SunRenderingNode *_renderNode) {
@@ -407,7 +394,7 @@ public:
         SunShaderHemisphereKernelObject *kernel = new SunShaderHemisphereKernelObject(sampleCount);
         kernel->setUniformName(name);
         
-        _renderNode->uniforms.push_back(kernel);
+        _renderNode->addUniformToUniforms(kernel);
     }
     
     void processXMLObjectsNode(pugi::xml_node _node, SunObject *_superObject) {
