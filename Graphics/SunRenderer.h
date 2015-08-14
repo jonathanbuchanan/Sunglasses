@@ -14,8 +14,6 @@ using namespace std;
 #include <iostream>
 
 #include "./SunTextRenderer.h"
-#include "./SunDirectionalLightShadowMapRenderer.h"
-#include "./SunPointLightShadowMapRenderer.h"
 #include "./SunRenderingNode.h"
 #include "./SunTexturedQuad.h"
 #include "./SunPrimitives.h"

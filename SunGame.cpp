@@ -113,8 +113,8 @@ void SunGame::loop() {
             yOffset = lastYOffset;
         }
 
-        scene->getListener().setPosition(scene->getCamera().position);
-        scene->getListener().setDirection(scene->getCamera().direction);
+        scene->getListener().setPosition(scene->getCamera().getPosition());
+        scene->getListener().setDirection(scene->getCamera().getDirection());
 
         // Tell the renderer to do its cycle
 

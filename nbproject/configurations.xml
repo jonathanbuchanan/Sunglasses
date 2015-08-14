@@ -65,10 +65,8 @@
           <itemPath>Graphics/Shaders/Vertex.vert</itemPath>
         </logicalFolder>
         <itemPath>Graphics/SunCamera.h</itemPath>
-        <itemPath>Graphics/SunDirectionalLightShadowMapRenderer.h</itemPath>
         <itemPath>Graphics/SunMesh.h</itemPath>
         <itemPath>Graphics/SunModel.h</itemPath>
-        <itemPath>Graphics/SunPointLightShadowMapRenderer.h</itemPath>
         <itemPath>Graphics/SunPrimitives.h</itemPath>
         <itemPath>Graphics/SunRenderer.h</itemPath>
         <itemPath>Graphics/SunRenderingNode.h</itemPath>
@@ -482,6 +480,7 @@
           <itemPath>Graphics/Shaders/SunShader.cpp</itemPath>
           <itemPath>Graphics/Shaders/SunShaderUniformObject.cpp</itemPath>
         </logicalFolder>
+        <itemPath>Graphics/SunCamera.cpp</itemPath>
         <itemPath>Graphics/SunMesh.cpp</itemPath>
         <itemPath>Graphics/SunModel.cpp</itemPath>
         <itemPath>Graphics/SunPrimitives.cpp</itemPath>
@@ -870,12 +869,9 @@
       </item>
       <item path="Graphics/Shaders/Vertex.vert" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Graphics/SunCamera.h" ex="false" tool="3" flavor2="0">
+      <item path="Graphics/SunCamera.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Graphics/SunDirectionalLightShadowMapRenderer.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
+      <item path="Graphics/SunCamera.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Graphics/SunMesh.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -884,11 +880,6 @@
       <item path="Graphics/SunModel.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Graphics/SunModel.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/SunPointLightShadowMapRenderer.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
       </item>
       <item path="Graphics/SunPrimitives.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -2405,12 +2396,9 @@
       </item>
       <item path="Graphics/Shaders/Vertex.vert" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Graphics/SunCamera.h" ex="false" tool="3" flavor2="0">
+      <item path="Graphics/SunCamera.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Graphics/SunDirectionalLightShadowMapRenderer.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
+      <item path="Graphics/SunCamera.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Graphics/SunMesh.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -2419,11 +2407,6 @@
       <item path="Graphics/SunModel.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Graphics/SunModel.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Graphics/SunPointLightShadowMapRenderer.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
       </item>
       <item path="Graphics/SunPrimitives.cpp" ex="false" tool="1" flavor2="0">
       </item>

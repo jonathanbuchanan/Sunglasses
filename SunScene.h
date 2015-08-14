@@ -90,11 +90,11 @@ public:
     
     void processXMLCameraPropertyNode(pugi::xml_node _node, SunCamera *_camera) {
         if (strcmp(_node.name(), "position-x") == 0)
-            _camera->position.x = _node.text().as_float();
+            _camera->setPositionX(_node.text().as_float());
         else if (strcmp(_node.name(), "position-y") == 0)
-            _camera->position.y = _node.text().as_float();
+            _camera->setPositionY(_node.text().as_float());
         else if (strcmp(_node.name(), "position-z") == 0)
-            _camera->position.z = _node.text().as_float();
+            _camera->setPositionZ(_node.text().as_float());
     }
     
     void processXMLListenerNode(pugi::xml_node _node) {

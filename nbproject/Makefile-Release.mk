@@ -45,6 +45,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Graphics/GUI/SunGUISystem.o \
 	${OBJECTDIR}/Graphics/Shaders/SunShader.o \
 	${OBJECTDIR}/Graphics/Shaders/SunShaderUniformObject.o \
+	${OBJECTDIR}/Graphics/SunCamera.o \
 	${OBJECTDIR}/Graphics/SunMesh.o \
 	${OBJECTDIR}/Graphics/SunModel.o \
 	${OBJECTDIR}/Graphics/SunPrimitives.o \
@@ -137,6 +138,11 @@ ${OBJECTDIR}/Graphics/Shaders/SunShaderUniformObject.o: Graphics/Shaders/SunShad
 	${MKDIR} -p ${OBJECTDIR}/Graphics/Shaders
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Graphics/Shaders/SunShaderUniformObject.o Graphics/Shaders/SunShaderUniformObject.cpp
+
+${OBJECTDIR}/Graphics/SunCamera.o: Graphics/SunCamera.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Graphics
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Graphics/SunCamera.o Graphics/SunCamera.cpp
 
 ${OBJECTDIR}/Graphics/SunMesh.o: Graphics/SunMesh.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Graphics
