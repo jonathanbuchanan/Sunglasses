@@ -77,17 +77,17 @@ public:
         glm::mat4 projectionMatrix = glm::perspective(90.0f, 1.0f, 0.01f, 10.0f);
         
         vector<glm::mat4> lightMatrices;
-        lightMatrices.push_back(projectionMatrix * glm::lookAt(_pointLight->position, _pointLight->position + glm::vec3(1.0, 0.0, 0.0), glm::vec3(0.0, -1.0, 0.0)));
-        lightMatrices.push_back(projectionMatrix * glm::lookAt(_pointLight->position, _pointLight->position + glm::vec3(-1.0, 0.0, 0.0), glm::vec3(0.0, -1.0, 0.0)));
-        lightMatrices.push_back(projectionMatrix * glm::lookAt(_pointLight->position, _pointLight->position + glm::vec3(0.0, 1.0, 0.0), glm::vec3(0.0, 0.0, 1.0)));
-        lightMatrices.push_back(projectionMatrix * glm::lookAt(_pointLight->position, _pointLight->position + glm::vec3(0.0, -1.0, 0.0), glm::vec3(0.0, 0.0, -1.0)));
-        lightMatrices.push_back(projectionMatrix * glm::lookAt(_pointLight->position, _pointLight->position + glm::vec3(0.0, 0.0, 1.0), glm::vec3(0.0, -1.0, 0.0)));
-        lightMatrices.push_back(projectionMatrix * glm::lookAt(_pointLight->position, _pointLight->position + glm::vec3(0.0, 0.0, -1.0), glm::vec3(0.0, -1.0, 0.0)));
+        lightMatrices.push_back(projectionMatrix * glm::lookAt(_pointLight->getPosition(), _pointLight->getPosition() + glm::vec3(1.0, 0.0, 0.0), glm::vec3(0.0, -1.0, 0.0)));
+        lightMatrices.push_back(projectionMatrix * glm::lookAt(_pointLight->getPosition(), _pointLight->getPosition() + glm::vec3(-1.0, 0.0, 0.0), glm::vec3(0.0, -1.0, 0.0)));
+        lightMatrices.push_back(projectionMatrix * glm::lookAt(_pointLight->getPosition(), _pointLight->getPosition() + glm::vec3(0.0, 1.0, 0.0), glm::vec3(0.0, 0.0, 1.0)));
+        lightMatrices.push_back(projectionMatrix * glm::lookAt(_pointLight->getPosition(), _pointLight->getPosition() + glm::vec3(0.0, -1.0, 0.0), glm::vec3(0.0, 0.0, -1.0)));
+        lightMatrices.push_back(projectionMatrix * glm::lookAt(_pointLight->getPosition(), _pointLight->getPosition() + glm::vec3(0.0, 0.0, 1.0), glm::vec3(0.0, -1.0, 0.0)));
+        lightMatrices.push_back(projectionMatrix * glm::lookAt(_pointLight->getPosition(), _pointLight->getPosition() + glm::vec3(0.0, 0.0, -1.0), glm::vec3(0.0, -1.0, 0.0)));
         
         for (int i = 0; i < 6; ++i)
             glUniformMatrix4fv(_shader.getUniformLocation("lightMatrices[" + std::to_string(i) + "]"), 1, GL_FALSE, glm::value_ptr(lightMatrices[i]));
         glUniform1f(_shader.getUniformLocation("farPlane"), 10.0f);
-        glUniform3fv(_shader.getUniformLocation("lightPosition"), 1, &_pointLight->position[0]);
+        glUniform3fv(_shader.getUniformLocation("lightPosition"), 1, &_pointLight->getPosition()[0]);
     }
 private:
     

@@ -17,46 +17,30 @@
 
 class SunDirectionalLightObject : public SunObject {
 public:
+    SunDirectionalLightObject();
+    SunDirectionalLightObject(glm::vec3 _color, glm::vec3 _direction);
+    SunDirectionalLightObject(string _name);
+    
+    virtual void initializeDefaultPropertyAndFunctionMap();
+    virtual void passPerFrameUniforms(SunNodeSentAction _action);
+    
+    inline glm::vec3 & getColor() { return color; }
+    inline void setColor(glm::vec3 _color) { color = _color; }
+    inline void setColorR(GLfloat r) { color.r = r; }
+    inline void setColorG(GLfloat g) { color.g = g; }
+    inline void setColorB(GLfloat b) { color.b = b; }
+    
+    inline glm::vec3 & getDirection() { return direction; }
+    inline void setDirection(glm::vec3 _direction) { direction = _direction; }
+    inline void setDirectionX(GLfloat x) { direction.x = x; }
+    inline void setDirectionY(GLfloat y) { direction.y = y; }
+    inline void setDirectionZ(GLfloat z) { direction.z = z; }
+private:
     // Diffuse and specular
     glm::vec3 color;
-    
+
     // Direction
     glm::vec3 direction;
-    
-    SunDirectionalLightObject() {
-        
-    }
-    
-    SunDirectionalLightObject(glm::vec3 _color, glm::vec3 _direction) {
-        color = _color;
-        direction = _direction;
-    }
-    
-    SunDirectionalLightObject(string _name) {
-        setName(_name);
-        
-        initializeDefaultPropertyAndFunctionMap();
-    }
-    
-    virtual void initializeDefaultPropertyAndFunctionMap() {
-        SunObject::initializeDefaultPropertyAndFunctionMap();
-        
-        setType("light");
-    }
-    
-    void passPerFrameUniforms(SunNodeSentAction _action) {
-        SunObject::passPerFrameUniforms(_action);
-        
-        SunShader _shader = *(SunShader *)_action.parameters["shader"];
-        
-        // Set the uniforms for the directional light's diffuse and specular colors
-        glUniform3f(_shader.getUniformLocation("directionalLight.color"), color.r, color.g, color.b);
-        
-        // Set the unifrom for the directional light's direction
-        glUniform3f(_shader.getUniformLocation("directionalLight.direction"), direction.x, direction.y, direction.z);
-    }
-private:
-    
 };
 
 #endif

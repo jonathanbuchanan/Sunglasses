@@ -504,8 +504,11 @@
         <itemPath>Libraries/SOIL/stbi_DDS_aug_c.h</itemPath>
       </logicalFolder>
       <itemPath>SunButtonState.cpp</itemPath>
+      <itemPath>SunDirectionalLightObject.cpp</itemPath>
       <itemPath>SunGame.cpp</itemPath>
       <itemPath>SunNode.cpp</itemPath>
+      <itemPath>SunObject.cpp</itemPath>
+      <itemPath>SunPointLightObject.cpp</itemPath>
       <itemPath>Utility.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -2113,6 +2116,8 @@
       </item>
       <item path="SunButtonState.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="SunDirectionalLightObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="SunDirectionalLightObject.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SunGame.cpp" ex="false" tool="1" flavor2="0">
@@ -2123,7 +2128,11 @@
       </item>
       <item path="SunNode.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="SunObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="SunObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SunPointLightObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="SunPointLightObject.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -3642,6 +3651,8 @@
       </item>
       <item path="SunButtonState.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="SunDirectionalLightObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="SunDirectionalLightObject.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SunGame.cpp" ex="false" tool="1" flavor2="0">
@@ -3652,7 +3663,11 @@
       </item>
       <item path="SunNode.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="SunObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="SunObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SunPointLightObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="SunPointLightObject.h" ex="false" tool="3" flavor2="0">
       </item>

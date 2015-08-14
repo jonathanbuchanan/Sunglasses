@@ -17,53 +17,30 @@
 
 class SunPointLightObject : public SunObject {
 public:
+    SunPointLightObject();
+    SunPointLightObject(glm::vec3 _color, glm::vec3 _position);
+    SunPointLightObject(string _name);
+    
+    virtual void initializeDefaultPropertyAndFunctionMap();
+    void passPerFrameUniforms(SunNodeSentAction _action);
+    
+    inline glm::vec3 & getColor() { return color; }
+    inline void setColor(glm::vec3 _color) { color = _color; }
+    inline void setColorR(GLfloat r) { color.r = r; }
+    inline void setColorG(GLfloat g) { color.g = g; }
+    inline void setColorB(GLfloat b) { color.b = b; }
+    
+    inline GLboolean & getAttenuate() { return attenuate; }
+    inline void setAttenuate(GLboolean _attenuate) { attenuate = _attenuate; }
+private:
     // Color
     glm::vec3 color;
-    
+
     // Position
     glm::vec3 position;
-    
+
     // Attenuation
-    // Constant, linear, and quadratic terms
     GLboolean attenuate;
-    
-    SunPointLightObject() {
-        
-    }
-    
-    SunPointLightObject(glm::vec3 _color, glm::vec3 _position) {
-        color = _color;
-        position = _position;
-    }
-    
-    SunPointLightObject(string _name) {
-        setName(_name);
-        
-        initializeDefaultPropertyAndFunctionMap();
-    }
-    
-    virtual void initializeDefaultPropertyAndFunctionMap() {
-        SunObject::initializeDefaultPropertyAndFunctionMap();
-        
-        setType("light");
-    }
-    
-    void passPerFrameUniforms(SunNodeSentAction _action) {
-        SunObject::passPerFrameUniforms(_action);
-        
-        SunShader _shader = *(SunShader *)_action.parameters["shader"];
-        
-        // Set the uniforms for the point light's diffuse and specular colors
-        glUniform3f(_shader.getUniformLocation("pointLight.color"), color.r, color.g, color.b);
-        
-        // Set the uniform for the point light's position
-        glUniform3f(_shader.getUniformLocation("pointLight.position"), position.x, position.y, position.z);
-        
-        // Set the uniforms for the point light's constant, linear, and quadratic terms
-        glUniform1i(_shader.getUniformLocation("pointLight.attenuate"), attenuate);
-    }
-private:
-    
 };
 
 #endif

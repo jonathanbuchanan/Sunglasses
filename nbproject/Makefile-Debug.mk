@@ -54,8 +54,11 @@ OBJECTFILES= \
 	${OBJECTDIR}/Libraries/SOIL/stb_image_aug.o \
 	${OBJECTDIR}/Libraries/glm/detail/glm.o \
 	${OBJECTDIR}/SunButtonState.o \
+	${OBJECTDIR}/SunDirectionalLightObject.o \
 	${OBJECTDIR}/SunGame.o \
 	${OBJECTDIR}/SunNode.o \
+	${OBJECTDIR}/SunObject.o \
+	${OBJECTDIR}/SunPointLightObject.o \
 	${OBJECTDIR}/Utility.o \
 	${OBJECTDIR}/main.o
 
@@ -203,6 +206,11 @@ ${OBJECTDIR}/SunButtonState.o: SunButtonState.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -ILibraries -ILibraries/GLFW -ILibraries/GL -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SunButtonState.o SunButtonState.cpp
 
+${OBJECTDIR}/SunDirectionalLightObject.o: SunDirectionalLightObject.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -ILibraries -ILibraries/GLFW -ILibraries/GL -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SunDirectionalLightObject.o SunDirectionalLightObject.cpp
+
 ${OBJECTDIR}/SunGame.o: SunGame.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -212,6 +220,16 @@ ${OBJECTDIR}/SunNode.o: SunNode.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -ILibraries -ILibraries/GLFW -ILibraries/GL -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SunNode.o SunNode.cpp
+
+${OBJECTDIR}/SunObject.o: SunObject.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -ILibraries -ILibraries/GLFW -ILibraries/GL -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SunObject.o SunObject.cpp
+
+${OBJECTDIR}/SunPointLightObject.o: SunPointLightObject.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -ILibraries -ILibraries/GLFW -ILibraries/GL -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SunPointLightObject.o SunPointLightObject.cpp
 
 ${OBJECTDIR}/Utility.o: Utility.cpp 
 	${MKDIR} -p ${OBJECTDIR}

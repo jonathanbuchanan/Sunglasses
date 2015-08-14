@@ -70,9 +70,9 @@ public:
     
     SunScene() {
         // Normalize all physical properties
-        position = glm::vec3(0, 0, 0);
-        rotation = glm::vec3(0, 0, 0);
-        scale = glm::vec3(1.0, 1.0, 1.0);
+        setPosition(glm::vec3(0, 0, 0));
+        setRotation(glm::vec3(0, 0, 0));
+        setScale(glm::vec3(1.0, 1.0, 1.0));
         setRootNode(this);
         
         // Initialize the property map
@@ -81,9 +81,9 @@ public:
     
     SunScene(const char *filepath, GLFWwindow *_window) {
         // Normalize all physical properties
-        position = glm::vec3(0, 0, 0);
-        rotation = glm::vec3(0, 0, 0);
-        scale = glm::vec3(1.0, 1.0, 1.0);
+        setPosition(glm::vec3(0, 0, 0));
+        setRotation(glm::vec3(0, 0, 0));
+        setScale(glm::vec3(1.0, 1.0, 1.0));
         setRootNode(this);
         
         // Set the window
@@ -552,8 +552,8 @@ public:
             object = new SunObject(name, model);
             
             object->setName(name);
-            object->material = material;
-            object->renderType = renderType;
+            object->setMaterial(material);
+            object->setRenderType(renderType);
             
             for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
                 if (strcmp(node.name(), "objects") == 0)
@@ -616,92 +616,92 @@ public:
             storage.loadSoundFromFileWithName(file, name);
         }
         
-        _object->sound.addSoundFromBuffer(&storage, name, minimumDistance, attenuation);
+        _object->getSoundObject().addSoundFromBuffer(&storage, name, minimumDistance, attenuation);
     }
     
     void processXMLPhysicalObjectPropertyNode(pugi::xml_node _node, SunObject *_object) {
         if (strcmp(_node.name(), "position-x") == 0)
-            _object->position.x = _node.text().as_float();
+            _object->setPositionX(_node.text().as_float());
         else if (strcmp(_node.name(), "position-y") == 0)
-            _object->position.y = _node.text().as_float();
+            _object->setPositionY(_node.text().as_float());
         else if (strcmp(_node.name(), "position-z") == 0)
-            _object->position.z = _node.text().as_float();
+            _object->setPositionZ(_node.text().as_float());
         else if (strcmp(_node.name(), "rotation-x") == 0)
-            _object->rotation.x = _node.text().as_float();
+            _object->setRotationX(_node.text().as_float());
         else if (strcmp(_node.name(), "rotation-y") == 0)
-            _object->rotation.y = _node.text().as_float();
+            _object->setRotationY(_node.text().as_float());
         else if (strcmp(_node.name(), "rotation-z") == 0)
-            _object->rotation.z = _node.text().as_float();
+            _object->setRotationZ(_node.text().as_float());
         else if (strcmp(_node.name(), "scale-x") == 0)
-            _object->scale.x = _node.text().as_float();
+            _object->setScaleX(_node.text().as_float());
         else if (strcmp(_node.name(), "scale-y") == 0)
-            _object->scale.y = _node.text().as_float();
+            _object->setScaleY(_node.text().as_float());
         else if (strcmp(_node.name(), "scale-z") == 0)
-            _object->scale.z = _node.text().as_float();
+            _object->setScaleZ(_node.text().as_float());
         else if (strcmp(_node.name(), "material-r") == 0)
-            _object->material.color.r = _node.text().as_float();
+            _object->getMaterial().color.r = _node.text().as_float();
         else if (strcmp(_node.name(), "material-g") == 0)
-            _object->material.color.g = _node.text().as_float();
+            _object->getMaterial().color.g = _node.text().as_float();
         else if (strcmp(_node.name(), "material-b") == 0)
-            _object->material.color.b = _node.text().as_float();
+            _object->getMaterial().color.b = _node.text().as_float();
         else if (strcmp(_node.name(), "material-shininess") == 0)
-            _object->material.shininess = _node.text().as_float();
+            _object->getMaterial().shininess = _node.text().as_float();
     }
     
     void processXMLPointLightObjectPropertyNode(pugi::xml_node _node, SunPointLightObject *_object) {
         if (strcmp(_node.name(), "position-x") == 0)
-            _object->position.x = _node.text().as_float();
+            _object->setPositionX(_node.text().as_float());
         else if (strcmp(_node.name(), "position-y") == 0)
-            _object->position.y = _node.text().as_float();
+            _object->setPositionY(_node.text().as_float());
         else if (strcmp(_node.name(), "position-z") == 0)
-            _object->position.z = _node.text().as_float();
+            _object->setPositionZ(_node.text().as_float());
         else if (strcmp(_node.name(), "rotation-x") == 0)
-            _object->rotation.x = _node.text().as_float();
+            _object->setRotationX(_node.text().as_float());
         else if (strcmp(_node.name(), "rotation-y") == 0)
-            _object->rotation.y = _node.text().as_float();
+            _object->setRotationY(_node.text().as_float());
         else if (strcmp(_node.name(), "rotation-z") == 0)
-            _object->rotation.z = _node.text().as_float();
+            _object->setRotationZ(_node.text().as_float());
         else if (strcmp(_node.name(), "scale-x") == 0)
-            _object->scale.x = _node.text().as_float();
+            _object->setScaleX(_node.text().as_float());
         else if (strcmp(_node.name(), "scale-y") == 0)
-            _object->scale.y = _node.text().as_float();
+            _object->setScaleY(_node.text().as_float());
         else if (strcmp(_node.name(), "scale-z") == 0)
-            _object->scale.z = _node.text().as_float();
+            _object->setScaleZ(_node.text().as_float());
         else if (strcmp(_node.name(), "color-r") == 0)
-            _object->color.r = _node.text().as_float();
+            _object->setColorR(_node.text().as_float());
         else if (strcmp(_node.name(), "color-g") == 0)
-            _object->color.g = _node.text().as_float();
+            _object->setColorG(_node.text().as_float());
         else if (strcmp(_node.name(), "color-b") == 0)
-            _object->color.b = _node.text().as_float();
+            _object->setColorB(_node.text().as_float());
         else if (strcmp(_node.name(), "attenuate") == 0)
-            _object->attenuate = _node.text().as_bool();
+            _object->setAttenuate(_node.text().as_bool());
     }
     
     void processXMLDirectionalLightObjectPropertyNode(pugi::xml_node _node, SunDirectionalLightObject *_object) {
         if (strcmp(_node.name(), "position-x") == 0)
-            _object->position.x = _node.text().as_float();
+            _object->setPositionX(_node.text().as_float());
         else if (strcmp(_node.name(), "position-y") == 0)
-            _object->position.y = _node.text().as_float();
+            _object->setPositionY(_node.text().as_float());
         else if (strcmp(_node.name(), "position-z") == 0)
-            _object->position.z = _node.text().as_float();
+            _object->setPositionZ(_node.text().as_float());
         else if (strcmp(_node.name(), "rotation-x") == 0)
-            _object->rotation.x = _node.text().as_float();
+            _object->setRotationX(_node.text().as_float());
         else if (strcmp(_node.name(), "rotation-y") == 0)
-            _object->rotation.y = _node.text().as_float();
+            _object->setRotationY(_node.text().as_float());
         else if (strcmp(_node.name(), "rotation-z") == 0)
-            _object->rotation.z = _node.text().as_float();
+            _object->setRotationZ(_node.text().as_float());
         else if (strcmp(_node.name(), "scale-x") == 0)
-            _object->scale.x = _node.text().as_float();
+            _object->setScaleX(_node.text().as_float());
         else if (strcmp(_node.name(), "scale-y") == 0)
-            _object->scale.y = _node.text().as_float();
+            _object->setScaleY(_node.text().as_float());
         else if (strcmp(_node.name(), "scale-z") == 0)
-            _object->scale.z = _node.text().as_float();
+            _object->setScaleZ(_node.text().as_float());
         else if (strcmp(_node.name(), "color-r") == 0)
-            _object->color.r = _node.text().as_float();
+            _object->setColorR(_node.text().as_float());
         else if (strcmp(_node.name(), "color-g") == 0)
-            _object->color.g = _node.text().as_float();
+            _object->setColorG(_node.text().as_float());
         else if (strcmp(_node.name(), "color-b") == 0)
-            _object->color.b = _node.text().as_float();
+            _object->setColorB(_node.text().as_float());
     }
     
     void cycle(map<int, SunButtonState> _buttons, GLfloat _deltaTime) {

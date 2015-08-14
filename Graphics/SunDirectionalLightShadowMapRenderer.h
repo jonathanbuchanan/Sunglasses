@@ -79,7 +79,7 @@ public:
     
     void passLightSpaceMatrix(SunShader _shader, SunDirectionalLightObject *_directionalLight, glm::vec3 _target) {
         glm::mat4 projectionMatrix = glm::ortho(-20.0f, 20.0f, -20.0f, 20.0f, 0.001f, 30.0f);
-        glm::mat4 viewMatrix = glm::lookAt(-_directionalLight->direction, _target, glm::vec3(1.0f));
+        glm::mat4 viewMatrix = glm::lookAt(-_directionalLight->getDirection(), _target, glm::vec3(1.0f));
         
         glm::mat4 lightMatrix = projectionMatrix * viewMatrix;
         
