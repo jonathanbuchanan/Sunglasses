@@ -10,6 +10,7 @@
 
 class SunPhysicsObject {
 public:
+    SunPhysicsObject();
     
 private:
     

@@ -10,6 +10,7 @@
 
 class SunPhysicsCollider {
 public:
+    SunPhysicsCollider();
     
 private:
     

@@ -11,21 +11,15 @@
 class SunPhysicsSimulator {
 public:
     
-    void cycle() {
-        
-    }
+    // Execute the entire physics cycle of the scene
+    void cycle();
     
-    void simulate() {
-        
-    }
-    
-    void detectCollisions() {
-        
-    }
-    
-    void respondToCollisions() {
-        
-    }
+    // Move each object to its new position based on the forces acting on it
+    void integrate();
+    // Detect objects that collided after integrating
+    void detectCollisions();
+    // Respond to the collisions previously detected
+    void respondToCollisions();
     
 private:
     

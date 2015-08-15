@@ -74,8 +74,8 @@
         <itemPath>Graphics/SunTexturedQuad.h</itemPath>
       </logicalFolder>
       <logicalFolder name="Physics" displayName="Physics" projectFiles="true">
-        <itemPath>Audio/SunPhysicsCollider.h</itemPath>
-        <itemPath>Audio/SunPhysicsObject.h</itemPath>
+        <itemPath>Physics/SunPhysicsCollider.h</itemPath>
+        <itemPath>Physics/SunPhysicsObject.h</itemPath>
         <itemPath>Physics/SunPhysicsSimulator.h</itemPath>
       </logicalFolder>
       <itemPath>SunButtonState.h</itemPath>
@@ -490,6 +490,9 @@
         <itemPath>Graphics/SunTexturedQuad.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="Physics" displayName="Physics" projectFiles="true">
+        <itemPath>Physics/SunPhysicsCollider.cpp</itemPath>
+        <itemPath>Physics/SunPhysicsObject.cpp</itemPath>
+        <itemPath>Physics/SunPhysicsSimulator.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="SOIL" displayName="SOIL" projectFiles="true">
         <logicalFolder name="original" displayName="original" projectFiles="true">
@@ -641,10 +644,6 @@
       </item>
       <item path="Audio/SunMusicObject.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Audio/SunPhysicsCollider.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Audio/SunPhysicsObject.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Audio/SunSoundBufferStorage.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Audio/SunSoundBufferStorage.h" ex="false" tool="3" flavor2="0">
@@ -2104,6 +2103,16 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsCollider.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsCollider.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsSimulator.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Physics/SunPhysicsSimulator.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -2176,10 +2185,6 @@
       </item>
       <item path="Audio/SunMusicObject.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Audio/SunPhysicsCollider.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Audio/SunPhysicsObject.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Audio/SunSoundBufferStorage.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Audio/SunSoundBufferStorage.h" ex="false" tool="3" flavor2="0">
@@ -3639,6 +3644,16 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsCollider.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsCollider.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsSimulator.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Physics/SunPhysicsSimulator.h" ex="false" tool="3" flavor2="0">
       </item>

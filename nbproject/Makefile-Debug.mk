@@ -58,6 +58,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/Libraries/SOIL/image_helper.o \
 	${OBJECTDIR}/Libraries/SOIL/stb_image_aug.o \
 	${OBJECTDIR}/Libraries/glm/detail/glm.o \
+	${OBJECTDIR}/Physics/SunPhysicsCollider.o \
+	${OBJECTDIR}/Physics/SunPhysicsObject.o \
+	${OBJECTDIR}/Physics/SunPhysicsSimulator.o \
 	${OBJECTDIR}/SunButtonState.o \
 	${OBJECTDIR}/SunDirectionalLightObject.o \
 	${OBJECTDIR}/SunGame.o \
@@ -231,6 +234,21 @@ ${OBJECTDIR}/Libraries/glm/detail/glm.o: Libraries/glm/detail/glm.cpp
 	${MKDIR} -p ${OBJECTDIR}/Libraries/glm/detail
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -ILibraries -ILibraries/GLFW -ILibraries/GL -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Libraries/glm/detail/glm.o Libraries/glm/detail/glm.cpp
+
+${OBJECTDIR}/Physics/SunPhysicsCollider.o: Physics/SunPhysicsCollider.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Physics
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -ILibraries -ILibraries/GLFW -ILibraries/GL -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Physics/SunPhysicsCollider.o Physics/SunPhysicsCollider.cpp
+
+${OBJECTDIR}/Physics/SunPhysicsObject.o: Physics/SunPhysicsObject.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Physics
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -ILibraries -ILibraries/GLFW -ILibraries/GL -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Physics/SunPhysicsObject.o Physics/SunPhysicsObject.cpp
+
+${OBJECTDIR}/Physics/SunPhysicsSimulator.o: Physics/SunPhysicsSimulator.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Physics
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -ILibraries -ILibraries/GLFW -ILibraries/GL -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Physics/SunPhysicsSimulator.o Physics/SunPhysicsSimulator.cpp
 
 ${OBJECTDIR}/SunButtonState.o: SunButtonState.cpp 
 	${MKDIR} -p ${OBJECTDIR}
