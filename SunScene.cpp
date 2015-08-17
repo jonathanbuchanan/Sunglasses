@@ -73,6 +73,7 @@ void SunScene::initializeDefaultPropertyAndFunctionMap() {
 }
 
 void SunScene::cycle(map<int, SunButtonState> _buttons, GLfloat _deltaTime) {
+    physicsSimulator.cycle(_deltaTime);
     update(_buttons);
     renderer.render(_deltaTime);
 }
@@ -96,6 +97,9 @@ void SunScene::update(map<int, SunButtonState> _buttons) {
     // Force sub-objects to update
     sendAction(action, GUIsystem);
     SunObject::update(action);
+    
+    action.recursive = true;
+    sendAction(action, rootRenderableNode);
 }
 
 void SunScene::render(SunNodeSentAction _action) {

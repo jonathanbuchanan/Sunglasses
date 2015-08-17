@@ -59,8 +59,10 @@ OBJECTFILES= \
 	${OBJECTDIR}/Libraries/SOIL/stb_image_aug.o \
 	${OBJECTDIR}/Libraries/glm/detail/glm.o \
 	${OBJECTDIR}/Physics/SunPhysicsCollider.o \
+	${OBJECTDIR}/Physics/SunPhysicsForce.o \
 	${OBJECTDIR}/Physics/SunPhysicsObject.o \
 	${OBJECTDIR}/Physics/SunPhysicsSimulator.o \
+	${OBJECTDIR}/Physics/SunPhysicsWorld.o \
 	${OBJECTDIR}/SunButtonState.o \
 	${OBJECTDIR}/SunDirectionalLightObject.o \
 	${OBJECTDIR}/SunGame.o \
@@ -216,6 +218,11 @@ ${OBJECTDIR}/Physics/SunPhysicsCollider.o: Physics/SunPhysicsCollider.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Physics/SunPhysicsCollider.o Physics/SunPhysicsCollider.cpp
 
+${OBJECTDIR}/Physics/SunPhysicsForce.o: Physics/SunPhysicsForce.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Physics
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Physics/SunPhysicsForce.o Physics/SunPhysicsForce.cpp
+
 ${OBJECTDIR}/Physics/SunPhysicsObject.o: Physics/SunPhysicsObject.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Physics
 	${RM} "$@.d"
@@ -225,6 +232,11 @@ ${OBJECTDIR}/Physics/SunPhysicsSimulator.o: Physics/SunPhysicsSimulator.cpp
 	${MKDIR} -p ${OBJECTDIR}/Physics
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Physics/SunPhysicsSimulator.o Physics/SunPhysicsSimulator.cpp
+
+${OBJECTDIR}/Physics/SunPhysicsWorld.o: Physics/SunPhysicsWorld.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Physics
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Physics/SunPhysicsWorld.o Physics/SunPhysicsWorld.cpp
 
 ${OBJECTDIR}/SunButtonState.o: SunButtonState.cpp 
 	${MKDIR} -p ${OBJECTDIR}

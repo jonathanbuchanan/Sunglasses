@@ -32,7 +32,8 @@ void SunObject::initializeDefaultPropertyAndFunctionMap() {
 }
 
 void SunObject::update(SunNodeSentAction _action) {
-    
+    if (physicsEnabled == true)
+        position = physicsObject.getPosition();
 }
 
 void SunObject::render(SunNodeSentAction _action) {

@@ -9,6 +9,7 @@
 #ifndef OpenGL_Test_3_Scene_h
 #define OpenGL_Test_3_Scene_h
 
+#include "./Physics/SunPhysicsSimulator.h"
 #include "./Graphics/SunTextRenderer.h"
 #include "./Graphics/GUI/SunGUISystem.h"
 #include "./Graphics/SunCamera.h"
@@ -40,7 +41,9 @@ public:
     
     void processXMLSceneNode(pugi::xml_node _node) {
         for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
-            if (strcmp(node.name(), "objects") == 0) {
+            if (strcmp(node.name(), "physicsworld") == 0) {
+                processXMLPhysicsWorldNode(node);
+            } else if (strcmp(node.name(), "objects") == 0) {
                 processXMLObjectsNode(node, rootRenderableNode);
             } else if (strcmp(node.name(), "camera") == 0) {
                 processXMLCameraNode(node);
@@ -49,6 +52,33 @@ public:
             } else if (strcmp(node.name(), "renderer") == 0)
                 processXMLRendererNode(node);
         }
+    }
+    
+    void processXMLPhysicsWorldNode(pugi::xml_node _node) {
+        SunPhysicsWorld world;
+        
+        for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
+            if (strcmp(node.name(), "gravity") == 0)
+                world.setGravity(processXMLPhysicsWorldGravityNode(node));
+        }
+        physicsSimulator.setWorld(world);
+    }
+    
+    SunPhysicsForce processXMLPhysicsWorldGravityNode(pugi::xml_node _node) {
+        float x;
+        float y;
+        float z;
+        for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
+            if (strcmp(node.name(), "x") == 0)
+                x = node.text().as_float();
+            else if (strcmp(node.name(), "y") == 0)
+                y = node.text().as_float();
+            else if (strcmp(node.name(), "z") == 0)
+                z = node.text().as_float();
+        }
+        SunPhysicsForce gravity = SunPhysicsForce(glm::vec3(x, y, z));
+        gravity.setScalesWithMass(true);
+        return gravity;
     }
     
     void processXMLCameraNode(pugi::xml_node _node) {
@@ -531,6 +561,12 @@ public:
             _object->getMaterial().color.b = _node.text().as_float();
         else if (strcmp(_node.name(), "material-shininess") == 0)
             _object->getMaterial().shininess = _node.text().as_float();
+        else if (strcmp(_node.name(), "physicsenabled") == 0) {
+            _object->setPhysicsEnabled(_node.text().as_bool());
+            physicsSimulator.getWorld().addObjectToObjects(&_object->getPhysicsObject());
+        } else if (strcmp(_node.name(), "mass") == 0) {
+            _object->getPhysicsObject().setMass(_node.text().as_float());
+        }
     }
     
     void processXMLPointLightObjectPropertyNode(pugi::xml_node _node, SunPointLightObject *_object) {
@@ -560,6 +596,10 @@ public:
             _object->setColorB(_node.text().as_float());
         else if (strcmp(_node.name(), "attenuate") == 0)
             _object->setAttenuate(_node.text().as_bool());
+        else if (strcmp(_node.name(), "physicsenabled") == 0) {
+            _object->setPhysicsEnabled(_node.text().as_bool());
+            physicsSimulator.getWorld().addObjectToObjects(&_object->getPhysicsObject());
+        }
     }
     
     void processXMLDirectionalLightObjectPropertyNode(pugi::xml_node _node, SunDirectionalLightObject *_object) {
@@ -587,6 +627,10 @@ public:
             _object->setColorG(_node.text().as_float());
         else if (strcmp(_node.name(), "color-b") == 0)
             _object->setColorB(_node.text().as_float());
+        else if (strcmp(_node.name(), "physicsenabled") == 0) {
+            _object->setPhysicsEnabled(_node.text().as_bool());
+            physicsSimulator.getWorld().addObjectToObjects(&_object->getPhysicsObject());
+        }
     }
     
     void cycle(map<int, SunButtonState> _buttons, GLfloat _deltaTime);
@@ -596,6 +640,8 @@ public:
     void passPerFrameUniforms(SunShader _shader);
     void passPerFrameUniforms(SunShader _shader, vector<SunNodeSentActionCondition> _conditions);
     void passPerFrameUniformsAction(SunNodeSentAction _action);
+    
+    inline SunPhysicsSimulator & getPhysicsSimulator() { return physicsSimulator; }
     
     inline SunGUISystem * getGUISystem() { return GUIsystem; }
     
@@ -619,6 +665,9 @@ public:
     inline GLFWwindow * getWindow() { return window; }
     inline void setWindow(GLFWwindow *_window) { window = _window; }
 private:
+    // Physics Simulator
+    SunPhysicsSimulator physicsSimulator;
+    
     // GUIsystem
     SunGUISystem *GUIsystem;
 

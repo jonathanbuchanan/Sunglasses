@@ -1,4 +1,11 @@
 <scene name="DemoScene" GUISystem="GUIDemo.xml">
+    <physicsworld>
+        <gravity>
+            <x>0</x>
+            <y>-9.80665</y>
+            <z>0</z>
+        </gravity>
+    </physicsworld>
     <objects>
         <object name="Cube0" model="Graphics/Cube.dae" type="Physical" textured="true" animated="false">
             <position-x>0</position-x>
@@ -18,6 +25,9 @@
             <material-b>.4</material-b>
             
             <material-shininess>8192</material-shininess>
+            
+            <physicsenabled>true</physicsenabled>
+            <mass>10000</mass>
             
             <objects>
                 

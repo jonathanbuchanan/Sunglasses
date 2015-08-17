@@ -75,8 +75,10 @@
       </logicalFolder>
       <logicalFolder name="Physics" displayName="Physics" projectFiles="true">
         <itemPath>Physics/SunPhysicsCollider.h</itemPath>
+        <itemPath>Physics/SunPhysicsForce.h</itemPath>
         <itemPath>Physics/SunPhysicsObject.h</itemPath>
         <itemPath>Physics/SunPhysicsSimulator.h</itemPath>
+        <itemPath>Physics/SunPhysicsWorld.h</itemPath>
       </logicalFolder>
       <itemPath>SunButtonState.h</itemPath>
       <itemPath>SunDirectionalLightObject.h</itemPath>
@@ -491,8 +493,10 @@
       </logicalFolder>
       <logicalFolder name="Physics" displayName="Physics" projectFiles="true">
         <itemPath>Physics/SunPhysicsCollider.cpp</itemPath>
+        <itemPath>Physics/SunPhysicsForce.cpp</itemPath>
         <itemPath>Physics/SunPhysicsObject.cpp</itemPath>
         <itemPath>Physics/SunPhysicsSimulator.cpp</itemPath>
+        <itemPath>Physics/SunPhysicsWorld.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="SOIL" displayName="SOIL" projectFiles="true">
         <logicalFolder name="original" displayName="original" projectFiles="true">
@@ -2108,6 +2112,10 @@
       </item>
       <item path="Physics/SunPhysicsCollider.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Physics/SunPhysicsForce.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsForce.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Physics/SunPhysicsObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Physics/SunPhysicsObject.h" ex="false" tool="3" flavor2="0">
@@ -2115,6 +2123,10 @@
       <item path="Physics/SunPhysicsSimulator.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Physics/SunPhysicsSimulator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsWorld.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsWorld.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SSAOBlurQuad.pre" ex="false" tool="3" flavor2="0">
       </item>
@@ -3649,6 +3661,10 @@
       </item>
       <item path="Physics/SunPhysicsCollider.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Physics/SunPhysicsForce.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsForce.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Physics/SunPhysicsObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Physics/SunPhysicsObject.h" ex="false" tool="3" flavor2="0">
@@ -3656,6 +3672,10 @@
       <item path="Physics/SunPhysicsSimulator.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Physics/SunPhysicsSimulator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsWorld.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsWorld.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SSAOBlurQuad.pre" ex="false" tool="3" flavor2="0">
       </item>
