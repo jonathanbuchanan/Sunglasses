@@ -8,12 +8,51 @@
 #ifndef SUNPHYSICSCOLLIDER_H
 #define	SUNPHYSICSCOLLIDER_H
 
+#include "glm/glm.hpp"
+
+enum SunPhysicsColliderType {
+    SunPhysicsColliderTypeAABB,
+    SunPhysicsColliderTypeBB,
+    SunPhysicsColliderTypeSphere,
+    SunPhysicsColliderTypeMesh
+};
+
+struct SunPhysicsCollisionData {
+    bool collided;
+    float distance;
+    
+    SunPhysicsCollisionData() {
+        collided = false;
+        distance = 0;
+    }
+    
+    SunPhysicsCollisionData(bool _c, float _f) {
+        collided = _c;
+        distance = _f;
+    }
+};
+
 class SunPhysicsCollider {
 public:
     SunPhysicsCollider();
     
-private:
+    virtual SunPhysicsCollisionData collideWith(SunPhysicsCollider *other);
     
+    inline glm::vec3 & getPosition() { return position; }
+    virtual inline void setPosition(glm::vec3 _position) { position = _position; }
+    virtual inline void setPositionX(float _x) { position.x = _x; }
+    virtual inline void setPositionY(float _y) { position.y = _y; }
+    virtual inline void setPositionZ(float _z) { position.z = _z; }
+    virtual inline void moveTo(glm::vec3 _position) { position = _position; }
+    virtual inline void moveToX(float _x) { position.x = _x; }
+    virtual inline void moveToY(float _y) { position.y = _y; }
+    virtual inline void moveToZ(float _z) { position.z = _z; }
+    
+    inline SunPhysicsColliderType & getType() { return type; }
+    inline void setType(SunPhysicsColliderType _type) { type = _type; }
+private:
+    glm::vec3 position;
+    SunPhysicsColliderType type;
 };
 
 #endif

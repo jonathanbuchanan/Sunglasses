@@ -9,6 +9,8 @@
 #define	SUNPHYSICSOBJECT_H
 
 #include "SunPhysicsForce.h"
+#include "SunPhysicsCollider.h"
+#include "SunPhysicsColliderAABB.h"
 
 #include <vector>
 using namespace std;
@@ -18,6 +20,7 @@ public:
     SunPhysicsObject();
     
     void updatePositionForForcesAndDelta(vector<SunPhysicsForce> forces, float delta);
+    SunPhysicsCollisionData collideWith(SunPhysicsObject *_other);
     
     inline glm::vec3 & getPosition() { return position; }
     inline void setPosition(glm::vec3 _position) { position = _position; }
@@ -33,6 +36,9 @@ public:
     
     inline float & getMass() { return mass; }
     inline void setMass(float _mass) { mass = _mass; }
+    
+    inline SunPhysicsCollider * getCollider() { return collider; }
+    inline void setCollider(SunPhysicsCollider *_c) { collider = _c; }
 private:
     // Position
     glm::vec3 position = glm::vec3(0, 0, 0);
@@ -42,6 +48,9 @@ private:
     
     // Mass (in kilograms)
     float mass = 1;
+    
+    // Physics Collider
+    SunPhysicsCollider *collider;
 };
 
 #endif

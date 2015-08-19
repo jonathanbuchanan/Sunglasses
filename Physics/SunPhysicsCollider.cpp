@@ -3,3 +3,7 @@
 SunPhysicsCollider::SunPhysicsCollider() {
     
 }
+
+SunPhysicsCollisionData SunPhysicsCollider::collideWith(SunPhysicsCollider *other) {
+    return SunPhysicsCollisionData();
+}

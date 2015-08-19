@@ -13,4 +13,9 @@ void SunPhysicsObject::updatePositionForForcesAndDelta(vector<SunPhysicsForce> f
         netDirection += forces[i].getDirectionWithForceForMass(mass);
     velocity += netDirection * delta;
     position += velocity * delta;
+    collider->moveTo(position);
+}
+
+SunPhysicsCollisionData SunPhysicsObject::collideWith(SunPhysicsObject *_other) {
+    return collider->collideWith(_other->getCollider());
 }

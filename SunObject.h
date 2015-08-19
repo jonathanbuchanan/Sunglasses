@@ -32,10 +32,10 @@ public:
     virtual void passPerFrameUniforms(SunNodeSentAction _action);
     
     inline glm::vec3 & getPosition() { return position; }
-    inline void setPosition(glm::vec3 _position) { position = _position; if (physicsEnabled) physicsObject.setPosition(position); }
-    inline void setPositionX(GLfloat x) { position.x = x; if (physicsEnabled) physicsObject.setPositionX(x); }
-    inline void setPositionY(GLfloat y) { position.y = y; if (physicsEnabled) physicsObject.setPositionY(y); }
-    inline void setPositionZ(GLfloat z) { position.z = z; if (physicsEnabled) physicsObject.setPositionZ(z); }
+    inline void setPosition(glm::vec3 _position) { position = _position; physicsObject.setPosition(position); }
+    inline void setPositionX(GLfloat x) { position.x = x; physicsObject.setPositionX(x); }
+    inline void setPositionY(GLfloat y) { position.y = y; physicsObject.setPositionY(y); }
+    inline void setPositionZ(GLfloat z) { position.z = z; physicsObject.setPositionZ(z); }
     
     inline glm::vec3 & getRotation() { return rotation; }
     inline void setRotation(glm::vec3 _rotation) { rotation = _rotation; }

@@ -8,14 +8,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Users/jonathan/Dev/Sunglasses/Physics/SunPhysicsObject.h</file>
+            <file>file:/Users/jonathan/Dev/Sunglasses/Physics/SunPhysicsForce.cpp</file>
             <file>file:/Users/jonathan/Dev/Sunglasses/Physics/SunPhysicsSimulator.h</file>
-            <file>file:/Users/jonathan/Dev/Sunglasses/Physics/SunPhysicsWorld.h</file>
-            <file>file:/Users/jonathan/Dev/Sunglasses/Physics/SunPhysicsWorld.cpp</file>
             <file>file:/Users/jonathan/Dev/Sunglasses/Physics/SunPhysicsSimulator.cpp</file>
-            <file>file:/Users/jonathan/Dev/Sunglasses/SunScene.cpp</file>
-            <file>file:/Users/jonathan/Dev/Sunglasses/SunObject.h</file>
-            <file>file:/Users/jonathan/Dev/Sunglasses/SunScene.h</file>
+            <file>file:/Users/jonathan/Dev/Sunglasses/Physics/SunPhysicsObject.cpp</file>
             <file>file:/Users/jonathan/Dev/Sunglasses/SunObject.cpp</file>
+            <file>file:/Users/jonathan/Dev/Sunglasses/SceneDemo.xml</file>
+            <file>file:/Users/jonathan/Dev/Sunglasses/SunScene.h</file>
         </group>
     </open-files>
 </project-private>

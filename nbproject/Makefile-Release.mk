@@ -59,6 +59,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Libraries/SOIL/stb_image_aug.o \
 	${OBJECTDIR}/Libraries/glm/detail/glm.o \
 	${OBJECTDIR}/Physics/SunPhysicsCollider.o \
+	${OBJECTDIR}/Physics/SunPhysicsColliderAABB.o \
 	${OBJECTDIR}/Physics/SunPhysicsForce.o \
 	${OBJECTDIR}/Physics/SunPhysicsObject.o \
 	${OBJECTDIR}/Physics/SunPhysicsSimulator.o \
@@ -217,6 +218,11 @@ ${OBJECTDIR}/Physics/SunPhysicsCollider.o: Physics/SunPhysicsCollider.cpp
 	${MKDIR} -p ${OBJECTDIR}/Physics
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Physics/SunPhysicsCollider.o Physics/SunPhysicsCollider.cpp
+
+${OBJECTDIR}/Physics/SunPhysicsColliderAABB.o: Physics/SunPhysicsColliderAABB.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Physics
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Physics/SunPhysicsColliderAABB.o Physics/SunPhysicsColliderAABB.cpp
 
 ${OBJECTDIR}/Physics/SunPhysicsForce.o: Physics/SunPhysicsForce.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Physics
