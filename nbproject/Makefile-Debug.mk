@@ -60,6 +60,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Libraries/glm/detail/glm.o \
 	${OBJECTDIR}/Physics/SunPhysicsCollider.o \
 	${OBJECTDIR}/Physics/SunPhysicsColliderAABB.o \
+	${OBJECTDIR}/Physics/SunPhysicsColliderSphere.o \
 	${OBJECTDIR}/Physics/SunPhysicsForce.o \
 	${OBJECTDIR}/Physics/SunPhysicsObject.o \
 	${OBJECTDIR}/Physics/SunPhysicsSimulator.o \
@@ -247,6 +248,11 @@ ${OBJECTDIR}/Physics/SunPhysicsColliderAABB.o: Physics/SunPhysicsColliderAABB.cp
 	${MKDIR} -p ${OBJECTDIR}/Physics
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -ILibraries -ILibraries/GLFW -ILibraries/GL -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Physics/SunPhysicsColliderAABB.o Physics/SunPhysicsColliderAABB.cpp
+
+${OBJECTDIR}/Physics/SunPhysicsColliderSphere.o: Physics/SunPhysicsColliderSphere.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Physics
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/System/Library/Frameworks -ILibraries/Freetype -ILibraries/Freetype/config -ILibraries -ILibraries/GLFW -ILibraries/GL -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Physics/SunPhysicsColliderSphere.o Physics/SunPhysicsColliderSphere.cpp
 
 ${OBJECTDIR}/Physics/SunPhysicsForce.o: Physics/SunPhysicsForce.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Physics

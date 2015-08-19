@@ -29,6 +29,11 @@ public:
     inline void setSecondPointY(float _y) { secondPoint.y = _y; }
     inline void setSecondPointZ(float _z) { secondPoint.z = _z; }
     
+    inline glm::vec3 getSize() { return secondPoint - firstPoint; }
+    inline float getWidth() { return secondPoint.x - firstPoint.x; }
+    inline float getHeight() { return secondPoint.y - firstPoint.y; }
+    inline float getDepth() { return secondPoint.z - firstPoint.z; }
+    
     virtual inline void moveTo(glm::vec3 _position) { firstPoint += _position - getPosition(); secondPoint += _position - getPosition(); setPosition(_position); }
     virtual inline void moveToX(float _x) { firstPoint.x += _x - getPosition().x; secondPoint.x += _x - getPosition().x; setPositionX(_x); }
     virtual inline void moveToY(float _y) { firstPoint.y += _y - getPosition().y; secondPoint.y += _y - getPosition().y; setPositionX(_y); }

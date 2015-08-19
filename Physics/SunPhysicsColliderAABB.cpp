@@ -1,6 +1,8 @@
 #include "SunPhysicsColliderAABB.h"
+#include "SunPhysicsColliderSphere.h"
 #include "glm/gtx/simd_vec4.hpp"
 #include "glm/gtx/string_cast.hpp"
+#include "glm/gtx/simd_quat.hpp"
 #include <string>
 #include <iostream>
 
@@ -14,12 +16,6 @@ SunPhysicsCollisionData SunPhysicsColliderAABB::collideWith(SunPhysicsCollider *
         glm::vec3 first = this->getFirstPoint() - _other->getSecondPoint();
         glm::vec3 second = _other->getFirstPoint() - this->getSecondPoint();
         
-//        std::cout << "First: " + glm::to_string(firstPoint) + "\n" << std::flush;
-//        std::cout << "Second: " + glm::to_string(secondPoint) + "\n" << std::flush;
-//        
-//        std::cout << "First: " + glm::to_string(_other->getFirstPoint()) + "\n" << std::flush;
-//        std::cout << "Second: " + glm::to_string(_other->getSecondPoint()) + "\n" << std::flush;
-        
         if (glm::length(first) < glm::length(second)) {
             if (_other->getSecondPoint().x < this->getFirstPoint().x || _other->getSecondPoint().y < this->getFirstPoint().y || _other->getSecondPoint().z < this->getFirstPoint().z)
                 return SunPhysicsCollisionData(false, 0);
@@ -31,6 +27,29 @@ SunPhysicsCollisionData SunPhysicsColliderAABB::collideWith(SunPhysicsCollider *
             else
                 return SunPhysicsCollisionData(true, glm::length(second));
         }
+    } else if (other->getType() == SunPhysicsColliderTypeSphere) {
+        SunPhysicsColliderSphere *_other = static_cast<SunPhysicsColliderSphere *>(other);
+        
+        glm::vec3 separatingAxis = _other->getPosition() - this->getPosition();
+        float distance = glm::length(separatingAxis);
+
+        separatingAxis = glm::normalize(separatingAxis);
+
+        if (separatingAxis.x >= separatingAxis.y && separatingAxis.x >= separatingAxis.z)
+            separatingAxis /= separatingAxis.x;
+        else if (separatingAxis.y >= separatingAxis.x && separatingAxis.y >= separatingAxis.z)
+            separatingAxis /= separatingAxis.y;
+        else
+            separatingAxis /= separatingAxis.z;
+
+        separatingAxis.x *= this->getWidth() / 2.0f;
+        separatingAxis.y *= this->getHeight() / 2.0f;
+        separatingAxis.z *= this->getDepth() / 2.0f;
+
+        if (distance <= (_other->getRadius() + glm::length(separatingAxis)))
+            return SunPhysicsCollisionData(true, distance);
+        else
+            return SunPhysicsCollisionData(false, distance);
     }
     return SunPhysicsCollisionData(false, 0);
 }

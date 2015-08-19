@@ -515,9 +515,8 @@ public:
                 type = attribute.value();
         }
         
-        _object->getPhysicsObject().setCollider(new SunPhysicsColliderAABB());
-        
         if (type == "AABB") {
+            _object->getPhysicsObject().setCollider(new SunPhysicsColliderAABB());
             for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
                 if (strcmp(node.name(), "first-x") == 0)
                     ((SunPhysicsColliderAABB *)_object->getPhysicsObject().getCollider())->setFirstPointX(node.text().as_float());
@@ -537,6 +536,18 @@ public:
                     ((SunPhysicsColliderAABB *)_object->getPhysicsObject().getCollider())->setPositionY(node.text().as_float());
                 else if (strcmp(node.name(), "center-z") == 0)
                     ((SunPhysicsColliderAABB *)_object->getPhysicsObject().getCollider())->setPositionZ(node.text().as_float());
+            }
+        } else if (type == "Sphere") {
+            _object->getPhysicsObject().setCollider(new SunPhysicsColliderSphere());
+            for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
+                if (strcmp(node.name(), "center-x") == 0)
+                    ((SunPhysicsColliderSphere *)_object->getPhysicsObject().getCollider())->setPositionX(node.text().as_float());
+                else if (strcmp(node.name(), "center-y") == 0)
+                    ((SunPhysicsColliderSphere *)_object->getPhysicsObject().getCollider())->setPositionY(node.text().as_float());
+                else if (strcmp(node.name(), "center-z") == 0)
+                    ((SunPhysicsColliderSphere *)_object->getPhysicsObject().getCollider())->setPositionZ(node.text().as_float());
+                else if (strcmp(node.name(), "radius") == 0)
+                    ((SunPhysicsColliderSphere *)_object->getPhysicsObject().getCollider())->setRadius(node.text().as_float());
             }
         }
     }

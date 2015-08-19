@@ -76,6 +76,7 @@
       <logicalFolder name="Physics" displayName="Physics" projectFiles="true">
         <itemPath>Physics/SunPhysicsCollider.h</itemPath>
         <itemPath>Physics/SunPhysicsColliderAABB.h</itemPath>
+        <itemPath>Physics/SunPhysicsColliderSphere.h</itemPath>
         <itemPath>Physics/SunPhysicsForce.h</itemPath>
         <itemPath>Physics/SunPhysicsObject.h</itemPath>
         <itemPath>Physics/SunPhysicsSimulator.h</itemPath>
@@ -495,6 +496,7 @@
       <logicalFolder name="Physics" displayName="Physics" projectFiles="true">
         <itemPath>Physics/SunPhysicsCollider.cpp</itemPath>
         <itemPath>Physics/SunPhysicsColliderAABB.cpp</itemPath>
+        <itemPath>Physics/SunPhysicsColliderSphere.cpp</itemPath>
         <itemPath>Physics/SunPhysicsForce.cpp</itemPath>
         <itemPath>Physics/SunPhysicsObject.cpp</itemPath>
         <itemPath>Physics/SunPhysicsSimulator.cpp</itemPath>
@@ -2118,6 +2120,13 @@
       </item>
       <item path="Physics/SunPhysicsColliderAABB.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Physics/SunPhysicsColliderSphere.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsColliderSphere.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Physics/SunPhysicsForce.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Physics/SunPhysicsForce.h" ex="false" tool="3" flavor2="0">
@@ -3670,6 +3679,13 @@
       <item path="Physics/SunPhysicsColliderAABB.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Physics/SunPhysicsColliderAABB.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsColliderSphere.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsColliderSphere.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Physics/SunPhysicsForce.cpp" ex="false" tool="1" flavor2="0">
       </item>
