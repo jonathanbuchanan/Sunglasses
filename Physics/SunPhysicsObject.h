@@ -12,6 +12,7 @@
 #include "SunPhysicsCollider.h"
 #include "SunPhysicsColliderAABB.h"
 #include "SunPhysicsColliderSphere.h"
+#include "SunPhysicsColliderPlane.h"
 
 #include <vector>
 using namespace std;

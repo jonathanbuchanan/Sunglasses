@@ -8,9 +8,9 @@
     </physicsworld>
     <objects>
         <object name="Sphere0" model="Graphics/Sphere.dae" type="Physical" textured="true" animated="false">
-            <position-x>3</position-x>
+            <position-x>0</position-x>
             <position-y>15</position-y>
-            <position-z>3</position-z>
+            <position-z>0</position-z>
             
             <rotation-x>0</rotation-x>
             <rotation-y>0</rotation-y>
@@ -29,9 +29,9 @@
             <physicsenabled>true</physicsenabled>
             <mass>10000</mass>
             <collision type="Sphere">
-                <center-x>3</center-x>
-                <center-y>15</center-y>
-                <center-z>3</center-z>
+                <center-x>0</center-x>
+                <center-y>25</center-y>
+                <center-z>0</center-z>
                 
                 <radius>1</radius>
             </collision>
@@ -44,7 +44,7 @@
                 <sound file="file1.wav" name="test" minimumDistance="3" attenuation="100"/>
             </sounds>
         </object>
-        <object name="Cube0" model="Graphics/Cube.dae" type="Physical" textured="true" animated="false">
+        <object name="Plane0" model="Graphics/Plane.dae" type="Physical" textured="true" animated="false">
             <position-x>0</position-x>
             <position-y>-10</position-y>
             <position-z>0</position-z>
@@ -53,9 +53,9 @@
             <rotation-y>0</rotation-y>
             <rotation-z>0</rotation-z>
             
-            <scale-x>5</scale-x>
-            <scale-y>5</scale-y>
-            <scale-z>5</scale-z>
+            <scale-x>50</scale-x>
+            <scale-y>50</scale-y>
+            <scale-z>50</scale-z>
             
             <material-r>0</material-r>
             <material-g>.8</material-g>
@@ -65,18 +65,12 @@
             
             <physicsenabled>true</physicsenabled>
             <mass>0</mass>
-            <collision type="AABB">
-                <first-x>-5</first-x>
-                <first-y>-15</first-y>
-                <first-z>-5</first-z>
+            <collision type="Plane">
+                <normal-x>0</normal-x>
+                <normal-y>1</normal-y>
+                <normal-z>0</normal-z>
                 
-                <second-x>5</second-x>
-                <second-y>-5</second-y>
-                <second-z>5</second-z>
-                
-                <center-x>0</center-x>
-                <center-y>-10</center-y>
-                <center-z>0</center-z>
+                <distance>-10</distance>
             </collision>
             
             <objects>

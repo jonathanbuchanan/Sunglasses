@@ -60,6 +60,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Libraries/glm/detail/glm.o \
 	${OBJECTDIR}/Physics/SunPhysicsCollider.o \
 	${OBJECTDIR}/Physics/SunPhysicsColliderAABB.o \
+	${OBJECTDIR}/Physics/SunPhysicsColliderPlane.o \
 	${OBJECTDIR}/Physics/SunPhysicsColliderSphere.o \
 	${OBJECTDIR}/Physics/SunPhysicsForce.o \
 	${OBJECTDIR}/Physics/SunPhysicsObject.o \
@@ -224,6 +225,11 @@ ${OBJECTDIR}/Physics/SunPhysicsColliderAABB.o: Physics/SunPhysicsColliderAABB.cp
 	${MKDIR} -p ${OBJECTDIR}/Physics
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Physics/SunPhysicsColliderAABB.o Physics/SunPhysicsColliderAABB.cpp
+
+${OBJECTDIR}/Physics/SunPhysicsColliderPlane.o: Physics/SunPhysicsColliderPlane.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Physics
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Physics/SunPhysicsColliderPlane.o Physics/SunPhysicsColliderPlane.cpp
 
 ${OBJECTDIR}/Physics/SunPhysicsColliderSphere.o: Physics/SunPhysicsColliderSphere.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Physics

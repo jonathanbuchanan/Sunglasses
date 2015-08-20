@@ -549,6 +549,18 @@ public:
                 else if (strcmp(node.name(), "radius") == 0)
                     ((SunPhysicsColliderSphere *)_object->getPhysicsObject().getCollider())->setRadius(node.text().as_float());
             }
+        } else if (type == "Plane") {
+            _object->getPhysicsObject().setCollider(new SunPhysicsColliderPlane());
+            for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
+                if (strcmp(node.name(), "normal-x") == 0)
+                    ((SunPhysicsColliderPlane *)_object->getPhysicsObject().getCollider())->setNormalX(node.text().as_float());
+                else if (strcmp(node.name(), "normal-y") == 0)
+                    ((SunPhysicsColliderPlane *)_object->getPhysicsObject().getCollider())->setNormalY(node.text().as_float());
+                else if (strcmp(node.name(), "normal-z") == 0)
+                    ((SunPhysicsColliderPlane *)_object->getPhysicsObject().getCollider())->setNormalZ(node.text().as_float());
+                else if (strcmp(node.name(), "distance") == 0)
+                    ((SunPhysicsColliderPlane *)_object->getPhysicsObject().getCollider())->setDistance(node.text().as_float());
+            }
         }
     }
     

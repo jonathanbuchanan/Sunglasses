@@ -1,5 +1,6 @@
 #include "SunPhysicsColliderSphere.h"
 #include "SunPhysicsColliderAABB.h"
+#include "SunPhysicsColliderPlane.h"
 #include "glm/gtx/string_cast.hpp"
 #include <iostream>
 
@@ -40,6 +41,17 @@ SunPhysicsCollisionData SunPhysicsColliderSphere::collideWith(SunPhysicsCollider
             return SunPhysicsCollisionData(true, distance);
         else
             return SunPhysicsCollisionData(false, distance);
+    } else if (other->getType() == SunPhysicsColliderTypePlane) {
+        SunPhysicsColliderPlane *_other = static_cast<SunPhysicsColliderPlane *>(other);
+        
+        float distanceFromCenter = glm::dot(_other->getNormal(), this->getPosition()) - _other->getDistance();
+        
+        float distanceFromSphere = distanceFromCenter - this->getRadius();
+        
+        if (distanceFromSphere < 0)
+            return SunPhysicsCollisionData(true, distanceFromSphere);
+        else
+            return SunPhysicsCollisionData(false, distanceFromSphere);
     }
     return SunPhysicsCollisionData(false, 0);
 }
