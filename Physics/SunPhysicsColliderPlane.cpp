@@ -20,7 +20,17 @@ SunPhysicsCollisionData SunPhysicsColliderPlane::collideWith(SunPhysicsCollider 
         else
             return SunPhysicsCollisionData(false, distanceFromSphere);
     } else if (other->getType() == SunPhysicsColliderTypeAABB) {
-        
+        SunPhysicsColliderAABB *_other = static_cast<SunPhysicsColliderAABB *> (other);
+
+        glm::vec3 absoluteNormal = glm::vec3(glm::abs(this->getNormal().x), glm::abs(this->getNormal().y), glm::abs(this->getNormal().z));
+        glm::vec3 extents = 0.5f * (_other->getSecondPoint() - _other->getFirstPoint());
+
+        float c = glm::dot(_other->getPosition(), this->getNormal());
+        float e = glm::dot(extents, absoluteNormal);
+        if (this->getDistance() < c - e || this->getDistance() > c + e)
+            return SunPhysicsCollisionData(false, c + e);
+        else
+            return SunPhysicsCollisionData(true, c + e);
     } else if (other->getType() == SunPhysicsColliderTypePlane) {
         SunPhysicsColliderPlane *_other = static_cast<SunPhysicsColliderPlane *>(other);
         

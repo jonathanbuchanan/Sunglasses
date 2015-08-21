@@ -1,5 +1,6 @@
 #include "SunPhysicsColliderAABB.h"
 #include "SunPhysicsColliderSphere.h"
+#include "SunPhysicsColliderPlane.h"
 #include "glm/gtx/simd_vec4.hpp"
 #include "glm/gtx/string_cast.hpp"
 #include "glm/gtx/simd_quat.hpp"
@@ -50,6 +51,18 @@ SunPhysicsCollisionData SunPhysicsColliderAABB::collideWith(SunPhysicsCollider *
             return SunPhysicsCollisionData(true, distance);
         else
             return SunPhysicsCollisionData(false, distance);
+    } else if (other->getType() == SunPhysicsColliderTypePlane) {
+        SunPhysicsColliderPlane *_other = static_cast<SunPhysicsColliderPlane *>(other);
+        
+        glm::vec3 absoluteNormal = glm::vec3(glm::abs(_other->getNormal().x), glm::abs(_other->getNormal().y), glm::abs(_other->getNormal().z));
+        glm::vec3 extents = 0.5f * (this->getSecondPoint() - this->getFirstPoint());
+        
+        float c = glm::dot(this->getPosition(), _other->getNormal());
+        float e = glm::dot(extents, absoluteNormal);
+        if (_other->getDistance() < c - e || _other->getDistance() > c + e)
+            return SunPhysicsCollisionData(false, c + e);
+        else
+            return SunPhysicsCollisionData(true, c + e);
     }
     return SunPhysicsCollisionData(false, 0);
 }
