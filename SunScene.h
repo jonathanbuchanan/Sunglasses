@@ -561,6 +561,18 @@ public:
                 else if (strcmp(node.name(), "distance") == 0)
                     ((SunPhysicsColliderPlane *)_object->getPhysicsObject().getCollider())->setDistance(node.text().as_float());
             }
+        } else if (type == "Mesh") {
+            _object->getPhysicsObject().setCollider(new SunPhysicsColliderMesh());
+            for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
+                if (strcmp(node.name(), "file") == 0)
+                    ((SunPhysicsColliderMesh *)_object->getPhysicsObject().getCollider())->importMeshDataFromFile(node.text().as_string());
+                if (strcmp(node.name(), "position-x") == 0)
+                    ((SunPhysicsColliderMesh *)_object->getPhysicsObject().getCollider())->setPositionX(node.text().as_float());
+                if (strcmp(node.name(), "position-y") == 0)
+                    ((SunPhysicsColliderMesh *)_object->getPhysicsObject().getCollider())->setPositionY(node.text().as_float());
+                if (strcmp(node.name(), "position-y") == 0)
+                    ((SunPhysicsColliderMesh *)_object->getPhysicsObject().getCollider())->setPositionZ(node.text().as_float());
+            }
         }
     }
     

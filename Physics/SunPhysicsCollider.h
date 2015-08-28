@@ -12,7 +12,7 @@
 
 enum SunPhysicsColliderType {
     SunPhysicsColliderTypeAABB,
-    SunPhysicsColliderTypeBB,
+    SunPhysicsColliderTypeOBB,
     SunPhysicsColliderTypeSphere,
     SunPhysicsColliderTypePlane,
     SunPhysicsColliderTypeMesh

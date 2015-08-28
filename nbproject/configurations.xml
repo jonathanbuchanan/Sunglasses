@@ -76,6 +76,8 @@
       <logicalFolder name="Physics" displayName="Physics" projectFiles="true">
         <itemPath>Physics/SunPhysicsCollider.h</itemPath>
         <itemPath>Physics/SunPhysicsColliderAABB.h</itemPath>
+        <itemPath>Physics/SunPhysicsColliderMesh.h</itemPath>
+        <itemPath>Physics/SunPhysicsColliderOBB.h</itemPath>
         <itemPath>Physics/SunPhysicsColliderPlane.h</itemPath>
         <itemPath>Physics/SunPhysicsColliderSphere.h</itemPath>
         <itemPath>Physics/SunPhysicsForce.h</itemPath>
@@ -497,6 +499,8 @@
       <logicalFolder name="Physics" displayName="Physics" projectFiles="true">
         <itemPath>Physics/SunPhysicsCollider.cpp</itemPath>
         <itemPath>Physics/SunPhysicsColliderAABB.cpp</itemPath>
+        <itemPath>Physics/SunPhysicsColliderMesh.cpp</itemPath>
+        <itemPath>Physics/SunPhysicsColliderOBB.cpp</itemPath>
         <itemPath>Physics/SunPhysicsColliderPlane.cpp</itemPath>
         <itemPath>Physics/SunPhysicsColliderSphere.cpp</itemPath>
         <itemPath>Physics/SunPhysicsForce.cpp</itemPath>
@@ -2122,6 +2126,14 @@
       </item>
       <item path="Physics/SunPhysicsColliderAABB.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Physics/SunPhysicsColliderMesh.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsColliderMesh.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsColliderOBB.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsColliderOBB.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Physics/SunPhysicsColliderPlane.cpp"
             ex="false"
             tool="1"
@@ -3688,6 +3700,14 @@
       <item path="Physics/SunPhysicsColliderAABB.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Physics/SunPhysicsColliderAABB.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsColliderMesh.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsColliderMesh.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsColliderOBB.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Physics/SunPhysicsColliderOBB.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Physics/SunPhysicsColliderPlane.cpp"
             ex="false"
