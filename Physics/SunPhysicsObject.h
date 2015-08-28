@@ -11,7 +11,6 @@
 #include "SunPhysicsForce.h"
 #include "SunPhysicsCollider.h"
 #include "SunPhysicsColliderAABB.h"
-#include "SunPhysicsColliderOBB.h"
 #include "SunPhysicsColliderSphere.h"
 #include "SunPhysicsColliderPlane.h"
 #include "SunPhysicsColliderMesh.h"

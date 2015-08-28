@@ -58,10 +58,10 @@ OBJECTFILES= \
 	${OBJECTDIR}/Libraries/SOIL/image_helper.o \
 	${OBJECTDIR}/Libraries/SOIL/stb_image_aug.o \
 	${OBJECTDIR}/Libraries/glm/detail/glm.o \
+	${OBJECTDIR}/Physics/GJKAlgorithm.o \
 	${OBJECTDIR}/Physics/SunPhysicsCollider.o \
 	${OBJECTDIR}/Physics/SunPhysicsColliderAABB.o \
 	${OBJECTDIR}/Physics/SunPhysicsColliderMesh.o \
-	${OBJECTDIR}/Physics/SunPhysicsColliderOBB.o \
 	${OBJECTDIR}/Physics/SunPhysicsColliderPlane.o \
 	${OBJECTDIR}/Physics/SunPhysicsColliderSphere.o \
 	${OBJECTDIR}/Physics/SunPhysicsForce.o \
@@ -218,6 +218,11 @@ ${OBJECTDIR}/Libraries/glm/detail/glm.o: Libraries/glm/detail/glm.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Libraries/glm/detail/glm.o Libraries/glm/detail/glm.cpp
 
+${OBJECTDIR}/Physics/GJKAlgorithm.o: Physics/GJKAlgorithm.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Physics
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Physics/GJKAlgorithm.o Physics/GJKAlgorithm.cpp
+
 ${OBJECTDIR}/Physics/SunPhysicsCollider.o: Physics/SunPhysicsCollider.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Physics
 	${RM} "$@.d"
@@ -232,11 +237,6 @@ ${OBJECTDIR}/Physics/SunPhysicsColliderMesh.o: Physics/SunPhysicsColliderMesh.cp
 	${MKDIR} -p ${OBJECTDIR}/Physics
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Physics/SunPhysicsColliderMesh.o Physics/SunPhysicsColliderMesh.cpp
-
-${OBJECTDIR}/Physics/SunPhysicsColliderOBB.o: Physics/SunPhysicsColliderOBB.cpp 
-	${MKDIR} -p ${OBJECTDIR}/Physics
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Physics/SunPhysicsColliderOBB.o Physics/SunPhysicsColliderOBB.cpp
 
 ${OBJECTDIR}/Physics/SunPhysicsColliderPlane.o: Physics/SunPhysicsColliderPlane.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Physics

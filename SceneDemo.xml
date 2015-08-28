@@ -7,8 +7,8 @@
         </gravity>
     </physicsworld>
     <objects>
-        <object name="Cube0" model="Graphics/Cube.dae" type="Physical" textured="true" animated="false">
-            <position-x>4</position-x>
+        <object name="Cube0" model="Graphics/Sphere.dae" type="Physical" textured="true" animated="false">
+            <position-x>0</position-x>
             <position-y>30</position-y>
             <position-z>0</position-z>
             
@@ -28,12 +28,12 @@
             
             <physicsenabled>true</physicsenabled>
             <mass>10000</mass>
-            <collision type="Mesh">
-                <file>Graphics/Cube.dae</file>
-                
-                <position-x>4</position-x>
+            <collision type="Sphere">
+                <position-x>0</position-x>
                 <position-y>30</position-y>
                 <position-z>0</position-z>
+                
+                <radius>1</radius>
             </collision>
             
             <objects>

@@ -74,10 +74,10 @@
         <itemPath>Graphics/SunTexturedQuad.h</itemPath>
       </logicalFolder>
       <logicalFolder name="Physics" displayName="Physics" projectFiles="true">
+        <itemPath>Physics/GJKAlgorithm.h</itemPath>
         <itemPath>Physics/SunPhysicsCollider.h</itemPath>
         <itemPath>Physics/SunPhysicsColliderAABB.h</itemPath>
         <itemPath>Physics/SunPhysicsColliderMesh.h</itemPath>
-        <itemPath>Physics/SunPhysicsColliderOBB.h</itemPath>
         <itemPath>Physics/SunPhysicsColliderPlane.h</itemPath>
         <itemPath>Physics/SunPhysicsColliderSphere.h</itemPath>
         <itemPath>Physics/SunPhysicsForce.h</itemPath>
@@ -497,10 +497,10 @@
         <itemPath>Graphics/SunTexturedQuad.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="Physics" displayName="Physics" projectFiles="true">
+        <itemPath>Physics/GJKAlgorithm.cpp</itemPath>
         <itemPath>Physics/SunPhysicsCollider.cpp</itemPath>
         <itemPath>Physics/SunPhysicsColliderAABB.cpp</itemPath>
         <itemPath>Physics/SunPhysicsColliderMesh.cpp</itemPath>
-        <itemPath>Physics/SunPhysicsColliderOBB.cpp</itemPath>
         <itemPath>Physics/SunPhysicsColliderPlane.cpp</itemPath>
         <itemPath>Physics/SunPhysicsColliderSphere.cpp</itemPath>
         <itemPath>Physics/SunPhysicsForce.cpp</itemPath>
@@ -2118,6 +2118,10 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="Physics/GJKAlgorithm.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Physics/GJKAlgorithm.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Physics/SunPhysicsCollider.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Physics/SunPhysicsCollider.h" ex="false" tool="3" flavor2="0">
@@ -2129,10 +2133,6 @@
       <item path="Physics/SunPhysicsColliderMesh.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Physics/SunPhysicsColliderMesh.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Physics/SunPhysicsColliderOBB.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Physics/SunPhysicsColliderOBB.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Physics/SunPhysicsColliderPlane.cpp"
             ex="false"
@@ -3693,6 +3693,10 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="Physics/GJKAlgorithm.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Physics/GJKAlgorithm.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Physics/SunPhysicsCollider.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Physics/SunPhysicsCollider.h" ex="false" tool="3" flavor2="0">
@@ -3704,10 +3708,6 @@
       <item path="Physics/SunPhysicsColliderMesh.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Physics/SunPhysicsColliderMesh.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Physics/SunPhysicsColliderOBB.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Physics/SunPhysicsColliderOBB.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Physics/SunPhysicsColliderPlane.cpp"
             ex="false"

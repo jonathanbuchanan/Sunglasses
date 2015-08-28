@@ -24,20 +24,11 @@ public:
     
     virtual SunPhysicsCollisionData collideWith(SunPhysicsCollider *other);
     
+    inline int getVertexCount() { return vertices.size(); }
     inline glm::vec3 getPositionAtIndex(int i) { return vertices[i].position + getPosition(); }
 private:
     void processAssimpNode(aiNode *node, const aiScene *scene);
     void processAssimpMesh(aiMesh *mesh, const aiScene *scene);
-    
-    bool processSimplex(Simplex &simplex, glm::vec3 &direction);
-    
-    bool processLine(Simplex &simplex, glm::vec3 &direction);
-    bool processTriangle(Simplex &simplex, glm::vec3 &direction);
-    bool processTetrahedron(Simplex &simplex, glm::vec3 &direction);
-    
-    glm::vec3 support(SunPhysicsColliderMesh *other, glm::vec3 axis, Simplex &simplex); 
-    pair<glm::vec3, int> getFarthestPointAlongAxis(glm::vec3 axis);
-    pair<glm::vec3, int> getFarthestPointAlongAxis(glm::vec3 axis, vector<int> removedIndices);
     
     vector<SunVertex> vertices;
     
