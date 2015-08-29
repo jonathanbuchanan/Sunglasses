@@ -1,6 +1,8 @@
 #include "SunPhysicsColliderAABB.h"
 #include "SunPhysicsColliderSphere.h"
 #include "SunPhysicsColliderPlane.h"
+#include "SunPhysicsColliderMesh.h"
+#include "GJKAlgorithm.h"
 #include "glm/gtx/simd_vec4.hpp"
 #include "glm/gtx/string_cast.hpp"
 #include "glm/gtx/simd_quat.hpp"
@@ -63,6 +65,32 @@ SunPhysicsCollisionData SunPhysicsColliderAABB::collideWith(SunPhysicsCollider *
             return SunPhysicsCollisionData(false, c + e);
         else
             return SunPhysicsCollisionData(true, c + e);
+    } else if (other->getType() == SunPhysicsColliderTypeMesh) {
+        SunPhysicsColliderMesh *_other = static_cast<SunPhysicsColliderMesh *>(other);
+        
+        Simplex simplex;
+        
+        glm::vec3 direction = glm::vec3(1, 1, 1);
+        glm::vec3 a = support(_other, this, direction, simplex);
+        simplex.add(a);
+        
+        direction = -a;
+        
+        int max = 10;
+        
+        for (int i = 0; i < max; i++) {
+            glm::vec3 point = support(_other, this, direction, simplex);
+            
+            if (glm::dot(point, direction) < 0) {
+                return SunPhysicsCollisionData(false, 0);
+            } else {
+                simplex.add(point);
+                
+                if (processSimplex(simplex, direction) == true) {
+                    return SunPhysicsCollisionData(true, 0);
+                }
+            }
+        }
     }
     return SunPhysicsCollisionData(false, 0);
 }

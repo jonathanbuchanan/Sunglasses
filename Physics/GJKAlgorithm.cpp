@@ -23,6 +23,32 @@ glm::vec3 getFarthestPointAlongAxis(SunPhysicsColliderSphere *sphere, glm::vec3 
     return globalPoint;
 }
 
+glm::vec3 getFarthestPointAlongAxis(SunPhysicsColliderAABB *aabb, glm::vec3 axis) {
+    glm::vec3 AABBPoints[8] = {
+        glm::vec3(aabb->getSecondPointX(), aabb->getSecondPointY(), aabb->getSecondPointZ()),
+        glm::vec3(aabb->getFirstPointX(),  aabb->getSecondPointY(), aabb->getSecondPointZ()),
+        glm::vec3(aabb->getSecondPointX(), aabb->getFirstPointY(),  aabb->getSecondPointZ()),
+        glm::vec3(aabb->getSecondPointX(), aabb->getSecondPointY(), aabb->getFirstPointZ()),
+        glm::vec3(aabb->getFirstPointX(),  aabb->getFirstPointY(),  aabb->getSecondPointZ()),
+        glm::vec3(aabb->getFirstPointX(),  aabb->getSecondPointY(), aabb->getFirstPointZ()),
+        glm::vec3(aabb->getSecondPointX(), aabb->getFirstPointY(),  aabb->getFirstPointZ()),
+        glm::vec3(aabb->getFirstPointX(),  aabb->getFirstPointY(),  aabb->getFirstPointZ())
+    };
+    
+    glm::vec3 farthestPoint = AABBPoints[0];
+    float farthestDistance = glm::dot(AABBPoints[0], axis);
+    int index = 0;
+    for (int i = 0; i < 8; i++) {
+        float temporaryDistance = glm::dot(AABBPoints[i], axis);
+        if (temporaryDistance > farthestDistance) {
+            farthestDistance = temporaryDistance;
+            farthestPoint = AABBPoints[i];
+            index = i;
+        }
+    }
+    return farthestPoint;
+}
+
 glm::vec3 support(SunPhysicsColliderMesh *first, SunPhysicsColliderMesh *second, glm::vec3 axis, Simplex &simplex) {
     glm::vec3 firstPoint = getFarthestPointAlongAxis(first, axis);
     glm::vec3 secondPoint = getFarthestPointAlongAxis(second, -axis);
@@ -35,6 +61,15 @@ glm::vec3 support(SunPhysicsColliderMesh *first, SunPhysicsColliderMesh *second,
 glm::vec3 support(SunPhysicsColliderMesh *first, SunPhysicsColliderSphere *sphere, glm::vec3 axis, Simplex &simplex) {
     glm::vec3 firstPoint = getFarthestPointAlongAxis(first, axis);
     glm::vec3 secondPoint = getFarthestPointAlongAxis(sphere, -axis);
+    
+    glm::vec3 result = firstPoint - secondPoint;
+    
+    return result;
+}
+
+glm::vec3 support(SunPhysicsColliderMesh *first, SunPhysicsColliderAABB *aabb, glm::vec3 axis, Simplex &simplex) {
+    glm::vec3 firstPoint = getFarthestPointAlongAxis(first, axis);
+    glm::vec3 secondPoint = getFarthestPointAlongAxis(aabb, -axis);
     
     glm::vec3 result = firstPoint - secondPoint;
     
