@@ -7,8 +7,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/jonathan/Dev/Sunglasses/Physics/GJKAlgorithm.cpp</file>
-            <file>file:/Users/jonathan/Dev/Sunglasses/Physics/SunPhysicsColliderAABB.cpp</file>
+            <file>file:/Users/jonathan/Dev/Sunglasses/Physics/SunPhysicsColliderPlane.cpp</file>
             <file>file:/Users/jonathan/Dev/Sunglasses/Physics/SunPhysicsColliderMesh.cpp</file>
             <file>file:/Users/jonathan/Dev/Sunglasses/SceneDemo.xml</file>
             <file>file:/Users/jonathan/Dev/Sunglasses/Physics/GJKAlgorithm.h</file>

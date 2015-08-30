@@ -11,6 +11,7 @@
 #include "SunPhysicsColliderMesh.h"
 #include "SunPhysicsColliderSphere.h"
 #include "SunPhysicsColliderAABB.h"
+#include "SunPhysicsColliderPlane.h"
 
 extern glm::vec3 getFarthestPointAlongAxis(SunPhysicsColliderMesh *mesh, glm::vec3 axis);
 extern glm::vec3 getFarthestPointAlongAxis(SunPhysicsColliderSphere *sphere, glm::vec3 axis);

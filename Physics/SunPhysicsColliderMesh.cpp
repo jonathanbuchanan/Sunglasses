@@ -1,5 +1,7 @@
 #include "SunPhysicsColliderMesh.h"
 #include "SunPhysicsColliderSphere.h"
+#include "SunPhysicsColliderAABB.h"
+#include "SunPhysicsColliderPlane.h"
 #include "GJKAlgorithm.h"
 #include <iostream>
 #include <algorithm>
@@ -113,6 +115,17 @@ SunPhysicsCollisionData SunPhysicsColliderMesh::collideWith(SunPhysicsCollider *
                 }
             }
         }
+    } else if (other->getType() == SunPhysicsColliderTypePlane) {
+        SunPhysicsColliderPlane *_other = static_cast<SunPhysicsColliderPlane *>(other);
+        
+        glm::vec3 farthestPointAlongNormal = getFarthestPointAlongAxis(this, _other->getNormal()) - _other->getPosition();
+        glm::vec3 farthestPointAlongOppNormal = getFarthestPointAlongAxis(this, -_other->getNormal()) - _other->getPosition();
+        
+        float distance1 = glm::dot(farthestPointAlongNormal, _other->getNormal());
+        float distance2 = glm::dot(farthestPointAlongOppNormal, -_other->getNormal());
+        
+        if (distance1 > 0 && distance2 > 0)
+            return SunPhysicsCollisionData(true, 0);
     }
     return SunPhysicsCollisionData(false, 0);
 }

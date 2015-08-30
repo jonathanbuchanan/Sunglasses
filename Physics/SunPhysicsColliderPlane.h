@@ -26,6 +26,8 @@ public:
     
     inline float & getDistance() { return distance; }
     inline void setDistance(float _distance) { distance = _distance; }
+    
+    inline virtual glm::vec3 getPosition() { return glm::normalize(normal) * distance; }
 private:
     glm::vec3 normal;
     float distance;
