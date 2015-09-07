@@ -8,6 +8,10 @@
 #ifndef SUNPHYSICSSIMULATOR_H
 #define	SUNPHYSICSSIMULATOR_H
 
+#include <vector>
+#include <tuple>
+using namespace std;
+
 #include "SunPhysicsWorld.h"
 #include "SunPhysicsObject.h"
 
@@ -20,9 +24,9 @@ public:
     // Move each object to its new position based on the forces acting on it
     void integrate(float delta);
     // Detect objects that collided after integrating
-    void detectCollisions(float delta);
+    vector<std::tuple<SunPhysicsObject *, SunPhysicsObject *, SunPhysicsCollisionData>> detectCollisions(float delta);
     // Respond to the collisions previously detected
-    void respondToCollisions(float delta);
+    void respondToCollisions(vector<std::tuple<SunPhysicsObject *, SunPhysicsObject *, SunPhysicsCollisionData>> collisions, float delta);
     
     inline SunPhysicsWorld & getWorld() { return world; }
     inline void setWorld(SunPhysicsWorld _w) { world = _w; }

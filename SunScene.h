@@ -637,7 +637,16 @@ public:
             physicsSimulator.getWorld().addObjectToObjects(&_object->getPhysicsObject());
         } else if (strcmp(_node.name(), "mass") == 0) {
             _object->getPhysicsObject().setMass(_node.text().as_float());
-        }
+        } else if (strcmp(_node.name(), "stationary") == 0) 
+            _object->getPhysicsObject().setStationary(_node.text().as_bool());
+        else if (strcmp(_node.name(), "velocity-x") == 0)
+            _object->getPhysicsObject().setVelocityX(_node.text().as_float());
+        else if (strcmp(_node.name(), "velocity-y") == 0)
+            _object->getPhysicsObject().setVelocityY(_node.text().as_float());
+        else if (strcmp(_node.name(), "velocity-z") == 0)
+            _object->getPhysicsObject().setVelocityZ(_node.text().as_float());
+        else if (strcmp(_node.name(), "elasticity") == 0)
+            _object->getPhysicsObject().setElasticity(_node.text().as_float());
     }
     
     void processXMLPointLightObjectPropertyNode(pugi::xml_node _node, SunPointLightObject *_object) {
@@ -670,7 +679,16 @@ public:
         else if (strcmp(_node.name(), "physicsenabled") == 0) {
             _object->setPhysicsEnabled(_node.text().as_bool());
             physicsSimulator.getWorld().addObjectToObjects(&_object->getPhysicsObject());
-        }
+        } else if (strcmp(_node.name(), "stationary") == 0) 
+            _object->getPhysicsObject().setStationary(_node.text().as_bool());
+        else if (strcmp(_node.name(), "velocity-x") == 0)
+            _object->getPhysicsObject().setVelocityX(_node.text().as_float());
+        else if (strcmp(_node.name(), "velocity-y") == 0)
+            _object->getPhysicsObject().setVelocityY(_node.text().as_float());
+        else if (strcmp(_node.name(), "velocity-z") == 0)
+            _object->getPhysicsObject().setVelocityZ(_node.text().as_float());
+        else if (strcmp(_node.name(), "elasticity") == 0)
+            _object->getPhysicsObject().setElasticity(_node.text().as_float());
     }
     
     void processXMLDirectionalLightObjectPropertyNode(pugi::xml_node _node, SunDirectionalLightObject *_object) {
@@ -701,7 +719,16 @@ public:
         else if (strcmp(_node.name(), "physicsenabled") == 0) {
             _object->setPhysicsEnabled(_node.text().as_bool());
             physicsSimulator.getWorld().addObjectToObjects(&_object->getPhysicsObject());
-        }
+        } else if (strcmp(_node.name(), "stationary") == 0) 
+            _object->getPhysicsObject().setStationary(_node.text().as_bool());
+        else if (strcmp(_node.name(), "velocity-x") == 0)
+            _object->getPhysicsObject().setVelocityX(_node.text().as_float());
+        else if (strcmp(_node.name(), "velocity-y") == 0)
+            _object->getPhysicsObject().setVelocityY(_node.text().as_float());
+        else if (strcmp(_node.name(), "velocity-z") == 0)
+            _object->getPhysicsObject().setVelocityZ(_node.text().as_float());
+        else if (strcmp(_node.name(), "elasticity") == 0)
+            _object->getPhysicsObject().setElasticity(_node.text().as_float());
     }
     
     void cycle(map<int, SunButtonState> _buttons, GLfloat _deltaTime);

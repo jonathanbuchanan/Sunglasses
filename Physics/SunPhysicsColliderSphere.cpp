@@ -16,10 +16,13 @@ SunPhysicsCollisionData SunPhysicsColliderSphere::collideWith(SunPhysicsCollider
         float centerDistance = glm::length(this->getPosition() - _other->getPosition());
         float radiusSum = this->getRadius() + _other->getRadius();
         
+        
+        
         if (radiusSum < centerDistance)
             return SunPhysicsCollisionData(false, 0);
-        else
+        else {
             return SunPhysicsCollisionData(true, centerDistance - radiusSum);
+        }
     } else if (other->getType() == SunPhysicsColliderTypeAABB) {
         SunPhysicsColliderAABB *_other = static_cast<SunPhysicsColliderAABB *>(other);
         

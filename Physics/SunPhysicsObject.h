@@ -40,6 +40,14 @@ public:
     inline float & getMass() { return mass; }
     inline void setMass(float _mass) { mass = _mass; }
     
+    inline glm::vec3 getMomentum() { return velocity * mass; }
+    
+    inline bool & getStationary() { return stationary; }
+    inline void setStationary(bool _s) { stationary = _s; }
+    
+    inline float & getElasticity() { return elasticity; }
+    inline void setElasticity(float _e) { elasticity = _e; }
+    
     inline SunPhysicsCollider * getCollider() { return collider; }
     inline void setCollider(SunPhysicsCollider *_c) { collider = _c; }
 private:
@@ -51,6 +59,12 @@ private:
     
     // Mass (in kilograms)
     float mass = 1;
+    
+    // Stationary
+    bool stationary = false;
+    
+    // Elasticity
+    float elasticity;
     
     // Physics Collider
     SunPhysicsCollider *collider;
