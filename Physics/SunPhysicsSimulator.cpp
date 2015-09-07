@@ -18,10 +18,25 @@ void SunPhysicsSimulator::integrate(float delta) {
 vector<std::tuple<SunPhysicsObject *, SunPhysicsObject *, SunPhysicsCollisionData>> SunPhysicsSimulator::detectCollisions(float delta) {
     vector<std::tuple<SunPhysicsObject *, SunPhysicsObject *, SunPhysicsCollisionData>> collidingObjects;
     for (int i = 0; i < world.getObjects().size(); i++) {
-        for (int j = i + 1; j < world.getObjects().size(); j++) {
-            SunPhysicsCollisionData data = world.getObjectAtIndex(i)->collideWith(world.getObjectAtIndex(j));
-            if (data.collided == true) {
-                collidingObjects.push_back(std::make_tuple(world.getObjectAtIndex(i), world.getObjectAtIndex(j), data));
+        for (int j = 0; j < world.getObjectAtIndex(i)->getCollidersSize(); j++) {
+            if (world.getObjectAtIndex(i)->getSelfCollision() == true) {
+                // Check for collisions against other colliders in the object
+                for (int k = j + 1; j < world.getObjectAtIndex(i)->getCollidersSize(); k++) {
+                    SunPhysicsCollisionData data = world.getObjectAtIndex(i)->getColliderAtIndex(j)->collideWith(world.getObjectAtIndex(i)->getColliderAtIndex(k));
+                    if (data.collided == true) {
+                        collidingObjects.push_back(std::make_tuple(world.getObjectAtIndex(i), world.getObjectAtIndex(i), data));
+                    }
+                }
+            }
+            
+            // Check for collisions against other colliders in the scene
+            for (int k = i + 1; k < world.getObjects().size(); k++) {
+                for (int l = 0; l < world.getObjectAtIndex(k)->getCollidersSize(); l++) {
+                    SunPhysicsCollisionData data = world.getObjectAtIndex(i)->getColliderAtIndex(j)->collideWith(world.getObjectAtIndex(k)->getColliderAtIndex(l));
+                    if (data.collided == true) {
+                        collidingObjects.push_back(std::make_tuple(world.getObjectAtIndex(i), world.getObjectAtIndex(k), data));
+                    }
+                }
             }
         }
     }

@@ -48,8 +48,13 @@ public:
     inline float & getElasticity() { return elasticity; }
     inline void setElasticity(float _e) { elasticity = _e; }
     
-    inline SunPhysicsCollider * getCollider() { return collider; }
-    inline void setCollider(SunPhysicsCollider *_c) { collider = _c; }
+    inline vector<SunPhysicsCollider *> & getColliders() { return colliders; }
+    inline int getCollidersSize() { return colliders.size(); }
+    inline SunPhysicsCollider * getColliderAtIndex(int i) { return colliders[i]; }
+    inline void addCollider(SunPhysicsCollider *c) { colliders.push_back(c); }
+    
+    inline bool & getSelfCollision() { return selfCollision; }
+    inline void setSelfCollision(bool s) { selfCollision = s; }
 private:
     // Position
     glm::vec3 position = glm::vec3(0, 0, 0);
@@ -66,8 +71,11 @@ private:
     // Elasticity
     float elasticity;
     
-    // Physics Collider
-    SunPhysicsCollider *collider;
+    // Physics Colliders
+    vector<SunPhysicsCollider *> colliders;
+    
+    // Do Self Collision
+    bool selfCollision;
 };
 
 #endif

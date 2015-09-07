@@ -33,13 +33,16 @@
             <velocity-x>1</velocity-x>
             <velocity-y>0</velocity-y>
             <velocity-z>0</velocity-z>
-            <collision type="Sphere">
-                <center-x>-10</center-x>
+            <colliders>
+                <collider type="Sphere">
+                    <center-x>-10</center-x>
                 <center-y>0</center-y>
                 <center-z>0</center-z>
                 
                 <radius>1</radius>
-            </collision>
+                </collider>
+            </colliders>
+            <self-collision>false</self-collision>
             
             <objects>
                 
@@ -75,13 +78,16 @@
             <velocity-x>-1</velocity-x>
             <velocity-y>0</velocity-y>
             <velocity-z>0</velocity-z>
-            <collision type="Sphere">
+            <colliders>
+                <collider type="Sphere">
                 <center-x>10</center-x>
                 <center-y>0</center-y>
                 <center-z>0</center-z>
                 
                 <radius>1</radius>
-            </collision>
+                </collider>
+            </colliders>
+            <self-collision>false</self-collision>
             
             <objects>
                 
@@ -117,19 +123,9 @@
             <velocity-x>0</velocity-x>
             <velocity-y>0</velocity-y>
             <velocity-z>0</velocity-z>
-            <collision type="AABB">
-                <first-x>-10</first-x>
-                <first-y>-10</first-y>
-                <first-z>-10</first-z>
-                
-                <second-x>10</second-x>
-                <second-y>10</second-y>
-                <second-z>10</second-z>
-                
-                <center-x>0</center-x>
-                <center-y>0</center-y>
-                <center-z>0</center-z>
-            </collision>
+            <colliders>
+            </colliders>
+            <self-collision>false</self-collision>
             
             <objects>
                 

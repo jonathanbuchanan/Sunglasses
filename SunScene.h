@@ -473,8 +473,8 @@ public:
             for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
                 if (strcmp(node.name(), "objects") == 0)
                     processXMLObjectsNode(node, object);
-                else if (strcmp(node.name(), "collision") == 0)
-                    processXMLObjectColliderNode(node, object);
+                else if (strcmp(node.name(), "colliders") == 0)
+                    processXMLObjectCollidersNode(node, object);
                 else if (strcmp(node.name(), "sounds") == 0)
                     processXMLObjectSoundsNode(node, object);
                 else
@@ -507,6 +507,12 @@ public:
         }
     }
     
+    void processXMLObjectCollidersNode(pugi::xml_node _node, SunObject *_object) {
+        for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
+            processXMLObjectColliderNode(node, _object);
+        }
+    }
+    
     void processXMLObjectColliderNode(pugi::xml_node _node, SunObject *_object) {
         string type;
         
@@ -516,63 +522,67 @@ public:
         }
         
         if (type == "AABB") {
-            _object->getPhysicsObject().setCollider(new SunPhysicsColliderAABB());
+            SunPhysicsColliderAABB *collider = new SunPhysicsColliderAABB();
             for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
                 if (strcmp(node.name(), "first-x") == 0)
-                    ((SunPhysicsColliderAABB *)_object->getPhysicsObject().getCollider())->setFirstPointX(node.text().as_float());
+                    collider->setFirstPointX(node.text().as_float());
                 else if (strcmp(node.name(), "first-y") == 0)
-                    ((SunPhysicsColliderAABB *)_object->getPhysicsObject().getCollider())->setFirstPointY(node.text().as_float());
+                    collider->setFirstPointY(node.text().as_float());
                 else if (strcmp(node.name(), "first-z") == 0)
-                    ((SunPhysicsColliderAABB *)_object->getPhysicsObject().getCollider())->setFirstPointZ(node.text().as_float());
+                    collider->setFirstPointZ(node.text().as_float());
                 else if (strcmp(node.name(), "second-x") == 0)
-                    ((SunPhysicsColliderAABB *)_object->getPhysicsObject().getCollider())->setSecondPointX(node.text().as_float());
+                    collider->setSecondPointX(node.text().as_float());
                 else if (strcmp(node.name(), "second-y") == 0)
-                    ((SunPhysicsColliderAABB *)_object->getPhysicsObject().getCollider())->setSecondPointY(node.text().as_float());
+                    collider->setSecondPointY(node.text().as_float());
                 else if (strcmp(node.name(), "second-z") == 0)
-                    ((SunPhysicsColliderAABB *)_object->getPhysicsObject().getCollider())->setSecondPointZ(node.text().as_float());
+                    collider->setSecondPointZ(node.text().as_float());
                 else if (strcmp(node.name(), "center-x") == 0)
-                    ((SunPhysicsColliderAABB *)_object->getPhysicsObject().getCollider())->setPositionX(node.text().as_float());
+                    collider->setPositionX(node.text().as_float());
                 else if (strcmp(node.name(), "center-y") == 0)
-                    ((SunPhysicsColliderAABB *)_object->getPhysicsObject().getCollider())->setPositionY(node.text().as_float());
+                    collider->setPositionY(node.text().as_float());
                 else if (strcmp(node.name(), "center-z") == 0)
-                    ((SunPhysicsColliderAABB *)_object->getPhysicsObject().getCollider())->setPositionZ(node.text().as_float());
+                    collider->setPositionZ(node.text().as_float());
             }
+            _object->getPhysicsObject().addCollider(collider);
         } else if (type == "Sphere") {
-            _object->getPhysicsObject().setCollider(new SunPhysicsColliderSphere());
+            SunPhysicsColliderSphere *collider = new SunPhysicsColliderSphere();
             for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
                 if (strcmp(node.name(), "center-x") == 0)
-                    ((SunPhysicsColliderSphere *)_object->getPhysicsObject().getCollider())->setPositionX(node.text().as_float());
+                    collider->setPositionX(node.text().as_float());
                 else if (strcmp(node.name(), "center-y") == 0)
-                    ((SunPhysicsColliderSphere *)_object->getPhysicsObject().getCollider())->setPositionY(node.text().as_float());
+                    collider->setPositionY(node.text().as_float());
                 else if (strcmp(node.name(), "center-z") == 0)
-                    ((SunPhysicsColliderSphere *)_object->getPhysicsObject().getCollider())->setPositionZ(node.text().as_float());
+                    collider->setPositionZ(node.text().as_float());
                 else if (strcmp(node.name(), "radius") == 0)
-                    ((SunPhysicsColliderSphere *)_object->getPhysicsObject().getCollider())->setRadius(node.text().as_float());
+                    collider->setRadius(node.text().as_float());
             }
+            _object->getPhysicsObject().addCollider(collider);
         } else if (type == "Plane") {
-            _object->getPhysicsObject().setCollider(new SunPhysicsColliderPlane());
+            SunPhysicsColliderPlane *collider = new SunPhysicsColliderPlane();
             for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
                 if (strcmp(node.name(), "normal-x") == 0)
-                    ((SunPhysicsColliderPlane *)_object->getPhysicsObject().getCollider())->setNormalX(node.text().as_float());
+                    collider->setNormalX(node.text().as_float());
                 else if (strcmp(node.name(), "normal-y") == 0)
-                    ((SunPhysicsColliderPlane *)_object->getPhysicsObject().getCollider())->setNormalY(node.text().as_float());
+                    collider->setNormalY(node.text().as_float());
                 else if (strcmp(node.name(), "normal-z") == 0)
-                    ((SunPhysicsColliderPlane *)_object->getPhysicsObject().getCollider())->setNormalZ(node.text().as_float());
+                    collider->setNormalZ(node.text().as_float());
                 else if (strcmp(node.name(), "distance") == 0)
-                    ((SunPhysicsColliderPlane *)_object->getPhysicsObject().getCollider())->setDistance(node.text().as_float());
+                    collider->setDistance(node.text().as_float());
             }
+            _object->getPhysicsObject().addCollider(collider);
         } else if (type == "Mesh") {
-            _object->getPhysicsObject().setCollider(new SunPhysicsColliderMesh());
+            SunPhysicsColliderMesh *collider = new SunPhysicsColliderMesh();
             for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
                 if (strcmp(node.name(), "file") == 0)
-                    ((SunPhysicsColliderMesh *)_object->getPhysicsObject().getCollider())->importMeshDataFromFile(node.text().as_string());
+                    collider->importMeshDataFromFile(node.text().as_string());
                 if (strcmp(node.name(), "position-x") == 0)
-                    ((SunPhysicsColliderMesh *)_object->getPhysicsObject().getCollider())->setPositionX(node.text().as_float());
+                    collider->setPositionX(node.text().as_float());
                 if (strcmp(node.name(), "position-y") == 0)
-                    ((SunPhysicsColliderMesh *)_object->getPhysicsObject().getCollider())->setPositionY(node.text().as_float());
+                    collider->setPositionY(node.text().as_float());
                 if (strcmp(node.name(), "position-y") == 0)
-                    ((SunPhysicsColliderMesh *)_object->getPhysicsObject().getCollider())->setPositionZ(node.text().as_float());
+                    collider->setPositionZ(node.text().as_float());
             }
+            _object->getPhysicsObject().addCollider(collider);
         }
     }
     
@@ -647,6 +657,8 @@ public:
             _object->getPhysicsObject().setVelocityZ(_node.text().as_float());
         else if (strcmp(_node.name(), "elasticity") == 0)
             _object->getPhysicsObject().setElasticity(_node.text().as_float());
+        else if (strcmp(_node.name(), "self-collision") == 0)
+            _object->getPhysicsObject().setSelfCollision(_node.text().as_bool());
     }
     
     void processXMLPointLightObjectPropertyNode(pugi::xml_node _node, SunPointLightObject *_object) {
@@ -689,6 +701,8 @@ public:
             _object->getPhysicsObject().setVelocityZ(_node.text().as_float());
         else if (strcmp(_node.name(), "elasticity") == 0)
             _object->getPhysicsObject().setElasticity(_node.text().as_float());
+        else if (strcmp(_node.name(), "self-collision") == 0)
+            _object->getPhysicsObject().setSelfCollision(_node.text().as_bool());
     }
     
     void processXMLDirectionalLightObjectPropertyNode(pugi::xml_node _node, SunDirectionalLightObject *_object) {
@@ -729,6 +743,8 @@ public:
             _object->getPhysicsObject().setVelocityZ(_node.text().as_float());
         else if (strcmp(_node.name(), "elasticity") == 0)
             _object->getPhysicsObject().setElasticity(_node.text().as_float());
+        else if (strcmp(_node.name(), "self-collision") == 0)
+            _object->getPhysicsObject().setSelfCollision(_node.text().as_bool());
     }
     
     void cycle(map<int, SunButtonState> _buttons, GLfloat _deltaTime);
