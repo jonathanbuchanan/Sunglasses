@@ -568,6 +568,8 @@ public:
                     collider->setNormalZ(node.text().as_float());
                 else if (strcmp(node.name(), "distance") == 0)
                     collider->setDistance(node.text().as_float());
+                else if (strcmp(node.name(), "reflective") == 0)
+                    collider->setReflective(node.text().as_bool());
             }
             _object->getPhysicsObject().addCollider(collider);
         } else if (type == "Mesh") {

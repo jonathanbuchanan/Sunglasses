@@ -15,6 +15,8 @@ using namespace std;
 #include "SunPhysicsWorld.h"
 #include "SunPhysicsObject.h"
 
+typedef std::tuple<SunPhysicsObject *, SunPhysicsCollider *, SunPhysicsObject *, SunPhysicsCollider *, SunPhysicsCollisionData> SunPhysicsCollisionTuple;
+
 class SunPhysicsSimulator {
 public:
     
@@ -24,9 +26,9 @@ public:
     // Move each object to its new position based on the forces acting on it
     void integrate(float delta);
     // Detect objects that collided after integrating
-    vector<std::tuple<SunPhysicsObject *, SunPhysicsObject *, SunPhysicsCollisionData>> detectCollisions(float delta);
+    vector<SunPhysicsCollisionTuple> detectCollisions(float delta);
     // Respond to the collisions previously detected
-    void respondToCollisions(vector<std::tuple<SunPhysicsObject *, SunPhysicsObject *, SunPhysicsCollisionData>> collisions, float delta);
+    void respondToCollisions(vector<SunPhysicsCollisionTuple> collisions, float delta);
     
     inline SunPhysicsWorld & getWorld() { return world; }
     inline void setWorld(SunPhysicsWorld _w) { world = _w; }

@@ -20,7 +20,7 @@ enum SunPhysicsColliderType {
 
 struct SunPhysicsCollisionData {
     bool collided;
-    glm::vec3 point;
+    glm::vec3 normal;
     float distance;
     
     SunPhysicsCollisionData() {
@@ -33,8 +33,8 @@ struct SunPhysicsCollisionData {
         distance = _f;
     }
     
-    SunPhysicsCollisionData(glm::vec3 _p, bool _c, float _f) {
-        point = _p;
+    SunPhysicsCollisionData(glm::vec3 _n, bool _c, float _f) {
+        normal = _n;
         collided = _c;
         distance = _f;
     }
