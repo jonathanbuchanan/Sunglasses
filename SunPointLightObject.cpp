@@ -6,7 +6,7 @@ SunPointLightObject::SunPointLightObject() {
 
 SunPointLightObject::SunPointLightObject(glm::vec3 _color, glm::vec3 _position) {
     color = _color;
-    position = _position;
+    this->setPosition(_position);
     
     initializeDefaultPropertyAndFunctionMap();
 }
@@ -26,14 +26,14 @@ void SunPointLightObject::initializeDefaultPropertyAndFunctionMap() {
 void SunPointLightObject::passPerFrameUniforms(SunNodeSentAction _action) {
     SunObject::passPerFrameUniforms(_action);
 
-    SunShader _shader = *(SunShader *) _action.parameters["shader"];
-
+    SunShader _shader = *(SunShader *)_action.parameters["shader"];
+    
     // Set the uniforms for the point light's diffuse and specular colors
-    glUniform3f(_shader.getUniformLocation("pointLight.color"), color.r, color.g, color.b);
+    glUniform3f(_shader.getUniformLocation("pointLights[" + std::to_string(pointLightID) + "].color"), color.r, color.g, color.b);
 
     // Set the uniform for the point light's position
-    glUniform3f(_shader.getUniformLocation("pointLight.position"), position.x, position.y, position.z);
+    glUniform3f(_shader.getUniformLocation("pointLights[" + std::to_string(pointLightID) + "].position"), this->getPosition().x, this->getPosition().y, this->getPosition().z);
 
     // Set the uniforms for the point light's constant, linear, and quadratic terms
-    glUniform1i(_shader.getUniformLocation("pointLight.attenuate"), attenuate);
+    glUniform1i(_shader.getUniformLocation("pointLights[" + std::to_string(pointLightID) + "].attenuate"), attenuate);
 }

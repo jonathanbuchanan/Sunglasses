@@ -140,6 +140,8 @@ void SunScene::renderGUISystem(SunNodeSentAction _action) {
 }
 
 void SunScene::passPerFrameUniforms(SunShader _shader) {
+    glUniform1i(_shader.getUniformLocation("pointLightCount"), pointLightCount);
+    
     camera.passPerFrameUniforms(_shader);
     listener.setPositionAndDirection();
 
@@ -152,6 +154,8 @@ void SunScene::passPerFrameUniforms(SunShader _shader) {
 }
 
 void SunScene::passPerFrameUniforms(SunShader _shader, vector<SunNodeSentActionCondition> _conditions) {
+    glUniform1i(_shader.getUniformLocation("pointLightCount"), pointLightCount);
+    
     camera.passPerFrameUniforms(_shader);
 
     SunNodeSentAction action;
@@ -163,10 +167,12 @@ void SunScene::passPerFrameUniforms(SunShader _shader, vector<SunNodeSentActionC
     sendAction(action, rootRenderableNode);
 }
 
-void SunScene::passPerFrameUniformsAction(SunNodeSentAction _action) {
+void SunScene::passPerFrameUniformsAction(SunNodeSentAction _action) {    
     SunShader _shader = *(SunShader *) _action.parameters["shader"];
     vector<SunNodeSentActionCondition> _conditions = *(vector<SunNodeSentActionCondition> *)_action.parameters["conditions"];
-
+    
+    glUniform1i(_shader.getUniformLocation("pointLightCount"), pointLightCount);
+    
     camera.passPerFrameUniforms(_shader);
 
     SunNodeSentAction action;

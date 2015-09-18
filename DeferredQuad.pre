@@ -5,5 +5,5 @@
 #define INPUT_POSITION
 #define INPUT_NORMAL
 #define INPUT_COLOR
-#define INPUT_OCCLUSION
+//#define INPUT_OCCLUSION
 #define OUTPUT_COLOR_0

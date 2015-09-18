@@ -32,15 +32,18 @@ public:
     
     inline GLboolean & getAttenuate() { return attenuate; }
     inline void setAttenuate(GLboolean _attenuate) { attenuate = _attenuate; }
+    
+    inline int & getPointLightID() { return pointLightID; }
+    inline void setPointLightID(int _p) { pointLightID = _p; }
 private:
     // Color
     glm::vec3 color;
-
-    // Position
-    glm::vec3 position;
-
+    
     // Attenuation
     GLboolean attenuate;
+    
+    // Point Light ID
+    int pointLightID;
 };
 
 #endif

@@ -41,7 +41,9 @@ public:
     
     void processXMLSceneNode(pugi::xml_node _node) {
         for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
-            if (strcmp(node.name(), "physicsworld") == 0) {
+            if (strcmp(node.name(), "scenedata") == 0) {
+                processXMLSceneDataNode(node);
+            } else if (strcmp(node.name(), "physicsworld") == 0) {
                 processXMLPhysicsWorldNode(node);
             } else if (strcmp(node.name(), "objects") == 0) {
                 processXMLObjectsNode(node, rootRenderableNode);
@@ -51,6 +53,13 @@ public:
                 processXMLListenerNode(node);
             } else if (strcmp(node.name(), "renderer") == 0)
                 processXMLRendererNode(node);
+        }
+    }
+    
+    void processXMLSceneDataNode(pugi::xml_node _node) {
+        for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
+            if (strcmp(node.name(), "pointlights") == 0)
+                pointLightCount = node.text().as_int();
         }
     }
     
@@ -688,6 +697,8 @@ public:
             _object->setColorG(_node.text().as_float());
         else if (strcmp(_node.name(), "color-b") == 0)
             _object->setColorB(_node.text().as_float());
+        else if (strcmp(_node.name(), "pointlightID") == 0)
+            _object->setPointLightID(_node.text().as_int());
         else if (strcmp(_node.name(), "attenuate") == 0)
             _object->setAttenuate(_node.text().as_bool());
         else if (strcmp(_node.name(), "physicsenabled") == 0) {
@@ -772,6 +783,9 @@ public:
     inline SunRenderer & getRenderer() { return renderer; }
     inline SunTextRenderer & getTextRenderer() { return textRenderer; }
     
+    inline int & getPointLightCount() { return pointLightCount; }
+    inline void setPointLightCount(int _p) { pointLightCount = _p; }
+    
     inline SunSoundBufferStorage & getSoundStorage() { return storage; }
     
     inline SunMusicObject * getMusic() { return music; }
@@ -798,7 +812,10 @@ private:
     // Renderer and Text Renderer
     SunRenderer renderer;
     SunTextRenderer textRenderer;
-
+    
+    // Point Light Count
+    int pointLightCount;
+    
     // Sound Storage
     SunSoundBufferStorage storage;
 

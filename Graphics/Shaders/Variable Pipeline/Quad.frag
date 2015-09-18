@@ -38,7 +38,8 @@ struct PointLight {
     bool attenuate;
 };
 
-uniform PointLight pointLight;
+uniform int pointLightCount;
+uniform PointLight pointLights[128];
 
 uniform vec3 viewPosition;
 uniform vec3 viewDirection;
@@ -155,7 +156,10 @@ void main() {
     vec3 ambient = __color * texture(occlusion, _input.textureCoordinates).r;
     #endif
     
-    vec3 lighting = ambient + (__color * calculateLighting(pointLight, _position, normal));
+    vec3 lighting = ambient;
+    for (int i = 0; i < pointLightCount; i++) {
+        lighting += __color * calculateLighting(pointLights[i], _position, normal);
+    }
 
     result = vec4(lighting, 1.0f);
     
