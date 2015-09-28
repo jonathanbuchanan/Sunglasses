@@ -23,12 +23,15 @@ GLint textureFromFile(const char *path, string directory) {
     return textureID;
 }
 
-SunModel::SunModel(string _file) {
+SunModel::SunModel(string _file, bool _flipNormals) {
     // Import the mesh data
-    importMeshData(_file);
+    importMeshData(_file, _flipNormals);
 }
 
-void SunModel::importMeshData(string _file) {
+void SunModel::importMeshData(string _file, bool _flipNormals) {
+    // Set Flip Normals
+    flipNormals = _flipNormals;
+    
     // Create an importer and import the file
     Assimp::Importer importer;
     const aiScene *scene = importer.ReadFile(_file, aiProcess_GenNormals | aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace | aiProcess_JoinIdenticalVertices);
@@ -133,7 +136,10 @@ SunMesh SunModel::processMeshData(aiMesh* _mesh, const aiScene* _scene) {
         normal.x = _mesh->mNormals[i].x;
         normal.y = _mesh->mNormals[i].y;
         normal.z = _mesh->mNormals[i].z;
-
+        
+        if (flipNormals)
+            normal = -normal;
+        
         // Tangent
         glm::vec3 tangent = glm::vec3(0.0, 0.0, 0.0);
 

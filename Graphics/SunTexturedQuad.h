@@ -19,15 +19,15 @@
 #include "./SunPrimitives.h"
 #include "./Shaders/SunShader.h"
 
-typedef map<string, GLuint>::iterator SunTextureMapIterator;
+typedef map<string, pair<GLuint, GLuint>>::iterator SunTextureMapIterator;
 
 class SunTexturedQuad {
 public:
     SunTexturedQuad() { }
     
     void setUpGL();
-    void render(map<string, GLuint> _textures, SunShader _shader);
-    void renderWithUsedShader(map<string, GLuint> _textures, SunShader _shader);
+    void render(map<string, pair<GLuint, GLuint>> _textures, SunShader _shader);
+    void renderWithUsedShader(map<string, pair<GLuint, GLuint>> _textures, SunShader _shader);
     
     inline vector<SunVertex> & getVertices() { return vertices; }
     inline vector<GLuint> & getIndices() { return indices; }

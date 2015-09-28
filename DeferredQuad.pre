@@ -7,3 +7,6 @@
 #define INPUT_COLOR
 //#define INPUT_OCCLUSION
 #define OUTPUT_COLOR_0
+#define CAMERA_TRANSFORM
+#define INPUT_SHADOW
+#define SHADOWS

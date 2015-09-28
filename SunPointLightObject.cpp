@@ -37,3 +37,20 @@ void SunPointLightObject::passPerFrameUniforms(SunNodeSentAction _action) {
     // Set the uniforms for the point light's constant, linear, and quadratic terms
     glUniform1i(_shader.getUniformLocation("pointLights[" + std::to_string(pointLightID) + "].attenuate"), attenuate);
 }
+
+void SunPointLightObject::passPOVUniforms(SunShader _shader) {
+    glm::mat4 projection = glm::perspective(glm::radians(90.0f), 1.0f, 0.01f, 100.0f);
+    
+    vector<glm::mat4> transforms;
+    
+    transforms.push_back(projection * glm::lookAt(this->getPosition(), this->getPosition() + glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f)));
+    transforms.push_back(projection * glm::lookAt(this->getPosition(), this->getPosition() + glm::vec3(-1.0f, 0.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f)));
+    transforms.push_back(projection * glm::lookAt(this->getPosition(), this->getPosition() + glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f)));
+    transforms.push_back(projection * glm::lookAt(this->getPosition(), this->getPosition() + glm::vec3(0.0f, -1.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f)));
+    transforms.push_back(projection * glm::lookAt(this->getPosition(), this->getPosition() + glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, -1.0f, 0.0f)));
+    transforms.push_back(projection * glm::lookAt(this->getPosition(), this->getPosition() + glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, -1.0f, 0.0f)));
+    
+    for (int i = 0; i < 6; i++) {
+        glUniformMatrix4fv(_shader.getUniformLocation("shadowMatrices[" + to_string(i) + "]"), 1, GL_FALSE, glm::value_ptr(transforms[i]));
+    }
+}

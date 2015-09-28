@@ -10,6 +10,8 @@
 #define OpenGL_Test_3_SunPointLightObject_h
 
 #include "SunObject.h"
+#include <vector>
+using namespace std;
 
 #include <GL/glew.h>
 #include "./Libraries/glm/glm.hpp"
@@ -23,6 +25,7 @@ public:
     
     virtual void initializeDefaultPropertyAndFunctionMap();
     void passPerFrameUniforms(SunNodeSentAction _action);
+    void passPOVUniforms(SunShader _shader);
     
     inline glm::vec3 & getColor() { return color; }
     inline void setColor(glm::vec3 _color) { color = _color; }

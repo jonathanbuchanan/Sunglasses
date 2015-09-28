@@ -35,6 +35,8 @@ public:
     
     SunShader(string vertexPath, string fragmentPath);
     SunShader(string vertexPath, string fragmentPath, string preprocessorPath, string version);
+    SunShader(string vertexPath, string geometryPath, string fragmentPath, string preprocessorPath, string version);
+    SunShader(vector<string> sources, vector<SunShaderSourceType> sourceTypes, string preprocessorPath);
     SunShader(string vertexPath, string geometryPath, string fragmentPath);
     
     void use();

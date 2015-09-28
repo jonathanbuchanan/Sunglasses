@@ -104,7 +104,9 @@ void SunScene::update(map<int, SunButtonState> _buttons) {
 
 void SunScene::render(SunNodeSentAction _action) {
     map<string, SunShader> _shaders = *(map<string, SunShader> *)_action.parameters["shaderMap"];
-    GLfloat _deltaTime = *(GLfloat *) _action.parameters["deltaTime"];
+    GLfloat _deltaTime = *(GLfloat *)_action.parameters["deltaTime"];
+    string POVtype = *(string *)_action.parameters["POVtype"];
+    string POV = *(string *)_action.parameters["POV"];
 
     // Force sub-objects to render
 
@@ -123,10 +125,32 @@ void SunScene::render(SunNodeSentAction _action) {
     texturedAction.recursive = true;
 
     _shaders["scene_solid"].use();
+    
+    // Pass POV Uniforms
+    if (POVtype == "camera") {
+        camera.passPerFrameUniforms(_shaders["scene_solid"]);
+    } else if (POVtype == "light") {
+        SunNode *light;
+        this->findPointerNodeWithName(POV, light);
+        
+        (static_cast<SunPointLightObject *>(light))->passPOVUniforms(_shaders["scene_solid"]);
+    }
+    
     passPerFrameUniforms(_shaders["scene_solid"]);
     sendAction(solidAction, rootRenderableNode);
 
     _shaders["scene_textured"].use();
+    
+    // Pass POV Uniforms
+    if (POVtype == "camera") {
+        camera.passPerFrameUniforms(_shaders["scene_textured"]);
+    } else if (POVtype == "light") {
+        SunNode *light;
+        this->findPointerNodeWithName(POV, light);
+        
+        (static_cast<SunPointLightObject *>(light))->passPOVUniforms(_shaders["scene_textured"]);
+    }
+    
     passPerFrameUniforms(_shaders["scene_textured"]);
     sendAction(texturedAction, rootRenderableNode);
 }
@@ -135,14 +159,13 @@ void SunScene::renderGUISystem(SunNodeSentAction _action) {
     SunNodeSentAction GUIAction;
     GUIAction.action = "render";
     GUIAction.parameters["textRenderer"] = &textRenderer;
-
+    
     sendAction(GUIAction, GUIsystem);
 }
 
 void SunScene::passPerFrameUniforms(SunShader _shader) {
     glUniform1i(_shader.getUniformLocation("pointLightCount"), pointLightCount);
     
-    camera.passPerFrameUniforms(_shader);
     listener.setPositionAndDirection();
 
     SunNodeSentAction action;

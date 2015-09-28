@@ -34,13 +34,13 @@ void SunTexturedQuad::setUpGL() {
     glBindVertexArray(0);
 }
 
-void SunTexturedQuad::render(map<string,GLuint> _textures, SunShader _shader) {
+void SunTexturedQuad::render(map<string, pair<GLuint, GLuint>> _textures, SunShader _shader) {
     _shader.use();
 
     int iteratorIndex = 0;
     for (SunTextureMapIterator iterator = _textures.begin(); iterator != _textures.end(); iterator++) {
         glActiveTexture(GL_TEXTURE0 + iteratorIndex);
-        glBindTexture(GL_TEXTURE_2D, iterator->second);
+        glBindTexture(iterator->second.second, iterator->second.first);
         glUniform1i(_shader.getUniformLocation(iterator->first), iteratorIndex);
 
         iteratorIndex++;
@@ -59,16 +59,17 @@ void SunTexturedQuad::render(map<string,GLuint> _textures, SunShader _shader) {
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-void SunTexturedQuad::renderWithUsedShader(map<string,GLuint> _textures, SunShader _shader) {
+void SunTexturedQuad::renderWithUsedShader(map<string, pair<GLuint, GLuint>> _textures, SunShader _shader) {
     int iteratorIndex = 0;
     for (SunTextureMapIterator iterator = _textures.begin(); iterator != _textures.end(); iterator++) {
         glActiveTexture(GL_TEXTURE0 + iteratorIndex);
-        glBindTexture(GL_TEXTURE_2D, iterator->second);
+        glBindTexture(iterator->second.second, iterator->second.first);
         glUniform1i(_shader.getUniformLocation(iterator->first), iteratorIndex);
-
+        
         iteratorIndex++;
     }
-
+    glActiveTexture(GL_TEXTURE0);
+    
     // Bind the VAO
     glBindVertexArray(VAO);
 
@@ -77,8 +78,5 @@ void SunTexturedQuad::renderWithUsedShader(map<string,GLuint> _textures, SunShad
 
     // Unbind the VAO
     glBindVertexArray(0);
-
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, 0);
 }
 

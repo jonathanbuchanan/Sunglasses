@@ -17,9 +17,15 @@ uniform mat4 projection;
 uniform mat4 lightMatrix;
 
 void main() {
+    #ifdef CAMERA_TRANSFORM
     gl_Position = projection * view * model * vec4(position, 1.0f);
     
     _output.position = vec4(model * vec4(position, 1.0f)).xyz;
     _output.textureCoordinates = textureCoordinates;
     _output.normal = normalMatrix * normal;
+    #endif
+
+    #ifdef WORLD_TRANSFORM
+    gl_Position = model * vec4(position, 1.0f);
+    #endif
 }

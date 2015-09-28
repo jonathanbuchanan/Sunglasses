@@ -3,3 +3,4 @@
 #define CALCULATE_SSAO
 #define INPUT_POSITION
 #define INPUT_NORMAL
+#define CAMERA_TRANSFORM

@@ -34,7 +34,8 @@ enum SunRenderingNodeDataType {
     SunRenderingNodeDataTypeColor,
     SunRenderingNodeDataTypePosition,
     SunRenderingNodeDataTypeNormal,
-    SunRenderingNodeDataTypeOcclusion
+    SunRenderingNodeDataTypeOcclusion,
+    SunRenderingNodeDataTypeDepth
 };
 
 enum SunRenderingNodeDataFormat {
@@ -43,10 +44,17 @@ enum SunRenderingNodeDataFormat {
     SunRenderingNodeDataFormat16F
 };
 
+enum SunRenderingNodeTextureType {
+    SunRenderingNodeTextureType2D,
+    SunRenderingNodeTextureTypeCubemap
+};
+
 struct SunRenderingNodeOutput {
     SunRenderingNodeDataType type;
     SunRenderingNodeDataFormat format;
     int slot;
+    glm::vec2 size;
+    SunRenderingNodeTextureType textureType;
     GLuint texture;
 };
 
@@ -55,6 +63,7 @@ struct SunRenderingNodeInput {
     SunRenderingNodeDataFormat format;
     int slot;
     SunRenderingNodePointer link;
+    SunRenderingNodeTextureType textureType;
     string linkName;
     string name;
 };
@@ -62,6 +71,7 @@ struct SunRenderingNodeInput {
 enum SunRenderingNodeShaderType {
     SunRenderingNodeShaderTypeSceneTextured,
     SunRenderingNodeShaderTypeSceneSolid,
+    SunRenderingNodeShaderTypeScene,
     SunRenderingNodeShaderTypeQuad
 };
 
@@ -78,6 +88,29 @@ public:
     SunRenderingNodeShader(string _vertexSource, string _fragmentSource, string _preprocessorSource, SunRenderingNodeShaderType _type) {
         string hi = "hi";
         shader = SunShader(_vertexSource.c_str(), _fragmentSource.c_str(), _preprocessorSource.c_str(), hi.c_str());
+        
+        action.action = "render";
+        action.parameters["shader"] = &shader;
+        action.recursive = true;
+        
+        SunNodeSentActionCondition condition;
+        condition.conditionType = SunNodeSentActionConditionTypeEqualTo;
+        condition.nodeProperty = "renderType";
+        if (_type == SunRenderingNodeShaderTypeSceneTextured) {
+            SunMeshRenderType renderType = SunMeshRenderTypeTextured;
+            condition.comparativeProperty = SunNodeProperty(&renderType, SunNodePropertyTypeInt);
+        } else if (_type == SunRenderingNodeShaderTypeSceneSolid) {
+            SunMeshRenderType renderType = SunMeshRenderTypeSolid;
+            condition.comparativeProperty = SunNodeProperty(&renderType, SunNodePropertyTypeInt);
+        }
+        
+        action.conditions.push_back(condition);
+        
+        shaderType = _type;
+    }
+    
+    SunRenderingNodeShader(vector<string> sources, vector<SunShaderSourceType> sourceTypes, string preprocessorPath, SunRenderingNodeShaderType _type) {
+        shader = SunShader(sources, sourceTypes, preprocessorPath);
         
         action.action = "render";
         action.parameters["shader"] = &shader;
@@ -116,6 +149,9 @@ public:
     inline SunRenderingNodeType & getRenderingType() { return renderingType; }
     inline void setRenderingType(SunRenderingNodeType _type) { renderingType = _type; }
     
+    inline SunRenderingNodeShaderType & getShaderType() { return shaderType; }
+    inline void setShaderType(SunRenderingNodeShaderType _type) { shaderType = _type; }
+    
     inline vector<SunRenderingNodeInput> & getInputs() { return inputs; }
     inline SunRenderingNodeInput & getInputAtIndex(int i) { return inputs[i]; }
     inline void addInputToInputs(SunRenderingNodeInput _input) { inputs.push_back(_input); }
@@ -138,12 +174,19 @@ public:
     inline SunShaderUniformObject * getUniformAtIndex(int i) { return uniforms[i]; }
     inline void addUniformToUniforms(SunShaderUniformObject *u) { uniforms.push_back(u); }
     
+    inline string & getPOVType() { return POVtype; }
+    inline void setPOVType(string _p) { POVtype = _p; }
+    
+    inline string & getPOV() { return POV; }
+    inline void setPOV(string _p) { POV = _p; }
+    
     inline SunNode * getSceneNode() { return scene; }
     inline void setSceneNode(SunNode *_scene) { scene = _scene; }
     
     inline SunTexturedQuad & getQuad() { return renderQuad; }
 private:
     SunRenderingNodeType renderingType;
+    SunRenderingNodeShaderType shaderType;
     vector<SunRenderingNodeInput> inputs;
     vector<SunRenderingNodeOutput> outputs;
     SunFramebuffer outputFramebuffer;
@@ -151,6 +194,8 @@ private:
     map<string, SunRenderingNodeShader> shaders;
     vector<SunTexture> textures;
     vector<SunShaderUniformObject *> uniforms;
+    string POVtype;
+    string POV;
 
     SunNode *scene;
     SunTexturedQuad renderQuad;

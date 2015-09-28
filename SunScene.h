@@ -197,6 +197,8 @@ public:
                         renderNodes[i]->getInputAtIndex(j).link = (SunRenderingNode *)parent;
                         parent->addSubNode(renderNodes[i]);
                     }
+                    if (renderNodes[i]->getInputs().size() == 0)
+                        root->addSubNode(renderNodes[i]);
                     break;
                 case SunRenderingNodeTypeEnd:
                     for (int j = 0; j < renderNodes[i]->getInputs().size(); j++) {
@@ -219,22 +221,30 @@ public:
     void processXMLRenderNode(pugi::xml_node _node, SunRenderer *_renderer, SunRenderingNode &_renderingNode) {
         string name;
         SunRenderingNodeType type;
+        SunRenderingNodeShaderType shaderType;
         
         for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
             if (strcmp(attribute.name(), "name") == 0)
                 name = attribute.value();
-            if (strcmp(attribute.name(), "type") == 0) {
+            else if (strcmp(attribute.name(), "type") == 0) {
                 if (strcmp(attribute.value(), "root") == 0)
                     type = SunRenderingNodeTypeRoot;
                 else if (strcmp(attribute.value(), "intermediate") == 0)
                     type = SunRenderingNodeTypeIntermediate;
                 else if (strcmp(attribute.value(), "end") == 0)
                     type = SunRenderingNodeTypeEnd;
+            } else if (strcmp(attribute.name(), "shadertype") == 0) {
+                if (strcmp(attribute.value(), "Scene") == 0) {
+                    shaderType = SunRenderingNodeShaderTypeScene;
+                } else if (strcmp(attribute.value(), "Quad") == 0) {
+                    shaderType = SunRenderingNodeShaderTypeQuad;
+                }
             }
         }
         
         _renderingNode = SunRenderingNode(name);
         _renderingNode.setRenderingType(type);
+        _renderingNode.setShaderType(shaderType);
         _renderingNode.setRootNode(&_renderingNode);
         _renderingNode.setSceneNode(this);
         
@@ -253,11 +263,14 @@ public:
     SunRenderingNode * processXMLRenderNode(pugi::xml_node _node, SunRenderer *_renderer) {
         string name;
         SunRenderingNodeType type;
+        SunRenderingNodeShaderType shaderType;
+        string POVtype;
+        string POV;
         
         for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
             if (strcmp(attribute.name(), "name") == 0)
                 name = attribute.value();
-            if (strcmp(attribute.name(), "type") == 0) {
+            else if (strcmp(attribute.name(), "type") == 0) {
                 if (strcmp(attribute.value(), "root") == 0)
                     type = SunRenderingNodeTypeRoot;
                 else if (strcmp(attribute.value(), "intermediate") == 0)
@@ -266,12 +279,24 @@ public:
                     type = SunRenderingNodeTypeEnd;
                 else if (strcmp(attribute.value(), "only") == 0)
                     type = SunRenderingNodeTypeOnly;
-            }
+            } else if (strcmp(attribute.name(), "shadertype") == 0) {
+                if (strcmp(attribute.value(), "Scene") == 0) {
+                    shaderType = SunRenderingNodeShaderTypeScene;
+                } else if (strcmp(attribute.value(), "Quad") == 0) {
+                    shaderType = SunRenderingNodeShaderTypeQuad;
+                }
+            } else if (strcmp(attribute.name(), "POVtype") == 0)
+                POVtype = attribute.value();
+            else if (strcmp(attribute.name(), "POV") == 0)
+                POV = attribute.value();
         }
         
         SunRenderingNode *_renderingNode = new SunRenderingNode(name);
         _renderingNode->setRenderingType(type);
+        _renderingNode->setShaderType(shaderType);
         _renderingNode->setSceneNode(this);
+        _renderingNode->setPOVType(POVtype);
+        _renderingNode->setPOV(POV);
         
         for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
             if (strcmp(node.name(), "inputs") == 0)
@@ -302,20 +327,31 @@ public:
             if (strcmp(attribute.name(), "node") == 0)
                 input.linkName = attribute.value();
             else if (strcmp(attribute.name(), "data") == 0) {
-                input.name = attribute.value();
                 if (strcmp(attribute.value(), "position") == 0)
                     input.type = SunRenderingNodeDataTypePosition;
                 else if (strcmp(attribute.value(), "normal") == 0)
                     input.type = SunRenderingNodeDataTypeNormal;
                 else if (strcmp(attribute.value(), "color") == 0)
                     input.type = SunRenderingNodeDataTypeColor;
-            } else if (strcmp(attribute.name(), "format") == 0) {
+                else if (strcmp(attribute.value(), "depth") == 0)
+                    input.type = SunRenderingNodeDataTypeDepth;
+            } else if (strcmp(attribute.name(), "name") == 0)
+                input.name = attribute.value();
+            else if (strcmp(attribute.name(), "format") == 0) {
                 if (strcmp(attribute.value(), "RGB16F") == 0)
                     input.format = SunRenderingNodeDataFormatRGB16F;
                 else if (strcmp(attribute.value(), "RGBA16F") == 0)
                     input.format = SunRenderingNodeDataFormatRGBA16F;
+                else if (strcmp(attribute.value(), "16F") == 0)
+                    input.format = SunRenderingNodeDataFormat16F;
             } else if (strcmp(attribute.name(), "slot") == 0)
                 input.slot = attribute.as_int();
+            else if (strcmp(attribute.name(), "texturetype") == 0) {
+                if (strcmp(attribute.value(), "2D") == 0)
+                    input.textureType = SunRenderingNodeTextureType2D;
+                else if (strcmp(attribute.value(), "Cubemap") == 0)
+                    input.textureType = SunRenderingNodeTextureTypeCubemap;
+            }
         }
         
         _renderNode->addInputToInputs(input);
@@ -339,13 +375,27 @@ public:
                     output.type = SunRenderingNodeDataTypeColor;
                 else if (strcmp(attribute.value(), "occlusion") == 0)
                     output.type = SunRenderingNodeDataTypeOcclusion;
+                else if (strcmp(attribute.value(), "depth") == 0)
+                    output.type = SunRenderingNodeDataTypeDepth;
             } else if (strcmp(attribute.name(), "format") == 0) {
                 if (strcmp(attribute.value(), "RGB16F") == 0)
                     output.format = SunRenderingNodeDataFormatRGB16F;
                 else if (strcmp(attribute.value(), "RGBA16F") == 0)
                     output.format = SunRenderingNodeDataFormatRGBA16F;
+                else if (strcmp(attribute.value(), "16F") == 0)
+                    output.format = SunRenderingNodeDataFormat16F;
             } else if (strcmp(attribute.name(), "slot") == 0)
                 output.slot = attribute.as_int();
+            else if (strcmp(attribute.name(), "width") == 0)
+                output.size.x = attribute.as_float();
+            else if (strcmp(attribute.name(), "height") == 0)
+                output.size.y = attribute.as_float();
+            else if (strcmp(attribute.name(), "texturetype") == 0) {
+                if (strcmp(attribute.value(), "2D") == 0)
+                    output.textureType = SunRenderingNodeTextureType2D;
+                else if (strcmp(attribute.value(), "Cubemap") == 0)
+                    output.textureType = SunRenderingNodeTextureTypeCubemap;
+            }
         }
         
         _renderNode->addOutputToOutputs(output);
@@ -357,8 +407,9 @@ public:
     }
     
     void processXMLRenderNodeShader(pugi::xml_node _node, SunRenderingNode *_renderNode) {
-        string vertex;
-        string fragment;
+        vector<string> shaderSources;
+        vector<string> tempTypes;
+        vector<SunShaderSourceType> types;
         string preprocessor;
         SunRenderingNodeShaderType type;
         string _type;
@@ -372,15 +423,24 @@ public:
                     type = SunRenderingNodeShaderTypeSceneSolid;
                 else if (strcmp(attribute.value(), "quad") == 0)
                     type = SunRenderingNodeShaderTypeQuad;
-            } else if (strcmp(attribute.name(), "vertex") == 0)
-                vertex = attribute.value();
-            else if (strcmp(attribute.name(), "fragment") == 0)
-                fragment = attribute.value();
+            } else if (strcmp(attribute.name(), "shaders") == 0)
+                shaderSources = splitString(attribute.value(), *",");
+            else if (strcmp(attribute.name(), "shadertypes") == 0)
+                tempTypes = splitString(attribute.value(), *",");
             else if (strcmp(attribute.name(), "preprocessor") == 0)
                 preprocessor = attribute.value();
         }
         
-        SunRenderingNodeShader shader = SunRenderingNodeShader(vertex, fragment, preprocessor, type);
+        for (int i = 0; i < tempTypes.size(); i++) {
+            if (tempTypes[i] == "vertex")
+                types.push_back(SunShaderSourceTypeVertex);
+            else if (tempTypes[i] == "geometry")
+                types.push_back(SunShaderSourceTypeGeometry);
+            else if (tempTypes[i] == "fragment")
+                types.push_back(SunShaderSourceTypeFragment);
+        }
+        
+        SunRenderingNodeShader shader = SunRenderingNodeShader(shaderSources, types, preprocessor, type);
         
         _renderNode->addShaderForString(_type, shader);
     }
@@ -447,6 +507,7 @@ public:
         string model;
         SunObjectType type;
         SunObjectMaterial material;
+        bool flipNormals;
         SunMeshRenderType renderType;
         
         for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
@@ -466,14 +527,16 @@ public:
                     renderType = SunMeshRenderTypeTextured;
                 else
                     renderType = SunMeshRenderTypeSolid;
-            } else if (strcmp(attribute.name(), "animated") == 0) {
+            } else if (strcmp(attribute.name(), "flipnormals") == 0)
+                flipNormals = attribute.as_bool();
+            else if (strcmp(attribute.name(), "animated") == 0) {
                 
             }
         }
         
         if (type == SunObjectTypePhysical) {
             SunObject *object;
-            object = new SunObject(name, model);
+            object = new SunObject(name, model, flipNormals);
             
             object->setName(name);
             object->setMaterial(material);

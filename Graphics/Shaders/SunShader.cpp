@@ -94,6 +94,71 @@ SunShader::SunShader(string vertexPath, string fragmentPath, string preprocessor
     glDeleteShader(fragment);
 }
 
+SunShader::SunShader(string vertexPath, string geometryPath, string fragmentPath, string preprocessorPath, string version) {
+    string vertexCode = getShaderCodeFromFile(vertexPath);
+    string geometryCode = getShaderCodeFromFile(geometryPath);
+    string fragmentCode = getShaderCodeFromFile(fragmentPath);
+    string preprocessorCode = getShaderCodeFromFile(preprocessorPath);
+    string _version = "#version 330 core\n";
+
+    vector<string> vertexStrings = {_version, preprocessorCode, vertexCode};
+    vector<string> geometryStrings = {_version, preprocessorCode, geometryCode};
+    vector<string> fragmentStrings = {_version, preprocessorCode, fragmentCode};
+
+    GLuint vertex = compileShaderFromStrings(vertexStrings, GL_VERTEX_SHADER);
+    GLuint geometry = compileShaderFromStrings(geometryStrings, GL_GEOMETRY_SHADER);
+    GLuint fragment = compileShaderFromStrings(fragmentStrings, GL_FRAGMENT_SHADER);
+
+    GLint success;
+    GLchar infoLog[512];
+    this->program = glCreateProgram();
+    glAttachShader(this->program, vertex);
+    glAttachShader(this->program, geometry);
+    glAttachShader(this->program, fragment);
+    glLinkProgram(this->program);
+    glGetProgramiv(this->program, GL_LINK_STATUS, &success);
+    if (!success) {
+        glGetProgramInfoLog(this->program, 2048, NULL, infoLog);
+        std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
+    }
+    glDeleteShader(vertex);
+    glDeleteShader(geometry);
+    glDeleteShader(fragment);
+}
+
+SunShader::SunShader(vector<string> sources, vector<SunShaderSourceType> sourceTypes, string preprocessorPath) {
+    int components = sources.size();
+    
+    string _version = "#version 330 core\n"; 
+    string preprocessorCode = getShaderCodeFromFile(preprocessorPath);
+    vector<string> code;
+    for (int i = 0; i < components; i++)
+        code.push_back(getShaderCodeFromFile(sources[i]));
+    
+    vector<vector<string>> strings;
+    for (int i = 0; i < components; i++) {
+        strings.push_back({_version, preprocessorCode, code[i]});
+    }
+    
+    vector<GLuint> shaders;
+    for (int i = 0; i < components; i++)
+        shaders.push_back(compileShaderFromStrings(strings[i], sourceTypes[i]));
+    
+    GLint success;
+    GLchar infoLog[512];
+    this->program = glCreateProgram();
+    for (int i = 0; i < components; i++)
+        glAttachShader(this->program, shaders[i]);
+    glLinkProgram(this->program);
+    glGetProgramiv(this->program, GL_LINK_STATUS, &success);
+    if (!success) {
+        glGetProgramInfoLog(this->program, 2048, NULL, infoLog);
+        std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
+    }
+    for (int i = 0; i < components; i++)
+        glDeleteShader(shaders[i]);
+}
+
 SunShader::SunShader(string vertexPath, string geometryPath, string fragmentPath) {
     string vertexCode = getShaderCodeFromFile(vertexPath);
     string geometryCode = getShaderCodeFromFile(geometryPath);

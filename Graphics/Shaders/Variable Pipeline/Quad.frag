@@ -22,6 +22,10 @@ uniform sampler2D _color;
 uniform sampler2D occlusion;
 #endif
 
+#ifdef INPUT_SHADOW // Temp
+uniform samplerCube shadow;
+#endif
+
 in vertex_fragment {
     vec2 textureCoordinates;
 } _input;
@@ -47,6 +51,18 @@ uniform vec3 viewDirection;
 float constant = 1.0; 
 float linear = 0.22;
 float quadratic = 0.2;
+
+#ifdef SHADOWS
+float isShadowed(samplerCube cubemap, vec3 lightPosition, vec3 position) {
+    vec3 fragmentToLight = position - lightPosition;
+    float closestDepth = texture(cubemap, fragmentToLight).r;
+    closestDepth *= 100.0f;
+    float currentDepth = length(fragmentToLight);
+    float bias = 0.05f;
+    float shadow = currentDepth - bias > closestDepth ? 1.0 : 0.0;
+    return shadow;
+}
+#endif
 
 vec3 calculateLighting(PointLight _pointLight, vec3 _position, vec3 _normal) {
     // Calculate Attenuation
@@ -150,19 +166,21 @@ void main() {
     vec3 __color = texture(_color, _input.textureCoordinates).rgb;
     
     #ifndef USE_SSAO
-    vec3 ambient = __color * 0.3f;
+    vec3 ambient = __color * 0.1f;
     #endif
     #ifdef USE_SSAO
     vec3 ambient = __color * texture(occlusion, _input.textureCoordinates).r;
     #endif
     
     vec3 lighting = ambient;
-    for (int i = 0; i < pointLightCount; i++) {
+    /*for (int i = 0; i < pointLightCount; i++) {
         lighting += __color * calculateLighting(pointLights[i], _position, normal);
-    }
+    }*/
+    lighting += (1.0 - isShadowed(shadow, pointLights[0].position, _position)) * __color * calculateLighting(pointLights[0], _position, normal);
+    lighting += __color * calculateLighting(pointLights[1], _position, normal);
 
     result = vec4(lighting, 1.0f);
-    
+
     color = result;
     #endif
     

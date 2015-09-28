@@ -4,12 +4,13 @@ SunObject::SunObject() {
     initializeDefaultPropertyAndFunctionMap();
 }
 
-SunObject::SunObject(string _name, string _modelPath) {
+SunObject::SunObject(string _name, string _modelPath, bool _flipNormals) {
     setName(_name);
+    setFlipNormals(_flipNormals);
 
     initializeDefaultPropertyAndFunctionMap();
 
-    SunModel model = SunModel(_modelPath);
+    SunModel model = SunModel(_modelPath, flipNormals);
     models.push_back(model);
 }
 
@@ -64,5 +65,9 @@ void SunObject::playSound(SunNodeSentAction _action) {
 }
 
 void SunObject::passPerFrameUniforms(SunNodeSentAction _action) {
+    
+}
+
+void SunObject::passPOVUniforms(SunShader _shader) {
     
 }

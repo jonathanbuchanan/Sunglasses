@@ -23,13 +23,14 @@ using namespace std;
 class SunObject : public SunNode {
 public:
     SunObject();
-    SunObject(string _name, string _modelPath);
+    SunObject(string _name, string _modelPath, bool _flipNormals);
     
     virtual void initializeDefaultPropertyAndFunctionMap();
     virtual void update(SunNodeSentAction _action);
     virtual void render(SunNodeSentAction _action);
     virtual void playSound(SunNodeSentAction _action);
     virtual void passPerFrameUniforms(SunNodeSentAction _action);
+    virtual void passPOVUniforms(SunShader _shader);
     
     inline glm::vec3 & getPosition() { return position; }
     inline void setPosition(glm::vec3 _position) { position = _position; physicsObject.setPosition(position); }
@@ -67,6 +68,9 @@ public:
     
     inline SunMeshRenderType & getRenderType() { return renderType; }
     inline void setRenderType(SunMeshRenderType _renderType) { renderType = _renderType; }
+    
+    inline bool & getFlipNormals() { return flipNormals; }
+    inline void setFlipNormals(bool _f) { flipNormals = _f; }
 private:
     // Object position and rotation
     glm::vec3 position;
@@ -85,6 +89,7 @@ private:
     
     SunObjectMaterial material;
     SunMeshRenderType renderType;
+    bool flipNormals;
 };
 
 #endif

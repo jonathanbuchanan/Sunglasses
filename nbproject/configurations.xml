@@ -24,6 +24,7 @@
             <itemPath>Graphics/Shaders/Variable Pipeline/Quad.frag</itemPath>
             <itemPath>Graphics/Shaders/Variable Pipeline/Quad.vert</itemPath>
             <itemPath>Graphics/Shaders/Variable Pipeline/Scene.frag</itemPath>
+            <itemPath>Graphics/Shaders/Variable Pipeline/Scene.geom</itemPath>
             <itemPath>Graphics/Shaders/Variable Pipeline/Scene.vert</itemPath>
           </logicalFolder>
           <itemPath>Graphics/Shaders/2DFullscreenBlurFragment.frag</itemPath>
@@ -103,7 +104,9 @@
       <itemPath>SSAOBlurQuad.pre</itemPath>
       <itemPath>SSAOQuad.pre</itemPath>
       <itemPath>SceneDemo.xml</itemPath>
+      <itemPath>SolidPointShadowMap.pre</itemPath>
       <itemPath>SolidScene.pre</itemPath>
+      <itemPath>TexturedPointShadowMap.pre</itemPath>
       <itemPath>TexturedScene.pre</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
@@ -879,6 +882,11 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="Graphics/Shaders/Variable Pipeline/Scene.geom"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="Graphics/Shaders/Variable Pipeline/Scene.vert"
             ex="false"
             tool="3"
@@ -2170,6 +2178,8 @@
       </item>
       <item path="SceneDemo.xml" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="SolidPointShadowMap.pre" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="SolidScene.pre" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SunButtonState.cpp" ex="false" tool="1" flavor2="0">
@@ -2199,6 +2209,8 @@
       <item path="SunScene.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="SunScene.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TexturedPointShadowMap.pre" ex="false" tool="3" flavor2="0">
       </item>
       <item path="TexturedScene.pre" ex="false" tool="3" flavor2="0">
       </item>
@@ -2454,6 +2466,11 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="Graphics/Shaders/Variable Pipeline/Scene.geom"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="Graphics/Shaders/Variable Pipeline/Scene.vert"
             ex="false"
             tool="3"
@@ -3745,6 +3762,8 @@
       </item>
       <item path="SceneDemo.xml" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="SolidPointShadowMap.pre" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="SolidScene.pre" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SunButtonState.cpp" ex="false" tool="1" flavor2="0">
@@ -3774,6 +3793,8 @@
       <item path="SunScene.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="SunScene.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TexturedPointShadowMap.pre" ex="false" tool="3" flavor2="0">
       </item>
       <item path="TexturedScene.pre" ex="false" tool="3" flavor2="0">
       </item>

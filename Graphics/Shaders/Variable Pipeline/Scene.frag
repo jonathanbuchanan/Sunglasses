@@ -5,6 +5,9 @@ layout (location = 0) out vec4 color;
 #ifdef OUTPUT_POSITION_0
 layout (location = 0) out vec4 position;
 #endif
+#ifdef OUTPUT_DEPTH_0
+//layout (location = 0) out float depth;
+#endif
 
 #ifdef OUTPUT_NORMAL_1
 layout (location = 1) out vec3 normal;
@@ -14,11 +17,21 @@ layout (location = 1) out vec3 normal;
 layout (location = 2) out vec4 color;
 #endif
 
+#ifndef OUTPUT_DEPTH
 in vertex_fragment {
     vec3 position;
     vec2 textureCoordinates;
     vec3 normal;
 } _input;
+#endif
+
+in geometry_fragment {
+    vec4 position;
+} _input_geo;
+
+#ifdef POINT_SHADOW_MAP
+vec3 lightPosition;
+#endif
 
 #ifdef RENDER_TEXTURED
 struct Material {
@@ -70,5 +83,13 @@ void main() {
     
     #ifdef OUTPUT_NORMAL
         normal = _input.normal;
+    #endif
+    
+    #ifdef OUTPUT_DEPTH
+        vec3 lightPosition = vec3(-4.0f, 0.0f, 0.0f);
+        float farPlane = 100.0f;
+        float lightDistance = length(_input_geo.position.xyz - lightPosition);
+        lightDistance = lightDistance / farPlane;
+        gl_FragDepth = lightDistance;
     #endif
 }
