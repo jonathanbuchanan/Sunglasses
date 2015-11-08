@@ -9,6 +9,8 @@ int main(int argc, const char *argv[]) {
     game.initialize(true, 4);
     
     game.loop();
+	
+	game.cleanUp();
     
     return 0;
 }

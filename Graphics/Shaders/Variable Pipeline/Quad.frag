@@ -163,21 +163,21 @@ void main() {
     
     vec3 _position = texture(position, _input.textureCoordinates).rgb;
     vec3 normal = texture(normal, _input.textureCoordinates).rgb;
-    vec3 __color = texture(_color, _input.textureCoordinates).rgb;
+    vec3 _color_ = texture(_color, _input.textureCoordinates).rgb;
     
     #ifndef USE_SSAO
-    vec3 ambient = __color * 0.1f;
+    vec3 ambient = _color_ * 0.1f;
     #endif
     #ifdef USE_SSAO
-    vec3 ambient = __color * texture(occlusion, _input.textureCoordinates).r;
+    vec3 ambient = _color_ * texture(occlusion, _input.textureCoordinates).r;
     #endif
     
     vec3 lighting = ambient;
     /*for (int i = 0; i < pointLightCount; i++) {
-        lighting += __color * calculateLighting(pointLights[i], _position, normal);
+        lighting += _color_ * calculateLighting(pointLights[i], _position, normal);
     }*/
-    lighting += (1.0 - isShadowed(shadow, pointLights[0].position, _position)) * __color * calculateLighting(pointLights[0], _position, normal);
-    lighting += __color * calculateLighting(pointLights[1], _position, normal);
+    lighting += (1.0 - isShadowed(shadow, pointLights[0].position, _position)) * _color_ * calculateLighting(pointLights[0], _position, normal);
+    lighting += _color_ * calculateLighting(pointLights[1], _position, normal);
 
     result = vec4(lighting, 1.0f);
 
@@ -189,13 +189,13 @@ void main() {
     
     vec3 _position = texture(position, _input.textureCoordinates).rgb;
     vec3 normal = texture(normal, _input.textureCoordinates).rgb;
-    vec3 __color = texture(_color, _input.textureCoordinates).rgb;
+    vec3 _color_ = texture(_color, _input.textureCoordinates).rgb;
     
     #ifndef USE_SSAO
-    vec3 ambient = __color * 0.3f;
+    vec3 ambient = _color_ * 0.3f;
     #endif
     #ifdef USE_SSAO
-    vec3 ambient = __color * texture(occlusion, _input.textureCoordinates).r;
+    vec3 ambient = _color_ * texture(occlusion, _input.textureCoordinates).r;
     #endif
     
     const float diffuseSteps[4] = float[](0.1, 0.3, 0.6, 1.0);
@@ -227,7 +227,7 @@ void main() {
     else
         specular = step(0.5, specular);
     
-    vec3 lighting = ambient + (__color * (diffuse + specular));
+    vec3 lighting = ambient + (_color_ * (diffuse + specular));
     
     result = vec4(lighting, 1.0f);
     

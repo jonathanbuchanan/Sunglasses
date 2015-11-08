@@ -1,8 +1,6 @@
 #include "SunNode.h"
 
 #include "Libraries/glm/glm.hpp"
-#include <functional>
-
 
 void SunNode::changeValue(SunNodeSentAction _action) {
     string targetProperty = *(string *) _action.parameters["targetProperty"];

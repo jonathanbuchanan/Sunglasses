@@ -7,6 +7,9 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+extern GLfloat screenWidth;
+extern GLfloat screenHeight;
+
 class SunScene;
 
 class SunGame {
@@ -16,6 +19,7 @@ public:
     }
     
     void loop();
+	void cleanUp();
     void initialize(bool _useMSAA, GLint _MSAASampleCount);
     
     inline SunScene * getScene() { return scene; }
@@ -29,8 +33,6 @@ public:
 private:
     SunScene *scene;
     GLFWwindow *window;
-    GLfloat screenWidth = 800;
-    GLfloat screenHeight = 600;
 };
 
 #endif

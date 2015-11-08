@@ -2,6 +2,14 @@
 #include "./SunButtonState.h"
 #include "./SunScene.h"
 
+GLfloat screenWidth = 800;
+GLfloat screenHeight = 600;
+
+#ifdef RETINA
+screenWidth = 1600;
+screenHeight = 1200;
+#endif
+
 GLfloat lastX = 400;
 GLfloat lastY = 300;
 bool firstMouseTime = true;
@@ -123,6 +131,10 @@ void SunGame::loop() {
     glfwTerminate();
 }
 
+void SunGame::cleanUp() {
+	glfwTerminate();
+}
+
 void SunGame::initialize(bool _useMSAA, GLint _MSAASampleCount) {
     // Initialize GLFW and give window hints
 
@@ -148,7 +160,7 @@ void SunGame::initialize(bool _useMSAA, GLint _MSAASampleCount) {
     }
 
     // Set the viewport size (NEEDS CLEAN UP)
-    glViewport(0, 0, screenWidth * 2, screenHeight * 2);
+    glViewport(0, 0, screenWidth, screenHeight);
 
     // Set the input callbacks
     glfwSetKeyCallback(window, keyCallback);

@@ -13,6 +13,7 @@
 #include "../SunObject.h"
 #include "./SunTexturedQuad.h"
 #include "./Shaders/SunShaderUniformObject.h"
+#include "../SunGame.h"
 
 #ifndef SunRenderingNode_h
 #define	SunRenderingNode_h

@@ -14,6 +14,7 @@
 #include <map>
 #include <GL/glew.h>
 #include "./Utility.h"
+#include <functional>
 
 using namespace std;
 

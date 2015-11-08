@@ -87,7 +87,7 @@ void SunRenderingNode::render(SunNodeSentAction _action) {
 
             renderQuad.renderWithUsedShader(_textures, shaders["quad"].shader);
         }
-        glViewport(0, 0, 1600, 1200);
+        glViewport(0, 0, screenWidth, screenHeight);
     } else if (renderingType == SunRenderingNodeTypeEnd) {
         // Get a pointer to the input framebuffer
         map<string, pair<GLuint, GLuint>> _textures;
@@ -105,12 +105,16 @@ void SunRenderingNode::render(SunNodeSentAction _action) {
         // Bind the screen-framebuffer
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
         clear();
-
+		
+		glViewport(0, 0, screenWidth * 2, screenHeight * 2);
+		
         shaders["quad"].shader.use();
 
         passUniforms(&shaders["quad"].shader);
 
         renderQuad.renderWithUsedShader(_textures, shaders["quad"].shader);
+		
+		glViewport(0, 0, screenWidth, screenHeight);
     } else if (renderingType == SunRenderingNodeTypeOnly) {
         // Bind the screen-framebuffer
         clear();
@@ -201,7 +205,7 @@ void SunRenderingNode::initialize() {
 
         //glGenRenderbuffers(1, &outputFramebuffer.renderbuffer);
         //glBindRenderbuffer(GL_RENDERBUFFER, outputFramebuffer.renderbuffer);
-        //glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, 1600, 1200);
+        //glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, screenWidth, screenHeight);
 
         //glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, outputFramebuffer.renderbuffer);
 
