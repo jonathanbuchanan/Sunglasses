@@ -29,6 +29,11 @@ void SunNode::initializeDefaultPropertyAndFunctionMap() {
 
     functionMap["changeValue"] = bind(&SunNode::changeValue, this, std::placeholders::_1);
     functionMap["toggleBool"] = bind(&SunNode::toggleBool, this, std::placeholders::_1);
+    functionMap["test"] = bind(&SunNode::test, this, std::placeholders::_1);
+}
+
+void SunNode::test(SunNodeSentAction _action) {
+	
 }
 
 void SunNode::receiveAction(SunNodeSentAction _action) {
@@ -60,10 +65,12 @@ void SunNode::receiveAction(SunNodeSentAction _action) {
 }
 
 void SunNode::sendAction(SunNodeSentAction _action, SunNode *_receiver) {
+	_action.sender = this;
     _receiver->receiveAction(_action);
 }
 
 void SunNode::sendActionToAllSubNodes(SunNodeSentAction _action) {
+	_action.sender = this;
     for (int i = 0; i < subNodes.size(); ++i)
         sendAction(_action, subNodes[i]);
 }

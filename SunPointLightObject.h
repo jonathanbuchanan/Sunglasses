@@ -16,6 +16,8 @@ using namespace std;
 #include <GL/glew.h>
 #include "./Libraries/glm/glm.hpp"
 #include "./Libraries/glm/gtc/matrix_transform.hpp"
+#include "./SunGame.h"
+#include "./Graphics/Shaders/SunShaderUniformObject.h"
 
 class SunPointLightObject : public SunObject {
 public:
@@ -26,6 +28,8 @@ public:
     virtual void initializeDefaultPropertyAndFunctionMap();
     void passPerFrameUniforms(SunNodeSentAction _action);
     void passPOVUniforms(SunShader _shader);
+	void shadowMap(SunNodeSentAction _action);
+	void initializeShadowMap();
     
     inline glm::vec3 & getColor() { return color; }
     inline void setColor(glm::vec3 _color) { color = _color; }
@@ -38,6 +42,12 @@ public:
     
     inline int & getPointLightID() { return pointLightID; }
     inline void setPointLightID(int _p) { pointLightID = _p; }
+	
+	inline GLboolean & getShadows() { return shadows; }
+	inline void setShadows(GLboolean _s) { shadows = _s; }
+	
+	inline glm::vec2 & getShadowMapSize() { return shadowMapSize; }
+	inline void setShadowMapSize(glm::vec2 _s) { shadowMapSize = _s; }
 private:
     // Color
     glm::vec3 color;
@@ -47,6 +57,14 @@ private:
     
     // Point Light ID
     int pointLightID;
+	
+	// Shadow Maps
+	GLboolean shadows;
+	glm::vec2 shadowMapSize = glm::vec2(1024.0f, 1024.0f);
+	GLuint shadowMapFramebuffer;
+	GLuint shadowMapTexture;
+	vector<glm::mat4> lightTransforms;
+	vector<SunShaderUniformObject> _lightTransforms;
 };
 
 #endif

@@ -15,6 +15,7 @@
 #include "./Graphics/SunCamera.h"
 #include "./Graphics/SunRenderer.h"
 #include "./Graphics/SunRenderingNode.h"
+#include "./Graphics/SunShadowMapRenderingNode.h"
 #include "./Graphics/SunTextRenderer.h"
 #include "./Audio/SunSoundListener.h"
 #include "./Audio/SunSoundBufferStorage.h"
@@ -32,12 +33,16 @@ enum SunObjectType {
     SunObjectTypeDirectionaLight
 };
 
+typedef map<string, SunShader>::iterator SunShaderMapIterator;
+
 class SunScene : public SunObject {
 public:
     SunScene();
     SunScene(const char *filepath, GLFWwindow *_window);
     
     void initializeDefaultPropertyAndFunctionMap();
+    
+    void initializeShadowMapRenderer(SunNodeSentAction _action);
     
     void processXMLSceneNode(pugi::xml_node _node) {
         for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
@@ -60,6 +65,8 @@ public:
         for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
             if (strcmp(node.name(), "pointlights") == 0)
                 pointLightCount = node.text().as_int();
+			if (strcmp(node.name(), "shadowpointlights") == 0)
+				shadowPointLightCount = node.text().as_int();
         }
     }
     
@@ -178,7 +185,16 @@ public:
         
         for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
             if (strcmp(node.name(), "rendernode") == 0) {
-                renderNodes.push_back(processXMLRenderNode(node, _renderer));
+            	string type;
+            	for (pugi::xml_attribute attribute = node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
+            		if (strcmp(attribute.name(), "type") == 0)
+            			type = attribute.value();
+            	}
+            	
+            	if (type == "shadowmap")
+            		renderNodes.push_back(processXMLShadowMapRenderNode(node, _renderer));
+            	else
+                	renderNodes.push_back(processXMLRenderNode(node, _renderer));
             }
         }
         
@@ -218,8 +234,9 @@ public:
         renderer.setRootRenderNode(root);
    }
     
-    void processXMLRenderNode(pugi::xml_node _node, SunRenderer *_renderer, SunRenderingNode &_renderingNode) {
+    void processXMLRenderNode(pugi::xml_node _node, SunRenderer *_renderer, SunRenderingNode _renderingNode) {
         string name;
+        string _type;
         SunRenderingNodeType type;
         SunRenderingNodeShaderType shaderType;
         
@@ -227,6 +244,7 @@ public:
             if (strcmp(attribute.name(), "name") == 0)
                 name = attribute.value();
             else if (strcmp(attribute.name(), "type") == 0) {
+            	_type = string(attribute.value());
                 if (strcmp(attribute.value(), "root") == 0)
                     type = SunRenderingNodeTypeRoot;
                 else if (strcmp(attribute.value(), "intermediate") == 0)
@@ -242,26 +260,42 @@ public:
             }
         }
         
-        _renderingNode = SunRenderingNode(name);
-        _renderingNode.setRenderingType(type);
-        _renderingNode.setShaderType(shaderType);
-        _renderingNode.setRootNode(&_renderingNode);
-        _renderingNode.setSceneNode(this);
-        
-        for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
-            if (strcmp(node.name(), "inputs") == 0)
-                processXMLRenderNodeInputs(node, &_renderingNode);
-            else if (strcmp(node.name(), "outputs") == 0)
-                processXMLRenderNodeOutputs(node, &_renderingNode);
-            else if (strcmp(node.name(), "shaders") == 0)
-                processXMLRenderNodeShaders(node, &_renderingNode);
+    	_renderingNode = SunRenderingNode(name);
+    	_renderingNode.setRenderingType(type);
+    	_renderingNode.setShaderType(shaderType);
+   	 	_renderingNode.setRootNode(&_renderingNode);
+    	_renderingNode.setSceneNode(this);
+    	
+    	for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
+    	    if (strcmp(node.name(), "inputs") == 0)
+    	        processXMLRenderNodeInputs(node, &_renderingNode);
+    	    else if (strcmp(node.name(), "outputs") == 0)
+    	        processXMLRenderNodeOutputs(node, &_renderingNode);
+    	    else if (strcmp(node.name(), "shaders") == 0)
+    	        processXMLRenderNodeShaders(node, &_renderingNode);
+    	}
+    	_renderingNode.initialize();
+    }
+    
+    SunShadowMapRenderingNode * processXMLShadowMapRenderNode(pugi::xml_node _node, SunRenderer *_renderer) {
+    	string name;
+    	
+    	for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
+            if (strcmp(attribute.name(), "name") == 0)
+                name = attribute.value();
         }
-        
-        _renderingNode.initialize();
+    	
+    	SunShadowMapRenderingNode *shadowMapNode = new SunShadowMapRenderingNode();
+    	shadowMapNode->setSceneNode(this);
+    	shadowMapNode->setRenderingType(SunRenderingNodeTypeIntermediate);
+    	shadowMapNode->setName(name);
+    	
+    	return shadowMapNode;
     }
    
     SunRenderingNode * processXMLRenderNode(pugi::xml_node _node, SunRenderer *_renderer) {
         string name;
+        string _type;
         SunRenderingNodeType type;
         SunRenderingNodeShaderType shaderType;
         string POVtype;
@@ -271,6 +305,7 @@ public:
             if (strcmp(attribute.name(), "name") == 0)
                 name = attribute.value();
             else if (strcmp(attribute.name(), "type") == 0) {
+            	_type = attribute.value();
                 if (strcmp(attribute.value(), "root") == 0)
                     type = SunRenderingNodeTypeRoot;
                 else if (strcmp(attribute.value(), "intermediate") == 0)
@@ -291,28 +326,29 @@ public:
                 POV = attribute.value();
         }
         
-        SunRenderingNode *_renderingNode = new SunRenderingNode(name);
-        _renderingNode->setRenderingType(type);
-        _renderingNode->setShaderType(shaderType);
-        _renderingNode->setSceneNode(this);
-        _renderingNode->setPOVType(POVtype);
-        _renderingNode->setPOV(POV);
-        
-        for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
-            if (strcmp(node.name(), "inputs") == 0)
-                processXMLRenderNodeInputs(node, _renderingNode);
-            else if (strcmp(node.name(), "outputs") == 0)
-                processXMLRenderNodeOutputs(node, _renderingNode);
-            else if (strcmp(node.name(), "shaders") == 0)
-                processXMLRenderNodeShaders(node, _renderingNode);
-            else if (strcmp(node.name(), "textures") == 0)
-                processXMLRenderNodeTextures(node, _renderingNode);
-            else if (strcmp(node.name(), "uniforms") == 0)
-                processXMLRenderNodeUniforms(node, _renderingNode);
-        }
-        
-        _renderingNode->initialize();
-        return _renderingNode;
+    	SunRenderingNode *_renderingNode = new SunRenderingNode(name);
+	    _renderingNode->setRenderingType(type);
+	    _renderingNode->setShaderType(shaderType);
+	    _renderingNode->setSceneNode(this);
+	    _renderingNode->setPOVType(POVtype);
+	    _renderingNode->setPOV(POV);
+	    
+	    for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
+	        if (strcmp(node.name(), "inputs") == 0)
+	            processXMLRenderNodeInputs(node, _renderingNode);
+	        else if (strcmp(node.name(), "outputs") == 0)
+	            processXMLRenderNodeOutputs(node, _renderingNode);
+	        else if (strcmp(node.name(), "shaders") == 0)
+	            processXMLRenderNodeShaders(node, _renderingNode);
+	        else if (strcmp(node.name(), "textures") == 0)
+	            processXMLRenderNodeTextures(node, _renderingNode);
+	        else if (strcmp(node.name(), "uniforms") == 0)
+	            processXMLRenderNodeUniforms(node, _renderingNode);
+	    }
+	    
+	    _renderingNode->initialize();
+	    
+	    return _renderingNode;
     }
     
     void processXMLRenderNodeInputs(pugi::xml_node _node, SunRenderingNode *_renderNode) {
@@ -564,6 +600,8 @@ public:
                     processXMLPointLightObjectPropertyNode(node, object);
             }
             
+			object->initializeShadowMap();
+			
             _superObject->addSubNode(object);
         } else if (type == SunObjectTypeDirectionaLight) {
             SunDirectionalLightObject *object = new SunDirectionalLightObject(name);
@@ -762,6 +800,8 @@ public:
             _object->setColorB(_node.text().as_float());
         else if (strcmp(_node.name(), "pointlightID") == 0)
             _object->setPointLightID(_node.text().as_int());
+		else if (strcmp(_node.name(), "shadowpointlightID") == 0)
+			_object->setPointLightID(_node.text().as_int());
         else if (strcmp(_node.name(), "attenuate") == 0)
             _object->setAttenuate(_node.text().as_bool());
         else if (strcmp(_node.name(), "physicsenabled") == 0) {
@@ -779,6 +819,10 @@ public:
             _object->getPhysicsObject().setElasticity(_node.text().as_float());
         else if (strcmp(_node.name(), "self-collision") == 0)
             _object->getPhysicsObject().setSelfCollision(_node.text().as_bool());
+		else if (strcmp(_node.name(), "shadows") == 0) {
+			_object->setShadows(_node.text().as_bool());
+			shadowPointLights.push_back(_object);
+		}
     }
     
     void processXMLDirectionalLightObjectPropertyNode(pugi::xml_node _node, SunDirectionalLightObject *_object) {
@@ -878,6 +922,10 @@ private:
     
     // Point Light Count
     int pointLightCount;
+	int shadowPointLightCount;
+	
+	// Shadow Point Light Pointers
+	vector<SunPointLightObject *> shadowPointLights;
     
     // Sound Storage
     SunSoundBufferStorage storage;

@@ -1,0 +1,5 @@
+
+#define OUTPUT_DEPTH_0
+#define OUTPUT_DEPTH
+#define WORLD_TRANSFORM
+#define POINT_SHADOW_MAP

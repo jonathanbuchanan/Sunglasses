@@ -39,13 +39,15 @@ void SunObject::update(SunNodeSentAction _action) {
 
 void SunObject::render(SunNodeSentAction _action) {
     if (_action.parameters.find("renderType") != _action.parameters.end()) {
-        if (renderType == *(int *) _action.parameters["renderType"]) {
+        if (renderType == *(int *)_action.parameters["renderType"] || *(int *)_action.parameters["renderType"] == SunMeshRenderTypeAll) {
             SunShader _shader = *(SunShader *) _action.parameters["shader"];
             GLfloat _deltaTime = *(GLfloat *) _action.parameters["deltaTime"];
-
+            
+            SunMeshRenderType _renderType = (SunMeshRenderType)(*(int *)_action.parameters["renderType"]);
+                        
             // Loop through the models and render them
             for (int i = 0; i < models.size(); ++i) {
-                models[i].render(_shader, _deltaTime, position, rotation, scale, material, renderType);
+                models[i].render(_shader, _deltaTime, position, rotation, scale, material, _renderType);
             }
         }
     } else {

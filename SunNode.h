@@ -126,6 +126,7 @@ struct SunNodeSentAction {
     map<string, void *> properties;
     map<string, SunNodeSentActionParameter> parameters;
     vector<SunNodeSentActionCondition> conditions;
+    SunNode *sender;
     string action;
     GLboolean recursive = false;
     GLboolean inOrder = false;
@@ -150,6 +151,8 @@ public:
     virtual void sendAction(SunNodeSentAction _action, SunNode *_receiver);
     
     virtual void sendActionToAllSubNodes(SunNodeSentAction _action);
+    
+    virtual void test(SunNodeSentAction _action);
     
     virtual void addSubNode(SunNode *_subNode);
     
@@ -183,7 +186,11 @@ public:
     inline void setType(string _type) { type = _type; }
     
     inline SunNode * getRootNode() { return rootNode; }
-    inline void setRootNode(SunNode *_rootNode) { rootNode = _rootNode; } 
+    inline void setRootNode(SunNode *_rootNode) { rootNode = _rootNode; }
+    
+    inline vector<SunNode *> & getParents() { return parents; }
+    inline int getParentsSize() { return parents.size(); }
+    inline SunNode * getParentAtIndex(int i) { return parents[i]; }
 private:
     map<string, SunNodeProperty> propertyMap;
     map<string, SunNodeFunctionPointer> functionMap;

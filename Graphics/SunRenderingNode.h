@@ -142,10 +142,13 @@ public:
     SunRenderingNode(string _name);
     
     virtual void initializeDefaultPropertyAndFunctionMap();
-    void render(SunNodeSentAction _action);
+    virtual void render(SunNodeSentAction _action);
     void passUniforms(SunShader *_shader);
-    void initialize();
+	void passUniforms(SunShader *_shader, int textureUnits);
+    virtual void initialize();
     void initializeOutput(SunRenderingNodeOutput *_output);
+    
+    virtual void test(SunNodeSentAction _action);
     
     inline SunRenderingNodeType & getRenderingType() { return renderingType; }
     inline void setRenderingType(SunRenderingNodeType _type) { renderingType = _type; }
@@ -188,7 +191,8 @@ public:
 private:
     SunRenderingNodeType renderingType;
     SunRenderingNodeShaderType shaderType;
-    vector<SunRenderingNodeInput> inputs;
+protected:
+	vector<SunRenderingNodeInput> inputs;
     vector<SunRenderingNodeOutput> outputs;
     SunFramebuffer outputFramebuffer;
     map<int, SunRenderingNodeOutput *> outputSlotMap;

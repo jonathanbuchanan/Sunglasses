@@ -32,7 +32,8 @@ struct SunObjectMaterial {
 // SunMeshRenderType Declaration
 enum SunMeshRenderType {
     SunMeshRenderTypeSolid,
-    SunMeshRenderTypeTextured
+    SunMeshRenderTypeTextured,
+	SunMeshRenderTypeAll
 };
 
 class SunMesh {

@@ -14,10 +14,22 @@ void SunRenderingNode::initializeDefaultPropertyAndFunctionMap() {
     SunNode::initializeDefaultPropertyAndFunctionMap();
 
     addToFunctionMap("render", bind(&SunRenderingNode::render, this, std::placeholders::_1));
+    addToFunctionMap("test", bind(&SunRenderingNode::test, this, std::placeholders::_1));
+}
+
+void SunRenderingNode::test(SunNodeSentAction _action) {
+	cout << "Name: " + this->getName() + ", Parents: " << endl;
+	for (int i = 0; i < this->getParentsSize(); i++) {
+		cout << "	" + this->getParentAtIndex(i)->getName() << endl;
+	}
+	cout << "Children: " << endl;
+	for (int i = 0; i < this->getSubNodesSize(); i++) {
+		cout << "	" + this->getSubNodeAtIndex(i)->getName() << endl;
+	}
 }
 
 void SunRenderingNode::render(SunNodeSentAction _action) {
-    GLfloat _deltaTime = *(GLfloat *) _action.parameters["deltaTime"];
+    GLfloat _deltaTime = *(GLfloat *)_action.parameters["deltaTime"];
     if (renderingType == SunRenderingNodeTypeRoot) {
         clear();
 
@@ -83,7 +95,7 @@ void SunRenderingNode::render(SunNodeSentAction _action) {
         } else if (shaderType == SunRenderingNodeShaderTypeQuad) {
             shaders["quad"].shader.use();
 
-            passUniforms(&shaders["quad"].shader);
+            passUniforms(&shaders["quad"].shader, textures.size());
 
             renderQuad.renderWithUsedShader(_textures, shaders["quad"].shader);
         }
@@ -109,8 +121,8 @@ void SunRenderingNode::render(SunNodeSentAction _action) {
 		glViewport(0, 0, screenWidth * 2, screenHeight * 2);
 		
         shaders["quad"].shader.use();
-
-        passUniforms(&shaders["quad"].shader);
+		
+        passUniforms(&shaders["quad"].shader, inputs.size());
 
         renderQuad.renderWithUsedShader(_textures, shaders["quad"].shader);
 		
@@ -142,10 +154,36 @@ void SunRenderingNode::render(SunNodeSentAction _action) {
     }
 }
 
-void SunRenderingNode::passUniforms(SunShader* _shader) {
+void SunRenderingNode::passUniforms(SunShader *_shader) {
     SunNodeSentAction uniformAction;
     uniformAction.action = "passPerFrameUniforms";
     uniformAction.parameters["shader"] = _shader;
+
+    SunNodeSentActionCondition condition;
+    condition.nodeProperty = "type";
+    condition.comparativeProperty = SunNodeProperty(new string("light"), SunNodePropertyTypeString);
+    condition.conditionType = SunNodeSentActionConditionTypeEqualTo;
+
+    vector<SunNodeSentActionCondition> conditions;
+    conditions.push_back(condition);
+
+    uniformAction.parameters["conditions"] = &conditions;
+
+    sendAction(uniformAction, scene);
+
+    SunNodeSentAction _uniformAction;
+    _uniformAction.action = "passUniform";
+    _uniformAction.parameters["shader"] = _shader;
+
+    for (int i = 0; i < uniforms.size(); i++)
+        sendAction(_uniformAction, uniforms[i]);
+}
+
+void SunRenderingNode::passUniforms(SunShader *_shader, int textureUnits) {
+    SunNodeSentAction uniformAction;
+    uniformAction.action = "passPerFrameUniforms";
+    uniformAction.parameters["shader"] = _shader;
+	uniformAction.parameters["usedTextureUnits"] = &textureUnits;
 
     SunNodeSentActionCondition condition;
     condition.nodeProperty = "type";

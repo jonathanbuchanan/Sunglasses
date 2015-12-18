@@ -9,9 +9,19 @@
 #include "./SunShader.h"
 #include "../SunPrimitives.h"
 #include "../../Libraries/glm/gtx/compatibility.hpp"
+#include "../../Libraries/glm/gtc/type_ptr.hpp"
 
 #ifndef SUNSHADERUNIFORMOBJECT_H
 #define	SUNSHADERUNIFORMOBJECT_H
+
+enum SunShaderUniformObjectType {
+	SunShaderUniformObjectTypeMatrix4x4,
+	SunShaderUniformObjectTypeVec3,
+	SunShaderUniformObjectTypeFloat,
+	SunShaderUniformObjectTypeInteger
+};
+
+typedef void * SunShaderUniformObjectValue;
 
 class SunShaderUniformObject : public SunNode {
 public:
@@ -19,12 +29,22 @@ public:
     
     virtual void initializeDefaultPropertyAndFunctionMap();
     
-    virtual void passUniform(SunNodeSentAction _action);
+    virtual void passUniformAction(SunNodeSentAction _action);
+    virtual void passUniform(SunShader *_shader);
     
-    inline string getUniformName() { return uniformName; }
+    inline string & getUniformName() { return uniformName; }
     inline void setUniformName(string _uniformName) { uniformName = _uniformName; }
+    
+    inline SunShaderUniformObjectType & getType() { return type; }
+    inline void setType(SunShaderUniformObjectType t) { type = t; }
+    
+    inline SunShaderUniformObjectValue getValue() { return value; }
+    inline void setValue(SunShaderUniformObjectValue v) { value = v; }
 private:
     string uniformName;
+    SunShaderUniformObjectType type;
+    
+    SunShaderUniformObjectValue value;
 };
 
 class SunShaderHemisphereKernelObject : public SunShaderUniformObject {

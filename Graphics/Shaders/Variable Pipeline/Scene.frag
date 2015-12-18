@@ -30,7 +30,7 @@ in geometry_fragment {
 } _input_geo;
 
 #ifdef POINT_SHADOW_MAP
-vec3 lightPosition;
+uniform vec3 lightPosition;
 #endif
 
 #ifdef RENDER_TEXTURED
@@ -86,7 +86,6 @@ void main() {
     #endif
     
     #ifdef OUTPUT_DEPTH
-        vec3 lightPosition = vec3(-4.0f, 0.0f, 0.0f);
         float farPlane = 100.0f;
         float lightDistance = length(_input_geo.position.xyz - lightPosition);
         lightDistance = lightDistance / farPlane;

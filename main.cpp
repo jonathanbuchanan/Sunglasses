@@ -6,6 +6,7 @@
 SunGame game = SunGame();
 
 int main(int argc, const char *argv[]) {
+	std::cout << "Started" << std::endl;
     game.initialize(true, 4);
     
     game.loop();

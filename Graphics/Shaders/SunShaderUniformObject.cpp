@@ -3,12 +3,45 @@
 void SunShaderUniformObject::initializeDefaultPropertyAndFunctionMap() {
     SunNode::initializeDefaultPropertyAndFunctionMap();
 
-    addToFunctionMap("passUniform", bind(&SunShaderUniformObject::passUniform, this, placeholders::_1));
+    addToFunctionMap("passUniform", bind(&SunShaderUniformObject::passUniformAction, this, placeholders::_1));
 }
 
-void SunShaderUniformObject::passUniform(SunNodeSentAction _action) {
+void SunShaderUniformObject::passUniformAction(SunNodeSentAction _action) {
     SunShader shader = *(SunShader *) _action.parameters["shader"];
+    
+    switch (type) {
+    	case SunShaderUniformObjectTypeMatrix4x4:
+    		glUniformMatrix4fv(shader.getUniformLocation(uniformName), 1, GL_FALSE, glm::value_ptr(*(glm::mat4 *)value));
+    		break;
+    	case SunShaderUniformObjectTypeFloat:
+    		glUniform1f(shader.getUniformLocation(uniformName), *(GLfloat *)value);
+    		break;
+    	case SunShaderUniformObjectTypeInteger:
+    		glUniform1i(shader.getUniformLocation(uniformName), *(GLuint *)value);
+    		break;
+    	case SunShaderUniformObjectTypeVec3:
+    		glUniform3fv(shader.getUniformLocation(uniformName), 1, glm::value_ptr(*(glm::vec3 *)value));
+    		break;
+    }
 }
+
+void SunShaderUniformObject::passUniform(SunShader *_shader) {
+    switch (type) {
+    	case SunShaderUniformObjectTypeMatrix4x4:
+    		glUniformMatrix4fv(_shader->getUniformLocation(uniformName), 1, GL_FALSE, glm::value_ptr(*(glm::mat4 *)value));
+    		break;
+    	case SunShaderUniformObjectTypeFloat:
+    		glUniform1f(_shader->getUniformLocation(uniformName), *(GLfloat *)value);
+    		break;
+    	case SunShaderUniformObjectTypeInteger:
+    		glUniform1i(_shader->getUniformLocation(uniformName), *(GLuint *)value);
+    		break;
+    	case SunShaderUniformObjectTypeVec3:
+    		glUniform3fv(_shader->getUniformLocation(uniformName), 1, glm::value_ptr(*(glm::vec3 *)value));
+    		break;
+    }
+}
+
 
 
 SunShaderHemisphereKernelObject::SunShaderHemisphereKernelObject(int _sampleCount) {

@@ -1,6 +1,7 @@
 <scene name="DemoScene" GUISystem="GUIDemo.xml">
     <scenedata>
-        <pointlights>2</pointlights>
+        <pointlights>0</pointlights>
+		<shadowpointlights>2</shadowpointlights>
     </scenedata>
     <physicsworld>
         <gravity>
@@ -248,7 +249,8 @@
                     
             <attenuate>true</attenuate>
             
-            <pointlightID>0</pointlightID>
+			<shadows>true</shadows>
+            <shadowpointlightID>0</shadowpointlightID>
         </object>
         <object name="Light1" type="PointLight">
             <position-x>4</position-x>
@@ -261,7 +263,8 @@
             
             <attenuate>true</attenuate>
             
-            <pointlightID>1</pointlightID>
+			<shadows>true</shadows>
+            <shadowpointlightID>1</shadowpointlightID>
         </object>
     </objects>
     <camera projection="perspective" FOV="45" width="10" height="10" yaw="0" pitch="0">
@@ -293,7 +296,9 @@
                     
                 </uniforms>
             </rendernode>
-            <rendernode name="shadowmap0" type="intermediate" shadertype="Scene" POVtype="light" POV="Light0">
+            <rendernode name="shadowmapper" type="shadowmap">
+            </rendernode>
+            <!--rendernode name="shadowmap0" type="intermediate" shadertype="Scene" POVtype="light" POV="Light0">
                 <inputs>
                 </inputs>
                 <outputs>
@@ -309,7 +314,7 @@
                 <uniforms>
                     
                 </uniforms>
-            </rendernode>
+            </rendernode-->
             <!--rendernode name="SSAO" type="intermediate" shadertype="Quad">
                 <inputs>
                     <input node="gbuffer" data="position" name="position" format="RGBA16F" slot="0" />
