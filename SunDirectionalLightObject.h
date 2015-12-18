@@ -23,6 +23,8 @@ public:
     
     virtual void initializeDefaultPropertyAndFunctionMap();
     virtual void passPerFrameUniforms(SunNodeSentAction _action);
+    void shadowMap(SunNodeSentAction _action);
+    void initializeShadowMap();
     
     inline glm::vec3 & getColor() { return color; }
     inline void setColor(glm::vec3 _color) { color = _color; }
@@ -35,12 +37,30 @@ public:
     inline void setDirectionX(GLfloat x) { direction.x = x; }
     inline void setDirectionY(GLfloat y) { direction.y = y; }
     inline void setDirectionZ(GLfloat z) { direction.z = z; }
+    
+    inline int & getDirectionalLightID() { return directionalLightID; }
+    inline void setDirectionalLightID(int _i) { directionalLightID = _i; }
+    
+    inline GLboolean & getShadows() { return shadows; }
+	inline void setShadows(GLboolean _s) { shadows = _s; }
+	
+	inline glm::vec2 & getShadowMapSize() { return shadowMapSize; }
+	inline void setShadowMapSize(glm::vec2 _s) { shadowMapSize = _s; }
 private:
     // Diffuse and specular
     glm::vec3 color;
 
     // Direction
     glm::vec3 direction;
+    
+    // Directional Light ID
+    int directionalLightID;
+    
+    // Shadow Mapping
+    GLboolean shadows;
+    glm::vec2 shadowMapSize = glm::vec2(1024.0f, 1024.0f);
+    GLuint shadowMapFramebuffer;
+    GLuint shadowMapTexture;
 };
 
 #endif

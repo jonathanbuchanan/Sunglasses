@@ -19,7 +19,9 @@ SunDirectionalLightObject::SunDirectionalLightObject(string _name) {
 
 void SunDirectionalLightObject::initializeDefaultPropertyAndFunctionMap() {
     SunObject::initializeDefaultPropertyAndFunctionMap();
-
+    
+    addToFunctionMap("shadowMap", bind(&SunDirectionalLightObject::shadowMap, this, std::placeholders::_1));
+    
     setType("light");
 }
 
@@ -33,4 +35,12 @@ void SunDirectionalLightObject::passPerFrameUniforms(SunNodeSentAction _action) 
 
     // Set the unifrom for the directional light's direction
     glUniform3f(_shader.getUniformLocation("directionalLight.direction"), direction.x, direction.y, direction.z);
+}
+
+void SunDirectionalLightObject::shadowMap(SunNodeSentAction _action) {
+	
+}
+
+void SunDirectionalLightObject::initializeShadowMap() {
+	
 }
