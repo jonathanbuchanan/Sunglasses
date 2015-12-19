@@ -296,25 +296,8 @@
                     
                 </uniforms>
             </rendernode>
-            <rendernode name="shadowmapper" type="shadowmap">
-            </rendernode>
-            <!--rendernode name="shadowmap0" type="intermediate" shadertype="Scene" POVtype="light" POV="Light0">
-                <inputs>
-                </inputs>
-                <outputs>
-                    <output data="depth" format="16F" slot="0" width="1024" height="1024" texturetype="Cubemap"/>
-                </outputs>
-                <shaders>
-                    <shader type="scene_textured" shaders="./Graphics/Shaders/Variable Pipeline/Scene.vert,./Graphics/Shaders/Variable Pipeline/Scene.geom,./Graphics/Shaders/Variable Pipeline/Scene.frag" shadertypes="vertex,geometry,fragment" preprocessor="./TexturedPointShadowMap.pre" />
-                    <shader type="scene_solid" shaders="./Graphics/Shaders/Variable Pipeline/Scene.vert,./Graphics/Shaders/Variable Pipeline/Scene.geom,./Graphics/Shaders/Variable Pipeline/Scene.frag" shadertypes="vertex,geometry,fragment" preprocessor="./SolidPointShadowMap.pre" />
-                </shaders>
-                <textures>
-                    
-                </textures>
-                <uniforms>
-                    
-                </uniforms>
-            </rendernode-->
+            <rendernode name="pointshadowmapper" type="pointshadowmap"></rendernode>
+            <rendernode name="directionalshadowmapper" type="directionalshadowmap"></rendernode>
             <!--rendernode name="SSAO" type="intermediate" shadertype="Quad">
                 <inputs>
                     <input node="gbuffer" data="position" name="position" format="RGBA16F" slot="0" />

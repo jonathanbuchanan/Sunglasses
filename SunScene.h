@@ -191,8 +191,8 @@ public:
             			type = attribute.value();
             	}
             	
-            	if (type == "shadowmap")
-            		renderNodes.push_back(processXMLShadowMapRenderNode(node, _renderer));
+            	if (type == "pointshadowmap")
+            		renderNodes.push_back(processXMLPointShadowMapRenderNode(node, _renderer));
             	else
                 	renderNodes.push_back(processXMLRenderNode(node, _renderer));
             }
@@ -277,7 +277,7 @@ public:
     	_renderingNode.initialize();
     }
     
-    SunPointShadowMapRenderingNode * processXMLShadowMapRenderNode(pugi::xml_node _node, SunRenderer *_renderer) {
+    SunPointShadowMapRenderingNode * processXMLPointShadowMapRenderNode(pugi::xml_node _node, SunRenderer *_renderer) {
     	string name;
     	
     	for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
