@@ -1,14 +1,14 @@
 #include "SunRenderingNode.h"
 #include "../SunPointLightObject.h"
 
-#ifndef SunShadowMapRenderingNode_h
-#define SunShadowMapRenderingNode_h
+#ifndef SunPointShadowMapRenderingNode_h
+#define SunPointShadowMapRenderingNode_h
 
 using namespace std;
 
-class SunShadowMapRenderingNode : public SunRenderingNode {
+class SunPointShadowMapRenderingNode : public SunRenderingNode {
 public:
-	SunShadowMapRenderingNode();
+	SunPointShadowMapRenderingNode();
 	
 	virtual void initialize();
 	virtual void initializeDefaultPropertyAndFunctionMap();

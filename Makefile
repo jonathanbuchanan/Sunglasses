@@ -426,6 +426,30 @@ Graphics/SunModel.cpp.s:
 	$(MAKE) -f CMakeFiles/sunglasses.dir/build.make CMakeFiles/sunglasses.dir/Graphics/SunModel.cpp.s
 .PHONY : Graphics/SunModel.cpp.s
 
+Graphics/SunPointShadowMapRenderingNode.o: Graphics/SunPointShadowMapRenderingNode.cpp.o
+.PHONY : Graphics/SunPointShadowMapRenderingNode.o
+
+# target to build an object file
+Graphics/SunPointShadowMapRenderingNode.cpp.o:
+	$(MAKE) -f CMakeFiles/sunglasses.dir/build.make CMakeFiles/sunglasses.dir/Graphics/SunPointShadowMapRenderingNode.cpp.o
+.PHONY : Graphics/SunPointShadowMapRenderingNode.cpp.o
+
+Graphics/SunPointShadowMapRenderingNode.i: Graphics/SunPointShadowMapRenderingNode.cpp.i
+.PHONY : Graphics/SunPointShadowMapRenderingNode.i
+
+# target to preprocess a source file
+Graphics/SunPointShadowMapRenderingNode.cpp.i:
+	$(MAKE) -f CMakeFiles/sunglasses.dir/build.make CMakeFiles/sunglasses.dir/Graphics/SunPointShadowMapRenderingNode.cpp.i
+.PHONY : Graphics/SunPointShadowMapRenderingNode.cpp.i
+
+Graphics/SunPointShadowMapRenderingNode.s: Graphics/SunPointShadowMapRenderingNode.cpp.s
+.PHONY : Graphics/SunPointShadowMapRenderingNode.s
+
+# target to generate assembly for a file
+Graphics/SunPointShadowMapRenderingNode.cpp.s:
+	$(MAKE) -f CMakeFiles/sunglasses.dir/build.make CMakeFiles/sunglasses.dir/Graphics/SunPointShadowMapRenderingNode.cpp.s
+.PHONY : Graphics/SunPointShadowMapRenderingNode.cpp.s
+
 Graphics/SunPrimitives.o: Graphics/SunPrimitives.cpp.o
 .PHONY : Graphics/SunPrimitives.o
 
@@ -497,30 +521,6 @@ Graphics/SunRenderingNode.s: Graphics/SunRenderingNode.cpp.s
 Graphics/SunRenderingNode.cpp.s:
 	$(MAKE) -f CMakeFiles/sunglasses.dir/build.make CMakeFiles/sunglasses.dir/Graphics/SunRenderingNode.cpp.s
 .PHONY : Graphics/SunRenderingNode.cpp.s
-
-Graphics/SunShadowMapRenderingNode.o: Graphics/SunShadowMapRenderingNode.cpp.o
-.PHONY : Graphics/SunShadowMapRenderingNode.o
-
-# target to build an object file
-Graphics/SunShadowMapRenderingNode.cpp.o:
-	$(MAKE) -f CMakeFiles/sunglasses.dir/build.make CMakeFiles/sunglasses.dir/Graphics/SunShadowMapRenderingNode.cpp.o
-.PHONY : Graphics/SunShadowMapRenderingNode.cpp.o
-
-Graphics/SunShadowMapRenderingNode.i: Graphics/SunShadowMapRenderingNode.cpp.i
-.PHONY : Graphics/SunShadowMapRenderingNode.i
-
-# target to preprocess a source file
-Graphics/SunShadowMapRenderingNode.cpp.i:
-	$(MAKE) -f CMakeFiles/sunglasses.dir/build.make CMakeFiles/sunglasses.dir/Graphics/SunShadowMapRenderingNode.cpp.i
-.PHONY : Graphics/SunShadowMapRenderingNode.cpp.i
-
-Graphics/SunShadowMapRenderingNode.s: Graphics/SunShadowMapRenderingNode.cpp.s
-.PHONY : Graphics/SunShadowMapRenderingNode.s
-
-# target to generate assembly for a file
-Graphics/SunShadowMapRenderingNode.cpp.s:
-	$(MAKE) -f CMakeFiles/sunglasses.dir/build.make CMakeFiles/sunglasses.dir/Graphics/SunShadowMapRenderingNode.cpp.s
-.PHONY : Graphics/SunShadowMapRenderingNode.cpp.s
 
 Graphics/SunTextRenderer.o: Graphics/SunTextRenderer.cpp.o
 .PHONY : Graphics/SunTextRenderer.o
@@ -1098,6 +1098,9 @@ help:
 	@echo "... Graphics/SunModel.o"
 	@echo "... Graphics/SunModel.i"
 	@echo "... Graphics/SunModel.s"
+	@echo "... Graphics/SunPointShadowMapRenderingNode.o"
+	@echo "... Graphics/SunPointShadowMapRenderingNode.i"
+	@echo "... Graphics/SunPointShadowMapRenderingNode.s"
 	@echo "... Graphics/SunPrimitives.o"
 	@echo "... Graphics/SunPrimitives.i"
 	@echo "... Graphics/SunPrimitives.s"
@@ -1107,9 +1110,6 @@ help:
 	@echo "... Graphics/SunRenderingNode.o"
 	@echo "... Graphics/SunRenderingNode.i"
 	@echo "... Graphics/SunRenderingNode.s"
-	@echo "... Graphics/SunShadowMapRenderingNode.o"
-	@echo "... Graphics/SunShadowMapRenderingNode.i"
-	@echo "... Graphics/SunShadowMapRenderingNode.s"
 	@echo "... Graphics/SunTextRenderer.o"
 	@echo "... Graphics/SunTextRenderer.i"
 	@echo "... Graphics/SunTextRenderer.s"

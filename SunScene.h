@@ -15,7 +15,7 @@
 #include "./Graphics/SunCamera.h"
 #include "./Graphics/SunRenderer.h"
 #include "./Graphics/SunRenderingNode.h"
-#include "./Graphics/SunShadowMapRenderingNode.h"
+#include "./Graphics/SunPointShadowMapRenderingNode.h"
 #include "./Graphics/SunTextRenderer.h"
 #include "./Audio/SunSoundListener.h"
 #include "./Audio/SunSoundBufferStorage.h"
@@ -277,7 +277,7 @@ public:
     	_renderingNode.initialize();
     }
     
-    SunShadowMapRenderingNode * processXMLShadowMapRenderNode(pugi::xml_node _node, SunRenderer *_renderer) {
+    SunPointShadowMapRenderingNode * processXMLShadowMapRenderNode(pugi::xml_node _node, SunRenderer *_renderer) {
     	string name;
     	
     	for (pugi::xml_attribute attribute = _node.first_attribute(); attribute; attribute = attribute.next_attribute()) {
@@ -285,7 +285,7 @@ public:
                 name = attribute.value();
         }
     	
-    	SunShadowMapRenderingNode *shadowMapNode = new SunShadowMapRenderingNode();
+    	SunPointShadowMapRenderingNode *shadowMapNode = new SunPointShadowMapRenderingNode();
     	shadowMapNode->setSceneNode(this);
     	shadowMapNode->setRenderingType(SunRenderingNodeTypeIntermediate);
     	shadowMapNode->setName(name);

@@ -806,6 +806,12 @@ GL/glew.h
 ./SunMesh.h
 /home/jonathan/Dev/sunglasses/././Graphics/./SunMesh.h
 
+/home/jonathan/Dev/sunglasses/././Graphics/SunPointShadowMapRenderingNode.h
+SunRenderingNode.h
+/home/jonathan/Dev/sunglasses/././Graphics/SunRenderingNode.h
+../SunPointLightObject.h
+/home/jonathan/Dev/sunglasses/././SunPointLightObject.h
+
 /home/jonathan/Dev/sunglasses/././Graphics/SunPrimitives.h
 GL/glew.h
 -
@@ -869,12 +875,6 @@ functional
 /home/jonathan/Dev/sunglasses/././Graphics/./Shaders/SunShaderUniformObject.h
 ../SunGame.h
 /home/jonathan/Dev/sunglasses/././SunGame.h
-
-/home/jonathan/Dev/sunglasses/././Graphics/SunShadowMapRenderingNode.h
-SunRenderingNode.h
-/home/jonathan/Dev/sunglasses/././Graphics/SunRenderingNode.h
-../SunPointLightObject.h
-/home/jonathan/Dev/sunglasses/././SunPointLightObject.h
 
 /home/jonathan/Dev/sunglasses/././Graphics/SunTextRenderer.h
 map
@@ -2500,6 +2500,12 @@ GL/glew.h
 ./SunMesh.h
 /home/jonathan/Dev/sunglasses/./Graphics/./SunMesh.h
 
+/home/jonathan/Dev/sunglasses/./Graphics/SunPointShadowMapRenderingNode.h
+SunRenderingNode.h
+/home/jonathan/Dev/sunglasses/./Graphics/SunRenderingNode.h
+../SunPointLightObject.h
+/home/jonathan/Dev/sunglasses/./SunPointLightObject.h
+
 /home/jonathan/Dev/sunglasses/./Graphics/SunPrimitives.h
 GL/glew.h
 -
@@ -2563,12 +2569,6 @@ functional
 /home/jonathan/Dev/sunglasses/./Graphics/./Shaders/SunShaderUniformObject.h
 ../SunGame.h
 /home/jonathan/Dev/sunglasses/./SunGame.h
-
-/home/jonathan/Dev/sunglasses/./Graphics/SunShadowMapRenderingNode.h
-SunRenderingNode.h
-/home/jonathan/Dev/sunglasses/./Graphics/SunRenderingNode.h
-../SunPointLightObject.h
-/home/jonathan/Dev/sunglasses/./SunPointLightObject.h
 
 /home/jonathan/Dev/sunglasses/./Graphics/SunTextRenderer.h
 map
@@ -3801,8 +3801,8 @@ GL/glew.h
 /home/jonathan/Dev/sunglasses/././Graphics/SunRenderer.h
 ./Graphics/SunRenderingNode.h
 /home/jonathan/Dev/sunglasses/././Graphics/SunRenderingNode.h
-./Graphics/SunShadowMapRenderingNode.h
-/home/jonathan/Dev/sunglasses/././Graphics/SunShadowMapRenderingNode.h
+./Graphics/SunPointShadowMapRenderingNode.h
+/home/jonathan/Dev/sunglasses/././Graphics/SunPointShadowMapRenderingNode.h
 ./Graphics/SunTextRenderer.h
 /home/jonathan/Dev/sunglasses/././Graphics/SunTextRenderer.h
 ./Audio/SunSoundListener.h
@@ -4402,6 +4402,16 @@ GL/glew.h
 ./SunMesh.h
 /home/jonathan/Dev/sunglasses/Graphics/./SunMesh.h
 
+/home/jonathan/Dev/sunglasses/Graphics/SunPointShadowMapRenderingNode.cpp
+SunPointShadowMapRenderingNode.h
+/home/jonathan/Dev/sunglasses/Graphics/SunPointShadowMapRenderingNode.h
+
+/home/jonathan/Dev/sunglasses/Graphics/SunPointShadowMapRenderingNode.h
+SunRenderingNode.h
+/home/jonathan/Dev/sunglasses/Graphics/SunRenderingNode.h
+../SunPointLightObject.h
+/home/jonathan/Dev/sunglasses/SunPointLightObject.h
+
 /home/jonathan/Dev/sunglasses/Graphics/SunPrimitives.cpp
 ./SunPrimitives.h
 /home/jonathan/Dev/sunglasses/Graphics/./SunPrimitives.h
@@ -4477,16 +4487,6 @@ functional
 /home/jonathan/Dev/sunglasses/Graphics/./Shaders/SunShaderUniformObject.h
 ../SunGame.h
 /home/jonathan/Dev/sunglasses/SunGame.h
-
-/home/jonathan/Dev/sunglasses/Graphics/SunShadowMapRenderingNode.cpp
-SunShadowMapRenderingNode.h
-/home/jonathan/Dev/sunglasses/Graphics/SunShadowMapRenderingNode.h
-
-/home/jonathan/Dev/sunglasses/Graphics/SunShadowMapRenderingNode.h
-SunRenderingNode.h
-/home/jonathan/Dev/sunglasses/Graphics/SunRenderingNode.h
-../SunPointLightObject.h
-/home/jonathan/Dev/sunglasses/SunPointLightObject.h
 
 /home/jonathan/Dev/sunglasses/Graphics/SunTextRenderer.cpp
 SunTextRenderer.h
@@ -5893,8 +5893,8 @@ SunScene.h
 /home/jonathan/Dev/sunglasses/./Graphics/SunRenderer.h
 ./Graphics/SunRenderingNode.h
 /home/jonathan/Dev/sunglasses/./Graphics/SunRenderingNode.h
-./Graphics/SunShadowMapRenderingNode.h
-/home/jonathan/Dev/sunglasses/./Graphics/SunShadowMapRenderingNode.h
+./Graphics/SunPointShadowMapRenderingNode.h
+/home/jonathan/Dev/sunglasses/./Graphics/SunPointShadowMapRenderingNode.h
 ./Graphics/SunTextRenderer.h
 /home/jonathan/Dev/sunglasses/./Graphics/SunTextRenderer.h
 ./Audio/SunSoundListener.h

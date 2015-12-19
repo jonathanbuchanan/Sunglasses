@@ -325,32 +325,9 @@ CMakeFiles/sunglasses.dir/Graphics/SunTexturedQuad.cpp.o.provides: CMakeFiles/su
 
 CMakeFiles/sunglasses.dir/Graphics/SunTexturedQuad.cpp.o.provides.build: CMakeFiles/sunglasses.dir/Graphics/SunTexturedQuad.cpp.o
 
-CMakeFiles/sunglasses.dir/Graphics/SunShadowMapRenderingNode.cpp.o: CMakeFiles/sunglasses.dir/flags.make
-CMakeFiles/sunglasses.dir/Graphics/SunShadowMapRenderingNode.cpp.o: Graphics/SunShadowMapRenderingNode.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jonathan/Dev/sunglasses/CMakeFiles $(CMAKE_PROGRESS_13)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/sunglasses.dir/Graphics/SunShadowMapRenderingNode.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/sunglasses.dir/Graphics/SunShadowMapRenderingNode.cpp.o -c /home/jonathan/Dev/sunglasses/Graphics/SunShadowMapRenderingNode.cpp
-
-CMakeFiles/sunglasses.dir/Graphics/SunShadowMapRenderingNode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sunglasses.dir/Graphics/SunShadowMapRenderingNode.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Graphics/SunShadowMapRenderingNode.cpp > CMakeFiles/sunglasses.dir/Graphics/SunShadowMapRenderingNode.cpp.i
-
-CMakeFiles/sunglasses.dir/Graphics/SunShadowMapRenderingNode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sunglasses.dir/Graphics/SunShadowMapRenderingNode.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Graphics/SunShadowMapRenderingNode.cpp -o CMakeFiles/sunglasses.dir/Graphics/SunShadowMapRenderingNode.cpp.s
-
-CMakeFiles/sunglasses.dir/Graphics/SunShadowMapRenderingNode.cpp.o.requires:
-.PHONY : CMakeFiles/sunglasses.dir/Graphics/SunShadowMapRenderingNode.cpp.o.requires
-
-CMakeFiles/sunglasses.dir/Graphics/SunShadowMapRenderingNode.cpp.o.provides: CMakeFiles/sunglasses.dir/Graphics/SunShadowMapRenderingNode.cpp.o.requires
-	$(MAKE) -f CMakeFiles/sunglasses.dir/build.make CMakeFiles/sunglasses.dir/Graphics/SunShadowMapRenderingNode.cpp.o.provides.build
-.PHONY : CMakeFiles/sunglasses.dir/Graphics/SunShadowMapRenderingNode.cpp.o.provides
-
-CMakeFiles/sunglasses.dir/Graphics/SunShadowMapRenderingNode.cpp.o.provides.build: CMakeFiles/sunglasses.dir/Graphics/SunShadowMapRenderingNode.cpp.o
-
 CMakeFiles/sunglasses.dir/Graphics/SunRenderer.cpp.o: CMakeFiles/sunglasses.dir/flags.make
 CMakeFiles/sunglasses.dir/Graphics/SunRenderer.cpp.o: Graphics/SunRenderer.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jonathan/Dev/sunglasses/CMakeFiles $(CMAKE_PROGRESS_14)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/jonathan/Dev/sunglasses/CMakeFiles $(CMAKE_PROGRESS_13)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/sunglasses.dir/Graphics/SunRenderer.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/sunglasses.dir/Graphics/SunRenderer.cpp.o -c /home/jonathan/Dev/sunglasses/Graphics/SunRenderer.cpp
 
@@ -373,7 +350,7 @@ CMakeFiles/sunglasses.dir/Graphics/SunRenderer.cpp.o.provides.build: CMakeFiles/
 
 CMakeFiles/sunglasses.dir/Graphics/SunModel.cpp.o: CMakeFiles/sunglasses.dir/flags.make
 CMakeFiles/sunglasses.dir/Graphics/SunModel.cpp.o: Graphics/SunModel.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jonathan/Dev/sunglasses/CMakeFiles $(CMAKE_PROGRESS_15)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/jonathan/Dev/sunglasses/CMakeFiles $(CMAKE_PROGRESS_14)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/sunglasses.dir/Graphics/SunModel.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/sunglasses.dir/Graphics/SunModel.cpp.o -c /home/jonathan/Dev/sunglasses/Graphics/SunModel.cpp
 
@@ -396,7 +373,7 @@ CMakeFiles/sunglasses.dir/Graphics/SunModel.cpp.o.provides.build: CMakeFiles/sun
 
 CMakeFiles/sunglasses.dir/Graphics/SunPrimitives.cpp.o: CMakeFiles/sunglasses.dir/flags.make
 CMakeFiles/sunglasses.dir/Graphics/SunPrimitives.cpp.o: Graphics/SunPrimitives.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jonathan/Dev/sunglasses/CMakeFiles $(CMAKE_PROGRESS_16)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/jonathan/Dev/sunglasses/CMakeFiles $(CMAKE_PROGRESS_15)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/sunglasses.dir/Graphics/SunPrimitives.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/sunglasses.dir/Graphics/SunPrimitives.cpp.o -c /home/jonathan/Dev/sunglasses/Graphics/SunPrimitives.cpp
 
@@ -419,7 +396,7 @@ CMakeFiles/sunglasses.dir/Graphics/SunPrimitives.cpp.o.provides.build: CMakeFile
 
 CMakeFiles/sunglasses.dir/Graphics/SunMesh.cpp.o: CMakeFiles/sunglasses.dir/flags.make
 CMakeFiles/sunglasses.dir/Graphics/SunMesh.cpp.o: Graphics/SunMesh.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jonathan/Dev/sunglasses/CMakeFiles $(CMAKE_PROGRESS_17)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/jonathan/Dev/sunglasses/CMakeFiles $(CMAKE_PROGRESS_16)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/sunglasses.dir/Graphics/SunMesh.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/sunglasses.dir/Graphics/SunMesh.cpp.o -c /home/jonathan/Dev/sunglasses/Graphics/SunMesh.cpp
 
@@ -442,7 +419,7 @@ CMakeFiles/sunglasses.dir/Graphics/SunMesh.cpp.o.provides.build: CMakeFiles/sung
 
 CMakeFiles/sunglasses.dir/Graphics/SunCamera.cpp.o: CMakeFiles/sunglasses.dir/flags.make
 CMakeFiles/sunglasses.dir/Graphics/SunCamera.cpp.o: Graphics/SunCamera.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jonathan/Dev/sunglasses/CMakeFiles $(CMAKE_PROGRESS_18)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/jonathan/Dev/sunglasses/CMakeFiles $(CMAKE_PROGRESS_17)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/sunglasses.dir/Graphics/SunCamera.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/sunglasses.dir/Graphics/SunCamera.cpp.o -c /home/jonathan/Dev/sunglasses/Graphics/SunCamera.cpp
 
@@ -462,6 +439,29 @@ CMakeFiles/sunglasses.dir/Graphics/SunCamera.cpp.o.provides: CMakeFiles/sunglass
 .PHONY : CMakeFiles/sunglasses.dir/Graphics/SunCamera.cpp.o.provides
 
 CMakeFiles/sunglasses.dir/Graphics/SunCamera.cpp.o.provides.build: CMakeFiles/sunglasses.dir/Graphics/SunCamera.cpp.o
+
+CMakeFiles/sunglasses.dir/Graphics/SunPointShadowMapRenderingNode.cpp.o: CMakeFiles/sunglasses.dir/flags.make
+CMakeFiles/sunglasses.dir/Graphics/SunPointShadowMapRenderingNode.cpp.o: Graphics/SunPointShadowMapRenderingNode.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/jonathan/Dev/sunglasses/CMakeFiles $(CMAKE_PROGRESS_18)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/sunglasses.dir/Graphics/SunPointShadowMapRenderingNode.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/sunglasses.dir/Graphics/SunPointShadowMapRenderingNode.cpp.o -c /home/jonathan/Dev/sunglasses/Graphics/SunPointShadowMapRenderingNode.cpp
+
+CMakeFiles/sunglasses.dir/Graphics/SunPointShadowMapRenderingNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sunglasses.dir/Graphics/SunPointShadowMapRenderingNode.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Graphics/SunPointShadowMapRenderingNode.cpp > CMakeFiles/sunglasses.dir/Graphics/SunPointShadowMapRenderingNode.cpp.i
+
+CMakeFiles/sunglasses.dir/Graphics/SunPointShadowMapRenderingNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sunglasses.dir/Graphics/SunPointShadowMapRenderingNode.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Graphics/SunPointShadowMapRenderingNode.cpp -o CMakeFiles/sunglasses.dir/Graphics/SunPointShadowMapRenderingNode.cpp.s
+
+CMakeFiles/sunglasses.dir/Graphics/SunPointShadowMapRenderingNode.cpp.o.requires:
+.PHONY : CMakeFiles/sunglasses.dir/Graphics/SunPointShadowMapRenderingNode.cpp.o.requires
+
+CMakeFiles/sunglasses.dir/Graphics/SunPointShadowMapRenderingNode.cpp.o.provides: CMakeFiles/sunglasses.dir/Graphics/SunPointShadowMapRenderingNode.cpp.o.requires
+	$(MAKE) -f CMakeFiles/sunglasses.dir/build.make CMakeFiles/sunglasses.dir/Graphics/SunPointShadowMapRenderingNode.cpp.o.provides.build
+.PHONY : CMakeFiles/sunglasses.dir/Graphics/SunPointShadowMapRenderingNode.cpp.o.provides
+
+CMakeFiles/sunglasses.dir/Graphics/SunPointShadowMapRenderingNode.cpp.o.provides.build: CMakeFiles/sunglasses.dir/Graphics/SunPointShadowMapRenderingNode.cpp.o
 
 CMakeFiles/sunglasses.dir/Graphics/SunTextRenderer.cpp.o: CMakeFiles/sunglasses.dir/flags.make
 CMakeFiles/sunglasses.dir/Graphics/SunTextRenderer.cpp.o: Graphics/SunTextRenderer.cpp
@@ -960,12 +960,12 @@ sunglasses_OBJECTS = \
 "CMakeFiles/sunglasses.dir/SunGame.cpp.o" \
 "CMakeFiles/sunglasses.dir/Graphics/SunRenderingNode.cpp.o" \
 "CMakeFiles/sunglasses.dir/Graphics/SunTexturedQuad.cpp.o" \
-"CMakeFiles/sunglasses.dir/Graphics/SunShadowMapRenderingNode.cpp.o" \
 "CMakeFiles/sunglasses.dir/Graphics/SunRenderer.cpp.o" \
 "CMakeFiles/sunglasses.dir/Graphics/SunModel.cpp.o" \
 "CMakeFiles/sunglasses.dir/Graphics/SunPrimitives.cpp.o" \
 "CMakeFiles/sunglasses.dir/Graphics/SunMesh.cpp.o" \
 "CMakeFiles/sunglasses.dir/Graphics/SunCamera.cpp.o" \
+"CMakeFiles/sunglasses.dir/Graphics/SunPointShadowMapRenderingNode.cpp.o" \
 "CMakeFiles/sunglasses.dir/Graphics/SunTextRenderer.cpp.o" \
 "CMakeFiles/sunglasses.dir/Graphics/GUI/SunGUIItemMesh.cpp.o" \
 "CMakeFiles/sunglasses.dir/Graphics/GUI/SunGUIItem.cpp.o" \
@@ -1003,12 +1003,12 @@ sunglasses: CMakeFiles/sunglasses.dir/SunPointLightObject.cpp.o
 sunglasses: CMakeFiles/sunglasses.dir/SunGame.cpp.o
 sunglasses: CMakeFiles/sunglasses.dir/Graphics/SunRenderingNode.cpp.o
 sunglasses: CMakeFiles/sunglasses.dir/Graphics/SunTexturedQuad.cpp.o
-sunglasses: CMakeFiles/sunglasses.dir/Graphics/SunShadowMapRenderingNode.cpp.o
 sunglasses: CMakeFiles/sunglasses.dir/Graphics/SunRenderer.cpp.o
 sunglasses: CMakeFiles/sunglasses.dir/Graphics/SunModel.cpp.o
 sunglasses: CMakeFiles/sunglasses.dir/Graphics/SunPrimitives.cpp.o
 sunglasses: CMakeFiles/sunglasses.dir/Graphics/SunMesh.cpp.o
 sunglasses: CMakeFiles/sunglasses.dir/Graphics/SunCamera.cpp.o
+sunglasses: CMakeFiles/sunglasses.dir/Graphics/SunPointShadowMapRenderingNode.cpp.o
 sunglasses: CMakeFiles/sunglasses.dir/Graphics/SunTextRenderer.cpp.o
 sunglasses: CMakeFiles/sunglasses.dir/Graphics/GUI/SunGUIItemMesh.cpp.o
 sunglasses: CMakeFiles/sunglasses.dir/Graphics/GUI/SunGUIItem.cpp.o
@@ -1051,12 +1051,12 @@ CMakeFiles/sunglasses.dir/requires: CMakeFiles/sunglasses.dir/SunPointLightObjec
 CMakeFiles/sunglasses.dir/requires: CMakeFiles/sunglasses.dir/SunGame.cpp.o.requires
 CMakeFiles/sunglasses.dir/requires: CMakeFiles/sunglasses.dir/Graphics/SunRenderingNode.cpp.o.requires
 CMakeFiles/sunglasses.dir/requires: CMakeFiles/sunglasses.dir/Graphics/SunTexturedQuad.cpp.o.requires
-CMakeFiles/sunglasses.dir/requires: CMakeFiles/sunglasses.dir/Graphics/SunShadowMapRenderingNode.cpp.o.requires
 CMakeFiles/sunglasses.dir/requires: CMakeFiles/sunglasses.dir/Graphics/SunRenderer.cpp.o.requires
 CMakeFiles/sunglasses.dir/requires: CMakeFiles/sunglasses.dir/Graphics/SunModel.cpp.o.requires
 CMakeFiles/sunglasses.dir/requires: CMakeFiles/sunglasses.dir/Graphics/SunPrimitives.cpp.o.requires
 CMakeFiles/sunglasses.dir/requires: CMakeFiles/sunglasses.dir/Graphics/SunMesh.cpp.o.requires
 CMakeFiles/sunglasses.dir/requires: CMakeFiles/sunglasses.dir/Graphics/SunCamera.cpp.o.requires
+CMakeFiles/sunglasses.dir/requires: CMakeFiles/sunglasses.dir/Graphics/SunPointShadowMapRenderingNode.cpp.o.requires
 CMakeFiles/sunglasses.dir/requires: CMakeFiles/sunglasses.dir/Graphics/SunTextRenderer.cpp.o.requires
 CMakeFiles/sunglasses.dir/requires: CMakeFiles/sunglasses.dir/Graphics/GUI/SunGUIItemMesh.cpp.o.requires
 CMakeFiles/sunglasses.dir/requires: CMakeFiles/sunglasses.dir/Graphics/GUI/SunGUIItem.cpp.o.requires

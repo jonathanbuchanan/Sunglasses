@@ -82,7 +82,7 @@ void SunScene::initializeDefaultPropertyAndFunctionMap() {
 
 void SunScene::initializeShadowMapRenderer(SunNodeSentAction _action) {
 	// Renderer
-	SunShadowMapRenderingNode *renderer = (SunShadowMapRenderingNode *)_action.parameters["renderer"];
+	SunPointShadowMapRenderingNode *renderer = (SunPointShadowMapRenderingNode *)_action.parameters["renderer"];
 	
 	// Loop through shadow point lights and add to list
 	for (int i = 0; i < shadowPointLights.size(); i++) {

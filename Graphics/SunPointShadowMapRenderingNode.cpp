@@ -1,23 +1,23 @@
-#include "SunShadowMapRenderingNode.h"
+#include "SunPointShadowMapRenderingNode.h"
 
-SunShadowMapRenderingNode::SunShadowMapRenderingNode() {
+SunPointShadowMapRenderingNode::SunPointShadowMapRenderingNode() {
 	initializeDefaultPropertyAndFunctionMap();
 }
 
-void SunShadowMapRenderingNode::initialize() {
+void SunPointShadowMapRenderingNode::initialize() {
 	
 }
 
-void SunShadowMapRenderingNode::initializeDefaultPropertyAndFunctionMap() {
+void SunPointShadowMapRenderingNode::initializeDefaultPropertyAndFunctionMap() {
 	//SunRenderingNode::initializeDefaultPropertyAndFunctionMap();
 	shadowMapShader = SunShader("./Graphics/Shaders/Variable Pipeline/Scene.vert", "./Graphics/Shaders/Variable Pipeline/Scene.geom", "./Graphics/Shaders/Variable Pipeline/Scene.frag", "./PointShadowMap.pre", "#version 330 core\n");
 	
-	addToFunctionMap("loadPointLights", bind(&SunShadowMapRenderingNode::loadPointLights, this, std::placeholders::_1));
-	addToFunctionMap("render", bind(&SunShadowMapRenderingNode::render, this, std::placeholders::_1));
-	addToFunctionMap("test", bind(&SunShadowMapRenderingNode::test, this, std::placeholders::_1));
+	addToFunctionMap("loadPointLights", bind(&SunPointShadowMapRenderingNode::loadPointLights, this, std::placeholders::_1));
+	addToFunctionMap("render", bind(&SunPointShadowMapRenderingNode::render, this, std::placeholders::_1));
+	addToFunctionMap("test", bind(&SunPointShadowMapRenderingNode::test, this, std::placeholders::_1));
 }
 
-void SunShadowMapRenderingNode::loadPointLights(SunNodeSentAction _action) {
+void SunPointShadowMapRenderingNode::loadPointLights(SunNodeSentAction _action) {
 	// Action
 	SunNodeSentAction sceneAction;
 	sceneAction.action = "initializeShadowMapRenderer";
@@ -28,7 +28,7 @@ void SunShadowMapRenderingNode::loadPointLights(SunNodeSentAction _action) {
 	sendAction(sceneAction, scene);
 }
 
-void SunShadowMapRenderingNode::render(SunNodeSentAction _action) {
+void SunPointShadowMapRenderingNode::render(SunNodeSentAction _action) {
 	// Action
 	SunNodeSentAction shadowMapAction;
 	shadowMapAction.action = "shadowMap";
@@ -48,6 +48,6 @@ void SunShadowMapRenderingNode::render(SunNodeSentAction _action) {
 	}
 }
 
-void SunShadowMapRenderingNode::test(SunNodeSentAction _action) {
+void SunPointShadowMapRenderingNode::test(SunNodeSentAction _action) {
 	SunRenderingNode::test(_action);
 }
