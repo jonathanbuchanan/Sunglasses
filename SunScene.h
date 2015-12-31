@@ -30,7 +30,7 @@
 enum SunObjectType {
     SunObjectTypePhysical,
     SunObjectTypePointLight,
-    SunObjectTypeDirectionaLight
+    SunObjectTypeDirectionalLight
 };
 
 typedef map<string, SunShader>::iterator SunShaderMapIterator;
@@ -67,6 +67,10 @@ public:
                 pointLightCount = node.text().as_int();
 			if (strcmp(node.name(), "shadowpointlights") == 0)
 				shadowPointLightCount = node.text().as_int();
+			if (strcmp(node.name(), "directionallights") == 0)
+				directionalLightCount = node.text().as_int();
+			if (strcmp(node.name(), "shadowdirectionallights") == 0)
+				shadowDirectionalLightCount = node.text().as_int();
         }
     }
     
@@ -557,7 +561,7 @@ public:
                 else if (strcmp(attribute.value(), "PointLight") == 0)
                     type = SunObjectTypePointLight;
                 else if (strcmp(attribute.value(), "DirectionalLight") == 0)
-                    type = SunObjectTypeDirectionaLight;
+                    type = SunObjectTypeDirectionalLight;
             } else if (strcmp(attribute.name(), "textured") == 0) {
                 if (attribute.as_bool() == true)
                     renderType = SunMeshRenderTypeTextured;
@@ -603,7 +607,7 @@ public:
 			object->initializeShadowMap();
 			
             _superObject->addSubNode(object);
-        } else if (type == SunObjectTypeDirectionaLight) {
+        } else if (type == SunObjectTypeDirectionalLight) {
             SunDirectionalLightObject *object = new SunDirectionalLightObject(name);
             
             for (pugi::xml_node node = _node.first_child(); node; node = node.next_sibling()) {
@@ -826,12 +830,12 @@ public:
     }
     
     void processXMLDirectionalLightObjectPropertyNode(pugi::xml_node _node, SunDirectionalLightObject *_object) {
-        if (strcmp(_node.name(), "position-x") == 0)
-            _object->setPositionX(_node.text().as_float());
-        else if (strcmp(_node.name(), "position-y") == 0)
-            _object->setPositionY(_node.text().as_float());
-        else if (strcmp(_node.name(), "position-z") == 0)
-            _object->setPositionZ(_node.text().as_float());
+        if (strcmp(_node.name(), "direction-x") == 0)
+            _object->setDirectionX(_node.text().as_float());
+        else if (strcmp(_node.name(), "direction-y") == 0)
+            _object->setDirectionY(_node.text().as_float());
+        else if (strcmp(_node.name(), "direction-z") == 0)
+            _object->setDirectionZ(_node.text().as_float());
         else if (strcmp(_node.name(), "rotation-x") == 0)
             _object->setRotationX(_node.text().as_float());
         else if (strcmp(_node.name(), "rotation-y") == 0)
@@ -850,6 +854,10 @@ public:
             _object->setColorG(_node.text().as_float());
         else if (strcmp(_node.name(), "color-b") == 0)
             _object->setColorB(_node.text().as_float());
+        else if (strcmp(_node.name(), "directionallightID") == 0)
+        	_object->setDirectionalLightID(_node.text().as_int());
+        else if (strcmp(_node.name(), "shadowdirectionallightID") == 0)
+        	_object->setDirectionalLightID(_node.text().as_int());
         else if (strcmp(_node.name(), "physicsenabled") == 0) {
             _object->setPhysicsEnabled(_node.text().as_bool());
             physicsSimulator.getWorld().addObjectToObjects(&_object->getPhysicsObject());
@@ -920,9 +928,12 @@ private:
     SunRenderer renderer;
     SunTextRenderer textRenderer;
     
-    // Point Light Count
+    // Light Count
     int pointLightCount;
 	int shadowPointLightCount;
+	
+	int directionalLightCount;
+	int shadowDirectionalLightCount;
 	
 	// Shadow Point Light Pointers
 	vector<SunPointLightObject *> shadowPointLights;

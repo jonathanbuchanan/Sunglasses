@@ -378,6 +378,30 @@ Graphics/SunCamera.cpp.s:
 	$(MAKE) -f CMakeFiles/sunglasses.dir/build.make CMakeFiles/sunglasses.dir/Graphics/SunCamera.cpp.s
 .PHONY : Graphics/SunCamera.cpp.s
 
+Graphics/SunDirectionalShadowMapRenderingNode.o: Graphics/SunDirectionalShadowMapRenderingNode.cpp.o
+.PHONY : Graphics/SunDirectionalShadowMapRenderingNode.o
+
+# target to build an object file
+Graphics/SunDirectionalShadowMapRenderingNode.cpp.o:
+	$(MAKE) -f CMakeFiles/sunglasses.dir/build.make CMakeFiles/sunglasses.dir/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o
+.PHONY : Graphics/SunDirectionalShadowMapRenderingNode.cpp.o
+
+Graphics/SunDirectionalShadowMapRenderingNode.i: Graphics/SunDirectionalShadowMapRenderingNode.cpp.i
+.PHONY : Graphics/SunDirectionalShadowMapRenderingNode.i
+
+# target to preprocess a source file
+Graphics/SunDirectionalShadowMapRenderingNode.cpp.i:
+	$(MAKE) -f CMakeFiles/sunglasses.dir/build.make CMakeFiles/sunglasses.dir/Graphics/SunDirectionalShadowMapRenderingNode.cpp.i
+.PHONY : Graphics/SunDirectionalShadowMapRenderingNode.cpp.i
+
+Graphics/SunDirectionalShadowMapRenderingNode.s: Graphics/SunDirectionalShadowMapRenderingNode.cpp.s
+.PHONY : Graphics/SunDirectionalShadowMapRenderingNode.s
+
+# target to generate assembly for a file
+Graphics/SunDirectionalShadowMapRenderingNode.cpp.s:
+	$(MAKE) -f CMakeFiles/sunglasses.dir/build.make CMakeFiles/sunglasses.dir/Graphics/SunDirectionalShadowMapRenderingNode.cpp.s
+.PHONY : Graphics/SunDirectionalShadowMapRenderingNode.cpp.s
+
 Graphics/SunMesh.o: Graphics/SunMesh.cpp.o
 .PHONY : Graphics/SunMesh.o
 
@@ -1092,6 +1116,9 @@ help:
 	@echo "... Graphics/SunCamera.o"
 	@echo "... Graphics/SunCamera.i"
 	@echo "... Graphics/SunCamera.s"
+	@echo "... Graphics/SunDirectionalShadowMapRenderingNode.o"
+	@echo "... Graphics/SunDirectionalShadowMapRenderingNode.i"
+	@echo "... Graphics/SunDirectionalShadowMapRenderingNode.s"
 	@echo "... Graphics/SunMesh.o"
 	@echo "... Graphics/SunMesh.i"
 	@echo "... Graphics/SunMesh.s"

@@ -1,7 +1,9 @@
 <scene name="DemoScene" GUISystem="GUIDemo.xml">
     <scenedata>
         <pointlights>0</pointlights>
-		<shadowpointlights>2</shadowpointlights>
+		<shadowpointlights>0</shadowpointlights>
+		<directionallights>1</directionallights>
+		<shadowdirectionallights>0</shadowdirectionallights>
     </scenedata>
     <physicsworld>
         <gravity>
@@ -11,147 +13,12 @@
         </gravity>
     </physicsworld>
     <objects>
-        <object name="Sphere1" model="Graphics/Sphere.dae" type="Physical" textured="false" flipnormals="false" animated="false">
-            <position-x>-3</position-x>
-            <position-y>0</position-y>
-            <position-z>1</position-z>
-            
-            <rotation-x>0</rotation-x>
-            <rotation-y>0</rotation-y>
-            <rotation-z>0</rotation-z>
-            
-            <scale-x>1</scale-x>
-            <scale-y>1</scale-y>
-            <scale-z>1</scale-z>
-            
-            <material-r>1</material-r>
-            <material-g>0</material-g>
-            <material-b>0</material-b>
-            
-            <material-shininess>4</material-shininess>
-            
-            <physicsenabled>true</physicsenabled>
-            <mass>1</mass>
-            <stationary>false</stationary>
-            <elasticity>1</elasticity>
-            <velocity-x>2</velocity-x>
-            <velocity-y>0</velocity-y>
-            <velocity-z>2</velocity-z>
-            <colliders>
-                <collider type="Sphere">
-                    <center-x>-3</center-x>
-                    <center-y>0</center-y>
-                    <center-z>1</center-z>
-                
-                    <radius>1</radius>
-                </collider>
-            </colliders>
-            <self-collision>false</self-collision>
-            
-            <objects>
-                
-            </objects>
-            
-            <sounds>
-                <sound file="file1.wav" name="test" minimumDistance="3" attenuation="100"/>
-            </sounds>
-        </object>
-        <object name="Sphere2" model="Graphics/Sphere.dae" type="Physical" textured="false" flipnormals="false" animated="false">
-            <position-x>-6</position-x>
-            <position-y>0</position-y>
-            <position-z>0</position-z>
-            
-            <rotation-x>0</rotation-x>
-            <rotation-y>0</rotation-y>
-            <rotation-z>0</rotation-z>
-            
-            <scale-x>1</scale-x>
-            <scale-y>1</scale-y>
-            <scale-z>1</scale-z>
-            
-            <material-r>0</material-r>
-            <material-g>1</material-g>
-            <material-b>0</material-b>
-            
-            <material-shininess>4</material-shininess>
-            
-            <physicsenabled>true</physicsenabled>
-            <mass>1</mass>
-            <stationary>false</stationary>
-            <elasticity>1</elasticity>
-            <velocity-x>3</velocity-x>
-            <velocity-y>1</velocity-y>
-            <velocity-z>1</velocity-z>
-            <colliders>
-                <collider type="Sphere">
-                <center-x>-6</center-x>
-                <center-y>0</center-y>
-                <center-z>0</center-z>
-                
-                <radius>1</radius>
-                </collider>
-            </colliders>
-            <self-collision>false</self-collision>
-            
-            <objects>
-                
-            </objects>
-            
-            <sounds>
-                <sound file="file1.wav" name="test" minimumDistance="3" attenuation="100"/>
-            </sounds>
-        </object>
-        <object name="Sphere3" model="Graphics/Sphere.dae" type="Physical" textured="false" flipnormals="false" animated="false">
-            <position-x>2</position-x>
-            <position-y>3</position-y>
-            <position-z>4</position-z>
-            
-            <rotation-x>0</rotation-x>
-            <rotation-y>0</rotation-y>
-            <rotation-z>0</rotation-z>
-            
-            <scale-x>1</scale-x>
-            <scale-y>1</scale-y>
-            <scale-z>1</scale-z>
-            
-            <material-r>0</material-r>
-            <material-g>0</material-g>
-            <material-b>1</material-b>
-            
-            <material-shininess>4</material-shininess>
-            
-            <physicsenabled>true</physicsenabled>
-            <mass>1</mass>
-            <stationary>false</stationary>
-            <elasticity>1</elasticity>
-            <velocity-x>0.75</velocity-x>
-            <velocity-y>-2</velocity-y>
-            <velocity-z>1</velocity-z>
-            <colliders>
-                <collider type="Sphere">
-                <center-x>2</center-x>
-                <center-y>3</center-y>
-                <center-z>4</center-z>
-                
-                <radius>1</radius>
-                </collider>
-            </colliders>
-            <self-collision>false</self-collision>
-            
-            <objects>
-                
-            </objects>
-            
-            <sounds>
-                <sound file="file1.wav" name="test" minimumDistance="3" attenuation="100"/>
-            </sounds>
-        </object>
-        <object name="Box" model="Graphics/Cube.dae" type="Physical" textured="true" flipnormals="true" animated="false">
+        <object name="Building" model="Graphics/Building.dae" type="Physical" textured="true" flipnormals="true" animated="false">
             <position-x>0</position-x>
             <position-y>0</position-y>
             <position-z>0</position-z>
             
-            <rotation-x>0</rotation-x>
+            <rotation-x>-90</rotation-x>
             <rotation-y>0</rotation-y>
             <rotation-z>0</rotation-z>
             
@@ -163,7 +30,7 @@
             <material-g>.8</material-g>
             <material-b>.4</material-b>
             
-            <material-shininess>4</material-shininess>
+            <material-shininess>256</material-shininess>
             
             <physicsenabled>true</physicsenabled>
             <mass>0</mass>
@@ -172,62 +39,7 @@
             <velocity-x>0</velocity-x>
             <velocity-y>0</velocity-y>
             <velocity-z>0</velocity-z>
-            <colliders>
-                <collider type="Plane">
-                    <normal-x>1</normal-x>
-                    <normal-y>0</normal-y>
-                    <normal-z>0</normal-z>
-                    
-                    <distance>-10</distance>
-                    
-                    <reflective>true</reflective>
-                </collider>
-                <collider type="Plane">
-                    <normal-x>-1</normal-x>
-                    <normal-y>0</normal-y>
-                    <normal-z>0</normal-z>
-                    
-                    <distance>-10</distance>
-                    
-                    <reflective>true</reflective>
-                </collider>
-                <collider type="Plane">
-                    <normal-x>0</normal-x>
-                    <normal-y>-1</normal-y>
-                    <normal-z>0</normal-z>
-                    
-                    <distance>-10</distance>
-                    
-                    <reflective>true</reflective>
-                </collider>
-                <collider type="Plane">
-                    <normal-x>0</normal-x>
-                    <normal-y>1</normal-y>
-                    <normal-z>0</normal-z>
-                    
-                    <distance>-10</distance>
-                    
-                    <reflective>true</reflective>
-                </collider>
-                <collider type="Plane">
-                    <normal-x>0</normal-x>
-                    <normal-y>0</normal-y>
-                    <normal-z>-1</normal-z>
-                    
-                    <distance>-10</distance>
-                    
-                    <reflective>true</reflective>
-                </collider>
-                <collider type="Plane">
-                    <normal-x>0</normal-x>
-                    <normal-y>0</normal-y>
-                    <normal-z>1</normal-z>
-                    
-                    <distance>-10</distance>
-                    
-                    <reflective>true</reflective>
-                </collider>
-            </colliders>
+            <colliders></colliders>
             <self-collision>false</self-collision>
             
             <objects>
@@ -238,34 +50,18 @@
                 <sound file="file1.wav" name="test" minimumDistance="3" attenuation="100"/>
             </sounds>
         </object>
-        <object name="Light0" type="PointLight">
-            <position-x>-4</position-x>
-            <position-y>0</position-y>
-            <position-z>0</position-z>
-                    
-            <color-r>30</color-r>
-            <color-g>0</color-g>
-            <color-b>0</color-b>
-                    
-            <attenuate>true</attenuate>
-            
-			<shadows>true</shadows>
-            <shadowpointlightID>0</shadowpointlightID>
-        </object>
-        <object name="Light1" type="PointLight">
-            <position-x>4</position-x>
-            <position-y>0</position-y>
-            <position-z>0</position-z>
-            
-            <color-r>0</color-r>
-            <color-g>30</color-g>
-            <color-b>0</color-b>
-            
-            <attenuate>true</attenuate>
-            
-			<shadows>true</shadows>
-            <shadowpointlightID>1</shadowpointlightID>
-        </object>
+        <object name="Light" type="DirectionalLight">
+        	<direction-x>0</direction-x>
+        	<direction-y>-1</direction-y>
+        	<direction-z>-0.3</direction-z>
+        	
+        	<color-r>5</color-r>
+        	<color-g>5</color-g>
+        	<color-b>5</color-b>
+        	
+        	<shadows>true</shadows>
+        	<shadowdirectionallightID>0</shadowdirectionallightID>
+       	</object>
     </objects>
     <camera projection="perspective" FOV="45" width="10" height="10" yaw="0" pitch="0">
         <position-x>0</position-x>
@@ -298,41 +94,6 @@
             </rendernode>
             <rendernode name="pointshadowmapper" type="pointshadowmap"></rendernode>
             <rendernode name="directionalshadowmapper" type="directionalshadowmap"></rendernode>
-            <!--rendernode name="SSAO" type="intermediate" shadertype="Quad">
-                <inputs>
-                    <input node="gbuffer" data="position" name="position" format="RGBA16F" slot="0" />
-                    <input node="gbuffer" data="normal" name="normal" format="RGB16F" slot="1" />
-                </inputs>
-                <outputs>
-                    <output data="occlusion" format="16F" slot="0" width="1600" height="1200" texturetype="2D" />
-                </outputs>
-                <shaders>
-                    <shader type="quad" shaders="./Graphics/Shaders/Variable Pipeline/Quad.vert,./Graphics/Shaders/Variable Pipeline/Quad.frag" shadertypes="vertex,fragment" preprocessor="./SSAOQuad.pre" />
-                </shaders>
-                <textures>
-                    <texture name="noise" type="noise_hemisphere" width="4" height="4" />
-                </textures>
-                <uniforms>
-                    <hemispheresamplekernel name="samples" samplecount="8" />
-                </uniforms>
-            </rendernode>
-            <rendernode name="SSAOBlur" type="intermediate" shadertype="Quad">
-                <inputs>
-                    <input node="SSAO" data="occlusion" name="occlusion" format="16F" slot="0" />
-                </inputs>
-                <outputs>
-                    <output data="occlusion" format="16F" slot="0" width="1600" height="1200" texturetype="2D" />
-                </outputs>
-                <shaders>
-                    <shader type="quad" shaders="./Graphics/Shaders/Variable Pipeline/Quad.vert,./Graphics/Shaders/Variable Pipeline/Quad.frag" shadertypes="vertex,fragment" preprocessor="./SSAOBlurQuad.pre" />
-                </shaders>
-                <textures>
-                    
-                </textures>
-                <uniforms>
-                    
-                </uniforms>
-            </rendernode-->>
             <rendernode name="final" type="end" shadertype="Quad">
                 <inputs>
                     <input node="gbuffer" data="position" name="position" format="RGB16F" slot="0" texturetype="2D" />

@@ -13,6 +13,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/sunglasses.dir/Graphics/SunTexturedQuad.cpp.o"
   "CMakeFiles/sunglasses.dir/Graphics/SunRenderer.cpp.o"
   "CMakeFiles/sunglasses.dir/Graphics/SunModel.cpp.o"
+  "CMakeFiles/sunglasses.dir/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o"
   "CMakeFiles/sunglasses.dir/Graphics/SunPrimitives.cpp.o"
   "CMakeFiles/sunglasses.dir/Graphics/SunMesh.cpp.o"
   "CMakeFiles/sunglasses.dir/Graphics/SunCamera.cpp.o"

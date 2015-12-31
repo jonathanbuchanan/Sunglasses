@@ -177,6 +177,8 @@ void SunScene::renderGUISystem(SunNodeSentAction _action) {
 void SunScene::passPerFrameUniforms(SunShader _shader) {
     glUniform1i(_shader.getUniformLocation("pointLightCount"), pointLightCount);
 	glUniform1i(_shader.getUniformLocation("shadowPointLightCount"), shadowPointLightCount);
+	glUniform1i(_shader.getUniformLocation("directionalLightCount"), directionalLightCount);
+	glUniform1i(_shader.getUniformLocation("shadowDirectionalLightCount"), shadowDirectionalLightCount);
     
     listener.setPositionAndDirection();
 
@@ -191,6 +193,8 @@ void SunScene::passPerFrameUniforms(SunShader _shader) {
 void SunScene::passPerFrameUniforms(SunShader _shader, vector<SunNodeSentActionCondition> _conditions) {
     glUniform1i(_shader.getUniformLocation("pointLightCount"), pointLightCount);
 	glUniform1i(_shader.getUniformLocation("shadowPointLightCount"), shadowPointLightCount);
+	glUniform1i(_shader.getUniformLocation("directionalLightCount"), directionalLightCount);
+	glUniform1i(_shader.getUniformLocation("shadowDirectionalLightCount"), shadowDirectionalLightCount);
     
     camera.passPerFrameUniforms(_shader);
 
@@ -209,6 +213,8 @@ void SunScene::passPerFrameUniformsAction(SunNodeSentAction _action) {
     
     glUniform1i(_shader.getUniformLocation("pointLightCount"), pointLightCount);
 	glUniform1i(_shader.getUniformLocation("shadowPointLightCount"), shadowPointLightCount);
+	glUniform1i(_shader.getUniformLocation("directionalLightCount"), directionalLightCount);
+	glUniform1i(_shader.getUniformLocation("shadowDirectionalLightCount"), shadowDirectionalLightCount);
     
     camera.passPerFrameUniforms(_shader);
 

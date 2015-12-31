@@ -27,14 +27,15 @@ void SunDirectionalLightObject::initializeDefaultPropertyAndFunctionMap() {
 
 void SunDirectionalLightObject::passPerFrameUniforms(SunNodeSentAction _action) {
     SunObject::passPerFrameUniforms(_action);
-
-    SunShader _shader = *(SunShader *) _action.parameters["shader"];
-
-    // Set the uniforms for the directional light's diffuse and specular colors
-    glUniform3f(_shader.getUniformLocation("directionalLight.color"), color.r, color.g, color.b);
-
-    // Set the unifrom for the directional light's direction
-    glUniform3f(_shader.getUniformLocation("directionalLight.direction"), direction.x, direction.y, direction.z);
+    
+    SunShader _shader = *(SunShader *)_action.parameters["shader"];
+	int usedTextureUnits;
+	if (_action.parameters.find("usedTextureUnits") != _action.parameters.end())
+		usedTextureUnits = *(int *)_action.parameters["usedTextureUnits"];
+	
+    glUniform3f(_shader.getUniformLocation("directionalLights[" + std::to_string(directionalLightID) + "].color"), color.r, color.g, color.b);
+    
+    glUniform3f(_shader.getUniformLocation("directionalLights[" + std::to_string(directionalLightID) + "].direction"), direction.x, direction.y, direction.z);
 }
 
 void SunDirectionalLightObject::shadowMap(SunNodeSentAction _action) {

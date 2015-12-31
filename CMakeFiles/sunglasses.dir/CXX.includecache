@@ -4342,6 +4342,16 @@ GLFW/glfw3.h
 ../SunButtonState.h
 /home/jonathan/Dev/sunglasses/SunButtonState.h
 
+/home/jonathan/Dev/sunglasses/Graphics/SunDirectionalShadowMapRenderingNode.cpp
+SunDirectionalShadowMapRenderingNode.h
+/home/jonathan/Dev/sunglasses/Graphics/SunDirectionalShadowMapRenderingNode.h
+
+/home/jonathan/Dev/sunglasses/Graphics/SunDirectionalShadowMapRenderingNode.h
+SunRenderingNode.h
+/home/jonathan/Dev/sunglasses/Graphics/SunRenderingNode.h
+../SunDirectionalLightObject.h
+/home/jonathan/Dev/sunglasses/SunDirectionalLightObject.h
+
 /home/jonathan/Dev/sunglasses/Graphics/SunMesh.cpp
 SunMesh.h
 /home/jonathan/Dev/sunglasses/Graphics/SunMesh.h

@@ -56,11 +56,36 @@ struct ShadowPointLight {
 	samplerCube shadowMap;
 };
 
+struct DirectionalLight {
+	// Color
+	vec3 color;
+	
+	// Direction
+	vec3 direction;
+};
+
+struct ShadowDirectionalLight {
+	// Color
+	vec3 color;
+	
+	// Direction
+	vec3 direction;
+	
+	// Shadow Map
+	sampler2D shadowMap;
+};
+
 uniform int pointLightCount;
-uniform PointLight pointLights[128];
+uniform PointLight pointLights[32];
 
 uniform int shadowPointLightCount;
-uniform ShadowPointLight shadowPointLights[8];
+uniform ShadowPointLight shadowPointLights[4];
+
+uniform int directionalLightCount;
+uniform DirectionalLight directionalLights[32];
+
+uniform int shadowDirectionalLightCount;
+uniform ShadowDirectionalLight shadowDirectionalLights[4];
 
 uniform vec3 viewPosition;
 uniform vec3 viewDirection;
@@ -109,7 +134,7 @@ vec3 calculateLighting(PointLight _pointLight, vec3 _position, vec3 _normal) {
     vec3 halfway = normalize(lightDirection + viewDirection);
     
     // Calculate the dot product of the normal and the halfway vector, then choose 0 if lower than 0, then raise to the shininess exponent
-    float specular = pow(max(dot(_normal, halfway), 0.0), 1024);
+    float specular = pow(max(dot(_normal, halfway), 0.0), 128);
     
     // Return the diffuse value + the specular value
     return _pointLight.color * (diffuse + specular) * attenuation;
@@ -144,13 +169,39 @@ vec3 calculateLighting(ShadowPointLight _pointLight, vec3 _position, vec3 _norma
     	vec3 halfway = normalize(lightDirection + viewDirection);
     	
     	// Calculate the dot product of the normal and the halfway vector, then choose 0 if lower than 0, then raise to the shininess exponent
-    	float specular = pow(max(dot(_normal, halfway), 0.0), 1024);
+    	float specular = pow(max(dot(_normal, halfway), 0.0), 128);
     	
     	// Return the diffuse value + the specular value
     	return _pointLight.color * (diffuse + specular) * attenuation;
 	} else {
 		return vec3(0.0f, 0.0f, 0.0f);
 	}
+}
+
+vec3 calculateLighting(DirectionalLight _directionalLight, vec3 _position, vec3 _normal) {
+	// Diffuse Lighting
+    
+    
+    // Calculate the direction of the light to the fragment
+    vec3 lightDirection = normalize(-_directionalLight.direction);
+    
+    // Calculate the dot product of the normal and the light direction, then choose 0 if lower than 0
+    float diffuse = max(dot(_normal, lightDirection), 0.0);
+    
+    // Specular Lighting
+    
+    
+    // Calculate the direction of the view to the fragment
+    vec3 viewDirection = normalize(viewPosition - _position);
+    
+    // Calculate the halfway vector
+    vec3 halfway = normalize(lightDirection + viewDirection);
+    
+    // Calculate the dot product of the normal and the halfway vector, then choose 0 if lower than 0, then raise to the shininess exponent
+    float specular = pow(max(dot(_normal, halfway), 0.0), 16);
+    
+    // Return the diffuse value + the specular value
+    return _directionalLight.color * (diffuse + specular);
 }
 
 float calculateDiffuse(PointLight _pointLight, vec3 _position, vec3 _normal) {
@@ -228,16 +279,24 @@ void main() {
     #endif
     
     vec3 lighting = ambient;
+   	
+   	// Lighting: Point Lights
     for (int i = 0; i < pointLightCount; i++) {
         lighting += _color_ * calculateLighting(pointLights[i], _position, normal);
     }
 	
+	// Lighting: Shadowed Point Lights
 	for (int i = 0; i < shadowPointLightCount; i++) {
 		lighting += _color_ * calculateLighting(shadowPointLights[i], _position, normal);
 	}
+	
+	// Lighting: Directional Lights
+	for (int i = 0; i < directionalLightCount; i++) {
+		lighting += _color_ * calculateLighting(directionalLights[i], _position, normal);
+	}
 
     result = vec4(vec3(lighting), 1.0f);
-
+	
     color = result;
     #endif
     
