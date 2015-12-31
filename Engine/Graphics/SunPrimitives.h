@@ -1,10 +1,6 @@
-//
-//  SunPrimitives.h
-//  Sunglasses
-//
-//  Created by Jonathan Buchanan on 7/7/15.
-//
-//
+// Copyright 2016 Jonathan Buchanan.
+// This file is part of Sunglasses, which is licensed under the MIT License.
+// See LICENSE.md for details.
 
 #ifndef Sunglasses_SunPrimitives_h
 #define Sunglasses_SunPrimitives_h

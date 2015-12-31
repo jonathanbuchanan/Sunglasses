@@ -1,10 +1,6 @@
-//
-//  SunCamera.h
-//  OpenGL_Test_3
-//
-//  Created by Jonathan Buchanan on 5/14/15.
-//  Copyright (c) 2015 Virtual40. All rights reserved.
-//
+// Copyright 2016 Jonathan Buchanan.
+// This file is part of Sunglasses, which is licensed under the MIT License.
+// See LICENSE.md for details.
 
 #ifndef OpenGL_Test_3_SunCamera_h
 #define OpenGL_Test_3_SunCamera_h

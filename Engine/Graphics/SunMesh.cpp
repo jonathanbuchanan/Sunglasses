@@ -1,3 +1,6 @@
+// Copyright 2016 Jonathan Buchanan.
+// This file is part of Sunglasses, which is licensed under the MIT License.
+// See LICENSE.md for details.
 #include "SunMesh.h"
 
 SunMesh::SunMesh(vector<SunVertex> _vertices, vector<GLuint> _indices, vector<SunTexture> _textures, vector<SunBone> _bones, vector<SunAnimation> _animations) {
