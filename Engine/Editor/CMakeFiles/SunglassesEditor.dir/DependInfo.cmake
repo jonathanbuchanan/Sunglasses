@@ -11,8 +11,8 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS
+  "WXUSINGDLL"
   "_FILE_OFFSET_BITS=64"
-  "_LARGE_FILES"
   "__WXGTK__"
   )
 
@@ -22,8 +22,8 @@ set(CMAKE_TARGET_LINKED_INFO_FILES
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
-  "/usr/lib/x86_64-linux-gnu/wx/include/gtk2-unicode-release-2.8"
-  "/usr/include/wx-2.8"
+  "/usr/lib/x86_64-linux-gnu/wx/include/gtk2-unicode-3.0"
+  "/usr/include/wx-3.0"
   )
 set(CMAKE_CXX_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
 set(CMAKE_Fortran_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})

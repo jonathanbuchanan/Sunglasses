@@ -8,12 +8,14 @@ class EditorFrame : public wxFrame {
 public:
 	EditorFrame(wxString title, wxPoint position, wxSize size);
 	
-	void exit(wxCommandEvent &event);
-	void about(wxCommandEvent &event);
+	wxButton *newProject;
+	
+	void onExit(wxCommandEvent &event);
+	void onNewProject(wxCommandEvent &event);
 	
 	enum {
 		ID_Exit = 1,
-		ID_About,
+		ID_NewProject,
 	};
 	
 private:
