@@ -5,7 +5,7 @@
 import os
 import fileinput
 
-allowedDirectories = ["./Engine", "./Engine/Audio", "./Engine/Graphics", "./Engine/Graphics/GUI", "./Engine/Graphics/Shaders", "./Engine/Graphics/Shaders/Variable Pipeline", "./Engine/Physics"]
+allowedDirectories = ["./Engine/Runtime", "./Engine/Runtime/Audio", "./Engine/Runtime/Graphics", "./Engine/Runtime/Graphics/GUI", "./Engine/Runtime/Graphics/Shaders", "./Engine/Runtime/Graphics/Shaders/Variable Pipeline", "./Engine/Runtime/Physics"]
 allowedEndings = [".h", ".cpp", ".vert", ".frag", ".geom", ".pre"]
 
 copyright = '// Copyright 2016 Jonathan Buchanan.\n// This file is part of Sunglasses, which is licensed under the MIT License.\n// See LICENSE.md for details.\n'
