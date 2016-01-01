@@ -1,4 +1,4 @@
-# Install script for directory: /home/jonathan/Dev/sunglasses/Engine
+# Install script for directory: /home/jonathan/Dev/sunglasses/Engine/Runtime
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/jonathan/Dev/sunglasses/Engine/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/jonathan/Dev/sunglasses/Engine/Runtime/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
