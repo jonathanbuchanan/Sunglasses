@@ -3,7 +3,7 @@
 // See LICENSE.md for details.
 #include "SunNode.h"
 
-#include "Libraries/glm/glm.hpp"
+#include <glm/glm.hpp>
 
 void SunNode::changeValue(SunNodeSentAction _action) {
     string targetProperty = *(string *) _action.parameters["targetProperty"];

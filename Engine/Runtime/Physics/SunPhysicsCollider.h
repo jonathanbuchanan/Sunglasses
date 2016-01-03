@@ -11,7 +11,7 @@
 #ifndef SUNPHYSICSCOLLIDER_H
 #define	SUNPHYSICSCOLLIDER_H
 
-#include "glm/glm.hpp"
+#include <glm/glm.hpp>
 
 enum SunPhysicsColliderType {
     SunPhysicsColliderTypeAABB,

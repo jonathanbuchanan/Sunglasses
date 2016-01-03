@@ -13,9 +13,9 @@
 
 #include "SunPhysicsCollider.h"
 #include "../Graphics/SunPrimitives.h"
-#include "../Libraries/assimp/Importer.hpp"
-#include "../Libraries/assimp/scene.h"
-#include "../Libraries/assimp/postprocess.h"
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
 
 using namespace std;
 

@@ -14,14 +14,14 @@
 using namespace std;
 
 #include <GL/glew.h>
-#include "../Libraries/glm/glm.hpp"
-#include "../Libraries/glm/gtc/matrix_transform.hpp"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
-#include "../Libraries/assimp/Importer.hpp"
-#include "../Libraries/assimp/scene.h"
-#include "../Libraries/assimp/postprocess.h"
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
 
-#include "../Libraries/SOIL/SOIL.h"
+#include <SOIL/SOIL.h>
 
 #include "./SunMesh.h"
 

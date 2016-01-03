@@ -2,7 +2,7 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include "SunPhysicsObject.h"
-#include "glm/gtx/string_cast.hpp"
+#include <glm/gtx/string_cast.hpp>
 #include <iostream>
 
 SunPhysicsObject::SunPhysicsObject() {

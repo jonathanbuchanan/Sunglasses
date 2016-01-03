@@ -11,8 +11,8 @@
 #include "../../SunNode.h"
 #include "./SunShader.h"
 #include "../SunPrimitives.h"
-#include "../../Libraries/glm/gtx/compatibility.hpp"
-#include "../../Libraries/glm/gtc/type_ptr.hpp"
+#include <glm/gtx/compatibility.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #ifndef SUNSHADERUNIFORMOBJECT_H
 #define	SUNSHADERUNIFORMOBJECT_H

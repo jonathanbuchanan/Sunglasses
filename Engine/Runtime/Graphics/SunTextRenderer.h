@@ -11,17 +11,17 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-#include "ft2build.h"
+#include <ft2build.h>
 #include FT_FREETYPE_H
 
 #include "./Shaders/SunShader.h"
 
-#include "../Libraries/glm/glm.hpp"
-#include "../Libraries/glm/gtc/matrix_transform.hpp"
-#include "../Libraries/glm/gtc/type_ptr.hpp"
-#include "../Libraries/glm/gtc/quaternion.hpp"
-#include "../Libraries/glm/gtx/quaternion.hpp"
-#include "../Libraries/glm/gtx/string_cast.hpp"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtc/quaternion.hpp>
+#include <glm/gtx/quaternion.hpp>
+#include <glm/gtx/string_cast.hpp>
 
 using namespace std;
 

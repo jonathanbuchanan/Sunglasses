@@ -6,7 +6,8 @@
 #include "SunPhysicsColliderSphere.h"
 #include "SunPhysicsColliderMesh.h"
 #include "GJKAlgorithm.h"
-#include "glm/gtx/simd_vec4.hpp"
+
+#include <glm/gtx/simd_vec4.hpp>
 
 SunPhysicsColliderPlane::SunPhysicsColliderPlane() {
     setType(SunPhysicsColliderTypePlane);

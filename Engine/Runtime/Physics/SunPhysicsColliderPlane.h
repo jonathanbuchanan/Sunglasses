@@ -12,7 +12,7 @@
 #define	SUNPHYSICSCOLLIDERPLANE_H
 
 #include "SunPhysicsCollider.h"
-#include "glm/glm.hpp"
+#include <glm/glm.hpp>
 
 class SunPhysicsColliderPlane : public SunPhysicsCollider {
 public:

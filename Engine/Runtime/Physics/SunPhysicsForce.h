@@ -11,8 +11,7 @@
 #ifndef SUNPHYSICSFORCE_H
 #define	SUNPHYSICSFORCE_H
 
-#include "../Libraries/glm/glm.hpp"
-#include "../Libraries/glm/gtc/type_ptr.hpp"
+#include <glm/glm.hpp>
 
 class SunPhysicsForce {
 public:

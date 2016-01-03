@@ -9,12 +9,12 @@
 using namespace std;
 
 #include <GL/glew.h>
-#include "../Libraries/glm/glm.hpp"
-#include "../Libraries/glm/gtc/matrix_transform.hpp"
-#include "../Libraries/glm/gtc/quaternion.hpp"
-#include "../Libraries/glm/gtc/type_ptr.hpp"
-#include "../Libraries/glm/gtx/quaternion.hpp"
-#include "../Libraries/glm/gtx/string_cast.hpp"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/quaternion.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtx/quaternion.hpp>
+#include <glm/gtx/string_cast.hpp>
 
 #include "./SunPrimitives.h"
 #include "./Shaders/SunShader.h"

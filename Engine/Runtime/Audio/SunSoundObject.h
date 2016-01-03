@@ -14,8 +14,8 @@
 #include "../SunNode.h"
 #include "./SunSoundBufferStorage.h"
 
-#include "../Libraries/glm/glm.hpp"
-#include "../Libraries/glm/gtc/matrix_transform.hpp"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 struct SunSound {
     string name;

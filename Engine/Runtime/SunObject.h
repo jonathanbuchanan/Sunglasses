@@ -13,7 +13,7 @@ using namespace std;
 #include "./Audio/SunSoundObject.h"
 #include "./Graphics/SunModel.h"
 
-#include "./Libraries/glm/gtx/string_cast.hpp"
+#include <glm/gtx/string_cast.hpp>
 #include "Utility.h"
 
 class SunObject : public SunNode {

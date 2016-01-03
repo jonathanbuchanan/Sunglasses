@@ -14,8 +14,8 @@
 #include <vector>
 using namespace std;
 
-#include "../Libraries/glm/glm.hpp"
-#include "../Libraries/glm/gtc/matrix_transform.hpp"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 #include <SFML/Audio.hpp>
 
