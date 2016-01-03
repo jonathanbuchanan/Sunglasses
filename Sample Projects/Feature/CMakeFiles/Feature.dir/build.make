@@ -49,37 +49,1012 @@ include CMakeFiles/Feature.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Feature.dir/flags.make
 
-CMakeFiles/Feature.dir/Source/main.cpp.o: CMakeFiles/Feature.dir/flags.make
-CMakeFiles/Feature.dir/Source/main.cpp.o: Source/main.cpp
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/Source/main.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/Source/main.cpp.o -c "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/Source/main.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp
 
-CMakeFiles/Feature.dir/Source/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/Source/main.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/Source/main.cpp" > CMakeFiles/Feature.dir/Source/main.cpp.i
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.i
 
-CMakeFiles/Feature.dir/Source/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/Source/main.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/Source/main.cpp" -o CMakeFiles/Feature.dir/Source/main.cpp.s
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.s
 
-CMakeFiles/Feature.dir/Source/main.cpp.o.requires:
-.PHONY : CMakeFiles/Feature.dir/Source/main.cpp.o.requires
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.o.requires
 
-CMakeFiles/Feature.dir/Source/main.cpp.o.provides: CMakeFiles/Feature.dir/Source/main.cpp.o.requires
-	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/Source/main.cpp.o.provides.build
-.PHONY : CMakeFiles/Feature.dir/Source/main.cpp.o.provides
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.o.provides
 
-CMakeFiles/Feature.dir/Source/main.cpp.o.provides.build: CMakeFiles/Feature.dir/Source/main.cpp.o
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_2)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_3)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_4)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_5)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_6)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_7)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_8)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_9)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_10)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_11)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_12)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_13)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_14)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_15)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_16)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_17)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_18)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_19)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_20)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_21)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_22)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_23)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_24)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_25)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_26)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_27)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_28)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_29)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_30)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_31)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_32)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_33)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_34)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_35)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_36)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_37)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_38)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_39)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.o: CMakeFiles/Feature.dir/flags.make
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles" $(CMAKE_PROGRESS_40)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.o -c /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp > CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.i
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp -o CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.s
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.o.requires:
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.o.requires
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.o.provides: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.o.provides.build
+.PHONY : CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.o.provides
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.o.provides.build: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.o
 
 # Object files for target Feature
 Feature_OBJECTS = \
-"CMakeFiles/Feature.dir/Source/main.cpp.o"
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o" \
+"CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.o"
 
 # External object files for target Feature
 Feature_EXTERNAL_OBJECTS =
 
-Feature: CMakeFiles/Feature.dir/Source/main.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o
+Feature: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.o
 Feature: CMakeFiles/Feature.dir/build.make
 Feature: CMakeFiles/Feature.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable Feature"
@@ -89,7 +1064,46 @@ Feature: CMakeFiles/Feature.dir/link.txt
 CMakeFiles/Feature.dir/build: Feature
 .PHONY : CMakeFiles/Feature.dir/build
 
-CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/Source/main.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o.requires
+CMakeFiles/Feature.dir/requires: CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.o.requires
 .PHONY : CMakeFiles/Feature.dir/requires
 
 CMakeFiles/Feature.dir/clean:

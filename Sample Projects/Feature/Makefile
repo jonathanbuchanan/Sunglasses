@@ -52,8 +52,8 @@ CMAKE_BINARY_DIR = "/home/jonathan/Dev/sunglasses/Sample Projects/Feature"
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -114,29 +114,965 @@ Feature/fast:
 	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/build
 .PHONY : Feature/fast
 
-Source/main.o: Source/main.cpp.o
-.PHONY : Source/main.o
+home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.o
 
 # target to build an object file
-Source/main.cpp.o:
-	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/Source/main.cpp.o
-.PHONY : Source/main.cpp.o
+home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.o
 
-Source/main.i: Source/main.cpp.i
-.PHONY : Source/main.i
+home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.i
 
 # target to preprocess a source file
-Source/main.cpp.i:
-	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/Source/main.cpp.i
-.PHONY : Source/main.cpp.i
+home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.i
 
-Source/main.s: Source/main.cpp.s
-.PHONY : Source/main.s
+home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.s
 
 # target to generate assembly for a file
-Source/main.cpp.s:
-	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/Source/main.cpp.s
-.PHONY : Source/main.cpp.s
+home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.o: home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.i: home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.s: home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.o: home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.i: home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.s: home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.o: home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.i: home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.s: home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.o: home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.i: home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.s: home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.o: home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.i: home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.s: home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.o: home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.i: home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.s: home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.o: home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.i: home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.s: home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/main.o: home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/main.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/main.i: home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/main.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/main.s: home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/main.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.s
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.o: home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.i: home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.s: home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.s
 
 # Help Target
 help:
@@ -147,9 +1083,126 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Feature"
-	@echo "... Source/main.o"
-	@echo "... Source/main.i"
-	@echo "... Source/main.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundObject.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItem.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIItemMesh.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUIMenu.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/GUI/SunGUISystem.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShader.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/Shaders/SunShaderUniformObject.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunMesh.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTextRenderer.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsCollider.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderPlane.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderSphere.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsForce.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsObject.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsSimulator.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsWorld.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/main.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/main.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/main.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.s"
 .PHONY : help
 
 
