@@ -1,7 +1,10 @@
 #include "FeatureGame.h"
 
 void FeatureGame::initialize() {
-	SunGame::initialize(false, 1);
+	setWindowTitle("Feature");
+	setClearColor(glm::vec4(1.0f, 0.0f, 1.0f, 1.0f));
+	
+	SunGame::initialize();
 }
 
 void FeatureGame::loop() {

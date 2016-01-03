@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Feature.dir/Source/main.cpp.o"
+  "CMakeFiles/Feature.dir/Source/FeatureGame.cpp.o"
   "CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderMesh.cpp.o"
   "CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.o"
   "CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/SunPhysicsColliderAABB.cpp.o"
@@ -18,7 +20,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundListener.cpp.o"
   "CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.o"
   "CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.o"
-  "CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.o"
   "CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o"
   "CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.o"
   "CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o"

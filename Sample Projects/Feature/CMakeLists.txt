@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.2)
 
 set(ENGINE_PATH ../../Engine/Runtime)
 
-file(GLOB SOURCES /Source/*.cpp)
+file(GLOB SOURCES Source/*.cpp)
 file(GLOB_RECURSE ENGINE_SOURCE "${ENGINE_PATH}/*.cpp")
 
 add_executable(Feature ${SOURCES} ${ENGINE_SOURCE})

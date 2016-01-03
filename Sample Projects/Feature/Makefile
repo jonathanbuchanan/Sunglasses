@@ -114,6 +114,54 @@ Feature/fast:
 	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/build
 .PHONY : Feature/fast
 
+Source/FeatureGame.o: Source/FeatureGame.cpp.o
+.PHONY : Source/FeatureGame.o
+
+# target to build an object file
+Source/FeatureGame.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/Source/FeatureGame.cpp.o
+.PHONY : Source/FeatureGame.cpp.o
+
+Source/FeatureGame.i: Source/FeatureGame.cpp.i
+.PHONY : Source/FeatureGame.i
+
+# target to preprocess a source file
+Source/FeatureGame.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/Source/FeatureGame.cpp.i
+.PHONY : Source/FeatureGame.cpp.i
+
+Source/FeatureGame.s: Source/FeatureGame.cpp.s
+.PHONY : Source/FeatureGame.s
+
+# target to generate assembly for a file
+Source/FeatureGame.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/Source/FeatureGame.cpp.s
+.PHONY : Source/FeatureGame.cpp.s
+
+Source/main.o: Source/main.cpp.o
+.PHONY : Source/main.o
+
+# target to build an object file
+Source/main.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/Source/main.cpp.o
+.PHONY : Source/main.cpp.o
+
+Source/main.i: Source/main.cpp.i
+.PHONY : Source/main.i
+
+# target to preprocess a source file
+Source/main.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/Source/main.cpp.i
+.PHONY : Source/main.cpp.i
+
+Source/main.s: Source/main.cpp.s
+.PHONY : Source/main.s
+
+# target to generate assembly for a file
+Source/main.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/Source/main.cpp.s
+.PHONY : Source/main.cpp.s
+
 home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.o
 .PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.o
 
@@ -1026,30 +1074,6 @@ home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.s:
 	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.s
 .PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.s
 
-home/jonathan/Dev/sunglasses/Engine/Runtime/main.o: home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.o
-.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/main.o
-
-# target to build an object file
-home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.o:
-	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.o
-.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.o
-
-home/jonathan/Dev/sunglasses/Engine/Runtime/main.i: home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.i
-.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/main.i
-
-# target to preprocess a source file
-home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.i:
-	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.i
-.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.i
-
-home/jonathan/Dev/sunglasses/Engine/Runtime/main.s: home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.s
-.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/main.s
-
-# target to generate assembly for a file
-home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.s:
-	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.s
-.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/main.cpp.s
-
 home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.o: home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.cpp.o
 .PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.o
 
@@ -1083,6 +1107,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Feature"
+	@echo "... Source/FeatureGame.o"
+	@echo "... Source/FeatureGame.i"
+	@echo "... Source/FeatureGame.s"
+	@echo "... Source/main.o"
+	@echo "... Source/main.i"
+	@echo "... Source/main.s"
 	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.o"
 	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.i"
 	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.s"
@@ -1197,9 +1227,6 @@ help:
 	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.o"
 	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.i"
 	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.s"
-	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/main.o"
-	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/main.i"
-	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/main.s"
 	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.o"
 	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.i"
 	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/pugixml.s"
