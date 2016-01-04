@@ -6,60 +6,6 @@
 
 #IncludeRegexTransform: 
 
-../../Engine/Runtime/././Audio/./SunSoundBufferStorage.h
-vector
--
-map
--
-SFML/Audio.hpp
--
-
-../../Engine/Runtime/././Audio/SunSoundObject.h
-../SunNode.h
-../../Engine/Runtime/././SunNode.h
-./SunSoundBufferStorage.h
-../../Engine/Runtime/././Audio/./SunSoundBufferStorage.h
-glm/glm.hpp
--
-glm/gtc/matrix_transform.hpp
--
-
-../../Engine/Runtime/././Graphics/./SunMesh.h
-vector
--
-GL/glew.h
--
-glm/glm.hpp
--
-glm/gtc/matrix_transform.hpp
--
-glm/gtc/quaternion.hpp
--
-glm/gtc/type_ptr.hpp
--
-glm/gtx/quaternion.hpp
--
-glm/gtx/string_cast.hpp
--
-./SunPrimitives.h
-../../Engine/Runtime/././Graphics/././SunPrimitives.h
-./Shaders/SunShader.h
-../../Engine/Runtime/././Graphics/././Shaders/SunShader.h
-
-../../Engine/Runtime/././Graphics/Shaders/SunShader.h
-string
--
-fstream
--
-sstream
--
-iostream
--
-vector
--
-GL/glew.h
--
-
 ../../Engine/Runtime/././Graphics/Shaders/SunShaderUniformObject.h
 ../../SunNode.h
 ../../Engine/Runtime/././SunNode.h
@@ -70,52 +16,6 @@ GL/glew.h
 glm/gtx/compatibility.hpp
 -
 glm/gtc/type_ptr.hpp
--
-
-../../Engine/Runtime/././Graphics/SunModel.h
-string
--
-fstream
--
-sstream
--
-iostream
--
-vector
--
-map
--
-GL/glew.h
--
-glm/glm.hpp
--
-glm/gtc/matrix_transform.hpp
--
-assimp/Importer.hpp
--
-assimp/scene.h
--
-assimp/postprocess.h
--
-SOIL/SOIL.h
--
-./SunMesh.h
-../../Engine/Runtime/././Graphics/./SunMesh.h
-
-../../Engine/Runtime/././Physics/SunPhysicsObject.h
-SunPhysicsForce.h
-../../Engine/Runtime/././Physics/SunPhysicsForce.h
-SunPhysicsCollider.h
-../../Engine/Runtime/././Physics/SunPhysicsCollider.h
-SunPhysicsColliderAABB.h
-../../Engine/Runtime/././Physics/SunPhysicsColliderAABB.h
-SunPhysicsColliderSphere.h
-../../Engine/Runtime/././Physics/SunPhysicsColliderSphere.h
-SunPhysicsColliderPlane.h
-../../Engine/Runtime/././Physics/SunPhysicsColliderPlane.h
-SunPhysicsColliderMesh.h
-../../Engine/Runtime/././Physics/SunPhysicsColliderMesh.h
-vector
 -
 
 ../../Engine/Runtime/././SunGame.h
@@ -146,6 +46,14 @@ algorithm
 ./Graphics/Shaders/SunShader.h
 ../../Engine/Runtime/./././Graphics/Shaders/SunShader.h
 
+../../Engine/Runtime/./Audio/./SunSoundBufferStorage.h
+vector
+-
+map
+-
+SFML/Audio.hpp
+-
+
 ../../Engine/Runtime/./Audio/SunMusicObject.h
 ../SunNode.h
 ../../Engine/Runtime/./SunNode.h
@@ -168,6 +76,16 @@ glm/glm.hpp
 glm/gtc/matrix_transform.hpp
 -
 SFML/Audio.hpp
+-
+
+../../Engine/Runtime/./Audio/SunSoundObject.h
+../SunNode.h
+../../Engine/Runtime/./SunNode.h
+./SunSoundBufferStorage.h
+../../Engine/Runtime/./Audio/./SunSoundBufferStorage.h
+glm/glm.hpp
+-
+glm/gtc/matrix_transform.hpp
 -
 
 ../../Engine/Runtime/./Graphics/./Shaders/./SunShader.h
@@ -225,6 +143,28 @@ GLFW/glfw3.h
 -
 ../SunButtonState.h
 ../../Engine/Runtime/./Graphics/SunButtonState.h
+
+../../Engine/Runtime/./Graphics/./SunMesh.h
+vector
+-
+GL/glew.h
+-
+glm/glm.hpp
+-
+glm/gtc/matrix_transform.hpp
+-
+glm/gtc/quaternion.hpp
+-
+glm/gtc/type_ptr.hpp
+-
+glm/gtx/quaternion.hpp
+-
+glm/gtx/string_cast.hpp
+-
+./SunPrimitives.h
+../../Engine/Runtime/./Graphics/././SunPrimitives.h
+./Shaders/SunShader.h
+../../Engine/Runtime/./Graphics/././Shaders/SunShader.h
 
 ../../Engine/Runtime/./Graphics/./SunPrimitives.h
 GL/glew.h
@@ -370,6 +310,20 @@ string
 ./SunGUIItem.h
 ../../Engine/Runtime/./Graphics/GUI/./SunGUIItem.h
 
+../../Engine/Runtime/./Graphics/Shaders/SunShader.h
+string
+-
+fstream
+-
+sstream
+-
+iostream
+-
+vector
+-
+GL/glew.h
+-
+
 ../../Engine/Runtime/./Graphics/SunCamera.h
 vector
 -
@@ -385,6 +339,36 @@ GLFW/glfw3.h
 -
 ../SunButtonState.h
 ../../Engine/Runtime/./SunButtonState.h
+
+../../Engine/Runtime/./Graphics/SunModel.h
+string
+-
+fstream
+-
+sstream
+-
+iostream
+-
+vector
+-
+map
+-
+GL/glew.h
+-
+glm/glm.hpp
+-
+glm/gtc/matrix_transform.hpp
+-
+assimp/Importer.hpp
+-
+assimp/scene.h
+-
+assimp/postprocess.h
+-
+SOIL/SOIL.h
+-
+./SunMesh.h
+../../Engine/Runtime/./Graphics/./SunMesh.h
 
 ../../Engine/Runtime/./Graphics/SunPointShadowMapRenderingNode.h
 SunRenderingNode.h
@@ -668,6 +652,22 @@ GLFW/glfw3.h
 glm/glm.hpp
 -
 
+../../Engine/Runtime/SunObject.h
+vector
+-
+functional
+-
+./Physics/SunPhysicsObject.h
+../../Engine/Runtime/./Physics/SunPhysicsObject.h
+./Audio/SunSoundObject.h
+../../Engine/Runtime/./Audio/SunSoundObject.h
+./Graphics/SunModel.h
+../../Engine/Runtime/./Graphics/SunModel.h
+glm/gtx/string_cast.hpp
+-
+Utility.h
+../../Engine/Runtime/Utility.h
+
 ../../Engine/Runtime/SunScene.h
 ./Physics/SunPhysicsSimulator.h
 ../../Engine/Runtime/./Physics/SunPhysicsSimulator.h
@@ -699,6 +699,18 @@ glm/glm.hpp
 ../../Engine/Runtime/./SunPointLightObject.h
 ./SunButtonState.h
 ../../Engine/Runtime/./SunButtonState.h
+
+../../Engine/Runtime/Utility.h
+string
+-
+map
+-
+vector
+-
+algorithm
+-
+./Graphics/Shaders/SunShader.h
+../../Engine/Runtime/./Graphics/Shaders/SunShader.h
 
 /home/jonathan/Dev/sunglasses/Engine/Runtime/./././Utility.h
 string
@@ -2728,9 +2740,15 @@ SunGame.h
 FeatureScene.h
 /home/jonathan/Dev/sunglasses/Sample Projects/Feature/Source/FeatureScene.h
 
+/home/jonathan/Dev/sunglasses/Sample Projects/Feature/Source/FeatureScene.cpp
+FeatureScene.h
+/home/jonathan/Dev/sunglasses/Sample Projects/Feature/Source/FeatureScene.h
+
 /home/jonathan/Dev/sunglasses/Sample Projects/Feature/Source/FeatureScene.h
 SunScene.h
 /home/jonathan/Dev/sunglasses/Sample Projects/Feature/Source/SunScene.h
+SunObject.h
+/home/jonathan/Dev/sunglasses/Sample Projects/Feature/Source/SunObject.h
 
 /home/jonathan/Dev/sunglasses/Sample Projects/Feature/Source/main.cpp
 iostream

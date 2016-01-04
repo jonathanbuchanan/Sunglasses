@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/Source/FeatureGame.cpp" "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles/Feature.dir/Source/FeatureGame.cpp.o"
+  "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/Source/FeatureScene.cpp" "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles/Feature.dir/Source/FeatureScene.cpp.o"
   "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/Source/main.cpp" "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles/Feature.dir/Source/main.cpp.o"
   "/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp" "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.o"
   "/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp" "/home/jonathan/Dev/sunglasses/Sample Projects/Feature/CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunSoundBufferStorage.cpp.o"
