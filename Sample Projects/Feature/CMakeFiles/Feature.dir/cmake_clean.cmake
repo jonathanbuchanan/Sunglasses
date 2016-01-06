@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Feature.dir/Source/FeatureRenderer.cpp.o"
   "CMakeFiles/Feature.dir/Source/FeatureScene.cpp.o"
   "CMakeFiles/Feature.dir/Source/main.cpp.o"
   "CMakeFiles/Feature.dir/Source/FeatureGame.cpp.o"

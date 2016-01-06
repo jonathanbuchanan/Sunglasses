@@ -4,6 +4,8 @@
 #include "SunScene.h"
 #include "SunObject.h"
 
+#include "FeatureRenderer.h"
+
 class FeatureScene : public SunScene {
 public:
 	FeatureScene();
@@ -12,6 +14,8 @@ public:
 	
 private:
 	SunObject *house;
+	
+	FeatureRenderer renderer;
 };
 
 #endif

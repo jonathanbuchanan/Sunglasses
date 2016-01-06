@@ -138,6 +138,30 @@ Source/FeatureGame.cpp.s:
 	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/Source/FeatureGame.cpp.s
 .PHONY : Source/FeatureGame.cpp.s
 
+Source/FeatureRenderer.o: Source/FeatureRenderer.cpp.o
+.PHONY : Source/FeatureRenderer.o
+
+# target to build an object file
+Source/FeatureRenderer.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/Source/FeatureRenderer.cpp.o
+.PHONY : Source/FeatureRenderer.cpp.o
+
+Source/FeatureRenderer.i: Source/FeatureRenderer.cpp.i
+.PHONY : Source/FeatureRenderer.i
+
+# target to preprocess a source file
+Source/FeatureRenderer.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/Source/FeatureRenderer.cpp.i
+.PHONY : Source/FeatureRenderer.cpp.i
+
+Source/FeatureRenderer.s: Source/FeatureRenderer.cpp.s
+.PHONY : Source/FeatureRenderer.s
+
+# target to generate assembly for a file
+Source/FeatureRenderer.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/Source/FeatureRenderer.cpp.s
+.PHONY : Source/FeatureRenderer.cpp.s
+
 Source/FeatureScene.o: Source/FeatureScene.cpp.o
 .PHONY : Source/FeatureScene.o
 
@@ -1134,6 +1158,9 @@ help:
 	@echo "... Source/FeatureGame.o"
 	@echo "... Source/FeatureGame.i"
 	@echo "... Source/FeatureGame.s"
+	@echo "... Source/FeatureRenderer.o"
+	@echo "... Source/FeatureRenderer.i"
+	@echo "... Source/FeatureRenderer.s"
 	@echo "... Source/FeatureScene.o"
 	@echo "... Source/FeatureScene.i"
 	@echo "... Source/FeatureScene.s"
