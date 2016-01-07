@@ -2943,6 +2943,8 @@ FeatureRenderer.h
 /home/jonathan/Dev/sunglasses/Sample Projects/Feature/Source/FeatureRenderer.h
 Graphics/SunRenderer.h
 /home/jonathan/Dev/sunglasses/Sample Projects/Feature/Source/Graphics/SunRenderer.h
+vector
+-
 
 /home/jonathan/Dev/sunglasses/Sample Projects/Feature/Source/FeatureScene.cpp
 FeatureScene.h

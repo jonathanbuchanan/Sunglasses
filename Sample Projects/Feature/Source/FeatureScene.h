@@ -12,6 +12,8 @@ public:
 	
 	void initialize();
 	
+	void cycle(float delta);
+	
 private:
 	SunObject *house;
 	

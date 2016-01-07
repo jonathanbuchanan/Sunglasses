@@ -1,5 +1,8 @@
 #include "FeatureGame.h"
 
+GLfloat _deltaTime = 0;
+GLfloat _lastFrame = 0;
+
 void FeatureGame::initialize() {
 	SunGame::initialize();
 	
@@ -11,7 +14,13 @@ void FeatureGame::initialize() {
 }
 
 void FeatureGame::loop() {
-	SunGame::loop();
+	while (!glfwWindowShouldClose(window)) {
+		GLfloat currentFrame = glfwGetTime();
+    	_deltaTime = currentFrame - _lastFrame;
+    	_lastFrame = currentFrame;
+		
+		scene.cycle(_deltaTime);
+	}
 }
 
 void FeatureGame::cleanUp() {
