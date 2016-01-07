@@ -55,3 +55,15 @@ void FeatureRenderer::initialize() {
 	SunRenderingNode *finalNode = new SunRenderingNode("final", SunRenderingNodeTypeEnd, finalInputs, finalOutputs, finalShaders, scene);
 	gbuffer->addSubNode(finalNode);
 }
+
+void FeatureRenderer::render(float delta) {
+	/*SunNodeSentAction renderAction;
+    renderAction.action = "render";
+    renderAction.parameters["deltaTime"] = &delta;
+    renderAction.recursive = true;*/
+
+    //sendAction(renderAction, rootRenderNode);
+
+    // Swap the buffers
+    swapBuffers();
+}

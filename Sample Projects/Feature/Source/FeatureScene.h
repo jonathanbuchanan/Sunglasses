@@ -14,10 +14,14 @@ public:
 	
 	void cycle(float delta);
 	
+	inline void setWindow(GLFWwindow *w) { window = w; }
+	
 private:
 	SunObject *house;
 	
 	FeatureRenderer renderer;
+	
+	GLFWwindow *window;
 };
 
 #endif

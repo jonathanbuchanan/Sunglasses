@@ -9,9 +9,9 @@ public:
 	
 	void initialize();
 	
-	
+	void render(float delta);
 private:
-	
+	GLFWwindow *window;
 };
 
 #endif

@@ -6,6 +6,7 @@ FeatureScene::FeatureScene() {
 
 void FeatureScene::initialize() {
 	renderer.setSceneNode(this);
+	renderer.setWindow(window);
 	
 	renderer.initialize();
 	
