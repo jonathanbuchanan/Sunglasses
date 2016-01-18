@@ -15,8 +15,14 @@ public:
 	void cycle(float delta);
 	
 	inline void setWindow(GLFWwindow *w) { window = w; }
-	
 private:
+	void initializeDefaultPropertyAndFunctionMap();
+	
+	void render(SunNodeSentAction _action);
+	
+	// GUI
+	SunGUISystem guiSystem;
+	
 	SunObject *house;
 	
 	FeatureRenderer renderer;

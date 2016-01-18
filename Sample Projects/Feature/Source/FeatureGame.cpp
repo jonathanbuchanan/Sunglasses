@@ -19,9 +19,12 @@ void FeatureGame::loop() {
 		GLfloat currentFrame = glfwGetTime();
     	_deltaTime = currentFrame - _lastFrame;
     	_lastFrame = currentFrame;
+    	
+    	glfwPollEvents();
 		
 		scene.cycle(_deltaTime);
 	}
+	glfwTerminate();
 }
 
 void FeatureGame::cleanUp() {
