@@ -6,6 +6,20 @@
 
 #IncludeRegexTransform: 
 
+../../Engine/Runtime/././Graphics/Shaders/SunShader.h
+string
+-
+fstream
+-
+sstream
+-
+iostream
+-
+vector
+-
+GL/glew.h
+-
+
 ../../Engine/Runtime/././Graphics/Shaders/SunShaderUniformObject.h
 ../../SunNode.h
 ../../Engine/Runtime/././SunNode.h
@@ -33,6 +47,8 @@ GLFW/glfw3.h
 -
 glm/glm.hpp
 -
+Input/SunKeyboardManager.h
+../../Engine/Runtime/././Input/SunKeyboardManager.h
 
 ../../Engine/Runtime/././Utility.h
 string
@@ -466,6 +482,12 @@ glm/gtx/quaternion.hpp
 glm/gtx/string_cast.hpp
 -
 
+../../Engine/Runtime/./Input/SunKeyboardManager.h
+SunNode.h
+../../Engine/Runtime/./Input/SunNode.h
+GLFW/glfw3.h
+-
+
 ../../Engine/Runtime/./Physics/SunPhysicsCollider.h
 glm/glm.hpp
 -
@@ -561,6 +583,8 @@ GLFW/glfw3.h
 -
 glm/glm.hpp
 -
+Input/SunKeyboardManager.h
+../../Engine/Runtime/./Input/SunKeyboardManager.h
 
 ../../Engine/Runtime/./SunNode.h
 vector
@@ -830,6 +854,12 @@ iostream
 ../SunButtonState.h
 ../../Engine/Runtime/SunButtonState.h
 
+../../Engine/Runtime/Input/SunKeyboardManager.h
+SunNode.h
+../../Engine/Runtime/Input/SunNode.h
+GLFW/glfw3.h
+-
+
 ../../Engine/Runtime/SunButtonState.h
 
 ../../Engine/Runtime/SunGame.h
@@ -846,6 +876,22 @@ GL/glew.h
 GLFW/glfw3.h
 -
 glm/glm.hpp
+-
+Input/SunKeyboardManager.h
+../../Engine/Runtime/Input/SunKeyboardManager.h
+
+../../Engine/Runtime/SunNode.h
+vector
+-
+string
+-
+map
+-
+GL/glew.h
+-
+./Utility.h
+../../Engine/Runtime/./Utility.h
+functional
 -
 
 ../../Engine/Runtime/SunObject.h
@@ -1155,6 +1201,8 @@ GLFW/glfw3.h
 -
 glm/glm.hpp
 -
+Input/SunKeyboardManager.h
+/home/jonathan/Dev/sunglasses/Engine/Runtime/././Input/SunKeyboardManager.h
 
 /home/jonathan/Dev/sunglasses/Engine/Runtime/././SunNode.h
 vector
@@ -1672,6 +1720,12 @@ glm/gtx/quaternion.hpp
 glm/gtx/string_cast.hpp
 -
 
+/home/jonathan/Dev/sunglasses/Engine/Runtime/./Input/SunKeyboardManager.h
+SunNode.h
+/home/jonathan/Dev/sunglasses/Engine/Runtime/./Input/SunNode.h
+GLFW/glfw3.h
+-
+
 /home/jonathan/Dev/sunglasses/Engine/Runtime/./Physics/SunPhysicsCollider.h
 glm/glm.hpp
 -
@@ -1767,6 +1821,8 @@ GLFW/glfw3.h
 -
 glm/glm.hpp
 -
+Input/SunKeyboardManager.h
+/home/jonathan/Dev/sunglasses/Engine/Runtime/./Input/SunKeyboardManager.h
 
 /home/jonathan/Dev/sunglasses/Engine/Runtime/./SunNode.h
 vector
@@ -2544,6 +2600,16 @@ glm/gtx/string_cast.hpp
 ./Shaders/SunShader.h
 /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/./Shaders/SunShader.h
 
+/home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.cpp
+SunKeyboardManager.h
+/home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.h
+
+/home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.h
+SunNode.h
+/home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunNode.h
+GLFW/glfw3.h
+-
+
 /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp
 GJKAlgorithm.h
 /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.h
@@ -2765,6 +2831,8 @@ GLFW/glfw3.h
 -
 glm/glm.hpp
 -
+Input/SunKeyboardManager.h
+/home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.h
 
 /home/jonathan/Dev/sunglasses/Engine/Runtime/SunNode.cpp
 SunNode.h

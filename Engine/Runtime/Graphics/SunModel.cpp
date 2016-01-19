@@ -4,7 +4,7 @@
 #include "SunModel.h"
 
 GLint textureFromFile(const char *path, string directory) {
-    string filename = string(path);
+    string filename = directory + string(path);
     
     GLuint textureID;
     glGenTextures(1, &textureID);
@@ -54,7 +54,7 @@ void SunModel::render(SunShader _shader, GLfloat _deltaTime, glm::vec3 _position
         meshes[i].render(_shader, _deltaTime, _position, _rotation, _scale, _material, _renderType);
 }
 
-void SunModel::processMeshNode(aiNode* _node, const aiScene* _scene) {
+void SunModel::processMeshNode(aiNode *_node, const aiScene *_scene) {
     // Loop through meshes
     for (int i = 0; i < _node->mNumMeshes; i++) {
         // Mesh at [i] of the node
@@ -212,7 +212,7 @@ SunMesh SunModel::processMeshData(aiMesh* _mesh, const aiScene* _scene) {
 
         animations.push_back(animation);
     }
-
+    
     // Loop throught the faces of the mesh (Triangles)
     for (int i = 0; i < _mesh->mNumFaces; i++) {
         // Face
@@ -224,7 +224,7 @@ SunMesh SunModel::processMeshData(aiMesh* _mesh, const aiScene* _scene) {
             indices.push_back(face.mIndices[j]);
         }
     }
-
+    
     // Check for materials
     if (_scene->HasMaterials()) {
         // Load the material
@@ -233,7 +233,7 @@ SunMesh SunModel::processMeshData(aiMesh* _mesh, const aiScene* _scene) {
         // Load the diffuse textures
         vector<SunTexture> diffuseMaps = this->loadMaterialTextures(material, aiTextureType_DIFFUSE, "diffuse");
         // Add the diffuse textures to the mesh's list of textures
-        textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
+       	textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
 
         // Load the specular textures
         vector<SunTexture> specularMaps = this->loadMaterialTextures(material, aiTextureType_SPECULAR, "specular");
@@ -247,10 +247,10 @@ SunMesh SunModel::processMeshData(aiMesh* _mesh, const aiScene* _scene) {
     }
 
     SunMesh mesh = SunMesh(vertices, indices, textures, bones, animations);
-
+    
     aiMatrix4x4 m = _scene->mRootNode->mTransformation;
     mesh.setGlobalInverseTransform(glm::inverse(glm::mat4(m.a1, m.a2, m.a3, m.a4, m.b1, m.b2, m.b3, m.b4, m.c1, m.c2, m.c3, m.c4, m.d1, m.d2, m.d3, m.d4)));
-
+    
     return mesh;
 }
 
@@ -267,6 +267,7 @@ vector<SunTexture> SunModel::loadMaterialTextures(aiMaterial* _material, aiTextu
                 break;
             }
         }
+        
         if (!skip) {
             SunTexture texture;
             texture.id = textureFromFile(string.C_Str(), directory);

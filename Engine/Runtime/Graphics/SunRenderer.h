@@ -34,16 +34,17 @@ public:
     
     inline SunRenderingNode * getRootRenderNode() { return rootRenderNode; }
     inline void setRootRenderNode(SunRenderingNode *_root) { rootRenderNode = _root; }
+protected:
+	// Scene Objects
+    SunNode *scene;
+    SunRenderingNode *rootRenderNode;
+	
 private:
     // Window and window size
     GLFWwindow *window;
 
     GLfloat screenWidth;
     GLfloat screenHeight;
-
-    // Scene Objects
-    SunNode *scene;
-    SunRenderingNode *rootRenderNode;
 };
 
 #endif

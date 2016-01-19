@@ -36,7 +36,7 @@ public:
     SunScene();
     SunScene(const char *filepath, GLFWwindow *_window);
     
-    void initializeDefaultPropertyAndFunctionMap();
+    virtual void initializeDefaultPropertyAndFunctionMap();
     
     void initializeShadowMapRenderer(SunNodeSentAction _action);
     
@@ -877,7 +877,7 @@ public:
     void renderGUISystem(SunNodeSentAction _action);
     void passPerFrameUniforms(SunShader _shader);
     void passPerFrameUniforms(SunShader _shader, vector<SunNodeSentActionCondition> _conditions);
-    void passPerFrameUniformsAction(SunNodeSentAction _action);
+    virtual void passPerFrameUniformsAction(SunNodeSentAction _action);
     
     inline SunPhysicsSimulator & getPhysicsSimulator() { return physicsSimulator; }
     
@@ -905,6 +905,24 @@ public:
     
     inline GLFWwindow * getWindow() { return window; }
     inline void setWindow(GLFWwindow *_window) { window = _window; }
+protected:
+	// Root renderable node
+    SunObject *rootRenderableNode;
+    
+    // Light Count
+    int pointLightCount = 0;
+	int shadowPointLightCount = 0;
+	
+	int directionalLightCount = 0;
+	int shadowDirectionalLightCount = 0;
+	
+	// Camera
+    SunCamera camera;
+    SunSoundListener listener;
+    GLboolean doCameraInput = true;
+    
+    // Text Renderer
+    SunTextRenderer textRenderer;
 private:
     // Physics Simulator
     SunPhysicsSimulator physicsSimulator;
@@ -912,24 +930,9 @@ private:
     // GUIsystem
     SunGUISystem *GUIsystem;
 
-    // Root renderable node
-    SunObject *rootRenderableNode;
-
-    // Camera
-    SunCamera camera;
-    SunSoundListener listener;
-    GLboolean doCameraInput = true;
-
     // Renderer and Text Renderer
     SunRenderer renderer;
-    SunTextRenderer textRenderer;
     
-    // Light Count
-    int pointLightCount;
-	int shadowPointLightCount;
-	
-	int directionalLightCount;
-	int shadowDirectionalLightCount;
 	
 	// Shadow Point Light Pointers
 	vector<SunPointLightObject *> shadowPointLights;

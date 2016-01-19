@@ -690,6 +690,30 @@ home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.s:
 	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.s
 .PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.s
 
+home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.o
+
+# target to build an object file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.cpp.o:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.cpp.o
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.cpp.o
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.i: home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.i
+
+# target to preprocess a source file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.cpp.i:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.cpp.i
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.cpp.i
+
+home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.s: home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.s
+
+# target to generate assembly for a file
+home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.cpp.s:
+	$(MAKE) -f CMakeFiles/Feature.dir/build.make CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.cpp.s
+.PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.cpp.s
+
 home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.o: home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.o
 .PHONY : home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.o
 
@@ -1227,6 +1251,9 @@ help:
 	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.o"
 	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.i"
 	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.s"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.o"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.i"
+	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.s"
 	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.o"
 	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.i"
 	@echo "... home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.s"

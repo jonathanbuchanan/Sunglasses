@@ -23,6 +23,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Audio/SunMusicObject.cpp.o"
   "CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.cpp.o"
   "CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o"
+  "CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.cpp.o"
   "CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.o"
   "CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o"
   "CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o"

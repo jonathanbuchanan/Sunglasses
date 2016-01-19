@@ -2,8 +2,7 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include "SunGame.h"
-#include "./SunButtonState.h"
-#include "./SunScene.h"
+#include "SunButtonState.h"
 
 GLfloat screenWidth = 800;
 GLfloat screenHeight = 600;
@@ -105,7 +104,7 @@ void SunGame::loop() {
             }
         }
 
-        if (scene->getDoCameraInput() == true) {
+        /*if (scene->getDoCameraInput() == true) {
             // Tell the camera to do movement (NEEDS CLEAN UP)
 
             if (lastXOffset != xOffset && lastYOffset != yOffset)
@@ -129,7 +128,7 @@ void SunGame::loop() {
 
         // Tell the renderer to do its cycle
 
-        scene->cycle(buttons, deltaTime);
+        scene->cycle(buttons, deltaTime);*/
     }
     glfwTerminate();
 }
@@ -138,24 +137,24 @@ void SunGame::cleanUp() {
 	glfwTerminate();
 }
 
-void SunGame::initialize(bool _useMSAA, GLint _MSAASampleCount) {
+void SunGame::initialize() {
     // Initialize GLFW and give window hints
-
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-    if (_useMSAA == true)
-        glfwWindowHint(GLFW_SAMPLES, _MSAASampleCount);
 
-    window = glfwCreateWindow(screenWidth, screenHeight, "Sunglasses", nullptr, nullptr);
+    window = glfwCreateWindow(screenWidth, screenHeight, windowTitle.c_str(), nullptr, nullptr);
     glfwMakeContextCurrent(window);
     if (window == NULL) {
         std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
     }
+    
+    // Initialize the Keyboard Manager
+    keyboard.initialize(window);
 
     glewExperimental = GL_TRUE;
     if (glewInit() != GLEW_OK) {
@@ -176,12 +175,6 @@ void SunGame::initialize(bool _useMSAA, GLint _MSAASampleCount) {
     // Enable depth testing
     glEnable(GL_DEPTH_TEST);
 
-    // Enable multisampling
-    if (_useMSAA == true) {
-        glEnable(GL_MULTISAMPLE);
-        glfwWindowHint(GLFW_SAMPLES, _MSAASampleCount);
-    }
-
     // Enable hardware gamma correction
     glEnable(GL_FRAMEBUFFER_SRGB);
 
@@ -189,7 +182,5 @@ void SunGame::initialize(bool _useMSAA, GLint _MSAASampleCount) {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     // Set the clear color
-    glClearColor(0.0, 0.0, 0.0, 1.0);
-
-    scene = new SunScene("./SceneDemo.xml", window);
+    glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
 }

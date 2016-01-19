@@ -3,7 +3,6 @@
 
 CMakeFiles/Feature.dir/Source/FeatureGame.cpp.o: ../../Engine/Runtime/././Graphics/Shaders/SunShaderUniformObject.h
 CMakeFiles/Feature.dir/Source/FeatureGame.cpp.o: ../../Engine/Runtime/././SunGame.h
-CMakeFiles/Feature.dir/Source/FeatureGame.cpp.o: ../../Engine/Runtime/././Utility.h
 CMakeFiles/Feature.dir/Source/FeatureGame.cpp.o: ../../Engine/Runtime/./Audio/./SunSoundBufferStorage.h
 CMakeFiles/Feature.dir/Source/FeatureGame.cpp.o: ../../Engine/Runtime/./Audio/SunMusicObject.h
 CMakeFiles/Feature.dir/Source/FeatureGame.cpp.o: ../../Engine/Runtime/./Audio/SunSoundBufferStorage.h
@@ -49,7 +48,9 @@ CMakeFiles/Feature.dir/Source/FeatureGame.cpp.o: ../../Engine/Runtime/./Utility.
 CMakeFiles/Feature.dir/Source/FeatureGame.cpp.o: ../../Engine/Runtime/./pugiconfig.hpp
 CMakeFiles/Feature.dir/Source/FeatureGame.cpp.o: ../../Engine/Runtime/./pugixml.hpp
 CMakeFiles/Feature.dir/Source/FeatureGame.cpp.o: ../../Engine/Runtime/Graphics/SunRenderer.h
+CMakeFiles/Feature.dir/Source/FeatureGame.cpp.o: ../../Engine/Runtime/Input/SunKeyboardManager.h
 CMakeFiles/Feature.dir/Source/FeatureGame.cpp.o: ../../Engine/Runtime/SunGame.h
+CMakeFiles/Feature.dir/Source/FeatureGame.cpp.o: ../../Engine/Runtime/SunNode.h
 CMakeFiles/Feature.dir/Source/FeatureGame.cpp.o: ../../Engine/Runtime/SunObject.h
 CMakeFiles/Feature.dir/Source/FeatureGame.cpp.o: ../../Engine/Runtime/SunScene.h
 CMakeFiles/Feature.dir/Source/FeatureGame.cpp.o: ../../Engine/Runtime/Utility.h
@@ -105,6 +106,7 @@ CMakeFiles/Feature.dir/Source/FeatureScene.cpp.o: ../../Engine/Runtime/./Graphic
 CMakeFiles/Feature.dir/Source/FeatureScene.cpp.o: ../../Engine/Runtime/./Graphics/SunRenderer.h
 CMakeFiles/Feature.dir/Source/FeatureScene.cpp.o: ../../Engine/Runtime/./Graphics/SunRenderingNode.h
 CMakeFiles/Feature.dir/Source/FeatureScene.cpp.o: ../../Engine/Runtime/./Graphics/SunTextRenderer.h
+CMakeFiles/Feature.dir/Source/FeatureScene.cpp.o: ../../Engine/Runtime/./Input/SunKeyboardManager.h
 CMakeFiles/Feature.dir/Source/FeatureScene.cpp.o: ../../Engine/Runtime/./Physics/SunPhysicsCollider.h
 CMakeFiles/Feature.dir/Source/FeatureScene.cpp.o: ../../Engine/Runtime/./Physics/SunPhysicsColliderAABB.h
 CMakeFiles/Feature.dir/Source/FeatureScene.cpp.o: ../../Engine/Runtime/./Physics/SunPhysicsColliderMesh.h
@@ -124,6 +126,7 @@ CMakeFiles/Feature.dir/Source/FeatureScene.cpp.o: ../../Engine/Runtime/./Utility
 CMakeFiles/Feature.dir/Source/FeatureScene.cpp.o: ../../Engine/Runtime/./pugiconfig.hpp
 CMakeFiles/Feature.dir/Source/FeatureScene.cpp.o: ../../Engine/Runtime/./pugixml.hpp
 CMakeFiles/Feature.dir/Source/FeatureScene.cpp.o: ../../Engine/Runtime/Graphics/SunRenderer.h
+CMakeFiles/Feature.dir/Source/FeatureScene.cpp.o: ../../Engine/Runtime/SunNode.h
 CMakeFiles/Feature.dir/Source/FeatureScene.cpp.o: ../../Engine/Runtime/SunObject.h
 CMakeFiles/Feature.dir/Source/FeatureScene.cpp.o: ../../Engine/Runtime/SunScene.h
 CMakeFiles/Feature.dir/Source/FeatureScene.cpp.o: ../../Engine/Runtime/Utility.h
@@ -135,7 +138,6 @@ CMakeFiles/Feature.dir/Source/FeatureScene.cpp.o: /usr/include/freetype2/ft2buil
 
 CMakeFiles/Feature.dir/Source/main.cpp.o: ../../Engine/Runtime/././Graphics/Shaders/SunShaderUniformObject.h
 CMakeFiles/Feature.dir/Source/main.cpp.o: ../../Engine/Runtime/././SunGame.h
-CMakeFiles/Feature.dir/Source/main.cpp.o: ../../Engine/Runtime/././Utility.h
 CMakeFiles/Feature.dir/Source/main.cpp.o: ../../Engine/Runtime/./Audio/./SunSoundBufferStorage.h
 CMakeFiles/Feature.dir/Source/main.cpp.o: ../../Engine/Runtime/./Audio/SunMusicObject.h
 CMakeFiles/Feature.dir/Source/main.cpp.o: ../../Engine/Runtime/./Audio/SunSoundBufferStorage.h
@@ -181,7 +183,9 @@ CMakeFiles/Feature.dir/Source/main.cpp.o: ../../Engine/Runtime/./Utility.h
 CMakeFiles/Feature.dir/Source/main.cpp.o: ../../Engine/Runtime/./pugiconfig.hpp
 CMakeFiles/Feature.dir/Source/main.cpp.o: ../../Engine/Runtime/./pugixml.hpp
 CMakeFiles/Feature.dir/Source/main.cpp.o: ../../Engine/Runtime/Graphics/SunRenderer.h
+CMakeFiles/Feature.dir/Source/main.cpp.o: ../../Engine/Runtime/Input/SunKeyboardManager.h
 CMakeFiles/Feature.dir/Source/main.cpp.o: ../../Engine/Runtime/SunGame.h
+CMakeFiles/Feature.dir/Source/main.cpp.o: ../../Engine/Runtime/SunNode.h
 CMakeFiles/Feature.dir/Source/main.cpp.o: ../../Engine/Runtime/SunObject.h
 CMakeFiles/Feature.dir/Source/main.cpp.o: ../../Engine/Runtime/SunScene.h
 CMakeFiles/Feature.dir/Source/main.cpp.o: ../../Engine/Runtime/Utility.h
@@ -259,6 +263,7 @@ CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunC
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunCamera.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.h
 
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o: ../../Engine/Runtime/SunNode.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/././Utility.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/./Audio/./SunSoundBufferStorage.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/./Audio/SunSoundObject.h
@@ -284,6 +289,7 @@ CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunD
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.h
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunDirectionalShadowMapRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.h
@@ -300,6 +306,7 @@ CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunM
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunModel.h
 
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o: ../../Engine/Runtime/SunNode.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/././Utility.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/./Audio/./SunSoundBufferStorage.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/./Audio/SunSoundObject.h
@@ -326,6 +333,7 @@ CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunP
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.h
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPointShadowMapRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.h
@@ -349,6 +357,7 @@ CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunR
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.o: /usr/include/freetype2/config/ftheader.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderer.cpp.o: /usr/include/freetype2/ft2build.h
 
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o: ../../Engine/Runtime/SunNode.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/././Utility.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/./Audio/./SunSoundBufferStorage.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/./Audio/SunSoundObject.h
@@ -372,6 +381,7 @@ CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunR
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/./SunTexturedQuad.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.h
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunRenderingNode.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.h
@@ -386,6 +396,12 @@ CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunT
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/./SunPrimitives.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunTexturedQuad.h
+
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.cpp.o: ../../Engine/Runtime/././Graphics/Shaders/SunShader.h
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.cpp.o: ../../Engine/Runtime/./Utility.h
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.cpp.o: ../../Engine/Runtime/SunNode.h
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.cpp
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.h
 
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Graphics/SunPrimitives.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Physics/GJKAlgorithm.cpp
@@ -496,6 +512,10 @@ CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectiona
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/SunDirectionalLightObject.h
 
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o: ../../Engine/Runtime/././Graphics/Shaders/SunShader.h
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o: ../../Engine/Runtime/./Utility.h
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o: ../../Engine/Runtime/SunNode.h
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Input/SunKeyboardManager.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/SunButtonState.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/SunGame.h
@@ -526,6 +546,7 @@ CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunObject.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.h
 
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o: ../../Engine/Runtime/SunNode.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/././Utility.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/./Audio/./SunSoundBufferStorage.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/./Audio/SunSoundObject.h
@@ -537,6 +558,7 @@ CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLight
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/./Graphics/Shaders/SunShaderUniformObject.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/./Graphics/SunModel.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/./Graphics/SunPrimitives.h
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/./Input/SunKeyboardManager.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/./Physics/SunPhysicsCollider.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/./Physics/SunPhysicsColliderAABB.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/./Physics/SunPhysicsColliderMesh.h
@@ -551,6 +573,7 @@ CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLight
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunPointLightObject.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/Utility.h
 
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o: ../../Engine/Runtime/SunNode.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/././Audio/./SunSoundBufferStorage.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/././Audio/SunSoundObject.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/././Graphics/./SunMesh.h
@@ -581,6 +604,7 @@ CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/./Graphics/SunRenderer.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/./Graphics/SunRenderingNode.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/./Graphics/SunTextRenderer.h
+CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/./Input/SunKeyboardManager.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/./Physics/SunPhysicsCollider.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/./Physics/SunPhysicsColliderAABB.h
 CMakeFiles/Feature.dir/home/jonathan/Dev/sunglasses/Engine/Runtime/SunScene.cpp.o: /home/jonathan/Dev/sunglasses/Engine/Runtime/./Physics/SunPhysicsColliderMesh.h

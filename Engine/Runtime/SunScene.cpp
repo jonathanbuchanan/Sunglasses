@@ -222,12 +222,12 @@ void SunScene::passPerFrameUniformsAction(SunNodeSentAction _action) {
     camera.passPerFrameUniforms(_shader);
 
     SunNodeSentAction action;
-    action.action = "passPerFrameUniforms";
+    action.action = "update";
     action.parameters["shader"] = &_shader;
 	action.parameters["usedTextureUnits"] = _action.parameters["usedTextureUnits"];
     action.conditions = _conditions;
     action.recursive = true;
-
+    
     sendAction(action, rootRenderableNode);
 }
 

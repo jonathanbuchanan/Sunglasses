@@ -32,7 +32,7 @@ void SunObject::initializeDefaultPropertyAndFunctionMap() {
     addToFunctionMap("update", bind(&SunObject::update, this, std::placeholders::_1));
     addToFunctionMap("render", bind(&SunObject::render, this, std::placeholders::_1));
     addToFunctionMap("playSound", bind(&SunObject::playSound, this, std::placeholders::_1));
-    addToFunctionMap("passPerFrameUniforms", bind(&SunObject::passPerFrameUniforms, this, std::placeholders::_1));
+    //addToFunctionMap("passPerFrameUniforms", bind(&SunObject::passPerFrameUniforms, this, std::placeholders::_1));
 }
 
 void SunObject::update(SunNodeSentAction _action) {

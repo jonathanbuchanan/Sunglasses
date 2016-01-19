@@ -70,9 +70,11 @@ void main() {
     #ifdef OUTPUT_COLOR
     #ifdef RENDER_TEXTURED
         color = vec4(texture(material.diffuse, _input.textureCoordinates));
+        color = vec4(1,1,1,1);
     #endif
     #ifdef RENDER_SOLID
         color = vec4(material.diffuse, 1.0);
+        color = vec4(1,1,1,1);
     #endif
     #endif
     

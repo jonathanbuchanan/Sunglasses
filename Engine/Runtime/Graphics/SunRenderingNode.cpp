@@ -3,6 +3,27 @@
 // See LICENSE.md for details.
 #include "SunRenderingNode.h"
 
+SunRenderingNodeOutput::SunRenderingNodeOutput(SunRenderingNodeDataType _type, SunRenderingNodeDataFormat _format, int _slot, glm::vec2 _size, SunRenderingNodeTextureType _textureType) {
+	type = _type;
+	format = _format;
+	slot = _slot;
+	size = _size;
+	textureType = _textureType;
+}
+
+
+
+SunRenderingNodeInput::SunRenderingNodeInput(SunRenderingNodePointer _link, SunRenderingNodeDataType _type, string _name, SunRenderingNodeDataFormat _format, int _slot, SunRenderingNodeTextureType _textureType) {
+	link = _link;
+	type = _type;
+	name = _name;
+	format = _format;
+	slot = _slot;
+	textureType = _textureType;
+}
+
+
+
 SunRenderingNode::SunRenderingNode() {
     initializeDefaultPropertyAndFunctionMap();
 }
@@ -11,6 +32,35 @@ SunRenderingNode::SunRenderingNode(string _name) {
     setName(_name);
 
     initializeDefaultPropertyAndFunctionMap();
+}
+
+SunRenderingNode::SunRenderingNode(string _name, SunRenderingNodeType _renderingType, SunNode *_scene) {
+	setName(_name);
+	setRenderingType(_renderingType);
+	setSceneNode(_scene);
+	
+	initializeDefaultPropertyAndFunctionMap();
+}
+
+SunRenderingNode::SunRenderingNode(string _name, SunRenderingNodeType _renderingType, vector<SunRenderingNodeInput> _inputs, vector<SunRenderingNodeOutput> _outputs, map<string, SunRenderingNodeShader> _shaders) {
+	setName(_name);
+	setRenderingType(_renderingType);
+	inputs = _inputs;
+	outputs = _outputs;
+	shaders = _shaders;
+	
+	initializeDefaultPropertyAndFunctionMap();
+}
+
+SunRenderingNode::SunRenderingNode(string _name, SunRenderingNodeType _renderingType, vector<SunRenderingNodeInput> _inputs, vector<SunRenderingNodeOutput> _outputs, map<string, SunRenderingNodeShader> _shaders, SunNode *_scene) {
+	setName(_name);
+	setRenderingType(_renderingType);
+	inputs = _inputs;
+	outputs = _outputs;
+	shaders = _shaders;
+	setSceneNode(_scene);
+	
+	initializeDefaultPropertyAndFunctionMap();
 }
 
 void SunRenderingNode::initializeDefaultPropertyAndFunctionMap() {
@@ -56,7 +106,7 @@ void SunRenderingNode::render(SunNodeSentAction _action) {
         renderAction.parameters["deltaTime"] = &_deltaTime;
         renderAction.parameters["POVtype"] = &POVtype;
         renderAction.parameters["POV"] = &POV;
-
+        
         sendAction(renderAction, scene);
     } else if (renderingType == SunRenderingNodeTypeIntermediate) {
         // Get the input textures
