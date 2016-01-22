@@ -27,6 +27,9 @@
 *.out
 *.app
 
+# Explicit Executables
+Feature
+
 # Cmake
 CMakeCache.txt
 CMakeFiles
