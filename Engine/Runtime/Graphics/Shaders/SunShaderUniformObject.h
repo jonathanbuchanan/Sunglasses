@@ -8,7 +8,7 @@
  * Created on July 28, 2015, 9:27 PM
  */
 
-#include "../../SunNode.h"
+#include "SunNode.h"
 #include "./SunShader.h"
 #include "../SunPrimitives.h"
 #include <glm/gtx/compatibility.hpp>

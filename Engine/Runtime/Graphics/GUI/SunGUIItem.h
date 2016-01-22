@@ -5,10 +5,10 @@
 #ifndef Sunglasses_SunGUIItem_h
 #define Sunglasses_SunGUIItem_h
 
-#include "../../SunNode.h"
+#include "SunNode.h"
 
 #include "./SunGUIItemMesh.h"
-#include "../../SunButtonState.h"
+#include "SunButtonState.h"
 
 #include <map>
 

@@ -11,7 +11,7 @@
 #ifndef SUNSOUNDOBJECT_H
 #define	SUNSOUNDOBJECT_H
 
-#include "../SunNode.h"
+#include "SunNode.h"
 #include "./SunSoundBufferStorage.h"
 
 #include <glm/glm.hpp>

@@ -8,9 +8,9 @@
 #include <vector>
 #include <string>
 
-#include "../../Utility.h"
+#include "Utility.h"
 
-#include "../../pugixml.hpp"
+#include "pugixml.hpp"
 
 #include "./SunGUIMenu.h"
 #include "./SunGUIItem.h"

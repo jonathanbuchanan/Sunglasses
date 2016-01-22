@@ -12,11 +12,11 @@ using namespace std;
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "../Utility.h"
+#include "Utility.h"
 
 #include <GLFW/glfw3.h>
 
-#include "../SunButtonState.h"
+#include "SunButtonState.h"
 
 // Definition of SunCameraProjectionType
 enum SunCameraProjectionType {

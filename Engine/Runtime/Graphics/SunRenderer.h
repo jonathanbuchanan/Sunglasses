@@ -12,7 +12,7 @@
 #include "./SunTexturedQuad.h"
 #include "./SunPrimitives.h"
 #include "./SunCamera.h"
-#include "../SunButtonState.h"
+#include "SunButtonState.h"
 
 class SunRenderer {
 public:

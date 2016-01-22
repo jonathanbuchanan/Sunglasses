@@ -11,7 +11,7 @@
 #ifndef SUNMUSICOBJECT_H
 #define	SUNMUSICOBJECT_H
 
-#include "../SunNode.h"
+#include "SunNode.h"
 #include <SFML/Audio.hpp>
 
 class SunMusicObject : public SunNode {
