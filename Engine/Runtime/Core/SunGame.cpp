@@ -83,13 +83,7 @@ void SunGame::loop() {
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
-        // Set old buttons (NEEDS CLEAN UP)
-
-        oldButtons = buttons;
-
-        // Poll GLFW events to check for any input
-
-        glfwPollEvents();
+        keyboard.update();
 
         // Set any button that is pressed for the second cycle on to a different state (NEEDS CLEAN UP)
 
@@ -165,12 +159,12 @@ void SunGame::initialize() {
     glViewport(0, 0, screenWidth, screenHeight);
 
     // Set the input callbacks
-    glfwSetKeyCallback(window, keyCallback);
+    //glfwSetKeyCallback(window, keyCallback);
     glfwSetCursorPosCallback(window, mouseCallback);
     glfwSetMouseButtonCallback(window, mouseButtonCallback);
 
     // Set the mouse input mode
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     // Enable depth testing
     glEnable(GL_DEPTH_TEST);

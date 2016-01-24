@@ -29,7 +29,7 @@ public:
     }
     
     void loop();
-	void cleanUp();
+    void cleanUp();
     void initialize();
     
     inline std::string & getWindowTitle() { return windowTitle; }
@@ -41,8 +41,8 @@ public:
     inline GLfloat & getScreenWidth() { return screenWidth; }
     inline GLfloat & getScreenHeight() { return screenHeight; }
 protected:
-	GLFWwindow *window;
-	SunKeyboardManager keyboard;
+    GLFWwindow *window;
+    SunKeyboardManager keyboard;
 	
     std::string windowTitle;
     glm::vec4 clearColor = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
