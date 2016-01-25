@@ -33,6 +33,9 @@ void SunGUIMenu::initializeDefaultPropertyAndFunctionMap() {
     addToFunctionMap("show", bind(&SunGUIMenu::show, this, std::placeholders::_1));
     addToFunctionMap("toggleMouse", bind(&SunGUIMenu::toggleMouse, this, std::placeholders::_1));
     addToFunctionMap("closeWindow", bind(&SunGUIMenu::closeWindow, this, std::placeholders::_1));
+    
+    addToFunctionMap("keyPress", bind(&SunGUIMenu::keyPress, this, std::placeholders::_1));
+    addToFunctionMap("keyRelease", bind(&SunGUIMenu::keyRelease, this, std::placeholders::_1));
 }
 
 map<string, GLboolean> SunGUIMenu::activeTriggers(map<int, SunButtonState> _buttons) {
@@ -63,4 +66,12 @@ void SunGUIMenu::update(SunNodeSentAction _action) {
 void SunGUIMenu::render(SunNodeSentAction _action) {
     if (visible == true)
         sendActionToAllSubNodes(_action);
+}
+
+void SunGUIMenu::keyPress(SunNodeSentAction _action) {
+    cout << to_string(*(int *)_action.parameters["key"]);
+}
+
+void SunGUIMenu::keyRelease(SunNodeSentAction _action) {
+    
 }

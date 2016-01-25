@@ -13,6 +13,7 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
+#include "SunService.h"
 #include "Input/SunKeyboardManager.h"
 
 using namespace std;
@@ -29,6 +30,7 @@ public:
     }
     
     void loop();
+    void updateServices();
     void cleanUp();
     void initialize();
     
@@ -42,10 +44,13 @@ public:
     inline GLfloat & getScreenHeight() { return screenHeight; }
 protected:
     GLFWwindow *window;
-    SunKeyboardManager keyboard;
-	
+    
     std::string windowTitle;
     glm::vec4 clearColor = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+    
+    map<string, SunService *> services;
+    
+    inline void addService(SunService *service) { services[service->name] = service; }
 private:
 };
 

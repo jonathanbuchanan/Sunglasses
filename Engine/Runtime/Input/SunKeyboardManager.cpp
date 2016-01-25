@@ -1,5 +1,9 @@
 #include "SunKeyboardManager.h"
 
+SunKeyboardManager::SunKeyboardManager() {
+    
+}
+
 void SunKeyboardManager::initialize(GLFWwindow *_window) {
     // Set the input mode to sticky keys
     glfwSetInputMode(_window, GLFW_STICKY_KEYS, 1);

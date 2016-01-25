@@ -906,17 +906,17 @@ public:
     inline GLFWwindow * getWindow() { return window; }
     inline void setWindow(GLFWwindow *_window) { window = _window; }
 protected:
-	// Root renderable node
+    // Root renderable node
     SunObject *rootRenderableNode;
     
     // Light Count
     int pointLightCount = 0;
-	int shadowPointLightCount = 0;
-	
-	int directionalLightCount = 0;
-	int shadowDirectionalLightCount = 0;
-	
-	// Camera
+    int shadowPointLightCount = 0;
+    
+    int directionalLightCount = 0;
+    int shadowDirectionalLightCount = 0;
+    
+    // Camera
     SunCamera camera;
     SunSoundListener listener;
     GLboolean doCameraInput = true;
@@ -933,9 +933,9 @@ private:
     // Renderer and Text Renderer
     SunRenderer renderer;
     
-	
-	// Shadow Point Light Pointers
-	vector<SunPointLightObject *> shadowPointLights;
+    
+    // Shadow Point Light Pointers
+    vector<SunPointLightObject *> shadowPointLights;
     
     // Sound Storage
     SunSoundBufferStorage storage;

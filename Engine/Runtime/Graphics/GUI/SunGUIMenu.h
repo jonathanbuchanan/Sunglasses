@@ -25,6 +25,9 @@ public:
     void sendActions(map<string, GLboolean> _activeTriggers);
     void update(SunNodeSentAction _action);
     void render(SunNodeSentAction _action);
+
+    void keyPress(SunNodeSentAction _action);
+    void keyRelease(SunNodeSentAction _action);
     
     inline GLboolean getVisible() { return visible; }
     inline void setVisible(GLboolean _visible) { visible = _visible; }

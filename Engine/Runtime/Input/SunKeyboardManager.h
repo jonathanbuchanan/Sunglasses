@@ -2,11 +2,15 @@
 #define SUNKEYBOARDMANAGER_H
 
 #include "SunNode.h"
+#include "SunService.h"
 #include <GLFW/glfw3.h>
 #include <vector>
 
-class SunKeyboardManager {
+class SunKeyboardManager : public SunService {
 public:
+    
+    SunKeyboardManager();
+    
     void initialize(GLFWwindow *_window);
     void update();
     

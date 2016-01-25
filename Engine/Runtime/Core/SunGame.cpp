@@ -83,8 +83,6 @@ void SunGame::loop() {
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
-        keyboard.update();
-
         // Set any button that is pressed for the second cycle on to a different state (NEEDS CLEAN UP)
 
         for (auto iterator = buttons.begin(); iterator != buttons.end(); ++iterator) {
@@ -127,6 +125,12 @@ void SunGame::loop() {
     glfwTerminate();
 }
 
+void SunGame::updateServices() {
+    for (auto iterator : services) {
+        iterator.second->update();
+    }
+}
+
 void SunGame::cleanUp() {
 	glfwTerminate();
 }
@@ -148,7 +152,10 @@ void SunGame::initialize() {
     }
     
     // Initialize the Keyboard Manager
-    keyboard.initialize(window);
+    SunKeyboardManager *keyboard = new SunKeyboardManager();
+    keyboard->initialize(window);
+    keyboard->name = "keyboard_manager";
+    addService(keyboard);
 
     glewExperimental = GL_TRUE;
     if (glewInit() != GLEW_OK) {
