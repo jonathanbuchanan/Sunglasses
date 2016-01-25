@@ -13,21 +13,22 @@ void FeatureGame::initialize() {
     scene = FeatureScene();
     scene.setWindow(window);
     scene.initialize();
+    scene.setServices(&services);
 }
 
 void FeatureGame::loop() {
-	while (!glfwWindowShouldClose(window)) {
-            GLfloat currentFrame = glfwGetTime();
-            _deltaTime = currentFrame - _lastFrame;
-            _lastFrame = currentFrame;
+    while (!glfwWindowShouldClose(window)) {
+        GLfloat currentFrame = glfwGetTime();
+        _deltaTime = currentFrame - _lastFrame;
+        _lastFrame = currentFrame;
+        
+        SunGame::updateServices();
             
-            keyboard.update();
-            
-            scene.cycle(_deltaTime);
-	}
-	glfwTerminate();
+        scene.cycle(_deltaTime);
+    }
+    glfwTerminate();
 }
 
 void FeatureGame::cleanUp() {
-	SunGame::cleanUp();
+    SunGame::cleanUp();
 }
