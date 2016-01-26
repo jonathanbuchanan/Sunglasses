@@ -36,6 +36,8 @@ void FeatureScene::initialize() {
     
     guiSystem = SunGUISystem();
     guiSystem.initializeDefaultPropertyAndFunctionMap();
+    
+    
 }
 
 void FeatureScene::render(SunNodeSentAction _action) {

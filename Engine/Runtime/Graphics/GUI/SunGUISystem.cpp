@@ -8,19 +8,6 @@ SunGUISystem::SunGUISystem(const char* filepath, GLFWwindow* _window, SunNode* _
     setRootNode(_rootNode);
 
     initializeDefaultPropertyAndFunctionMap();
-
-    pugi::xml_document document;
-    document.load_file(filepath);
-
-    pugi::xml_node system = document.child("GUISystem");
-
-    for (pugi::xml_attribute attribute = system.first_attribute(); attribute; attribute = attribute.next_attribute()) {
-        if (strcmp(attribute.name(), "name") == 0) {
-            setName(attribute.value());
-        }
-    }
-
-    processXMLGUISystemNode(system);
 }
 
 void SunGUISystem::initializeDefaultPropertyAndFunctionMap() {

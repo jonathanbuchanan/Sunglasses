@@ -27,34 +27,12 @@ SunScene::SunScene(const char *filepath, GLFWwindow *_window) {
     // Initialize the property map
     initializeDefaultPropertyAndFunctionMap();
 
-    // Set up the XML Parsing
-    pugi::xml_document document;
-    document.load_file(filepath);
-
-    pugi::xml_node scene = document.child("scene");
-
-    for (pugi::xml_attribute attribute = scene.first_attribute(); attribute; attribute = attribute.next_attribute()) {
-        if (strcmp(attribute.name(), "name") == 0) {
-            setName(attribute.value());
-        } else if (strcmp(attribute.name(), "GUISystem") == 0) {
-            GUIsystem = new SunGUISystem(attribute.value(), window, this);
-            GUIsystem->setRootNode(this);
-        }
-    }
-
     textRenderer = SunTextRenderer();
     textRenderer.initialize();
 
     rootRenderableNode = new SunObject();
     rootRenderableNode->setName("RootRenderableNode");
     addSubNode(rootRenderableNode);
-
-    // Process the XML scene node
-    processXMLSceneNode(scene);
-
-    GUIsystem->loadFonts(&textRenderer);
-
-    GUIsystem->mapSentActionTargets();
 
     SunNodeSentAction action;
     action.action = "play";
