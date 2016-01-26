@@ -37,7 +37,10 @@ void FeatureScene::initialize() {
     guiSystem = SunGUISystem();
     guiSystem.initializeDefaultPropertyAndFunctionMap();
     
+    SunGUIMenu *menu = new SunGUIMenu();
+    guiSystem.addSubNode(menu);
     
+    ((SunKeyboardManager *)(*services)["keyboard_manager"])->subscribe(menu, GLFW_KEY_F);
 }
 
 void FeatureScene::render(SunNodeSentAction _action) {

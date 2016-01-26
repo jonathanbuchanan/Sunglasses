@@ -69,7 +69,7 @@ void SunGUIMenu::render(SunNodeSentAction _action) {
 }
 
 void SunGUIMenu::keyPress(SunNodeSentAction _action) {
-    cout << to_string(*(int *)_action.parameters["key"]);
+    cout << to_string(*(int *)_action.parameters["key"]) << endl;
 }
 
 void SunGUIMenu::keyRelease(SunNodeSentAction _action) {

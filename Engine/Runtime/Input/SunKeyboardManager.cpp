@@ -26,5 +26,6 @@ void SunKeyboardManager::update() {
 }
 
 void SunKeyboardManager::subscribe(SunNode *subscriber, int key) {
-    subscribers.push_back(std::make_pair(subscriber, key));
+    std::pair<SunNode *, int> pair = std::make_pair(subscriber, key);
+    subscribers.push_back(pair);
 }
