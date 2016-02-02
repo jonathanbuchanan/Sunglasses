@@ -8,7 +8,6 @@
 #include "SunNode.h"
 
 #include "./SunGUIItemMesh.h"
-#include "SunButtonState.h"
 
 #include <map>
 
@@ -25,7 +24,7 @@ public:
     void toggleMouse(SunNodeSentAction _action);
     void closeWindow(SunNodeSentAction _action);
     void initializeDefaultPropertyAndFunctionMap();
-    map<string, GLboolean> activeTriggers(map<int, SunButtonState> _buttons, GLboolean _containsMouse);
+    //map<string, GLboolean> activeTriggers(map<int, SunButtonState> _buttons, GLboolean _containsMouse);
     void sendActions(map<string, GLboolean> _activeTriggers);
     void update(SunNodeSentAction _action);
     void render(SunNodeSentAction _action);

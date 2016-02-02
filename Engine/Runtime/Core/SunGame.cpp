@@ -2,7 +2,6 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include "SunGame.h"
-#include "SunButtonState.h"
 
 GLfloat screenWidth = 800;
 GLfloat screenHeight = 600;
@@ -16,12 +15,6 @@ GLfloat lastX = 400;
 GLfloat lastY = 300;
 bool firstMouseTime = true;
 
-// Maps containing GLFW button ids and their respective states
-// NOTE: CLEAN UP OLDBUTTONS
-
-map<int, SunButtonState> buttons;
-map<int, SunButtonState> oldButtons;
-
 GLfloat deltaTime = 0;
 GLfloat lastFrame = 0;
 
@@ -31,6 +24,16 @@ GLfloat yOffset;
 GLfloat lastXOffset;
 GLfloat lastYOffset;
 
+// Called when a key is pressed
+
+/*void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mode) {
+    // If it had a transition, change its state
+    
+    if (action == GLFW_PRESS && buttons[key] != SunButtonStatePressedEdge) {
+        buttons[key] = SunButtonStatePressedEdge;
+    } else if (action == GLFW_RELEASE)
+        buttons[key] = SunButtonStateReleased;
+}
 // Called when a key is pressed
 
 void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mode) {
@@ -71,7 +74,7 @@ void mouseButtonCallback(GLFWwindow *window, int button, int action, int mods) {
         buttons[button] = SunButtonStatePressedEdge;
     else if (action == GLFW_RELEASE)
         buttons[button] = SunButtonStateReleased;
-}
+}*/
 
 
 
@@ -84,17 +87,6 @@ void SunGame::loop() {
         lastFrame = currentFrame;
 
         // Set any button that is pressed for the second cycle on to a different state (NEEDS CLEAN UP)
-
-        for (auto iterator = buttons.begin(); iterator != buttons.end(); ++iterator) {
-            int currentButton = iterator->first;
-
-            SunButtonState currentValue = buttons[currentButton];
-            SunButtonState oldValue = oldButtons[currentButton];
-
-            if (currentValue == SunButtonStatePressedEdge && oldValue == SunButtonStatePressedEdge) {
-                buttons[currentButton] = SunButtonStatePressed;
-            }
-        }
 
         /*if (scene->getDoCameraInput() == true) {
             // Tell the camera to do movement (NEEDS CLEAN UP)
@@ -166,9 +158,8 @@ void SunGame::initialize() {
     glViewport(0, 0, screenWidth, screenHeight);
 
     // Set the input callbacks
-    //glfwSetKeyCallback(window, keyCallback);
-    glfwSetCursorPosCallback(window, mouseCallback);
-    glfwSetMouseButtonCallback(window, mouseButtonCallback);
+    //glfwSetCursorPosCallback(window, mouseCallback);
+    //glfwSetMouseButtonCallback(window, mouseButtonCallback);
 
     // Set the mouse input mode
     //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);

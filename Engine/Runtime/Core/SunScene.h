@@ -19,7 +19,6 @@
 #include "./SunObject.h"
 #include "./SunDirectionalLightObject.h"
 #include "./SunPointLightObject.h"
-#include "./SunButtonState.h"
 
 // Definition of SunObjectType (NEEDS A HOME)
 

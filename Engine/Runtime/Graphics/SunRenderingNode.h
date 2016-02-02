@@ -1,12 +1,6 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-/* 
- * File:   SunRenderingNode.h
- * Author: jonathan
- *
- * Created on July 17, 2015, 12:39 AM
- */
 
 #include <vector>
 #include <map>

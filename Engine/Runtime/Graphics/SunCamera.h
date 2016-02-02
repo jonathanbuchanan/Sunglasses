@@ -13,10 +13,9 @@ using namespace std;
 #include <glm/gtc/type_ptr.hpp>
 
 #include "Utility.h"
+#include "Input/SunKeyboardManager.h"
 
 #include <GLFW/glfw3.h>
-
-#include "SunButtonState.h"
 
 // Definition of SunCameraProjectionType
 enum SunCameraProjectionType {

@@ -33,6 +33,7 @@ void SunGUISystem::render(SunNodeSentAction _action) {
 }
 
 void SunGUISystem::loadFonts(SunTextRenderer* _textRenderer) {
+    
     for (int i = 0; i < fonts.size(); i++) {
         _textRenderer->loadFont(fonts[i].file, fonts[i].name);
     }

@@ -33,7 +33,7 @@ void SunGUIItem::initializeDefaultPropertyAndFunctionMap() {
     addToFunctionMap("closeWindow", bind(&SunGUIItem::closeWindow, this, std::placeholders::_1));
 }
 
-map<string, GLboolean> SunGUIItem::activeTriggers(map<int, SunButtonState> _buttons, GLboolean _containsMouse) {
+/*map<string, GLboolean> SunGUIItem::activeTriggers(map<int, SunButtonState> _buttons, GLboolean _containsMouse) {
     map<string, GLboolean> triggers;
 
     triggers["click"] = false;
@@ -45,7 +45,7 @@ map<string, GLboolean> SunGUIItem::activeTriggers(map<int, SunButtonState> _butt
         triggers["escape"] = true;
 
     return triggers;
-}
+}*/
 
 void SunGUIItem::sendActions(map<string, GLboolean> _activeTriggers) {
     for (int i = 0; i < sentActions.size(); ++i) {
@@ -58,7 +58,7 @@ void SunGUIItem::sendActions(map<string, GLboolean> _activeTriggers) {
 void SunGUIItem::update(SunNodeSentAction _action) {
     highlighted = pointInItem(*(glm::vec2 *)_action.parameters["mousePosition"]);
 
-    sendActions(activeTriggers(*(map<int, SunButtonState> *)_action.parameters["buttons"], highlighted));
+    //sendActions(activeTriggers(*(map<int, SunButtonState> *)_action.parameters["buttons"], highlighted));
 }
 
 void SunGUIItem::render(SunNodeSentAction _action) {

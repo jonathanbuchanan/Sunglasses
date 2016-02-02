@@ -3,75 +3,22 @@
 // See LICENSE.md for details.
 #include "SunGUIMenu.h"
 
-void SunGUIMenu::hide(SunNodeSentAction _action) {
-    visible = false;
-}
-
-void SunGUIMenu::show(SunNodeSentAction _action) {
-    visible = true;
-}
-
-void SunGUIMenu::toggleMouse(SunNodeSentAction _action) {
-    if (glfwGetInputMode(window, GLFW_CURSOR) == GLFW_CURSOR_DISABLED)
-        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-    else
-        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-}
-
-void SunGUIMenu::closeWindow(SunNodeSentAction _action) {
-    glfwSetWindowShouldClose(window, true);
+SunGUIMenu::SunGUIMenu() {
+    initializeDefaultPropertyAndFunctionMap();
 }
 
 void SunGUIMenu::initializeDefaultPropertyAndFunctionMap() {
-    SunNode::initializeDefaultPropertyAndFunctionMap();
-
-    addToPropertyMap("visible", SunNodeProperty(&visible, SunNodePropertyTypeBool));
-
-    addToFunctionMap("render", bind(&SunGUIMenu::render, this, std::placeholders::_1));
-    addToFunctionMap("update", bind(&SunGUIMenu::update, this, std::placeholders::_1));
-    addToFunctionMap("hide", bind(&SunGUIMenu::hide, this, std::placeholders::_1));
-    addToFunctionMap("show", bind(&SunGUIMenu::show, this, std::placeholders::_1));
-    addToFunctionMap("toggleMouse", bind(&SunGUIMenu::toggleMouse, this, std::placeholders::_1));
-    addToFunctionMap("closeWindow", bind(&SunGUIMenu::closeWindow, this, std::placeholders::_1));
-    
-    addToFunctionMap("keyPress", bind(&SunGUIMenu::keyPress, this, std::placeholders::_1));
-    addToFunctionMap("keyRelease", bind(&SunGUIMenu::keyRelease, this, std::placeholders::_1));
-}
-
-map<string, GLboolean> SunGUIMenu::activeTriggers(map<int, SunButtonState> _buttons) {
-    map<string, GLboolean> triggers;
-
-    triggers["escape"] = false;
-
-    if (_buttons[GLFW_KEY_ESCAPE] == SunButtonStatePressedEdge)
-        triggers["escape"] = true;
-
-    return triggers;
-}
-
-void SunGUIMenu::sendActions(map<string, GLboolean> _activeTriggers) {
-    for (int i = 0; i < sentActions.size(); ++i) {
-        if (_activeTriggers[*(string *)sentActions[i].properties["trigger"]] == true) {
-            sendAction(sentActions[i], (SunNode *)sentActions[i].properties["receiver"]);
-        }
-    }
-}
-
-void SunGUIMenu::update(SunNodeSentAction _action) {
-    sendActions(activeTriggers(*(map<int, SunButtonState> *)_action.parameters["buttons"]));
-
-    sendActionToAllSubNodes(_action);
+    addToFunctionMap("render", std::bind(&SunGUIMenu::render, this, std::placeholders::_1));
+    addToFunctionMap("key", std::bind(&SunGUIMenu::key, this, std::placeholders::_1));
 }
 
 void SunGUIMenu::render(SunNodeSentAction _action) {
-    if (visible == true)
+    if (visible)
         sendActionToAllSubNodes(_action);
 }
 
-void SunGUIMenu::keyPress(SunNodeSentAction _action) {
-    cout << to_string(*(int *)_action.parameters["key"]) << endl;
-}
-
-void SunGUIMenu::keyRelease(SunNodeSentAction _action) {
+void SunGUIMenu::key(SunNodeSentAction _action) {
+    int key = *(int *)_action.parameters["key"];
     
+    actions[key].run(this);
 }

@@ -1,3 +1,6 @@
+// Copyright 2016 Jonathan Buchanan.
+// This file is part of Sunglasses, which is licensed under the MIT License.
+// See LICENSE.md for details.
 #include "FeatureScene.h"
 
 FeatureScene::FeatureScene() {
@@ -37,10 +40,17 @@ void FeatureScene::initialize() {
     guiSystem = SunGUISystem();
     guiSystem.initializeDefaultPropertyAndFunctionMap();
     
-    SunGUIMenu *menu = new SunGUIMenu();
+    menu = new SunGUIMenu();
     guiSystem.addSubNode(menu);
     
-    ((SunKeyboardManager *)(*services)["keyboard_manager"])->subscribe(menu, GLFW_KEY_F);
+    ((SunKeyboardManager *)(*services)["keyboard_manager"])->subscribe(menu, GLFW_KEY_ESCAPE, SunButtonEventDownSingle);
+    
+    auto show = [](SunNode *node) {
+        ((SunGUIMenu *)node)->setVisible(!((SunGUIMenu *)node)->getVisible());
+    };
+    SunGUIAction showAction("Show", show);
+    
+    menu->addActionForKey(showAction, GLFW_KEY_ESCAPE);
 }
 
 void FeatureScene::render(SunNodeSentAction _action) {

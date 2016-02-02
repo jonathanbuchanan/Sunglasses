@@ -42,7 +42,7 @@ SunCamera::SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, GLfloat 
 
 void SunCamera::doCameraMovement(map<int,SunButtonState> _keys, GLfloat _deltaTime, GLfloat _xOffset, GLfloat _yOffset) {
     // Calculate the movement speed
-    GLfloat speed = 3.0 * _deltaTime;
+    /*GLfloat speed = 3.0 * _deltaTime;
 
     // Check for pressed keys and adjust position accordingly
     if (isPressed(_keys[GLFW_KEY_W])) {
@@ -79,7 +79,7 @@ void SunCamera::doCameraMovement(map<int,SunButtonState> _keys, GLfloat _deltaTi
     front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
     front.y = sin(glm::radians(pitch));
     front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
-    direction = glm::normalize(front);
+    direction = glm::normalize(front);*/
 }
 
 glm::mat4 SunCamera::viewMatrix() {
