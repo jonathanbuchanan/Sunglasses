@@ -26,7 +26,7 @@ public:
     
     inline void addActionForKey(SunGUIAction a, int k) { actions[k] = a; }
 private:
-    bool visible;
+    bool visible = false;
     
     std::map<int, SunGUIAction> actions;
 };

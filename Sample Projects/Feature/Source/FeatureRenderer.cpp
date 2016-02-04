@@ -62,13 +62,18 @@ void FeatureRenderer::initialize() {
 }
 
 void FeatureRenderer::render(float delta) {
-	SunNodeSentAction renderAction;
+    SunNodeSentAction renderAction;
     renderAction.action = "render";
     renderAction.parameters["deltaTime"] = &delta;
     renderAction.recursive = true;
 
     sendAction(renderAction, rootRenderNode);
-
+    
+    SunNodeSentAction guiAction;
+    guiAction.action = "renderGUI";
+    
+    sendAction(guiAction, scene);
+    
     // Swap the buffers
     swapBuffers();
 }

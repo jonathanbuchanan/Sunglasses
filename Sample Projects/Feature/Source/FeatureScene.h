@@ -24,6 +24,7 @@ private:
     void initializeDefaultPropertyAndFunctionMap();
     
     void render(SunNodeSentAction _action);
+    void renderGUI(SunNodeSentAction _action);
     
     // Services
     map<string, SunService *> *services;
@@ -31,6 +32,7 @@ private:
     // GUI
     SunGUISystem guiSystem;
     SunGUIMenu *menu;
+    SunGUIItem *item;
     
     SunObject *house;
     

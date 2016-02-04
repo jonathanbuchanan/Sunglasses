@@ -9,6 +9,7 @@ FeatureScene::FeatureScene() {
 
 void FeatureScene::initializeDefaultPropertyAndFunctionMap() {
     addToFunctionMap("render", bind(&FeatureScene::render, this, std::placeholders::_1));
+    addToFunctionMap("renderGUI", bind(&FeatureScene::renderGUI, this, std::placeholders::_1));
     addToFunctionMap("passPerFrameUniforms", bind(&SunScene::passPerFrameUniformsAction, this, std::placeholders::_1));
 }
 
@@ -51,18 +52,29 @@ void FeatureScene::initialize() {
     SunGUIAction showAction("Show", show);
     
     menu->addActionForKey(showAction, GLFW_KEY_ESCAPE);
+    
+    item = new SunGUIItem();
+    menu->addSubNode(item);
+    
+    item->setText("Exit");
+    item->setFont("Arial");
+    item->setSize(glm::vec2(1.0f, 0.2f));
+    item->setPosition(glm::vec2(-0.5f, -0.1f));
+    item->setColor(glm::vec3(1.0f, 1.0f, 1.0f));
 }
 
 void FeatureScene::render(SunNodeSentAction _action) {
     SunScene::render(_action);
 }
 
-void FeatureScene::cycle(float delta) {
-    renderer.render(delta);
-    
+void FeatureScene::renderGUI(SunNodeSentAction _action) {
     SunNodeSentAction GUIAction;
     GUIAction.action = "render";
     GUIAction.parameters["textRenderer"] = &textRenderer;
     
     sendAction(GUIAction, &guiSystem);
+}
+
+void FeatureScene::cycle(float delta) {
+    renderer.render(delta);
 }
