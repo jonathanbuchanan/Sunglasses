@@ -26,7 +26,6 @@ void SunGUIItem::initializeDefaultPropertyAndFunctionMap() {
     SunNode::initializeDefaultPropertyAndFunctionMap();
 
     addToFunctionMap("render", bind(&SunGUIItem::render, this, std::placeholders::_1));
-    addToFunctionMap("update", bind(&SunGUIItem::update, this, std::placeholders::_1));
     addToFunctionMap("hide", bind(&SunGUIItem::hide, this, std::placeholders::_1));
     addToFunctionMap("show", bind(&SunGUIItem::show, this, std::placeholders::_1));
     addToFunctionMap("toggleMouse", bind(&SunGUIItem::toggleMouse, this, std::placeholders::_1));
@@ -39,10 +38,6 @@ void SunGUIItem::sendActions(map<string, GLboolean> _activeTriggers) {
             sendAction(sentActions[i], (SunNode *) sentActions[i].properties["receiver"]);
         }
     }
-}
-
-void SunGUIItem::update(SunNodeSentAction _action) {
-    highlighted = pointInItem(*(glm::vec2 *)_action.parameters["mousePosition"]);
 }
 
 void SunGUIItem::render(SunNodeSentAction _action) {

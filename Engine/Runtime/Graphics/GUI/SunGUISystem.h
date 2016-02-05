@@ -22,16 +22,9 @@ struct SunGUIFont {
 
 class SunGUISystem : public SunNode {
 public:
-    
-    
-    SunGUISystem() {
-        initializeDefaultPropertyAndFunctionMap();
-    }
-    
-    SunGUISystem(const char *filepath, GLFWwindow *_window, SunNode *_rootNode);
+    SunGUISystem() { initializeDefaultPropertyAndFunctionMap(); }
     
     virtual void initializeDefaultPropertyAndFunctionMap();
-    virtual void update(SunNodeSentAction _action);
     virtual void render(SunNodeSentAction _action);
     void loadFonts(SunTextRenderer *_textRenderer);
     
@@ -41,14 +34,9 @@ public:
     
     inline bool & getFontsLoaded() { return fontsLoaded; }
     inline void setFontsLoaded(bool _fontsLoaded) { fontsLoaded = _fontsLoaded; }
-    
-    inline GLFWwindow * getWindow() { return window; }
-    inline void setWindow(GLFWwindow *_window) { window = _window; }
 private:
     vector<SunGUIFont> fonts;
     bool fontsLoaded = false;
-
-    GLFWwindow *window;
 };
 
 #endif

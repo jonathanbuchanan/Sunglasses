@@ -38,9 +38,6 @@ void FeatureScene::initialize() {
     
     rootRenderableNode->addSubNode(house);
     
-    guiSystem = SunGUISystem();
-    guiSystem.initializeDefaultPropertyAndFunctionMap();
-    
     menu = new SunGUIMenu();
     guiSystem.addSubNode(menu);
     

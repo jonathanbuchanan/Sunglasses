@@ -25,7 +25,6 @@ public:
     void closeWindow(SunNodeSentAction _action);
     void initializeDefaultPropertyAndFunctionMap();
     void sendActions(map<string, GLboolean> _activeTriggers);
-    void update(SunNodeSentAction _action);
     void render(SunNodeSentAction _action);
     void loadTexture();
     GLboolean pointInItem(glm::vec2 _point);

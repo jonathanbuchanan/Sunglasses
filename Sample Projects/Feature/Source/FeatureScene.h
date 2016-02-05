@@ -30,13 +30,15 @@ private:
     map<string, SunService *> *services;
     
     // GUI
-    SunGUISystem guiSystem;
+    SunGUISystem guiSystem = SunGUISystem();
     SunGUIMenu *menu;
     SunGUIItem *item;
     
     SunObject *house;
     
+    // Render
     FeatureRenderer renderer;
+    SunTextRenderer textRenderer;
     
     GLFWwindow *window;
 };

@@ -13,7 +13,6 @@ void FeatureGame::initialize() {
     
     setClearColor(glm::vec4(1.0f, 0.0f, 1.0f, 1.0f));
     
-    scene = FeatureScene();
     scene.setServices(&services);
     scene.setWindow(window);
     scene.initialize();

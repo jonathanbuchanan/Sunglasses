@@ -49,8 +49,6 @@ public:
     
     inline SunPhysicsSimulator & getPhysicsSimulator() { return physicsSimulator; }
     
-    inline SunGUISystem * getGUISystem() { return GUIsystem; }
-    
     inline SunObject * getRootRenderableNode() { return rootRenderableNode; }
     
     inline SunCamera & getCamera() { return camera; }
@@ -58,9 +56,6 @@ public:
     
     inline GLboolean & getDoCameraInput() { return doCameraInput; }
     inline void setDoCameraInput(GLboolean _x) { doCameraInput = _x; }
-    
-    inline SunRenderer & getRenderer() { return renderer; }
-    inline SunTextRenderer & getTextRenderer() { return textRenderer; }
     
     inline int & getPointLightCount() { return pointLightCount; }
     inline void setPointLightCount(int _p) { pointLightCount = _p; }
@@ -88,15 +83,9 @@ protected:
     SunCamera camera;
     SunSoundListener listener;
     GLboolean doCameraInput = true;
-    
-    // Text Renderer
-    SunTextRenderer textRenderer;
 private:
     // Physics Simulator
     SunPhysicsSimulator physicsSimulator;
-    
-    // GUIsystem
-    SunGUISystem *GUIsystem;
 
     // Renderer and Text Renderer
     SunRenderer renderer;
