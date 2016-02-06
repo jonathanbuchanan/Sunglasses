@@ -21,6 +21,7 @@ public:
     
     void enableCursor();
     void disableCursor();
+    int getMode();
     
     glm::vec2 getCursorPosition();
     

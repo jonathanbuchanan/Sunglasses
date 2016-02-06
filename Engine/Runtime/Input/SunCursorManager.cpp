@@ -43,6 +43,10 @@ void SunCursorManager::disableCursor() {
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 }
 
+int SunCursorManager::getMode() {
+    return glfwGetInputMode(window, GLFW_CURSOR);
+}
+
 glm::vec2 SunCursorManager::getCursorPosition() {
     double x, y;
     glfwGetCursorPos(window, &x, &y);

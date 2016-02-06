@@ -5,6 +5,7 @@
 #ifndef Sunglasses_SunNode_h
 #define Sunglasses_SunNode_h
 
+#include "SunService.h"
 #include <vector>
 #include <string>
 #include <map>

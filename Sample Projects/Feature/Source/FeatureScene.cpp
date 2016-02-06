@@ -42,9 +42,17 @@ void FeatureScene::initialize() {
     guiSystem.addSubNode(menu);
     
     ((SunKeyboardManager *)(*services)["keyboard_manager"])->subscribe(menu, GLFW_KEY_ESCAPE, SunButtonEventDownSingle);
+    menu->setCursorManager((SunCursorManager *)(*services)["cursor_manager"]);
     
     auto show = [](SunNode *node) {
-        ((SunGUIMenu *)node)->setVisible(!((SunGUIMenu *)node)->getVisible());
+        SunGUIMenu *menu = (SunGUIMenu *)node;
+        menu->setVisible(!((SunGUIMenu *)node)->getVisible());
+        
+        if (menu->getCursorManager()->getMode() == GLFW_CURSOR_DISABLED) {
+            menu->getCursorManager()->enableCursor();
+        } else if (menu->getCursorManager()->getMode() == GLFW_CURSOR_NORMAL) {
+            menu->getCursorManager()->disableCursor();
+        }
     };
     SunGUIAction showAction("Show", show);
     

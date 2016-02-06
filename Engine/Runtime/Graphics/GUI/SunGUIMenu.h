@@ -9,6 +9,7 @@
 
 #include "Graphics/GUI/SunGUIAction.h"
 #include "Graphics/GUI/SunGUIItem.h"
+#include "Input/SunCursorManager.h"
 
 class SunGUIMenu : public SunNode {
 public:
@@ -21,11 +22,16 @@ public:
     
     void key(SunNodeSentAction _action);
     
+    inline void setCursorManager(SunCursorManager *c) { cursor = c; }
+    inline SunCursorManager * getCursorManager() { return cursor; }
+    
     inline bool & getVisible() { return visible; }
     inline void setVisible(bool v) { visible = v; }
     
     inline void addActionForKey(SunGUIAction a, int k) { actions[k] = a; }
 private:
+    SunCursorManager *cursor;
+    
     bool visible = false;
     
     std::map<int, SunGUIAction> actions;
