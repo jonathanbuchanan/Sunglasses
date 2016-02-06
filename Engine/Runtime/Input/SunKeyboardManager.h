@@ -1,3 +1,6 @@
+// Copyright 2016 Jonathan Buchanan.
+// This file is part of Sunglasses, which is licensed under the MIT License.
+// See LICENSE.md for details.
 #ifndef SUNKEYBOARDMANAGER_H
 #define SUNKEYBOARDMANAGER_H
 
@@ -7,23 +10,11 @@
 #include <vector>
 #include <array>
 
-enum SunButtonState {
-    SunButtonStateUp = 0,
-    SunButtonStateDown = 1
-};
-
-enum SunButtonEvent {
-    SunButtonEventUpSingle = 0,
-    SunButtonEventDownSingle = 1,
-    
-    SunButtonEventUpContinuous = 2,
-    SunButtonEventDownContinuous = 3
-};
-
 class SunKeyboardManager : public SunService {
 public:
     
     SunKeyboardManager();
+    SunKeyboardManager(GLFWwindow *_window);
     
     void initialize(GLFWwindow *_window);
     void update();

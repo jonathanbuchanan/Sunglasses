@@ -6,6 +6,19 @@
 
 #include <string>
 
+enum SunButtonState {
+    SunButtonStateUp = 0,
+    SunButtonStateDown = 1
+};
+
+enum SunButtonEvent {
+    SunButtonEventUpSingle = 0,
+    SunButtonEventDownSingle = 1,
+    
+    SunButtonEventUpContinuous = 2,
+    SunButtonEventDownContinuous = 3
+};
+
 class SunService {
 public:
     

@@ -1,7 +1,14 @@
+// Copyright 2016 Jonathan Buchanan.
+// This file is part of Sunglasses, which is licensed under the MIT License.
+// See LICENSE.md for details.
 #include "SunKeyboardManager.h"
 
 SunKeyboardManager::SunKeyboardManager() {
     
+}
+
+SunKeyboardManager::SunKeyboardManager(GLFWwindow *_window) {
+    initialize(_window);
 }
 
 void SunKeyboardManager::initialize(GLFWwindow *_window) {

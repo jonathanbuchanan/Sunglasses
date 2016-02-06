@@ -11,72 +11,8 @@ screenWidth = 1600;
 screenHeight = 1200;
 #endif
 
-GLfloat lastX = 400;
-GLfloat lastY = 300;
-bool firstMouseTime = true;
-
 GLfloat deltaTime = 0;
 GLfloat lastFrame = 0;
-
-GLfloat xOffset;
-GLfloat yOffset;
-
-GLfloat lastXOffset;
-GLfloat lastYOffset;
-
-// Called when a key is pressed
-
-/*void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mode) {
-    // If it had a transition, change its state
-    
-    if (action == GLFW_PRESS && buttons[key] != SunButtonStatePressedEdge) {
-        buttons[key] = SunButtonStatePressedEdge;
-    } else if (action == GLFW_RELEASE)
-        buttons[key] = SunButtonStateReleased;
-}
-// Called when a key is pressed
-
-void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mode) {
-    // If it had a transition, change its state
-    
-    if (action == GLFW_PRESS && buttons[key] != SunButtonStatePressedEdge) {
-        buttons[key] = SunButtonStatePressedEdge;
-    } else if (action == GLFW_RELEASE)
-        buttons[key] = SunButtonStateReleased;
-}
-
-// Calculate the mouse position when it changes
-
-void mouseCallback(GLFWwindow *window, double xpos, double ypos) {
-    if (firstMouseTime) {
-        lastX = xpos;
-        lastY = ypos;
-        firstMouseTime = false;
-    }
-    
-    xOffset = xpos - lastX;
-    yOffset = lastY - ypos;
-    
-    lastX = xpos;
-    lastY = ypos;
-    
-    GLfloat sensitivity = 0.15;
-    xOffset *= sensitivity;
-    yOffset *= sensitivity;
-}
-
-// Called when a mouse button is pressed
-
-void mouseButtonCallback(GLFWwindow *window, int button, int action, int mods) {
-    // If it had a transition, change its state
-    
-    if (action == GLFW_PRESS)
-        buttons[button] = SunButtonStatePressedEdge;
-    else if (action == GLFW_RELEASE)
-        buttons[button] = SunButtonStateReleased;
-}*/
-
-
 
 void SunGame::loop() {
     while (!glfwWindowShouldClose(window)) {
@@ -85,34 +21,6 @@ void SunGame::loop() {
         GLfloat currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
-
-        // Set any button that is pressed for the second cycle on to a different state (NEEDS CLEAN UP)
-
-        /*if (scene->getDoCameraInput() == true) {
-            // Tell the camera to do movement (NEEDS CLEAN UP)
-
-            if (lastXOffset != xOffset && lastYOffset != yOffset)
-                scene->getCamera().doCameraMovement(buttons, deltaTime, xOffset, yOffset);
-            if (lastXOffset == xOffset && lastYOffset != yOffset)
-                scene->getCamera().doCameraMovement(buttons, deltaTime, 0, yOffset);
-            if (lastXOffset != xOffset && lastYOffset != yOffset)
-                scene->getCamera().doCameraMovement(buttons, deltaTime, xOffset, 0);
-            else
-                scene->getCamera().doCameraMovement(buttons, deltaTime, 0, 0);
-
-            lastXOffset = xOffset;
-            lastYOffset = yOffset;
-        } else {
-            xOffset = lastXOffset;
-            yOffset = lastYOffset;
-        }
-
-        scene->getListener().setPosition(scene->getCamera().getPosition());
-        scene->getListener().setDirection(scene->getCamera().getDirection());
-
-        // Tell the renderer to do its cycle
-
-        scene->cycle(buttons, deltaTime);*/
     }
     glfwTerminate();
 }
@@ -148,6 +56,11 @@ void SunGame::initialize() {
     keyboard->initialize(window);
     keyboard->name = "keyboard_manager";
     addService(keyboard);
+    
+    // Initialize the Cursor Manager
+    SunCursorManager *cursor = new SunCursorManager(window, true);
+    cursor->name = "cursor_manager";
+    addService(cursor);
 
     glewExperimental = GL_TRUE;
     if (glewInit() != GLEW_OK) {
@@ -156,13 +69,6 @@ void SunGame::initialize() {
 
     // Set the viewport size (NEEDS CLEAN UP)
     glViewport(0, 0, screenWidth, screenHeight);
-
-    // Set the input callbacks
-    //glfwSetCursorPosCallback(window, mouseCallback);
-    //glfwSetMouseButtonCallback(window, mouseButtonCallback);
-
-    // Set the mouse input mode
-    //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     // Enable depth testing
     glEnable(GL_DEPTH_TEST);
