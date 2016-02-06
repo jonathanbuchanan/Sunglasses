@@ -7,7 +7,7 @@
 
 #include "./Physics/SunPhysicsSimulator.h"
 #include "./Graphics/SunTextRenderer.h"
-#include "./Graphics/GUI/SunGUISystem.h"
+#include "./GUI/SunGUISystem.h"
 #include "./Graphics/SunCamera.h"
 #include "./Graphics/SunRenderer.h"
 #include "./Graphics/SunRenderingNode.h"

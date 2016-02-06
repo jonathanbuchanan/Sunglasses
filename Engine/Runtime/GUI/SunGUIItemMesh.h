@@ -9,8 +9,8 @@
 using namespace std;
 
 #include <GL/glew.h>
-#include "../Shaders/SunShader.h"
-#include "../SunTextRenderer.h"
+#include "Graphics/Shaders/SunShader.h"
+#include "Graphics/SunTextRenderer.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>

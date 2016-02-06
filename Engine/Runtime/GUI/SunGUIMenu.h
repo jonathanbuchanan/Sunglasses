@@ -7,8 +7,8 @@
 
 #include <map>
 
-#include "Graphics/GUI/SunGUIAction.h"
-#include "Graphics/GUI/SunGUIItem.h"
+#include "GUI/SunGUIAction.h"
+#include "GUI/SunGUIItem.h"
 #include "Input/SunCursorManager.h"
 
 class SunGUIMenu : public SunNode {
