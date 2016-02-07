@@ -107,7 +107,7 @@ glm::mat4 SunCamera::projectionMatrix(GLfloat _aspectRatio) {
 
 void SunCamera::passPerFrameUniforms(SunShader _shader) {
     glUniform3f(_shader.getUniformLocation("viewPosition"), position.x, position.y, position.z);
-
+    
     // Pass the view and projection matrices to the shader
     GLint viewMatrixLocation = _shader.getUniformLocation("view");
     glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, glm::value_ptr(viewMatrix()));

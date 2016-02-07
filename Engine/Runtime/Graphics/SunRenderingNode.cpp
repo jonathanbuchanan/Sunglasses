@@ -170,16 +170,16 @@ void SunRenderingNode::render(SunNodeSentAction _action) {
         // Bind the screen-framebuffer
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
         clear();
-		
-		glViewport(0, 0, screenWidth * 2, screenHeight * 2);
-		
+        
+        glViewport(0, 0, screenWidth * 2, screenHeight * 2);
+        
         shaders["quad"].shader.use();
-		
+        
         passUniforms(&shaders["quad"].shader, inputs.size());
 
         renderQuad.renderWithUsedShader(_textures, shaders["quad"].shader);
-		
-		glViewport(0, 0, screenWidth, screenHeight);
+        
+        glViewport(0, 0, screenWidth, screenHeight);
     } else if (renderingType == SunRenderingNodeTypeOnly) {
         // Bind the screen-framebuffer
         clear();

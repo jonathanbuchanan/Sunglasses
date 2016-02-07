@@ -34,7 +34,7 @@ void FeatureScene::initialize() {
     rootRenderableNode->initializeDefaultPropertyAndFunctionMap();
     addSubNode(rootRenderableNode);
     
-    house = new SunObject("house", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Cube.dae", false);
+    house = new SunObject("cube", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Cube.dae", false);
     
     rootRenderableNode->addSubNode(house);
     

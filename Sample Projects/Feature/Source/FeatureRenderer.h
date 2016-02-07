@@ -9,12 +9,12 @@
 
 class FeatureRenderer : public SunRenderer {
 public:
-	
-	void initialize();
-	
-	void render(float delta);
+    
+    void initialize();
+    
+    void render(float delta);
 private:
-	GLFWwindow *window;
+    GLFWwindow *window;
 };
 
 #endif

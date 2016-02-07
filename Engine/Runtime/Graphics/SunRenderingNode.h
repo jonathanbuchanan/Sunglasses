@@ -203,8 +203,8 @@ private:
     SunRenderingNodeType renderingType;
     SunRenderingNodeShaderType shaderType;
 protected:
-	// Inputs, Outputs, and Shaders
-	vector<SunRenderingNodeInput> inputs;
+    // Inputs, Outputs, and Shaders
+    vector<SunRenderingNodeInput> inputs;
     vector<SunRenderingNodeOutput> outputs;
     map<string, SunRenderingNodeShader> shaders;
     
