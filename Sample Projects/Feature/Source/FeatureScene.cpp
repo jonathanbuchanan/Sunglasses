@@ -38,6 +38,9 @@ void FeatureScene::initialize() {
     
     rootRenderableNode->addSubNode(house);
     
+    textRenderer.initialize();
+    textRenderer.loadFont("Resources/Graphics/Fonts/arial.ttf", "Arial");
+    
     menu = new SunGUIMenu();
     guiSystem.addSubNode(menu);
     

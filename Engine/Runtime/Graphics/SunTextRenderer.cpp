@@ -4,7 +4,7 @@
 #include "SunTextRenderer.h"
 
 void SunTextRenderer::initialize() {
-    shader = SunShader("Graphics/Shaders/TextVertex.vert", "Graphics/Shaders/TextFragment.frag");
+    shader = SunShader("../../Engine/Shaders/Text.vert", "../../Engine/Shaders/Text.frag");
     projection = glm::ortho(0.0f, 800.0f, 0.0f, 600.0f);
 
     glGenVertexArrays(1, &VAO);
@@ -19,48 +19,62 @@ void SunTextRenderer::initialize() {
 }
 
 void SunTextRenderer::loadFont(string _file, string _name) {
-    FT_Library ft;
-    if (FT_Init_FreeType(&ft))
-        std::cout << "ERROR::FREETYPE: Could not init FreeType Library" << std::endl;
+    // 0: Could not init FreeType
+    // 1: Could not load font
+    // 2: Could not load glyph
+    try {
+        FT_Library ft;
+        if (FT_Init_FreeType(&ft))
+            throw 0;
 
-    FT_Face face;
-    if (FT_New_Face(ft, _file.c_str(), 0, &face))
-        std::cout << "ERROR::FREETYPE: Failed to load font" << std::endl;
+        FT_Face face;
+        if (FT_New_Face(ft, _file.c_str(), 0, &face))
+            throw 1;
 
-    FT_Set_Pixel_Sizes(face, 0, 48);
+        FT_Set_Pixel_Sizes(face, 0, 48);
 
-    if (FT_Load_Char(face, 'X', FT_LOAD_RENDER))
-        std::cout << "ERROR::FREETYTPE: Failed to load Glyph" << std::endl;
+        glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+        SunFont font;
+        font.name = _name;
 
-    SunFont font;
-    font.name = _name;
+        for (GLubyte c = 0; c < 128; c++) {
+            if (FT_Load_Char(face, c, FT_LOAD_RENDER)) {
+                throw 2;
+                continue;
+            }
 
-    for (GLubyte c = 0; c < 128; c++) {
-        if (FT_Load_Char(face, c, FT_LOAD_RENDER)) {
-            std::cout << "ERROR::FREETYTPE: Failed to load Glyph" << std::endl;
-            continue;
+            GLuint texture;
+            glGenTextures(1, &texture);
+            glBindTexture(GL_TEXTURE_2D, texture);
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, face->glyph->bitmap.width, face->glyph->bitmap.rows, 0, GL_RED, GL_UNSIGNED_BYTE, face->glyph->bitmap.buffer);
+
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+            SunCharacter character = {texture, glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows), glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top), static_cast<GLuint> (face->glyph->advance.x)};
+            font.characters.insert(std::pair<GLchar, SunCharacter>(c, character));
         }
 
-        GLuint texture;
-        glGenTextures(1, &texture);
-        glBindTexture(GL_TEXTURE_2D, texture);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, face->glyph->bitmap.width, face->glyph->bitmap.rows, 0, GL_RED, GL_UNSIGNED_BYTE, face->glyph->bitmap.buffer);
+        fonts.insert(std::pair<string, SunFont>(_name, font));
 
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-        SunCharacter character = {texture, glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows), glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top), static_cast<GLuint> (face->glyph->advance.x)};
-        font.characters.insert(std::pair<GLchar, SunCharacter>(c, character));
+        FT_Done_Face(face);
+        FT_Done_FreeType(ft);
+    } catch (int e) {
+        switch (e) {
+            case 0:
+                std::cout << "Exception: Could not init FreeType Library." << std::endl;
+                break;
+            case 1:
+                std::cout << "Exception: Could not load font." << std::endl;
+                break;
+            case 2:
+                std::cout << "Exception: Could not load glyph." << std::endl;
+                break;
+        }
     }
-
-    fonts.insert(std::pair<string, SunFont>(_name, font));
-
-    FT_Done_Face(face);
-    FT_Done_FreeType(ft);
 }
 
 void SunTextRenderer::renderText(string text, string _fontName, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color) {
@@ -69,7 +83,7 @@ void SunTextRenderer::renderText(string text, string _fontName, GLfloat x, GLflo
     glUniformMatrix4fv(shader.getUniformLocation("projection"), 1, GL_FALSE, glm::value_ptr(projection));
     glActiveTexture(GL_TEXTURE0);
     glBindVertexArray(VAO);
-
+    
     SunFont font = fonts[_fontName];
 
     std::string::const_iterator c;
