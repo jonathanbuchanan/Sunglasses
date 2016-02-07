@@ -7,26 +7,23 @@
 
 #include "SunNode.h"
 
-#include "./SunGUIItemMesh.h"
+#include "GUI/SunGUIAction.h"
+#include "GUI/SunGUIItemMesh.h"
 
 #include <map>
 
 class SunGUIItem : public SunNode {
 public:
-    SunGUIItem() {
-        initializeDefaultPropertyAndFunctionMap();
-        
-        mesh.setUpGL();
-    }
+    SunGUIItem();
     
-    void hide(SunNodeSentAction _action);
-    void show(SunNodeSentAction _action);
-    void toggleMouse(SunNodeSentAction _action);
-    void closeWindow(SunNodeSentAction _action);
-    void initializeDefaultPropertyAndFunctionMap();
-    void sendActions(map<string, GLboolean> _activeTriggers);
+    virtual void initializeDefaultPropertyAndFunctionMap();
+    
     void render(SunNodeSentAction _action);
+    
+    void button(SunNodeSentAction _action);
+    
     void loadTexture();
+    
     GLboolean pointInItem(glm::vec2 _point);
     
     inline string & getText() { return text; }
@@ -62,12 +59,10 @@ public:
     inline GLboolean & getVisible() { return visible; }
     inline void setVisible(GLboolean _visible) { visible = _visible; }
     
-    inline vector<SunNodeSentAction> & getSentActions() { return sentActions; }
-    inline SunNodeSentAction * getSentActionAtIndex(int i) { return &sentActions[i]; }
-    inline void addSentAction(SunNodeSentAction action) { sentActions.push_back(action); }
-    
     inline GLFWwindow * getWindow() { return window; }
     inline void setWindow(GLFWwindow *_window) { window = _window; }
+    
+    inline void addActionForKey(SunGUIAction a, int k) { actions[k] = a; }
 private:
     string text;
 
@@ -88,9 +83,9 @@ private:
 
     GLboolean visible = true;
 
-    vector<SunNodeSentAction> sentActions;
-
     GLFWwindow *window;
+    
+    std::map<int, SunGUIAction> actions;
 };
 
 #endif

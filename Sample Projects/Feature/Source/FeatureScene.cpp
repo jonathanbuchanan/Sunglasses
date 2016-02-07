@@ -64,6 +64,15 @@ void FeatureScene::initialize() {
     item = new SunGUIItem();
     menu->addSubNode(item);
     
+    ((SunMouseButtonManager *)(*services)["mouse_button_manager"])->subscribe(item, GLFW_MOUSE_BUTTON_LEFT, SunButtonEventDownSingle);
+    
+    auto exit = [](SunNode *node) {
+        std::cout << "Exit!" << std::endl;
+    };
+    SunGUIAction exitAction("Exit", exit);
+    
+    item->addActionForKey(exitAction, GLFW_MOUSE_BUTTON_LEFT);
+    
     item->setText("Exit");
     item->setFont("Arial");
     item->setSize(glm::vec2(1.0f, 0.2f));

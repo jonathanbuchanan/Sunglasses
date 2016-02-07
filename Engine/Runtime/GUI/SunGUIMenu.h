@@ -16,7 +16,7 @@ public:
     
     SunGUIMenu();
     
-    void initializeDefaultPropertyAndFunctionMap();
+    virtual void initializeDefaultPropertyAndFunctionMap();
     
     void render(SunNodeSentAction _action);
     
