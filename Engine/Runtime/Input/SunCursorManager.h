@@ -27,6 +27,7 @@ public:
     int getMode();
     
     glm::vec2 getCursorPosition();
+    glm::vec2 getCursorPositionNDC();
     
     void subscribe(SunNode *subscriber);
     

@@ -56,6 +56,16 @@ glm::vec2 SunCursorManager::getCursorPosition() {
     return glm::vec2(x, y);
 }
 
+glm::vec2 SunCursorManager::getCursorPositionNDC() {
+    double x, y;
+    glfwGetCursorPos(window, &x, &y);
+    
+    int width, height;
+    glfwGetWindowSize(window, &width, &height);
+    
+    return glm::vec2((x - (width / 2)) / (width / 2), (y - (height / 2)) / (height / 2));
+}
+
 void SunCursorManager::subscribe(SunNode *subscriber) {
     subscribers.push_back(subscriber);
 }

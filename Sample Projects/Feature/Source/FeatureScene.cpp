@@ -62,12 +62,16 @@ void FeatureScene::initialize() {
     menu->addActionForKey(showAction, GLFW_KEY_ESCAPE);
     
     item = new SunGUIItem();
+    item->setWindow(window);
     menu->addSubNode(item);
     
     ((SunMouseButtonManager *)(*services)["mouse_button_manager"])->subscribe(item, GLFW_MOUSE_BUTTON_LEFT, SunButtonEventDownSingle);
+    item->setCursorManager((SunCursorManager *)(*services)["cursor_manager"]);
     
     auto exit = [](SunNode *node) {
-        std::cout << "Exit!" << std::endl;
+        SunGUIItem *item = (SunGUIItem *)node;
+        if (item->cursorInItem())
+            glfwSetWindowShouldClose(item->getWindow(), true);
     };
     SunGUIAction exitAction("Exit", exit);
     

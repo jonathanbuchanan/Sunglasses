@@ -10,13 +10,13 @@
 
 class FeatureGame : public SunGame {
 public:
-	FeatureGame() { }
-	
-	void initialize();
-	void loop();
-	void cleanUp();
+    FeatureGame() { }
+    
+    void initialize();
+    void loop();
+    void cleanUp();
 private:
-	FeatureScene scene;
+    FeatureScene scene;
 };
 
 #endif

@@ -30,8 +30,12 @@ void SunGUIItem::loadTexture() {
     mesh.loadTexture(texturePath);
 }
 
-GLboolean SunGUIItem::pointInItem(glm::vec2 _point) {
+bool SunGUIItem::pointInItem(glm::vec2 _point) {
     if (_point.x >= position.x && _point.x <= position.x + size.x && _point.y <= position.y + size.y && _point.y >= position.y)
         return true;
     return false;
+}
+
+bool SunGUIItem::cursorInItem() {
+    return pointInItem(cursor->getCursorPositionNDC());
 }

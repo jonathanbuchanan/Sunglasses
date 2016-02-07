@@ -9,6 +9,7 @@
 
 #include "GUI/SunGUIAction.h"
 #include "GUI/SunGUIItemMesh.h"
+#include "Input/SunCursorManager.h"
 
 #include <map>
 
@@ -24,7 +25,8 @@ public:
     
     void loadTexture();
     
-    GLboolean pointInItem(glm::vec2 _point);
+    bool pointInItem(glm::vec2 _point);
+    bool cursorInItem();
     
     inline string & getText() { return text; }
     inline void setText(string _text) { text = _text; } 
@@ -63,6 +65,9 @@ public:
     inline void setWindow(GLFWwindow *_window) { window = _window; }
     
     inline void addActionForKey(SunGUIAction a, int k) { actions[k] = a; }
+    
+    inline void setCursorManager(SunCursorManager *c) { cursor = c; }
+    inline SunCursorManager * getCursorManager() { return cursor; }
 private:
     string text;
 
@@ -86,6 +91,8 @@ private:
     GLFWwindow *window;
     
     std::map<int, SunGUIAction> actions;
+    
+    SunCursorManager *cursor;
 };
 
 #endif
