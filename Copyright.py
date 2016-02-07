@@ -5,13 +5,13 @@
 import os
 import fileinput
 
-allowedDirectories = ["./Engine/Runtime/Core", "./Engine/Runtime/Input", "./Engine/Runtime/Audio", "./Engine/Runtime/Graphics", "./Engine/Runtime/Graphics/GUI", "./Engine/Runtime/Graphics/Shaders", "./Engine/Runtime/Graphics/Shaders/Variable Pipeline", "./Engine/Runtime/Physics", "./Sample Projects/Feature", "./Sample Projects/Feature/Source"]
+bannedDirectories = ["CMakeFiles"]
 allowedEndings = [".h", ".cpp", ".vert", ".frag", ".geom", ".pre"]
 
 copyright = '// Copyright 2016 Jonathan Buchanan.\n// This file is part of Sunglasses, which is licensed under the MIT License.\n// See LICENSE.md for details.\n'
 
 for directory, subFolders, files in os.walk("./"):
-    if directory in allowedDirectories:
+    if directory not in bannedDirectories:
         for file in files:
             allowed = False
             for ending in allowedEndings:
