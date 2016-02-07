@@ -52,8 +52,7 @@ void SunGame::initialize() {
     }
     
     // Initialize the Keyboard Manager
-    SunKeyboardManager *keyboard = new SunKeyboardManager();
-    keyboard->initialize(window);
+    SunKeyboardManager *keyboard = new SunKeyboardManager(window);
     keyboard->name = "keyboard_manager";
     addService(keyboard);
     
@@ -61,6 +60,11 @@ void SunGame::initialize() {
     SunCursorManager *cursor = new SunCursorManager(window, true);
     cursor->name = "cursor_manager";
     addService(cursor);
+    
+    // Initialize the Mouse Button Manager
+    SunMouseButtonManager *mouseButton = new SunMouseButtonManager(window);
+    mouseButton->name = "mouse_button_manager";
+    addService(mouseButton);
 
     glewExperimental = GL_TRUE;
     if (glewInit() != GLEW_OK) {

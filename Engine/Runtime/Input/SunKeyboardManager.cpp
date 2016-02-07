@@ -68,3 +68,11 @@ void SunKeyboardManager::subscribe(SunNode *subscriber, int key, SunButtonEvent 
     std::tuple<SunNode *, int, SunButtonEvent> tuple = std::make_tuple(subscriber, key, event);
     subscribers.push_back(tuple);
 }
+
+SunButtonState SunKeyboardManager::pollKey(int key) {
+    int state = glfwGetKey(window, key);
+    if (state == GLFW_PRESS)
+        return SunButtonStateDown;
+    else if (state == GLFW_RELEASE)
+        return SunButtonStateUp;
+}
