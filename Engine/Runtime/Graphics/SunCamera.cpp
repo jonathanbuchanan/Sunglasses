@@ -41,19 +41,20 @@ SunCamera::SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, GLfloat 
 }
 
 void SunCamera::update(float delta) {
-    float speed = 0.05f;
+    float speed = 5.0f;
+    float finalSpeed = speed * delta;
     if (keyboard->pollKey(GLFW_KEY_UP) == SunButtonStateDown)
-        position += speed * direction;
+        position += finalSpeed * direction;
     if (keyboard->pollKey(GLFW_KEY_DOWN) == SunButtonStateDown)
-        position += speed * -direction;
+        position += finalSpeed * -direction;
     if (keyboard->pollKey(GLFW_KEY_RIGHT) == SunButtonStateDown)
-        position += speed * glm::normalize(glm::cross(direction, cameraUp));
+        position += finalSpeed * glm::normalize(glm::cross(direction, cameraUp));
     if (keyboard->pollKey(GLFW_KEY_LEFT) == SunButtonStateDown)
-        position += speed * -glm::normalize(glm::cross(direction, cameraUp));
+        position += finalSpeed * -glm::normalize(glm::cross(direction, cameraUp));
     if (keyboard->pollKey(GLFW_KEY_SPACE) == SunButtonStateDown)
-        position += speed * glm::vec3(0.0f, 1.0f, 0.0f);
+        position += finalSpeed * glm::vec3(0.0f, 1.0f, 0.0f);
     if (keyboard->pollKey(GLFW_KEY_LEFT_SHIFT) == SunButtonStateDown)
-        position += speed * -glm::vec3(0.0f, 1.0f, 0.0f);
+        position += finalSpeed * -glm::vec3(0.0f, 1.0f, 0.0f);
 }
 
 glm::mat4 SunCamera::viewMatrix() {
