@@ -32,8 +32,8 @@ public:
     SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, glm::vec3 _position, GLfloat _yaw, GLfloat _pitch);
     SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, GLfloat _width, GLfloat _height, GLfloat _yaw, GLfloat _pitch);
     
-    // Adjust the position of the camera for the given keys pressed, frame rate, and mouse/trackpad movement
-    void doCameraMovement(map<int, SunButtonState> _keys, GLfloat _deltaTime, GLfloat _xOffset, GLfloat _yOffset);
+    void update(float delta);
+    
     glm::mat4 viewMatrix();
     glm::mat4 projectionMatrix(GLfloat _aspectRatio);
     void passPerFrameUniforms(SunShader _shader);
@@ -66,6 +66,8 @@ public:
     inline GLfloat & getHeight() { return height; }
     inline void setWidth(GLfloat _width) { width = _width; }
     inline void setHeight(GLfloat _height) { height = _height; }
+    
+    inline void setKeyboardManager(SunKeyboardManager *k) { keyboard = k; }
 private:
     // Position
     glm::vec3 position = glm::vec3(0.0, 0.0, 0.0);
@@ -91,6 +93,9 @@ private:
     // Width and height
     GLfloat width = 10.0f;
     GLfloat height = 10.0f;
+    
+    // Keyboard Manager
+    SunKeyboardManager *keyboard;
 };
 
 #endif

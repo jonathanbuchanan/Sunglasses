@@ -40,46 +40,20 @@ SunCamera::SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, GLfloat 
     pitch = _pitch;
 }
 
-void SunCamera::doCameraMovement(map<int,SunButtonState> _keys, GLfloat _deltaTime, GLfloat _xOffset, GLfloat _yOffset) {
-    // Calculate the movement speed
-    /*GLfloat speed = 3.0 * _deltaTime;
-
-    // Check for pressed keys and adjust position accordingly
-    if (isPressed(_keys[GLFW_KEY_W])) {
+void SunCamera::update(float delta) {
+    float speed = 0.05f;
+    if (keyboard->pollKey(GLFW_KEY_UP) == SunButtonStateDown)
         position += speed * direction;
-    }
-    if (isPressed(_keys[GLFW_KEY_S])) {
-        position -= speed * direction;
-    }
-    if (isPressed(_keys[GLFW_KEY_D])) {
+    if (keyboard->pollKey(GLFW_KEY_DOWN) == SunButtonStateDown)
+        position += speed * -direction;
+    if (keyboard->pollKey(GLFW_KEY_RIGHT) == SunButtonStateDown)
         position += speed * glm::normalize(glm::cross(direction, cameraUp));
-    }
-    if (isPressed(_keys[GLFW_KEY_A])) {
-        position -= speed * glm::normalize(glm::cross(direction, cameraUp));
-    }
-    if (isPressed(_keys[GLFW_KEY_SPACE])) {
-        position += speed * up;
-    }
-    if (isPressed(_keys[GLFW_KEY_LEFT_SHIFT])) {
-        position -= speed * up;
-    }
-
-    // Adjust the yaw and pitch values based on the offset
-    yaw += _xOffset;
-    pitch += _yOffset;
-
-    // Lock pitch in range of 89 to -89
-    if (pitch > 89.0f)
-        pitch = 89.0f;
-    if (pitch < -89.0f)
-        pitch = -89.0f;
-
-    // Calculate the new camera direciton based on the yaw and pitch
-    glm::vec3 front;
-    front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-    front.y = sin(glm::radians(pitch));
-    front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
-    direction = glm::normalize(front);*/
+    if (keyboard->pollKey(GLFW_KEY_LEFT) == SunButtonStateDown)
+        position += speed * -glm::normalize(glm::cross(direction, cameraUp));
+    if (keyboard->pollKey(GLFW_KEY_SPACE) == SunButtonStateDown)
+        position += speed * glm::vec3(0.0f, 1.0f, 0.0f);
+    if (keyboard->pollKey(GLFW_KEY_LEFT_SHIFT) == SunButtonStateDown)
+        position += speed * -glm::vec3(0.0f, 1.0f, 0.0f);
 }
 
 glm::mat4 SunCamera::viewMatrix() {

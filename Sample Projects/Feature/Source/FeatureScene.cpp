@@ -19,6 +19,7 @@ void FeatureScene::initialize() {
     setRootNode(this);
     
     camera = SunCamera(SunCameraProjectionTypePerspective, 45.0f, 0, 0, 0, 0);
+    camera.setKeyboardManager((SunKeyboardManager *)(*services)["keyboard_manager"]);
     
     this->setName("Scene");
     initializeDefaultPropertyAndFunctionMap();
@@ -97,5 +98,6 @@ void FeatureScene::renderGUI(SunNodeSentAction _action) {
 }
 
 void FeatureScene::cycle(float delta) {
+    camera.update(delta);
     renderer.render(delta);
 }
