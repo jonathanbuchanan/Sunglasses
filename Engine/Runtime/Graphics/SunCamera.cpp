@@ -41,6 +41,21 @@ SunCamera::SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, GLfloat 
 }
 
 void SunCamera::update(float delta) {
+    glm::vec2 mouse = cursor->getCursorPosition();
+    static glm::vec2 oldMouse;
+    glm::vec2 offset = glm::vec2(mouse.x - oldMouse.x, oldMouse.y - mouse.y);
+    oldMouse = mouse;
+    
+    const float sensitivity = 0.05f;
+    offset *= sensitivity;
+    yaw += offset.x;
+    pitch += offset.y;
+    
+    if (pitch > 89.0f)
+        pitch = 89.0f;
+    if (pitch < -89.0f)
+        pitch = -89.0f;
+    
     float speed = 5.0f;
     float finalSpeed = speed * delta;
     if (keyboard->pollKey(GLFW_KEY_UP) == SunButtonStateDown)
@@ -55,6 +70,10 @@ void SunCamera::update(float delta) {
         position += finalSpeed * glm::vec3(0.0f, 1.0f, 0.0f);
     if (keyboard->pollKey(GLFW_KEY_LEFT_SHIFT) == SunButtonStateDown)
         position += finalSpeed * -glm::vec3(0.0f, 1.0f, 0.0f);
+    
+    direction.x = cos(glm::radians(pitch)) * cos(glm::radians(yaw));
+    direction.y = sin(glm::radians(pitch));
+    direction.z = cos(glm::radians(pitch)) * sin(glm::radians(yaw));
 }
 
 glm::mat4 SunCamera::viewMatrix() {

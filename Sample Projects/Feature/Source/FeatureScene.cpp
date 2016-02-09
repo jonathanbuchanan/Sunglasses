@@ -20,6 +20,7 @@ void FeatureScene::initialize() {
     
     camera = SunCamera(SunCameraProjectionTypePerspective, 45.0f, 0, 0, 0, 0);
     camera.setKeyboardManager((SunKeyboardManager *)(*services)["keyboard_manager"]);
+    camera.setCursorManager((SunCursorManager *)(*services)["cursor_manager"]);
     
     this->setName("Scene");
     initializeDefaultPropertyAndFunctionMap();

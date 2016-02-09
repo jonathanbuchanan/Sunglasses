@@ -14,6 +14,7 @@ using namespace std;
 
 #include "Utility.h"
 #include "Input/SunKeyboardManager.h"
+#include "Input/SunCursorManager.h"
 
 #include <GLFW/glfw3.h>
 
@@ -68,6 +69,7 @@ public:
     inline void setHeight(GLfloat _height) { height = _height; }
     
     inline void setKeyboardManager(SunKeyboardManager *k) { keyboard = k; }
+    inline void setCursorManager(SunCursorManager *c) { cursor = c; }
 private:
     // Position
     glm::vec3 position = glm::vec3(0.0, 0.0, 0.0);
@@ -96,6 +98,9 @@ private:
     
     // Keyboard Manager
     SunKeyboardManager *keyboard;
+    
+    // Cursor Manager
+    SunCursorManager *cursor;
 };
 
 #endif
