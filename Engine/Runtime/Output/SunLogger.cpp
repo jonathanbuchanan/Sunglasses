@@ -35,8 +35,11 @@ std::map<BashColor, std::string> ColorMap = {
 string getBashColorSetter(std::vector<BashColor> colors) {
     string colorString = BASH_COLOR_PREFIX;
     
-    for (BashColor color : colors)
-        colorString += ColorMap[color];
+    for (int i = 0; i < colors.size(); i++) {
+        if (i > 0)
+            colorString += BASH_COLOR_SEPARATOR;
+        colorString += ColorMap[colors[i]];
+    }
     
     colorString += BASH_COLOR_SUFFIX;
     
@@ -51,4 +54,18 @@ string getBashColorSetter(BashColor color) {
     colorString += BASH_COLOR_SUFFIX;
     
     return colorString;
+}
+
+void SunLogger::logError(std::string message) {
+    std::cout << getBashColorSetter(BashColorForegroundRed);
+    std::cout << message;
+    std::cout << getBashColorSetter(BashColorReset);
+    std::cout << std::endl;
+}
+
+void SunLogger::logSuccess(std::string message) {
+    std::cout << getBashColorSetter(BashColorForegroundGreen);
+    std::cout << message;
+    std::cout << getBashColorSetter(BashColorReset);
+    std::cout << std::endl;
 }

@@ -77,6 +77,10 @@ extern string getBashColorSetter(BashColor color);
 class SunLogger : public SunService {
 public:
     
+    void logError(std::string message);
+    void logSuccess(std::string message);
+    
+    
 private:
     
 };
