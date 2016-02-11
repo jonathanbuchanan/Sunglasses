@@ -65,6 +65,11 @@ void SunGame::initialize() {
     SunMouseButtonManager *mouseButton = new SunMouseButtonManager(window);
     mouseButton->name = "mouse_button_manager";
     addService(mouseButton);
+    
+    // Initialize the Logger
+    SunLogger *logger = new SunLogger();
+    logger->name = "logger";
+    addService(logger);
 
     glewExperimental = GL_TRUE;
     if (glewInit() != GLEW_OK) {

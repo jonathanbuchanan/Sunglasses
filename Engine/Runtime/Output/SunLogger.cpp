@@ -56,16 +56,104 @@ string getBashColorSetter(BashColor color) {
     return colorString;
 }
 
-void SunLogger::logError(std::string message) {
+SunLogger::SunLogger() {
+    defaultColors = {BashColorForegroundBlue, BashColorBright};
+}
+
+void SunLogger::reset() {
+    std::cout << getBashColorSetter(BashColorReset);
+}
+
+void SunLogger::bright() {
+    std::cout << getBashColorSetter(BashColorBright);
+}
+
+void SunLogger::dim() {
+    std::cout << getBashColorSetter(BashColorDim);
+}
+
+void SunLogger::underscore() {
+    std::cout << getBashColorSetter(BashColorUnderscore);
+}
+
+void SunLogger::blink() {
+    std::cout << getBashColorSetter(BashColorBlink);
+}
+
+void SunLogger::reverse() {
+    std::cout << getBashColorSetter(BashColorReverse);
+}
+
+void SunLogger::hidden() {
+    std::cout << getBashColorSetter(BashColorHidden);
+}
+
+void SunLogger::logBlack(std::string message) {
+    std::cout << getBashColorSetter(BashColorForegroundBlack);
+    std::cout << message;
+}
+
+void SunLogger::logRed(std::string message) {
     std::cout << getBashColorSetter(BashColorForegroundRed);
     std::cout << message;
-    std::cout << getBashColorSetter(BashColorReset);
+    reset();
+}
+
+void SunLogger::logGreen(std::string message) {
+    std::cout << getBashColorSetter(BashColorForegroundGreen);
+    std::cout << message;
+    reset();
+}
+
+void SunLogger::logYellow(std::string message) {
+    std::cout << getBashColorSetter(BashColorForegroundYellow);
+    std::cout << message;
+    reset();
+}
+
+void SunLogger::logBlue(std::string message) {
+    std::cout << getBashColorSetter(BashColorForegroundBlue);
+    std::cout << message;
+    reset();
+}
+
+void SunLogger::logMagenta(std::string message) {
+    std::cout << getBashColorSetter(BashColorForegroundMagenta);
+    std::cout << message;
+    reset();
+}
+
+void SunLogger::logCyan(std::string message) {
+    std::cout << getBashColorSetter(BashColorForegroundCyan);
+    std::cout << message;
+    reset();
+}
+
+void SunLogger::logWhite(std::string message) {
+    std::cout << getBashColorSetter(BashColorForegroundWhite);
+    std::cout << message;
+    reset();
+}
+
+void SunLogger::logError(std::string message) {
+    std::cout << getBashColorSetter(std::vector<BashColor>{BashColorForegroundRed, BashColorBright});
+    std::cout << "ERROR: ";
+    std::cout << message;
+    reset();
     std::cout << std::endl;
 }
 
 void SunLogger::logSuccess(std::string message) {
-    std::cout << getBashColorSetter(BashColorForegroundGreen);
+    std::cout << getBashColorSetter(std::vector<BashColor>{BashColorForegroundGreen, BashColorBright});
+    std::cout << "SUCCESS: ";
     std::cout << message;
-    std::cout << getBashColorSetter(BashColorReset);
+    reset();
+    std::cout << std::endl;
+}
+
+void SunLogger::log(std::string message) {
+    std::cout << getBashColorSetter(defaultColors);
+    std::cout << message;
+    reset();
     std::cout << std::endl;
 }

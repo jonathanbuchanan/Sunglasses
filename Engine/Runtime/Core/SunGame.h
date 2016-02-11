@@ -17,6 +17,7 @@
 #include "Input/SunKeyboardManager.h"
 #include "Input/SunCursorManager.h"
 #include "Input/SunMouseButtonManager.h"
+#include "Output/SunLogger.h"
 
 using namespace std;
 

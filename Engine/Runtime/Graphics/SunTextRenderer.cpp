@@ -22,6 +22,7 @@ void SunTextRenderer::loadFont(string _file, string _name) {
     // 0: Could not init FreeType
     // 1: Could not load font
     // 2: Could not load glyph
+    logger->log("Attempting to load " + _file + " as " + _name + ".");
     try {
         FT_Library ft;
         if (FT_Init_FreeType(&ft))
@@ -62,18 +63,20 @@ void SunTextRenderer::loadFont(string _file, string _name) {
 
         FT_Done_Face(face);
         FT_Done_FreeType(ft);
+        logger->logSuccess("Loaded " + _file + " as " + _name + ".");
     } catch (int e) {
         switch (e) {
             case 0:
-                std::cout << "Exception: Could not init FreeType Library." << std::endl;
+                logger->logError("Couldn't init FreeType Library.");
                 break;
             case 1:
-                std::cout << "Exception: Could not load font." << std::endl;
+                logger->logError("Couldn't load font.");
                 break;
             case 2:
-                std::cout << "Exception: Could not load glyph." << std::endl;
+                logger->logError("Couldn't load glyph.");
                 break;
         }
+        logger->logError("Couldn't Load " + _file + " as " + _name + ".");
     }
 }
 

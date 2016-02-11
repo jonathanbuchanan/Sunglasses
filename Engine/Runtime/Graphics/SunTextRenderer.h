@@ -14,7 +14,8 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
-#include "./Shaders/SunShader.h"
+#include "Graphics/Shaders/SunShader.h"
+#include "Output/SunLogger.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -45,9 +46,10 @@ public:
     void loadFont(string _file, string _name);
     void renderText(string text, string _fontName, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color);
     
+    inline void setLogger(SunLogger *l) { logger = l; }
+    
     inline map<string, SunFont> & getFonts() { return fonts; }
     inline SunFont & getFontForString(string s) { return fonts[s]; }
-    inline void addFontForString(string s, SunFont font) { fonts[s] = font; }
     
     inline glm::mat4 & getProjectionMatrix() { return projection; }
     
@@ -57,6 +59,8 @@ public:
     inline GLuint getVAO() { return VAO; }
     inline GLuint getVBO() { return VBO; }
 private:
+    SunLogger *logger;
+    
     map<string, SunFont> fonts;
 
     glm::mat4 projection;
