@@ -3,6 +3,8 @@
 // See LICENSE.md for details.
 #include "SunBase.h"
 
+std::map<std::string, SunService *> SunBase::services;
+
 SunBase::SunBase() { }
 
 SunBase::SunBase(std::string n) {

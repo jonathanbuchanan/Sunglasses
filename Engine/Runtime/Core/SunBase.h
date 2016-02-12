@@ -30,12 +30,13 @@ public:
     
     inline std::map<std::string, SunService *> & getServices() { return services; }
 	inline SunService * getService(std::string s) { return services[s]; }
-    inline void addService(SunService *s) { services[s->name] = s; } 
+    inline void addService(SunService *s) { services[s->name] = s; }
+
+	static std::map<std::string, SunService *> services;
 private:
     std::string name;
-    static std::map<std::string, SunService *> services;
-    
-    std::map<std::string, SunActionFunction> functions;
+        
+    std::map<std::string, SunActionFunction> functions;	
 };
 
 extern void sendAction(SunAction action, SunBase *base);

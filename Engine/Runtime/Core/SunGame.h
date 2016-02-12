@@ -48,13 +48,10 @@ public:
     inline GLfloat & getScreenHeight() { return screenHeight; }
 protected:
     GLFWwindow *window;
-    
+   
     std::string windowTitle;
     glm::vec4 clearColor = glm::vec4(0.2f, 0.2f, 0.2f, 1.0f);
     
-    map<string, SunService *> services;
-    
-    inline void addService(SunService *service) { services[service->name] = service; }
 private:
 };
 
