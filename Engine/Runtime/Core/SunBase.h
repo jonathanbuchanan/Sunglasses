@@ -17,8 +17,11 @@ public:
     
     virtual void init();
 	
-	template<typename T>
-	void addAction(std::string function, T &&t);
+	template<typename Ret, typename Class, typename Param>
+	void addAction(std::string function, Ret (Class::*f)(Param)) {
+		std::function<void(SunAction)> bound = std::bind(f, static_cast<Class *>(this), std::placeholders::_1);
+		functions[function] = bound;
+	}
 	
 	void processAction(SunAction action);
 	

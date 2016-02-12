@@ -13,15 +13,10 @@ void SunBase::init() {
     
 }
 
-template<typename T>
-void SunBase::addAction(std::string function, T &&t) {
-	functions[function] = std::bind(t, this, std::placeholders::_1);
-}
-
 void SunBase::processAction(SunAction action) {
 	functions[action.getAction()](action);
 }
 
-extern void sendAction(SunAction action, SunBase *base) {
+void sendAction(SunAction action, SunBase *base) {
 	base->processAction(action);
 }

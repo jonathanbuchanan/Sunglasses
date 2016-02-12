@@ -13,7 +13,8 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
-#include "SunService.h"
+#include "Core/SunBase.h"
+
 #include "Input/SunKeyboardManager.h"
 #include "Input/SunCursorManager.h"
 #include "Input/SunMouseButtonManager.h"
@@ -26,7 +27,7 @@ extern GLfloat screenHeight;
 
 class SunScene;
 
-class SunGame {
+class SunGame : public SunBase {
 public:
     SunGame() {
         
@@ -36,7 +37,7 @@ public:
     void updateServices();
     void cleanUp();
     void initialize();
-    
+
     inline std::string & getWindowTitle() { return windowTitle; }
     inline void setWindowTitle(std::string w) { windowTitle = w; }
     
