@@ -12,6 +12,7 @@ using namespace std;
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "Core/SunBase.h"
 #include "Utility.h"
 #include "Input/SunKeyboardManager.h"
 #include "Input/SunCursorManager.h"
@@ -24,7 +25,7 @@ enum SunCameraProjectionType {
     SunCameraProjectionTypeOrthographic
 };
 
-class SunCamera {
+class SunCamera : SunBase {
 public:
     SunCamera();
     SunCamera(SunCameraProjectionType _projection, GLfloat _FOV);
@@ -66,10 +67,7 @@ public:
     inline GLfloat & getWidth() { return width; }
     inline GLfloat & getHeight() { return height; }
     inline void setWidth(GLfloat _width) { width = _width; }
-    inline void setHeight(GLfloat _height) { height = _height; }
-    
-    inline void setKeyboardManager(SunKeyboardManager *k) { keyboard = k; }
-    inline void setCursorManager(SunCursorManager *c) { cursor = c; }
+    inline void setHeight(GLfloat _height) { height = _height; } 
 private:
     // Position
     glm::vec3 position = glm::vec3(0.0, 0.0, 0.0);
@@ -94,13 +92,7 @@ private:
 
     // Width and height
     GLfloat width = 10.0f;
-    GLfloat height = 10.0f;
-    
-    // Keyboard Manager
-    SunKeyboardManager *keyboard;
-    
-    // Cursor Manager
-    SunCursorManager *cursor;
+    GLfloat height = 10.0f; 
 };
 
 #endif

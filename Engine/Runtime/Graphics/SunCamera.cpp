@@ -41,7 +41,7 @@ SunCamera::SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, GLfloat 
 }
 
 void SunCamera::update(float delta) {
-    glm::vec2 mouse = cursor->getCursorPosition();
+    glm::vec2 mouse = ((SunCursorManager *)getService("cursor_manager"))->getCursorPosition(); 
     static glm::vec2 oldMouse;
     glm::vec2 offset = glm::vec2(mouse.x - oldMouse.x, oldMouse.y - mouse.y);
     oldMouse = mouse;
@@ -58,6 +58,7 @@ void SunCamera::update(float delta) {
     
     float speed = 5.0f;
     float finalSpeed = speed * delta;
+	SunKeyboardManager *keyboard = (SunKeyboardManager *)getService("keyboard_manager");
     if (keyboard->pollKey(GLFW_KEY_UP) == SunButtonStateDown)
         position += finalSpeed * direction;
     if (keyboard->pollKey(GLFW_KEY_DOWN) == SunButtonStateDown)
