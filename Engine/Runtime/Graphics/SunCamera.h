@@ -25,7 +25,7 @@ enum SunCameraProjectionType {
     SunCameraProjectionTypeOrthographic
 };
 
-class SunCamera : SunBase {
+class SunCamera : public SunBase {
 public:
     SunCamera();
     SunCamera(SunCameraProjectionType _projection, GLfloat _FOV);
