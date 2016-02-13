@@ -25,8 +25,9 @@ public:
 	inline void setAction(std::string a) { action = a; }
 	inline std::string getAction() { return action; }
 
+	inline bool parameterExists(std::string p) { return parameters.find(p) != parameters.end(); }
 	inline void * getParameter(std::string p) { return parameters[p]; }
-	inline void addParameters(std::string k, void *v) { parameters[k] = v; }
+	inline void addParameter(std::string k, void *v) { parameters[k] = v; }
 	
 	inline bool getRecursive() { return recursive; }
 	inline void setRecursive(bool r) { recursive = r; }

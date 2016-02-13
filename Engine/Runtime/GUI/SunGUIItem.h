@@ -7,7 +7,6 @@
 
 #include "SunNode.h"
 
-#include "GUI/SunGUIAction.h"
 #include "GUI/SunGUIItemMesh.h"
 #include "Input/SunCursorManager.h"
 
@@ -19,9 +18,9 @@ public:
     
     virtual void initializeDefaultPropertyAndFunctionMap();
     
-    void render(SunNodeSentAction _action);
+    void render(SunAction action);
     
-    void button(SunNodeSentAction _action);
+    void button(SunAction action);
     
     void loadTexture();
     

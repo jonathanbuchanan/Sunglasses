@@ -4,14 +4,14 @@
 #include "SunGUISystem.h"
 
 void SunGUISystem::initializeDefaultPropertyAndFunctionMap() {
-    addToFunctionMap("render", bind(&SunGUISystem::render, this, std::placeholders::_1));
+	addAction("render", &SunGUISystem::render); 
 }
 
-void SunGUISystem::render(SunNodeSentAction _action) {
+void SunGUISystem::render(SunAction action) {
     glEnable(GL_BLEND);
 
     // Loop through the sub-objects and force them to render
-    sendActionToAllSubNodes(_action);
+    sendActionToAllSubNodes(action);
 
     glDisable(GL_BLEND);
 }

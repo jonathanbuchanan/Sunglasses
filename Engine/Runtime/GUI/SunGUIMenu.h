@@ -7,7 +7,6 @@
 
 #include <map>
 
-#include "GUI/SunGUIAction.h"
 #include "GUI/SunGUIItem.h"
 #include "Input/SunCursorManager.h"
 

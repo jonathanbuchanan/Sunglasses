@@ -5,6 +5,7 @@
 #ifndef OpenGL_Test_3_Scene_h
 #define OpenGL_Test_3_Scene_h
 
+#include "Core/SunBase.h"
 #include "./Physics/SunPhysicsSimulator.h"
 #include "./Graphics/SunTextRenderer.h"
 #include "./GUI/SunGUISystem.h"
@@ -30,7 +31,7 @@ enum SunObjectType {
 
 typedef map<string, SunShader>::iterator SunShaderMapIterator;
 
-class SunScene : public SunObject {
+class SunScene : public SunBase {
 public:
     SunScene();
     SunScene(const char *filepath, GLFWwindow *_window);
@@ -41,11 +42,11 @@ public:
     
     void cycle(map<int, SunButtonState> _buttons, GLfloat _deltaTime);
     virtual void update(map<int, SunButtonState> _buttons);
-    virtual void render(SunNodeSentAction _action);
+    virtual void render(SunAction action);
     void renderGUISystem(SunNodeSentAction _action);
     void passPerFrameUniforms(SunShader _shader);
     void passPerFrameUniforms(SunShader _shader, vector<SunNodeSentActionCondition> _conditions);
-    virtual void passPerFrameUniformsAction(SunNodeSentAction _action);
+    virtual void passPerFrameUniformsAction(SunAction action);
     
     inline SunPhysicsSimulator & getPhysicsSimulator() { return physicsSimulator; }
     

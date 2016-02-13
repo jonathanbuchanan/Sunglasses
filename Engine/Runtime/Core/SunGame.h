@@ -29,9 +29,7 @@ class SunScene;
 
 class SunGame : public SunBase {
 public:
-    SunGame() {
-        
-    }
+    SunGame() { }
     
     void loop();
     void updateServices();

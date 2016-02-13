@@ -26,7 +26,7 @@ void FeatureRenderer::initialize() {
     };
     
     // GBuffer
-    SunRenderingNode *gbuffer = new SunRenderingNode("gbuffer", SunRenderingNodeTypeRoot, gbufferInputs, gbufferOutputs, gbufferShaders, scene);
+    SunRenderingNode *gbuffer = new SunRenderingNode("gbuffer", SunRenderingNodeTypeRoot, gbufferInputs, gbufferOutputs, gbufferShaders, (SunNode *)scene);
     gbuffer->initialize();
     gbuffer->setPOVType("camera");
     
@@ -55,23 +55,22 @@ void FeatureRenderer::initialize() {
     };
     
     // Final
-    SunRenderingNode *finalNode = new SunRenderingNode("final", SunRenderingNodeTypeEnd, finalInputs, finalOutputs, finalShaders, scene);
+    SunRenderingNode *finalNode = new SunRenderingNode("final", SunRenderingNodeTypeEnd, finalInputs, finalOutputs, finalShaders, (SunNode *)scene);
     finalNode->initialize();
     gbuffer->addSubNode(finalNode);
 }
 
 void FeatureRenderer::render(float delta) {
-    SunNodeSentAction renderAction;
-    renderAction.action = "render";
-    renderAction.parameters["deltaTime"] = &delta;
-    renderAction.recursive = true;
+    SunAction renderAction;
+    renderAction.setAction("render");
+	renderAction.addParameter("deltaTime", &delta); 
+    renderAction.setRecursive(true);
 
     sendAction(renderAction, rootRenderNode);
+
+	SunAction guiAction("renderGUI");
     
-    SunNodeSentAction guiAction;
-    guiAction.action = "renderGUI";
-    
-    sendAction(guiAction, scene);
+    sendAction(guiAction, (SunBase *)scene);
     
     // Swap the buffers
     swapBuffers();

@@ -18,9 +18,9 @@ SunMusicObject::SunMusicObject(string _file, string _name, bool _loops) {
 }
 
 void SunMusicObject::initializeDefaultPropertyAndFunctionMap() {
-    SunNode::initializeDefaultPropertyAndFunctionMap();
+    //SunNode::initializeDefaultPropertyAndFunctionMap();
 
-    addToFunctionMap("play", bind(&SunMusicObject::play, this, placeholders::_1));
-    addToFunctionMap("pause", bind(&SunMusicObject::pause, this, placeholders::_1));
-    addToFunctionMap("stop", bind(&SunMusicObject::stop, this, placeholders::_1));
+	addAction("play", &SunMusicObject::play);
+	addAction("pause", &SunMusicObject::pause);
+	addAction("stop", &SunMusicObject::stop); 
 }

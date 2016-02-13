@@ -9,19 +9,18 @@ SunGUIItem::SunGUIItem() {
 }
 
 void SunGUIItem::initializeDefaultPropertyAndFunctionMap() {
-    SunNode::initializeDefaultPropertyAndFunctionMap();
-
-    addToFunctionMap("render", bind(&SunGUIItem::render, this, std::placeholders::_1));
-    addToFunctionMap("button", bind(&SunGUIItem::button, this, std::placeholders::_1));
+    //SunNode::initializeDefaultPropertyAndFunctionMap()
+	addAction("render", &SunGUIItem::render);
+	addAction("button", &SunGUIItem::button); 
 }
 
-void SunGUIItem::render(SunNodeSentAction _action) {
+void SunGUIItem::render(SunAction action) {
     if (visible)
-        mesh.render(position, size, color, textured, highlightColor, highlighted, text, font, (SunTextRenderer *) _action.parameters["textRenderer"]);
+        mesh.render(position, size, color, textured, highlightColor, highlighted, text, font, (SunTextRenderer *)action.getParameter("textRenderer"));
 }
 
-void SunGUIItem::button(SunNodeSentAction _action) {
-    int button = *(int *)_action.parameters["button"];
+void SunGUIItem::button(SunAction action) {
+    int button = *(int *)action.getParameter("button");
     
     actions[button].run(this);
 }

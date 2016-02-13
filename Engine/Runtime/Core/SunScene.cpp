@@ -52,7 +52,7 @@ void SunScene::initializeDefaultPropertyAndFunctionMap() {
 
     addToPropertyMap("doCameraInput", SunNodeProperty(&doCameraInput, SunNodePropertyTypeBool));
 
-    addToFunctionMap("render", bind(&SunScene::render, this, std::placeholders::_1));
+	//addAction("render", &SunScene::render); 
     addToFunctionMap("renderGUISystem", bind(&SunScene::renderGUISystem, this, std::placeholders::_1));
     addToFunctionMap("passPerFrameUniforms", bind(&SunScene::passPerFrameUniformsAction, this, std::placeholders::_1));
     addToFunctionMap("initializeShadowMapRenderer", bind(&SunScene::initializeShadowMapRenderer, this, std::placeholders::_1));
@@ -185,7 +185,7 @@ void SunScene::passPerFrameUniforms(SunShader _shader, vector<SunNodeSentActionC
     sendAction(action, rootRenderableNode);
 }
 
-void SunScene::passPerFrameUniformsAction(SunNodeSentAction _action) {    
+void SunScene::passPerFrameUniformsAction(SunAction action) {    
     SunShader _shader = *(SunShader *)_action.parameters["shader"];
     vector<SunNodeSentActionCondition> _conditions = *(vector<SunNodeSentActionCondition> *)_action.parameters["conditions"];
     

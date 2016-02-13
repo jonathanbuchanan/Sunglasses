@@ -15,10 +15,8 @@ public:
 	
 	virtual void initialize();
 	virtual void initializeDefaultPropertyAndFunctionMap();
-	void loadDirectionalLights(SunNodeSentAction _action);
-	virtual void render(SunNodeSentAction _action);
-	
-	virtual void test(SunNodeSentAction _action);
+	void loadDirectionalLights(SunAction action);
+	virtual void render(SunAction action);
 	
 	inline vector<SunDirectionalLightObject *> & getLights() { return lights; }
 	inline SunDirectionalLightObject * getLightAtIndex(int i) { return lights[i]; }

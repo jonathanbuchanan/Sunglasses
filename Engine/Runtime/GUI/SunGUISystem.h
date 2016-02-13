@@ -25,7 +25,7 @@ public:
     SunGUISystem() { initializeDefaultPropertyAndFunctionMap(); }
     
     virtual void initializeDefaultPropertyAndFunctionMap();
-    virtual void render(SunNodeSentAction _action);
+    virtual void render(SunAction action);
     void loadFonts(SunTextRenderer *_textRenderer);
     
     inline vector<SunGUIFont> & getFonts() { return fonts; }

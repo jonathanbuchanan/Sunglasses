@@ -32,7 +32,7 @@ public:
     
     virtual void initializeDefaultPropertyAndFunctionMap();
     void addSoundFromBuffer(SunSoundBufferStorage *_storage, string _soundName, float _minimumDistance, float _attenuation);
-    void playSound(SunNodeSentAction _action);
+    void playSound(SunAction action);
     
     inline map<string, SunSound> & getSounds() { return sounds; }
     inline SunSound & getSoundForString(string s) { return sounds[s]; }

@@ -8,15 +8,13 @@ FeatureScene::FeatureScene() {
 }
 
 void FeatureScene::initializeDefaultPropertyAndFunctionMap() {
-    addToFunctionMap("render", bind(&FeatureScene::render, this, std::placeholders::_1));
-    addToFunctionMap("renderGUI", bind(&FeatureScene::renderGUI, this, std::placeholders::_1));
-    addToFunctionMap("passPerFrameUniforms", bind(&SunScene::passPerFrameUniformsAction, this, std::placeholders::_1));
+    addAction("render", &FeatureScene::render);
+	addAction("renderGUI", &FeatureScene::renderGUI);
+	addAction("passPerFrameUniforms", &FeatureScene::passPerFrameUniformsAction);
 }
 
-void FeatureScene::initialize() {
-    setRotation(glm::vec3(0, 0, 0));
-    setScale(glm::vec3(1.0, 1.0, 1.0));
-    setRootNode(this);
+void FeatureScene::initialize() { 
+	//setRootNode(this);
     
     camera = SunCamera(SunCameraProjectionTypePerspective, 45.0f, 0, 0, 0, 0);
     camera.setKeyboardManager((SunKeyboardManager *)(*services)["keyboard_manager"]);
@@ -24,7 +22,6 @@ void FeatureScene::initialize() {
     
     this->setName("Scene");
     initializeDefaultPropertyAndFunctionMap();
-    setPosition(glm::vec3(0, 0, 0));
     
     renderer.setSceneNode(this);
     renderer.setWindow(window);
@@ -33,8 +30,7 @@ void FeatureScene::initialize() {
     
     rootRenderableNode = new SunObject();
     rootRenderableNode->setName("RootRenderableNode");
-    rootRenderableNode->initializeDefaultPropertyAndFunctionMap();
-    addSubNode(rootRenderableNode);
+    rootRenderableNode->initializeDefaultPropertyAndFunctionMap(); 
     
     house = new SunObject("cube", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Cube.dae", false);
     
@@ -86,14 +82,14 @@ void FeatureScene::initialize() {
     item->setColor(glm::vec3(1.0f, 1.0f, 1.0f));
 }
 
-void FeatureScene::render(SunNodeSentAction _action) {
-    SunScene::render(_action);
+void FeatureScene::render(SunAction action) {
+    SunScene::render(action);
 }
 
-void FeatureScene::renderGUI(SunNodeSentAction _action) {
-    SunNodeSentAction GUIAction;
-    GUIAction.action = "render";
-    GUIAction.parameters["textRenderer"] = &textRenderer;
+void FeatureScene::renderGUI(SunAction action) {
+    SunAction GUIAction;
+    GUIAction.setAction("render");
+	GUIAction.addParameter("textRenderer", &textRenderer); 
     
     sendAction(GUIAction, &guiSystem);
 }

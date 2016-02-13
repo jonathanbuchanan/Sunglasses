@@ -32,7 +32,7 @@ public:
     
     virtual void initializeDefaultPropertyAndFunctionMap();
     
-    virtual void passUniformAction(SunNodeSentAction _action);
+    virtual void passUniformAction(SunAction action);
     virtual void passUniform(SunShader *_shader);
     
     inline string & getUniformName() { return uniformName; }

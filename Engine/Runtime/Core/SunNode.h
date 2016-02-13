@@ -5,15 +5,13 @@
 #ifndef Sunglasses_SunNode_h
 #define Sunglasses_SunNode_h
 
+#include "Core/SunBase.h"
 #include "SunService.h"
 #include <vector>
 #include <string>
 #include <map>
-#include <GL/glew.h>
 #include "./Utility.h"
 #include <functional>
-
-using namespace std;
 
 class SunNode;
 
@@ -131,26 +129,10 @@ struct SunNodeSentAction {
 
 typedef function<void(SunNodeSentAction)>SunNodeFunctionPointer;
 
-class SunNode {
+class SunNode : public SunBase {
 public:
-    SunNode() {
-        
-    }
-    
-    virtual void changeValue(SunNodeSentAction _action);
-    
-    virtual void toggleBool(SunNodeSentAction _action);
-    
-    virtual void initializeDefaultPropertyAndFunctionMap();
-    
-    virtual void receiveAction(SunNodeSentAction _action);
-    
-    virtual void sendAction(SunNodeSentAction _action, SunNode *_receiver);
-    
-    virtual void sendActionToAllSubNodes(SunNodeSentAction _action);
-    
-    virtual void test(SunNodeSentAction _action);
-    
+    void sendActionToAllSubNodes(SunAction action);
+
     virtual void addSubNode(SunNode *_subNode);
     
     virtual void findNode(string _path, SunNode &_node);
@@ -160,27 +142,13 @@ public:
     virtual void findNodeWithName(string _name, SunNode &_node);
     
     virtual void findPointerNodeWithName(string _name, SunNode *&_node);
-    
-    virtual void log();
-    
-    inline map<string, SunNodeProperty> & getPropertyMap() { return propertyMap; }
-    inline void addToPropertyMap(string propertyName, SunNodeProperty property) { propertyMap[propertyName] = property; }
-    
-    inline map<string, SunNodeFunctionPointer> & getFunctionMap() { return functionMap; }
-    inline void addToFunctionMap(string functionName, SunNodeFunctionPointer function) { functionMap[functionName] = function; }
-    
+        
     inline vector<SunNode *> & getSubNodes() { return subNodes; }
     inline int getSubNodesSize() { return subNodes.size(); }
     inline SunNode * getSubNodeAtIndex(int i) { return subNodes[i]; }
     
     inline int getLevel() { return level; }
     inline void setLevel(int _level) { level = _level; }
-    
-    inline string getName() { return name; }
-    inline void setName(string _name) { name = _name; }
-    
-    inline string getType() { return type; }
-    inline void setType(string _type) { type = _type; }
     
     inline SunNode * getRootNode() { return rootNode; }
     inline void setRootNode(SunNode *_rootNode) { rootNode = _rootNode; }
@@ -189,18 +157,12 @@ public:
     inline int getParentsSize() { return parents.size(); }
     inline SunNode * getParentAtIndex(int i) { return parents[i]; }
 private:
-    map<string, SunNodeProperty> propertyMap;
-    map<string, SunNodeFunctionPointer> functionMap;
     GLuint parentsReady = 0;
     vector<SunNode *> subNodes;
     vector<SunNode *> parents;
-    int level = 0;
-    string name;
-    string type;
+    int level = 0; 
     
     SunNode *rootNode;
 };
-
-extern void sendAction(SunNodeSentAction _action, SunNode *_receiver);
 
 #endif

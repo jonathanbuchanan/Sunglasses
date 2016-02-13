@@ -63,11 +63,10 @@ SunRenderingNode::SunRenderingNode(string _name, SunRenderingNodeType _rendering
 	initializeDefaultPropertyAndFunctionMap();
 }
 
-void SunRenderingNode::initializeDefaultPropertyAndFunctionMap() {
-    SunNode::initializeDefaultPropertyAndFunctionMap();
-
-    addToFunctionMap("render", bind(&SunRenderingNode::render, this, std::placeholders::_1));
-    addToFunctionMap("test", bind(&SunRenderingNode::test, this, std::placeholders::_1));
+void SunRenderingNode::initializeDefaultPropertyAndFunctionMap() { 
+	addAction("render", &SunRenderingNode::render);
+    //addToFunctionMap("render", bind(&SunRenderingNode::render, this, std::placeholders::_1));
+    //addToFunctionMap("test", bind(&SunRenderingNode::test, this, std::placeholders::_1));
 }
 
 void SunRenderingNode::test(SunNodeSentAction _action) {
@@ -81,8 +80,8 @@ void SunRenderingNode::test(SunNodeSentAction _action) {
 	}
 }
 
-void SunRenderingNode::render(SunNodeSentAction _action) {
-    GLfloat _deltaTime = *(GLfloat *)_action.parameters["deltaTime"];
+void SunRenderingNode::render(SunAction action) {
+	GLfloat _deltaTime = *(GLfloat *)action.getParameter("deltaTime"); 
     if (renderingType == SunRenderingNodeTypeRoot) {
         clear();
 
@@ -93,8 +92,7 @@ void SunRenderingNode::render(SunNodeSentAction _action) {
         clear();
 
         // Tell the scene to render with the shaders
-        SunNodeSentAction renderAction;
-        renderAction.action = "render";
+		SunAction renderAction("render");
 
         map<string, SunShader> _shaders;
         for (map<string, SunRenderingNodeShader>::iterator iterator = shaders.begin(); iterator != shaders.end(); iterator++) {
@@ -102,10 +100,10 @@ void SunRenderingNode::render(SunNodeSentAction _action) {
             _shaders[iterator->first] = shader.shader;
         }
         
-        renderAction.parameters["shaderMap"] = &_shaders;
-        renderAction.parameters["deltaTime"] = &_deltaTime;
-        renderAction.parameters["POVtype"] = &POVtype;
-        renderAction.parameters["POV"] = &POV;
+        renderAction.addParameter("shaderMap", &_shaders);
+        renderAction.addParameter("deltaTime", &_deltaTime);
+        renderAction.addParameter("POVtype", &POVtype);
+        renderAction.addParameter("POV", &POV);
         
         sendAction(renderAction, scene);
     } else if (renderingType == SunRenderingNodeTypeIntermediate) {
@@ -130,8 +128,7 @@ void SunRenderingNode::render(SunNodeSentAction _action) {
         
         if (shaderType == SunRenderingNodeShaderTypeScene) {
             // Tell the scene to render with the shaders
-            SunNodeSentAction renderAction;
-            renderAction.action = "render";
+			SunAction renderAction("render");
 
             map<string, SunShader> _shaders;
             for (map<string, SunRenderingNodeShader>::iterator iterator = shaders.begin(); iterator != shaders.end(); iterator++) {
@@ -139,10 +136,10 @@ void SunRenderingNode::render(SunNodeSentAction _action) {
                 _shaders[iterator->first] = shader.shader;
             }
 
-            renderAction.parameters["shaderMap"] = &_shaders;
-            renderAction.parameters["deltaTime"] = &_deltaTime;
-            renderAction.parameters["POVtype"] = &POVtype;
-            renderAction.parameters["POV"] = &POV;
+			renderAction.addParameter("shaderMap", &_shaders);
+			renderAction.addParameter("deltaTime", &_deltaTime);
+			renderAction.addParameter("POVtype", &POVtype);
+			renderAction.addParameter("POV", &POV);
 
             sendAction(renderAction, scene);
         } else if (shaderType == SunRenderingNodeShaderTypeQuad) {
@@ -191,8 +188,7 @@ void SunRenderingNode::render(SunNodeSentAction _action) {
         clear();
 
         // Tell the scene to render with the shaders
-        SunNodeSentAction renderAction;
-        renderAction.action = "render";
+		SunAction renderAction("render");
 
         map<string, SunShader> _shaders;
         for (map<string, SunRenderingNodeShader>::iterator iterator = shaders.begin(); iterator != shaders.end(); iterator++) {
@@ -200,19 +196,18 @@ void SunRenderingNode::render(SunNodeSentAction _action) {
             _shaders[iterator->first] = shader.shader;
         }
 
-        renderAction.parameters["shaderMap"] = &_shaders;
-        renderAction.parameters["deltaTime"] = &_deltaTime;
+		renderAction.addParameter("shaderMap", &_shaders);
+		renderAction.addParameter("deltaTime", &_deltaTime);
 
         sendAction(renderAction, scene);
     }
 }
 
 void SunRenderingNode::passUniforms(SunShader *_shader) {
-    SunNodeSentAction uniformAction;
-    uniformAction.action = "passPerFrameUniforms";
-    uniformAction.parameters["shader"] = _shader;
+    SunAction uniformAction("passPerFrameUniforms");
+	uniformAction.addParameter("shader", _shader);
 
-    SunNodeSentActionCondition condition;
+    /*SunNodeSentActionCondition condition;
     condition.nodeProperty = "type";
     condition.comparativeProperty = SunNodeProperty(new string("light"), SunNodePropertyTypeString);
     condition.conditionType = SunNodeSentActionConditionTypeEqualTo;
@@ -220,25 +215,23 @@ void SunRenderingNode::passUniforms(SunShader *_shader) {
     vector<SunNodeSentActionCondition> conditions;
     conditions.push_back(condition);
 
-    uniformAction.parameters["conditions"] = &conditions;
+    uniformAction.parameters["conditions"] = &conditions;*/
 
     sendAction(uniformAction, scene);
 
-    SunNodeSentAction _uniformAction;
-    _uniformAction.action = "passUniform";
-    _uniformAction.parameters["shader"] = _shader;
+	SunAction passUniformAction("passUniform");
+	passUniformAction.addParameter("passUniform", _shader);
 
     for (int i = 0; i < uniforms.size(); i++)
-        sendAction(_uniformAction, uniforms[i]);
+        sendAction(passUniformAction, uniforms[i]);
 }
 
 void SunRenderingNode::passUniforms(SunShader *_shader, int textureUnits) {
-    SunNodeSentAction uniformAction;
-    uniformAction.action = "passPerFrameUniforms";
-    uniformAction.parameters["shader"] = _shader;
-	uniformAction.parameters["usedTextureUnits"] = &textureUnits;
+	SunAction uniformAction("passPerFrameUniforms");
+	uniformAction.addParameter("shader", _shader);
+	uniformAction.addParameter("usedTextureUnits", &textureUnits);
 
-    SunNodeSentActionCondition condition;
+    /*SunNodeSentActionCondition condition;
     condition.nodeProperty = "type";
     condition.comparativeProperty = SunNodeProperty(new string("light"), SunNodePropertyTypeString);
     condition.conditionType = SunNodeSentActionConditionTypeEqualTo;
@@ -246,16 +239,15 @@ void SunRenderingNode::passUniforms(SunShader *_shader, int textureUnits) {
     vector<SunNodeSentActionCondition> conditions;
     conditions.push_back(condition);
 
-    uniformAction.parameters["conditions"] = &conditions;
+    uniformAction.parameters["conditions"] = &conditions;*/
 
     sendAction(uniformAction, scene);
 
-    SunNodeSentAction _uniformAction;
-    _uniformAction.action = "passUniform";
-    _uniformAction.parameters["shader"] = _shader;
-
+	SunAction passUniformAction("passUniform");
+	passUniformAction.addParameter("shader", _shader);
+ 
     for (int i = 0; i < uniforms.size(); i++)
-        sendAction(_uniformAction, uniforms[i]);
+        sendAction(passUniformAction, uniforms[i]);
 }
 
 void SunRenderingNode::initialize() {

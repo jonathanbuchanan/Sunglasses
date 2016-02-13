@@ -13,6 +13,8 @@
 #include "./SunPrimitives.h"
 #include "./SunCamera.h"
 
+class SunScene;
+
 class SunRenderer {
 public:
     SunRenderer() { }
@@ -28,14 +30,14 @@ public:
     inline void setScreenWidth(GLfloat width) { screenWidth = width; }
     inline void setScreenHeight(GLfloat height) { screenHeight = height; }
     
-    inline SunNode * getSceneNode() { return scene; }
-    inline void setSceneNode(SunNode *_scene) { scene = _scene; }
+    inline SunScene * getSceneNode() { return scene; }
+    inline void setSceneNode(SunScene *_scene) { scene = _scene; }
     
     inline SunRenderingNode * getRootRenderNode() { return rootRenderNode; }
     inline void setRootRenderNode(SunRenderingNode *_root) { rootRenderNode = _root; }
 protected:
 	// Scene Objects
-    SunNode *scene;
+    SunScene *scene;
     SunRenderingNode *rootRenderNode;
 	
 private:

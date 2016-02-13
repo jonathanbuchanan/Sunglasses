@@ -19,7 +19,6 @@ for directory, subFolders, files in os.walk("./"):
             for ending in allowedEndings:
                 if file.endswith(ending):
                     allowed = True
-                
                 if allowed:
                     inHeader = True
                     filepath = directory + '/' + file
@@ -28,8 +27,7 @@ for directory, subFolders, files in os.walk("./"):
                             continue
                         else:
                             print(line, end = '')
-                            inHeader = False
-                    
+                            inHeader = False 
                     for lineNumber, line in enumerate(fileinput.input(filepath, inplace = True, backup = False)):
                         if lineNumber == 0:
                             print(copyright, end = '')

@@ -4,13 +4,13 @@
 #include "SunShaderUniformObject.h"
 
 void SunShaderUniformObject::initializeDefaultPropertyAndFunctionMap() {
-    SunNode::initializeDefaultPropertyAndFunctionMap();
+    //SunNode::initializeDefaultPropertyAndFunctionMap();
 
-    addToFunctionMap("passUniform", bind(&SunShaderUniformObject::passUniformAction, this, placeholders::_1));
+	addAction("passUniform", &SunShaderUniformObject::passUniformAction);
 }
 
-void SunShaderUniformObject::passUniformAction(SunNodeSentAction _action) {
-    SunShader shader = *(SunShader *) _action.parameters["shader"];
+void SunShaderUniformObject::passUniformAction(SunAction action) {
+    SunShader shader = *(SunShader *)action.getParameter("shader");
     
     switch (type) {
     	case SunShaderUniformObjectTypeMatrix4x4:

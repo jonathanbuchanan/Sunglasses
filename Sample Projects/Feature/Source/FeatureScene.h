@@ -23,8 +23,8 @@ public:
 private:
     void initializeDefaultPropertyAndFunctionMap();
     
-    void render(SunNodeSentAction _action);
-    void renderGUI(SunNodeSentAction _action);
+    void render(SunAction action);
+    void renderGUI(SunAction action);
     
     // Services
     map<string, SunService *> *services;
