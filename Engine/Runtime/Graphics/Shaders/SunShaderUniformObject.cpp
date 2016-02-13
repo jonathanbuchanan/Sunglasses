@@ -65,8 +65,8 @@ void SunShaderHemisphereKernelObject::generate(int _sampleCount) {
     }
 }
 
-void SunShaderHemisphereKernelObject::passUniform(SunNodeSentAction _action) {
-    SunShader shader = *(SunShader *) _action.parameters["shader"];
+void SunShaderHemisphereKernelObject::passUniform(SunAction action) {
+    SunShader shader = *(SunShader *)action.getParameter("shader");
 
     for (int i = 0; i < sampleCount; i++) {
         GLint location = shader.getUniformLocation(getUniformName() + "[" + to_string(i) + "]");

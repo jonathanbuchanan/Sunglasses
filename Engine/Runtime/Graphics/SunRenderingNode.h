@@ -83,7 +83,7 @@ class SunRenderingNodeShader : public SunNode {
 public:
     SunShader shader;
     SunRenderingNodeShaderType shaderType;
-    SunNodeSentAction action;
+    SunAction action;
     
     SunRenderingNodeShader() {
         
@@ -93,11 +93,11 @@ public:
         string hi = "hi";
         shader = SunShader(_vertexSource.c_str(), _fragmentSource.c_str(), _preprocessorSource.c_str(), hi.c_str());
         
-        action.action = "render";
-        action.parameters["shader"] = &shader;
-        action.recursive = true;
+        action.setAction("render");
+        action.addParameter("shader", &shader);
+        action.setRecursive(true);
         
-        SunNodeSentActionCondition condition;
+        /*SunNodeSentActionCondition condition;
         condition.conditionType = SunNodeSentActionConditionTypeEqualTo;
         condition.nodeProperty = "renderType";
         if (_type == SunRenderingNodeShaderTypeSceneTextured) {
@@ -108,7 +108,7 @@ public:
             condition.comparativeProperty = SunNodeProperty(&renderType, SunNodePropertyTypeInt);
         }
         
-        action.conditions.push_back(condition);
+        action.conditions.push_back(condition);*/
         
         shaderType = _type;
     }
@@ -116,11 +116,11 @@ public:
     SunRenderingNodeShader(vector<string> sources, vector<SunShaderSourceType> sourceTypes, string preprocessorPath, SunRenderingNodeShaderType _type) {
         shader = SunShader(sources, sourceTypes, preprocessorPath);
         
-        action.action = "render";
-        action.parameters["shader"] = &shader;
-        action.recursive = true;
+		action.setAction("render");
+		action.addParameter("shader", &shader);
+		action.setRecursive(true); 
         
-        SunNodeSentActionCondition condition;
+        /*SunNodeSentActionCondition condition;
         condition.conditionType = SunNodeSentActionConditionTypeEqualTo;
         condition.nodeProperty = "renderType";
         if (_type == SunRenderingNodeShaderTypeSceneTextured) {
@@ -131,7 +131,7 @@ public:
      		condition.comparativeProperty = SunNodeProperty(&renderType, SunNodePropertyTypeInt);
         }
         
-        action.conditions.push_back(condition);
+        action.conditions.push_back(condition);*/
         
         shaderType = _type;
     }
@@ -153,8 +153,6 @@ public:
 	void passUniforms(SunShader *_shader, int textureUnits);
     virtual void initialize();
     void initializeOutput(SunRenderingNodeOutput *_output);
-    
-    virtual void test(SunNodeSentAction _action);
     
     inline SunRenderingNodeType & getRenderingType() { return renderingType; }
     inline void setRenderingType(SunRenderingNodeType _type) { renderingType = _type; }

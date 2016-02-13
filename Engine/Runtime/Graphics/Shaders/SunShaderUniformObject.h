@@ -60,7 +60,7 @@ public:
     
     virtual void generate(int _sampleCount);
     
-    virtual void passUniform(SunNodeSentAction _action);
+    virtual void passUniform(SunAction action);
     
     inline vector<glm::vec3> & getSamples() { return samples; }
     inline void addToSamples(glm::vec3 _sample) { samples.push_back(_sample); }

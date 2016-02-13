@@ -67,18 +67,7 @@ void SunRenderingNode::initializeDefaultPropertyAndFunctionMap() {
 	addAction("render", &SunRenderingNode::render);
     //addToFunctionMap("render", bind(&SunRenderingNode::render, this, std::placeholders::_1));
     //addToFunctionMap("test", bind(&SunRenderingNode::test, this, std::placeholders::_1));
-}
-
-void SunRenderingNode::test(SunNodeSentAction _action) {
-	cout << "Name: " + this->getName() + ", Parents: " << endl;
-	for (int i = 0; i < this->getParentsSize(); i++) {
-		cout << "	" + this->getParentAtIndex(i)->getName() << endl;
-	}
-	cout << "Children: " << endl;
-	for (int i = 0; i < this->getSubNodesSize(); i++) {
-		cout << "	" + this->getSubNodeAtIndex(i)->getName() << endl;
-	}
-}
+} 
 
 void SunRenderingNode::render(SunAction action) {
 	GLfloat _deltaTime = *(GLfloat *)action.getParameter("deltaTime"); 

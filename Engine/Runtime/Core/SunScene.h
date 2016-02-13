@@ -45,7 +45,7 @@ public:
     virtual void render(SunAction action);
     void renderGUISystem(SunAction action);
     void passPerFrameUniforms(SunShader _shader);
-    void passPerFrameUniforms(SunShader _shader, vector<SunNodeSentActionCondition> _conditions);
+    //void passPerFrameUniforms(SunShader _shader, vector<SunNodeSentActionCondition> _conditions);
     virtual void passPerFrameUniformsAction(SunAction action);
     
     inline SunPhysicsSimulator & getPhysicsSimulator() { return physicsSimulator; }
