@@ -25,18 +25,18 @@ SunPointLightObject::SunPointLightObject(string _name) {
 void SunPointLightObject::initializeDefaultPropertyAndFunctionMap() {
     SunObject::initializeDefaultPropertyAndFunctionMap();
 	
-	addToFunctionMap("shadowMap", bind(&SunPointLightObject::shadowMap, this, std::placeholders::_1));
+	addAction("shadowMap", &SunPointLightObject::shadowMap); 
 	
-    setType("light");
+    //setType("light");
 }
 
-void SunPointLightObject::passPerFrameUniforms(SunNodeSentAction _action) {
-    SunObject::passPerFrameUniforms(_action);
+void SunPointLightObject::passPerFrameUniforms(SunAction action) {
+    SunObject::passPerFrameUniforms(action);
 
-    SunShader _shader = *(SunShader *)_action.parameters["shader"];
+    SunShader _shader = *(SunShader *)action.getParameter("shader");
 	int usedTextureUnits;
-	if (_action.parameters.find("usedTextureUnits") != _action.parameters.end())
-		usedTextureUnits = *(int *)_action.parameters["usedTextureUnits"];
+	if (action.parameterExists("usedTextureUnits"))
+		usedTextureUnits = *(int *)action.getParameter("usedTextureUnits");
     
 	if (shadows) {
 		// Set the uniforms for the point light's color
@@ -69,24 +69,23 @@ void SunPointLightObject::passPOVUniforms(SunShader _shader) {
 		glUniformMatrix4fv(_shader.getUniformLocation("shadowMatrices[" + to_string(i) + "]"), 1, GL_FALSE, glm::value_ptr(lightTransforms[i]));
 }
 
-void SunPointLightObject::shadowMap(SunNodeSentAction _action) {
-	SunNode *scene = (SunNode *)_action.parameters["scene"];
+void SunPointLightObject::shadowMap(SunAction action) {
+	SunNode *scene = (SunNode *)action.getParameter("scene");
 	
 	glViewport(0, 0, 1024, 1024);
 	glBindFramebuffer(GL_FRAMEBUFFER, shadowMapFramebuffer);
 	clear();
 	
-	SunNodeSentAction renderAction;
-	renderAction.action = "render";
-	renderAction.parameters["deltaTime"] = _action.parameters["deltaTime"];
+	SunAction renderAction("render");
+	renderAction.addParameter("deltaTime", action.getParameter("deltaTime")); 
 	
 	string POVtype = "light";
 	string POV = this->getName();
-	
-	renderAction.parameters["POVtype"] = &POVtype;
-    renderAction.parameters["POV"] = &POV;
-	renderAction.parameters["shaderMap"] = _action.parameters["shaderMap"];
-	renderAction.parameters["uniforms"] = &_lightTransforms;
+
+	renderAction.addParameter("POVtype", &POVtype);
+	renderAction.addParameter("POV", &POV);
+	renderAction.addParameter("shaderMap", action.getParameter("shaderMap"));
+	renderAction.addParameter("uniforms", &_lightTransforms); 
 	
 	sendAction(renderAction, scene);
 	

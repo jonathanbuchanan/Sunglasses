@@ -8,17 +8,17 @@ SunGUIMenu::SunGUIMenu() {
 }
 
 void SunGUIMenu::initializeDefaultPropertyAndFunctionMap() {
-    addToFunctionMap("render", std::bind(&SunGUIMenu::render, this, std::placeholders::_1));
-    addToFunctionMap("key", std::bind(&SunGUIMenu::key, this, std::placeholders::_1));
+	addAction("render", &SunGUIMenu::render);
+	addAction("key", &SunGUIMenu::key); 
 }
 
-void SunGUIMenu::render(SunNodeSentAction _action) {
+void SunGUIMenu::render(SunAction action) {
     if (visible)
-        sendActionToAllSubNodes(_action);
+        sendActionToAllSubNodes(action);
 }
 
-void SunGUIMenu::key(SunNodeSentAction _action) {
-    int key = *(int *)_action.parameters["key"];
+void SunGUIMenu::key(SunAction action) {
+    int key = *(int *)action.getParameter("key");
     
     actions[key].run(this);
 }

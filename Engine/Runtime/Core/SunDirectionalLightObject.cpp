@@ -23,25 +23,25 @@ SunDirectionalLightObject::SunDirectionalLightObject(string _name) {
 void SunDirectionalLightObject::initializeDefaultPropertyAndFunctionMap() {
     SunObject::initializeDefaultPropertyAndFunctionMap();
     
-    addToFunctionMap("shadowMap", bind(&SunDirectionalLightObject::shadowMap, this, std::placeholders::_1));
+	addAction("shadowMap", &SunDirectionalLightObject::shadowMap); 
     
-    setType("light");
+    //setType("light");
 }
 
-void SunDirectionalLightObject::passPerFrameUniforms(SunNodeSentAction _action) {
-    SunObject::passPerFrameUniforms(_action);
+void SunDirectionalLightObject::passPerFrameUniforms(SunAction action) {
+    SunObject::passPerFrameUniforms(action);
     
-    SunShader _shader = *(SunShader *)_action.parameters["shader"];
+    SunShader _shader = *(SunShader *)action.getParameter("shader");
 	int usedTextureUnits;
-	if (_action.parameters.find("usedTextureUnits") != _action.parameters.end())
-		usedTextureUnits = *(int *)_action.parameters["usedTextureUnits"];
+	if (action.parameterExists("usedTextureUnits"))
+		usedTextureUnits = *(int *)action.getParameter("usedTextureUnits");
 	
     glUniform3f(_shader.getUniformLocation("directionalLights[" + std::to_string(directionalLightID) + "].color"), color.r, color.g, color.b);
     
     glUniform3f(_shader.getUniformLocation("directionalLights[" + std::to_string(directionalLightID) + "].direction"), direction.x, direction.y, direction.z);
 }
 
-void SunDirectionalLightObject::shadowMap(SunNodeSentAction _action) {
+void SunDirectionalLightObject::shadowMap(SunAction action) {
 	
 }
 

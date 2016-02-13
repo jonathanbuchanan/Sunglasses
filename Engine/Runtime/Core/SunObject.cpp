@@ -18,35 +18,35 @@ SunObject::SunObject(string _name, string _modelPath, bool _flipNormals) {
 }
 
 void SunObject::initializeDefaultPropertyAndFunctionMap() {
-    SunNode::initializeDefaultPropertyAndFunctionMap();
+    //SunNode::initializeDefaultPropertyAndFunctionMap();
 
-    setType("object");
+    //setType("object");
 
     // Map position, rotation, and scale to the property map
-    addToPropertyMap("position", SunNodeProperty(&position, SunNodePropertyTypeVec3));
-    addToPropertyMap("rotation", SunNodeProperty(&rotation, SunNodePropertyTypeVec3));
-    addToPropertyMap("scale", SunNodeProperty(&scale, SunNodePropertyTypeVec3));
-    addToPropertyMap("renderType", SunNodeProperty(&renderType, SunNodePropertyTypeInt));
+    //addToPropertyMap("position", SunNodeProperty(&position, SunNodePropertyTypeVec3));
+    //addToPropertyMap("rotation", SunNodeProperty(&rotation, SunNodePropertyTypeVec3));
+    //addToPropertyMap("scale", SunNodeProperty(&scale, SunNodePropertyTypeVec3));
+    //addToPropertyMap("renderType", SunNodeProperty(&renderType, SunNodePropertyTypeInt));
 
     // Add the "render" function to the function map
-    addToFunctionMap("update", bind(&SunObject::update, this, std::placeholders::_1));
-    addToFunctionMap("render", bind(&SunObject::render, this, std::placeholders::_1));
-    addToFunctionMap("playSound", bind(&SunObject::playSound, this, std::placeholders::_1));
+	addAction("update", &SunObject::update);
+	addAction("render", &SunObject::render);
+	addAction("playSound", &SunObject::playSound); 
     //addToFunctionMap("passPerFrameUniforms", bind(&SunObject::passPerFrameUniforms, this, std::placeholders::_1));
 }
 
-void SunObject::update(SunNodeSentAction _action) {
+void SunObject::update(SunAction action) {
     if (physicsEnabled == true)
         position = physicsObject.getPosition();
 }
 
-void SunObject::render(SunNodeSentAction _action) {
-    if (_action.parameters.find("renderType") != _action.parameters.end()) {
-        if (renderType == *(int *)_action.parameters["renderType"] || *(int *)_action.parameters["renderType"] == SunMeshRenderTypeAll) {
-            SunShader _shader = *(SunShader *) _action.parameters["shader"];
-            GLfloat _deltaTime = *(GLfloat *) _action.parameters["deltaTime"];
+void SunObject::render(SunAction action) {
+    if (action.parameterExists("renderType")) {
+        if (renderType == *(int *)action.getParameter("renderType") || *(int *)action.getParameter("renderType") == SunMeshRenderTypeAll) {
+            SunShader _shader = *(SunShader *)action.getParameter("shader");
+            GLfloat _deltaTime = *(GLfloat *)action.getParameter("deltaTime");
             
-            SunMeshRenderType _renderType = (SunMeshRenderType)(*(int *)_action.parameters["renderType"]);
+            SunMeshRenderType _renderType = (SunMeshRenderType)(*(int *)action.getParameter("renderType"));
                         
             // Loop through the models and render them
             for (int i = 0; i < models.size(); ++i) {
@@ -54,8 +54,8 @@ void SunObject::render(SunNodeSentAction _action) {
             }
         }
     } else {
-        SunShader _shader = *(SunShader *) _action.parameters["shader"];
-        GLfloat _deltaTime = *(GLfloat *) _action.parameters["deltaTime"];
+        SunShader _shader = *(SunShader *)action.getParameter("shader");
+        GLfloat _deltaTime = *(GLfloat *)action.getParameter("deltaTime");
 
         // Loop through the models and render them
         for (int i = 0; i < models.size(); ++i) {
@@ -64,12 +64,14 @@ void SunObject::render(SunNodeSentAction _action) {
     }
 }
 
-void SunObject::playSound(SunNodeSentAction _action) {
-    _action.parameters["position"] = &position;
-    sendAction(_action, &sound);
+void SunObject::playSound(SunAction action) {
+	SunAction soundAction("playSound");
+	soundAction.addParameter("position", &position);
+
+    sendAction(soundAction, &sound);
 }
 
-void SunObject::passPerFrameUniforms(SunNodeSentAction _action) {
+void SunObject::passPerFrameUniforms(SunAction action) {
     
 }
 

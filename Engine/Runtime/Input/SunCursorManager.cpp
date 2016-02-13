@@ -29,10 +29,10 @@ void SunCursorManager::update() {
     double x, y;
     glfwGetCursorPos(window, &x, &y);
     
-    SunNodeSentAction action;
-    action.action = "cursor";
-    action.parameters["x"] = &x;
-    action.parameters["y"] = &y;
+	SunAction action("cursor");
+
+    action.addParameter("x", &x);
+	action.addParameter("y", &y); 
     
     for (auto subscriber : subscribers)
         sendAction(action, subscriber);
@@ -66,6 +66,6 @@ glm::vec2 SunCursorManager::getCursorPositionNDC() {
     return glm::vec2((x - (width / 2)) / (width / 2), (y - (height / 2)) / (height / 2));
 }
 
-void SunCursorManager::subscribe(SunNode *subscriber) {
+void SunCursorManager::subscribe(SunBase *subscriber) {
     subscribers.push_back(subscriber);
 }

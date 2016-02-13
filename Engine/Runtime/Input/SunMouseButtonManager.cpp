@@ -26,37 +26,33 @@ void SunMouseButtonManager::update() {
     }
     
     for (int i = 0; i < subscribers.size(); i++) {
-        SunNode *subscriber = std::get<0>(subscribers[i]);
+        SunBase *subscriber = std::get<0>(subscribers[i]);
         int button = std::get<1>(subscribers[i]);
         int buttonState = buttons[button];
         int oldState = old[button];
         SunButtonEvent event = std::get<2>(subscribers[i]);
         
-        SunNodeSentAction action;
-        action.parameters["button"] = &button;
-        
+		SunAction action("button");
+		action.addParameter("button", &button);
+
         switch (event) {
             case SunButtonEventUpSingle:
-                if (buttonState == GLFW_RELEASE && oldState == GLFW_PRESS) {
-                    action.action = "button";
+                if (buttonState == GLFW_RELEASE && oldState == GLFW_PRESS) { 
                     sendAction(action, subscriber);
                 }
                 break;
             case SunButtonEventDownSingle:
-                if (buttonState == GLFW_PRESS && oldState == GLFW_RELEASE) {
-                    action.action = "button";
+                if (buttonState == GLFW_PRESS && oldState == GLFW_RELEASE) { 
                     sendAction(action, subscriber);
                 }
                 break;
             case SunButtonEventUpContinuous:
-                if (buttonState == GLFW_RELEASE) {
-                    action.action = "button";
+                if (buttonState == GLFW_RELEASE) { 
                     sendAction(action, subscriber);
                 }
                 break;
             case SunButtonEventDownContinuous:
-                if (buttonState == GLFW_PRESS) {
-                    action.action = "button";
+                if (buttonState == GLFW_PRESS) { 
                     sendAction(action, subscriber);
                 }
                 break;
@@ -64,8 +60,8 @@ void SunMouseButtonManager::update() {
     }
 }
 
-void SunMouseButtonManager::subscribe(SunNode *subscriber, int button, SunButtonEvent event) {
-    std::tuple<SunNode *, int, SunButtonEvent> tuple = std::make_tuple(subscriber, button, event);
+void SunMouseButtonManager::subscribe(SunBase *subscriber, int button, SunButtonEvent event) {
+    std::tuple<SunBase *, int, SunButtonEvent> tuple = std::make_tuple(subscriber, button, event);
     subscribers.push_back(tuple);
 }
 

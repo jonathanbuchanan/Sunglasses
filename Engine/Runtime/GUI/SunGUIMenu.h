@@ -17,9 +17,9 @@ public:
     
     virtual void initializeDefaultPropertyAndFunctionMap();
     
-    void render(SunNodeSentAction _action);
+    void render(SunAction action);
     
-    void key(SunNodeSentAction _action);
+    void key(SunAction action);
     
     inline void setCursorManager(SunCursorManager *c) { cursor = c; }
     inline SunCursorManager * getCursorManager() { return cursor; }
@@ -27,13 +27,13 @@ public:
     inline bool & getVisible() { return visible; }
     inline void setVisible(bool v) { visible = v; }
     
-    inline void addActionForKey(SunGUIAction a, int k) { actions[k] = a; }
+    inline void addActionForKey(SunLambdaAction a, int k) { actions[k] = a; }
 private:
     SunCursorManager *cursor;
     
     bool visible = false;
     
-    std::map<int, SunGUIAction> actions;
+    std::map<int, SunLambdaAction> actions;
 };
 
 #endif

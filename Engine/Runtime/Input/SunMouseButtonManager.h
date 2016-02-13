@@ -4,9 +4,10 @@
 #ifndef SUNMOUSEBUTTONMANAGER_H
 #define SUNMOUSEBUTTONMANAGER_H
 
-#include "SunNode.h"
-#include "SunService.h"
+#include "Core/SunBase.h"
+#include "Core/SunService.h"
 #include <GLFW/glfw3.h>
+#include <vector>
 
 class SunMouseButtonManager : public SunService {
 public:
@@ -17,13 +18,13 @@ public:
     void initialize(GLFWwindow *_window);
     void update();
     
-    void subscribe(SunNode *subscriber, int button, SunButtonEvent event);
+    void subscribe(SunBase *subscriber, int button, SunButtonEvent event);
     
     SunButtonState pollButton(int button);
     
     GLFWwindow *window;
 private:
-    std::vector<std::tuple<SunNode *, int, SunButtonEvent>> subscribers;
+    std::vector<std::tuple<SunBase *, int, SunButtonEvent>> subscribers;
     std::array<int, 8> buttons;
 };
 

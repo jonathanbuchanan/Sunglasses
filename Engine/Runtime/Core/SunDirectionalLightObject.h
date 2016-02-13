@@ -18,8 +18,8 @@ public:
     SunDirectionalLightObject(string _name);
     
     virtual void initializeDefaultPropertyAndFunctionMap();
-    virtual void passPerFrameUniforms(SunNodeSentAction _action);
-    void shadowMap(SunNodeSentAction _action);
+    virtual void passPerFrameUniforms(SunAction action);
+    void shadowMap(SunAction action);
     void initializeShadowMap();
     
     inline glm::vec3 & getColor() { return color; }

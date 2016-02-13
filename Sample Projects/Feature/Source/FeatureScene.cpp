@@ -45,9 +45,9 @@ void FeatureScene::initialize() {
     ((SunKeyboardManager *)(*services)["keyboard_manager"])->subscribe(menu, GLFW_KEY_ESCAPE, SunButtonEventDownSingle);
     menu->setCursorManager((SunCursorManager *)(*services)["cursor_manager"]);
     
-    auto show = [](SunNode *node) {
-        SunGUIMenu *menu = (SunGUIMenu *)node;
-        menu->setVisible(!((SunGUIMenu *)node)->getVisible());
+    auto show = [](SunBase *base) {
+        SunGUIMenu *menu = (SunGUIMenu *)base;
+        menu->setVisible(!menu->getVisible());
         
         if (menu->getCursorManager()->getMode() == GLFW_CURSOR_DISABLED) {
             menu->getCursorManager()->enableCursor();
@@ -55,7 +55,7 @@ void FeatureScene::initialize() {
             menu->getCursorManager()->disableCursor();
         }
     };
-    SunGUIAction showAction("Show", show);
+    SunLambdaAction showAction(show);
     
     menu->addActionForKey(showAction, GLFW_KEY_ESCAPE);
     
@@ -66,12 +66,12 @@ void FeatureScene::initialize() {
     ((SunMouseButtonManager *)(*services)["mouse_button_manager"])->subscribe(item, GLFW_MOUSE_BUTTON_LEFT, SunButtonEventDownSingle);
     item->setCursorManager((SunCursorManager *)(*services)["cursor_manager"]);
     
-    auto exit = [](SunNode *node) {
-        SunGUIItem *item = (SunGUIItem *)node;
+    auto exit = [](SunBase *base) {
+        SunGUIItem *item = (SunGUIItem *)base;
         if (item->cursorInItem())
             glfwSetWindowShouldClose(item->getWindow(), true);
     };
-    SunGUIAction exitAction("Exit", exit);
+    SunLambdaAction exitAction(exit);
     
     item->addActionForKey(exitAction, GLFW_MOUSE_BUTTON_LEFT);
     

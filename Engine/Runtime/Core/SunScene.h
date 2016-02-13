@@ -38,12 +38,12 @@ public:
     
     virtual void initializeDefaultPropertyAndFunctionMap();
     
-    void initializeShadowMapRenderer(SunNodeSentAction _action);
+    void initializeShadowMapRenderer(SunAction action);
     
     void cycle(map<int, SunButtonState> _buttons, GLfloat _deltaTime);
     virtual void update(map<int, SunButtonState> _buttons);
     virtual void render(SunAction action);
-    void renderGUISystem(SunNodeSentAction _action);
+    void renderGUISystem(SunAction action);
     void passPerFrameUniforms(SunShader _shader);
     void passPerFrameUniforms(SunShader _shader, vector<SunNodeSentActionCondition> _conditions);
     virtual void passPerFrameUniformsAction(SunAction action);

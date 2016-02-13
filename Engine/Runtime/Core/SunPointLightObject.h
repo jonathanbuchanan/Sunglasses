@@ -22,9 +22,9 @@ public:
     SunPointLightObject(string _name);
     
     virtual void initializeDefaultPropertyAndFunctionMap();
-    void passPerFrameUniforms(SunNodeSentAction _action);
+    void passPerFrameUniforms(SunAction action);
     void passPOVUniforms(SunShader _shader);
-	void shadowMap(SunNodeSentAction _action);
+	void shadowMap(SunAction action);
 	void initializeShadowMap();
     
     inline glm::vec3 & getColor() { return color; }

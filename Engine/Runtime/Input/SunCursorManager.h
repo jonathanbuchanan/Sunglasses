@@ -4,8 +4,8 @@
 #ifndef SUNMOUSEMANAGER_H
 #define SUNMOUSEMANAGER_H
 
-#include "SunNode.h"
-#include "SunService.h"
+#include "Core/SunBase.h"
+#include "Core/SunService.h"
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <vector>
@@ -29,11 +29,11 @@ public:
     glm::vec2 getCursorPosition();
     glm::vec2 getCursorPositionNDC();
     
-    void subscribe(SunNode *subscriber);
+    void subscribe(SunBase *subscriber);
     
     GLFWwindow *window;
 private:
-    std::vector<SunNode *> subscribers;
+    std::vector<SunBase *> subscribers;
 };
 
 #endif

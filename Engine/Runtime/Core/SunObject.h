@@ -22,10 +22,10 @@ public:
     SunObject(string _name, string _modelPath, bool _flipNormals);
     
     virtual void initializeDefaultPropertyAndFunctionMap();
-    virtual void update(SunNodeSentAction _action);
-    virtual void render(SunNodeSentAction _action);
-    virtual void playSound(SunNodeSentAction _action);
-    virtual void passPerFrameUniforms(SunNodeSentAction _action);
+    virtual void update(SunAction action);
+    virtual void render(SunAction action);
+    virtual void playSound(SunAction action);
+    virtual void passPerFrameUniforms(SunAction action);
     virtual void passPOVUniforms(SunShader _shader);
     
     inline glm::vec3 & getPosition() { return position; }

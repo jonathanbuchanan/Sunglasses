@@ -26,37 +26,33 @@ void SunKeyboardManager::update() {
     }
     
     for (int i = 0; i < subscribers.size(); i++) {
-        SunNode *subscriber = std::get<0>(subscribers[i]);
+        SunBase *subscriber = std::get<0>(subscribers[i]);
         int key = std::get<1>(subscribers[i]);
         int keyState = keys[key];
         int oldState = old[key];
         SunButtonEvent event = std::get<2>(subscribers[i]);
         
-        SunNodeSentAction action;
-        action.parameters["key"] = &key;
+        SunAction action("key");
+		action.addParameter("key", &key); 
         
         switch (event) {
             case SunButtonEventUpSingle:
-                if (keyState == GLFW_RELEASE && oldState == GLFW_PRESS) {
-                    action.action = "key";
+                if (keyState == GLFW_RELEASE && oldState == GLFW_PRESS) { 
                     sendAction(action, subscriber);
                 }
                 break;
             case SunButtonEventDownSingle:
-                if (keyState == GLFW_PRESS && oldState == GLFW_RELEASE) {
-                    action.action = "key";
+                if (keyState == GLFW_PRESS && oldState == GLFW_RELEASE) { 
                     sendAction(action, subscriber);
                 }
                 break;
             case SunButtonEventUpContinuous:
-                if (keyState == GLFW_RELEASE) {
-                    action.action = "key";
+                if (keyState == GLFW_RELEASE) { 
                     sendAction(action, subscriber);
                 }
                 break;
             case SunButtonEventDownContinuous:
-                if (keyState == GLFW_PRESS) {
-                    action.action = "key";
+                if (keyState == GLFW_PRESS) { 
                     sendAction(action, subscriber);
                 }
                 break;
@@ -64,8 +60,8 @@ void SunKeyboardManager::update() {
     }
 }
 
-void SunKeyboardManager::subscribe(SunNode *subscriber, int key, SunButtonEvent event) {
-    std::tuple<SunNode *, int, SunButtonEvent> tuple = std::make_tuple(subscriber, key, event);
+void SunKeyboardManager::subscribe(SunBase *subscriber, int key, SunButtonEvent event) {
+    std::tuple<SunBase *, int, SunButtonEvent> tuple = std::make_tuple(subscriber, key, event);
     subscribers.push_back(tuple);
 }
 

@@ -63,7 +63,7 @@ public:
     inline GLFWwindow * getWindow() { return window; }
     inline void setWindow(GLFWwindow *_window) { window = _window; }
     
-    inline void addActionForKey(SunGUIAction a, int k) { actions[k] = a; }
+    inline void addActionForKey(SunLambdaAction a, int k) { actions[k] = a; }
     
     inline void setCursorManager(SunCursorManager *c) { cursor = c; }
     inline SunCursorManager * getCursorManager() { return cursor; }
@@ -89,7 +89,7 @@ private:
 
     GLFWwindow *window;
     
-    std::map<int, SunGUIAction> actions;
+    std::map<int, SunLambdaAction> actions;
     
     SunCursorManager *cursor;
 };
