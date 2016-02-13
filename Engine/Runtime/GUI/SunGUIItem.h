@@ -16,7 +16,7 @@ class SunGUIItem : public SunNode {
 public:
     SunGUIItem();
     
-    virtual void initializeDefaultPropertyAndFunctionMap();
+    virtual void init();
     
     void render(SunAction action);
     

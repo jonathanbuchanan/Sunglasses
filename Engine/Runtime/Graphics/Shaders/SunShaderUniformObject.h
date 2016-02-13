@@ -28,9 +28,9 @@ typedef void * SunShaderUniformObjectValue;
 
 class SunShaderUniformObject : public SunNode {
 public:
-    SunShaderUniformObject() { initializeDefaultPropertyAndFunctionMap(); }
+    SunShaderUniformObject() { }
     
-    virtual void initializeDefaultPropertyAndFunctionMap();
+    virtual void init();
     
     virtual void passUniformAction(SunAction action);
     virtual void passUniform(SunShader *_shader);
@@ -51,10 +51,8 @@ private:
 };
 
 class SunShaderHemisphereKernelObject : public SunShaderUniformObject {
-public:
-    
-    
-    SunShaderHemisphereKernelObject() { initializeDefaultPropertyAndFunctionMap(); }
+public: 
+    SunShaderHemisphereKernelObject() { }
     
     SunShaderHemisphereKernelObject(int _sampleCount);
     

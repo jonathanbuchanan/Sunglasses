@@ -4,25 +4,19 @@
 #include "SunDirectionalLightObject.h"
 
 SunDirectionalLightObject::SunDirectionalLightObject() {
-    initializeDefaultPropertyAndFunctionMap();
+    
 }
 
 SunDirectionalLightObject::SunDirectionalLightObject(glm::vec3 _color, glm::vec3 _direction) {
     color = _color;
-    direction = _direction;
-    
-    initializeDefaultPropertyAndFunctionMap();
+    direction = _direction; 
 }
 
 SunDirectionalLightObject::SunDirectionalLightObject(string _name) {
-    setName(_name);
-
-    initializeDefaultPropertyAndFunctionMap();
+    setName(_name); 
 }
 
-void SunDirectionalLightObject::initializeDefaultPropertyAndFunctionMap() {
-    SunObject::initializeDefaultPropertyAndFunctionMap();
-    
+void SunDirectionalLightObject::init() { 
 	addAction("shadowMap", &SunDirectionalLightObject::shadowMap); 
     
     //setType("light");

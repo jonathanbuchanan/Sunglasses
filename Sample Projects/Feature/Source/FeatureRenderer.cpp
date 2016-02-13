@@ -27,7 +27,7 @@ void FeatureRenderer::initialize() {
     
     // GBuffer
     SunRenderingNode *gbuffer = new SunRenderingNode("gbuffer", SunRenderingNodeTypeRoot, gbufferInputs, gbufferOutputs, gbufferShaders, (SunNode *)scene);
-    gbuffer->initialize();
+    gbuffer->init();
     gbuffer->setPOVType("camera");
     
     // Set rootRenderNode to GBuffer
@@ -56,7 +56,7 @@ void FeatureRenderer::initialize() {
     
     // Final
     SunRenderingNode *finalNode = new SunRenderingNode("final", SunRenderingNodeTypeEnd, finalInputs, finalOutputs, finalShaders, (SunNode *)scene);
-    finalNode->initialize();
+    finalNode->init();
     gbuffer->addSubNode(finalNode);
 }
 

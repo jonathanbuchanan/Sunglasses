@@ -3,13 +3,11 @@
 // See LICENSE.md for details.
 #include "SunGUIItem.h"
 
-SunGUIItem::SunGUIItem() {
-    initializeDefaultPropertyAndFunctionMap();
+SunGUIItem::SunGUIItem() { 
     mesh.setUpGL();
 }
 
-void SunGUIItem::initializeDefaultPropertyAndFunctionMap() {
-    //SunNode::initializeDefaultPropertyAndFunctionMap()
+void SunGUIItem::init() { 
 	addAction("render", &SunGUIItem::render);
 	addAction("button", &SunGUIItem::button); 
 }

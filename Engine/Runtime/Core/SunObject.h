@@ -21,7 +21,7 @@ public:
     SunObject();
     SunObject(string _name, string _modelPath, bool _flipNormals);
     
-    virtual void initializeDefaultPropertyAndFunctionMap();
+    virtual void init();
     virtual void update(SunAction action);
     virtual void render(SunAction action);
     virtual void playSound(SunAction action);

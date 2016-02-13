@@ -3,10 +3,8 @@
 // See LICENSE.md for details.
 #include "SunShaderUniformObject.h"
 
-void SunShaderUniformObject::initializeDefaultPropertyAndFunctionMap() {
-    //SunNode::initializeDefaultPropertyAndFunctionMap();
-
-	addAction("passUniform", &SunShaderUniformObject::passUniformAction);
+void SunShaderUniformObject::init() {
+    addAction("passUniform", &SunShaderUniformObject::passUniformAction);
 }
 
 void SunShaderUniformObject::passUniformAction(SunAction action) {
@@ -47,8 +45,7 @@ void SunShaderUniformObject::passUniform(SunShader *_shader) {
 
 
 
-SunShaderHemisphereKernelObject::SunShaderHemisphereKernelObject(int _sampleCount) {
-    initializeDefaultPropertyAndFunctionMap();
+SunShaderHemisphereKernelObject::SunShaderHemisphereKernelObject(int _sampleCount) { 
     sampleCount = _sampleCount;
     generate(_sampleCount);
 }

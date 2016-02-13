@@ -4,10 +4,7 @@
 #include "SunScene.h"
 
 SunScene::SunScene() { 
-    //setRootNode(this);
-
-    // Initialize the property map
-    initializeDefaultPropertyAndFunctionMap();
+    
 }
 
 SunScene::SunScene(const char *filepath, GLFWwindow *_window) { 
@@ -15,9 +12,6 @@ SunScene::SunScene(const char *filepath, GLFWwindow *_window) {
 
     // Set the window
     window = _window;
-
-    // Initialize the property map
-    initializeDefaultPropertyAndFunctionMap();
 
     rootRenderableNode = new SunObject();
     rootRenderableNode->setName("RootRenderableNode");
@@ -34,15 +28,12 @@ SunScene::SunScene(const char *filepath, GLFWwindow *_window) {
     sendAction(pointLightAction, renderer.getRootRenderNode());
 }
 
-void SunScene::initializeDefaultPropertyAndFunctionMap() {
-    //SunObject::initializeDefaultPropertyAndFunctionMap();
-
+void SunScene::init() { 
     //setType("scene");
 
     //addToPropertyMap("doCameraInput", SunNodeProperty(&doCameraInput, SunNodePropertyTypeBool));
 
-	//addAction("render", &SunScene::render);
-
+	addAction("render", &SunScene::render); 
 	addAction("renderGUISystem", &SunScene::renderGUISystem);
 	addAction("passPerFrameUniforms", &SunScene::passPerFrameUniformsAction);
 	addAction("initializeShadowMapRenderer", &SunScene::initializeShadowMapRenderer); 

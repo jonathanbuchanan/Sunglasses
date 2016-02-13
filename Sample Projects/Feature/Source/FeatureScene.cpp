@@ -5,23 +5,18 @@
 
 FeatureScene::FeatureScene() {
     
-}
+} 
 
-void FeatureScene::initializeDefaultPropertyAndFunctionMap() {
-    addAction("render", &FeatureScene::render);
+void FeatureScene::init() {
+	addAction("render", &FeatureScene::render);
 	addAction("renderGUI", &FeatureScene::renderGUI);
 	addAction("passPerFrameUniforms", &FeatureScene::passPerFrameUniformsAction);
-}
-
-void FeatureScene::initialize() { 
-	//setRootNode(this);
     
     camera = SunCamera(SunCameraProjectionTypePerspective, 45.0f, 0, 0, 0, 0);
     camera.setKeyboardManager((SunKeyboardManager *)(*services)["keyboard_manager"]);
     camera.setCursorManager((SunCursorManager *)(*services)["cursor_manager"]);
     
     this->setName("Scene");
-    initializeDefaultPropertyAndFunctionMap();
     
     renderer.setSceneNode(this);
     renderer.setWindow(window);
@@ -30,7 +25,7 @@ void FeatureScene::initialize() {
     
     rootRenderableNode = new SunObject();
     rootRenderableNode->setName("RootRenderableNode");
-    rootRenderableNode->initializeDefaultPropertyAndFunctionMap(); 
+    rootRenderableNode->init(); 
     
     house = new SunObject("cube", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Cube.dae", false);
     

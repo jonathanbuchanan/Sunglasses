@@ -5,21 +5,15 @@
 
 SunMusicObject::SunMusicObject(string _file, string _name) {
     loadFromFile(_file);
-    setName(_name);
-
-    initializeDefaultPropertyAndFunctionMap();
+    setName(_name); 
 }
 SunMusicObject::SunMusicObject(string _file, string _name, bool _loops) {
     loadFromFile(_file);
     setLoops(_loops);
-    setName(_name);
-
-    initializeDefaultPropertyAndFunctionMap();
+    setName(_name); 
 }
 
-void SunMusicObject::initializeDefaultPropertyAndFunctionMap() {
-    //SunNode::initializeDefaultPropertyAndFunctionMap();
-
+void SunMusicObject::init() { 
 	addAction("play", &SunMusicObject::play);
 	addAction("pause", &SunMusicObject::pause);
 	addAction("stop", &SunMusicObject::stop); 

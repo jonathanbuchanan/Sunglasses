@@ -36,7 +36,7 @@ public:
     SunScene();
     SunScene(const char *filepath, GLFWwindow *_window);
     
-    virtual void initializeDefaultPropertyAndFunctionMap();
+    virtual void init();
     
     void initializeShadowMapRenderer(SunAction action);
     

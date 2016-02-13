@@ -4,15 +4,10 @@
 #include "SunDirectionalShadowMapRenderingNode.h"
 
 SunDirectionalShadowMapRenderingNode::SunDirectionalShadowMapRenderingNode() {
-	initializeDefaultPropertyAndFunctionMap();
-}
-
-void SunDirectionalShadowMapRenderingNode::initialize() {
 	
 }
 
-void SunDirectionalShadowMapRenderingNode::initializeDefaultPropertyAndFunctionMap() {
-	//SunRenderingNode::initializeDefaultPropertyAndFunctionMap();
+void SunDirectionalShadowMapRenderingNode::init() {
 	shadowMapShader = SunShader("./Graphics/Shaders/Variable Pipeline/Scene.vert", "./Graphics/Shaders/Variable Pipeline/Scene.geom", "./Graphics/Shaders/Variable Pipeline/Scene.frag", "./DirectionalShadowMap.pre", "#version 330 core\n");
 	
 	addAction("loadDirectionalLights", &SunDirectionalShadowMapRenderingNode::loadDirectionalLights);

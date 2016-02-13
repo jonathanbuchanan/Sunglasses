@@ -21,7 +21,7 @@ public:
     SunPointLightObject(glm::vec3 _color, glm::vec3 _position);
     SunPointLightObject(string _name);
     
-    virtual void initializeDefaultPropertyAndFunctionMap();
+    virtual void init();
     void passPerFrameUniforms(SunAction action);
     void passPOVUniforms(SunShader _shader);
 	void shadowMap(SunAction action);

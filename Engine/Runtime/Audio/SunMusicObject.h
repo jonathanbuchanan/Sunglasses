@@ -20,7 +20,7 @@ public:
     SunMusicObject(string _file, string _name);
     SunMusicObject(string _file, string _name, bool _loops);
     
-    virtual void initializeDefaultPropertyAndFunctionMap();
+    virtual void init();
     
     inline void setLoops(bool _loops) { music.setLoop(_loops); }
     inline void loadFromFile(string _file) { music.openFromFile(_file); }

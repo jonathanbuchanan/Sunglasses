@@ -4,10 +4,10 @@
 #include "SunGUIMenu.h"
 
 SunGUIMenu::SunGUIMenu() {
-    initializeDefaultPropertyAndFunctionMap();
+
 }
 
-void SunGUIMenu::initializeDefaultPropertyAndFunctionMap() {
+void SunGUIMenu::init() {
 	addAction("render", &SunGUIMenu::render);
 	addAction("key", &SunGUIMenu::key); 
 }

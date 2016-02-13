@@ -13,8 +13,7 @@ class SunPointShadowMapRenderingNode : public SunRenderingNode {
 public:
 	SunPointShadowMapRenderingNode();
 	
-	virtual void initialize();
-	virtual void initializeDefaultPropertyAndFunctionMap();
+	virtual void init(); 
 	void loadPointLights(SunAction action);
 	virtual void render(SunAction action); 
 	

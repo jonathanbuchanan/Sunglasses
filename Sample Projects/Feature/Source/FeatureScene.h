@@ -13,16 +13,14 @@ class FeatureScene : public SunScene {
 public:
     FeatureScene();
     
-    void initialize();
+    void init();
     
     void cycle(float delta);
     
     inline void setWindow(GLFWwindow *w) { window = w; }
 
     inline void setServices(map<string, SunService *> *s) { services = s; }
-private:
-    void initializeDefaultPropertyAndFunctionMap();
-    
+private: 
     void render(SunAction action);
     void renderGUI(SunAction action);
     

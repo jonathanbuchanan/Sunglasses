@@ -30,7 +30,7 @@ class SunSoundObject : public SunNode {
 public:
     SunSoundObject();
     
-    virtual void initializeDefaultPropertyAndFunctionMap();
+    virtual void init();
     void addSoundFromBuffer(SunSoundBufferStorage *_storage, string _soundName, float _minimumDistance, float _attenuation);
     void playSound(SunAction action);
     

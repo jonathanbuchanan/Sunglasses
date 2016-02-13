@@ -13,8 +13,7 @@ class SunDirectionalShadowMapRenderingNode : public SunRenderingNode {
 public:
 	SunDirectionalShadowMapRenderingNode();
 	
-	virtual void initialize();
-	virtual void initializeDefaultPropertyAndFunctionMap();
+	virtual void init(); 
 	void loadDirectionalLights(SunAction action);
 	virtual void render(SunAction action);
 	

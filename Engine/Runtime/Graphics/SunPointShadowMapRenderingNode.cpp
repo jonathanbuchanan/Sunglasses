@@ -4,15 +4,10 @@
 #include "SunPointShadowMapRenderingNode.h"
 
 SunPointShadowMapRenderingNode::SunPointShadowMapRenderingNode() {
-	initializeDefaultPropertyAndFunctionMap();
-}
-
-void SunPointShadowMapRenderingNode::initialize() {
 	
 }
 
-void SunPointShadowMapRenderingNode::initializeDefaultPropertyAndFunctionMap() {
-	//SunRenderingNode::initializeDefaultPropertyAndFunctionMap();
+void SunPointShadowMapRenderingNode::init() {
 	shadowMapShader = SunShader("./Graphics/Shaders/Variable Pipeline/Scene.vert", "./Graphics/Shaders/Variable Pipeline/Scene.geom", "./Graphics/Shaders/Variable Pipeline/Scene.frag", "./PointShadowMap.pre", "#version 330 core\n");
 	
 	addAction("loadPointLights", &SunPointShadowMapRenderingNode::loadPointLights);

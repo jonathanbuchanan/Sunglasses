@@ -3,7 +3,7 @@
 // See LICENSE.md for details.
 #include "SunGUISystem.h"
 
-void SunGUISystem::initializeDefaultPropertyAndFunctionMap() {
+void SunGUISystem::init() {
 	addAction("render", &SunGUISystem::render); 
 }
 

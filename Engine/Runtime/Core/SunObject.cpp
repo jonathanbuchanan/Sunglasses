@@ -4,22 +4,20 @@
 #include "SunObject.h"
 
 SunObject::SunObject() {
-    initializeDefaultPropertyAndFunctionMap();
+    init();
 }
 
 SunObject::SunObject(string _name, string _modelPath, bool _flipNormals) {
     setName(_name);
     setFlipNormals(_flipNormals);
 
-    initializeDefaultPropertyAndFunctionMap();
+    init();
 
     SunModel model = SunModel(_modelPath, flipNormals);
     models.push_back(model);
 }
 
-void SunObject::initializeDefaultPropertyAndFunctionMap() {
-    //SunNode::initializeDefaultPropertyAndFunctionMap();
-
+void SunObject::init() { 
     //setType("object");
 
     // Map position, rotation, and scale to the property map

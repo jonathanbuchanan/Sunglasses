@@ -25,21 +25,17 @@ SunRenderingNodeInput::SunRenderingNodeInput(SunRenderingNodePointer _link, SunR
 
 
 SunRenderingNode::SunRenderingNode() {
-    initializeDefaultPropertyAndFunctionMap();
+    
 }
 
 SunRenderingNode::SunRenderingNode(string _name) {
-    setName(_name);
-
-    initializeDefaultPropertyAndFunctionMap();
+    setName(_name); 
 }
 
 SunRenderingNode::SunRenderingNode(string _name, SunRenderingNodeType _renderingType, SunNode *_scene) {
 	setName(_name);
-	setRenderingType(_renderingType);
-	setSceneNode(_scene);
+	setRenderingType(_renderingType); setSceneNode(_scene); 
 	
-	initializeDefaultPropertyAndFunctionMap();
 }
 
 SunRenderingNode::SunRenderingNode(string _name, SunRenderingNodeType _renderingType, vector<SunRenderingNodeInput> _inputs, vector<SunRenderingNodeOutput> _outputs, map<string, SunRenderingNodeShader> _shaders) {
@@ -47,9 +43,7 @@ SunRenderingNode::SunRenderingNode(string _name, SunRenderingNodeType _rendering
 	setRenderingType(_renderingType);
 	inputs = _inputs;
 	outputs = _outputs;
-	shaders = _shaders;
-	
-	initializeDefaultPropertyAndFunctionMap();
+	shaders = _shaders; 
 }
 
 SunRenderingNode::SunRenderingNode(string _name, SunRenderingNodeType _renderingType, vector<SunRenderingNodeInput> _inputs, vector<SunRenderingNodeOutput> _outputs, map<string, SunRenderingNodeShader> _shaders, SunNode *_scene) {
@@ -58,15 +52,7 @@ SunRenderingNode::SunRenderingNode(string _name, SunRenderingNodeType _rendering
 	inputs = _inputs;
 	outputs = _outputs;
 	shaders = _shaders;
-	setSceneNode(_scene);
-	
-	initializeDefaultPropertyAndFunctionMap();
-}
-
-void SunRenderingNode::initializeDefaultPropertyAndFunctionMap() { 
-	addAction("render", &SunRenderingNode::render);
-    //addToFunctionMap("render", bind(&SunRenderingNode::render, this, std::placeholders::_1));
-    //addToFunctionMap("test", bind(&SunRenderingNode::test, this, std::placeholders::_1));
+	setSceneNode(_scene); 
 } 
 
 void SunRenderingNode::render(SunAction action) {
@@ -239,7 +225,8 @@ void SunRenderingNode::passUniforms(SunShader *_shader, int textureUnits) {
         sendAction(passUniformAction, uniforms[i]);
 }
 
-void SunRenderingNode::initialize() {
+void SunRenderingNode::init() {
+	addAction("render", &SunRenderingNode::render);
     // Create the framebuffer
     if (renderingType == SunRenderingNodeTypeRoot) {
         glGenFramebuffers(1, &outputFramebuffer.framebuffer);

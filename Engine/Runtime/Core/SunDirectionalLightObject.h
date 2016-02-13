@@ -17,7 +17,7 @@ public:
     SunDirectionalLightObject(glm::vec3 _color, glm::vec3 _direction);
     SunDirectionalLightObject(string _name);
     
-    virtual void initializeDefaultPropertyAndFunctionMap();
+    virtual void init();
     virtual void passPerFrameUniforms(SunAction action);
     void shadowMap(SunAction action);
     void initializeShadowMap();

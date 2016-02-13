@@ -22,9 +22,9 @@ struct SunGUIFont {
 
 class SunGUISystem : public SunNode {
 public:
-    SunGUISystem() { initializeDefaultPropertyAndFunctionMap(); }
+    SunGUISystem() { }
     
-    virtual void initializeDefaultPropertyAndFunctionMap();
+    virtual void init();
     virtual void render(SunAction action);
     void loadFonts(SunTextRenderer *_textRenderer);
     

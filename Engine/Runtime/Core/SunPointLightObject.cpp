@@ -6,25 +6,23 @@
 #include <iostream>
 
 SunPointLightObject::SunPointLightObject() {
-    initializeDefaultPropertyAndFunctionMap();
+    init();
 }
 
 SunPointLightObject::SunPointLightObject(glm::vec3 _color, glm::vec3 _position) {
     color = _color;
     this->setPosition(_position);
     
-    initializeDefaultPropertyAndFunctionMap();
+    init();
 }
 
 SunPointLightObject::SunPointLightObject(string _name) {
     setName(_name);
 
-    initializeDefaultPropertyAndFunctionMap();
+    init();
 }
 
-void SunPointLightObject::initializeDefaultPropertyAndFunctionMap() {
-    SunObject::initializeDefaultPropertyAndFunctionMap();
-	
+void SunPointLightObject::init() { 
 	addAction("shadowMap", &SunPointLightObject::shadowMap); 
 	
     //setType("light");

@@ -4,11 +4,10 @@
 #include "SunSoundObject.h"
 
 SunSoundObject::SunSoundObject() {
-    initializeDefaultPropertyAndFunctionMap();
+
 }
 
-void SunSoundObject::initializeDefaultPropertyAndFunctionMap() {
-    //SunNode::initializeDefaultPropertyAndFunctionMap();
+void SunSoundObject::init() { 
 	addAction("playSound", &SunSoundObject::playSound); 
 }
 

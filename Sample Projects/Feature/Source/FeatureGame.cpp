@@ -13,10 +13,8 @@ void FeatureGame::initialize() {
     
     setClearColor(glm::vec4(1.0f, 0.0f, 1.0f, 1.0f));
 
-	// TEMPORARY!!! Remove once SunScene is subclass of SunBase!!!
-	scene.setServices(&services);
-    scene.setWindow(window);
-    scene.initialize();
+	scene.setWindow(window);
+    scene.init();
 }
 
 void FeatureGame::loop() {

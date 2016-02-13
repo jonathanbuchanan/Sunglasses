@@ -15,7 +15,7 @@ public:
     
     SunGUIMenu();
     
-    virtual void initializeDefaultPropertyAndFunctionMap();
+    virtual void init();
     
     void render(SunAction action);
     
