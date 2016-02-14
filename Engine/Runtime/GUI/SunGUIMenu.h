@@ -19,18 +19,13 @@ public:
     
     void render(SunAction action);
     
-    void key(SunAction action);
-    
-    inline void setCursorManager(SunCursorManager *c) { cursor = c; }
-    inline SunCursorManager * getCursorManager() { return cursor; }
-    
+    void key(SunAction action); 
+        
     inline bool & getVisible() { return visible; }
     inline void setVisible(bool v) { visible = v; }
     
     inline void addActionForKey(SunLambdaAction a, int k) { actions[k] = a; }
-private:
-    SunCursorManager *cursor;
-    
+private: 
     bool visible = false;
     
     std::map<int, SunLambdaAction> actions;
