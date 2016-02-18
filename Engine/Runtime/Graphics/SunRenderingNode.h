@@ -157,7 +157,8 @@ public:
     inline void setRenderingType(SunRenderingNodeType _type) { renderingType = _type; }
     
     inline SunRenderingNodeShaderType & getShaderType() { return shaderType; }
-    inline void setShaderType(SunRenderingNodeShaderType _type) { shaderType = _type; } 
+    inline void setShaderType(SunRenderingNodeShaderType _type) { shaderType = _type; }
+    
     
     inline vector<SunRenderingNodeInput> & getInputs() { return inputs; }
     inline SunRenderingNodeInput & getInputAtIndex(int i) { return inputs[i]; }
@@ -173,6 +174,7 @@ public:
     inline SunRenderingNodeShader & getShaderForString(string s) { return shaders[s]; }
     inline void addShaderForString(string s, SunRenderingNodeShader shader) { shaders[s] = shader; }
     inline void setShaders(map<string, SunRenderingNodeShader> _shaders) { shaders = _shaders; }
+    
     
     inline SunFramebuffer & getFramebuffer() { return outputFramebuffer; }
     
