@@ -21,7 +21,6 @@ public:
 
     inline void setServices(map<string, SunService *> *s) { services = s; }
 private: 
-    void render(SunAction action);
     void renderGUI(SunAction action);
     
     // Services

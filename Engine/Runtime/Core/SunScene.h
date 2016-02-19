@@ -41,8 +41,7 @@ public:
     void initializeShadowMapRenderer(SunAction action);
     
     void cycle(map<int, SunButtonState> _buttons, GLfloat _deltaTime);
-    virtual void update(map<int, SunButtonState> _buttons);
-    virtual void render(SunAction action);
+    virtual void update(map<int, SunButtonState> _buttons); 
     void renderGUISystem(SunAction action);
     void passPerFrameUniforms(SunShader _shader);
     //void passPerFrameUniforms(SunShader _shader, vector<SunNodeSentActionCondition> _conditions);
@@ -50,7 +49,7 @@ public:
     
     inline SunPhysicsSimulator & getPhysicsSimulator() { return physicsSimulator; }
     
-    inline SunObject * getRootRenderableNode() { return rootRenderableNode; }
+    inline SunObject * getRoot() { return root; }
     
     inline SunCamera & getCamera() { return camera; }
     inline SunSoundListener & getListener() { return listener; }
@@ -70,8 +69,8 @@ public:
     inline GLFWwindow * getWindow() { return window; }
     inline void setWindow(GLFWwindow *_window) { window = _window; }
 protected:
-    // Root renderable node
-    SunObject *rootRenderableNode;
+    // Root
+    SunObject *root;
     
     // Light Count
     int pointLightCount = 0;
@@ -89,8 +88,7 @@ private:
     SunPhysicsSimulator physicsSimulator;
 
     // Renderer and Text Renderer
-    SunRenderer renderer;
-    
+    SunRenderer renderer; 
     
     // Shadow Point Light Pointers
     vector<SunPointLightObject *> shadowPointLights;

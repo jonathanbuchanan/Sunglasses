@@ -13,9 +13,6 @@ SunScene::SunScene(const char *filepath, GLFWwindow *_window) {
     // Set the window
     window = _window;
 
-    rootRenderableNode = new SunObject();
-    rootRenderableNode->setName("RootRenderableNode");
-
 	SunAction playAction("play"); 
     
     if (autoplay)
@@ -29,11 +26,6 @@ SunScene::SunScene(const char *filepath, GLFWwindow *_window) {
 }
 
 void SunScene::init() { 
-    //setType("scene");
-
-    //addToPropertyMap("doCameraInput", SunNodeProperty(&doCameraInput, SunNodePropertyTypeBool));
-
-	addAction("render", &SunScene::render); 
 	addAction("renderGUISystem", &SunScene::renderGUISystem);
 	addAction("passPerFrameUniforms", &SunScene::passPerFrameUniformsAction);
 	addAction("initializeShadowMapRenderer", &SunScene::initializeShadowMapRenderer); 
@@ -75,54 +67,8 @@ void SunScene::update(map<int, SunButtonState> _buttons) {
     //SunObject::update(action);
     
     action.setRecursive(true);
-    sendAction(action, rootRenderableNode);
-}
-
-void SunScene::render(SunAction action) {
-    map<string, SunShader> _shaders = *(map<string, SunShader> *)action.getParameter("shaderMap");
-    GLfloat _deltaTime = *(GLfloat *)action.getParameter("deltaTime");
-    string POVtype = *(string *)action.getParameter("POVtype");
-    string POV = *(string *)action.getParameter("POV");
-    vector<SunShaderUniformObject> uniforms;
-    if (action.parameterExists("uniforms")) {
-        uniforms = *(vector<SunShaderUniformObject> *)action.getParameter("uniforms");
-    }
-
-    // Force sub-objects to render
-    
-    for (SunShaderMapIterator iterator = _shaders.begin(); iterator != _shaders.end(); iterator++) {
-		SunAction renderAction("render");
-		renderAction.addParameter("shader", &iterator->second);
-
-        if (iterator->first == "scene_solid")
-            action.addParameter("renderType", new int(SunMeshRenderTypeSolid));
-        else if (iterator->first == "scene_textured")
-            action.addParameter("renderType", new int(SunMeshRenderTypeTextured));
-        else if (iterator->first == "scene_all")
-            action.addParameter("renderType", new int(SunMeshRenderTypeAll));
-		action.addParameter("deltaTime", &_deltaTime);
-		action.setRecursive(true);
-        
-        iterator->second.use();
-            
-        for (int i = 0; i < uniforms.size(); i++)
-            uniforms[i].passUniform(&iterator->second);
-        
-        // Pass POV Uniforms
-        if (POVtype == "camera") {
-            camera.passPerFrameUniforms(iterator->second);
-        } else if (POVtype == "light") {
-        
-        }
-        
-        passPerFrameUniforms(iterator->second);
-        sendAction(action, rootRenderableNode);
-    }
-	
-	if (action.parameterExists("uniforms")) {
-    	uniforms = *(vector<SunShaderUniformObject> *)action.getParameter("uniforms");
-    }
-}
+    sendAction(action, root);
+} 
 
 void SunScene::renderGUISystem(SunAction action) {
 	SunAction GUIAction("render");
@@ -143,7 +89,7 @@ void SunScene::passPerFrameUniforms(SunShader _shader) {
 	action.addParameter("shader", &_shader);
 	action.setRecursive(true);
 
-    sendAction(action, rootRenderableNode);
+    sendAction(action, root);
 }
 
 /*void SunScene::passPerFrameUniforms(SunShader _shader, vector<SunNodeSentActionCondition> _conditions) {
@@ -179,6 +125,5 @@ void SunScene::passPerFrameUniformsAction(SunAction action) {
 	//updateAction.conditions
 	updateAction.setRecursive(true);
 
-    sendAction(updateAction, rootRenderableNode);
-}
-
+    sendAction(updateAction, root);
+} 

@@ -7,8 +7,7 @@ FeatureScene::FeatureScene() {
     
 } 
 
-void FeatureScene::init() {
-	addAction("render", &FeatureScene::render);
+void FeatureScene::init() { 
 	addAction("renderGUI", &FeatureScene::renderGUI);
 	addAction("passPerFrameUniforms", &FeatureScene::passPerFrameUniformsAction);
     
@@ -21,13 +20,13 @@ void FeatureScene::init() {
     
     renderer.initialize();
     
-    rootRenderableNode = new SunObject();
-    rootRenderableNode->setName("RootRenderableNode");
-    rootRenderableNode->init(); 
+    root = new SunObject();
+    root->setName("root");
+    root->init(); 
     
     house = new SunObject("cube", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Cube.dae", false);
     
-    rootRenderableNode->addSubNode(house);
+    root->addSubNode(house);
     
     textRenderer.initialize(); 
     textRenderer.loadFont("Resources/Graphics/Fonts/arial.ttf", "Arial");
@@ -70,11 +69,7 @@ void FeatureScene::init() {
     item->setSize(glm::vec2(1.0f, 0.2f));
     item->setPosition(glm::vec2(-0.5f, -0.1f));
     item->setColor(glm::vec3(1.0f, 1.0f, 1.0f));
-}
-
-void FeatureScene::render(SunAction action) {
-    SunScene::render(action);
-}
+} 
 
 void FeatureScene::renderGUI(SunAction action) {
     SunAction GUIAction;
