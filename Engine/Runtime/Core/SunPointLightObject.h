@@ -12,8 +12,7 @@ using namespace std;
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include "./SunGame.h"
-#include "./Graphics/Shaders/SunShaderUniformObject.h"
+#include "./SunGame.h" 
 
 class SunPointLightObject : public SunObject {
 public:
@@ -60,7 +59,7 @@ private:
 	GLuint shadowMapFramebuffer;
 	GLuint shadowMapTexture;
 	vector<glm::mat4> lightTransforms;
-	vector<SunShaderUniformObject> _lightTransforms;
+	//vector<SunShaderUniformObject> _lightTransforms;
 };
 
 #endif

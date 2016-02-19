@@ -197,8 +197,8 @@ void SunRenderingNode::passUniforms(SunShader *_shader) {
 	SunAction passUniformAction("passUniform");
 	passUniformAction.addParameter("passUniform", _shader);
 
-    for (int i = 0; i < uniforms.size(); i++)
-        sendAction(passUniformAction, uniforms[i]);
+    /*for (int i = 0; i < uniforms.size(); i++)
+        sendAction(passUniformAction, uniforms[i]);*/
 }
 
 void SunRenderingNode::passUniforms(SunShader *_shader, int textureUnits) {
@@ -221,8 +221,8 @@ void SunRenderingNode::passUniforms(SunShader *_shader, int textureUnits) {
 	SunAction passUniformAction("passUniform");
 	passUniformAction.addParameter("shader", _shader);
  
-    for (int i = 0; i < uniforms.size(); i++)
-        sendAction(passUniformAction, uniforms[i]);
+    /*for (int i = 0; i < uniforms.size(); i++)
+        sendAction(passUniformAction, uniforms[i]);*/
 }
 
 void SunRenderingNode::init() {

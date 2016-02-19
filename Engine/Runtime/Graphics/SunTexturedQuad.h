@@ -13,7 +13,7 @@
 #include <glm/gtx/string_cast.hpp>
 
 #include "./SunPrimitives.h"
-#include "./Shaders/SunShader.h"
+#include "Graphics/SunShader.h"
 
 typedef map<string, pair<GLuint, GLuint>>::iterator SunTextureMapIterator;
 

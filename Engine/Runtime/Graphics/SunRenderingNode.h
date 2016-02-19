@@ -6,10 +6,9 @@
 #include <map>
 #include <functional>
 
-#include "./Shaders/SunShader.h"
+#include "Graphics/SunShader.h"
 #include "SunObject.h"
-#include "./SunTexturedQuad.h"
-#include "./Shaders/SunShaderUniformObject.h"
+#include "./SunTexturedQuad.h" 
 #include "SunGame.h"
 
 #ifndef SunRenderingNode_h
@@ -178,11 +177,7 @@ public:
     
     inline vector<SunTexture> & getTextures() { return textures; }
     inline SunTexture & getTextureAtIndex(int i) { return textures[i]; }
-    inline void addTextureToTextures(SunTexture t) { textures.push_back(t); }
-    
-    inline vector<SunShaderUniformObject *> getUniforms() { return uniforms; }
-    inline SunShaderUniformObject * getUniformAtIndex(int i) { return uniforms[i]; }
-    inline void addUniformToUniforms(SunShaderUniformObject *u) { uniforms.push_back(u); }
+    inline void addTextureToTextures(SunTexture t) { textures.push_back(t); } 
     
     inline string & getPOVType() { return POVtype; }
     inline void setPOVType(string _p) { POVtype = _p; }
@@ -205,8 +200,7 @@ protected:
     
     SunFramebuffer outputFramebuffer;
     map<int, SunRenderingNodeOutput *> outputSlotMap;
-    vector<SunTexture> textures;
-    vector<SunShaderUniformObject *> uniforms;
+    vector<SunTexture> textures; 
     string POVtype;
     string POV;
 

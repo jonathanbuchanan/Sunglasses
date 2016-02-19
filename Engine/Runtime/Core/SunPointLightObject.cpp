@@ -83,7 +83,7 @@ void SunPointLightObject::shadowMap(SunAction action) {
 	renderAction.addParameter("POVtype", &POVtype);
 	renderAction.addParameter("POV", &POV);
 	renderAction.addParameter("shaderMap", action.getParameter("shaderMap"));
-	renderAction.addParameter("uniforms", &_lightTransforms); 
+	//renderAction.addParameter("uniforms", &_lightTransforms); 
 	
 	sendAction(renderAction, scene);
 	
@@ -136,20 +136,20 @@ void SunPointLightObject::initializeShadowMap() {
     lightTransforms.push_back(projection * glm::lookAt(this->getPosition(), this->getPosition() + glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, -1.0f, 0.0f)));
     
     for (int i = 0; i < 6; i++) {
-    	SunShaderUniformObject uniform;
+    	/*SunShaderUniformObject uniform;
     	
     	uniform.setUniformName("shadowMatrices[" + to_string(i) + "]");
     	uniform.setType(SunShaderUniformObjectTypeMatrix4x4);
     	uniform.setValue(&lightTransforms[i]);
     	
-    	_lightTransforms.push_back(uniform);
+    	_lightTransforms.push_back(uniform);*/
     }
     
-    SunShaderUniformObject positionUniform;
+    /*SunShaderUniformObject positionUniform;
     
     positionUniform.setUniformName("lightPosition");
     positionUniform.setType(SunShaderUniformObjectTypeVec3);
     positionUniform.setValue(&this->getPosition());
     
-    _lightTransforms.push_back(positionUniform);
+    _lightTransforms.push_back(positionUniform);*/
 }
