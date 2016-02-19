@@ -15,6 +15,10 @@
 
 class SunNode : public SunBase { 
 public:
+	SunNode();
+	SunNode(std::string _tag);
+	SunNode(std::vector<std::string> _tags);
+
 	virtual void processAction(SunAction action);
 
 

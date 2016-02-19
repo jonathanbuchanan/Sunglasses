@@ -17,6 +17,15 @@ SunObject::SunObject(string _name, string _modelPath, bool _flipNormals) {
     models.push_back(model);
 }
 
+SunObject::SunObject(string _name, string _modelPath, string tag) {
+	setName(_name);
+	addTag(tag);
+	init();
+
+	SunModel model = SunModel(_modelPath, false);
+	models.push_back(model);
+}
+
 void SunObject::init() { 
     //setType("object");
 
@@ -35,28 +44,12 @@ void SunObject::update(SunAction action) {
 }
 
 void SunObject::render(SunAction action) {
-    if (action.parameterExists("renderType")) {
-        if (renderType == *(int *)action.getParameter("renderType") || *(int *)action.getParameter("renderType") == SunMeshRenderTypeAll) {
-            SunShader _shader = *(SunShader *)action.getParameter("shader");
-            GLfloat _deltaTime = *(GLfloat *)action.getParameter("deltaTime");
-            
-            SunMeshRenderType _renderType = (SunMeshRenderType)(*(int *)action.getParameter("renderType"));
-                        
-            // Loop through the models and render them
-            for (int i = 0; i < models.size(); ++i) {
-                models[i].render(_shader, _deltaTime, position, rotation, scale, material, _renderType);
-            }
-        }
-    } else {
-        SunShader _shader = *(SunShader *)action.getParameter("shader");
-        GLfloat _deltaTime = *(GLfloat *)action.getParameter("deltaTime");
+	SunShader shader = *(SunShader *)action.getParameter("shader");
+	GLfloat delta = *(GLfloat *)action.getParameter("deltaTime");
 
-        // Loop through the models and render them
-        for (int i = 0; i < models.size(); ++i) {
-            models[i].render(_shader, _deltaTime, position, rotation, scale, material, renderType);
-        }
-    }
-}
+	for (int i = 0; i < models.size(); ++i)
+		models[i].render(shader, delta, position, rotation, scale, material, SunMeshRenderTypeAll); 
+} 
 
 void SunObject::playSound(SunAction action) {
 	SunAction soundAction("playSound");

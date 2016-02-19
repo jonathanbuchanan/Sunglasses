@@ -24,7 +24,7 @@ void FeatureScene::init() {
     root->setName("root");
     root->init(); 
     
-    house = new SunObject("cube", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Cube.dae", false);
+    house = new SunObject("cube", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Cube.dae", "solid");
     
     root->addSubNode(house);
     

@@ -3,7 +3,17 @@
 // See LICENSE.md for details.
 #include "SunNode.h"
 
-#include <glm/glm.hpp>
+SunNode::SunNode() {
+
+}
+
+SunNode::SunNode(std::string _tag) {
+	addTag(_tag);
+}
+
+SunNode::SunNode(std::vector<std::string> _tags) {
+	tags = _tags;
+}
 
 void SunNode::processAction(SunAction action) {
 	if (action.parameterExists("tag")) {
