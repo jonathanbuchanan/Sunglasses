@@ -5,6 +5,14 @@
 
 #include <glm/glm.hpp>
 
+void SunNode::processAction(SunAction action) {
+	if (action.parameterExists("tag")) {
+		if (tagPresent(*(std::string *)action.getParameter("tag")))
+			SunBase::processAction(action);
+	} else
+		SunBase::processAction(action);
+}
+
 void SunNode::sendActionToAllSubNodes(SunAction action) {
     for (int i = 0; i < subNodes.size(); ++i)
         sendAction(action, subNodes[i]);

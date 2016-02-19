@@ -15,7 +15,10 @@
 
 class SunNode : public SunBase { 
 public:
-    void sendActionToAllSubNodes(SunAction action);
+	virtual void processAction(SunAction action);
+
+
+    virtual void sendActionToAllSubNodes(SunAction action);
 
     virtual void addSubNode(SunNode *_subNode);
     
@@ -34,6 +37,10 @@ public:
     inline int getLevel() { return level; }
     inline void setLevel(int _level) { level = _level; }
     
+	// Tags
+	inline void addTag(std::string t) { tags.push_back(t); }
+	inline bool tagPresent(std::string t) { return (std::find(tags.begin(), tags.end(), t) != tags.end()) ? true : false; } 
+
     inline SunNode * getRootNode() { return rootNode; }
     inline void setRootNode(SunNode *_rootNode) { rootNode = _rootNode; }
     
@@ -45,7 +52,10 @@ private:
     vector<SunNode *> subNodes;
     vector<SunNode *> parents;
     int level = 0; 
-    
+
+	// Tags
+	std::vector<std::string> tags;
+
     SunNode *rootNode;
 };
 

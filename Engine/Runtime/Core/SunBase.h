@@ -23,7 +23,7 @@ public:
 		functions[function] = bound;
 	}
 	
-	void processAction(SunAction action);
+	virtual void processAction(SunAction action);
 	
     inline std::string & getName() { return name; }
     inline void setName(std::string n) { name = n; }

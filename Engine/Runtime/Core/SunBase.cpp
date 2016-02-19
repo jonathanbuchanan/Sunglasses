@@ -16,7 +16,8 @@ void SunBase::init() {
 }
 
 void SunBase::processAction(SunAction action) {
-	functions[action.getAction()](action);
+	if (functions.find(action.getAction()) != functions.end())
+		functions[action.getAction()](action);
 }
 
 void sendAction(SunAction action, SunBase *base) {
