@@ -21,6 +21,8 @@ void SunNode::processAction(SunAction action) {
 			SunBase::processAction(action);
 	} else
 		SunBase::processAction(action);
+	if (action.getRecursive() == true)
+		sendActionToAllSubNodes(action);
 }
 
 void SunNode::sendActionToAllSubNodes(SunAction action) {
@@ -39,7 +41,7 @@ void SunNode::addSubNode(SunNode *_subNode) {
 }
 
 void SunNode::findNode(string _path, SunNode &_node) {
-    vector<string> levels = splitString(_path, *"/");
+    /*vector<string> levels = splitString(_path, *"/");
 
     GLboolean done = false;
 
@@ -54,11 +56,11 @@ void SunNode::findNode(string _path, SunNode &_node) {
                 subNodes[i]->findNode(_path, _node);
             }
         }
-    }
+    }*/
 }
 
 void SunNode::findNode(string _path, SunNode *&_node) {
-    vector<string> levels = splitString(_path, *"/");
+    /*vector<string> levels = splitString(_path, *"/");
 
     GLboolean done = false;
 
@@ -73,7 +75,7 @@ void SunNode::findNode(string _path, SunNode *&_node) {
                 subNodes[i]->findNode(_path, _node);
             }
         }
-    }
+    }*/
 }
 
 void SunNode::findNodeWithName(string _name, SunNode &_node) {

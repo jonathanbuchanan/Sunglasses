@@ -5,6 +5,7 @@
 #define FEATURERENDERER_H
 
 #include "Graphics/SunRenderer.h"
+#include "Core/SunScene.h"
 #include <vector>
 
 class FeatureRenderer : public SunRenderer {

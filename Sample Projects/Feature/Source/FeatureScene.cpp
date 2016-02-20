@@ -14,15 +14,15 @@ void FeatureScene::init() {
     camera = SunCamera(SunCameraProjectionTypePerspective, 45.0f, 0, 0, 0, 0);
 
     this->setName("Scene");
-    
+   
+	root = new SunObject();
+    root->setName("root");
+    root->init();
+
     renderer.setSceneNode(this);
     renderer.setWindow(window);
     
-    renderer.initialize();
-    
-    root = new SunObject();
-    root->setName("root");
-    root->init(); 
+    renderer.initialize(); 
     
     house = new SunObject("cube", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Cube.dae", "solid");
     

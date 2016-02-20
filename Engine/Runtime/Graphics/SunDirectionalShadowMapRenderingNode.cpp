@@ -8,7 +8,7 @@ SunDirectionalShadowMapRenderingNode::SunDirectionalShadowMapRenderingNode() {
 }
 
 void SunDirectionalShadowMapRenderingNode::init() {
-	shadowMapShader = SunShader("./Graphics/Shaders/Variable Pipeline/Scene.vert", "./Graphics/Shaders/Variable Pipeline/Scene.geom", "./Graphics/Shaders/Variable Pipeline/Scene.frag", "./DirectionalShadowMap.pre", "#version 330 core\n");
+	shadowMapShader = SunShader("./Graphics/Shaders/Variable Pipeline/Scene.vert", "./Graphics/Shaders/Variable Pipeline/Scene.geom", "./Graphics/Shaders/Variable Pipeline/Scene.frag", "./DirectionalShadowMap.pre");
 	
 	addAction("loadDirectionalLights", &SunDirectionalShadowMapRenderingNode::loadDirectionalLights);
 	addAction("render", &SunDirectionalShadowMapRenderingNode::render);
@@ -21,7 +21,7 @@ void SunDirectionalShadowMapRenderingNode::loadDirectionalLights(SunAction actio
 	// Renderer
 	sceneAction.addParameter("renderer", this); 
 	
-	sendAction(sceneAction, scene);
+	//sendAction(sceneAction, scene);
 }
 
 void SunDirectionalShadowMapRenderingNode::render(SunAction action) {
@@ -36,7 +36,7 @@ void SunDirectionalShadowMapRenderingNode::render(SunAction action) {
 	shadowMapAction.addParameter("shaderMap", &shaderMap); 
 	
 	// Scene
-	shadowMapAction.addParameter("scene", scene); 
+	//shadowMapAction.addParameter("scene", scene); 
 	
 	for (int i = 0; i < lights.size(); i++) {
 		sendAction(shadowMapAction, lights[i]);

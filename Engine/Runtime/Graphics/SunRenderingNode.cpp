@@ -9,9 +9,7 @@ SunRenderingNodeOutput::SunRenderingNodeOutput(SunRenderingNodeDataType _type, S
 	slot = _slot;
 	size = _size;
 	textureType = _textureType;
-}
-
-
+} 
 
 SunRenderingNodeInput::SunRenderingNodeInput(SunRenderingNodePointer _link, SunRenderingNodeDataType _type, string _name, SunRenderingNodeDataFormat _format, int _slot, SunRenderingNodeTextureType _textureType) {
 	link = _link;
@@ -22,8 +20,6 @@ SunRenderingNodeInput::SunRenderingNodeInput(SunRenderingNodePointer _link, SunR
 	textureType = _textureType;
 }
 
-
-
 SunRenderingNode::SunRenderingNode() {
     
 }
@@ -32,58 +28,40 @@ SunRenderingNode::SunRenderingNode(string _name) {
     setName(_name); 
 }
 
-SunRenderingNode::SunRenderingNode(string _name, SunRenderingNodeType _renderingType, SunNode *_scene) {
+SunRenderingNode::SunRenderingNode(string _name, SunRenderingNodeType _renderingType, SunNode *_root) {
 	setName(_name);
-	setRenderingType(_renderingType); setSceneNode(_scene); 
-	
+	setRenderingType(_renderingType);
+	setRoot(_root);
 }
 
-SunRenderingNode::SunRenderingNode(string _name, SunRenderingNodeType _renderingType, vector<SunRenderingNodeInput> _inputs, vector<SunRenderingNodeOutput> _outputs, map<string, SunRenderingNodeShader> _shaders) {
+SunRenderingNode::SunRenderingNode(string _name, SunRenderingNodeType _renderingType, vector<SunRenderingNodeInput> _inputs, vector<SunRenderingNodeOutput> _outputs) {
 	setName(_name);
 	setRenderingType(_renderingType);
 	inputs = _inputs;
-	outputs = _outputs;
-	shaders = _shaders; 
+	outputs = _outputs; 
 }
 
-SunRenderingNode::SunRenderingNode(string _name, SunRenderingNodeType _renderingType, vector<SunRenderingNodeInput> _inputs, vector<SunRenderingNodeOutput> _outputs, map<string, SunRenderingNodeShader> _shaders, SunNode *_scene) {
+SunRenderingNode::SunRenderingNode(string _name, SunRenderingNodeType _renderingType, vector<SunRenderingNodeInput> _inputs, vector<SunRenderingNodeOutput> _outputs, SunNode *_root) {
 	setName(_name);
 	setRenderingType(_renderingType);
 	inputs = _inputs;
-	outputs = _outputs;
-	shaders = _shaders;
-	setSceneNode(_scene); 
+	outputs = _outputs; 
+	setRoot(_root);
 } 
 
 void SunRenderingNode::render(SunAction action) {
-	GLfloat _deltaTime = *(GLfloat *)action.getParameter("deltaTime"); 
+	GLfloat delta = *(GLfloat *)action.getParameter("delta"); 
     if (renderingType == SunRenderingNodeTypeRoot) {
-        clear();
-
-        // Bind the framebuffer
-        glBindFramebuffer(GL_FRAMEBUFFER, outputFramebuffer.framebuffer);
-
-        // Clear
-        clear();
-
-        // Tell the scene to render with the shaders
-		SunAction renderAction("render");
-
-        map<string, SunShader> _shaders;
-        for (map<string, SunRenderingNodeShader>::iterator iterator = shaders.begin(); iterator != shaders.end(); iterator++) {
-            SunRenderingNodeShader shader = iterator->second;
-            _shaders[iterator->first] = shader.shader;
-        }
-        
-        renderAction.addParameter("shaderMap", &_shaders);
-        renderAction.addParameter("deltaTime", &_deltaTime);
-        renderAction.addParameter("POVtype", &POVtype);
-        renderAction.addParameter("POV", &POV);
-        
-        sendAction(renderAction, scene);
+		glBindFramebuffer(GL_FRAMEBUFFER, outputFramebuffer.framebuffer);
+		clear();
+		
+		for (map<std::string, SunShader>::iterator iterator = shaders.begin(); iterator != shaders.end(); iterator++) {
+			std::cout << iterator->first << std::endl;
+			iterator->second.use(iterator->first, delta, root); 
+		} 
     } else if (renderingType == SunRenderingNodeTypeIntermediate) {
         // Get the input textures
-        map<string, pair<GLuint, GLuint>> _textures;
+        /*map<string, pair<GLuint, GLuint>> _textures;
         for (int i = 0; i < inputs.size(); i++) {
             if (inputs[i].textureType == SunRenderingNodeTextureType2D)
                 _textures[inputs[i].name] = make_pair(inputs[i].link->outputSlotMap[inputs[i].slot]->texture, GL_TEXTURE_2D);
@@ -124,10 +102,10 @@ void SunRenderingNode::render(SunAction action) {
 
             renderQuad.renderWithUsedShader(_textures, shaders["quad"].shader);
         }
-        glViewport(0, 0, screenWidth, screenHeight);
+        glViewport(0, 0, screenWidth, screenHeight);*/
     } else if (renderingType == SunRenderingNodeTypeEnd) {
         // Get a pointer to the input framebuffer
-        map<string, pair<GLuint, GLuint>> _textures;
+        /*map<string, pair<GLuint, GLuint>> _textures;
         for (int i = 0; i < inputs.size(); i++) {
             if (inputs[i].textureType == SunRenderingNodeTextureType2D)
                 _textures[inputs[i].name] = make_pair(inputs[i].link->outputSlotMap[inputs[i].slot]->texture, GL_TEXTURE_2D);
@@ -151,10 +129,10 @@ void SunRenderingNode::render(SunAction action) {
 
         renderQuad.renderWithUsedShader(_textures, shaders["quad"].shader);
         
-        glViewport(0, 0, screenWidth, screenHeight);
+        glViewport(0, 0, screenWidth, screenHeight);*/
     } else if (renderingType == SunRenderingNodeTypeOnly) {
         // Bind the screen-framebuffer
-        clear();
+        /*clear();
 
         // Bind the framebuffer
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -174,7 +152,7 @@ void SunRenderingNode::render(SunAction action) {
 		renderAction.addParameter("shaderMap", &_shaders);
 		renderAction.addParameter("deltaTime", &_deltaTime);
 
-        sendAction(renderAction, scene);
+        sendAction(renderAction, scene);*/
     }
 }
 
@@ -192,7 +170,7 @@ void SunRenderingNode::passUniforms(SunShader *_shader) {
 
     uniformAction.parameters["conditions"] = &conditions;*/
 
-    sendAction(uniformAction, scene);
+    //sendAction(uniformAction, scene);
 
 	SunAction passUniformAction("passUniform");
 	passUniformAction.addParameter("passUniform", _shader);
@@ -216,7 +194,7 @@ void SunRenderingNode::passUniforms(SunShader *_shader, int textureUnits) {
 
     uniformAction.parameters["conditions"] = &conditions;*/
 
-    sendAction(uniformAction, scene);
+    //sendAction(uniformAction, scene);
 
 	SunAction passUniformAction("passUniform");
 	passUniformAction.addParameter("shader", _shader);

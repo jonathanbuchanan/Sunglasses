@@ -70,7 +70,7 @@ SunShader::SunShader(string vertexPath, string fragmentPath) {
     glDeleteShader(fragment);
 }
 
-SunShader::SunShader(string vertexPath, string fragmentPath, string preprocessorPath, string version) {
+SunShader::SunShader(string vertexPath, string fragmentPath, string preprocessorPath) {
     string vertexCode = getShaderCodeFromFile(vertexPath);
     string fragmentCode = getShaderCodeFromFile(fragmentPath);
     string preprocessorCode = getShaderCodeFromFile(preprocessorPath);
@@ -97,7 +97,7 @@ SunShader::SunShader(string vertexPath, string fragmentPath, string preprocessor
     glDeleteShader(fragment);
 }
 
-SunShader::SunShader(string vertexPath, string geometryPath, string fragmentPath, string preprocessorPath, string version) {
+SunShader::SunShader(string vertexPath, string geometryPath, string fragmentPath, string preprocessorPath) {
     string vertexCode = getShaderCodeFromFile(vertexPath);
     string geometryCode = getShaderCodeFromFile(geometryPath);
     string fragmentCode = getShaderCodeFromFile(fragmentPath);
@@ -162,7 +162,7 @@ SunShader::SunShader(vector<string> sources, vector<SunShaderSourceType> sourceT
         glDeleteShader(shaders[i]);
 }
 
-SunShader::SunShader(string vertexPath, string geometryPath, string fragmentPath) {
+/*SunShader::SunShader(string vertexPath, string geometryPath, string fragmentPath) {
     string vertexCode = getShaderCodeFromFile(vertexPath);
     string geometryCode = getShaderCodeFromFile(geometryPath);
     string fragmentCode = getShaderCodeFromFile(fragmentPath);
@@ -186,8 +186,26 @@ SunShader::SunShader(string vertexPath, string geometryPath, string fragmentPath
     glDeleteShader(vertex);
     glDeleteShader(geometry);
     glDeleteShader(fragment);
-}
+}*/
 
 void SunShader::use() {
     glUseProgram(this->program);
+}
+
+void SunShader::use(std::string tag, float delta, SunNode *root) {
+	use();
+
+	SunAction uniform("uniform");
+	uniform.addParameter("shader", this);
+	uniform.addParameter("tag", &tag);
+	uniform.addParameter("delta", &delta);
+	uniform.setRecursive(true);
+	sendAction(uniform, root);
+
+	SunAction render("render");
+	render.addParameter("shader", this);
+	render.addParameter("tag", &tag);
+	render.addParameter("delta", &delta);
+	uniform.setRecursive(true);
+	sendAction(render, root);
 }
