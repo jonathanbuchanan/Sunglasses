@@ -101,21 +101,7 @@ public:
 	inline void addShaderForString(SunShader shader, std::string string) { shaders[string] = shader; }
 	inline void setShaders(std::map<std::string, SunShader> shaders_) { shaders = shaders_; }
 
-    inline SunFramebuffer & getFramebuffer() { return outputFramebuffer; }
-    
-    inline vector<SunTexture> & getTextures() { return textures; }
-    inline SunTexture & getTextureAtIndex(int i) { return textures[i]; }
-    inline void addTextureToTextures(SunTexture t) { textures.push_back(t); } 
-    
-    inline string & getPOVType() { return POVtype; }
-    inline void setPOVType(string _p) { POVtype = _p; }
-    
-    inline string & getPOV() { return POV; }
-    inline void setPOV(string _p) { POV = _p; }
-    
-    inline void setRoot(SunNode *r) { root = r; }
-    
-    inline SunTexturedQuad & getQuad() { return renderQuad; }
+    inline void setRoot(SunNode *r) { root = r; } 
 private:
     SunRenderingNodeType renderingType; 
 protected:
@@ -124,15 +110,13 @@ protected:
     vector<SunRenderingNodeOutput> outputs;
 	std::map<std::string, SunShader> shaders;
     
-    SunFramebuffer outputFramebuffer;
-    map<int, SunRenderingNodeOutput *> outputSlotMap;
-    vector<SunTexture> textures; 
-    string POVtype;
-    string POV;
+	GLuint fbo;
+	GLuint rbo;
+    map<int, SunRenderingNodeOutput *> outputSlotMap; 
 
     SunNode *root;
-    SunTexturedQuad renderQuad;
+    static SunTexturedQuad renderQuad;
+	static bool quadInitialized;
 };
 
-#endif
-
+#endif 

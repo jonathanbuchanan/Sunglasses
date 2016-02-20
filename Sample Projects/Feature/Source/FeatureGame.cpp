@@ -11,7 +11,7 @@ void FeatureGame::initialize() {
     
     SunGame::initialize();
     
-    setClearColor(glm::vec4(1.0f, 0.0f, 1.0f, 1.0f));
+    setClearColor(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
 
 	scene.setWindow(window);
     scene.init();

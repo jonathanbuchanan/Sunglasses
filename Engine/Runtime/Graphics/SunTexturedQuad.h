@@ -23,14 +23,7 @@ public:
     
     void setUpGL();
     void render(map<string, pair<GLuint, GLuint>> _textures, SunShader _shader);
-    void renderWithUsedShader(map<string, pair<GLuint, GLuint>> _textures, SunShader _shader);
-    
-    inline vector<SunVertex> & getVertices() { return vertices; }
-    inline vector<GLuint> & getIndices() { return indices; }
-    
-    inline GLuint & getVBO() { return VBO; }
-    inline GLuint & getEBO() { return EBO; }
-    inline GLuint & getVAO() { return VAO; }
+    void renderWithUsedShader(map<string, pair<GLuint, GLuint>> _textures, SunShader _shader); 
 private:
     // Vertices, indices, and textures
     vector<SunVertex> vertices = {

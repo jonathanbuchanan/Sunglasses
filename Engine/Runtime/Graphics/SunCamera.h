@@ -36,8 +36,8 @@ public:
    
 	virtual void init();
 	virtual void uniform(SunAction action);
-
-    void update(float delta);
+	
+	void update(SunAction action); 
     
     glm::mat4 viewMatrix();
     glm::mat4 projectionMatrix(GLfloat _aspectRatio);

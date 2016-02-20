@@ -300,8 +300,9 @@ void main() {
 
     result = vec4(vec3(lighting), 1.0f);
     result = vec4(vec3(_position), 1.0f);
-	
-    color = result;
+
+    color = result; 
+
     #endif
     
     #ifdef LIGHTING_DEFERRED_CEL

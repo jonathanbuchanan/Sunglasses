@@ -3,6 +3,9 @@
 // See LICENSE.md for details.
 #include "SunRenderingNode.h"
 
+SunTexturedQuad SunRenderingNode::renderQuad = SunTexturedQuad();
+bool SunRenderingNode::quadInitialized = false;
+
 SunRenderingNodeOutput::SunRenderingNodeOutput(SunRenderingNodeDataType _type, SunRenderingNodeDataFormat _format, int _slot, glm::vec2 _size, SunRenderingNodeTextureType _textureType) {
 	type = _type;
 	format = _format;
@@ -52,7 +55,7 @@ SunRenderingNode::SunRenderingNode(string _name, SunRenderingNodeType _rendering
 void SunRenderingNode::render(SunAction action) {
 	GLfloat delta = *(GLfloat *)action.getParameter("delta"); 
     if (renderingType == SunRenderingNodeTypeRoot) {
-		glBindFramebuffer(GL_FRAMEBUFFER, outputFramebuffer.framebuffer);
+		glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 		clear();
 		
 		for (map<std::string, SunShader>::iterator iterator = shaders.begin(); iterator != shaders.end(); iterator++) { 
@@ -103,32 +106,27 @@ void SunRenderingNode::render(SunAction action) {
         }
         glViewport(0, 0, screenWidth, screenHeight);*/
     } else if (renderingType == SunRenderingNodeTypeEnd) {
-        // Get a pointer to the input framebuffer
-        /*map<string, pair<GLuint, GLuint>> _textures;
-        for (int i = 0; i < inputs.size(); i++) {
+		map<string, pair<GLuint, GLuint>> _textures;
+        for (int i = 0; i < inputs.size(); i++) { 
             if (inputs[i].textureType == SunRenderingNodeTextureType2D)
                 _textures[inputs[i].name] = make_pair(inputs[i].link->outputSlotMap[inputs[i].slot]->texture, GL_TEXTURE_2D);
             else if (inputs[i].textureType == SunRenderingNodeTextureTypeCubemap)
                 _textures[inputs[i].name] = make_pair(inputs[i].link->outputSlotMap[inputs[i].slot]->texture, GL_TEXTURE_CUBE_MAP);
-        }
-
-        for (int i = 0; i < textures.size(); i++) {
-            _textures[textures[i].name] = make_pair(textures[i].id, GL_TEXTURE_2D);
-        }
+        } 
 
         // Bind the screen-framebuffer
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
         clear();
-        
-        glViewport(0, 0, screenWidth * 2, screenHeight * 2);
-        
-        shaders["quad"].shader.use();
-        
-        passUniforms(&shaders["quad"].shader, inputs.size());
+		
+		glViewport(0, 0, screenWidth * 2, screenHeight * 2);
 
-        renderQuad.renderWithUsedShader(_textures, shaders["quad"].shader);
+        shaders["quad"].use(); 
         
-        glViewport(0, 0, screenWidth, screenHeight);*/
+        passUniforms(&shaders["quad"], inputs.size());
+
+        renderQuad.renderWithUsedShader(_textures, shaders["quad"]);
+
+		glViewport(0, 0, screenWidth, screenHeight); 
     } else if (renderingType == SunRenderingNodeTypeOnly) {
         // Bind the screen-framebuffer
         /*clear();
@@ -205,9 +203,15 @@ void SunRenderingNode::passUniforms(SunShader *_shader, int textureUnits) {
 void SunRenderingNode::init() {
 	addAction("render", &SunRenderingNode::render);
     // Create the framebuffer
+
+	if (quadInitialized == false) {
+		quadInitialized = true;
+		renderQuad.setUpGL();
+	}
+
     if (renderingType == SunRenderingNodeTypeRoot) {
-        glGenFramebuffers(1, &outputFramebuffer.framebuffer);
-        glBindFramebuffer(GL_FRAMEBUFFER, outputFramebuffer.framebuffer);
+        glGenFramebuffers(1, &fbo);
+        glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
         for (int i = 0; i < outputs.size(); i++) {
             initializeOutput(&outputs[i]);
@@ -215,11 +219,11 @@ void SunRenderingNode::init() {
 
         glBindTexture(GL_TEXTURE_2D, 0);
 
-        glGenRenderbuffers(1, &outputFramebuffer.renderbuffer);
-        glBindRenderbuffer(GL_RENDERBUFFER, outputFramebuffer.renderbuffer);
+        glGenRenderbuffers(1, &rbo);
+        glBindRenderbuffer(GL_RENDERBUFFER, fbo);
         glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, 1600, 1200);
 
-        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, outputFramebuffer.renderbuffer);
+        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, rbo);
 
         GLuint colorAttachments[outputs.size()];
 
@@ -232,8 +236,8 @@ void SunRenderingNode::init() {
             std::cout << "Frame buffer not complete!" << std::endl;
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
     } else if (renderingType == SunRenderingNodeTypeIntermediate) {
-        glGenFramebuffers(1, &outputFramebuffer.framebuffer);
-        glBindFramebuffer(GL_FRAMEBUFFER, outputFramebuffer.framebuffer);
+        glGenFramebuffers(1, &fbo);
+        glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
         for (int i = 0; i < outputs.size(); i++) {
             initializeOutput(&outputs[i]);
@@ -264,15 +268,15 @@ void SunRenderingNode::init() {
         renderQuad.setUpGL();
     } else if (renderingType == SunRenderingNodeTypeEnd) {
         // Initialize the quad
-        renderQuad = SunTexturedQuad();
-        renderQuad.setUpGL();
+
+
     }
 }
 
 void SunRenderingNode::initializeOutput(SunRenderingNodeOutput *_output) {
     glGenTextures(1, &_output->texture);
 
-    glBindFramebuffer(GL_FRAMEBUFFER, outputFramebuffer.framebuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, fbo);
     
     if (_output->textureType == SunRenderingNodeTextureType2D) {
         glBindTexture(GL_TEXTURE_2D, _output->texture);

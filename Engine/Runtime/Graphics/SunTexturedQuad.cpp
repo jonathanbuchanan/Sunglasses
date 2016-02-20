@@ -34,7 +34,7 @@ void SunTexturedQuad::setUpGL() {
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof (SunVertex), (GLvoid *) offsetof(SunVertex, textureCoordinates));
 
     // Unbind the VBO and EBO
-    glBindVertexArray(0);
+    glBindVertexArray(0); 
 }
 
 void SunTexturedQuad::render(map<string, pair<GLuint, GLuint>> _textures, SunShader _shader) {
@@ -63,7 +63,7 @@ void SunTexturedQuad::render(map<string, pair<GLuint, GLuint>> _textures, SunSha
 }
 
 void SunTexturedQuad::renderWithUsedShader(map<string, pair<GLuint, GLuint>> _textures, SunShader _shader) {
-    int iteratorIndex = 0;
+	int iteratorIndex = 0;
     for (SunTextureMapIterator iterator = _textures.begin(); iterator != _textures.end(); iterator++) {
         glActiveTexture(GL_TEXTURE0 + iteratorIndex);
         glBindTexture(iterator->second.second, iterator->second.first);

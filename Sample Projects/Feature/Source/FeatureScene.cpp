@@ -83,6 +83,9 @@ void FeatureScene::renderGUI(SunAction action) {
 }
 
 void FeatureScene::cycle(float delta) {
-    camera.update(delta);
+	SunAction update("update");
+	update.addParameter("delta", &delta);
+	update.setRecursive(true);
+    sendAction(update, root);
     renderer.render(delta);
 }
