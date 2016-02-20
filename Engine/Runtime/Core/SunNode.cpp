@@ -16,7 +16,7 @@ SunNode::SunNode(std::vector<std::string> _tags) {
 }
 
 void SunNode::processAction(SunAction action) {
-	if (action.parameterExists("tag")) {
+	if (action.parameterExists("tag") && ignoreTags == false) {
 		if (tagPresent(*(std::string *)action.getParameter("tag")))
 			SunBase::processAction(action);
 	} else

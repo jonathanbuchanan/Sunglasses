@@ -12,7 +12,7 @@ using namespace std;
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "Core/SunBase.h"
+#include "Core/SunNode.h"
 #include "Utility.h"
 #include "Input/SunKeyboardManager.h"
 #include "Input/SunCursorManager.h"
@@ -25,7 +25,7 @@ enum SunCameraProjectionType {
     SunCameraProjectionTypeOrthographic
 };
 
-class SunCamera : public SunBase {
+class SunCamera : public SunNode {
 public:
     SunCamera();
     SunCamera(SunCameraProjectionType _projection, GLfloat _FOV);
@@ -33,7 +33,10 @@ public:
     SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, GLfloat _yaw, GLfloat _pitch);
     SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, glm::vec3 _position, GLfloat _yaw, GLfloat _pitch);
     SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, GLfloat _width, GLfloat _height, GLfloat _yaw, GLfloat _pitch);
-    
+   
+	virtual void init();
+	virtual void uniform(SunAction action);
+
     void update(float delta);
     
     glm::mat4 viewMatrix();

@@ -55,8 +55,7 @@ void SunRenderingNode::render(SunAction action) {
 		glBindFramebuffer(GL_FRAMEBUFFER, outputFramebuffer.framebuffer);
 		clear();
 		
-		for (map<std::string, SunShader>::iterator iterator = shaders.begin(); iterator != shaders.end(); iterator++) {
-			std::cout << iterator->first << std::endl;
+		for (map<std::string, SunShader>::iterator iterator = shaders.begin(); iterator != shaders.end(); iterator++) { 
 			iterator->second.use(iterator->first, delta, root); 
 		} 
     } else if (renderingType == SunRenderingNodeTypeIntermediate) {

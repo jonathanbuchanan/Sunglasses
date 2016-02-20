@@ -46,6 +46,7 @@ public:
 	// Tags
 	inline void addTag(std::string t) { tags.push_back(t); }
 	inline bool tagPresent(std::string t) { return (std::find(tags.begin(), tags.end(), t) != tags.end()) ? true : false; } 
+	inline void setIgnoreTags(bool i) { ignoreTags = i; }
 
     inline SunNode * getRootNode() { return rootNode; }
     inline void setRootNode(SunNode *_rootNode) { rootNode = _rootNode; }
@@ -61,6 +62,7 @@ private:
 
 	// Tags
 	std::vector<std::string> tags;
+	bool ignoreTags = false;
 
     SunNode *rootNode;
 };

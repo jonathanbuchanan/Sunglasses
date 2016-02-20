@@ -40,6 +40,16 @@ SunCamera::SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, GLfloat 
     pitch = _pitch;
 }
 
+void SunCamera::init() {
+	setIgnoreTags(true);
+	addAction("uniform", &SunCamera::uniform);
+}
+
+void SunCamera::uniform(SunAction action) { 
+	passPerFrameUniforms(*(SunShader *)action.getParameter("shader"));
+}
+
+
 void SunCamera::update(float delta) {
     glm::vec2 mouse = ((SunCursorManager *)getService("cursor_manager"))->getCursorPosition(); 
     static glm::vec2 oldMouse;

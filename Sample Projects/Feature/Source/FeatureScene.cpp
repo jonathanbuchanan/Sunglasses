@@ -10,14 +10,16 @@ FeatureScene::FeatureScene() {
 void FeatureScene::init() { 
 	addAction("renderGUI", &FeatureScene::renderGUI);
 	addAction("passPerFrameUniforms", &FeatureScene::passPerFrameUniformsAction);
-    
-    camera = SunCamera(SunCameraProjectionTypePerspective, 45.0f, 0, 0, 0, 0);
-
-    this->setName("Scene");
    
 	root = new SunObject();
     root->setName("root");
     root->init();
+
+    camera = SunCamera(SunCameraProjectionTypePerspective, 45.0f, 0, 0, 0, 0);
+	camera.init();
+	root->addSubNode(&camera);
+
+    this->setName("Scene"); 
 
     renderer.setSceneNode(this);
     renderer.setWindow(window);
