@@ -27,15 +27,10 @@ SunObject::SunObject(string _name, string _modelPath, string tag) {
 }
 
 void SunObject::init() { 
-    //setType("object");
-
-    // Map position, rotation, and scale to the property map 
-
-    // Add the "render" function to the function map
 	addAction("update", &SunObject::update);
 	addAction("render", &SunObject::render);
 	addAction("playSound", &SunObject::playSound);
-	addAction("passPerFrameUniforms", &SunObject::passPerFrameUniforms); 
+	addAction("uniform", &SunObject::uniform); 
 }
 
 void SunObject::update(SunAction action) {
@@ -45,8 +40,7 @@ void SunObject::update(SunAction action) {
 
 void SunObject::render(SunAction action) {
 	SunShader shader = *(SunShader *)action.getParameter("shader");
-	GLfloat delta = *(GLfloat *)action.getParameter("deltaTime");
-
+	GLfloat delta = *(GLfloat *)action.getParameter("delta"); 
 	for (int i = 0; i < models.size(); ++i)
 		models[i].render(shader, delta, position, rotation, scale, material, SunMeshRenderTypeAll); 
 } 
@@ -58,7 +52,7 @@ void SunObject::playSound(SunAction action) {
     sendAction(soundAction, &sound);
 }
 
-void SunObject::passPerFrameUniforms(SunAction action) {
+void SunObject::uniform(SunAction action) {
     
 }
 

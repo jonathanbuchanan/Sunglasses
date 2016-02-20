@@ -59,7 +59,7 @@ void FeatureRenderer::initialize() {
         {"quad", SunRenderingNodeShader(finalSources, finalSourceTypes, "../../Engine/Shaders/DeferredQuad.pre", SunRenderingNodeShaderTypeQuad)}
     };*/
     std::map<std::string, SunShader> finalShaders = {
-		{"quad", SunShader("../../Engine/Shaders/Variable Pipeline/Scene.vert", "../../Engine/Shaders/Variable Pipeline/Scene.frag", "../../Engine/Shaders/DefferedQuad.pre")}, 
+		{"quad", SunShader("../../Engine/Shaders/Variable Pipeline/Scene.vert", "../../Engine/Shaders/Variable Pipeline/Scene.frag", "../../Engine/Shaders/DeferedQuad.pre")}, 
 	};
     // Final
     SunRenderingNode *finalNode = new SunRenderingNode("final", SunRenderingNodeTypeEnd, finalInputs, finalOutputs, scene->getRoot());

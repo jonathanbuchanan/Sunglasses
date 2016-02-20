@@ -26,7 +26,7 @@ public:
     virtual void update(SunAction action);
     virtual void render(SunAction action);
     virtual void playSound(SunAction action);
-    virtual void passPerFrameUniforms(SunAction action);
+    virtual void uniform(SunAction action);
     virtual void passPOVUniforms(SunShader _shader);
     
     inline glm::vec3 & getPosition() { return position; }

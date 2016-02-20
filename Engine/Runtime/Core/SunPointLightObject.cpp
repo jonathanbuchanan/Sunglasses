@@ -29,7 +29,7 @@ void SunPointLightObject::init() {
 }
 
 void SunPointLightObject::passPerFrameUniforms(SunAction action) {
-    SunObject::passPerFrameUniforms(action);
+    SunObject::uniform(action);
 
     SunShader _shader = *(SunShader *)action.getParameter("shader");
 	int usedTextureUnits;

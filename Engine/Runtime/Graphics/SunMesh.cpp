@@ -158,7 +158,7 @@ void SunMesh::render(SunShader _shader, GLfloat _deltaTime, glm::vec3 _position,
 
         // Unbind the VAO
         glBindVertexArray(0);
-    } else {
+    } else { 
         glUniform3f(_shader.getUniformLocation("material.diffuse"), _material.color.r, _material.color.g, _material.color.b);
 
         glUniform1f(_shader.getUniformLocation("material.shininess"), _material.shininess);

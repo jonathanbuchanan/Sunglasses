@@ -14,6 +14,7 @@ void FeatureScene::init() {
 	root = new SunObject();
     root->setName("root");
     root->init();
+	root->setIgnoreTags(true);
 
     camera = SunCamera(SunCameraProjectionTypePerspective, 45.0f, 0, 0, 0, 0);
 	camera.init();
@@ -27,8 +28,8 @@ void FeatureScene::init() {
     renderer.initialize(); 
     
     house = new SunObject("cube", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Cube.dae", "solid");
-    
-    root->addSubNode(house);
+	house->addTag("solid");    
+    root->addSubNode(house); 
     
     textRenderer.initialize(); 
     textRenderer.loadFont("Resources/Graphics/Fonts/arial.ttf", "Arial");

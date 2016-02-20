@@ -23,7 +23,7 @@ void SunDirectionalLightObject::init() {
 }
 
 void SunDirectionalLightObject::passPerFrameUniforms(SunAction action) {
-    SunObject::passPerFrameUniforms(action);
+    SunObject::uniform(action);
     
     SunShader _shader = *(SunShader *)action.getParameter("shader");
 	int usedTextureUnits;
