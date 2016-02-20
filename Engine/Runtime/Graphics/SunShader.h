@@ -16,6 +16,7 @@ using namespace std;
 #include <GL/glew.h>
 
 #include "Core/SunNode.h"
+#include "Output/SunLogger.h"
 
 enum SunShaderSourceType {
     SunShaderSourceTypeVertex = GL_VERTEX_SHADER,
@@ -27,7 +28,7 @@ extern string getShaderCodeFromFile(string filepath);
 extern GLuint compileShaderFromString(string shaderString, GLint shaderType);
 extern GLuint compileShaderFromStrings(vector<string> shaderStrings, GLint shaderType);
 
-class SunShader {
+class SunShader : public SunBase {
 public:
     SunShader() { }
     
