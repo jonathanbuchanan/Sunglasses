@@ -65,7 +65,7 @@ void FeatureScene::init() {
     auto exit = [](SunBase *base) {
         SunGUIItem *item = (SunGUIItem *)base;
         if (item->cursorInItem())
-            glfwSetWindowShouldClose(item->getWindow(), true);
+			((SunWindowManager *)item->getService("window_manager"))->setWindowShouldClose();
     };
     SunLambdaAction exitAction(exit);
     

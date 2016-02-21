@@ -230,15 +230,13 @@ void SunShader::use(std::string tag, float delta, SunNode *root) {
 
 	SunAction uniform("uniform");
 	uniform.addParameter("shader", this);
-	uniform.addParameter("tag", &tag);
-	uniform.addParameter("delta", &delta);
+	uniform.addParameter("tag", &tag); 
 	uniform.setRecursive(true);
 	sendAction(uniform, root);
 
 	SunAction render("render");
 	render.addParameter("shader", this);
-	render.addParameter("tag", &tag);
-	render.addParameter("delta", &delta);
+	render.addParameter("tag", &tag); 
 	render.setRecursive(true);
 	sendAction(render, root); 
 }

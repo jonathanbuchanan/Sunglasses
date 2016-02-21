@@ -3,6 +3,8 @@
 // See LICENSE.md for details.
 #include "SunScene.h"
 
+#include "Graphics/SunRenderer.h"
+
 SunScene::SunScene() { 
     
 }
@@ -11,12 +13,11 @@ void SunScene::init() {
 
 }
 
-void SunScene::cycle(float delta) {
-	SunAction update("update");
-	update.addParameter("delta", &delta);
+void SunScene::cycle() {
+	SunAction update("update"); 
 	update.setRecursive(true);
     sendAction(update, root);
-	renderer->render(delta);
+	renderer->render();
 	guiRenderer->render();
 	renderer->swapBuffers();
 }

@@ -15,8 +15,6 @@ public:
     void initialize();
     void loop();
     void cleanUp();
-private:
-    FeatureScene scene;
 };
 
 #endif

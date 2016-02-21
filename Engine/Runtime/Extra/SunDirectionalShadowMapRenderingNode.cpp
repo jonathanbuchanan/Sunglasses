@@ -28,9 +28,6 @@ void SunDirectionalShadowMapRenderingNode::render(SunAction action) {
 	// Action
 	SunAction shadowMapAction("shadowMap"); 
 	
-	// Delta Time
-	shadowMapAction.addParameter("deltaTime", action.getParameter("deltaTime")); 
-	
 	// Shader Map
 	map<string, SunShader> shaderMap = {{"scene_all", shadowMapShader}};
 	shadowMapAction.addParameter("shaderMap", &shaderMap); 

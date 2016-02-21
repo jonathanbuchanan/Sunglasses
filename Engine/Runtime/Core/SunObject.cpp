@@ -2,6 +2,7 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include "SunObject.h"
+#include "Graphics/SunWindowManager.h"
 
 SunObject::SunObject() {
     init();
@@ -40,7 +41,7 @@ void SunObject::update(SunAction action) {
 
 void SunObject::render(SunAction action) {
 	SunShader shader = *(SunShader *)action.getParameter("shader");
-	GLfloat delta = *(GLfloat *)action.getParameter("delta"); 
+	GLfloat delta = ((SunWindowManager *)getService("window_manager"))->getDelta();
 	for (int i = 0; i < models.size(); ++i)
 		models[i].render(shader, delta, position, rotation, scale, material, SunMeshRenderTypeAll); 
 } 

@@ -53,7 +53,7 @@ SunRenderingNode::SunRenderingNode(string _name, SunRenderingNodeType _rendering
 } 
 
 void SunRenderingNode::render(SunAction action) {
-	GLfloat delta = *(GLfloat *)action.getParameter("delta"); 
+	GLdouble delta = ((SunWindowManager *)getService("window_manager"))->getDelta();
     if (renderingType == SunRenderingNodeTypeRoot) {
 		glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 		clear();
@@ -118,7 +118,9 @@ void SunRenderingNode::render(SunAction action) {
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
         clear();
 		
-		glViewport(0, 0, screenWidth * 2, screenHeight * 2);
+		glm::vec2 screen = ((SunWindowManager *)getService("window_manager"))->getSize();
+
+		glViewport(0, 0, screen.x * 2, screen.y * 2);
 
         shaders["quad"].use(); 
         
@@ -126,7 +128,7 @@ void SunRenderingNode::render(SunAction action) {
 
         renderQuad.renderWithUsedShader(_textures, shaders["quad"]);
 
-		glViewport(0, 0, screenWidth, screenHeight); 
+		glViewport(0, 0, screen.x, screen.y); 
     } else if (renderingType == SunRenderingNodeTypeOnly) {
         // Bind the screen-framebuffer
         /*clear();

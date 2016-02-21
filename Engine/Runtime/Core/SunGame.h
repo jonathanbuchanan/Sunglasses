@@ -15,6 +15,8 @@
 
 #include "Core/SunBase.h"
 
+#include "Core/SunScene.h"
+#include "Graphics/SunWindowManager.h"
 #include "Input/SunKeyboardManager.h"
 #include "Input/SunCursorManager.h"
 #include "Input/SunMouseButtonManager.h"
@@ -22,35 +24,21 @@
 
 using namespace std;
 
-extern GLfloat screenWidth;
-extern GLfloat screenHeight;
-
 class SunScene;
 
 class SunGame : public SunBase {
 public:
     SunGame() { }
-    
-    void loop();
+
+	void run();
+	virtual void loop();
     void updateServices();
     void cleanUp();
     void initialize();
-
-    inline std::string & getWindowTitle() { return windowTitle; }
-    inline void setWindowTitle(std::string w) { windowTitle = w; }
-    
-    inline glm::vec4 & getClearColor() { return clearColor; }
-    inline void setClearColor(glm::vec4 c) { clearColor = c; }
-    
-    inline GLfloat & getScreenWidth() { return screenWidth; }
-    inline GLfloat & getScreenHeight() { return screenHeight; }
+	void initialize(std::string title, glm::vec4 color);
 protected:
+	SunScene *scene;
     GLFWwindow *window;
-   
-    std::string windowTitle;
-    glm::vec4 clearColor = glm::vec4(0.1f, 0.1f, 0.1f, 1.0f);
-    
-private:
 };
 
 #endif

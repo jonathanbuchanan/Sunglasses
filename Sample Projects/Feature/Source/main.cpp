@@ -8,7 +8,7 @@ int main() {
     FeatureGame game = FeatureGame();
     game.initialize();
     
-    game.loop();
+    game.run();
     
     game.cleanUp();
     

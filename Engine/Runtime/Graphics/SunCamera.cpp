@@ -50,8 +50,8 @@ void SunCamera::uniform(SunAction action) {
 	passPerFrameUniforms(*(SunShader *)action.getParameter("shader"));
 }
 
-void SunCamera::update(SunAction action) {
-	float delta = *(float *)action.getParameter("delta");
+void SunCamera::update(SunAction action) { 
+	double delta = ((SunWindowManager *)getService("window_manager"))->getDelta();
 
 	glm::vec2 mouse = ((SunCursorManager *)getService("cursor_manager"))->getCursorPosition(); 
     static glm::vec2 oldMouse;

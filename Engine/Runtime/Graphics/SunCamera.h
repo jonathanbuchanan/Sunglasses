@@ -14,6 +14,7 @@ using namespace std;
 
 #include "Core/SunNode.h"
 #include "Utility.h"
+#include "Graphics/SunWindowManager.h"
 #include "Input/SunKeyboardManager.h"
 #include "Input/SunCursorManager.h"
 

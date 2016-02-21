@@ -11,12 +11,13 @@
 #include "GUI/SunGUISystem.h"
 #include "GUI/SunGUIRenderer.h"
 #include "Graphics/SunCamera.h"
-#include "Graphics/SunRenderer.h" 
 #include "Graphics/SunTextRenderer.h"
 #include "Audio/SunSoundListener.h"
 #include "Audio/SunSoundBufferStorage.h"
 #include "Audio/SunMusicObject.h"
 #include "SunObject.h"
+
+class SunRenderer;
 
 class SunScene : public SunBase {
 public:
@@ -29,7 +30,7 @@ public:
 		renderer = new T();
 	}
 
-	virtual void cycle(float delta);
+	virtual void cycle();
     
     inline SunPhysicsSimulator & getPhysicsSimulator() { return physicsSimulator; }
     

@@ -4,9 +4,8 @@
 #include "SunRenderer.h"
 #include "Core/SunScene.h"
 
-void SunRenderer::render(GLfloat _deltaTime) {
-	SunAction renderAction("render");
-	renderAction.addParameter("delta", &_deltaTime);
+void SunRenderer::render() {
+	SunAction renderAction("render"); 
 	renderAction.setRecursive(true);
 
     sendAction(renderAction, rootRenderNode); 
@@ -14,7 +13,7 @@ void SunRenderer::render(GLfloat _deltaTime) {
 
 void SunRenderer::swapBuffers() {
     // Swap the buffers
-    glfwSwapBuffers(window);
+	((SunWindowManager *)getService("window_manager"))->swapBuffers();
 }
 
 void SunRenderer::initialize() { }

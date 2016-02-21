@@ -15,11 +15,11 @@
 
 class SunScene;
 
-class SunRenderer {
+class SunRenderer : public SunBase {
 public:
     SunRenderer() { }
     
-    void render(GLfloat _deltaTime);
+    void render();
     void swapBuffers();
 	virtual void initialize();
     

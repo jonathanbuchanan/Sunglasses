@@ -24,8 +24,6 @@ SunPointLightObject::SunPointLightObject(string _name) {
 
 void SunPointLightObject::init() { 
 	addAction("shadowMap", &SunPointLightObject::shadowMap); 
-	
-    //setType("light");
 }
 
 void SunPointLightObject::passPerFrameUniforms(SunAction action) {
@@ -74,8 +72,7 @@ void SunPointLightObject::shadowMap(SunAction action) {
 	glBindFramebuffer(GL_FRAMEBUFFER, shadowMapFramebuffer);
 	clear();
 	
-	SunAction renderAction("render");
-	renderAction.addParameter("deltaTime", action.getParameter("deltaTime")); 
+	SunAction renderAction("render"); 
 	
 	string POVtype = "light";
 	string POV = this->getName();
@@ -88,8 +85,8 @@ void SunPointLightObject::shadowMap(SunAction action) {
 	sendAction(renderAction, scene);
 	
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	
-	glViewport(0, 0, screenWidth, screenHeight);
+	glm::vec2 screen = ((SunWindowManager *)getService("window_manager"))->getSize();
+	glViewport(0, 0, screen.x, screen.y);
 }
 
 void SunPointLightObject::initializeShadowMap() {
