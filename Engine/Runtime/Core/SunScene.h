@@ -11,14 +11,11 @@
 #include "./GUI/SunGUISystem.h"
 #include "./Graphics/SunCamera.h"
 #include "./Graphics/SunRenderer.h" 
-#include "./Graphics/SunPointShadowMapRenderingNode.h"
 #include "./Graphics/SunTextRenderer.h"
 #include "./Audio/SunSoundListener.h"
 #include "./Audio/SunSoundBufferStorage.h"
 #include "./Audio/SunMusicObject.h"
 #include "./SunObject.h"
-#include "./SunDirectionalLightObject.h"
-#include "./SunPointLightObject.h"
 
 // Definition of SunObjectType (NEEDS A HOME)
 
@@ -35,9 +32,7 @@ public:
     SunScene();
     SunScene(const char *filepath, GLFWwindow *_window);
     
-    virtual void init();
-    
-    void initializeShadowMapRenderer(SunAction action);
+    virtual void init(); 
     
     void cycle(map<int, SunButtonState> _buttons, GLfloat _deltaTime);
     virtual void update(map<int, SunButtonState> _buttons); 
@@ -88,9 +83,6 @@ private:
 
     // Renderer and Text Renderer
     SunRenderer renderer; 
-    
-    // Shadow Point Light Pointers
-    vector<SunPointLightObject *> shadowPointLights;
     
     // Sound Storage
     SunSoundBufferStorage storage;

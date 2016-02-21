@@ -27,19 +27,8 @@ SunScene::SunScene(const char *filepath, GLFWwindow *_window) {
 
 void SunScene::init() { 
 	addAction("renderGUISystem", &SunScene::renderGUISystem);
-	addAction("passPerFrameUniforms", &SunScene::passPerFrameUniformsAction);
-	addAction("initializeShadowMapRenderer", &SunScene::initializeShadowMapRenderer); 
-}
-
-void SunScene::initializeShadowMapRenderer(SunAction action) {
-    // Renderer
-    SunPointShadowMapRenderingNode *renderer = (SunPointShadowMapRenderingNode *)action.getParameter("renderer");
-    
-    // Loop through shadow point lights and add to list
-    for (int i = 0; i < shadowPointLights.size(); i++) {
-        renderer->addLightToLights(shadowPointLights[i]);
-    }
-}
+	addAction("passPerFrameUniforms", &SunScene::passPerFrameUniformsAction); 
+} 
 
 void SunScene::cycle(map<int, SunButtonState> _buttons, GLfloat _deltaTime) {
     physicsSimulator.cycle(_deltaTime);
