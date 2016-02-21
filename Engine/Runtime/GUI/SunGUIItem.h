@@ -77,10 +77,10 @@ private:
     glm::vec2 size;
     glm::vec3 color;
     glm::vec3 highlightColor;
-    GLboolean textured;
+    GLboolean textured = false;
     string texturePath;
 
-    GLboolean highlighted;
+    GLboolean highlighted = false;
 
     GLboolean visible = true;
 

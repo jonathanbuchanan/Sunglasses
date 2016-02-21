@@ -18,7 +18,6 @@ void SunGUIMenu::render(SunAction action) {
 }
 
 void SunGUIMenu::key(SunAction action) {
-    int key = *(int *)action.getParameter("key");
-    
+    int key = *(int *)action.getParameter("key"); 
     actions[key].run(this);
 }

@@ -8,9 +8,6 @@ FeatureScene::FeatureScene() {
 } 
 
 void FeatureScene::init() { 
-	addAction("renderGUI", &FeatureScene::renderGUI);
-	addAction("passPerFrameUniforms", &FeatureScene::passPerFrameUniformsAction);
-   
 	root = new SunObject();
     root->setName("root");
     root->init();
@@ -22,26 +19,32 @@ void FeatureScene::init() {
 
     this->setName("Scene"); 
 
-    renderer.setSceneNode(this);
-    renderer.setWindow(window);
-    
-    renderer.initialize(); 
+	initRenderer<FeatureRenderer>(); 
+    renderer->setSceneNode(this);
+	renderer->setWindow(window);
+    renderer->initialize(); 
     
     house = new SunObject("cube", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Cube.dae", "solid");
 	house->addTag("solid");    
     root->addSubNode(house); 
     
-    textRenderer.initialize(); 
-    textRenderer.loadFont("Resources/Graphics/Fonts/arial.ttf", "Arial");
+	textRenderer = new SunTextRenderer();
+    textRenderer->initialize(); 
+    textRenderer->loadFont("Resources/Graphics/Fonts/arial.ttf", "Arial");
     menu = new SunGUIMenu();
+	menu->init();
+	guiSystem.init();
     guiSystem.addSubNode(menu);
     
+	guiRenderer = new SunGUIRenderer();
+	guiRenderer->setGUIRoot(&guiSystem);
+	guiRenderer->setTextRenderer(textRenderer);
+
     ((SunKeyboardManager *)getService("keyboard_manager"))->subscribe(menu, GLFW_KEY_ESCAPE, SunButtonEventDownSingle); 
     
     auto show = [](SunBase *base) {
         SunGUIMenu *menu = (SunGUIMenu *)base;
-        menu->setVisible(!menu->getVisible());
-        
+        menu->setVisible(!menu->getVisible()); 
         if (((SunCursorManager *)menu->getService("cursor_manager"))->getMode() == GLFW_CURSOR_DISABLED) {
             ((SunCursorManager *)menu->getService("cursor_manager"))->enableCursor();
         } else if (((SunCursorManager *)menu->getService("cursor_manager"))->getMode() == GLFW_CURSOR_NORMAL) {
@@ -53,6 +56,7 @@ void FeatureScene::init() {
     menu->addActionForKey(showAction, GLFW_KEY_ESCAPE);
     
     item = new SunGUIItem();
+	item->init();
     item->setWindow(window);
     menu->addSubNode(item);
     
@@ -73,19 +77,3 @@ void FeatureScene::init() {
     item->setPosition(glm::vec2(-0.5f, -0.1f));
     item->setColor(glm::vec3(1.0f, 1.0f, 1.0f));
 } 
-
-void FeatureScene::renderGUI(SunAction action) {
-    SunAction GUIAction;
-    GUIAction.setAction("render");
-	GUIAction.addParameter("textRenderer", &textRenderer); 
-    
-    sendAction(GUIAction, &guiSystem);
-}
-
-void FeatureScene::cycle(float delta) {
-	SunAction update("update");
-	update.addParameter("delta", &delta);
-	update.setRecursive(true);
-    sendAction(update, root);
-    renderer.render(delta);
-}

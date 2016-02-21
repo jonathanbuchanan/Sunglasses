@@ -57,7 +57,7 @@ void SunGame::initialize() {
     addService(keyboard);
     
     // Initialize the Cursor Manager
-    SunCursorManager *cursor = new SunCursorManager(window, false);
+    SunCursorManager *cursor = new SunCursorManager(window, true);
     cursor->name = "cursor_manager";
     addService(cursor);
     

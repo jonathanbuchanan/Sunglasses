@@ -6,18 +6,10 @@
 
 void SunRenderer::render(GLfloat _deltaTime) {
 	SunAction renderAction("render");
-	renderAction.addParameter("deltaTime", &_deltaTime);
+	renderAction.addParameter("delta", &_deltaTime);
 	renderAction.setRecursive(true);
 
-    sendAction(renderAction, rootRenderNode);
-
-    // Render the GUI
-	SunAction action("renderGUISystem");
-
-    sendAction(action, (SunBase *)scene);
-
-    // Swap the buffers
-    swapBuffers();
+    sendAction(renderAction, rootRenderNode); 
 }
 
 void SunRenderer::swapBuffers() {
@@ -25,3 +17,4 @@ void SunRenderer::swapBuffers() {
     glfwSwapBuffers(window);
 }
 
+void SunRenderer::initialize() { }

@@ -21,31 +21,21 @@ public:
     
     void render(GLfloat _deltaTime);
     void swapBuffers();
+	virtual void initialize();
     
-    inline GLFWwindow * getWindow() { return window; }
-    inline void setWindow(GLFWwindow *_window) { window = _window; }
-    
-    inline GLfloat & getScreenWidth() { return screenWidth; }
-    inline GLfloat & getScreenHeight() { return screenHeight; }
-    inline void setScreenWidth(GLfloat width) { screenWidth = width; }
-    inline void setScreenHeight(GLfloat height) { screenHeight = height; }
-    
-    inline SunScene * getSceneNode() { return scene; }
-    inline void setSceneNode(SunScene *_scene) { scene = _scene; }
-    
+	inline void setSceneNode(SunScene *s) { scene = s; }
+
     inline SunRenderingNode * getRootRenderNode() { return rootRenderNode; }
     inline void setRootRenderNode(SunRenderingNode *_root) { rootRenderNode = _root; }
+
+	inline void setWindow(GLFWwindow *w) { window = w; }
 protected:
 	// Scene Objects
-    SunScene *scene;
+	SunScene *scene;
     SunRenderingNode *rootRenderNode;
 	
 private:
-    // Window and window size
-    GLFWwindow *window;
-
-    GLfloat screenWidth;
-    GLfloat screenHeight;
+	GLFWwindow *window;
 };
 
 #endif

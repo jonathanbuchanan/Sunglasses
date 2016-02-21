@@ -58,20 +58,4 @@ void FeatureRenderer::initialize() {
 	finalNode->setShaders(finalShaders);
     finalNode->init();
     gbuffer->addSubNode(finalNode);
-}
-
-void FeatureRenderer::render(float delta) {
-    SunAction renderAction;
-    renderAction.setAction("render");
-	renderAction.addParameter("delta", &delta); 
-    renderAction.setRecursive(true);
-
-    sendAction(renderAction, rootRenderNode);
-
-	SunAction guiAction("renderGUI");
-    
-    //sendAction(guiAction, (SunBase *)scene);
-    
-    // Swap the buffers
-    swapBuffers();
-}
+} 
