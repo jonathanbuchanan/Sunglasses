@@ -4,7 +4,7 @@
 #include "FeatureGame.h"
 
 void FeatureGame::initialize() {
-	SunGame::initialize("Feature", glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
+	SunGame::initialize("Feature", glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
 
 	scene = new FeatureScene();
 	scene->setWindow(window);

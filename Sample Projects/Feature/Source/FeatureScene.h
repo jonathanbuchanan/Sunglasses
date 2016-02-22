@@ -8,6 +8,7 @@
 #include "SunObject.h"
 
 #include "Extra/SunPointLight.h"
+#include "Extra/SunDirectionalLight.h"
 
 #include "FeatureRenderer.h"
 #include "GUI/SunGUIRenderer.h"
@@ -28,6 +29,7 @@ private:
 	// Objects
     SunObject *house;
 	SunPointLight *light;
+	SunDirectionalLight *dir;
     
     GLFWwindow *window;
 };

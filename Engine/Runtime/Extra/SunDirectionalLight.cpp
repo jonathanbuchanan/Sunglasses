@@ -3,43 +3,51 @@
 // See LICENSE.md for details.
 #include "SunDirectionalLight.h"
 
-SunDirectionalLightObject::SunDirectionalLightObject() {
-    
+int SunDirectionalLight::lastId = 0;
+
+SunDirectionalLight::SunDirectionalLight() {
+    init();
 }
 
-SunDirectionalLightObject::SunDirectionalLightObject(glm::vec3 _color, glm::vec3 _direction) {
+SunDirectionalLight::SunDirectionalLight(glm::vec3 _color, glm::vec3 _direction) {
     color = _color;
-    direction = _direction; 
+    direction = _direction;
+
+	init();
 }
 
-SunDirectionalLightObject::SunDirectionalLightObject(string _name) {
-    setName(_name); 
+SunDirectionalLight::SunDirectionalLight(string _name) {
+    setName(_name);
+
+	init();
 }
 
-void SunDirectionalLightObject::init() { 
-	addAction("shadowMap", &SunDirectionalLightObject::shadowMap); 
-    
-    //setType("light");
+void SunDirectionalLight::init() {
+	id = lastId;
+	lastId++;
+
+	addAction("uniform", &SunDirectionalLight::uniform);
+	addAction("shadowMap", &SunDirectionalLight::shadowMap); 
 }
 
-void SunDirectionalLightObject::passPerFrameUniforms(SunAction action) {
+void SunDirectionalLight::uniform(SunAction action) {
     SunObject::uniform(action);
-    
     SunShader _shader = *(SunShader *)action.getParameter("shader");
+	glUniform1i(_shader.getUniformLocation(countUniform), lastId);
 	int usedTextureUnits;
 	if (action.parameterExists("usedTextureUnits"))
 		usedTextureUnits = *(int *)action.getParameter("usedTextureUnits");
 	
-    glUniform3f(_shader.getUniformLocation("directionalLights[" + std::to_string(directionalLightID) + "].color"), color.r, color.g, color.b);
+    glUniform3f(_shader.getUniformLocation(arrayUniform + "[" + std::to_string(id) + "].color"), color.r, color.g, color.b);
     
-    glUniform3f(_shader.getUniformLocation("directionalLights[" + std::to_string(directionalLightID) + "].direction"), direction.x, direction.y, direction.z);
+    glUniform3f(_shader.getUniformLocation(arrayUniform + "[" + std::to_string(id) + "].direction"), direction.x, direction.y, direction.z);
 }
 
-void SunDirectionalLightObject::shadowMap(SunAction action) {
+void SunDirectionalLight::shadowMap(SunAction action) {
 	
 }
 
-void SunDirectionalLightObject::initializeShadowMap() {
+void SunDirectionalLight::initializeShadowMap() {
 	// Generate the framebuffer
 	glGenFramebuffers(1, &shadowMapFramebuffer);
 	

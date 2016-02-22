@@ -28,10 +28,7 @@ public:
     
     inline glm::vec3 & getColor() { return color; }
     inline void setColor(glm::vec3 _color) { color = _color; }
-    inline void setColorR(GLfloat r) { color.r = r; }
-    inline void setColorG(GLfloat g) { color.g = g; }
-    inline void setColorB(GLfloat b) { color.b = b; }
-    
+
     inline GLboolean & getAttenuate() { return attenuate; }
     inline void setAttenuate(GLboolean _attenuate) { attenuate = _attenuate; }
     

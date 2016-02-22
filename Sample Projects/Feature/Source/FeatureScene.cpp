@@ -26,15 +26,22 @@ void FeatureScene::init() {
 
     house = new SunObject("cube", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Teapot.dae", "solid", false);
 	house->init();
-	house->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 0.0f, 0.0f), 256.0f)); 
+	house->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f)); 
     root->addSubNode(house);
 
-	light = new SunPointLight(glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(2.0f, 2.0f, 2.0f));
-	light->init();
+	light = new SunPointLight(glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(2.0f, -2.0f, 2.0f));
 	light->setCountUniform("pointLightCount");
 	light->setArrayUniform("pointLights");
 	light->addTag("light");
+	light->addTag("pointLight");
 	root->addSubNode(light);
+
+	dir = new SunDirectionalLight(glm::vec3(1.0f, 0.75f, 0.75f), glm::vec3(1.0f, -1.0f, 0.0f));
+	dir->setCountUniform("directionalLightCount");
+	dir->setArrayUniform("directionalLights");
+	dir->addTag("light");
+	dir->addTag("pointLight");
+	root->addSubNode(dir);
     
 	textRenderer = new SunTextRenderer();
     textRenderer->initialize(); 
