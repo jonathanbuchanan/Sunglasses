@@ -58,7 +58,7 @@ void SunCamera::update(SunAction action) {
     glm::vec2 offset = glm::vec2(mouse.x - oldMouse.x, oldMouse.y - mouse.y);
     oldMouse = mouse;
     
-    const float sensitivity = 0.05f;
+    const float sensitivity = 0.1f;
     offset *= sensitivity;
     yaw += offset.x;
     pitch += offset.y;
@@ -91,8 +91,8 @@ void SunCamera::update(SunAction action) {
 
 glm::mat4 SunCamera::viewMatrix() {
     // Recalculate the camera's right and the camera's up
-    cameraRight = glm::normalize(glm::cross(up, -direction));
-    cameraUp = glm::normalize(glm::cross(-direction, cameraRight));
+    cameraRight = glm::normalize(glm::cross(up, direction));
+    cameraUp = glm::normalize(glm::cross(direction, cameraRight));
 
     // Create the view matrix for the camera's position and direction
     glm::mat4 matrix = glm::lookAt(position, position + direction, cameraUp);

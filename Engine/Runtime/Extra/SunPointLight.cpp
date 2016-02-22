@@ -5,38 +5,44 @@
 
 #include <iostream>
 
-SunPointLightObject::SunPointLightObject() {
+int SunPointLight::lastId = 0;
+
+SunPointLight::SunPointLight() {
     init();
 }
 
-SunPointLightObject::SunPointLightObject(glm::vec3 _color, glm::vec3 _position) {
+SunPointLight::SunPointLight(glm::vec3 _color, glm::vec3 _position) {
     color = _color;
     this->setPosition(_position);
     
     init();
 }
 
-SunPointLightObject::SunPointLightObject(string _name) {
+SunPointLight::SunPointLight(string _name) {
     setName(_name);
 
     init();
 }
 
-void SunPointLightObject::init() { 
-	addAction("shadowMap", &SunPointLightObject::shadowMap); 
+void SunPointLight::init() {
+	id = lastId;
+	lastId++;
+
+	addAction("uniform", &SunPointLight::uniform);
+	addAction("shadowMap", &SunPointLight::shadowMap); 
 }
 
-void SunPointLightObject::passPerFrameUniforms(SunAction action) {
+void SunPointLight::uniform(SunAction action) {
     SunObject::uniform(action);
-
-    SunShader _shader = *(SunShader *)action.getParameter("shader");
+	SunShader _shader = *(SunShader *)action.getParameter("shader");
+	glUniform1i(_shader.getUniformLocation(countUniform), lastId);
 	int usedTextureUnits;
 	if (action.parameterExists("usedTextureUnits"))
 		usedTextureUnits = *(int *)action.getParameter("usedTextureUnits");
     
 	if (shadows) {
 		// Set the uniforms for the point light's color
-    	glUniform3f(_shader.getUniformLocation("shadowPointLights[" + std::to_string(pointLightID) + "].color"), color.r, color.g, color.b);
+    	/*glUniform3f(_shader.getUniformLocation("shadowPointLights[" + std::to_string(pointLightID) + "].color"), color.r, color.g, color.b);
 		
    	 	// Set the uniform for the point light's position
    	 	glUniform3f(_shader.getUniformLocation("shadowPointLights[" + std::to_string(pointLightID) + "].position"), this->getPosition().x, this->getPosition().y, this->getPosition().z);
@@ -47,25 +53,25 @@ void SunPointLightObject::passPerFrameUniforms(SunAction action) {
 		glActiveTexture(GL_TEXTURE1 + usedTextureUnits + pointLightID);
 		glBindTexture(GL_TEXTURE_CUBE_MAP, shadowMapTexture);
 		glUniform1i(_shader.getUniformLocation("shadowPointLights[" + to_string(pointLightID) + "].shadowMap"), 1 + usedTextureUnits + pointLightID);
-		glActiveTexture(GL_TEXTURE0);
+		glActiveTexture(GL_TEXTURE0);*/
 	} else {
 		// Set the uniforms for the point light's color
-    	glUniform3f(_shader.getUniformLocation("pointLights[" + std::to_string(pointLightID) + "].color"), color.r, color.g, color.b);
+    	glUniform3f(_shader.getUniformLocation(arrayUniform + "[" + std::to_string(id) + "].color"), color.r, color.g, color.b);
 		
    	 	// Set the uniform for the point light's position
-   	 	glUniform3f(_shader.getUniformLocation("pointLights[" + std::to_string(pointLightID) + "].position"), this->getPosition().x, this->getPosition().y, this->getPosition().z);
+   	 	glUniform3f(_shader.getUniformLocation(arrayUniform + "[" + std::to_string(id) + "].position"), this->getPosition().x, this->getPosition().y, this->getPosition().z);
 		
     	// Set the uniforms for the point light's constant, linear, and quadratic terms
-    	glUniform1i(_shader.getUniformLocation("pointLights[" + std::to_string(pointLightID) + "].attenuate"), attenuate);
+    	glUniform1i(_shader.getUniformLocation(arrayUniform + "[" + std::to_string(id) + "].attenuate"), attenuate);
 	}
 }
 
-void SunPointLightObject::passPOVUniforms(SunShader _shader) {
+void SunPointLight::passPOVUniforms(SunShader _shader) {
 	for (int i = 0; i < 6; i++)
 		glUniformMatrix4fv(_shader.getUniformLocation("shadowMatrices[" + to_string(i) + "]"), 1, GL_FALSE, glm::value_ptr(lightTransforms[i]));
 }
 
-void SunPointLightObject::shadowMap(SunAction action) {
+void SunPointLight::shadowMap(SunAction action) {
 	SunNode *scene = (SunNode *)action.getParameter("scene");
 	
 	glViewport(0, 0, 1024, 1024);
@@ -89,7 +95,7 @@ void SunPointLightObject::shadowMap(SunAction action) {
 	glViewport(0, 0, screen.x, screen.y);
 }
 
-void SunPointLightObject::initializeShadowMap() {
+void SunPointLight::initializeShadowMap() {
 	glGenFramebuffers(1, &shadowMapFramebuffer);
 	glBindFramebuffer(GL_FRAMEBUFFER, shadowMapFramebuffer);
 	

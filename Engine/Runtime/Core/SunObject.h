@@ -20,7 +20,7 @@ class SunObject : public SunNode {
 public:
     SunObject();
     SunObject(string _name, string _modelPath, bool _flipNormals);
-	SunObject(string _name, string _modelPath, string tag);
+	SunObject(string _name, string _modelPath, string tag, bool _flipNormals);
     
     virtual void init();
     virtual void update(SunAction action);
@@ -86,7 +86,7 @@ private:
     
     SunObjectMaterial material;
     SunMeshRenderType renderType;
-    bool flipNormals;
+    bool flipNormals = false;
 };
 
 #endif

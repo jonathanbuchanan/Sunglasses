@@ -81,8 +81,8 @@ private:
 
     // Up, Camera Right, and Camera Up
     glm::vec3 up = glm::vec3(0.0, 1.0, 0.0);
-    glm::vec3 cameraRight = glm::normalize(glm::cross(up, -direction));
-    glm::vec3 cameraUp = glm::normalize(glm::cross(-direction, cameraRight));
+    glm::vec3 cameraRight = glm::normalize(glm::cross(up, direction));
+    glm::vec3 cameraUp = glm::normalize(glm::cross(direction, cameraRight));
 
     // Yaw and Pitch
     GLfloat yaw = 0.0f;

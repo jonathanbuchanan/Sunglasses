@@ -81,9 +81,7 @@ public:
     
     virtual void init();
     virtual void render(SunAction action);
-    void passUniforms(SunShader *_shader);
-	void passUniforms(SunShader *_shader, int textureUnits);
-    void initializeOutput(SunRenderingNodeOutput *_output);
+	void initializeOutput(SunRenderingNodeOutput *_output);
     
     inline SunRenderingNodeType & getRenderingType() { return renderingType; }
     inline void setRenderingType(SunRenderingNodeType _type) { renderingType = _type; } 
@@ -98,8 +96,8 @@ public:
     inline void addOutputToOutputs(SunRenderingNodeOutput output) { outputs.push_back(output); }
     inline void setOutputs(vector<SunRenderingNodeOutput> _outputs) { outputs = _outputs; }
    
-	inline void addShaderForString(SunShader shader, std::string string) { shaders[string] = shader; }
-	inline void setShaders(std::map<std::string, SunShader> shaders_) { shaders = shaders_; }
+	inline void addShaderForString(SunShader shader, std::string string) { shaders.push_back(std::make_pair(string, shader)); }
+	inline void setShaders(std::vector<std::pair<std::string, SunShader>> shaders_) { shaders = shaders_; }
 
     inline void setRoot(SunNode *r) { root = r; } 
 private:
@@ -108,7 +106,7 @@ protected:
     // Inputs, Outputs, and Shaders
     vector<SunRenderingNodeInput> inputs;
     vector<SunRenderingNodeOutput> outputs;
-	std::map<std::string, SunShader> shaders;
+	std::vector<std::pair<std::string, SunShader>> shaders;
     
 	GLuint fbo;
 	GLuint rbo;

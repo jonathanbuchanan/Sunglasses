@@ -9,7 +9,7 @@ SunObject::SunObject() {
 }
 
 SunObject::SunObject(string _name, string _modelPath, bool _flipNormals) {
-    setName(_name);
+	setName(_name);
     setFlipNormals(_flipNormals);
 
     init();
@@ -18,12 +18,13 @@ SunObject::SunObject(string _name, string _modelPath, bool _flipNormals) {
     models.push_back(model);
 }
 
-SunObject::SunObject(string _name, string _modelPath, string tag) {
+SunObject::SunObject(string _name, string _modelPath, string tag, bool _flipNormals) {
 	setName(_name);
+	setFlipNormals(_flipNormals);
 	addTag(tag);
 	init();
 
-	SunModel model = SunModel(_modelPath, false);
+	SunModel model = SunModel(_modelPath, flipNormals);
 	models.push_back(model);
 }
 

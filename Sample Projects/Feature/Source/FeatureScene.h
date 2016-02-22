@@ -7,6 +7,8 @@
 #include "SunScene.h"
 #include "SunObject.h"
 
+#include "Extra/SunPointLight.h"
+
 #include "FeatureRenderer.h"
 #include "GUI/SunGUIRenderer.h"
 
@@ -22,8 +24,10 @@ private:
     SunGUISystem guiSystem = SunGUISystem();
     SunGUIMenu *menu;
     SunGUIItem *item;
-    
+
+	// Objects
     SunObject *house;
+	SunPointLight *light;
     
     GLFWwindow *window;
 };

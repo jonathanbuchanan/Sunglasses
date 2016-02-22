@@ -298,8 +298,7 @@ void main() {
 		lighting += _color_ * calculateLighting(directionalLights[i], _position, normal);
 	}
 
-    result = vec4(vec3(lighting), 1.0f);
-    result = vec4(vec3(_position), 1.0f);
+    result = vec4(vec3(lighting), 1.0f); 
 
     color = result; 
 

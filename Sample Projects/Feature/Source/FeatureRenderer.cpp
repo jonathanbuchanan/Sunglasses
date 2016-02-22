@@ -17,13 +17,9 @@ void FeatureRenderer::initialize() {
     gbufferOutputs.push_back(SunRenderingNodeOutput(SunRenderingNodeDataTypePosition, SunRenderingNodeDataFormatRGBA16F, 0, glm::vec2(1600, 1200), SunRenderingNodeTextureType2D));
     
     // GBuffer Shaders
-    vector<string> gbufferSources = {"../../Engine/Shaders/Variable Pipeline/Scene.vert", "../../Engine/Shaders/Variable Pipeline/Scene.frag"};
-    vector<SunShaderSourceType> gbufferSourceTypes = {SunShaderSourceTypeVertex, SunShaderSourceTypeFragment};
-    
-    // GBuffer Shaders
-	std::map<std::string, SunShader> gbufferShaders = {
-		{"solid", SunShader("../../Engine/Shaders/Variable Pipeline/Scene.vert", "../../Engine/Shaders/Variable Pipeline/Scene.frag", "../../Engine/Shaders/SolidScene.pre")},
-		{"textured", SunShader("../../Engine/Shaders/Variable Pipeline/Scene.vert", "../../Engine/Shaders/Variable Pipeline/Scene.frag", "../../Engine/Shaders/TexturedScene.pre")}
+	std::vector<std::pair<std::string, SunShader>> gbufferShaders = {
+		std::make_pair("solid", SunShader("../../Engine/Shaders/Old/Variable Pipeline/Scene.vert", "../../Engine/Shaders/Old/Variable Pipeline/Scene.frag", "../../Engine/Shaders/Old/SolidScene.pre")),
+		std::make_pair("textured", SunShader("../../Engine/Shaders/Old/Variable Pipeline/Scene.vert", "../../Engine/Shaders/Old/Variable Pipeline/Scene.frag", "../../Engine/Shaders/Old/TexturedScene.pre")), 
 	};
     
     // GBuffer
@@ -46,12 +42,8 @@ void FeatureRenderer::initialize() {
         SunRenderingNodeOutput(SunRenderingNodeDataTypeColor, SunRenderingNodeDataFormatRGBA16F, 0, glm::vec2(1600, 1200), SunRenderingNodeTextureType2D)
     };
     
-    // Final Shaders
-    vector<string> finalSources = {"../../Engine/Shaders/Variable Pipeline/Quad.vert", "../../Engine/Shaders/Variable Pipeline/Quad.frag"};
-    vector<SunShaderSourceType> finalSourceTypes = {SunShaderSourceTypeVertex, SunShaderSourceTypeFragment};
-    
-    std::map<std::string, SunShader> finalShaders = {
-		{"quad", SunShader("../../Engine/Shaders/Variable Pipeline/Quad.vert", "../../Engine/Shaders/Variable Pipeline/Quad.frag", "../../Engine/Shaders/DeferredQuad.pre")}, 
+	std::vector<std::pair<std::string, SunShader>> finalShaders = {
+		{"quad", SunShader("../../Engine/Shaders/Old/Variable Pipeline/Quad.vert", "../../Engine/Shaders/Old/Variable Pipeline/Quad.frag", "../../Engine/Shaders/Old/DeferredQuad.pre")}, 
 	};
     // Final
     SunRenderingNode *finalNode = new SunRenderingNode("final", SunRenderingNodeTypeEnd, finalInputs, finalOutputs, scene->getRoot());

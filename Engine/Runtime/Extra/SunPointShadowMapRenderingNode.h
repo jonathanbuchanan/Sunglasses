@@ -17,11 +17,11 @@ public:
 	void loadPointLights(SunAction action);
 	virtual void render(SunAction action); 
 	
-	inline vector<SunPointLightObject *> & getLights() { return lights; }
-	inline SunPointLightObject * getLightAtIndex(int i) { return lights[i]; }
-	inline void addLightToLights(SunPointLightObject *_p) { lights.push_back(_p); }
+	inline vector<SunPointLight *> & getLights() { return lights; }
+	inline SunPointLight * getLightAtIndex(int i) { return lights[i]; }
+	inline void addLightToLights(SunPointLight *_p) { lights.push_back(_p); }
 private:
-	vector<SunPointLightObject *> lights;
+	vector<SunPointLight *> lights;
 	SunShader shadowMapShader;
 };
 

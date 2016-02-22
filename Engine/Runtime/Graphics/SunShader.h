@@ -36,8 +36,10 @@ public:
     SunShader(string vertexPath, string fragmentPath, string preprocessorPath);
     SunShader(string vertexPath, string geometryPath, string fragmentPath, string preprocessorPath);
     SunShader(vector<string> sources, vector<SunShaderSourceType> sourceTypes, string preprocessorPath);
-    //SunShader(string vertexPath, string geometryPath, string fragmentPath);
-    
+    SunShader(string vertexPath, string geometryPath, string fragmentPath, int a);
+
+	void uniforms(SunNode *root);
+
     void use();
 	void use(std::string tag, float delta, SunNode *root);
     

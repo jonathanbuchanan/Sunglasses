@@ -195,7 +195,7 @@ SunShader::SunShader(vector<string> sources, vector<SunShaderSourceType> sourceT
         glDeleteShader(shaders[i]);
 }
 
-/*SunShader::SunShader(string vertexPath, string geometryPath, string fragmentPath) {
+SunShader::SunShader(string vertexPath, string geometryPath, string fragmentPath, int a) {
     string vertexCode = getShaderCodeFromFile(vertexPath);
     string geometryCode = getShaderCodeFromFile(geometryPath);
     string fragmentCode = getShaderCodeFromFile(fragmentPath);
@@ -219,7 +219,14 @@ SunShader::SunShader(vector<string> sources, vector<SunShaderSourceType> sourceT
     glDeleteShader(vertex);
     glDeleteShader(geometry);
     glDeleteShader(fragment);
-}*/
+}
+
+void SunShader::uniforms(SunNode *root) {
+	SunAction uniform("uniform");
+	uniform.addParameter("shader", this); 
+	uniform.setRecursive(true);
+	sendAction(uniform, root);
+}
 
 void SunShader::use() {
     glUseProgram(this->program);
@@ -228,15 +235,12 @@ void SunShader::use() {
 void SunShader::use(std::string tag, float delta, SunNode *root) {
 	use();
 
-	SunAction uniform("uniform");
-	uniform.addParameter("shader", this);
-	uniform.addParameter("tag", &tag); 
-	uniform.setRecursive(true);
-	sendAction(uniform, root);
+	uniforms(root);
 
 	SunAction render("render");
 	render.addParameter("shader", this);
-	render.addParameter("tag", &tag); 
+	if (tag.length() > 0)
+		render.addParameter("tag", &tag); 
 	render.setRecursive(true);
 	sendAction(render, root); 
 }

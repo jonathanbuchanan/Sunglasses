@@ -27,7 +27,7 @@ GLint textureFromFile(const char *path, string directory) {
 }
 
 SunModel::SunModel(string _file, bool _flipNormals) {
-    // Import the mesh data
+	// Import the mesh data
     importMeshData(_file, _flipNormals);
 }
 
@@ -142,8 +142,9 @@ SunMesh SunModel::processMeshData(aiMesh* _mesh, const aiScene* _scene) {
         normal.y = _mesh->mNormals[i].y;
         normal.z = _mesh->mNormals[i].z;
         
-        if (flipNormals)
+        if (flipNormals) { 
             normal = -normal;
+		}
         
         // Tangent
         glm::vec3 tangent = glm::vec3(0.0, 0.0, 0.0);

@@ -7,7 +7,9 @@ FeatureScene::FeatureScene() {
     
 } 
 
-void FeatureScene::init() { 
+void FeatureScene::init() {
+	this->setName("Scene");
+
 	root = new SunObject();
     root->setName("root");
     root->init();
@@ -17,16 +19,22 @@ void FeatureScene::init() {
 	camera.init();
 	root->addSubNode(&camera);
 
-    this->setName("Scene"); 
-
 	initRenderer<FeatureRenderer>(); 
     renderer->setSceneNode(this);
 	renderer->setWindow(window);
     renderer->initialize(); 
-    
-    house = new SunObject("cube", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Cube.dae", "solid");
-	house->addTag("solid");    
-    root->addSubNode(house); 
+
+    house = new SunObject("cube", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Teapot.dae", "solid", false);
+	house->init();
+	house->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 0.0f, 0.0f), 256.0f)); 
+    root->addSubNode(house);
+
+	light = new SunPointLight(glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(2.0f, 2.0f, 2.0f));
+	light->init();
+	light->setCountUniform("pointLightCount");
+	light->setArrayUniform("pointLights");
+	light->addTag("light");
+	root->addSubNode(light);
     
 	textRenderer = new SunTextRenderer();
     textRenderer->initialize(); 
@@ -51,6 +59,7 @@ void FeatureScene::init() {
             ((SunCursorManager *)menu->getService("cursor_manager"))->disableCursor();
         }
     };
+
     SunLambdaAction showAction(show);
     
     menu->addActionForKey(showAction, GLFW_KEY_ESCAPE);
