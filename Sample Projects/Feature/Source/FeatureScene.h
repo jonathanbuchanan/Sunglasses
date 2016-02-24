@@ -28,6 +28,7 @@ private:
 
 	// Objects
     SunObject *house;
+	SunObject *plane;
 	SunPointLight *light;
 	SunDirectionalLight *dir;
     

@@ -2,6 +2,7 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include "FeatureScene.h"
+#include "Extra/SunDirectionalShadowMapRenderingNode.h"
 
 FeatureScene::FeatureScene() {
     
@@ -29,20 +30,31 @@ void FeatureScene::init() {
 	house->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f)); 
     root->addSubNode(house);
 
-	light = new SunPointLight(glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(2.0f, -2.0f, 2.0f));
+	plane = new SunObject("plane", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Plane.dae", "solid", true);
+	plane->init();
+	plane->setScale(glm::vec3(10.0f, 1.0f, 10.0f));
+	plane->setPosition(glm::vec3(0.0f, -2.0f, 0.0f));
+	plane->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f));
+	root->addSubNode(plane);
+
+	light = new SunPointLight(glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(2.0f, -1.0f, 2.0f));
 	light->setCountUniform("pointLightCount");
 	light->setArrayUniform("pointLights");
 	light->addTag("light");
 	light->addTag("pointLight");
 	root->addSubNode(light);
 
-	dir = new SunDirectionalLight(glm::vec3(1.0f, 0.75f, 0.75f), glm::vec3(1.0f, -1.0f, 0.0f));
+	dir = new SunDirectionalLight(glm::vec3(1.0f, 0.75f, 0.75f), glm::vec3(0.0f, -1.0f, 0.0f));
 	dir->setCountUniform("directionalLightCount");
 	dir->setArrayUniform("directionalLights");
 	dir->addTag("light");
 	dir->addTag("pointLight");
 	root->addSubNode(dir);
-    
+	((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setLight(dir);
+	((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setResolution(glm::vec2(1024.0f, 1024.0f));
+	((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setSize(glm::vec2(10.0f, 10.0f));
+    ((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->init();
+
 	textRenderer = new SunTextRenderer();
     textRenderer->initialize(); 
     textRenderer->loadFont("Resources/Graphics/Fonts/arial.ttf", "Arial");

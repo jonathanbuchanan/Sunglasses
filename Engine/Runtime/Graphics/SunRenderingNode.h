@@ -18,8 +18,6 @@ using namespace std;
 
 class SunRenderingNode;
 
-typedef SunRenderingNode * SunRenderingNodePointer;
-
 enum SunRenderingNodeType {
     SunRenderingNodeTypeRoot,
     SunRenderingNodeTypeIntermediate,
@@ -61,14 +59,13 @@ struct SunRenderingNodeOutput {
 struct SunRenderingNodeInput {
     SunRenderingNodeDataType type;
     SunRenderingNodeDataFormat format;
-    int slot;
-    SunRenderingNodePointer link;
+    SunRenderingNodeOutput *output;
     SunRenderingNodeTextureType textureType;
-    string linkName;
+	string linkName;
     string name;
     
     SunRenderingNodeInput() { }
-    SunRenderingNodeInput(SunRenderingNodePointer _link, SunRenderingNodeDataType _type, string _name, SunRenderingNodeDataFormat _format, int _slot, SunRenderingNodeTextureType _textureType);
+    SunRenderingNodeInput(SunRenderingNodeOutput *_link, SunRenderingNodeDataType _type, string _name, SunRenderingNodeDataFormat _format, SunRenderingNodeTextureType _textureType);
 };
 
 class SunRenderingNode : public SunNode {
@@ -91,8 +88,7 @@ public:
     inline void addInputToInputs(SunRenderingNodeInput _input) { inputs.push_back(_input); }
     void setInputs(vector<SunRenderingNodeInput> &_inputs) { inputs = _inputs; }
     
-    inline vector<SunRenderingNodeOutput> & getOutputs() { return outputs; }
-    inline SunRenderingNodeOutput & getOutputAtIndex(int i) { return outputs[i]; }
+    inline SunRenderingNodeOutput * getOutput(int i) { return outputSlotMap[i]; }
     inline void addOutputToOutputs(SunRenderingNodeOutput output) { outputs.push_back(output); }
     inline void setOutputs(vector<SunRenderingNodeOutput> _outputs) { outputs = _outputs; }
    

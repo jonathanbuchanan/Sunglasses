@@ -28,12 +28,16 @@ public:
     inline SunRenderingNode * getRootRenderNode() { return rootRenderNode; }
     inline void setRootRenderNode(SunRenderingNode *_root) { rootRenderNode = _root; }
 
+	inline SunNode * getRenderingNodeForString(std::string string) { return renderingNodeMap[string]; }
+	inline void addRenderingNodeForString(SunNode *node, std::string string) { renderingNodeMap[string] = node; }
+
 	inline void setWindow(GLFWwindow *w) { window = w; }
 protected:
 	// Scene Objects
 	SunScene *scene;
     SunRenderingNode *rootRenderNode;
-	
+
+	std::map<std::string, SunNode *> renderingNodeMap;
 private:
 	GLFWwindow *window;
 };

@@ -45,6 +45,8 @@ struct PointLight {
     bool attenuate;
 };
 
+uniform sampler2D shadowMap;
+
 struct ShadowPointLight {
 	// Color
 	vec3 color;
@@ -98,6 +100,9 @@ float linear = 0.22;
 float quadratic = 0.2;
 
 #ifdef SHADOWS
+//float isShadowed(sampler2D shadow, vec3 light, vec3 position) {
+//	vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
+
 float isShadowed(samplerCube cubemap, vec3 lightPosition, vec3 position) {
     vec3 fragmentToLight = position - lightPosition;
     float closestDepth = texture(cubemap, fragmentToLight).r;
@@ -298,8 +303,8 @@ void main() {
 		lighting += _color_ * calculateLighting(directionalLights[i], _position, normal);
 	}
 
-    result = vec4(vec3(lighting), 1.0f); 
-
+    result = vec4(vec3(texture(shadowMap, _input.textureCoordinates).r), 1.0f); 
+	//result = vec4(lighting, 1.0f);
     color = result; 
 
     #endif

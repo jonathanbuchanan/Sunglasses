@@ -14,12 +14,11 @@ SunRenderingNodeOutput::SunRenderingNodeOutput(SunRenderingNodeDataType _type, S
 	textureType = _textureType;
 } 
 
-SunRenderingNodeInput::SunRenderingNodeInput(SunRenderingNodePointer _link, SunRenderingNodeDataType _type, string _name, SunRenderingNodeDataFormat _format, int _slot, SunRenderingNodeTextureType _textureType) {
-	link = _link;
+SunRenderingNodeInput::SunRenderingNodeInput(SunRenderingNodeOutput *_link, SunRenderingNodeDataType _type, string _name, SunRenderingNodeDataFormat _format, SunRenderingNodeTextureType _textureType) {
+	output = _link;
 	type = _type;
 	name = _name;
 	format = _format;
-	slot = _slot;
 	textureType = _textureType;
 }
 
@@ -107,11 +106,11 @@ void SunRenderingNode::render(SunAction action) {
         glViewport(0, 0, screenWidth, screenHeight);*/
     } else if (renderingType == SunRenderingNodeTypeEnd) {
 		map<string, pair<GLuint, GLuint>> _textures;
-        for (int i = 0; i < inputs.size(); i++) { 
-            if (inputs[i].textureType == SunRenderingNodeTextureType2D)
-                _textures[inputs[i].name] = make_pair(inputs[i].link->outputSlotMap[inputs[i].slot]->texture, GL_TEXTURE_2D);
-            else if (inputs[i].textureType == SunRenderingNodeTextureTypeCubemap)
-                _textures[inputs[i].name] = make_pair(inputs[i].link->outputSlotMap[inputs[i].slot]->texture, GL_TEXTURE_CUBE_MAP);
+        for (int i = 0; i < inputs.size(); i++) {
+			if (inputs[i].textureType == SunRenderingNodeTextureType2D) {
+				_textures[inputs[i].name] = make_pair(inputs[i].output->texture, GL_TEXTURE_2D);
+            } else if (inputs[i].textureType == SunRenderingNodeTextureTypeCubemap)
+                _textures[inputs[i].name] = make_pair(inputs[i].output->texture, GL_TEXTURE_CUBE_MAP);
         } 
 
         // Bind the screen-framebuffer

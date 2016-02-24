@@ -244,3 +244,14 @@ void SunShader::use(std::string tag, float delta, SunNode *root) {
 	render.setRecursive(true);
 	sendAction(render, root); 
 }
+
+void SunShader::send(std::string tag, float delta, SunNode *root) {
+	uniforms(root);
+
+	SunAction render("render");
+	render.addParameter("shader", this);
+	if (tag.length() > 0)
+		render.addParameter("tag", &tag); 
+	render.setRecursive(true);
+	sendAction(render, root); 
+}

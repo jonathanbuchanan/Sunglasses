@@ -2,6 +2,7 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include "FeatureRenderer.h"
+#include "Extra/SunDirectionalShadowMapRenderingNode.h"
 
 void FeatureRenderer::initialize() {
     // GBuffer Inputs
@@ -25,18 +26,25 @@ void FeatureRenderer::initialize() {
     // GBuffer
     SunRenderingNode *gbuffer = new SunRenderingNode("gbuffer", SunRenderingNodeTypeRoot, gbufferInputs, gbufferOutputs, scene->getRoot());
 	gbuffer->setShaders(gbufferShaders);
-    gbuffer->init(); 
+    gbuffer->init();
+	addRenderingNodeForString(gbuffer, "gbuffer");
     
     // Set rootRenderNode to GBuffer
     rootRenderNode = gbuffer;
+
+	// Shadow Map 0
+	SunDirectionalShadowMapRenderingNode *shadowMap0 = new SunDirectionalShadowMapRenderingNode(scene->getRoot());
+	gbuffer->addSubNode(shadowMap0);
+	addRenderingNodeForString(shadowMap0, "shadowMap0");
     
     // Final Inputs
     vector<SunRenderingNodeInput> finalInputs = {
-        SunRenderingNodeInput(gbuffer, SunRenderingNodeDataTypePosition, "position", SunRenderingNodeDataFormatRGB16F, 0, SunRenderingNodeTextureType2D),
-        SunRenderingNodeInput(gbuffer, SunRenderingNodeDataTypeNormal, "normal", SunRenderingNodeDataFormatRGB16F, 1, SunRenderingNodeTextureType2D),
-        SunRenderingNodeInput(gbuffer, SunRenderingNodeDataTypeColor, "color", SunRenderingNodeDataFormatRGBA16F, 2, SunRenderingNodeTextureType2D)
+        SunRenderingNodeInput(gbuffer->getOutput(0), SunRenderingNodeDataTypePosition, "position", SunRenderingNodeDataFormatRGB16F, SunRenderingNodeTextureType2D),
+        SunRenderingNodeInput(gbuffer->getOutput(1), SunRenderingNodeDataTypeNormal, "normal", SunRenderingNodeDataFormatRGB16F, SunRenderingNodeTextureType2D),
+        SunRenderingNodeInput(gbuffer->getOutput(2), SunRenderingNodeDataTypeColor, "color", SunRenderingNodeDataFormatRGBA16F, SunRenderingNodeTextureType2D),
+		SunRenderingNodeInput(shadowMap0->getOutput(), SunRenderingNodeDataTypeColor, "shadowMap", SunRenderingNodeDataFormatRGBA16F, SunRenderingNodeTextureType2D)
     };
-    
+	
     // Final Outputs
     vector<SunRenderingNodeOutput> finalOutputs = {
         SunRenderingNodeOutput(SunRenderingNodeDataTypeColor, SunRenderingNodeDataFormatRGBA16F, 0, glm::vec2(1600, 1200), SunRenderingNodeTextureType2D)
@@ -49,5 +57,6 @@ void FeatureRenderer::initialize() {
     SunRenderingNode *finalNode = new SunRenderingNode("final", SunRenderingNodeTypeEnd, finalInputs, finalOutputs, scene->getRoot());
 	finalNode->setShaders(finalShaders);
     finalNode->init();
-    gbuffer->addSubNode(finalNode);
+    shadowMap0->addSubNode(finalNode);
+	addRenderingNodeForString(finalNode, "final");
 } 
