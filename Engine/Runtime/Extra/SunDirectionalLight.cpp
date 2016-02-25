@@ -41,6 +41,12 @@ void SunDirectionalLight::uniform(SunAction action) {
     glUniform3f(_shader.getUniformLocation(arrayUniform + "[" + std::to_string(id) + "].color"), color.r, color.g, color.b);
     
     glUniform3f(_shader.getUniformLocation(arrayUniform + "[" + std::to_string(id) + "].direction"), direction.x, direction.y, direction.z);
+
+	glm::mat4 projection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, 0.1f, 100.0f);
+	glm::mat4 view = glm::lookAt(-getDirection(), glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, 1.0f)); 
+	glm::mat4 lightMatrix = projection * view;
+	
+	glUniformMatrix4fv(glGetUniformLocation(_shader.getProgram(), "lightMatrix"), 1, GL_FALSE, glm::value_ptr(lightMatrix));
 }
 
 void SunDirectionalLight::shadowMap(SunAction action) {

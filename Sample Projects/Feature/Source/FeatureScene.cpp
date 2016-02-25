@@ -42,17 +42,17 @@ void FeatureScene::init() {
 	light->setArrayUniform("pointLights");
 	light->addTag("light");
 	light->addTag("pointLight");
-	root->addSubNode(light);
+	//root->addSubNode(light);
 
-	dir = new SunDirectionalLight(glm::vec3(1.0f, 0.75f, 0.75f), glm::vec3(0.0f, -1.0f, 0.0f));
+	dir = new SunDirectionalLight(glm::vec3(1.0f, 0.75f, 0.75f), glm::vec3(2.0f, -2.0f, 0.0f));
 	dir->setCountUniform("directionalLightCount");
 	dir->setArrayUniform("directionalLights");
 	dir->addTag("light");
 	dir->addTag("pointLight");
 	root->addSubNode(dir);
 	((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setLight(dir);
-	((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setResolution(glm::vec2(1024.0f, 1024.0f));
-	((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setSize(glm::vec2(10.0f, 10.0f));
+	((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setResolution(glm::vec2(4096.0f, 4096.0f));
+	((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setSize(glm::vec2(50.0f, 50.0f));
     ((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->init();
 
 	textRenderer = new SunTextRenderer();
