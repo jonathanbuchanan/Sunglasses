@@ -20,12 +20,13 @@ class SunObject : public SunNode {
 public:
     SunObject();
     SunObject(string _name, string _modelPath, bool _flipNormals);
+	SunObject(string _name, string _modelPath, string tag, bool _flipNormals);
     
     virtual void init();
     virtual void update(SunAction action);
     virtual void render(SunAction action);
     virtual void playSound(SunAction action);
-    virtual void passPerFrameUniforms(SunAction action);
+    virtual void uniform(SunAction action);
     virtual void passPOVUniforms(SunShader _shader);
     
     inline glm::vec3 & getPosition() { return position; }
@@ -85,7 +86,7 @@ private:
     
     SunObjectMaterial material;
     SunMeshRenderType renderType;
-    bool flipNormals;
+    bool flipNormals = false;
 };
 
 #endif

@@ -11,33 +11,27 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-class SunDirectionalLightObject : public SunObject {
+class SunDirectionalLight : public SunObject {
 public:
-    SunDirectionalLightObject();
-    SunDirectionalLightObject(glm::vec3 _color, glm::vec3 _direction);
-    SunDirectionalLightObject(string _name);
+    SunDirectionalLight();
+    SunDirectionalLight(glm::vec3 _color, glm::vec3 _direction);
+    SunDirectionalLight(string _name);
     
     virtual void init();
-    virtual void passPerFrameUniforms(SunAction action);
+    virtual void uniform(SunAction action);
     void shadowMap(SunAction action);
     void initializeShadowMap();
     
     inline glm::vec3 & getColor() { return color; }
     inline void setColor(glm::vec3 _color) { color = _color; }
-    inline void setColorR(GLfloat r) { color.r = r; }
-    inline void setColorG(GLfloat g) { color.g = g; }
-    inline void setColorB(GLfloat b) { color.b = b; }
-    
+
     inline glm::vec3 & getDirection() { return direction; }
     inline void setDirection(glm::vec3 _direction) { direction = _direction; }
-    inline void setDirectionX(GLfloat x) { direction.x = x; }
-    inline void setDirectionY(GLfloat y) { direction.y = y; }
-    inline void setDirectionZ(GLfloat z) { direction.z = z; }
-    
-    inline int & getDirectionalLightID() { return directionalLightID; }
-    inline void setDirectionalLightID(int _i) { directionalLightID = _i; }
-    
-    inline GLboolean & getShadows() { return shadows; }
+
+	inline void setCountUniform(std::string c) { countUniform = c; }
+	inline void setArrayUniform(std::string a) { arrayUniform = a; }
+
+	inline GLboolean & getShadows() { return shadows; }
 	inline void setShadows(GLboolean _s) { shadows = _s; }
 	
 	inline glm::vec2 & getShadowMapSize() { return shadowMapSize; }
@@ -48,10 +42,14 @@ private:
 
     // Direction
     glm::vec3 direction;
-    
-    // Directional Light ID
-    int directionalLightID;
-    
+   
+	// Shaders
+	int id;
+	std::string countUniform;
+	std::string arrayUniform;
+
+	static int lastId;
+	
     // Shadow Mapping
     GLboolean shadows;
     glm::vec2 shadowMapSize = glm::vec2(1024.0f, 1024.0f);

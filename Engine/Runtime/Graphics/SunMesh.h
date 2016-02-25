@@ -17,10 +17,17 @@ using namespace std;
 #include <glm/gtx/string_cast.hpp>
 
 #include "./SunPrimitives.h"
-#include "./Shaders/SunShader.h"
+#include "Graphics/SunShader.h"
 
 // SunObjectMaterial Declaration
 struct SunObjectMaterial {
+	SunObjectMaterial() {
+
+	}
+	SunObjectMaterial(glm::vec3 _color, GLfloat _shininess) {
+		color = _color;
+		shininess = _shininess;
+	}
     glm::vec3 color;
     GLfloat shininess;
 };

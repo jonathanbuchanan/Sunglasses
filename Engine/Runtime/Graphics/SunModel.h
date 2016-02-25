@@ -23,11 +23,13 @@ using namespace std;
 
 #include <SOIL/SOIL.h>
 
-#include "./SunMesh.h"
+#include "Core/SunBase.h"
+#include "Output/SunLogger.h"
+#include "Graphics/SunMesh.h"
 
 extern GLint textureFromFile(const char *path, string directory);
 
-class SunModel {
+class SunModel : public SunBase {
 public:
     SunModel() { }
     SunModel(string _file, bool _flipNormals);

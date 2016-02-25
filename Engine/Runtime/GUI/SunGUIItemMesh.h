@@ -9,7 +9,7 @@
 using namespace std;
 
 #include <GL/glew.h>
-#include "Graphics/Shaders/SunShader.h"
+#include "Graphics/SunShader.h"
 #include "Graphics/SunTextRenderer.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -65,7 +65,7 @@ private:
     vector<GLuint> textures;
 
     // Shader
-    SunShader shader = SunShader("../../Engine/Shaders/2DQuad.vert", "../../Engine/Shaders/2DQuad.frag");
+    SunShader shader = SunShader("../../Engine/Shaders/Old/2DQuad.vert", "../../Engine/Shaders/Old/2DQuad.frag");
 
     // VBO, EBO, and VAO
     GLuint VBO;

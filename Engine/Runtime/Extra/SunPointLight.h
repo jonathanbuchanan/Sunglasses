@@ -12,33 +12,29 @@ using namespace std;
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include "./SunGame.h"
-#include "./Graphics/Shaders/SunShaderUniformObject.h"
+#include "./SunGame.h" 
 
-class SunPointLightObject : public SunObject {
+class SunPointLight : public SunObject {
 public:
-    SunPointLightObject();
-    SunPointLightObject(glm::vec3 _color, glm::vec3 _position);
-    SunPointLightObject(string _name);
+    SunPointLight();
+    SunPointLight(glm::vec3 _color, glm::vec3 _position);
+    SunPointLight(string _name);
     
     virtual void init();
-    void passPerFrameUniforms(SunAction action);
+    void uniform(SunAction action);
     void passPOVUniforms(SunShader _shader);
 	void shadowMap(SunAction action);
 	void initializeShadowMap();
     
     inline glm::vec3 & getColor() { return color; }
     inline void setColor(glm::vec3 _color) { color = _color; }
-    inline void setColorR(GLfloat r) { color.r = r; }
-    inline void setColorG(GLfloat g) { color.g = g; }
-    inline void setColorB(GLfloat b) { color.b = b; }
-    
+
     inline GLboolean & getAttenuate() { return attenuate; }
     inline void setAttenuate(GLboolean _attenuate) { attenuate = _attenuate; }
     
-    inline int & getPointLightID() { return pointLightID; }
-    inline void setPointLightID(int _p) { pointLightID = _p; }
-	
+	inline void setCountUniform(std::string c) { countUniform = c; }
+	inline void setArrayUniform(std::string a) { arrayUniform = a; }
+
 	inline GLboolean & getShadows() { return shadows; }
 	inline void setShadows(GLboolean _s) { shadows = _s; }
 	
@@ -51,16 +47,20 @@ private:
     // Attenuation
     GLboolean attenuate;
     
-    // Point Light ID
-    int pointLightID;
+	// Shaders
+	int id;
+	std::string countUniform;
+	std::string arrayUniform;
 	
+	static int lastId;
+
 	// Shadow Maps
-	GLboolean shadows;
+	GLboolean shadows = false;
 	glm::vec2 shadowMapSize = glm::vec2(1024.0f, 1024.0f);
 	GLuint shadowMapFramebuffer;
 	GLuint shadowMapTexture;
 	vector<glm::mat4> lightTransforms;
-	vector<SunShaderUniformObject> _lightTransforms;
+	//vector<SunShaderUniformObject> _lightTransforms;
 };
 
 #endif

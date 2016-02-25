@@ -12,8 +12,9 @@ using namespace std;
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "Core/SunBase.h"
+#include "Core/SunNode.h"
 #include "Utility.h"
+#include "Graphics/SunWindowManager.h"
 #include "Input/SunKeyboardManager.h"
 #include "Input/SunCursorManager.h"
 
@@ -25,7 +26,7 @@ enum SunCameraProjectionType {
     SunCameraProjectionTypeOrthographic
 };
 
-class SunCamera : public SunBase {
+class SunCamera : public SunNode {
 public:
     SunCamera();
     SunCamera(SunCameraProjectionType _projection, GLfloat _FOV);
@@ -33,8 +34,11 @@ public:
     SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, GLfloat _yaw, GLfloat _pitch);
     SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, glm::vec3 _position, GLfloat _yaw, GLfloat _pitch);
     SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, GLfloat _width, GLfloat _height, GLfloat _yaw, GLfloat _pitch);
-    
-    void update(float delta);
+   
+	virtual void init();
+	virtual void uniform(SunAction action);
+	
+	void update(SunAction action); 
     
     glm::mat4 viewMatrix();
     glm::mat4 projectionMatrix(GLfloat _aspectRatio);
@@ -77,8 +81,8 @@ private:
 
     // Up, Camera Right, and Camera Up
     glm::vec3 up = glm::vec3(0.0, 1.0, 0.0);
-    glm::vec3 cameraRight = glm::normalize(glm::cross(up, -direction));
-    glm::vec3 cameraUp = glm::normalize(glm::cross(-direction, cameraRight));
+    glm::vec3 cameraRight = glm::normalize(glm::cross(up, direction));
+    glm::vec3 cameraUp = glm::normalize(glm::cross(direction, cameraRight));
 
     // Yaw and Pitch
     GLfloat yaw = 0.0f;

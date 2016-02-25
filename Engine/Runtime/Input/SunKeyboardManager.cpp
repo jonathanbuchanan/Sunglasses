@@ -1,7 +1,7 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include "SunKeyboardManager.h"
+#include "SunKeyboardManager.h" 
 
 SunKeyboardManager::SunKeyboardManager() {
     
@@ -18,14 +18,14 @@ void SunKeyboardManager::initialize(GLFWwindow *_window) {
 }
 
 void SunKeyboardManager::update() {
-    std::array<int, 512> old = keys;
+	std::array<int, 512> old = keys;
     
     glfwPollEvents();
     for (int i = 0; i < 512; i++) {
         keys[i] = glfwGetKey(window, i);
     }
     
-    for (int i = 0; i < subscribers.size(); i++) {
+    for (int i = 0; i < subscribers.size(); i++) { 
         SunBase *subscriber = std::get<0>(subscribers[i]);
         int key = std::get<1>(subscribers[i]);
         int keyState = keys[key];

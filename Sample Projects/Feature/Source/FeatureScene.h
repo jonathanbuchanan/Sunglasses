@@ -7,36 +7,30 @@
 #include "SunScene.h"
 #include "SunObject.h"
 
+#include "Extra/SunPointLight.h"
+#include "Extra/SunDirectionalLight.h"
+
 #include "FeatureRenderer.h"
+#include "GUI/SunGUIRenderer.h"
 
 class FeatureScene : public SunScene {
 public:
     FeatureScene();
     
-    void init();
+    void init(); 
     
-    void cycle(float delta);
-    
-    inline void setWindow(GLFWwindow *w) { window = w; }
-
-    inline void setServices(map<string, SunService *> *s) { services = s; }
+    inline void setWindow(GLFWwindow *w) { window = w; } 
 private: 
-    void render(SunAction action);
-    void renderGUI(SunAction action);
-    
-    // Services
-    map<string, SunService *> *services;
-    
-    // GUI
+	// GUI
     SunGUISystem guiSystem = SunGUISystem();
     SunGUIMenu *menu;
     SunGUIItem *item;
-    
+
+	// Objects
     SunObject *house;
-    
-    // Render
-    FeatureRenderer renderer;
-    SunTextRenderer textRenderer;
+	SunObject *plane;
+	SunPointLight *light;
+	SunDirectionalLight *dir;
     
     GLFWwindow *window;
 };

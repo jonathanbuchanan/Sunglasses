@@ -15,37 +15,31 @@
 
 class SunScene;
 
-class SunRenderer {
+class SunRenderer : public SunBase {
 public:
     SunRenderer() { }
     
-    void render(GLfloat _deltaTime);
+    void render();
     void swapBuffers();
+	virtual void initialize();
     
-    inline GLFWwindow * getWindow() { return window; }
-    inline void setWindow(GLFWwindow *_window) { window = _window; }
-    
-    inline GLfloat & getScreenWidth() { return screenWidth; }
-    inline GLfloat & getScreenHeight() { return screenHeight; }
-    inline void setScreenWidth(GLfloat width) { screenWidth = width; }
-    inline void setScreenHeight(GLfloat height) { screenHeight = height; }
-    
-    inline SunScene * getSceneNode() { return scene; }
-    inline void setSceneNode(SunScene *_scene) { scene = _scene; }
-    
+	inline void setSceneNode(SunScene *s) { scene = s; }
+
     inline SunRenderingNode * getRootRenderNode() { return rootRenderNode; }
     inline void setRootRenderNode(SunRenderingNode *_root) { rootRenderNode = _root; }
+
+	inline SunNode * getRenderingNodeForString(std::string string) { return renderingNodeMap[string]; }
+	inline void addRenderingNodeForString(SunNode *node, std::string string) { renderingNodeMap[string] = node; }
+
+	inline void setWindow(GLFWwindow *w) { window = w; }
 protected:
 	// Scene Objects
-    SunScene *scene;
+	SunScene *scene;
     SunRenderingNode *rootRenderNode;
-	
-private:
-    // Window and window size
-    GLFWwindow *window;
 
-    GLfloat screenWidth;
-    GLfloat screenHeight;
+	std::map<std::string, SunNode *> renderingNodeMap;
+private:
+	GLFWwindow *window;
 };
 
 #endif

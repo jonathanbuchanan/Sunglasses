@@ -40,13 +40,25 @@ SunCamera::SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, GLfloat 
     pitch = _pitch;
 }
 
-void SunCamera::update(float delta) {
-    glm::vec2 mouse = ((SunCursorManager *)getService("cursor_manager"))->getCursorPosition(); 
+void SunCamera::init() {
+	setIgnoreTags(true);
+	addAction("update", &SunCamera::update);
+	addAction("uniform", &SunCamera::uniform);
+}
+
+void SunCamera::uniform(SunAction action) { 
+	passPerFrameUniforms(*(SunShader *)action.getParameter("shader"));
+}
+
+void SunCamera::update(SunAction action) { 
+	double delta = ((SunWindowManager *)getService("window_manager"))->getDelta();
+
+	glm::vec2 mouse = ((SunCursorManager *)getService("cursor_manager"))->getCursorPosition(); 
     static glm::vec2 oldMouse;
     glm::vec2 offset = glm::vec2(mouse.x - oldMouse.x, oldMouse.y - mouse.y);
     oldMouse = mouse;
     
-    const float sensitivity = 0.05f;
+    const float sensitivity = 0.1f;
     offset *= sensitivity;
     yaw += offset.x;
     pitch += offset.y;
@@ -75,12 +87,12 @@ void SunCamera::update(float delta) {
     direction.x = cos(glm::radians(pitch)) * cos(glm::radians(yaw));
     direction.y = sin(glm::radians(pitch));
     direction.z = cos(glm::radians(pitch)) * sin(glm::radians(yaw));
-}
+} 
 
 glm::mat4 SunCamera::viewMatrix() {
     // Recalculate the camera's right and the camera's up
-    cameraRight = glm::normalize(glm::cross(up, -direction));
-    cameraUp = glm::normalize(glm::cross(-direction, cameraRight));
+    cameraRight = glm::normalize(glm::cross(up, direction));
+    cameraUp = glm::normalize(glm::cross(direction, cameraRight));
 
     // Create the view matrix for the camera's position and direction
     glm::mat4 matrix = glm::lookAt(position, position + direction, cameraUp);
@@ -108,8 +120,7 @@ void SunCamera::passPerFrameUniforms(SunShader _shader) {
     glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, glm::value_ptr(viewMatrix()));
 
     GLint projectionMatrixLocation = _shader.getUniformLocation("projection");
-    glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(projectionMatrix(800.0f / 600.0f)));
-
+    glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(projectionMatrix(800.0f / 600.0f))); 
     GLint FOVlocation = _shader.getUniformLocation("camera.FOV");
     GLint nearPlaneLocation = _shader.getUniformLocation("camera.nearPlane");
     GLint farPlaneLocation = _shader.getUniformLocation("camera.farPlane");

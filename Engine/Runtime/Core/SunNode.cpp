@@ -3,7 +3,27 @@
 // See LICENSE.md for details.
 #include "SunNode.h"
 
-#include <glm/glm.hpp>
+SunNode::SunNode() {
+
+}
+
+SunNode::SunNode(std::string _tag) {
+	addTag(_tag);
+}
+
+SunNode::SunNode(std::vector<std::string> _tags) {
+	tags = _tags;
+}
+
+void SunNode::processAction(SunAction action) {
+	if (action.parameterExists("tag") && ignoreTags == false) {
+		if (tagPresent(*(std::string *)action.getParameter("tag")))
+			SunBase::processAction(action);
+	} else
+		SunBase::processAction(action);
+	if (action.getRecursive() == true)
+		sendActionToAllSubNodes(action);
+}
 
 void SunNode::sendActionToAllSubNodes(SunAction action) {
     for (int i = 0; i < subNodes.size(); ++i)
@@ -21,7 +41,7 @@ void SunNode::addSubNode(SunNode *_subNode) {
 }
 
 void SunNode::findNode(string _path, SunNode &_node) {
-    vector<string> levels = splitString(_path, *"/");
+    /*vector<string> levels = splitString(_path, *"/");
 
     GLboolean done = false;
 
@@ -36,11 +56,11 @@ void SunNode::findNode(string _path, SunNode &_node) {
                 subNodes[i]->findNode(_path, _node);
             }
         }
-    }
+    }*/
 }
 
 void SunNode::findNode(string _path, SunNode *&_node) {
-    vector<string> levels = splitString(_path, *"/");
+    /*vector<string> levels = splitString(_path, *"/");
 
     GLboolean done = false;
 
@@ -55,7 +75,7 @@ void SunNode::findNode(string _path, SunNode *&_node) {
                 subNodes[i]->findNode(_path, _node);
             }
         }
-    }
+    }*/
 }
 
 void SunNode::findNodeWithName(string _name, SunNode &_node) {

@@ -71,8 +71,8 @@ enum BashColor {
 
 extern std::map<BashColor, std::string> ColorMap;
 
-extern string getBashColorSetter(std::vector<BashColor> colors);
-extern string getBashColorSetter(BashColor color);
+extern std::string getBashColorSetter(std::vector<BashColor> colors);
+extern std::string getBashColorSetter(BashColor color);
 
 class SunLogger : public SunService {
 public:

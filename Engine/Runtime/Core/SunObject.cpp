@@ -2,13 +2,14 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include "SunObject.h"
+#include "Graphics/SunWindowManager.h"
 
 SunObject::SunObject() {
     init();
 }
 
 SunObject::SunObject(string _name, string _modelPath, bool _flipNormals) {
-    setName(_name);
+	setName(_name);
     setFlipNormals(_flipNormals);
 
     init();
@@ -17,20 +18,34 @@ SunObject::SunObject(string _name, string _modelPath, bool _flipNormals) {
     models.push_back(model);
 }
 
-void SunObject::init() { 
-    //setType("object");
+SunObject::SunObject(string _name, string _modelPath, string tag, bool _flipNormals) {
+	setName(_name);
+	setFlipNormals(_flipNormals);
+	addTag(tag);
+	init();
 
+<<<<<<< HEAD
     // Map position, rotation, and scale to the property map
     //addToPropertyMap("position", SunNodeProperty(&position, SunNodePropertyTypeVec3));
     //addToPropertyMap("rotation", SunNodeProperty(&rotation, SunNodePropertyTypeVec3));
     //addToPropertyMap("scale", SunNodeProperty(&scale, SunNodePropertyTypeVec3));
     //addToPropertyMap("renderType", SunNodeProperty(&renderType, SunNodePropertyTypeInt));
+=======
+	SunModel model = SunModel(_modelPath, flipNormals);
+	models.push_back(model);
+}
+>>>>>>> render
 
-    // Add the "render" function to the function map
+void SunObject::init() { 
 	addAction("update", &SunObject::update);
 	addAction("render", &SunObject::render);
+<<<<<<< HEAD
 	addAction("playSound", &SunObject::playSound); 
     //addToFunctionMap("passPerFrameUniforms", bind(&SunObject::passPerFrameUniforms, this, std::placeholders::_1));
+=======
+	addAction("playSound", &SunObject::playSound);
+	addAction("uniform", &SunObject::uniform); 
+>>>>>>> render
 }
 
 void SunObject::update(SunAction action) {
@@ -39,28 +54,11 @@ void SunObject::update(SunAction action) {
 }
 
 void SunObject::render(SunAction action) {
-    if (action.parameterExists("renderType")) {
-        if (renderType == *(int *)action.getParameter("renderType") || *(int *)action.getParameter("renderType") == SunMeshRenderTypeAll) {
-            SunShader _shader = *(SunShader *)action.getParameter("shader");
-            GLfloat _deltaTime = *(GLfloat *)action.getParameter("deltaTime");
-            
-            SunMeshRenderType _renderType = (SunMeshRenderType)(*(int *)action.getParameter("renderType"));
-                        
-            // Loop through the models and render them
-            for (int i = 0; i < models.size(); ++i) {
-                models[i].render(_shader, _deltaTime, position, rotation, scale, material, _renderType);
-            }
-        }
-    } else {
-        SunShader _shader = *(SunShader *)action.getParameter("shader");
-        GLfloat _deltaTime = *(GLfloat *)action.getParameter("deltaTime");
-
-        // Loop through the models and render them
-        for (int i = 0; i < models.size(); ++i) {
-            models[i].render(_shader, _deltaTime, position, rotation, scale, material, renderType);
-        }
-    }
-}
+	SunShader shader = *(SunShader *)action.getParameter("shader");
+	GLfloat delta = ((SunWindowManager *)getService("window_manager"))->getDelta();
+	for (int i = 0; i < models.size(); ++i)
+		models[i].render(shader, delta, position, rotation, scale, material, SunMeshRenderTypeAll); 
+} 
 
 void SunObject::playSound(SunAction action) {
 	SunAction soundAction("playSound");
@@ -69,7 +67,7 @@ void SunObject::playSound(SunAction action) {
     sendAction(soundAction, &sound);
 }
 
-void SunObject::passPerFrameUniforms(SunAction action) {
+void SunObject::uniform(SunAction action) {
     
 }
 

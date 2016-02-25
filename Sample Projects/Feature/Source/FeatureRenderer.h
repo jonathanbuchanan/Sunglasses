@@ -5,16 +5,12 @@
 #define FEATURERENDERER_H
 
 #include "Graphics/SunRenderer.h"
+#include "Core/SunScene.h"
 #include <vector>
 
 class FeatureRenderer : public SunRenderer {
 public:
-    
-    void initialize();
-    
-    void render(float delta);
-private:
-    GLFWwindow *window;
+	void initialize(); 
 };
 
 #endif

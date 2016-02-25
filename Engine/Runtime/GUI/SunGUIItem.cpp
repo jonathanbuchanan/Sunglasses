@@ -12,7 +12,7 @@ void SunGUIItem::init() {
 	addAction("button", &SunGUIItem::button); 
 }
 
-void SunGUIItem::render(SunAction action) {
+void SunGUIItem::render(SunAction action) { 
     if (visible)
         mesh.render(position, size, color, textured, highlightColor, highlighted, text, font, (SunTextRenderer *)action.getParameter("textRenderer"));
 }

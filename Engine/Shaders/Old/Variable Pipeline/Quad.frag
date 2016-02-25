@@ -45,6 +45,9 @@ struct PointLight {
     bool attenuate;
 };
 
+uniform sampler2D shadowMap;
+uniform mat4 lightMatrix;
+
 struct ShadowPointLight {
 	// Color
 	vec3 color;
@@ -98,6 +101,16 @@ float linear = 0.22;
 float quadratic = 0.2;
 
 #ifdef SHADOWS
+float isShadowed(sampler2D shadow, vec3 position, vec3 normal, vec3 direction) {
+	vec4 fragPosLightSpace = lightMatrix * vec4(position, 1.0f);
+	vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
+	projCoords = projCoords * 0.5 + 0.5;
+	float closestDepth = texture(shadowMap, projCoords.xy).r;
+	float currentDepth = projCoords.z;
+	float bias = max(0.05 * (1.0 - dot(normal, -direction)), 0.0003);
+	return currentDepth - bias > closestDepth ? 1.0 : 0.0;
+}
+
 float isShadowed(samplerCube cubemap, vec3 lightPosition, vec3 position) {
     vec3 fragmentToLight = position - lightPosition;
     float closestDepth = texture(cubemap, fragmentToLight).r;
@@ -275,7 +288,7 @@ void main() {
     vec3 _color_ = texture(_color, _input.textureCoordinates).rgb;
     
     #ifndef USE_SSAO
-    vec3 ambient = _color_ * 0.1f;
+    vec3 ambient = _color_ * 0.025f;
     #endif
     #ifdef USE_SSAO
     vec3 ambient = _color_ * texture(occlusion, _input.textureCoordinates).r;
@@ -295,13 +308,13 @@ void main() {
 	
 	// Lighting: Directional Lights
 	for (int i = 0; i < directionalLightCount; i++) {
-		lighting += _color_ * calculateLighting(directionalLights[i], _position, normal);
+		lighting += (1.0 - isShadowed(shadowMap, _position, normal, directionalLights[i].direction)) * _color_ * calculateLighting(directionalLights[i], _position, normal);
 	}
 
-    result = vec4(vec3(lighting), 1.0f);
-    result = vec4(vec3(_position), 1.0f);
-	
-    color = result;
+    result = vec4(vec3(texture(shadowMap, _input.textureCoordinates).r), 1.0f); 
+	result = vec4(lighting, 1.0f);
+    color = result; 
+
     #endif
     
     #ifdef LIGHTING_DEFERRED_CEL

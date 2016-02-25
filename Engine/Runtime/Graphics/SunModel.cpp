@@ -27,11 +27,12 @@ GLint textureFromFile(const char *path, string directory) {
 }
 
 SunModel::SunModel(string _file, bool _flipNormals) {
-    // Import the mesh data
+	// Import the mesh data
     importMeshData(_file, _flipNormals);
 }
 
 void SunModel::importMeshData(string _file, bool _flipNormals) {
+	((SunLogger *)getService("logger"))->log("Attempting to load model " + _file);
     // Set Flip Normals
     flipNormals = _flipNormals;
     
@@ -46,6 +47,7 @@ void SunModel::importMeshData(string _file, bool _flipNormals) {
     aiNode *node = scene->mRootNode;
     // Process the root node
     processMeshNode(node, scene);
+	((SunLogger *)getService("logger"))->logSuccess("Loaded model " + _file);
 }
 
 void SunModel::render(SunShader _shader, GLfloat _deltaTime, glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale, SunObjectMaterial _material, SunMeshRenderType _renderType) {
@@ -140,8 +142,9 @@ SunMesh SunModel::processMeshData(aiMesh* _mesh, const aiScene* _scene) {
         normal.y = _mesh->mNormals[i].y;
         normal.z = _mesh->mNormals[i].z;
         
-        if (flipNormals)
+        if (flipNormals) { 
             normal = -normal;
+		}
         
         // Tangent
         glm::vec3 tangent = glm::vec3(0.0, 0.0, 0.0);

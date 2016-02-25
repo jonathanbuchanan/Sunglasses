@@ -34,7 +34,7 @@ public:
 private:
 	std::string action;
 	SunActionParameterMap parameters;
-	bool recursive;
+	bool recursive = false;
 };
 
 typedef std::function<void(SunAction)> SunActionFunction;

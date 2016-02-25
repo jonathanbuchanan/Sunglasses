@@ -7,7 +7,7 @@ void SunGUISystem::init() {
 	addAction("render", &SunGUISystem::render); 
 }
 
-void SunGUISystem::render(SunAction action) {
+void SunGUISystem::render(SunAction action) { 
     glEnable(GL_BLEND);
 
     // Loop through the sub-objects and force them to render

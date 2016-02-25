@@ -2,6 +2,7 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include "FeatureRenderer.h"
+#include "Extra/SunDirectionalShadowMapRenderingNode.h"
 
 void FeatureRenderer::initialize() {
     // GBuffer Inputs
@@ -17,61 +18,45 @@ void FeatureRenderer::initialize() {
     gbufferOutputs.push_back(SunRenderingNodeOutput(SunRenderingNodeDataTypePosition, SunRenderingNodeDataFormatRGBA16F, 0, glm::vec2(1600, 1200), SunRenderingNodeTextureType2D));
     
     // GBuffer Shaders
-    vector<string> gbufferSources = {"../../Engine/Shaders/Variable Pipeline/Scene.vert", "../../Engine/Shaders/Variable Pipeline/Scene.frag"};
-    vector<SunShaderSourceType> gbufferSourceTypes = {SunShaderSourceTypeVertex, SunShaderSourceTypeFragment};
-    
-    map<string, SunRenderingNodeShader> gbufferShaders = {
-        {"scene_solid", SunRenderingNodeShader(gbufferSources, gbufferSourceTypes, "../../Engine/Shaders/SolidScene.pre", SunRenderingNodeShaderTypeSceneSolid)},
-        {"scene_textured", SunRenderingNodeShader(gbufferSources, gbufferSourceTypes, "../../Engine/Shaders/TexturedScene.pre", SunRenderingNodeShaderTypeSceneTextured)}
-    };
+	std::vector<std::pair<std::string, SunShader>> gbufferShaders = {
+		std::make_pair("solid", SunShader("../../Engine/Shaders/Old/Variable Pipeline/Scene.vert", "../../Engine/Shaders/Old/Variable Pipeline/Scene.frag", "../../Engine/Shaders/Old/SolidScene.pre")),
+		std::make_pair("textured", SunShader("../../Engine/Shaders/Old/Variable Pipeline/Scene.vert", "../../Engine/Shaders/Old/Variable Pipeline/Scene.frag", "../../Engine/Shaders/Old/TexturedScene.pre")), 
+	};
     
     // GBuffer
-    SunRenderingNode *gbuffer = new SunRenderingNode("gbuffer", SunRenderingNodeTypeRoot, gbufferInputs, gbufferOutputs, gbufferShaders, (SunNode *)scene);
+    SunRenderingNode *gbuffer = new SunRenderingNode("gbuffer", SunRenderingNodeTypeRoot, gbufferInputs, gbufferOutputs, scene->getRoot());
+	gbuffer->setShaders(gbufferShaders);
     gbuffer->init();
-    gbuffer->setPOVType("camera");
+	addRenderingNodeForString(gbuffer, "gbuffer");
     
     // Set rootRenderNode to GBuffer
     rootRenderNode = gbuffer;
-    
+
+	// Shadow Map 0
+	SunDirectionalShadowMapRenderingNode *shadowMap0 = new SunDirectionalShadowMapRenderingNode(scene->getRoot());
+	gbuffer->addSubNode(shadowMap0);
+	addRenderingNodeForString(shadowMap0, "shadowMap0");
     
     // Final Inputs
     vector<SunRenderingNodeInput> finalInputs = {
-        SunRenderingNodeInput(gbuffer, SunRenderingNodeDataTypePosition, "position", SunRenderingNodeDataFormatRGB16F, 0, SunRenderingNodeTextureType2D),
-        SunRenderingNodeInput(gbuffer, SunRenderingNodeDataTypeNormal, "normal", SunRenderingNodeDataFormatRGB16F, 1, SunRenderingNodeTextureType2D),
-        SunRenderingNodeInput(gbuffer, SunRenderingNodeDataTypeColor, "color", SunRenderingNodeDataFormatRGBA16F, 2, SunRenderingNodeTextureType2D)
+        SunRenderingNodeInput(gbuffer->getOutput(0), SunRenderingNodeDataTypePosition, "position", SunRenderingNodeDataFormatRGB16F, SunRenderingNodeTextureType2D),
+        SunRenderingNodeInput(gbuffer->getOutput(1), SunRenderingNodeDataTypeNormal, "normal", SunRenderingNodeDataFormatRGB16F, SunRenderingNodeTextureType2D),
+        SunRenderingNodeInput(gbuffer->getOutput(2), SunRenderingNodeDataTypeColor, "color", SunRenderingNodeDataFormatRGBA16F, SunRenderingNodeTextureType2D),
+		SunRenderingNodeInput(shadowMap0->getOutput(), SunRenderingNodeDataTypeColor, "shadowMap", SunRenderingNodeDataFormatRGBA16F, SunRenderingNodeTextureType2D)
     };
-    
+	
     // Final Outputs
     vector<SunRenderingNodeOutput> finalOutputs = {
         SunRenderingNodeOutput(SunRenderingNodeDataTypeColor, SunRenderingNodeDataFormatRGBA16F, 0, glm::vec2(1600, 1200), SunRenderingNodeTextureType2D)
     };
     
-    // Final Shaders
-    vector<string> finalSources = {"../../Engine/Shaders/Variable Pipeline/Quad.vert", "../../Engine/Shaders/Variable Pipeline/Quad.frag"};
-    vector<SunShaderSourceType> finalSourceTypes = {SunShaderSourceTypeVertex, SunShaderSourceTypeFragment};
-    
-    map<string, SunRenderingNodeShader> finalShaders = {
-        {"quad", SunRenderingNodeShader(finalSources, finalSourceTypes, "../../Engine/Shaders/DeferredQuad.pre", SunRenderingNodeShaderTypeQuad)}
-    };
-    
+	std::vector<std::pair<std::string, SunShader>> finalShaders = {
+		{"quad", SunShader("../../Engine/Shaders/Old/Variable Pipeline/Quad.vert", "../../Engine/Shaders/Old/Variable Pipeline/Quad.frag", "../../Engine/Shaders/Old/DeferredQuad.pre")}, 
+	};
     // Final
-    SunRenderingNode *finalNode = new SunRenderingNode("final", SunRenderingNodeTypeEnd, finalInputs, finalOutputs, finalShaders, (SunNode *)scene);
+    SunRenderingNode *finalNode = new SunRenderingNode("final", SunRenderingNodeTypeEnd, finalInputs, finalOutputs, scene->getRoot());
+	finalNode->setShaders(finalShaders);
     finalNode->init();
-    gbuffer->addSubNode(finalNode);
-}
-
-void FeatureRenderer::render(float delta) {
-    SunAction renderAction;
-    renderAction.setAction("render");
-	renderAction.addParameter("deltaTime", &delta); 
-    renderAction.setRecursive(true);
-
-    sendAction(renderAction, rootRenderNode);
-
-	SunAction guiAction("renderGUI");
-    
-    sendAction(guiAction, (SunBase *)scene);
-    
-    // Swap the buffers
-    swapBuffers();
-}
+    shadowMap0->addSubNode(finalNode);
+	addRenderingNodeForString(finalNode, "final");
+} 

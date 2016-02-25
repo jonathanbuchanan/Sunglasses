@@ -15,7 +15,7 @@
 #include FT_FREETYPE_H
 
 #include "Core/SunBase.h"
-#include "Graphics/Shaders/SunShader.h"
+#include "Graphics/SunShader.h"
 #include "Output/SunLogger.h"
 
 #include <glm/glm.hpp>
