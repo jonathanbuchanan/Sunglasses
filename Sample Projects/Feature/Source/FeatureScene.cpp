@@ -44,7 +44,7 @@ void FeatureScene::init() {
 	light->addTag("pointLight");
 	//root->addSubNode(light);
 
-	dir = new SunDirectionalLight(glm::vec3(1.0f, 0.75f, 0.75f), glm::vec3(2.0f, -2.0f, 0.0f));
+	dir = new SunDirectionalLight(glm::vec3(1.0f, 0.75f, 0.75f), glm::vec3(2.0f, -2.0f, 1.0f));
 	dir->setCountUniform("directionalLightCount");
 	dir->setArrayUniform("directionalLights");
 	dir->addTag("light");
