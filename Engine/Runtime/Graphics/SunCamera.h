@@ -34,44 +34,43 @@ public:
     SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, GLfloat _yaw, GLfloat _pitch);
     SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, glm::vec3 _position, GLfloat _yaw, GLfloat _pitch);
     SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, GLfloat _width, GLfloat _height, GLfloat _yaw, GLfloat _pitch);
-   
-	virtual void init();
-	virtual void uniform(SunAction action);
-	
-	void update(SunAction action); 
-    
+
+    virtual void init();
+    virtual void uniform(SunAction action);
+    void update(SunAction action);
+
     glm::mat4 viewMatrix();
     glm::mat4 projectionMatrix(GLfloat _aspectRatio);
     void passPerFrameUniforms(SunShader _shader);
-    
+
     inline glm::vec3 & getPosition() { return position; }
     inline void setPosition(glm::vec3 _position) { position = _position; }
     inline void setPositionX(GLfloat x) { position.x = x; }
     inline void setPositionY(GLfloat y) { position.y = y; }
     inline void setPositionZ(GLfloat z) { position.z = z; }
-    
+
     inline glm::vec3 & getDirection() { return direction; }
     inline void setDirection(glm::vec3 _direction) { direction = _direction; }
     inline void setDirectionX(GLfloat x) { direction.x = x; }
     inline void setDirectionY(GLfloat y) { direction.y = y; }
     inline void setDirectionZ(GLfloat z) { direction.z = z; }
-    
+
     inline glm::vec3 & getUp() { return up; }
     inline glm::vec3 & getCameraRight() { return cameraRight; }
     inline glm::vec3 & getCameraUp() { return cameraUp; }
-    
+
     inline GLfloat & getYaw() { return yaw; }
     inline GLfloat & getPitch() { return pitch; }
-    
+
     inline SunCameraProjectionType & getProjectionType() { return projection; }
-    
+
     inline GLfloat & getFOV() { return FOV; }
     inline void setFOV(GLfloat _FOV) { FOV = _FOV; }
-    
+
     inline GLfloat & getWidth() { return width; }
     inline GLfloat & getHeight() { return height; }
     inline void setWidth(GLfloat _width) { width = _width; }
-    inline void setHeight(GLfloat _height) { height = _height; } 
+    inline void setHeight(GLfloat _height) { height = _height; }
 private:
     // Position
     glm::vec3 position = glm::vec3(0.0, 0.0, 0.0);
@@ -96,7 +95,7 @@ private:
 
     // Width and height
     GLfloat width = 10.0f;
-    GLfloat height = 10.0f; 
+    GLfloat height = 10.0f;
 };
 
 #endif

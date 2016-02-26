@@ -2,6 +2,10 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include "SunCamera.h"
+#include <lua.hpp>
+#include <selene.h>
+
+sel::State state{true};
 
 SunCamera::SunCamera() { }
 
@@ -44,30 +48,33 @@ void SunCamera::init() {
 	setIgnoreTags(true);
 	addAction("update", &SunCamera::update);
 	addAction("uniform", &SunCamera::uniform);
+
+    state.Load("../../Engine/Runtime/Graphics/Scripts/SunCamera.lua");
+    state["test"](7);
 }
 
-void SunCamera::uniform(SunAction action) { 
+void SunCamera::uniform(SunAction action) {
 	passPerFrameUniforms(*(SunShader *)action.getParameter("shader"));
 }
 
-void SunCamera::update(SunAction action) { 
+void SunCamera::update(SunAction action) {
 	double delta = ((SunWindowManager *)getService("window_manager"))->getDelta();
 
-	glm::vec2 mouse = ((SunCursorManager *)getService("cursor_manager"))->getCursorPosition(); 
+	glm::vec2 mouse = ((SunCursorManager *)getService("cursor_manager"))->getCursorPosition();
     static glm::vec2 oldMouse;
     glm::vec2 offset = glm::vec2(mouse.x - oldMouse.x, oldMouse.y - mouse.y);
     oldMouse = mouse;
-    
+
     const float sensitivity = 0.1f;
     offset *= sensitivity;
     yaw += offset.x;
     pitch += offset.y;
-    
+
     if (pitch > 89.0f)
         pitch = 89.0f;
     if (pitch < -89.0f)
         pitch = -89.0f;
-    
+
     float speed = 5.0f;
     float finalSpeed = speed * delta;
 	SunKeyboardManager *keyboard = (SunKeyboardManager *)getService("keyboard_manager");
@@ -83,11 +90,11 @@ void SunCamera::update(SunAction action) {
         position += finalSpeed * glm::vec3(0.0f, 1.0f, 0.0f);
     if (keyboard->pollKey(GLFW_KEY_LEFT_SHIFT) == SunButtonStateDown)
         position += finalSpeed * -glm::vec3(0.0f, 1.0f, 0.0f);
-    
+
     direction.x = cos(glm::radians(pitch)) * cos(glm::radians(yaw));
     direction.y = sin(glm::radians(pitch));
     direction.z = cos(glm::radians(pitch)) * sin(glm::radians(yaw));
-} 
+}
 
 glm::mat4 SunCamera::viewMatrix() {
     // Recalculate the camera's right and the camera's up
@@ -114,13 +121,13 @@ glm::mat4 SunCamera::projectionMatrix(GLfloat _aspectRatio) {
 
 void SunCamera::passPerFrameUniforms(SunShader _shader) {
     glUniform3f(_shader.getUniformLocation("viewPosition"), position.x, position.y, position.z);
-    
+
     // Pass the view and projection matrices to the shader
     GLint viewMatrixLocation = _shader.getUniformLocation("view");
     glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, glm::value_ptr(viewMatrix()));
 
     GLint projectionMatrixLocation = _shader.getUniformLocation("projection");
-    glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(projectionMatrix(800.0f / 600.0f))); 
+    glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(projectionMatrix(800.0f / 600.0f)));
     GLint FOVlocation = _shader.getUniformLocation("camera.FOV");
     GLint nearPlaneLocation = _shader.getUniformLocation("camera.nearPlane");
     GLint farPlaneLocation = _shader.getUniformLocation("camera.farPlane");
@@ -129,4 +136,3 @@ void SunCamera::passPerFrameUniforms(SunShader _shader) {
     glUniform1f(nearPlaneLocation, 0.01f);
     glUniform1f(farPlaneLocation, 100.0f);
 }
-

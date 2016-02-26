@@ -11,5 +11,6 @@ add_executable(Feature-Executable ${SOURCES} ${ENGINE_SOURCE})
 
 include_directories(${CMAKE_SOURCE_DIR}/../../Engine/Runtime/Core ${CMAKE_SOURCE_DIR}/../../Engine/Runtime /usr/include/freetype2)
 
-target_link_libraries(Feature-Executable freetype SOIL GLEW libGL.so assimp sfml-audio glfw X11 Xxf86vm pthread dl Xrandr Xinerama Xi Xcursor)
+add_definitions(-DLUA_COMPAT_5_2)
+target_link_libraries(Feature-Executable freetype SOIL GLEW libGL.so assimp sfml-audio glfw X11 Xxf86vm pthread dl Xrandr Xinerama Xi Xcursor lua)
 set(CMAKE_CXX_FLAGS "-std=c++11 -g")
