@@ -5,8 +5,8 @@
 #include "Extra/SunDirectionalShadowMapRenderingNode.h"
 
 FeatureScene::FeatureScene() {
-    
-} 
+
+}
 
 void FeatureScene::init() {
 	this->setName("Scene");
@@ -20,14 +20,14 @@ void FeatureScene::init() {
 	camera.init();
 	root->addSubNode(&camera);
 
-	initRenderer<FeatureRenderer>(); 
+	initRenderer<FeatureRenderer>();
     renderer->setSceneNode(this);
 	renderer->setWindow(window);
-    renderer->initialize(); 
+    renderer->initialize();
 
     house = new SunObject("cube", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Teapot.dae", "solid", false);
 	house->init();
-	house->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f)); 
+	house->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f));
     root->addSubNode(house);
 
 	plane = new SunObject("plane", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Plane.dae", "solid", true);
@@ -56,67 +56,53 @@ void FeatureScene::init() {
     ((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->init();
 
 	textRenderer = new SunTextRenderer();
-    textRenderer->initialize(); 
+    textRenderer->initialize();
     textRenderer->loadFont("Resources/Graphics/Fonts/arial.ttf", "Arial");
     menu = new SunGUIMenu();
 	menu->init();
 	guiSystem.init();
     guiSystem.addSubNode(menu);
-    
-<<<<<<< HEAD
-    ((SunKeyboardManager *)(*services)["keyboard_manager"])->subscribe(menu, GLFW_KEY_ESCAPE, SunButtonEventDownSingle);
-    menu->setCursorManager((SunCursorManager *)(*services)["cursor_manager"]);
-    
-    auto show = [](SunBase *base) {
-        SunGUIMenu *menu = (SunGUIMenu *)base;
-        menu->setVisible(!menu->getVisible());
-        
-        if (menu->getCursorManager()->getMode() == GLFW_CURSOR_DISABLED) {
-            menu->getCursorManager()->enableCursor();
-        } else if (menu->getCursorManager()->getMode() == GLFW_CURSOR_NORMAL) {
-            menu->getCursorManager()->disableCursor();
-=======
+
 	guiRenderer = new SunGUIRenderer();
 	guiRenderer->setGUIRoot(&guiSystem);
 	guiRenderer->setTextRenderer(textRenderer);
 
-    ((SunKeyboardManager *)getService("keyboard_manager"))->subscribe(menu, GLFW_KEY_ESCAPE, SunButtonEventDownSingle); 
-    
+    ((SunKeyboardManager *)getService("keyboard_manager"))->subscribe(menu, GLFW_KEY_ESCAPE, SunButtonEventDownSingle);
+
     auto show = [](SunBase *base) {
         SunGUIMenu *menu = (SunGUIMenu *)base;
-        menu->setVisible(!menu->getVisible()); 
+        menu->setVisible(!menu->getVisible());
         if (((SunCursorManager *)menu->getService("cursor_manager"))->getMode() == GLFW_CURSOR_DISABLED) {
             ((SunCursorManager *)menu->getService("cursor_manager"))->enableCursor();
         } else if (((SunCursorManager *)menu->getService("cursor_manager"))->getMode() == GLFW_CURSOR_NORMAL) {
             ((SunCursorManager *)menu->getService("cursor_manager"))->disableCursor();
->>>>>>> render
         }
     };
 
     SunLambdaAction showAction(show);
-    
+
     menu->addActionForKey(showAction, GLFW_KEY_ESCAPE);
-    
+
     item = new SunGUIItem();
 	item->init();
     item->setWindow(window);
     menu->addSubNode(item);
-    
-    ((SunMouseButtonManager *)(*services)["mouse_button_manager"])->subscribe(item, GLFW_MOUSE_BUTTON_LEFT, SunButtonEventDownSingle);
-    item->setCursorManager((SunCursorManager *)(*services)["cursor_manager"]);
-    
+
+    ((SunMouseButtonManager *)getService("mouse_button_manager"))->subscribe(item, GLFW_MOUSE_BUTTON_LEFT, SunButtonEventDownSingle);
+    item->setCursorManager((SunCursorManager *)getService("cursor_manager"));
+
     auto exit = [](SunBase *base) {
         SunGUIItem *item = (SunGUIItem *)base;
         if (item->cursorInItem())
 			((SunWindowManager *)item->getService("window_manager"))->setWindowShouldClose();
     };
     SunLambdaAction exitAction(exit);
-    
+
     item->addActionForKey(exitAction, GLFW_MOUSE_BUTTON_LEFT);
-    
+
     item->setText("Exit");
     item->setFont("Arial");
     item->setSize(glm::vec2(1.0f, 0.2f));
     item->setPosition(glm::vec2(-0.5f, -0.1f));
     item->setColor(glm::vec3(1.0f, 1.0f, 1.0f));
-} 
+}
