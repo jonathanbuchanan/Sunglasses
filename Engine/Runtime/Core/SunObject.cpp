@@ -24,28 +24,15 @@ SunObject::SunObject(string _name, string _modelPath, string tag, bool _flipNorm
 	addTag(tag);
 	init();
 
-<<<<<<< HEAD
-    // Map position, rotation, and scale to the property map
-    //addToPropertyMap("position", SunNodeProperty(&position, SunNodePropertyTypeVec3));
-    //addToPropertyMap("rotation", SunNodeProperty(&rotation, SunNodePropertyTypeVec3));
-    //addToPropertyMap("scale", SunNodeProperty(&scale, SunNodePropertyTypeVec3));
-    //addToPropertyMap("renderType", SunNodeProperty(&renderType, SunNodePropertyTypeInt));
-=======
 	SunModel model = SunModel(_modelPath, flipNormals);
 	models.push_back(model);
 }
->>>>>>> render
 
-void SunObject::init() { 
+void SunObject::init() {
 	addAction("update", &SunObject::update);
 	addAction("render", &SunObject::render);
-<<<<<<< HEAD
-	addAction("playSound", &SunObject::playSound); 
-    //addToFunctionMap("passPerFrameUniforms", bind(&SunObject::passPerFrameUniforms, this, std::placeholders::_1));
-=======
 	addAction("playSound", &SunObject::playSound);
-	addAction("uniform", &SunObject::uniform); 
->>>>>>> render
+	addAction("uniform", &SunObject::uniform);
 }
 
 void SunObject::update(SunAction action) {
@@ -57,8 +44,8 @@ void SunObject::render(SunAction action) {
 	SunShader shader = *(SunShader *)action.getParameter("shader");
 	GLfloat delta = ((SunWindowManager *)getService("window_manager"))->getDelta();
 	for (int i = 0; i < models.size(); ++i)
-		models[i].render(shader, delta, position, rotation, scale, material, SunMeshRenderTypeAll); 
-} 
+		models[i].render(shader, delta, position, rotation, scale, material, SunMeshRenderTypeAll);
+}
 
 void SunObject::playSound(SunAction action) {
 	SunAction soundAction("playSound");
@@ -68,9 +55,9 @@ void SunObject::playSound(SunAction action) {
 }
 
 void SunObject::uniform(SunAction action) {
-    
+
 }
 
 void SunObject::passPOVUniforms(SunShader _shader) {
-    
+
 }
