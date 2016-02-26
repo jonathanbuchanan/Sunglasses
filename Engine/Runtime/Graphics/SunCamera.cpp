@@ -5,8 +5,6 @@
 #include <lua.hpp>
 #include <selene.h>
 
-sel::State state{true};
-
 SunCamera::SunCamera() { }
 
 SunCamera::SunCamera(SunCameraProjectionType _projection, GLfloat _FOV) {
@@ -48,9 +46,6 @@ void SunCamera::init() {
 	setIgnoreTags(true);
 	addAction("update", &SunCamera::update);
 	addAction("uniform", &SunCamera::uniform);
-
-    state.Load("../../Engine/Runtime/Graphics/Scripts/SunCamera.lua");
-    state["test"](7);
 }
 
 void SunCamera::uniform(SunAction action) {
