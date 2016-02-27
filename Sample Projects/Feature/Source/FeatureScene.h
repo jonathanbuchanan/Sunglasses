@@ -4,7 +4,7 @@
 #ifndef FeatureScene_H
 #define FeatureScene_H
 
-#include "Sunglasses.hpp"
+#include <Sunglasses/Sunglasses.hpp>
 
 #include "FeatureRenderer.h"
 

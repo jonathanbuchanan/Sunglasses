@@ -5,7 +5,7 @@
 #define FEATUREGAME_H
 
 #include "FeatureScene.h"
-#include "Sunglasses.hpp"
+#include <Sunglasses/Sunglasses.hpp>
 
 class FeatureGame : public SunGame {
 public:

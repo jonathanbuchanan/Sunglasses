@@ -2,7 +2,7 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include "FeatureGame.h"
-#include "Sunglasses.hpp"
+#include <Sunglasses/Sunglasses.hpp>
 
 int main() {
     FeatureGame game = FeatureGame();
