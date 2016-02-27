@@ -9,8 +9,8 @@
 using namespace std;
 
 #include <GL/glew.h>
-#include "Graphics/SunShader.h"
-#include "Graphics/SunTextRenderer.h"
+#include "../Graphics/SunShader.h"
+#include "../Graphics/SunTextRenderer.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>
@@ -21,27 +21,27 @@ using namespace std;
 struct SunBasicVertex {
     glm::vec2 position;
     glm::vec2 textureCoordinates;
-    
+
     SunBasicVertex(glm::vec2 _position, glm::vec2 _textureCoordinates) {
         position = _position;
         textureCoordinates = _textureCoordinates;
     }
-    
+
     SunBasicVertex() {
-        
+
     }
 };
 
 class SunGUIItemMesh {
 public:
     SunGUIItemMesh() { }
-    
+
     void setUpGL();
-    
+
     void loadTexture(string texturePath);
-    
+
     void render(glm::vec2 _position, glm::vec2 _size, glm::vec3 _color, GLboolean _textured, glm::vec3 _highlightColor, GLboolean _highlighted, string _text, string _font, SunTextRenderer *_renderer);
-    
+
     inline vector<SunBasicVertex> & getVertices() { return vertices; }
     inline vector<GLuint> & getIndices() { return indices; }
     inline vector<GLuint> & getTextures() { return textures; }

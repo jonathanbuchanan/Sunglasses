@@ -12,11 +12,11 @@ using namespace std;
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "Core/SunNode.h"
-#include "Utility.h"
-#include "Graphics/SunWindowManager.h"
-#include "Input/SunKeyboardManager.h"
-#include "Input/SunCursorManager.h"
+#include "../Core/SunNode.h"
+#include "../Core/Utility.h"
+#include "SunWindowManager.h"
+#include "../Input/SunKeyboardManager.h"
+#include "../Input/SunCursorManager.h"
 
 #include <GLFW/glfw3.h>
 

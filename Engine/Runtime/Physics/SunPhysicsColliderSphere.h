@@ -1,7 +1,7 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-/* 
+/*
  * File:   SunPhysicsColliderSphere.h
  * Author: jonathan
  *
@@ -15,11 +15,11 @@
 
 class SunPhysicsColliderSphere : public SunPhysicsCollider {
 public:
-    
+
     SunPhysicsColliderSphere();
-    
+
     virtual SunPhysicsCollisionData collideWith(SunPhysicsCollider *other);
-    
+
     inline float & getRadius() { return radius; }
     inline void setRadius(float _r) { radius = _r; }
 private:
@@ -27,4 +27,3 @@ private:
 };
 
 #endif
-

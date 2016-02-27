@@ -5,7 +5,7 @@
 #ifndef OpenGL_Test_3_SunDirectionalLightObject_h
 #define OpenGL_Test_3_SunDirectionalLightObject_h
 
-#include "./SunObject.h"
+#include "../Core/SunObject.h"
 
 #include <GL/glew.h>
 #include <glm/glm.hpp>
@@ -16,12 +16,12 @@ public:
     SunDirectionalLight();
     SunDirectionalLight(glm::vec3 _color, glm::vec3 _direction);
     SunDirectionalLight(string _name);
-    
+
     virtual void init();
     virtual void uniform(SunAction action);
     void shadowMap(SunAction action);
     void initializeShadowMap();
-    
+
     inline glm::vec3 & getColor() { return color; }
     inline void setColor(glm::vec3 _color) { color = _color; }
 
@@ -33,7 +33,7 @@ public:
 
 	inline GLboolean & getShadows() { return shadows; }
 	inline void setShadows(GLboolean _s) { shadows = _s; }
-	
+
 	inline glm::vec2 & getShadowMapSize() { return shadowMapSize; }
 	inline void setShadowMapSize(glm::vec2 _s) { shadowMapSize = _s; }
 private:
@@ -42,14 +42,14 @@ private:
 
     // Direction
     glm::vec3 direction;
-   
+
 	// Shaders
 	int id;
 	std::string countUniform;
 	std::string arrayUniform;
 
 	static int lastId;
-	
+
     // Shadow Mapping
     GLboolean shadows;
     glm::vec2 shadowMapSize = glm::vec2(1024.0f, 1024.0f);

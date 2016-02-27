@@ -13,14 +13,14 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
-#include "Core/SunBase.h"
+#include "SunBase.h"
 
-#include "Core/SunScene.h"
-#include "Graphics/SunWindowManager.h"
-#include "Input/SunKeyboardManager.h"
-#include "Input/SunCursorManager.h"
-#include "Input/SunMouseButtonManager.h"
-#include "Output/SunLogger.h"
+#include "SunScene.h"
+#include "../Graphics/SunWindowManager.h"
+#include "../Input/SunKeyboardManager.h"
+#include "../Input/SunCursorManager.h"
+#include "../Input/SunMouseButtonManager.h"
+#include "../Output/SunLogger.h"
 
 using namespace std;
 

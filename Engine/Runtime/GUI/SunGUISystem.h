@@ -8,10 +8,10 @@
 #include <vector>
 #include <string>
 
-#include "Utility.h"
+#include "../Core/Utility.h"
 
-#include "./SunGUIMenu.h"
-#include "./SunGUIItem.h"
+#include "SunGUIMenu.h"
+#include "SunGUIItem.h"
 
 using namespace std;
 
@@ -23,15 +23,15 @@ struct SunGUIFont {
 class SunGUISystem : public SunNode {
 public:
     SunGUISystem() { }
-    
+
     virtual void init();
     virtual void render(SunAction action);
     void loadFonts(SunTextRenderer *_textRenderer);
-    
+
     inline vector<SunGUIFont> & getFonts() { return fonts; }
     inline SunGUIFont & getFontAtIndex(int i) { return fonts[i]; }
     inline void addFont(SunGUIFont font) { fonts.push_back(font); }
-    
+
     inline bool & getFontsLoaded() { return fontsLoaded; }
     inline void setFontsLoaded(bool _fontsLoaded) { fontsLoaded = _fontsLoaded; }
 private:

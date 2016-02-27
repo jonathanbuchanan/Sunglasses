@@ -8,8 +8,8 @@
 #include <vector>
 #include <map>
 
-#include "SunNode.h"
-#include "SunService.h"
+#include "../Core/SunNode.h"
+#include "../Core/SunService.h"
 
 const std::string BASH_COLOR_PREFIX             = "\033[";
 const std::string BASH_COLOR_SEPARATOR          =     ";";
@@ -49,7 +49,7 @@ enum BashColor {
     BashColorBlink,
     BashColorReverse,
     BashColorHidden,
-    
+
     BashColorForegroundBlack,
     BashColorForegroundRed,
     BashColorForegroundGreen,
@@ -58,7 +58,7 @@ enum BashColor {
     BashColorForegroundMagenta,
     BashColorForegroundCyan,
     BashColorForegroundWhite,
-    
+
     BashColorBackgroundBlack,
     BashColorBackgroundRed,
     BashColorBackgroundGreen,
@@ -77,7 +77,7 @@ extern std::string getBashColorSetter(BashColor color);
 class SunLogger : public SunService {
 public:
     SunLogger();
-    
+
     void reset();
     void bright();
     void dim();
@@ -85,7 +85,7 @@ public:
     void blink();
     void reverse();
     void hidden();
-    
+
     void logBlack(std::string message);
     void logRed(std::string message);
     void logGreen(std::string message);
@@ -94,14 +94,14 @@ public:
     void logMagenta(std::string message);
     void logCyan(std::string message);
     void logWhite(std::string message);
-    
+
     void logError(std::string message);
     void logSuccess(std::string message);
-    
+
     void log(std::string message);
-    
+
     inline void setDefaultColors(std::vector<BashColor> d) { defaultColors = d; }
-    
+
 private:
     std::vector<BashColor> defaultColors;
 };

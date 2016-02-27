@@ -7,22 +7,22 @@
 
 #include <iostream>
 
-#include "./SunTextRenderer.h"
-#include "./SunRenderingNode.h"
-#include "./SunTexturedQuad.h"
-#include "./SunPrimitives.h"
-#include "./SunCamera.h"
+#include "SunTextRenderer.h"
+#include "SunRenderingNode.h"
+#include "SunTexturedQuad.h"
+#include "SunPrimitives.h"
+#include "SunCamera.h"
 
 class SunScene;
 
 class SunRenderer : public SunBase {
 public:
     SunRenderer() { }
-    
+
     void render();
     void swapBuffers();
 	virtual void initialize();
-    
+
 	inline void setSceneNode(SunScene *s) { scene = s; }
 
     inline SunRenderingNode * getRootRenderNode() { return rootRenderNode; }

@@ -15,8 +15,8 @@ using namespace std;
 
 #include <GL/glew.h>
 
-#include "Core/SunNode.h"
-#include "Output/SunLogger.h"
+#include "../Core/SunNode.h"
+#include "../Output/SunLogger.h"
 
 enum SunShaderSourceType {
     SunShaderSourceTypeVertex = GL_VERTEX_SHADER,
@@ -31,7 +31,7 @@ extern GLuint compileShaderFromStrings(vector<string> shaderStrings, GLint shade
 class SunShader : public SunBase {
 public:
     SunShader() { }
-    
+
     SunShader(string vertexPath, string fragmentPath);
     SunShader(string vertexPath, string fragmentPath, string preprocessorPath);
     SunShader(string vertexPath, string geometryPath, string fragmentPath, string preprocessorPath);
@@ -43,7 +43,7 @@ public:
     void use();
 	void use(std::string tag, float delta, SunNode *root);
 	void send(std::string tag, float delta, SunNode *root);
-    
+
     inline GLuint getProgram() { return program; }
     inline void setProgram(GLuint _program) { program = _program; }
     inline GLuint getUniformLocation(string uniform) { return glGetUniformLocation(program, uniform.c_str()); }

@@ -4,8 +4,8 @@
 #ifndef SUNKEYBOARDMANAGER_H
 #define SUNKEYBOARDMANAGER_H
 
-#include "Core/SunBase.h"
-#include "Core/SunService.h"
+#include "../Core/SunBase.h"
+#include "../Core/SunService.h"
 #include <GLFW/glfw3.h>
 #include <vector>
 #include <array>
@@ -13,17 +13,17 @@
 
 class SunKeyboardManager : public SunService {
 public:
-    
+
     SunKeyboardManager();
     SunKeyboardManager(GLFWwindow *_window);
-    
+
     void initialize(GLFWwindow *_window);
     void update();
-    
+
     void subscribe(SunBase *subscriber, int key, SunButtonEvent event);
-    
+
     SunButtonState pollKey(int key);
-    
+
     GLFWwindow *window;
 private:
     std::vector<std::tuple<SunBase *, int, SunButtonEvent>> subscribers;

@@ -8,7 +8,7 @@
 
 class SunScriptedNode : public SunNode {
 public:
-    
+
 private:
 
 };

@@ -14,9 +14,9 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
-#include "Core/SunBase.h"
-#include "Graphics/SunShader.h"
-#include "Output/SunLogger.h"
+#include "../Core/SunBase.h"
+#include "../Graphics/SunShader.h"
+#include "../Output/SunLogger.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -42,19 +42,19 @@ struct SunFont {
 class SunTextRenderer : public SunBase {
 public:
     SunTextRenderer() { }
-    
+
     void initialize();
     void loadFont(string _file, string _name);
-    void renderText(string text, string _fontName, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color); 
-    
+    void renderText(string text, string _fontName, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color);
+
     inline map<string, SunFont> & getFonts() { return fonts; }
     inline SunFont & getFontForString(string s) { return fonts[s]; }
-    
+
     inline glm::mat4 & getProjectionMatrix() { return projection; }
-    
+
     inline SunShader & getShader() { return shader; }
     inline void setShader(SunShader _shader) { shader = _shader; }
-    
+
     inline GLuint getVAO() { return VAO; }
     inline GLuint getVBO() { return VBO; }
 private:

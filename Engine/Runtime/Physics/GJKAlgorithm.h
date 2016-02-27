@@ -1,7 +1,7 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-/* 
+/*
  * File:   GJKAlgorithm.h
  * Author: jonathan
  *
@@ -33,4 +33,3 @@ extern bool processTetrahedron(Simplex &simplex, glm::vec3 &direction);
 extern bool processSimplex(Simplex &simplex, glm::vec3 &direction);
 
 #endif
-

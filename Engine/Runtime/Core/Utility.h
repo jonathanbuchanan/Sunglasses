@@ -12,7 +12,7 @@
 
 using namespace std;
 
-#include "Graphics/SunShader.h"
+#include "../Graphics/SunShader.h"
 
 typedef map<string, SunShader>::iterator ShaderMapIterator;
 

@@ -4,8 +4,8 @@
 #ifndef SUNWINDOWMANAGER_H
 #define SUNWINDOWMANAGER_H
 
-#include "Core/SunBase.h"
-#include "Core/SunService.h"
+#include "../Core/SunBase.h"
+#include "../Core/SunService.h"
 #define GLEW_STATIC
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -17,7 +17,7 @@ class SunWindowManager : public SunService {
 public:
 	SunWindowManager();
 	SunWindowManager(glm::vec2 _size, std::string _title, glm::vec4 _clearColor);
-	
+
 	void initialize();
 	void terminate();
 

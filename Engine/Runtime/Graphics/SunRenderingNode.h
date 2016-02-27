@@ -6,10 +6,10 @@
 #include <map>
 #include <functional>
 
-#include "Graphics/SunShader.h"
-#include "SunObject.h"
-#include "./SunTexturedQuad.h"
-#include "SunGame.h"
+#include "SunShader.h"
+#include "../Core/SunObject.h"
+#include "SunTexturedQuad.h"
+#include "../Core/SunGame.h"
 
 #ifndef SunRenderingNode_h
 #define	SunRenderingNode_h

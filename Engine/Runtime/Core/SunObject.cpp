@@ -2,7 +2,7 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include "SunObject.h"
-#include "Graphics/SunWindowManager.h"
+#include "../Graphics/SunWindowManager.h"
 
 SunObject::SunObject() {
     init();

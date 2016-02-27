@@ -12,18 +12,18 @@
 #include <glm/gtx/quaternion.hpp>
 #include <glm/gtx/string_cast.hpp>
 
-#include "./SunPrimitives.h"
-#include "Graphics/SunShader.h"
+#include "SunPrimitives.h"
+#include "SunShader.h"
 
 typedef map<string, pair<GLuint, GLuint>>::iterator SunTextureMapIterator;
 
 class SunTexturedQuad {
 public:
     SunTexturedQuad() { }
-    
+
     void setUpGL();
     void render(map<string, pair<GLuint, GLuint>> _textures, SunShader _shader);
-    void renderWithUsedShader(map<string, pair<GLuint, GLuint>> _textures, SunShader _shader); 
+    void renderWithUsedShader(map<string, pair<GLuint, GLuint>> _textures, SunShader _shader);
 private:
     // Vertices, indices, and textures
     vector<SunVertex> vertices = {
