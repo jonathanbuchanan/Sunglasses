@@ -5,44 +5,30 @@
 #include <lua.hpp>
 #include <selene.h>
 
-SunCamera::SunCamera() { }
+SunCamera::SunCamera() {
 
-SunCamera::SunCamera(SunCameraProjectionType _projection, GLfloat _FOV) {
-    projection = _projection;
+}
+
+SunCamera::SunCamera(GLfloat _FOV) {
+    SunCamera();
     FOV = _FOV;
 }
 
-SunCamera::SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, glm::vec3 _position) {
-    projection = _projection;
+SunCamera::SunCamera(GLfloat _FOV, glm::vec3 _position) {
+    SunCamera();
     FOV = _FOV;
     position = _position;
 }
 
-SunCamera::SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, GLfloat _yaw, GLfloat _pitch) {
-    projection = _projection;
-    FOV = _FOV;
-    yaw = _yaw;
-    pitch = _pitch;
-}
-
-SunCamera::SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, glm::vec3 _position, GLfloat _yaw, GLfloat _pitch) {
-    projection = _projection;
+SunCamera::SunCamera(GLfloat _FOV, glm::vec3 _position, glm::vec3 _direction) {
+    SunCamera();
     FOV = _FOV;
     position = _position;
-    yaw = _yaw;
-    pitch = _pitch;
-}
-
-SunCamera::SunCamera(SunCameraProjectionType _projection, GLfloat _FOV, GLfloat _width, GLfloat _height, GLfloat _yaw, GLfloat _pitch) {
-    projection = _projection;
-    FOV = _FOV;
-    width = _width;
-    height = _height;
-    yaw = _yaw;
-    pitch = _pitch;
+    direction = _direction;
 }
 
 void SunCamera::init() {
+    loadFile("../../Engine/Scripts/SunCamera.lua");
 	setIgnoreTags(true);
 	addAction("update", &SunCamera::update);
 	addAction("uniform", &SunCamera::uniform);
@@ -106,10 +92,7 @@ glm::mat4 SunCamera::projectionMatrix(GLfloat _aspectRatio) {
     glm::mat4 matrix;
 
     // Check the type of projection
-    if (projection == SunCameraProjectionTypePerspective)
-        matrix = glm::perspective(FOV, _aspectRatio, 0.01f, 100.0f);
-    else if (projection == SunCameraProjectionTypeOrthographic)
-        matrix = glm::ortho(-((width * _aspectRatio) / 2.0f), (width * _aspectRatio) / 2.0f, -(height / 2.0f), (height / 2.0f), 0.1f, 100.0f);
+    matrix = glm::perspective(FOV, _aspectRatio, 0.01f, 100.0f);
 
     return matrix;
 }

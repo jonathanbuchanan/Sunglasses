@@ -11,7 +11,9 @@
 class SunScriptedNode : public SunNode {
 public:
     SunScriptedNode();
-    SunScriptedNode(std::string file);
+
+    // Copy
+    SunScriptedNode & operator=(const SunScriptedNode &source);
 
     void loadFile(std::string file);
 

@@ -15,7 +15,7 @@ void FeatureScene::init() {
     root->init();
 	root->setIgnoreTags(true);
 
-    camera = SunCamera(SunCameraProjectionTypePerspective, 45.0f, 0, 0, 0, 0);
+    camera = SunCamera();
 	camera.init();
 	root->addSubNode(&camera);
 

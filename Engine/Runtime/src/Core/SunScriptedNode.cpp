@@ -7,10 +7,6 @@ SunScriptedNode::SunScriptedNode() {
 
 }
 
-SunScriptedNode::SunScriptedNode(std::string file) {
-    loadFile(file);
-}
-
 void SunScriptedNode::loadFile(std::string file) {
     state.Load(file);
 }
@@ -21,4 +17,9 @@ void SunScriptedNode::run(const char *code) {
 
 void SunScriptedNode::operator()(const char *code) {
     run(code);
+}
+
+SunScriptedNode & SunScriptedNode::operator=(const SunScriptedNode &source) {
+    SunNode::operator=(source);
+    return *this;
 }
