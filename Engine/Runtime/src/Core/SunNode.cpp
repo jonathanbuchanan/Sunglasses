@@ -17,7 +17,7 @@ SunNode::SunNode(std::vector<std::string> _tags) {
 
 void SunNode::processAction(SunAction action) {
 	if (action.parameterExists("tag") && ignoreTags == false) {
-		if (tagPresent(*(std::string *)action.getParameter("tag")))
+		if (tagPresent(action.getParameter<std::string>("tag")))
 			SunBase::processAction(action);
 	} else
 		SunBase::processAction(action);
@@ -97,4 +97,4 @@ void SunNode::findPointerNodeWithName(string _name, SunNode *&_node) {
             subNodes[i]->findPointerNodeWithName(_name, _node);
         }
     }
-} 
+}

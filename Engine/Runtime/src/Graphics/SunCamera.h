@@ -41,7 +41,7 @@ public:
 
     glm::mat4 viewMatrix();
     glm::mat4 projectionMatrix(GLfloat _aspectRatio);
-    void passPerFrameUniforms(SunShader _shader);
+    void passPerFrameUniforms(SunShader *_shader);
 
     inline glm::vec3 & getPosition() { return position; }
     inline void setPosition(glm::vec3 _position) { position = _position; }

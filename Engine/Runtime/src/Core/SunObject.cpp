@@ -41,7 +41,7 @@ void SunObject::update(SunAction action) {
 }
 
 void SunObject::render(SunAction action) {
-	SunShader shader = *(SunShader *)action.getParameter("shader");
+	SunShader shader = action.getParameter<SunShader>("shader");
 	GLfloat delta = ((SunWindowManager *)getService("window_manager"))->getDelta();
 	for (int i = 0; i < models.size(); ++i)
 		models[i].render(shader, delta, position, rotation, scale, material, SunMeshRenderTypeAll);

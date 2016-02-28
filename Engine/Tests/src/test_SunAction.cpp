@@ -9,8 +9,9 @@ struct SunActionTest : ::testing::Test {
         std::string actionString = "action";
         int *_int = new int(7);
         float *_float = new float(3.14159);
+        double *_double = new double(2.7);
         std::string *_string = new std::string("Hello, World!");
-        std::map<std::string, void *> parameters = {{"int", _int}, {"float", _float}, {"string", _string}};
+        std::map<std::string, void *> parameters = {{"int", _int}, {"float", _float}, {"double", _double}, {"string", _string}};
         bool recursive = false;
 
         action = SunAction(actionString, parameters, recursive);
@@ -27,9 +28,10 @@ TEST_F(SunActionTest, action) {
 
 TEST_F(SunActionTest, parameters) {
     EXPECT_EQ(*(int *)action.getParameter("int"), 7);
-    float _float = *(float *)action.getParameter("float");
-    EXPECT_FLOAT_EQ(_float, 3.14159);
-    EXPECT_EQ(*(std::string *)action.getParameter("string"), "Hello, World!");
+    EXPECT_FLOAT_EQ(action.getParameter<float>("float"), 3.14159);
+    double *_double = action.getParameterPointer<double>("double");
+    EXPECT_DOUBLE_EQ(*_double, 2.7);
+    EXPECT_EQ(action.getParameter<std::string>("string"), "Hello, World!");
 }
 
 TEST_F(SunActionTest, recursive) {

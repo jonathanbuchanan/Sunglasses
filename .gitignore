@@ -27,8 +27,9 @@
 *.out
 *.app
 
-# Explicit Executables
+# Executables
 Feature-Executable
+Test-Sunglasses
 
 # Cmake
 CMakeCache.txt

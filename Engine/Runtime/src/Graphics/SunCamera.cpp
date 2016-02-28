@@ -49,7 +49,7 @@ void SunCamera::init() {
 }
 
 void SunCamera::uniform(SunAction action) {
-	passPerFrameUniforms(*(SunShader *)action.getParameter("shader"));
+	passPerFrameUniforms(action.getParameterPointer<SunShader>("shader"));
 }
 
 void SunCamera::update(SunAction action) {
@@ -114,18 +114,18 @@ glm::mat4 SunCamera::projectionMatrix(GLfloat _aspectRatio) {
     return matrix;
 }
 
-void SunCamera::passPerFrameUniforms(SunShader _shader) {
-    glUniform3f(_shader.getUniformLocation("viewPosition"), position.x, position.y, position.z);
+void SunCamera::passPerFrameUniforms(SunShader *_shader) {
+    glUniform3f(_shader->getUniformLocation("viewPosition"), position.x, position.y, position.z);
 
     // Pass the view and projection matrices to the shader
-    GLint viewMatrixLocation = _shader.getUniformLocation("view");
+    GLint viewMatrixLocation = _shader->getUniformLocation("view");
     glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, glm::value_ptr(viewMatrix()));
 
-    GLint projectionMatrixLocation = _shader.getUniformLocation("projection");
+    GLint projectionMatrixLocation = _shader->getUniformLocation("projection");
     glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(projectionMatrix(800.0f / 600.0f)));
-    GLint FOVlocation = _shader.getUniformLocation("camera.FOV");
-    GLint nearPlaneLocation = _shader.getUniformLocation("camera.nearPlane");
-    GLint farPlaneLocation = _shader.getUniformLocation("camera.farPlane");
+    GLint FOVlocation = _shader->getUniformLocation("camera.FOV");
+    GLint nearPlaneLocation = _shader->getUniformLocation("camera.nearPlane");
+    GLint farPlaneLocation = _shader->getUniformLocation("camera.farPlane");
 
     glUniform1f(FOVlocation, FOV);
     glUniform1f(nearPlaneLocation, 0.01f);

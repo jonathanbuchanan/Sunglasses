@@ -3,23 +3,23 @@
 // See LICENSE.md for details.
 #include "SunGUIItem.h"
 
-SunGUIItem::SunGUIItem() { 
+SunGUIItem::SunGUIItem() {
     mesh.setUpGL();
 }
 
-void SunGUIItem::init() { 
+void SunGUIItem::init() {
 	addAction("render", &SunGUIItem::render);
-	addAction("button", &SunGUIItem::button); 
+	addAction("button", &SunGUIItem::button);
 }
 
-void SunGUIItem::render(SunAction action) { 
+void SunGUIItem::render(SunAction action) {
     if (visible)
-        mesh.render(position, size, color, textured, highlightColor, highlighted, text, font, (SunTextRenderer *)action.getParameter("textRenderer"));
+        mesh.render(position, size, color, textured, highlightColor, highlighted, text, font, action.getParameterPointer<SunTextRenderer>("textRenderer"));
 }
 
 void SunGUIItem::button(SunAction action) {
     int button = *(int *)action.getParameter("button");
-    
+
     actions[button].run(this);
 }
 

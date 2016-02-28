@@ -24,6 +24,14 @@ public:
 	inline std::string getAction() { return action; }
 
 	inline bool parameterExists(std::string p) { return parameters.find(p) != parameters.end(); }
+    template<typename T>
+    T getParameter(std::string parameter) {
+        return *(T *)parameters[parameter];
+    }
+    template<typename T>
+    T * getParameterPointer(std::string parameter) {
+        return (T *)parameters[parameter];
+    }
 	inline void * getParameter(std::string p) { return parameters[p]; }
 	inline void addParameter(std::string k, void *v) { parameters[k] = v; }
 
