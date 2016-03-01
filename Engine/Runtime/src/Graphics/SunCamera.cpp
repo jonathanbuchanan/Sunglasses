@@ -28,7 +28,7 @@ SunCamera::SunCamera(GLfloat _FOV, glm::vec3 _position, glm::vec3 _direction) {
 }
 
 void SunCamera::init() {
-    loadFile("../../Engine/Scripts/SunCamera.lua");
+    //loadFile("../../Engine/Scripts/SunCamera.lua");
 	setIgnoreTags(true);
 	addAction("update", &SunCamera::update);
 	addAction("uniform", &SunCamera::uniform);

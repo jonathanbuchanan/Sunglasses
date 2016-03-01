@@ -15,4 +15,6 @@ no = false
 str = "Hello, World!"
 
 -- table
-table = {a = 7, b = 1.23, c = true, d = false, e = "Test"}
+table = {a = 7, b = 1.23, c = true, d = false, e = "Test",
+    f = {r = 1, g = 0.2, b = 0.5}
+}

@@ -4,9 +4,10 @@
 #ifndef SUNSCRIPTEDNODE_H
 #define SUNSCRIPTEDNODE_H
 
-#include <selene.h>
+#include <lua.hpp>
 
-#include "SunNode.h"
+#include "SunLuaValue.h"
+#include "../Core/SunNode.h"
 
 class SunScriptedNode : public SunNode {
 public:
@@ -17,7 +18,13 @@ public:
 
     void loadFile(std::string file);
 
-    inline sel::Selector operator[](const char *name) { return state[name]; }
+    SunLuaValue getVariable(std::string var);
+    SunLuaValue operator[](std::string var);
+
+    void run(std::string code);
+    void operator()(std::string code);
+
+    /*inline sel::Selector operator[](const char *name) { return state[name]; }
     inline sel::Selector getElement(const char *name) { return state[name]; }
     inline sel::Selector getObject(const char *name) { return state[name]; }
     inline sel::Selector getVariable(const char *name) { return state[name]; }
@@ -47,9 +54,9 @@ public:
     template<typename N, typename... T>
     void registerObject(const char *name, N &object, T... functions) {
         state[name].SetObj(object, functions...);
-    }
+    }*/
 private:
-    sel::State state{true};
+    lua_State *state;
 };
 
 #endif

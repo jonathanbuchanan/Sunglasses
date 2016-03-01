@@ -6,3 +6,4 @@
 #include "Input/Input.hpp"
 #include "Output/Output.hpp"
 #include "Physics/Physics.hpp"
+#include "Scripting/Scripting.hpp"

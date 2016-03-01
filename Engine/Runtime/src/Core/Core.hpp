@@ -4,6 +4,5 @@
 #include "SunNode.h"
 #include "SunObject.h"
 #include "SunScene.h"
-#include "SunScriptedNode.h"
 #include "SunService.h"
 #include "Utility.h"

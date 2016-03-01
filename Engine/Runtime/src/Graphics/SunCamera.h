@@ -13,7 +13,6 @@ using namespace std;
 #include <glm/gtc/type_ptr.hpp>
 
 #include "../Core/SunNode.h"
-#include "../Core/SunScriptedNode.h"
 #include "../Core/Utility.h"
 #include "SunWindowManager.h"
 #include "../Input/SunKeyboardManager.h"
@@ -21,7 +20,7 @@ using namespace std;
 
 #include <GLFW/glfw3.h>
 
-class SunCamera : public SunScriptedNode {
+class SunCamera : public SunNode {
 public:
     SunCamera();
     SunCamera(GLfloat _FOV);
