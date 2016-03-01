@@ -3,89 +3,89 @@
 
 #include <Sunglasses/Sunglasses.hpp>
 
-struct SunScriptedNodeTest : ::testing::Test {
-    SunScriptedNode node;
-    SunScriptedNodeTest() {
-        node.loadFile("src/test_SunScriptedNode_0.lua");
-        node.loadFile("src/test_SunScriptedNode_1.lua");
+struct SunScriptTest : ::testing::Test {
+    SunScript script;
+    SunScriptTest() {
+        script.loadFile("src/test_SunScript_0.lua");
+        script.loadFile("src/test_SunScript_1.lua");
     }
 
-    ~SunScriptedNodeTest() {
+    ~SunScriptTest() {
 
     }
 };
 
-TEST_F(SunScriptedNodeTest, LuaVariables) {
-    int x = node.getVariable("x");
+TEST_F(SunScriptTest, LuaVariables) {
+    int x = script.getVariable("x");
     EXPECT_EQ(x, 2);
 
-    double pi = node["pi"];
+    double pi = script["pi"];
     EXPECT_DOUBLE_EQ(pi, 3.14);
 
-    bool yes = node.getVariable("yes");
+    bool yes = script.getVariable("yes");
     EXPECT_EQ(yes, true);
 
-    bool no = node.getVariable("no");
+    bool no = script.getVariable("no");
     EXPECT_EQ(no, false);
 
-    std::string str = node.getVariable("str");
+    std::string str = script.getVariable("str");
     EXPECT_EQ(str, "Hello, World!");
 
-    int a = node["table"]["a"];
+    int a = script["table"]["a"];
     EXPECT_EQ(a, 7);
 
-    double b = node.getVariable("table")["b"];
+    double b = script.getVariable("table")["b"];
     EXPECT_DOUBLE_EQ(b, 1.23);
 
-    bool c = node.getVariable("table")["c"];
+    bool c = script.getVariable("table")["c"];
     EXPECT_EQ(c, true);
 
-    bool d = node.getVariable("table")["d"];
+    bool d = script.getVariable("table")["d"];
     EXPECT_EQ(d, false);
 
-    SunLuaValue e_ = node.getVariable("table");
+    SunLuaValue e_ = script.getVariable("table");
     EXPECT_EQ((std::string)e_["e"], "Test");
 
-    int r = node["table"]["f"]["r"];
+    int r = script["table"]["f"]["r"];
     EXPECT_EQ(r, 1);
 
-    double g = node["table"]["f"]["g"];
+    double g = script["table"]["f"]["g"];
     EXPECT_DOUBLE_EQ(g, 0.2);
 
-    double b_ = node["table"]["f"]["b"];
+    double b_ = script["table"]["f"]["b"];
     EXPECT_DOUBLE_EQ(b_, 0.5);
 
-    node["a"] = 23;
-    EXPECT_EQ((int)node["a"], 23);
+    script["a"] = 23;
+    EXPECT_EQ((int)script["a"], 23);
 
-    node["b"] = 3.21;
-    EXPECT_DOUBLE_EQ((double)node["b"], 3.21);
+    script["b"] = 3.21;
+    EXPECT_DOUBLE_EQ((double)script["b"], 3.21);
 
-    node["c"] = true;
-    EXPECT_EQ((bool)node["c"], true);
+    script["c"] = true;
+    EXPECT_EQ((bool)script["c"], true);
 
-    node["d"] = false;
-    EXPECT_EQ((bool)node["d"], false);
+    script["d"] = false;
+    EXPECT_EQ((bool)script["d"], false);
 
-    node["e"] = "Testing";
-    EXPECT_EQ((std::string)node["e"], "Testing");
+    script["e"] = "Testing";
+    EXPECT_EQ((std::string)script["e"], "Testing");
 
-    node["o"].newTable();
+    script["o"].newTable();
 
-    node["o"]["a"] = -3;
-    EXPECT_EQ((int)node["o"]["a"], -3);
+    script["o"]["a"] = -3;
+    EXPECT_EQ((int)script["o"]["a"], -3);
 
-    node["o"]["b"] = true;
-    EXPECT_EQ((bool)node["o"]["b"], true);
+    script["o"]["b"] = true;
+    EXPECT_EQ((bool)script["o"]["b"], true);
 
-    node["o"]["c"] = 7.89;
-    EXPECT_DOUBLE_EQ((double)node["o"]["c"], 7.89);
+    script["o"]["c"] = 7.89;
+    EXPECT_DOUBLE_EQ((double)script["o"]["c"], 7.89);
 
-    node["o"]["z"] = "abc";
-    EXPECT_EQ((std::string)node["o"]["z"], "abc");
+    script["o"]["z"] = "abc";
+    EXPECT_EQ((std::string)script["o"]["z"], "abc");
 
-    node["o"]["f"]["r"] = 2;
-    EXPECT_EQ((int)node["o"]["f"]["r"], 2);
+    script["o"]["f"]["r"] = 2;
+    EXPECT_EQ((int)script["o"]["f"]["r"], 2);
 }
 
 /*TEST_F(SunScriptedNodeTest, LuaFunctions) {
@@ -93,15 +93,15 @@ TEST_F(SunScriptedNodeTest, LuaVariables) {
     EXPECT_EQ(result, 3);
 }*/
 
-TEST_F(SunScriptedNodeTest, RunLua) {
-    node.run("z = 5");
-    EXPECT_EQ((int)node["z"], 5);
+TEST_F(SunScriptTest, RunLua) {
+    script.run("z = 5");
+    EXPECT_EQ((int)script["z"], 5);
 
-    node.run("z = z + 2");
-    EXPECT_EQ((int)node["z"], 7);
+    script.run("z = z + 2");
+    EXPECT_EQ((int)script["z"], 7);
 
-    node("z = (z * 2) - 1");
-    EXPECT_EQ((int)node["z"], 13);
+    script("z = (z * 2) - 1");
+    EXPECT_EQ((int)script["z"], 13);
 }
 
 /*int divide(int a, int b) {

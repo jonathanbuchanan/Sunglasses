@@ -1,2 +1,3 @@
+#include "SunLuaState.h"
 #include "SunLuaValue.h"
-#include "SunScriptedNode.h"
+#include "SunScript.h"

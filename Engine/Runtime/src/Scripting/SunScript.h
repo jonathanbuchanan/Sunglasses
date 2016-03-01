@@ -1,20 +1,19 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#ifndef SUNSCRIPTEDNODE_H
-#define SUNSCRIPTEDNODE_H
+#ifndef SUNSCRIPT_H
+#define SUNSCRIPT_H
 
 #include <lua.hpp>
 
 #include "SunLuaValue.h"
-#include "../Core/SunNode.h"
 
-class SunScriptedNode : public SunNode {
+class SunScript {
 public:
-    SunScriptedNode();
+    SunScript();
 
     // Copy
-    SunScriptedNode & operator=(const SunScriptedNode &source);
+    //SunScriptedNode & operator=(const SunScriptedNode &source);
 
     void loadFile(std::string file);
 

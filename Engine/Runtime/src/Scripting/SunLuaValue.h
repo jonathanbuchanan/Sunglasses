@@ -3,6 +3,20 @@
 
 #include <lua.hpp>
 #include <string>
+#include <vector>
+#include <utility>
+#include <typeinfo>
+
+// Temp
+#include <iostream>
+// Temp
+
+enum SunLuaValueBasicType {
+    SunLuaValueTypeInteger,
+    SunLuaValueTypeNumber,
+    SunLuaValueTypeBoolean,
+    SunLuaValueTypeString
+};
 
 class SunLuaValue {
 public:
@@ -21,6 +35,14 @@ public:
     SunLuaValue operator[](const bool element);
     SunLuaValue operator[](const char *element);
 
+    template<typename... T>
+    SunLuaValue operator()(T &... args) {
+        lua_getglobal(state, var);
+        int a = 0;
+        if (typeid(a) == typeid(int))
+            std::cout << "hi" << std::endl;
+    }
+
     void operator=(const int &x);
     void operator=(const double &x);
     void operator=(const bool &x);
@@ -29,6 +51,11 @@ public:
 private:
     void getGlobal();
     void cleanGet();
+
+    template<typename Head, typename... Tail>
+    void passLuaFunctionArguments(Head h, Tail... t) {
+
+    }
 
     void setUpGetTable(const char *key);
     void cleanUpGetTable();
