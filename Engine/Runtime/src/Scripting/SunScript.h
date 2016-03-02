@@ -7,13 +7,12 @@
 #include <lua.hpp>
 
 #include "SunLuaValue.h"
+#include "SunLuaState.h"
 
 class SunScript {
 public:
     SunScript();
-
-    // Copy
-    //SunScriptedNode & operator=(const SunScriptedNode &source);
+    ~SunScript();
 
     void loadFile(std::string file);
 
@@ -55,7 +54,7 @@ public:
         state[name].SetObj(object, functions...);
     }*/
 private:
-    lua_State *state;
+    SunLuaState *state;
 };
 
 #endif

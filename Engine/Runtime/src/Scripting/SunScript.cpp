@@ -4,12 +4,15 @@
 #include "SunScript.h"
 
 SunScript::SunScript() {
-    state = luaL_newstate();
-    luaL_openlibs(state);
+    state = new SunLuaState();
+}
+
+SunScript::~SunScript() {
+
 }
 
 void SunScript::loadFile(std::string file) {
-    luaL_dofile(state, file.c_str());
+    state->loadFile(file.c_str());
 }
 
 SunLuaValue SunScript::getVariable(std::string var) {
@@ -21,15 +24,9 @@ SunLuaValue SunScript::operator[](std::string var) {
 }
 
 void SunScript::run(std::string code) {
-    luaL_dostring(state, code.c_str());
+    state->run(code.c_str());
 }
 
 void SunScript::operator()(std::string code) {
     run(code);
 }
-
-/*SunScriptedNode & SunScriptedNode::operator=(const SunScriptedNode &source) {
-    SunNode::operator=(source);
-    return *this;
-}
-*/

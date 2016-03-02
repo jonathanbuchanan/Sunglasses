@@ -1,27 +1,18 @@
 #ifndef SUNLUAVALUE_H
 #define SUNLUAVALUE_H
 
+#include "SunLuaState.h"
+
 #include <lua.hpp>
 #include <string>
 #include <vector>
 #include <utility>
 #include <typeinfo>
 
-// Temp
-#include <iostream>
-// Temp
-
-enum SunLuaValueBasicType {
-    SunLuaValueTypeInteger,
-    SunLuaValueTypeNumber,
-    SunLuaValueTypeBoolean,
-    SunLuaValueTypeString
-};
-
 class SunLuaValue {
 public:
-    SunLuaValue(lua_State *s, const char *_var);
-    SunLuaValue(lua_State *s, const char *_var, bool _i, SunLuaValue *p);
+    SunLuaValue(SunLuaState *s, const char *_var);
+    SunLuaValue(SunLuaState *s, const char *_var, bool _i, SunLuaValue *p);
 
     void newTable();
 
@@ -37,10 +28,7 @@ public:
 
     template<typename... T>
     SunLuaValue operator()(T &... args) {
-        lua_getglobal(state, var);
-        int a = 0;
-        if (typeid(a) == typeid(int))
-            std::cout << "hi" << std::endl;
+        // Functions
     }
 
     void operator=(const int &x);
@@ -68,7 +56,7 @@ private:
     bool isTableValue = false;
     SunLuaValue *parentTable;
     const char *var;
-    lua_State *state;
+    SunLuaState *state;
 };
 
 #endif

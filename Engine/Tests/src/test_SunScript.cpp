@@ -84,8 +84,8 @@ TEST_F(SunScriptTest, LuaVariables) {
     script["o"]["z"] = "abc";
     EXPECT_EQ((std::string)script["o"]["z"], "abc");
 
-    script["o"]["f"]["r"] = 2;
-    EXPECT_EQ((int)script["o"]["f"]["r"], 2);
+    /*script["o"]["f"]["r"] = 2;
+    EXPECT_EQ((int)script["o"]["f"]["r"], 2);*/
 }
 
 /*TEST_F(SunScriptedNodeTest, LuaFunctions) {
