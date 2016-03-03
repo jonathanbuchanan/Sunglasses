@@ -38,6 +38,10 @@ void SunLuaState::setTable(int index) {
     lua_settable(state, index);
 }
 
+int SunLuaState::getTop() {
+    return lua_gettop(state);
+}
+
 int SunLuaState::getInteger(int index) {
     return lua_tointeger(state, index);
 }
@@ -139,4 +143,12 @@ void SunLuaState::pop(int count) {
 
 void SunLuaState::pop() {
     pop(1);
+}
+
+void SunLuaState::remove(int index) {
+    lua_remove(state, index);
+}
+
+void SunLuaState::callFunction(int argCount, int retCount) {
+    lua_call(state, argCount, retCount);
 }

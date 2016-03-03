@@ -22,6 +22,7 @@ public:
     void run(std::string code);
     void operator()(std::string code);
 
+    SunLuaState * getState() { return state; }
     /*inline sel::Selector operator[](const char *name) { return state[name]; }
     inline sel::Selector getElement(const char *name) { return state[name]; }
     inline sel::Selector getObject(const char *name) { return state[name]; }

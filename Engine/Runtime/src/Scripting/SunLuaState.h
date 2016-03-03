@@ -26,12 +26,42 @@ public:
 
     void run(const char *code);
 
+    template<typename T> SunLuaBasicType getType() {
+        if (typeMap.find(std::type_index(typeid(T))) != typeMap.end())
+            return typeMap[std::type_index(typeid(T))];
+        else
+            return SunLuaNone;
+    }
+    template<typename T> SunLuaBasicType getType(T x) { return getType<T>(); }
+
+    template<typename T> int push(T x) {
+        switch (getType<T>()) {
+            case SunLuaTypeInteger:
+                pushInteger((int)x);
+                break;
+            case SunLuaTypeNumber:
+                pushNumber((double)x);
+                break;
+            case SunLuaTypeBoolean:
+                pushBoolean((bool)x);
+                break;
+            case SunLuaTypeString:
+                pushString((const char *)x);
+                break;
+            case SunLuaNone:
+                return -1;
+                break;
+        }
+    }
+
     // Lua Functions
     void getGlobal(const char *global);
     void setGlobal(const char *global);
     void newTable();
     void getTable(int index);
     void setTable(int index);
+
+    int getTop();
 
     int getInteger(int index);
     int getInteger(); // Default Index = -1
@@ -70,9 +100,23 @@ public:
 
     void pop(int count);
     void pop(); // Default Count = 1
+    void remove(int index);
+
+    void callFunction(int argCount, int retCount);
 
 private:
     lua_State *state;
+
+    std::map<std::type_index, SunLuaBasicType> typeMap = {
+        {std::type_index(typeid(int)), SunLuaTypeInteger},
+
+        {std::type_index(typeid(float)), SunLuaTypeNumber},
+        {std::type_index(typeid(double)), SunLuaTypeNumber},
+
+        {std::type_index(typeid(bool)), SunLuaTypeBoolean},
+
+        {std::type_index(typeid(const char *)), SunLuaTypeString}
+    };
 };
 
 #endif

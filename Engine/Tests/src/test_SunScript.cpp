@@ -83,15 +83,19 @@ TEST_F(SunScriptTest, LuaVariables) {
 
     script["o"]["z"] = "abc";
     EXPECT_EQ((std::string)script["o"]["z"], "abc");
-
-    /*script["o"]["f"]["r"] = 2;
-    EXPECT_EQ((int)script["o"]["f"]["r"], 2);*/
 }
 
-/*TEST_F(SunScriptedNodeTest, LuaFunctions) {
-    int result = node.getFunction("add")(1, 2);
+TEST_F(SunScriptTest, LuaFunctions) {
+    int result = script["add"](1, 2);
     EXPECT_EQ(result, 3);
-}*/
+
+    int add;
+    int multiply;
+    //std::tie(add, multiply) = script["addAndMultiply"](4, 5).tie();
+    script["addAndMultiply"](4, 5).assign(add, multiply);
+    EXPECT_EQ(add, 9);
+    EXPECT_EQ(multiply, 20);
+}
 
 TEST_F(SunScriptTest, RunLua) {
     script.run("z = 5");

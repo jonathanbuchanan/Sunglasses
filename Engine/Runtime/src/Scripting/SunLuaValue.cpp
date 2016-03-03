@@ -5,6 +5,12 @@ SunLuaValue::SunLuaValue(SunLuaState *s, const char *_var) {
     var = _var;
 }
 
+SunLuaValue::SunLuaValue(SunLuaState *s, bool _isFunctionReturn, int _index) {
+    state = s;
+    isFunctionReturn = _isFunctionReturn;
+    index = _index;
+}
+
 SunLuaValue::SunLuaValue(SunLuaState *s, const char *_var, bool _i, SunLuaValue *p) {
     state = s;
     var = _var;
@@ -20,28 +26,28 @@ void SunLuaValue::newTable() {
 
 SunLuaValue::operator int() {
     getGlobal();
-    int x = state->getInteger(-1);
+    int x = state->getInteger(index);
     cleanGet();
     return x;
 }
 
 SunLuaValue::operator double() {
     getGlobal();
-    double x = state->getNumber(-1);
+    double x = state->getNumber(index);
     cleanGet();
     return x;
 }
 
 SunLuaValue::operator bool() {
     getGlobal();
-    bool x = state->getBoolean(-1);
+    bool x = state->getBoolean(index);
     cleanGet();
     return x;
 }
 
 SunLuaValue::operator std::string() {
     getGlobal();
-    std::string x = std::string(state->getString(-1));
+    std::string x = std::string(state->getString(index));
     cleanGet();
     return x;
 }
@@ -106,6 +112,8 @@ void SunLuaValue::operator=(const char *x) {
 
 
 void SunLuaValue::getGlobal() {
+    if (isFunctionReturn)
+        return;
     if (!isTableValue)
         state->getGlobal(var);
     else
@@ -113,8 +121,10 @@ void SunLuaValue::getGlobal() {
 }
 
 void SunLuaValue::cleanGet() {
+    //if (isFunctionReturn)
+    //    return;
     if (!isTableValue)
-        state->pop(1);
+        state->remove(index);
     else
         cleanUpGetTable();
 }
