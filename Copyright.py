@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 # Copyright 2016 Jonathan Buchanan.
 # This file is part of Sunglasses, which is licensed under the MIT License.
 # See LICENSE.md for details.\n
@@ -7,13 +5,20 @@
 import os
 import fileinput
 
-bannedDirectories = ["CMakeFiles"]
-allowedEndings = [".h", ".cpp", ".m", ".s", ".v", ".f", ".g", ".vert", ".frag", ".geom", ".pre"]
+bannedDirectories = ["CMakeFiles", "googlemock", "googletest", ".git"]
+allowedEndings = [".h", ".hpp", ".cpp", ".m", ".s", ".v", ".f", ".g", ".vert", ".frag", ".geom", ".pre"]
 
 copyright = '// Copyright 2016 Jonathan Buchanan.\n// This file is part of Sunglasses, which is licensed under the MIT License.\n// See LICENSE.md for details.\n'
 
 for directory, subFolders, files in os.walk("./"):
-    if directory not in bannedDirectories:
+    directories = directory.split("/");
+    allowedDirectory = True;
+    for _directory in directories:
+        if _directory in bannedDirectories:
+            allowedDirectory = False
+            break
+    if allowedDirectory:
+        print(directory)
         for file in files:
             allowed = False
             for ending in allowedEndings:
@@ -27,7 +32,7 @@ for directory, subFolders, files in os.walk("./"):
                             continue
                         else:
                             print(line, end = '')
-                            inHeader = False 
+                            inHeader = False
                     for lineNumber, line in enumerate(fileinput.input(filepath, inplace = True, backup = False)):
                         if lineNumber == 0:
                             print(copyright, end = '')

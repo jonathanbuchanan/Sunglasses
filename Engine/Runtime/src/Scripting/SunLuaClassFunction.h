@@ -1,6 +1,8 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include "SunCursorManager.h"
-#include "SunKeyboardManager.h"
-#include "SunMouseButtonManager.h"
+#ifndef SUNLUACLASSFUNCTION_H
+#define SUNLUACLASSFUNCTION_H
+
+
+#endif
