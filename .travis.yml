@@ -12,7 +12,7 @@ install:
 
     # Install glfw (Trusty doesn't have glfw3)
     - wget https://github.com/glfw/glfw/archive/3.1.2.zip
-    - unzip 3.1.2.zip -d glfw
+    - unzip -qq 3.1.2.zip -d glfw
     - cd glfw/glfw-3.1.2
     - cmake . -G "Unix Makefiles"
     - sudo make install
@@ -20,7 +20,7 @@ install:
 
     # Install glm (Trusty's version is too old)
     - wget https://github.com/g-truc/glm/archive/0.9.7.3.zip
-    - unzip 0.9.7.3.zip -d glm
+    - unzip -qq 0.9.7.3.zip -d glm
     - cd glm/glm-0.9.7.3
     - cmake . -G "Unix Makefiles"
     - sudo make install
