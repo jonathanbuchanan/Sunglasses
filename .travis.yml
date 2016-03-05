@@ -46,7 +46,9 @@ install:
     - unzip -qq release-1.7.0.zip -d gtest
     - cd gtest/googletest-release-1.7.0
     - cmake . -G "Unix Makefiles"
-    - sudo make install
+    - make
+    - sudo cp -a include/gtest /usr/include
+    - sudo cp -a libgtest_main.so libgtest.so /usr/lib/
     - cd ../..
 
     - export CXX="g++-4.8"
