@@ -7,7 +7,7 @@ before_install:
 install:
     - wget https://github.com/glfw/glfw/archive/3.1.2.zip
     - unzip 3.1.2.zip -d glfw
-    - cd glfw
+    - cd glfw/glfw-3.1.2
     - cmake . -G "Unix Makefiles"
     - make install
     - sudo apt-get install -qq g++-4.8 libglm-dev libfreetype6-dev libsoil-dev libglew-dev libassimp-dev libsfml-dev
