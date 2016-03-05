@@ -4,7 +4,7 @@
 #include "SunShader.h"
 
 string getShaderCodeFromFile(string filepath) {
-    file ifstream(filepath);
+    ifstream file(filepath);
     stringstream sourceStream;
     sourceStream << file.rdbuf();
     file.close();
