@@ -11,6 +11,5 @@ add_executable(Feature-Executable Source/FeatureGame.cpp Source/FeatureRenderer.
 
 include_directories(/usr/include/freetype2)
 
-add_definitions(-DLUA_COMPAT_5_2)
 target_link_libraries(Feature-Executable sunglasses freetype SOIL GLEW libGL.so assimp sfml-audio ${GLFW_LIBRARIES} X11 Xxf86vm pthread dl Xrandr Xinerama Xi Xcursor lua)
 set(CMAKE_CXX_FLAGS "-std=c++11 -g")

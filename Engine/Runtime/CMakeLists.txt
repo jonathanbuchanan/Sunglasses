@@ -15,7 +15,6 @@ install(TARGETS sunglasses LIBRARY DESTINATION lib)
 
 include_directories(/usr/include/freetype2)
 
-add_definitions(-DLUA_COMPAT_5_2)
 set(CMAKE_CXX_FLAGS "-std=c++11 -g")
 
 install(DIRECTORY src/ DESTINATION include/Sunglasses FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp")

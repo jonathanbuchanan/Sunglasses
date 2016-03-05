@@ -41,14 +41,6 @@ install:
     - sudo make install
     - cd ..
 
-    # Install gtest
-    - wget https://github.com/google/googletest/archive/master.zip
-    - unzip -qq master.zip -d gtest
-    - cd gtest/googletest-master
-    - cmake . -G "Unix Makefiles" -DBUILD_SHARED_LIBS=ON
-    - sudo make install
-    - cd ../..
-
     - export CXX="g++-4.8"
 script:
     # Build Sunglasses (The Library)
