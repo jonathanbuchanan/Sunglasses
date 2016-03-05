@@ -20,6 +20,27 @@ enum SunLuaBasicType {
     SunLuaNone
 };
 
+namespace _SunPrivateScripting {
+    template<typename T>
+    T get(lua_State *l, int index);
+
+    template<> int get(lua_State *l, int index);
+    template<> double get(lua_State *l, int index);
+    template<> bool get(lua_State *l, int index);
+    template<> const char * get(lua_State *l, int index);
+
+
+
+    template<typename T>
+    void push(lua_State *l, T value);
+
+    template<> void push(lua_State *l, int value);
+    template<> void push(lua_State *l, double value);
+    template<> void push(lua_State *l, bool value);
+    template<> void push(lua_State *l, const char *value);
+    template<> void push(lua_State *l, char *value);
+}
+
 class SunLuaState {
 public:
     SunLuaState();
@@ -37,7 +58,11 @@ public:
     }
     template<typename T> SunLuaBasicType getType(T x) { return getType<T>(); }
 
-    template<typename T> int push(T x) {
+    template<typename T>
+    void push(T value) {
+        _SunPrivateScripting::push(state, value);
+    }
+    /*template<typename T> int push(T x) {
         switch (getType<T>()) {
             case SunLuaTypeInteger:
                 pushInteger((int)x);
@@ -55,7 +80,7 @@ public:
                 return -1;
                 break;
         }
-    }
+    }*/
 
     // Lua Functions
     void getGlobal(const char *global);
@@ -100,6 +125,9 @@ public:
     void pushNumber(double x);
     void pushBoolean(bool x);
     void pushString(const char *x);
+    void pushLightUserdata(void *data);
+
+    void pushCClosure(lua_CFunction function, int upvalues);
 
     void pop(int count);
     void pop(); // Default Count = 1

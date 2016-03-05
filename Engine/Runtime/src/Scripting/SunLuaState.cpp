@@ -3,6 +3,45 @@
 // See LICENSE.md for details.
 #include "SunLuaState.h"
 
+namespace _SunPrivateScripting {
+    template<> int get(lua_State *l, int index) {
+        return lua_tointeger(l, index);
+    }
+
+    template<> double get(lua_State *l, int index) {
+        return lua_tonumber(l, index);
+    }
+
+    template<> bool get(lua_State *l, int index) {
+        return lua_toboolean(l, index);
+    }
+
+    template<> const char * get(lua_State *l, int index) {
+        return lua_tostring(l, index);
+    }
+
+
+    template<> void push(lua_State *l, int value) {
+        lua_pushinteger(l, value);
+    }
+
+    template<> void push(lua_State *l, double value) {
+        lua_pushnumber(l, value);
+    }
+
+    template<> void push(lua_State *l, bool value) {
+        lua_pushboolean(l, value);
+    }
+
+    template<> void push(lua_State *l, const char *value) {
+        lua_pushstring(l, value);
+    }
+
+    template<> void push(lua_State *l, char *value) {
+        lua_pushstring(l, value);
+    }
+}
+
 SunLuaState::SunLuaState() {
     state = luaL_newstate();
     luaL_openlibs(state);
@@ -138,6 +177,14 @@ void SunLuaState::pushBoolean(bool x) {
 
 void SunLuaState::pushString(const char *x) {
     lua_pushstring(state, x);
+}
+
+void SunLuaState::pushLightUserdata(void *data) {
+    lua_pushlightuserdata(state, data);
+}
+
+void SunLuaState::pushCClosure(lua_CFunction function, int upvalues) {
+    lua_pushcclosure(state, function, upvalues);
 }
 
 void SunLuaState::pop(int count) {

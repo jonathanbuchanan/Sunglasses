@@ -111,34 +111,40 @@ TEST_F(SunScriptTest, RunLua) {
     EXPECT_EQ((int)script["z"], 13);
 }
 
-/*int divide(int a, int b) {
+int divide(int a, int b) {
     return a / b;
 }
 
-TEST_F(SunScriptedNodeTest, CFunctions) {
+int add(int a, int b, int c) {
+    return a + b + c;
+}
+
+TEST_F(SunScriptTest, CFunctions) {
     // Test Lambda
-    auto multiply = [](int a, int b) -> int {
-        return a * b;
+    auto cat = [](const char *a, const char *b) -> char * {
+        char *result = (char *)malloc(strlen(a) + strlen(b) + 1);
+        strcpy(result, a);
+        strcat(result, b);
+        return result;
     };
-    node.registerFunction("multiply", multiply);
-    int x = node["multiply"](7, 6);
-    EXPECT_EQ(x, 42);
+    std::function<char *(const char *, const char *)> _cat = cat;
+    script.registerFunction("cat", _cat);
+    std::string x = (std::string)script["cat"]("1 + 2", " = 3");
+    EXPECT_EQ(x, "1 + 2 = 3");
 
     // Test std::function
-    std::function<int(int, int)> subtract = std::function<int(int, int)>([](int a, int b) -> int {
-        return a - b;
-    });
-    node.registerFunction("subtract", subtract);
-    int y = node["subtract"](10, 3);
-    EXPECT_EQ(y, 7);
+    std::function<int(int, int, int)> _add = add;
+    script.registerFunction("add3", _add);
+    int y = script["add3"](1, 2, 3);
+    EXPECT_EQ(y, 6);
 
     // Test C Function
-    node.registerFunction("divide", &divide);
-    int z = node["divide"](30, 5);
+    script.registerFunction("divide", &divide);
+    int z = script["divide"](30, 5);
     EXPECT_EQ(z, 6);
 }
 
-struct TestClass {
+/*struct TestClass {
     int x;
     TestClass(int _x) { x = _x; }
 
