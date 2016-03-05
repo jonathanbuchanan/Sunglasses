@@ -135,7 +135,8 @@ TEST_F(SunScriptTest, CFunctions) {
     // Test std::function
     std::function<int(int, int, int)> _add = add;
     script.registerFunction("add3", _add);
-    int y = script["add3"](1, 2, 3);
+    script("abs = add3(1, 2, 3)");
+    int y = script["abs"];
     EXPECT_EQ(y, 6);
 
     // Test C Function
