@@ -4,7 +4,7 @@
 #include "SunShader.h"
 
 string getShaderCodeFromFile(string filepath) {
-    ifstream file = ifstream(filepath);
+    file ifstream(filepath);
     stringstream sourceStream;
     sourceStream << file.rdbuf();
     file.close();
@@ -41,7 +41,7 @@ GLuint compileShaderFromStrings(vector<string> shaderStrings, GLint shaderType) 
     glCompileShader(shader);
     glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
     if (!success) {
-        glGetShaderInfoLog(shader, 512, NULL, infoLog); 
+        glGetShaderInfoLog(shader, 512, NULL, infoLog);
     }
     return shader;
 
@@ -57,15 +57,15 @@ SunShader::SunShader(string vertexPath, string fragmentPath) {
 	try {
 		GLuint vertex = compileShaderFromString(vertexCode, GL_VERTEX_SHADER);
 	    GLuint fragment = compileShaderFromString(fragmentCode, GL_FRAGMENT_SHADER);
-		
-	    GLint success; 
+
+	    GLint success;
 		this->program = glCreateProgram();
 	    glAttachShader(this->program, vertex);
 		glAttachShader(this->program, fragment);
 		glLinkProgram(this->program);
 		glGetProgramiv(this->program, GL_LINK_STATUS, &success);
 		if (!success) {
-			glGetProgramInfoLog(this->program, 512, NULL, infoLog); 
+			glGetProgramInfoLog(this->program, 512, NULL, infoLog);
 			throw 0;
 		}
 		glDeleteShader(vertex);
@@ -77,7 +77,7 @@ SunShader::SunShader(string vertexPath, string fragmentPath) {
 				break;
 		}
 		return;
-	} 
+	}
 	((SunLogger *)getService("logger"))->logSuccess("Linked Shader");
 }
 
@@ -164,22 +164,22 @@ SunShader::SunShader(string vertexPath, string geometryPath, string fragmentPath
 
 SunShader::SunShader(vector<string> sources, vector<SunShaderSourceType> sourceTypes, string preprocessorPath) {
     int components = sources.size();
-    
-    string _version = "#version 330 core\n"; 
+
+    string _version = "#version 330 core\n";
     string preprocessorCode = getShaderCodeFromFile(preprocessorPath);
     vector<string> code;
     for (int i = 0; i < components; i++)
         code.push_back(getShaderCodeFromFile(sources[i]));
-    
+
     vector<vector<string>> strings;
     for (int i = 0; i < components; i++) {
         strings.push_back({_version, preprocessorCode, code[i]});
     }
-    
+
     vector<GLuint> shaders;
     for (int i = 0; i < components; i++)
         shaders.push_back(compileShaderFromStrings(strings[i], sourceTypes[i]));
-    
+
     GLint success;
     GLchar infoLog[512];
     this->program = glCreateProgram();
@@ -199,11 +199,11 @@ SunShader::SunShader(string vertexPath, string geometryPath, string fragmentPath
     string vertexCode = getShaderCodeFromFile(vertexPath);
     string geometryCode = getShaderCodeFromFile(geometryPath);
     string fragmentCode = getShaderCodeFromFile(fragmentPath);
-    
+
     GLuint vertex = compileShaderFromString(vertexCode, SunShaderSourceTypeVertex);
     GLuint geometry = compileShaderFromString(geometryCode, SunShaderSourceTypeGeometry);
     GLuint fragment = compileShaderFromString(fragmentCode, SunShaderSourceTypeFragment);
-    
+
     GLint success;
     GLchar infoLog[512];
     this->program = glCreateProgram();
@@ -223,7 +223,7 @@ SunShader::SunShader(string vertexPath, string geometryPath, string fragmentPath
 
 void SunShader::uniforms(SunNode *root) {
 	SunAction uniform("uniform");
-	uniform.addParameter("shader", this); 
+	uniform.addParameter("shader", this);
 	uniform.setRecursive(true);
 	sendAction(uniform, root);
 }
@@ -240,9 +240,9 @@ void SunShader::use(std::string tag, float delta, SunNode *root) {
 	SunAction render("render");
 	render.addParameter("shader", this);
 	if (tag.length() > 0)
-		render.addParameter("tag", &tag); 
+		render.addParameter("tag", &tag);
 	render.setRecursive(true);
-	sendAction(render, root); 
+	sendAction(render, root);
 }
 
 void SunShader::send(std::string tag, float delta, SunNode *root) {
@@ -251,7 +251,7 @@ void SunShader::send(std::string tag, float delta, SunNode *root) {
 	SunAction render("render");
 	render.addParameter("shader", this);
 	if (tag.length() > 0)
-		render.addParameter("tag", &tag); 
+		render.addParameter("tag", &tag);
 	render.setRecursive(true);
-	sendAction(render, root); 
+	sendAction(render, root);
 }
