@@ -3,7 +3,6 @@
 // See LICENSE.md for details.
 #include "SunCamera.h"
 #include <lua.hpp>
-#include <selene.h>
 
 SunCamera::SunCamera() {
 
