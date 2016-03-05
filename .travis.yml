@@ -12,7 +12,7 @@ install:
     - unzip 3.1.2.zip -d glfw
     - cd glfw/glfw-3.1.2
     - cmake . -G "Unix Makefiles"
-    - make install
+    - sudo make install
     - export CXX="g++-4.8"
 script:
     - cmake ./Sample\ Projects/Feature -G "Unix Makefiles"
