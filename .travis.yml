@@ -26,6 +26,26 @@ install:
     - sudo make install
     - cd ../..
 
+    # Install lua
+    - curl -R -O http://www.lua.org/ftp/lua-5.3.2.tar.gz
+    - tar zxf lua-5.3.2.tar.gz
+    - cd lua-5.3.2
+    - wget https://gist.githubusercontent.com/dcarrith/899047f3a2d603b25a58/raw/7fa41ee5c0113ed721abe979c269afe48472baf5/Makefile.patch -O Makefile.patch --no-check-certificate
+    - patch -l < Makefile.patch
+    - unexpand Makefile > Makefile.unexpanded
+    - mv Makefile.unexpanded Makefile
+
+    - cd src/
+    - wget https://gist.githubusercontent.com/dcarrith/6095183b8dc60c909779/raw/614d769d5b70b69b5d67cfb618696bfb906e2aca/src.Makefile.patch -O Makefile.patch --no-check-certificate
+    - patch -l < Makefile.patch
+    - unexpand Makefile > Makefile.unexpanded
+    - mv Makefile.unexpanded Makefile
+    - cd ..
+
+    - make linux
+    - sudo make install
+    - cd ..
+
 
     - export CXX="g++-4.8"
 script:
