@@ -8,7 +8,7 @@ before_install:
     - sudo apt-get update -qq
 install:
     # Install dependencies from apt
-    - sudo apt-get install -qq g++-4.8 libfreetype6-dev libsoil-dev libglew-dev libassimp-dev libsfml-dev xorg-dev libgl1-mesa-dev
+    - sudo apt-get install -qq g++-4.8 libfreetype6-dev libsoil-dev libglew-dev libassimp-dev libsfml-dev xorg-dev libgl1-mesa-dev libgtest-dev
 
     # Install glfw (Trusty doesn't have glfw3)
     - wget https://github.com/glfw/glfw/archive/3.1.2.zip
@@ -26,23 +26,31 @@ install:
     - sudo make install
     - cd ../..
 
+    # Install lua
+    - curl -R -O http://www.lua.org/ftp/lua-5.3.2.tar.gz
+    - tar zxf lua-5.3.2.tar.gz
+    - cd lua-5.3.2
+    - make linux
+    - sudo make install
+    - cd ..
+
 
     - export CXX="g++-4.8"
 script:
     # Build Sunglasses (The Library)
-    - cd ./Engine/Runtime/
+    - cd Engine/Runtime/
     - cmake . -G "Unix Makefiles"
     - sudo make install
-    - cd ./../../
+    - cd ../../
 
     # Build the Tests
-    - cd ./Engine/Tests/
+    - cd Engine/Tests/
     - cmake . -G "Unix Makefiles"
     - make
     - ./Test-Sunglasses
-    - cd ./../..
+    - cd ../..
 
     # Build Feature
-    - cd ./Sample\ Projects/Feature
+    - cd Sample\ Projects/Feature
     - cmake . -G "Unix Makefiles"
     - make
