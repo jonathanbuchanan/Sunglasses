@@ -1,9 +1,9 @@
 project("Feature")
 
+cmake_minimum_required(VERSION 2.8)
+
 find_package(PkgConfig REQUIRED)
 pkg_search_module(GLFW REQUIRED glfw3)
-
-cmake_minimum_required(VERSION 2.8)
 
 set(ENGINE_PATH ../../Engine/Runtime)
 
