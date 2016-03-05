@@ -4,3 +4,5 @@ os: linux
 script:
     - cmake ./Sample\ Projects/Feature -G "Unix Makefiles"
     - make
+env:
+    CXX=g++
