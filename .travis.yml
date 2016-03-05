@@ -1,0 +1,33 @@
+language: cpp
+compiler: g++
+os: linux
+sudo: required
+dist: trusty
+before_install:
+    - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+    - sudo apt-get update -qq
+install:
+    # Install dependencies from apt
+    - sudo apt-get install -qq g++-4.8 libfreetype6-dev libsoil-dev libglew-dev libassimp-dev libsfml-dev xorg-dev libgl1-mesa-dev
+
+    # Install glfw (Trusty doesn't have glfw3)
+    - wget https://github.com/glfw/glfw/archive/3.1.2.zip
+    - unzip -qq 3.1.2.zip -d glfw
+    - cd glfw/glfw-3.1.2
+    - cmake . -G "Unix Makefiles"
+    - sudo make install
+    - cd ../..
+
+    # Install glm (Trusty's version is too old)
+    - wget https://github.com/g-truc/glm/archive/0.9.7.3.zip
+    - unzip -qq 0.9.7.3.zip -d glm
+    - cd glm/glm-0.9.7.3
+    - cmake . -G "Unix Makefiles"
+    - sudo make install
+    - cd ../..
+
+
+    - export CXX="g++-4.8"
+script:
+    - cmake ./Sample\ Projects/Feature -G "Unix Makefiles"
+    - make
