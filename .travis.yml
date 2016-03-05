@@ -13,6 +13,7 @@ install:
     - cd glfw/glfw-3.1.2
     - cmake . -G "Unix Makefiles"
     - sudo make install
+    - cd ../..
     - export CXX="g++-4.8"
 script:
     - cmake ./Sample\ Projects/Feature -G "Unix Makefiles"
