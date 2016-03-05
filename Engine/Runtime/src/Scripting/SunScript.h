@@ -4,6 +4,7 @@
 #ifndef SUNSCRIPT_H
 #define SUNSCRIPT_H
 
+#include <map>
 #include <lua.hpp>
 
 #include "SunLuaValue.h"
@@ -35,6 +36,11 @@ public:
         SunLuaCFunction<S, T...> *function = new SunLuaCFunction<S, T...>(name, std::function<S(T...)>(_function));
         function->registerAsFunction(state);
         functions.push_back((_SunPrivateScripting::_SunLuaCFunction_Base *)function);
+    }
+
+    template<typename S, typename... T>
+    void registerObject(std::string name, S &object, T... functions) {
+
     }
 
     SunLuaState * getState() { return state; }

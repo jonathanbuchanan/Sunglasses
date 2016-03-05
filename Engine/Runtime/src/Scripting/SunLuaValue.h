@@ -45,6 +45,12 @@ public:
         return SunLuaValue(state, true, -1);
     }
 
+    SunLuaValue operator()() {
+        state->getGlobal(var);
+        state->callFunction(0, LUA_MULTRET);
+        return SunLuaValue(state, true, -1);
+    }
+
     void operator=(const int &x);
     void operator=(const double &x);
     void operator=(const bool &x);

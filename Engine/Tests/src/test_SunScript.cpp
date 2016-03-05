@@ -144,7 +144,7 @@ TEST_F(SunScriptTest, CFunctions) {
     EXPECT_EQ(z, 6);
 }
 
-/*struct TestClass {
+struct TestClass {
     int x;
     TestClass(int _x) { x = _x; }
 
@@ -157,7 +157,7 @@ TEST_F(SunScriptTest, CFunctions) {
     }
 };
 
-TEST_F(SunScriptedNodeTest, Classes) {
+/*TEST_F(SunScriptedNodeTest, Classes) {
     node.registerClass<TestClass, int>("TestClass", "multiply", &TestClass::multiply, "add", &TestClass::add, "x", &TestClass::x);
     node("test = TestClass.new(5)");
     node("z = test:x()");
@@ -173,19 +173,19 @@ TEST_F(SunScriptedNodeTest, Classes) {
     node("z = test:x()");
     z = node["z"];
     EXPECT_EQ(z, 14);
-}
+}*/
 
-TEST_F(SunScriptedNodeTest, Objects) {
+TEST_F(SunScriptTest, Objects) {
     TestClass test(6);
-    node.registerObject("test", test, "add", &TestClass::add, "multiply", &TestClass::multiply, "x", &TestClass::x);
-    EXPECT_EQ((int)node["test"]["x"](), 6);
+    script.registerObject("test", test, "add", &TestClass::add, "multiply", &TestClass::multiply, "x", &TestClass::x);
+    EXPECT_EQ((int)script["test"]["x"](), 6);
     EXPECT_EQ(test.x, 6);
 
-    node("test.add(4)");
-    EXPECT_EQ((int)node["test"]["x"](), 10);
+    script("test.add(4)");
+    EXPECT_EQ((int)script["test"]["x"](), 10);
     EXPECT_EQ(test.x, 10);
 
     test.multiply(3);
-    EXPECT_EQ((int)node["test"]["x"](), 30);
+    EXPECT_EQ((int)script["test"]["x"](), 30);
     EXPECT_EQ(test.x, 30);
-}*/
+}
