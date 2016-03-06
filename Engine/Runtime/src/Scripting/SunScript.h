@@ -11,7 +11,7 @@
 #include "SunLuaValue.h"
 #include "SunLuaState.h"
 #include "SunLuaCFunction.h"
-#include "SunLuaClass.h"
+#include "SunLuaObject.h"
 
 class SunScript {
 public:
@@ -42,7 +42,7 @@ public:
 
     template<typename S, typename... T>
     void registerObject(std::string name, S &object, T... functions) {
-        objects.push_back(new SunLuaClass<S, T...>());
+        objects.push_back(std::unique_ptr<_SunPrivateScripting::_SunLuaObject_Base>(new SunLuaObject<S, T...>()));
     }
 
     SunLuaState * getState() { return state; }
@@ -50,7 +50,7 @@ private:
     SunLuaState *state;
 
     std::vector<_SunPrivateScripting::_SunLuaCFunction_Base *> functions;
-    std::vector<std::unique_ptr<_SunPrivateScripting::_SunLuaClass_Base>> objects;
+    std::vector<std::unique_ptr<_SunPrivateScripting::_SunLuaObject_Base>> objects;
 };
 
 #endif

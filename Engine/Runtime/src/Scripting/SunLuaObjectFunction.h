@@ -1,16 +1,16 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#ifndef SUNLUACLASSFUNCTION_H
-#define SUNLUACLASSFUNCTION_H
+#ifndef SUNLUAOBJECTFUNCTION_H
+#define SUNLUAOBJECTFUNCTION_H
 
 #include "SunLuaCFunction.h"
 
 template<typename S, typename... T>
-class SunLuaClassFunction : public _SunPrivateScripting::_SunLuaCFunction_Base {
+class SunLuaObjectFunction : public _SunPrivateScripting::_SunLuaCFunction_Base {
 public:
     template<typename Return, typename... Args>
-    SunLuaClassFunction(const char *_name, std::function<Return(Args...)> _function) {
+    SunLuaObjectFunction(const char *_name, std::function<Return(Args...)> _function) {
         name = _name;
         function = _function;
     }
