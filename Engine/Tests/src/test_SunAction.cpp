@@ -38,7 +38,7 @@ TEST_F(SunActionTest, parameters) {
 }
 
 TEST_F(SunActionTest, recursive) {
-    EXPECT_EQ(false, action.getRecursive());
+    EXPECT_EQ(action.getRecursive(), true);
 }
 
 class MockSunBase : public SunBase {

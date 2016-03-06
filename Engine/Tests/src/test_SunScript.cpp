@@ -84,8 +84,8 @@ TEST_F(SunScriptTest, LuaVariables) {
     script["o"][3] = 7.89;
     EXPECT_DOUBLE_EQ((double)script["o"][3], 7.89);
 
-    script["o"][4] = "abc";
-    EXPECT_EQ((std::string)script["o"][4], "abc");
+    /*script["o"][4] = "abc";
+    EXPECT_EQ((std::string)script["o"][4], "abc");*/
 }
 
 TEST_F(SunScriptTest, LuaFunctions) {
