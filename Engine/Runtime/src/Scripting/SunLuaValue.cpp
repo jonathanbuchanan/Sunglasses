@@ -3,28 +3,15 @@
 // See LICENSE.md for details.
 #include "SunLuaValue.h"
 
-SunLuaValue::SunLuaValue(SunLuaState *s, const char *_var) {
-    state = s;
-    var = _var;
-}
-
 SunLuaValue::SunLuaValue(SunLuaState *s, bool _isFunctionReturn, int _index) {
     state = s;
     isFunctionReturn = _isFunctionReturn;
     index = _index;
 }
 
-SunLuaValue::SunLuaValue(SunLuaState *s, const char *_var, bool _i, SunLuaValue *p) {
-    state = s;
-    var = _var;
-    isTableValue = _i;
-    parentTable = p;
-    level = parentTable->level + 1;
-}
-
 void SunLuaValue::newTable() {
     state->newTable();
-    state->setGlobal(var);
+    state->setGlobal((const char *)tables[tables.size() - 1]);
 }
 
 SunLuaValue::operator int() {
@@ -55,18 +42,21 @@ SunLuaValue::operator std::string() {
     return x;
 }
 
+SunLuaValue SunLuaValue::operator[](const int &element) {
+    return SunLuaValue(state, tables, _SunPrivateScripting::SunLuaType(element));
+}
+
 SunLuaValue SunLuaValue::operator[](const char *element) {
-    isTable = true;
-    return SunLuaValue(state, element, true, this);
+    return SunLuaValue(state, tables, _SunPrivateScripting::SunLuaType(element));
 }
 
 void SunLuaValue::operator=(const int &x) {
-    if (!isTableValue) {
+    if (tables.size() < 2) {
         state->pushInteger(x);
-        state->setGlobal(var);
+        state->setGlobal((const char *)tables[tables.size() - 1]);
     } else {
-        setUpSetTable(var);
-        state->pushString(var);
+        setUpSetTable();
+        tables[tables.size() - 1].push(state);
         state->pushInteger(x);
         state->setTable(-3);
         cleanUpSetTable();
@@ -74,12 +64,12 @@ void SunLuaValue::operator=(const int &x) {
 }
 
 void SunLuaValue::operator=(const double &x) {
-    if (!isTableValue) {
+    if (tables.size() < 2) {
         state->pushNumber(x);
-        state->setGlobal(var);
+        state->setGlobal((const char *)tables[tables.size() - 1]);
     } else {
-        setUpSetTable(var);
-        state->pushString(var);
+        setUpSetTable();
+        tables[tables.size() - 1].push(state);
         state->pushNumber(x);
         state->setTable(-3);
         cleanUpSetTable();
@@ -87,12 +77,12 @@ void SunLuaValue::operator=(const double &x) {
 }
 
 void SunLuaValue::operator=(const bool &x) {
-    if (!isTableValue) {
+    if (tables.size() < 2) {
         state->pushBoolean(x);
-        state->setGlobal(var);
+        state->setGlobal((const char *)tables[tables.size() - 1]);
     } else {
-        setUpSetTable(var);
-        state->pushString(var);
+        setUpSetTable();
+        tables[tables.size() - 1].push(state);
         state->pushBoolean(x);
         state->setTable(-3);
         cleanUpSetTable();
@@ -100,76 +90,58 @@ void SunLuaValue::operator=(const bool &x) {
 }
 
 void SunLuaValue::operator=(const char *x) {
-    if (!isTableValue) {
+    if (tables.size() < 2) {
         state->pushString(x);
-        state->setGlobal(var);
+        state->setGlobal((const char *)tables[tables.size() - 1]);
     } else {
-        setUpSetTable(var);
-        state->pushString(var);
+        setUpSetTable();
+        tables[tables.size() - 1].push(state);
         state->pushString(x);
         state->setTable(-3);
         cleanUpSetTable();
     }
 }
 
-
-
 void SunLuaValue::getGlobal() {
     if (isFunctionReturn)
         return;
-    if (!isTableValue)
-        state->getGlobal(var);
+    if (tables.size() < 2)
+        state->getGlobal((const char *)tables[tables.size() - 1]);
     else
-        setUpGetTable(var);
+        setUpGetTable();
 }
 
 void SunLuaValue::cleanGet() {
-    //if (isFunctionReturn)
-    //    return;
-    if (!isTableValue)
+    if (tables.size() < 2)
         state->remove(index);
     else
         cleanUpGetTable();
 }
 
-void SunLuaValue::setUpGetTable(const char *key) {
-    if (isTableValue) { // Not a global
-        parentTable->setUpGetTable(var);
-        if (state->isTable(-1)) {
-            state->pushString(key);
-            state->getTable(-2);
-        }
-    } else { // Global
-        getGlobal();
-        state->pushString(key);
+void SunLuaValue::setUpGetTable() {
+    // Global Table
+    state->getGlobal((const char *)tables[0]);
+    tables[1].push(state);
+    state->getTable(-2);
+    for (int i = 1; i < tables.size() - 1; i++) {
+        tables[i + 1].push(state);
         state->getTable(-2);
     }
 }
 
 void SunLuaValue::cleanUpGetTable() {
-    if (isTableValue) { // Not a global
-        parentTable->cleanUpGetTable();
-        state->pop(1);
-    } else { // Global
-        state->pop(1);
-    }
+    state->pop(tables.size());
 }
 
-void SunLuaValue::setUpSetTable(const char *key) {
-    if (isTableValue) { // Not a global
-        parentTable->setUpSetTable(var);
-        if (isTable) {
-            state->pushString(var);
-            state->getTable(-2);
-        }
-    } else { // Global
-        getGlobal();
+void SunLuaValue::setUpSetTable() {
+    // Global Table
+    state->getGlobal((const char *)tables[0]);
+    for (int i = 1; i < tables.size() - 1; i++) {
+        tables[i].push(state);
+        state->getTable(-2);
     }
 }
 
 void SunLuaValue::cleanUpSetTable() {
-    if (isTableValue) { // Not a global
-        parentTable->cleanUpSetTable();
-        state->pop(1);
-    }
+    state->pop(tables.size());
 }

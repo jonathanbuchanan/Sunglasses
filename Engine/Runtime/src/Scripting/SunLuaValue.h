@@ -13,11 +13,66 @@
 #include <tuple>
 #include <iostream>
 
+namespace _SunPrivateScripting {
+    struct SunLuaType {
+        SunLuaType(int x) : i(x) { type = Integer; }
+        SunLuaType(double x) : n(x) { type = Number; }
+        SunLuaType(bool x) : b(x) { type = Boolean; }
+        SunLuaType(const char *x) : s(x) { type = String; }
+
+        operator int() {
+            return i;
+        }
+
+        operator double() {
+            return n;
+        }
+
+        operator bool() {
+            return b;
+        }
+
+        operator const char *() {
+            return s;
+        }
+
+        void push(SunLuaState *state) {
+            switch (type) {
+                case Integer:
+                    state->pushInteger(i);
+                    break;
+                case Number:
+                    state->pushNumber(n);
+                    break;
+                case Boolean:
+                    state->pushBoolean(b);
+                    break;
+                case String:
+                    state->pushString(s);
+                    break;
+            }
+        }
+
+        enum {
+            Integer,
+            Number,
+            Boolean,
+            String
+        } type;
+        union {
+            int i;
+            double n;
+            bool b;
+            const char *s;
+        };
+    };
+}
+
 class SunLuaValue {
 public:
-    SunLuaValue(SunLuaState *s, const char *_var);
+    SunLuaValue(SunLuaState *s, const char *_var) : state(s), tables() { tables.push_back(_SunPrivateScripting::SunLuaType(_var)); }
     SunLuaValue(SunLuaState *s, bool _isFunctionReturn, int _index);
-    SunLuaValue(SunLuaState *s, const char *_var, bool _i, SunLuaValue *p);
+    SunLuaValue(SunLuaState *s, std::vector<_SunPrivateScripting::SunLuaType> _tables, _SunPrivateScripting::SunLuaType _next) : state(s), tables(_tables) { tables.push_back(_next); }
 
     void newTable();
 
@@ -31,14 +86,14 @@ public:
         assignResult(references...);
     }
 
-    SunLuaValue operator[](const int element);
-    SunLuaValue operator[](const double element);
-    SunLuaValue operator[](const bool element);
+    SunLuaValue operator[](const int &element);
+    SunLuaValue operator[](const double &element);
+    SunLuaValue operator[](const bool &element);
     SunLuaValue operator[](const char *element);
 
     template<typename... T>
     SunLuaValue operator()(T... args) {
-        state->getGlobal(var);
+        state->getGlobal((const char *)tables[tables.size() - 1]);
         passLuaFunctionArguments(args...);
         const int count = sizeof...(T);
         state->callFunction(count, LUA_MULTRET);
@@ -46,7 +101,7 @@ public:
     }
 
     SunLuaValue operator()() {
-        state->getGlobal(var);
+        state->getGlobal((const char *)tables[tables.size() - 1]);
         state->callFunction(0, LUA_MULTRET);
         return SunLuaValue(state, true, -1);
     }
@@ -82,19 +137,15 @@ private:
         state->push(t);
     }
 
-    void setUpGetTable(const char *key);
+    void setUpGetTable();
     void cleanUpGetTable();
 
-    void setUpSetTable(const char *key);
+    void setUpSetTable();
     void cleanUpSetTable();
 
-    int level = 0;
+    std::vector<_SunPrivateScripting::SunLuaType> tables;
     int index = -1;
-    bool isTable = false;
-    bool isTableValue = false;
     bool isFunctionReturn = false;
-    SunLuaValue *parentTable;
-    const char *var;
     SunLuaState *state;
 };
 
