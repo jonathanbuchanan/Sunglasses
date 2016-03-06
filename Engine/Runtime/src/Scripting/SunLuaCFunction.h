@@ -88,4 +88,48 @@ private:
     std::function<S(T...)> function;
 };
 
+
+// Partial Specialization of SunLuaCFunction for void returns
+template<typename... T>
+class SunLuaCFunction<void, T...> : public _SunPrivateScripting::_SunLuaCFunction_Base {
+public:
+    template<typename Return, typename... Args>
+    SunLuaCFunction(std::string _name, std::function<Return(Args...)> _function) {
+        name = _name;
+        function = _function;
+    }
+
+    void run(lua_State *state) {
+        execute(getArguments(state), typename _SunPrivateScripting::gens<sizeof...(T)>::type());
+    }
+
+    void registerAsFunction(SunLuaState *state) {
+        state->pushLightUserdata((void *)static_cast<_SunPrivateScripting::_SunLuaCFunction_Base *>(this));
+        state->pushCClosure(&_SunPrivateScripting::callFunction, 1);
+        state->setGlobal(name.c_str());
+    }
+
+    void setName(std::string n) { name = n; }
+    template<typename Return, typename... Args>
+    void setFunction(std::function<Return(Args...)> f) { function = f; }
+private:
+    template<int... N>
+    void execute(std::tuple<T...> tuple, _SunPrivateScripting::seq<N...>) {
+        function(std::get<N>(tuple)...);
+    }
+
+    template<int... N>
+    std::tuple<T...> getArguments(lua_State *l, _SunPrivateScripting::seq<N...>) {
+        return std::make_tuple(_SunPrivateScripting::get<T>(l, N + 1)...);
+    }
+
+
+    std::tuple<T...> getArguments(lua_State *l) {
+        return getArguments(l, typename _SunPrivateScripting::gens<sizeof...(T)>::type());
+    }
+
+    std::string name;
+    std::function<void(T...)> function;
+};
+
 #endif

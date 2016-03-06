@@ -41,8 +41,8 @@ public:
     }
 
     template<typename S, typename... T>
-    void registerObject(std::string name, S &object, T... functions) {
-        objects.push_back(std::unique_ptr<_SunPrivateScripting::_SunLuaObject_Base>(new SunLuaObject<S, T...>()));
+    void registerObject(std::string name, S *object, T... functions) {
+        objects.push_back(std::unique_ptr<_SunPrivateScripting::_SunLuaObject_Base>(new SunLuaObject<S, T...>(state, object, functions...)));
     }
 
     SunLuaState * getState() { return state; }

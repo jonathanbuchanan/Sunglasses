@@ -18,15 +18,30 @@ namespace _SunPrivateScripting {
 template<typename S, typename... T> // S is the class type, T are the functions
 class SunLuaObject : public _SunPrivateScripting::_SunLuaObject_Base {
 public:
+    SunLuaObject(SunLuaState *state, S *object, T... functions) {
+        iterateRegister(state, object, functions...);
+    }
 
+    template<typename Func, typename... Tail>
+    void iterateRegister(SunLuaState *state, S *object, std::string name, Func function, Tail... tail) {
+        registerFunction(state, object, name.c_str(), function);
+        iterateRegister(state, object, tail...);
+    }
+
+    template<typename Func>
+    void iterateRegister(SunLuaState *state, S *object, std::string name, Func function) {
+        registerFunction(state, object, name.c_str(), function);
+    }
+
+private:
     template<typename Ret, typename... Args>
     void registerFunction(SunLuaState *state, S *object, const char *functionName, Ret(S::*function)(Args...)) {
         std::function<Ret(Args...)> lambda = [object, function](Args... args) -> Ret {
             return (object->*function)(args...);
         };
-        functions.push_back(new SunLuaObjectFunction<Ret, Args...>(functionName, lambda));
+        functions.push_back(std::unique_ptr<_SunPrivateScripting::_SunLuaCFunction_Base>(new SunLuaObjectFunction<Ret, Args...>(state, functionName, lambda)));
     }
-private:
+
     std::vector<std::unique_ptr<_SunPrivateScripting::_SunLuaCFunction_Base>> functions;
 };
 
