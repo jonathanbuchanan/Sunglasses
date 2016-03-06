@@ -6,6 +6,7 @@
 
 #include <vector>
 #include <memory>
+#include <string.h>
 
 #include "SunLuaObjectFunction.h"
 
@@ -42,6 +43,21 @@ private:
             return (object->*function)(args...);
         };
         functions.push_back(std::unique_ptr<_SunPrivateScripting::_SunLuaCFunction_Base>(new SunLuaObjectFunction<Ret, Args...>(state, functionName, lambda)));
+    }
+
+    template<typename Member>
+    void registerFunction(SunLuaState *state, S *object, const char *functionName, Member S::*var) {
+        std::function<Member()> getter = [object, var]() -> Member {
+            return object->*var;
+        };
+        functions.push_back(std::unique_ptr<_SunPrivateScripting::_SunLuaCFunction_Base>(new SunLuaObjectFunction<Member>(state, functionName, getter)));
+        std::function<void(Member)> setter = [object, var](Member x) -> void {
+            object->*var = x;
+        };
+        char *prefix = (char *)malloc(5); // set_ (4) + NULL (1)
+        strcpy(prefix, "set_");
+        strcat(prefix, functionName);
+        functions.push_back(std::unique_ptr<_SunPrivateScripting::_SunLuaCFunction_Base>(new SunLuaObjectFunction<void, Member>(state, prefix, setter)));
     }
 
     std::vector<std::unique_ptr<_SunPrivateScripting::_SunLuaCFunction_Base>> functions;
