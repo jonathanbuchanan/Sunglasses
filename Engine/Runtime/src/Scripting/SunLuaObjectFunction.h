@@ -77,9 +77,12 @@ public:
     }
 
     void registerAsFunction(SunLuaState *state) {
-        state->pushLightUserdata((void *)static_cast<_SunPrivateScripting::_SunLuaCFunction_Base *>(this));
-        state->pushCClosure(&_SunPrivateScripting::callFunction, 1);
-        state->setGlobal(name);
+        //state->pushLightUserdata((void *)static_cast<_SunPrivateScripting::_SunLuaCFunction_Base *>(this));
+        //state->pushCClosure(&_SunPrivateScripting::callFunction, 1);
+        state->pushString(name); // Push name of function
+        state->pushLightUserdata((void *)static_cast<_SunPrivateScripting::_SunLuaCFunction_Base *>(this)); // Upvalue pointer to this
+        state->pushCClosure(&_SunPrivateScripting::callFunction, 1); // Push C Closure
+        state->setTable(-3);
     }
 
     void setName(const char *n) { name = n; }

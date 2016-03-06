@@ -18,8 +18,10 @@ namespace _SunPrivateScripting {
 template<typename S, typename... T> // S is the class type, T are the functions
 class SunLuaObject : public _SunPrivateScripting::_SunLuaObject_Base {
 public:
-    SunLuaObject(SunLuaState *state, S *object, T... functions) {
+    SunLuaObject(SunLuaState *state, const char *name, S *object, T... functions) {
+        state->newTable();
         iterateRegister(state, object, functions...);
+        state->setGlobal(name);
     }
 
     template<typename Func, typename... Tail>
