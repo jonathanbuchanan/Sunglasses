@@ -10,8 +10,15 @@ SunLuaValue::SunLuaValue(SunLuaState *s, bool _isFunctionReturn, int _index) {
 }
 
 void SunLuaValue::newTable() {
+    if (tables.size() > 1) {
+        setUpSetTable();
+        state->pushString((const char *)tables[tables.size() - 1]);
+    }
     state->newTable();
-    state->setGlobal((const char *)tables[tables.size() - 1]);
+    if (tables.size() < 2)
+        state->setGlobal((const char *)tables[tables.size() - 1]);
+    else
+        state->setTable(-3);
 }
 
 SunLuaValue::operator int() {

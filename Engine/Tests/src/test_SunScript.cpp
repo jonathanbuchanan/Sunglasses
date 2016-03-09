@@ -73,19 +73,19 @@ TEST_F(SunScriptTest, LuaVariables) {
     script["e"] = "Testing";
     EXPECT_EQ((std::string)script["e"], "Testing");
 
-    script["o"].newTable();
+    script["table"]["o"].newTable();
 
-    script["o"][1] = -3;
-    EXPECT_EQ((int)script["o"][1], -3);
+    script["table"]["o"][1] = -3;
+    EXPECT_EQ((int)script["table"]["o"][1], -3);
 
-    script["o"][2] = true;
-    EXPECT_EQ((bool)script["o"][2], true);
+    script["table"]["o"][2] = true;
+    EXPECT_EQ((bool)script["table"]["o"][2], true);
 
-    script["o"][3] = 7.89;
-    EXPECT_DOUBLE_EQ((double)script["o"][3], 7.89);
+    script["table"]["o"][3] = 7.89;
+    EXPECT_DOUBLE_EQ((double)script["table"]["o"][3], 7.89);
 
-    script["o"][4] = "abc";
-    EXPECT_EQ((std::string)script["o"][4], "abc");
+    script["table"]["o"][4] = "abc";
+    EXPECT_EQ((std::string)script["table"]["o"][4], "abc");
 }
 
 TEST_F(SunScriptTest, LuaFunctions) {
