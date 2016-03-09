@@ -12,6 +12,10 @@ namespace _SunPrivateScripting {
         return lua_tonumber(l, index);
     }
 
+    template<> float get(lua_State *l, int index) {
+        return (float)lua_tonumber(l, index);
+    }
+
     template<> bool get(lua_State *l, int index) {
         return lua_toboolean(l, index);
     }
@@ -27,6 +31,10 @@ namespace _SunPrivateScripting {
 
     template<> void push(lua_State *l, double value) {
         lua_pushnumber(l, value);
+    }
+
+    template<> void push(lua_State *l, float value) {
+        lua_pushnumber(l, (double)value);
     }
 
     template<> void push(lua_State *l, bool value) {

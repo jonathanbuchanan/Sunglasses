@@ -27,9 +27,13 @@ public:
     }
 
     void registerAsFunction(SunLuaState *state) {
-        state->pushLightUserdata((void *)static_cast<_SunPrivateScripting::_SunLuaCFunction_Base *>(this));
+        /*state->pushLightUserdata((void *)static_cast<_SunPrivateScripting::_SunLuaCFunction_Base *>(this));
         state->pushCClosure(&_SunPrivateScripting::callFunction, 1);
-        state->setGlobal(name);
+        state->setGlobal(name);*/
+        state->pushString(name); // Push name of function
+        state->pushLightUserdata((void *)static_cast<_SunPrivateScripting::_SunLuaCFunction_Base *>(this)); // Upvalue pointer to this
+        state->pushCClosure(&_SunPrivateScripting::callFunction, 1); // Push C Closure
+        state->setTable(-3);
     }
 
     void setName(const char *n) { name = n; }
@@ -77,8 +81,6 @@ public:
     }
 
     void registerAsFunction(SunLuaState *state) {
-        //state->pushLightUserdata((void *)static_cast<_SunPrivateScripting::_SunLuaCFunction_Base *>(this));
-        //state->pushCClosure(&_SunPrivateScripting::callFunction, 1);
         state->pushString(name); // Push name of function
         state->pushLightUserdata((void *)static_cast<_SunPrivateScripting::_SunLuaCFunction_Base *>(this)); // Upvalue pointer to this
         state->pushCClosure(&_SunPrivateScripting::callFunction, 1); // Push C Closure
@@ -98,7 +100,6 @@ private:
     std::tuple<T...> getArguments(lua_State *l, _SunPrivateScripting::seq<N...>) {
         return std::make_tuple(_SunPrivateScripting::get<T>(l, N + 1)...);
     }
-
 
     std::tuple<T...> getArguments(lua_State *l) {
         return getArguments(l, typename _SunPrivateScripting::gens<sizeof...(T)>::type());

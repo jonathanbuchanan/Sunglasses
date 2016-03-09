@@ -26,6 +26,7 @@ namespace _SunPrivateScripting {
 
     template<> int get(lua_State *l, int index);
     template<> double get(lua_State *l, int index);
+    template<> float get(lua_State *l, int index);
     template<> bool get(lua_State *l, int index);
     template<> const char * get(lua_State *l, int index);
 
@@ -36,6 +37,7 @@ namespace _SunPrivateScripting {
 
     template<> void push(lua_State *l, int value);
     template<> void push(lua_State *l, double value);
+    template<> void push(lua_State *l, float value);
     template<> void push(lua_State *l, bool value);
     template<> void push(lua_State *l, const char *value);
     template<> void push(lua_State *l, char *value);

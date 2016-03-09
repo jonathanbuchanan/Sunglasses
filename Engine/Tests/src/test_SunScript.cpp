@@ -156,6 +156,7 @@ TEST_F(SunScriptTest, CFunctions) {
 }
 
 struct TestClass {
+    glm::vec2 vector = glm::vec2(1.5f, -0.777f);
     int x;
     TestClass(int _x) { x = _x; }
 
@@ -171,12 +172,15 @@ struct TestClass {
 TEST_F(SunScriptTest, Objects) {
     TestClass test(6);
     script.registerObject("test", &test, "add", &TestClass::add, "multiply", &TestClass::multiply, "x", &TestClass::x);
+    script.registerObject(script["test"]["vector"], &test.vector, "x", &glm::vec2::x, "y", &glm::vec2::y);
     EXPECT_EQ((int)script["test"]["x"](), 6);
     EXPECT_EQ(test.x, 6);
 
     script("test.add(4)");
     EXPECT_EQ((int)script["test"]["x"](), 10);
     EXPECT_EQ(test.x, 10);
+
+    EXPECT_DOUBLE_EQ((double)script["test"]["vector"]["x"](), 1.5);
 
     test.multiply(3);
     EXPECT_EQ((int)script["test"]["x"](), 30);
@@ -185,21 +189,3 @@ TEST_F(SunScriptTest, Objects) {
     script("test.set_x(-6)");
     EXPECT_EQ(test.x, -6);
 }
-
-/*TEST_F(SunScriptedNodeTest, Classes) {
-    node.registerClass<TestClass, int>("TestClass", "multiply", &TestClass::multiply, "add", &TestClass::add, "x", &TestClass::x);
-    node("test = TestClass.new(5)");
-    node("z = test:x()");
-    int z = node["z"];
-    EXPECT_EQ(z, 5);
-
-    node("test:multiply(2)");
-    node("z = test:x()");
-    z = node["z"];
-    EXPECT_EQ(z, 10);
-
-    node("test:add(4)");
-    node("z = test:x()");
-    z = node["z"];
-    EXPECT_EQ(z, 14);
-}*/

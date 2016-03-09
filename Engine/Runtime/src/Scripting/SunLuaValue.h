@@ -93,7 +93,7 @@ public:
 
     template<typename... T>
     SunLuaValue operator()(T... args) {
-        state->getGlobal((const char *)tables[tables.size() - 1]);
+        getGlobal();
         passLuaFunctionArguments(args...);
         const int count = sizeof...(T);
         state->callFunction(count, LUA_MULTRET);
@@ -101,7 +101,7 @@ public:
     }
 
     SunLuaValue operator()() {
-        state->getGlobal((const char *)tables[tables.size() - 1]);
+        getGlobal();
         state->callFunction(0, LUA_MULTRET);
         return SunLuaValue(state, true, -1);
     }
@@ -111,6 +111,7 @@ public:
     void operator=(const bool &x);
     void operator=(const char *x);
 
+    std::vector<_SunPrivateScripting::SunLuaType> getTables() { return tables; }
 private:
     void getGlobal();
     void cleanGet();

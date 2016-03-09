@@ -9,6 +9,7 @@
 #include <string.h>
 
 #include "SunLuaObjectFunction.h"
+#include "SunLuaValue.h"
 
 namespace _SunPrivateScripting {
     class _SunLuaObject_Base {
@@ -25,6 +26,20 @@ public:
         state->setGlobal(name);
     }
 
+    SunLuaObject(SunLuaState *state, SunLuaValue value, S *object, T... functions) {
+        std::vector<_SunPrivateScripting::SunLuaType> tables = value.getTables();
+        state->getGlobal((const char *)tables[0]);
+        for (int i = 1; i < tables.size() - 1; i++) {
+            tables[i].push(state);
+            state->getTable(-2);
+        }
+        state->pushString((const char *)tables[tables.size() - 1]);
+        state->newTable();
+        iterateRegister(state, object, functions...);
+        state->setTable(-3);
+        state->pop(tables.size());
+    }
+private:
     template<typename Func, typename... Tail>
     void iterateRegister(SunLuaState *state, S *object, std::string name, Func function, Tail... tail) {
         registerFunction(state, object, name.c_str(), function);
@@ -36,7 +51,6 @@ public:
         registerFunction(state, object, name.c_str(), function);
     }
 
-private:
     template<typename Ret, typename... Args>
     void registerFunction(SunLuaState *state, S *object, const char *functionName, Ret(S::*function)(Args...)) {
         std::function<Ret(Args...)> lambda = [object, function](Args... args) -> Ret {
