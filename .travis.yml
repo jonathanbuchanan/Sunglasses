@@ -1,5 +1,7 @@
 language: cpp
-compiler: g++
+compiler:
+    - clang
+    - gcc
 os: linux
 sudo: required
 dist: trusty
@@ -8,7 +10,7 @@ before_install:
     - sudo apt-get update -qq
 install:
     # Install dependencies from apt
-    - sudo apt-get install -qq gcc libfreetype6-dev libsoil-dev libglew-dev libassimp-dev libsfml-dev xorg-dev libgl1-mesa-dev
+    - sudo apt-get install -qq libfreetype6-dev libsoil-dev libglew-dev libassimp-dev libsfml-dev xorg-dev libgl1-mesa-dev
 
     # Install glfw (Trusty doesn't have glfw3)
     - wget https://github.com/glfw/glfw/archive/3.1.2.zip
@@ -40,8 +42,6 @@ install:
     - make linux
     - sudo make install
     - cd ..
-
-    - export CXX="g++"
 script:
     # Build Sunglasses (The Library)
     - cd Engine/Runtime/
