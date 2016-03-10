@@ -4,7 +4,7 @@
 #include "SunScript.h"
 
 SunScript::SunScript() {
-    state = new SunLuaState();
+    state = new _SunPrivateScripting::SunLuaState();
 }
 
 SunScript::~SunScript() {
@@ -15,12 +15,12 @@ void SunScript::loadFile(std::string file) {
     state->loadFile(file.c_str());
 }
 
-SunLuaValue SunScript::getVariable(std::string var) {
-    return SunLuaValue(state, var.c_str());
+_SunPrivateScripting::SunLuaValue SunScript::getVariable(std::string var) {
+    return _SunPrivateScripting::SunLuaValue(state, var.c_str());
 }
 
-SunLuaValue SunScript::operator[](std::string var) {
-    return SunLuaValue(state, var.c_str());
+_SunPrivateScripting::SunLuaValue SunScript::operator[](std::string var) {
+    return _SunPrivateScripting::SunLuaValue(state, var.c_str());
 }
 
 void SunScript::run(std::string code) {

@@ -41,115 +41,97 @@ namespace _SunPrivateScripting {
     template<> void push(lua_State *l, bool value);
     template<> void push(lua_State *l, const char *value);
     template<> void push(lua_State *l, char *value);
-}
 
-class SunLuaState {
-public:
-    SunLuaState();
-    SunLuaState(const char *file);
 
-    void loadFile(const char *file);
+    class SunLuaState {
+    public:
+        SunLuaState();
+        SunLuaState(const char *file);
 
-    void run(const char *code);
+        void loadFile(const char *file);
 
-    template<typename T> SunLuaBasicType getType() {
-        if (typeMap.find(std::type_index(typeid(T))) != typeMap.end())
-            return typeMap[std::type_index(typeid(T))];
-        else
-            return SunLuaNone;
-    }
-    template<typename T> SunLuaBasicType getType(T x) { return getType<T>(); }
+        void run(const char *code);
 
-    template<typename T>
-    void push(T value) {
-        _SunPrivateScripting::push(state, value);
-    }
-    /*template<typename T> int push(T x) {
-        switch (getType<T>()) {
-            case SunLuaTypeInteger:
-                pushInteger((int)x);
-                break;
-            case SunLuaTypeNumber:
-                pushNumber((double)x);
-                break;
-            case SunLuaTypeBoolean:
-                pushBoolean((bool)x);
-                break;
-            case SunLuaTypeString:
-                pushString((const char *)x);
-                break;
-            case SunLuaNone:
-                return -1;
-                break;
+        template<typename T> SunLuaBasicType getType() {
+            if (typeMap.find(std::type_index(typeid(T))) != typeMap.end())
+                return typeMap[std::type_index(typeid(T))];
+            else
+                return SunLuaNone;
         }
-    }*/
+        template<typename T> SunLuaBasicType getType(T x) { return getType<T>(); }
 
-    // Lua Functions
-    void getGlobal(const char *global);
-    void setGlobal(const char *global);
-    void newTable();
-    void getTable(int index);
-    void setTable(int index);
+        template<typename T>
+        void push(T value) {
+            _SunPrivateScripting::push(state, value);
+        }
 
-    int getTop();
+        // Lua Functions
+        void getGlobal(const char *global);
+        void setGlobal(const char *global);
+        void newTable();
+        void getTable(int index);
+        void setTable(int index);
 
-    int getInteger(int index);
-    int getInteger(); // Default Index = -1
+        int getTop();
 
-    double getNumber(int index);
-    double getNumber();
+        int getInteger(int index);
+        int getInteger(); // Default Index = -1
 
-    bool getBoolean(int index);
-    bool getBoolean();
+        double getNumber(int index);
+        double getNumber();
 
-    const char * getString(int index);
-    const char * getString();
+        bool getBoolean(int index);
+        bool getBoolean();
 
-    bool isInteger(int index);
-    bool isInteger(); // Default Index = -1
+        const char * getString(int index);
+        const char * getString();
 
-    bool isNumber(int index);
-    bool isNumber();
+        bool isInteger(int index);
+        bool isInteger(); // Default Index = -1
 
-    bool isBoolean(int index);
-    bool isBoolean();
+        bool isNumber(int index);
+        bool isNumber();
 
-    bool isString(int index);
-    bool isString();
+        bool isBoolean(int index);
+        bool isBoolean();
 
-    bool isTable(int index);
-    bool isTable();
+        bool isString(int index);
+        bool isString();
 
-    bool isFunction(int index);
-    bool isFunction();
+        bool isTable(int index);
+        bool isTable();
 
-    void pushInteger(int x);
-    void pushNumber(double x);
-    void pushBoolean(bool x);
-    void pushString(const char *x);
-    void pushLightUserdata(void *data);
+        bool isFunction(int index);
+        bool isFunction();
 
-    void pushCClosure(lua_CFunction function, int upvalues);
+        void pushInteger(int x);
+        void pushNumber(double x);
+        void pushBoolean(bool x);
+        void pushString(const char *x);
+        void pushLightUserdata(void *data);
 
-    void pop(int count);
-    void pop(); // Default Count = 1
-    void remove(int index);
+        void pushCClosure(lua_CFunction function, int upvalues);
 
-    void callFunction(int argCount, int retCount);
+        void pop(int count);
+        void pop(); // Default Count = 1
+        void remove(int index);
 
-private:
-    lua_State *state;
+        void callFunction(int argCount, int retCount);
 
-    std::map<std::type_index, SunLuaBasicType> typeMap = {
-        {std::type_index(typeid(int)), SunLuaTypeInteger},
+    private:
+        lua_State *state;
 
-        {std::type_index(typeid(float)), SunLuaTypeNumber},
-        {std::type_index(typeid(double)), SunLuaTypeNumber},
+        std::map<std::type_index, SunLuaBasicType> typeMap = {
+            {std::type_index(typeid(int)), SunLuaTypeInteger},
 
-        {std::type_index(typeid(bool)), SunLuaTypeBoolean},
+            {std::type_index(typeid(float)), SunLuaTypeNumber},
+            {std::type_index(typeid(double)), SunLuaTypeNumber},
 
-        {std::type_index(typeid(const char *)), SunLuaTypeString}
+            {std::type_index(typeid(bool)), SunLuaTypeBoolean},
+
+            {std::type_index(typeid(const char *)), SunLuaTypeString}
+        };
     };
-};
+}
 
 #endif

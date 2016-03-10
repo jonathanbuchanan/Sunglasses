@@ -20,45 +20,44 @@ public:
 
     void loadFile(std::string file);
 
-    SunLuaValue getVariable(std::string var);
-    SunLuaValue operator[](std::string var);
+    _SunPrivateScripting::SunLuaValue getVariable(std::string var);
+    _SunPrivateScripting::SunLuaValue operator[](std::string var);
 
     void run(std::string code);
     void operator()(std::string code);
 
     template<typename S, typename... T>
     void registerFunction(std::string name, std::function<S(T...)> _function) {
-        functions.push_back(new SunLuaCFunction<S, T...>(state, name, _function));
+        functions.push_back(new _SunPrivateScripting::SunLuaCFunction<S, T...>(state, name, _function));
     }
 
     template<typename S, typename... T>
     void registerFunction(std::string name, S (* _function)(T...)) {
-        functions.push_back(new SunLuaCFunction<S, T...>(state, name, std::function<S(T...)>(_function)));
+        functions.push_back(new _SunPrivateScripting::SunLuaCFunction<S, T...>(state, name, std::function<S(T...)>(_function)));
     }
 
     template<typename S, typename... T>
-    void registerFunction(SunLuaValue value, std::function<S(T...)> _function) {
-        functions.push_back(new SunLuaCFunction<S, T...>(state, value, _function));
+    void registerFunction(_SunPrivateScripting::SunLuaValue value, std::function<S(T...)> _function) {
+        functions.push_back(new _SunPrivateScripting::SunLuaCFunction<S, T...>(state, value, _function));
     }
 
     template<typename S, typename... T>
-    void registerFunction(SunLuaValue value, S (* _function)(T...)) {
-        functions.push_back(new SunLuaCFunction<S, T...>(state, value, std::function<S(T...)>(_function)));
+    void registerFunction(_SunPrivateScripting::SunLuaValue value, S (* _function)(T...)) {
+        functions.push_back(new _SunPrivateScripting::SunLuaCFunction<S, T...>(state, value, std::function<S(T...)>(_function)));
     }
 
     template<typename S, typename... T>
     void registerObject(std::string name, S *object, T... functions) {
-        objects.push_back(std::unique_ptr<_SunPrivateScripting::_SunLuaObject_Base>(new SunLuaObject<S, T...>(state, name.c_str(), object, functions...)));
+        objects.push_back(std::unique_ptr<_SunPrivateScripting::_SunLuaObject_Base>(new _SunPrivateScripting::SunLuaObject<S, T...>(state, name.c_str(), object, functions...)));
     }
 
     template<typename S, typename... T>
-    void registerObject(SunLuaValue value, S *object, T... functions) {
-        objects.push_back(std::unique_ptr<_SunPrivateScripting::_SunLuaObject_Base>(new SunLuaObject<S, T...>(state, value, object, functions...)));
+    void registerObject(_SunPrivateScripting::SunLuaValue value, S *object, T... functions) {
+        objects.push_back(std::unique_ptr<_SunPrivateScripting::_SunLuaObject_Base>(new _SunPrivateScripting::SunLuaObject<S, T...>(state, value, object, functions...)));
     }
 
-    SunLuaState * getState() { return state; }
 private:
-    SunLuaState *state;
+    _SunPrivateScripting::SunLuaState *state;
 
     std::vector<_SunPrivateScripting::_SunLuaCFunction_Base *> functions;
     std::vector<std::unique_ptr<_SunPrivateScripting::_SunLuaObject_Base>> objects;

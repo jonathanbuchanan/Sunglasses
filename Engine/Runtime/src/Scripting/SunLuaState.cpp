@@ -48,165 +48,166 @@ namespace _SunPrivateScripting {
     template<> void push(lua_State *l, char *value) {
         lua_pushstring(l, value);
     }
-}
 
-SunLuaState::SunLuaState() {
-    state = luaL_newstate();
-    luaL_openlibs(state);
-}
 
-SunLuaState::SunLuaState(const char *file) {
-    SunLuaState();
-    luaL_dofile(state, file);
-}
+    SunLuaState::SunLuaState() {
+        state = luaL_newstate();
+        luaL_openlibs(state);
+    }
 
-void SunLuaState::loadFile(const char *file) {
-    luaL_dofile(state, file);
-}
+    SunLuaState::SunLuaState(const char *file) {
+        SunLuaState();
+        luaL_dofile(state, file);
+    }
 
-void SunLuaState::run(const char *code) {
-    luaL_dostring(state, code);
-}
+    void SunLuaState::loadFile(const char *file) {
+        luaL_dofile(state, file);
+    }
 
-void SunLuaState::getGlobal(const char *global) {
-    lua_getglobal(state, global);
-}
+    void SunLuaState::run(const char *code) {
+        luaL_dostring(state, code);
+    }
 
-void SunLuaState::setGlobal(const char *global) {
-    lua_setglobal(state, global);
-}
+    void SunLuaState::getGlobal(const char *global) {
+        lua_getglobal(state, global);
+    }
 
-void SunLuaState::newTable() {
-    lua_newtable(state);
-}
+    void SunLuaState::setGlobal(const char *global) {
+        lua_setglobal(state, global);
+    }
 
-void SunLuaState::getTable(int index) {
-    lua_gettable(state, index);
-}
+    void SunLuaState::newTable() {
+        lua_newtable(state);
+    }
 
-void SunLuaState::setTable(int index) {
-    lua_settable(state, index);
-}
+    void SunLuaState::getTable(int index) {
+        lua_gettable(state, index);
+    }
 
-int SunLuaState::getTop() {
-    return lua_gettop(state);
-}
+    void SunLuaState::setTable(int index) {
+        lua_settable(state, index);
+    }
 
-int SunLuaState::getInteger(int index) {
-    return lua_tointeger(state, index);
-}
-int SunLuaState::getInteger() {
-    return getInteger(-1);
-}
+    int SunLuaState::getTop() {
+        return lua_gettop(state);
+    }
 
-double SunLuaState::getNumber(int index) {
-    return lua_tonumber(state, index);
-}
+    int SunLuaState::getInteger(int index) {
+        return lua_tointeger(state, index);
+    }
+    int SunLuaState::getInteger() {
+        return getInteger(-1);
+    }
 
-double SunLuaState::getNumber() {
-    return getNumber(-1);
-}
+    double SunLuaState::getNumber(int index) {
+        return lua_tonumber(state, index);
+    }
 
-bool SunLuaState::getBoolean(int index) {
-    return lua_toboolean(state, index);
-}
+    double SunLuaState::getNumber() {
+        return getNumber(-1);
+    }
 
-bool SunLuaState::getBoolean() {
-    return getBoolean(-1);
-}
+    bool SunLuaState::getBoolean(int index) {
+        return lua_toboolean(state, index);
+    }
 
-const char * SunLuaState::getString(int index) {
-    return lua_tostring(state, index);
-}
+    bool SunLuaState::getBoolean() {
+        return getBoolean(-1);
+    }
 
-const char * SunLuaState::getString() {
-    return getString(-1);
-}
+    const char * SunLuaState::getString(int index) {
+        return lua_tostring(state, index);
+    }
 
-bool SunLuaState::isInteger(int index) {
-    return lua_isinteger(state, index);
-}
+    const char * SunLuaState::getString() {
+        return getString(-1);
+    }
 
-bool SunLuaState::isInteger() {
-    return isInteger(-1);
-}
+    bool SunLuaState::isInteger(int index) {
+        return lua_isinteger(state, index);
+    }
 
-bool SunLuaState::isNumber(int index) {
-    return lua_isnumber(state, index);
-}
+    bool SunLuaState::isInteger() {
+        return isInteger(-1);
+    }
 
-bool SunLuaState::isNumber() {
-    return isNumber(-1);
-}
+    bool SunLuaState::isNumber(int index) {
+        return lua_isnumber(state, index);
+    }
 
-bool SunLuaState::isBoolean(int index) {
-    return lua_isboolean(state, index);
-}
+    bool SunLuaState::isNumber() {
+        return isNumber(-1);
+    }
 
-bool SunLuaState::isBoolean() {
-    return isBoolean(-1);
-}
+    bool SunLuaState::isBoolean(int index) {
+        return lua_isboolean(state, index);
+    }
 
-bool SunLuaState::isString(int index) {
-    return lua_isstring(state, index);
-}
+    bool SunLuaState::isBoolean() {
+        return isBoolean(-1);
+    }
 
-bool SunLuaState::isString() {
-    return isString(-1);
-}
+    bool SunLuaState::isString(int index) {
+        return lua_isstring(state, index);
+    }
 
-bool SunLuaState::isTable(int index) {
-    return lua_istable(state, index);
-}
+    bool SunLuaState::isString() {
+        return isString(-1);
+    }
 
-bool SunLuaState::isTable() {
-    return isTable(-1);
-}
+    bool SunLuaState::isTable(int index) {
+        return lua_istable(state, index);
+    }
 
-bool SunLuaState::isFunction(int index) {
-    return lua_isfunction(state, index);
-}
+    bool SunLuaState::isTable() {
+        return isTable(-1);
+    }
 
-bool SunLuaState::isFunction() {
-    return isFunction(-1);
-}
+    bool SunLuaState::isFunction(int index) {
+        return lua_isfunction(state, index);
+    }
 
-void SunLuaState::pushInteger(int x) {
-    lua_pushinteger(state, x);
-}
+    bool SunLuaState::isFunction() {
+        return isFunction(-1);
+    }
 
-void SunLuaState::pushNumber(double x) {
-    lua_pushnumber(state, x);
-}
+    void SunLuaState::pushInteger(int x) {
+        lua_pushinteger(state, x);
+    }
 
-void SunLuaState::pushBoolean(bool x) {
-    lua_pushboolean(state, x);
-}
+    void SunLuaState::pushNumber(double x) {
+        lua_pushnumber(state, x);
+    }
 
-void SunLuaState::pushString(const char *x) {
-    lua_pushstring(state, x);
-}
+    void SunLuaState::pushBoolean(bool x) {
+        lua_pushboolean(state, x);
+    }
 
-void SunLuaState::pushLightUserdata(void *data) {
-    lua_pushlightuserdata(state, data);
-}
+    void SunLuaState::pushString(const char *x) {
+        lua_pushstring(state, x);
+    }
 
-void SunLuaState::pushCClosure(lua_CFunction function, int upvalues) {
-    lua_pushcclosure(state, function, upvalues);
-}
+    void SunLuaState::pushLightUserdata(void *data) {
+        lua_pushlightuserdata(state, data);
+    }
 
-void SunLuaState::pop(int count) {
-    lua_pop(state, count);
-}
+    void SunLuaState::pushCClosure(lua_CFunction function, int upvalues) {
+        lua_pushcclosure(state, function, upvalues);
+    }
 
-void SunLuaState::pop() {
-    pop(1);
-}
+    void SunLuaState::pop(int count) {
+        lua_pop(state, count);
+    }
 
-void SunLuaState::remove(int index) {
-    lua_remove(state, index);
-}
+    void SunLuaState::pop() {
+        pop(1);
+    }
 
-void SunLuaState::callFunction(int argCount, int retCount) {
-    lua_call(state, argCount, retCount);
+    void SunLuaState::remove(int index) {
+        lua_remove(state, index);
+    }
+
+    void SunLuaState::callFunction(int argCount, int retCount) {
+        lua_call(state, argCount, retCount);
+    }
 }
