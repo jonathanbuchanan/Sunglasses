@@ -46,8 +46,7 @@ TEST_F(SunScriptTest, LuaVariables) {
     bool d = script.getVariable("table")["d"];
     EXPECT_EQ(d, false);
 
-    SunLuaValue e_ = script.getVariable("table");
-    EXPECT_EQ((std::string)e_["e"], "Test");
+    EXPECT_EQ((std::string)script["table"]["e"], "Test");
 
     int r = script["table"]["f"]["r"];
     EXPECT_EQ(r, 1);
