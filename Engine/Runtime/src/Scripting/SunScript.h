@@ -28,16 +28,22 @@ public:
 
     template<typename S, typename... T>
     void registerFunction(std::string name, std::function<S(T...)> _function) {
-        SunLuaCFunction<S, T...> *function = new SunLuaCFunction<S, T...>(name, _function);
-        function->registerAsFunction(state);
-        functions.push_back((_SunPrivateScripting::_SunLuaCFunction_Base *)function);
+        functions.push_back(new SunLuaCFunction<S, T...>(state, name, _function));
     }
 
     template<typename S, typename... T>
     void registerFunction(std::string name, S (* _function)(T...)) {
-        SunLuaCFunction<S, T...> *function = new SunLuaCFunction<S, T...>(name, std::function<S(T...)>(_function));
-        function->registerAsFunction(state);
-        functions.push_back((_SunPrivateScripting::_SunLuaCFunction_Base *)function);
+        functions.push_back(new SunLuaCFunction<S, T...>(state, name, std::function<S(T...)>(_function)));
+    }
+
+    template<typename S, typename... T>
+    void registerFunction(SunLuaValue value, std::function<S(T...)> _function) {
+        functions.push_back(new SunLuaCFunction<S, T...>(state, value, _function));
+    }
+
+    template<typename S, typename... T>
+    void registerFunction(SunLuaValue value, S (* _function)(T...)) {
+        functions.push_back(new SunLuaCFunction<S, T...>(state, value, std::function<S(T...)>(_function)));
     }
 
     template<typename S, typename... T>

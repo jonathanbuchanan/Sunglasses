@@ -144,14 +144,16 @@ TEST_F(SunScriptTest, CFunctions) {
     int y = script["abs"];
     EXPECT_EQ(y, 6);
 
+    script["functions"].newTable();
+
     // Test C Function
-    script.registerFunction("divide", &divide);
-    int z = script["divide"](30, 5);
+    script.registerFunction(script["functions"]["divide"], &divide);
+    int z = script["functions"]["divide"](30, 5);
     EXPECT_EQ(z, 6);
 
     // Test Void Function
-    script.registerFunction("sum", &sum);
-    script["sum"](5, 7);
+    script.registerFunction(script["functions"]["sum"], &sum);
+    script["functions"]["sum"](5, 7);
     EXPECT_EQ(zaz, 12);
 }
 
@@ -171,7 +173,7 @@ struct TestClass {
 
 TEST_F(SunScriptTest, Objects) {
     TestClass test(6);
-    script.registerObject("test", &test, "add", &TestClass::add, "multiply", &TestClass::multiply, "x", &TestClass::x);
+    script.registerObject(script["test"], &test, "add", &TestClass::add, "multiply", &TestClass::multiply, "x", &TestClass::x);
     script.registerObject(script["test"]["vector"], &test.vector, "x", &glm::vec2::x, "y", &glm::vec2::y);
     EXPECT_EQ((int)script["test"]["x"](), 6);
     EXPECT_EQ(test.x, 6);

@@ -28,15 +28,20 @@ public:
 
     SunLuaObject(SunLuaState *state, SunLuaValue value, S *object, T... functions) {
         std::vector<_SunPrivateScripting::SunLuaType> tables = value.getTables();
-        state->getGlobal((const char *)tables[0]);
-        for (int i = 1; i < tables.size() - 1; i++) {
-            tables[i].push(state);
-            state->getTable(-2);
+        if (tables.size() >= 2) {
+            state->getGlobal((const char *)tables[0]);
+            for (int i = 1; i < tables.size() - 1; i++) {
+                tables[i].push(state);
+                state->getTable(-2);
+            }
+            state->pushString((const char *)tables[tables.size() - 1]);
         }
-        state->pushString((const char *)tables[tables.size() - 1]);
         state->newTable();
         iterateRegister(state, object, functions...);
-        state->setTable(-3);
+        if (tables.size() < 2)
+            state->setGlobal((const char *)tables[0]);
+        else
+            state->setTable(-3);
         state->pop(tables.size());
     }
 private:
