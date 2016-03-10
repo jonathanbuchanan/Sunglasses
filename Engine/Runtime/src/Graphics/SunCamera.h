@@ -2,8 +2,8 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 
-#ifndef OpenGL_Test_3_SunCamera_h
-#define OpenGL_Test_3_SunCamera_h
+#ifndef SUNCAMERA_H
+#define SUNCAMERA_H
 
 #include <vector>
 using namespace std;
@@ -17,6 +17,7 @@ using namespace std;
 #include "SunWindowManager.h"
 #include "../Input/SunKeyboardManager.h"
 #include "../Input/SunCursorManager.h"
+#include "../Scripting/SunScript.h"
 
 #include <GLFW/glfw3.h>
 
@@ -50,12 +51,9 @@ public:
 
     inline GLfloat & getFOV() { return FOV; }
     inline void setFOV(GLfloat _FOV) { FOV = _FOV; }
-
-    inline GLfloat & getWidth() { return width; }
-    inline GLfloat & getHeight() { return height; }
-    inline void setWidth(GLfloat _width) { width = _width; }
-    inline void setHeight(GLfloat _height) { height = _height; }
 private:
+    SunScript script;
+
     // Position
     glm::vec3 position = glm::vec3(0.0, 0.0, 0.0);
 
@@ -73,10 +71,6 @@ private:
 
     // FOV (in degrees)
     GLfloat FOV = 45.0f;
-
-    // Width and height
-    GLfloat width = 10.0f;
-    GLfloat height = 10.0f;
 };
 
 #endif

@@ -23,6 +23,7 @@ public:
     void subscribe(SunBase *subscriber, int key, SunButtonEvent event);
 
     SunButtonState pollKey(int key);
+    bool keyDown(int key);
 
     GLFWwindow *window;
 private:

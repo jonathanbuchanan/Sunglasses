@@ -27,7 +27,14 @@ SunCamera::SunCamera(GLfloat _FOV, glm::vec3 _position, glm::vec3 _direction) {
 }
 
 void SunCamera::init() {
-    //loadFile("../../Engine/Scripts/SunCamera.lua");
+    script.loadFile("../../Engine/Scripts/SunCamera.lua");
+
+    script.registerObject("camera", this, "yaw", &SunCamera::yaw, "pitch", &SunCamera::pitch, "FOV", &SunCamera::FOV);
+    script.registerObject(script["camera"]["position"], &position, "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
+    script.registerObject(script["camera"]["direction"], &direction, "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
+
+    script.registerObject("keyboard_manager", (SunKeyboardManager *)getService("keyboard_manager"), "pollKey", &SunKeyboardManager::keyDown);
+
 	setIgnoreTags(true);
 	addAction("update", &SunCamera::update);
 	addAction("uniform", &SunCamera::uniform);
@@ -74,6 +81,8 @@ void SunCamera::update(SunAction action) {
     direction.x = cos(glm::radians(pitch)) * cos(glm::radians(yaw));
     direction.y = sin(glm::radians(pitch));
     direction.z = cos(glm::radians(pitch)) * sin(glm::radians(yaw));
+
+    script["update"](delta);
 }
 
 glm::mat4 SunCamera::viewMatrix() {

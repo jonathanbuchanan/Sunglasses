@@ -60,7 +60,7 @@ private:
     _SunPrivateScripting::SunLuaState *state;
 
     std::vector<_SunPrivateScripting::_SunLuaCFunction_Base *> functions;
-    std::vector<std::unique_ptr<_SunPrivateScripting::_SunLuaObject_Base>> objects;
+    std::vector<std::shared_ptr<_SunPrivateScripting::_SunLuaObject_Base>> objects;
 };
 
 #endif
