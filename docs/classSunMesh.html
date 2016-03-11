@@ -63,6 +63,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -83,6 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classSunMesh-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">SunMesh Class Reference</div>  </div>
@@ -178,6 +180,36 @@ GLuint &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getEBO</b> ()
 <tr class="memitem:a3bde09a5f77a59c5b5ef340d2295d4ce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3bde09a5f77a59c5b5ef340d2295d4ce"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setEBO</b> (GLuint _EBO)</td></tr>
 <tr class="separator:a3bde09a5f77a59c5b5ef340d2295d4ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a66e55136e36318b317f6c4929b4d9617"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a66e55136e36318b317f6c4929b4d9617"></a>
+vector&lt; <a class="el" href="structSunVertex.html">SunVertex</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>vertices</b></td></tr>
+<tr class="separator:a66e55136e36318b317f6c4929b4d9617"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34cf05bbd63bf42aff565355dac45134"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a34cf05bbd63bf42aff565355dac45134"></a>
+vector&lt; GLuint &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>indices</b></td></tr>
+<tr class="separator:a34cf05bbd63bf42aff565355dac45134"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af83e4ce66c535e149ef54174d426e8fd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af83e4ce66c535e149ef54174d426e8fd"></a>
+vector&lt; <a class="el" href="structSunTexture.html">SunTexture</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>textures</b></td></tr>
+<tr class="separator:af83e4ce66c535e149ef54174d426e8fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed2da1886db027622860c6410fac8abe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed2da1886db027622860c6410fac8abe"></a>
+vector&lt; <a class="el" href="structSunBone.html">SunBone</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>bones</b></td></tr>
+<tr class="separator:aed2da1886db027622860c6410fac8abe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac539660cb36c280f92584fbe9e63ac5c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac539660cb36c280f92584fbe9e63ac5c"></a>
+vector&lt; <a class="el" href="structSunAnimation.html">SunAnimation</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>animations</b></td></tr>
+<tr class="separator:ac539660cb36c280f92584fbe9e63ac5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25fd4a8f572f581cafc31f6962bc052f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a25fd4a8f572f581cafc31f6962bc052f"></a>
+glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><b>globalInverseTransform</b></td></tr>
+<tr class="separator:a25fd4a8f572f581cafc31f6962bc052f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77687ee2bc71c4574ebb6053362b62ac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a77687ee2bc71c4574ebb6053362b62ac"></a>
+GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>VBO</b></td></tr>
+<tr class="separator:a77687ee2bc71c4574ebb6053362b62ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a536b656cefa365c3950419c35b765e0b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a536b656cefa365c3950419c35b765e0b"></a>
+GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>EBO</b></td></tr>
+<tr class="separator:a536b656cefa365c3950419c35b765e0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a127597e03d9eff440a480d1853dee06a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a127597e03d9eff440a480d1853dee06a"></a>
+GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>VAO</b></td></tr>
+<tr class="separator:a127597e03d9eff440a480d1853dee06a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Engine/Runtime/src/Graphics/<a class="el" href="SunMesh_8h_source.html">SunMesh.h</a></li>

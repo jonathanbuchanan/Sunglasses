@@ -63,6 +63,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -83,6 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classSunObject-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">SunObject Class Reference</div>  </div>
@@ -307,6 +309,39 @@ std::map&lt; std::string, <a class="el" href="classSunService.html">SunService</
 <tr class="memitem:a38f956b9eee90163ed6cfeeebe9aee70 inherit pub_methods_classSunBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a38f956b9eee90163ed6cfeeebe9aee70"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>addService</b> (<a class="el" href="classSunService.html">SunService</a> *s)</td></tr>
 <tr class="separator:a38f956b9eee90163ed6cfeeebe9aee70 inherit pub_methods_classSunBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a1d5ada567efba649be1f19375ab294f6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d5ada567efba649be1f19375ab294f6"></a>
+glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><b>position</b></td></tr>
+<tr class="separator:a1d5ada567efba649be1f19375ab294f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5d5e759b159f1f161df21c5c52f6858"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae5d5e759b159f1f161df21c5c52f6858"></a>
+glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><b>rotation</b></td></tr>
+<tr class="separator:ae5d5e759b159f1f161df21c5c52f6858"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52d2b3e772fe25b1835dfb10f52c22c0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52d2b3e772fe25b1835dfb10f52c22c0"></a>
+glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><b>scale</b> = glm::vec3(1.0f, 1.0f, 1.0f)</td></tr>
+<tr class="separator:a52d2b3e772fe25b1835dfb10f52c22c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adce12172448944b710d063dca781c202"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adce12172448944b710d063dca781c202"></a>
+<a class="el" href="classSunPhysicsObject.html">SunPhysicsObject</a>&#160;</td><td class="memItemRight" valign="bottom"><b>physicsObject</b></td></tr>
+<tr class="separator:adce12172448944b710d063dca781c202"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af655e9e200a810b683724c5c0d733869"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af655e9e200a810b683724c5c0d733869"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>physicsEnabled</b> = false</td></tr>
+<tr class="separator:af655e9e200a810b683724c5c0d733869"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6640a801c9b2352da5dc3c1b1b15299e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6640a801c9b2352da5dc3c1b1b15299e"></a>
+<a class="el" href="classSunSoundObject.html">SunSoundObject</a>&#160;</td><td class="memItemRight" valign="bottom"><b>sound</b></td></tr>
+<tr class="separator:a6640a801c9b2352da5dc3c1b1b15299e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a313cd7dae68a945609f2dad46652a769"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a313cd7dae68a945609f2dad46652a769"></a>
+vector&lt; <a class="el" href="classSunModel.html">SunModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>models</b></td></tr>
+<tr class="separator:a313cd7dae68a945609f2dad46652a769"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac734960672dc43437414d395685fb229"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac734960672dc43437414d395685fb229"></a>
+<a class="el" href="structSunObjectMaterial.html">SunObjectMaterial</a>&#160;</td><td class="memItemRight" valign="bottom"><b>material</b></td></tr>
+<tr class="separator:ac734960672dc43437414d395685fb229"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa21a5831c3e529689acc9fe6276d425e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa21a5831c3e529689acc9fe6276d425e"></a>
+SunMeshRenderType&#160;</td><td class="memItemRight" valign="bottom"><b>renderType</b></td></tr>
+<tr class="separator:aa21a5831c3e529689acc9fe6276d425e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7f983bbc90110e7078864ee5ee07648"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad7f983bbc90110e7078864ee5ee07648"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>flipNormals</b> = false</td></tr>
+<tr class="separator:ad7f983bbc90110e7078864ee5ee07648"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>

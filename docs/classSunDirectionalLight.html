@@ -63,6 +63,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -83,6 +84,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="classSunDirectionalLight-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">SunDirectionalLight Class Reference</div>  </div>
@@ -349,6 +352,42 @@ std::map&lt; std::string, <a class="el" href="classSunService.html">SunService</
 <tr class="memitem:a38f956b9eee90163ed6cfeeebe9aee70 inherit pub_methods_classSunBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a38f956b9eee90163ed6cfeeebe9aee70"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>addService</b> (<a class="el" href="classSunService.html">SunService</a> *s)</td></tr>
 <tr class="separator:a38f956b9eee90163ed6cfeeebe9aee70 inherit pub_methods_classSunBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a83a0e584f6dad374bd0562c2d047056f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a83a0e584f6dad374bd0562c2d047056f"></a>
+glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><b>color</b></td></tr>
+<tr class="separator:a83a0e584f6dad374bd0562c2d047056f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b74ec3cf4fa6120f5fd9bc3411fc44e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1b74ec3cf4fa6120f5fd9bc3411fc44e"></a>
+glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><b>direction</b></td></tr>
+<tr class="separator:a1b74ec3cf4fa6120f5fd9bc3411fc44e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a499580c48621930a14ba1c56a1c6aa41"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a499580c48621930a14ba1c56a1c6aa41"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>id</b></td></tr>
+<tr class="separator:a499580c48621930a14ba1c56a1c6aa41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4bdbd46f4e0fcfce9900aa6b0452f2d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa4bdbd46f4e0fcfce9900aa6b0452f2d"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>countUniform</b></td></tr>
+<tr class="separator:aa4bdbd46f4e0fcfce9900aa6b0452f2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a921bb2e2d29a8b14f9e3329c831dc741"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a921bb2e2d29a8b14f9e3329c831dc741"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>arrayUniform</b></td></tr>
+<tr class="separator:a921bb2e2d29a8b14f9e3329c831dc741"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabc4489ed55dad44f645369c30a0b6ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aabc4489ed55dad44f645369c30a0b6ee"></a>
+GLboolean&#160;</td><td class="memItemRight" valign="bottom"><b>shadows</b></td></tr>
+<tr class="separator:aabc4489ed55dad44f645369c30a0b6ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac10ab1d590effb667863be8d843dba00"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac10ab1d590effb667863be8d843dba00"></a>
+glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><b>shadowMapSize</b> = glm::vec2(1024.0f, 1024.0f)</td></tr>
+<tr class="separator:ac10ab1d590effb667863be8d843dba00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad71e27e23dd33c78e50b4a4a9424220"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aad71e27e23dd33c78e50b4a4a9424220"></a>
+GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>shadowMapFramebuffer</b></td></tr>
+<tr class="separator:aad71e27e23dd33c78e50b4a4a9424220"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d078043e81e6c9407cd8e4190847a84"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d078043e81e6c9407cd8e4190847a84"></a>
+GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>shadowMapTexture</b></td></tr>
+<tr class="separator:a1d078043e81e6c9407cd8e4190847a84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a86cbc6e25187733b9c3ddaed03132513"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a86cbc6e25187733b9c3ddaed03132513"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>lastId</b> = 0</td></tr>
+<tr class="separator:a86cbc6e25187733b9c3ddaed03132513"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>

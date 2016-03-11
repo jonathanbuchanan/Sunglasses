@@ -63,6 +63,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -83,6 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classSunPhysicsObject-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">SunPhysicsObject Class Reference</div>  </div>
@@ -166,6 +168,30 @@ bool &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getSelfCollisio
 <tr class="memitem:a678afa20ae42f22fcb77e4488976cb1b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a678afa20ae42f22fcb77e4488976cb1b"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setSelfCollision</b> (bool s)</td></tr>
 <tr class="separator:a678afa20ae42f22fcb77e4488976cb1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a88e43e9cb60011d61bb78b173c8d1ab3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a88e43e9cb60011d61bb78b173c8d1ab3"></a>
+glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><b>position</b> = glm::vec3(0, 0, 0)</td></tr>
+<tr class="separator:a88e43e9cb60011d61bb78b173c8d1ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3967c7b2f3f284e619ae25aace60c5af"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3967c7b2f3f284e619ae25aace60c5af"></a>
+glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><b>velocity</b> = glm::vec3(0, 0, 0)</td></tr>
+<tr class="separator:a3967c7b2f3f284e619ae25aace60c5af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0febe19e99590fd0dda8a5719b95944"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af0febe19e99590fd0dda8a5719b95944"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>mass</b> = 1</td></tr>
+<tr class="separator:af0febe19e99590fd0dda8a5719b95944"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3eb30416e1f17fecb71a96345a3c0988"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3eb30416e1f17fecb71a96345a3c0988"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>stationary</b> = false</td></tr>
+<tr class="separator:a3eb30416e1f17fecb71a96345a3c0988"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec944c533556a71996a845da358b29a1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aec944c533556a71996a845da358b29a1"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>elasticity</b></td></tr>
+<tr class="separator:aec944c533556a71996a845da358b29a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab19e3ddbcbddf12012cede7c94322883"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab19e3ddbcbddf12012cede7c94322883"></a>
+vector&lt; <a class="el" href="classSunPhysicsCollider.html">SunPhysicsCollider</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>colliders</b></td></tr>
+<tr class="separator:ab19e3ddbcbddf12012cede7c94322883"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a424b300aaffc0bf25de1ba3a77d2ebcb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a424b300aaffc0bf25de1ba3a77d2ebcb"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>selfCollision</b></td></tr>
+<tr class="separator:a424b300aaffc0bf25de1ba3a77d2ebcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Engine/Runtime/src/Physics/<a class="el" href="SunPhysicsObject_8h_source.html">SunPhysicsObject.h</a></li>

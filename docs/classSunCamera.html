@@ -63,6 +63,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -83,6 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classSunCamera-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">SunCamera Class Reference</div>  </div>
@@ -251,6 +253,36 @@ std::map&lt; std::string, <a class="el" href="classSunService.html">SunService</
 <tr class="memitem:a38f956b9eee90163ed6cfeeebe9aee70 inherit pub_methods_classSunBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a38f956b9eee90163ed6cfeeebe9aee70"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>addService</b> (<a class="el" href="classSunService.html">SunService</a> *s)</td></tr>
 <tr class="separator:a38f956b9eee90163ed6cfeeebe9aee70 inherit pub_methods_classSunBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aa7eb136382aeaa273683cb4a3f1c56f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa7eb136382aeaa273683cb4a3f1c56f5"></a>
+<a class="el" href="classSunScript.html">SunScript</a>&#160;</td><td class="memItemRight" valign="bottom"><b>script</b></td></tr>
+<tr class="separator:aa7eb136382aeaa273683cb4a3f1c56f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0bf626237571dcb56663041bdd73722"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae0bf626237571dcb56663041bdd73722"></a>
+glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><b>position</b> = glm::vec3(0.0, 0.0, 0.0)</td></tr>
+<tr class="separator:ae0bf626237571dcb56663041bdd73722"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9da5a90cbc3c5382ddd058c0f2eb571"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac9da5a90cbc3c5382ddd058c0f2eb571"></a>
+glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><b>direction</b> = glm::vec3(0.0, 0.0, 1.0)</td></tr>
+<tr class="separator:ac9da5a90cbc3c5382ddd058c0f2eb571"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb06056739f54ceb5d2f4fa390a8e271"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeb06056739f54ceb5d2f4fa390a8e271"></a>
+glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><b>up</b> = glm::vec3(0.0, 1.0, 0.0)</td></tr>
+<tr class="separator:aeb06056739f54ceb5d2f4fa390a8e271"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05d48113ea97a87a8e8c3f251e84c069"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a05d48113ea97a87a8e8c3f251e84c069"></a>
+glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><b>cameraRight</b> = glm::normalize(glm::cross(up, direction))</td></tr>
+<tr class="separator:a05d48113ea97a87a8e8c3f251e84c069"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a742f66e7133c96bd892065660bb2e851"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a742f66e7133c96bd892065660bb2e851"></a>
+glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><b>cameraUp</b> = glm::normalize(glm::cross(direction, cameraRight))</td></tr>
+<tr class="separator:a742f66e7133c96bd892065660bb2e851"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f25269035bcaf984dcb8e51e14e83c7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f25269035bcaf984dcb8e51e14e83c7"></a>
+GLfloat&#160;</td><td class="memItemRight" valign="bottom"><b>yaw</b> = 0.0f</td></tr>
+<tr class="separator:a2f25269035bcaf984dcb8e51e14e83c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a167406749fbeafe47432370533991e23"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a167406749fbeafe47432370533991e23"></a>
+GLfloat&#160;</td><td class="memItemRight" valign="bottom"><b>pitch</b> = 0.0f</td></tr>
+<tr class="separator:a167406749fbeafe47432370533991e23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa97d6c75999a991e8be29a1674aed9fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa97d6c75999a991e8be29a1674aed9fe"></a>
+GLfloat&#160;</td><td class="memItemRight" valign="bottom"><b>FOV</b> = 45.0f</td></tr>
+<tr class="separator:aa97d6c75999a991e8be29a1674aed9fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>

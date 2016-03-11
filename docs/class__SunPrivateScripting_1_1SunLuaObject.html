@@ -63,6 +63,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -87,6 +88,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class__SunPrivateScripting_1_1SunLuaObject-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">_SunPrivateScripting::SunLuaObject&lt; S, T &gt; Class Template Reference</div>  </div>
@@ -110,6 +113,31 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3847b0932b3608bfeffb4ed8279d3b72"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3847b0932b3608bfeffb4ed8279d3b72"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>SunLuaObject</b> (<a class="el" href="class__SunPrivateScripting_1_1SunLuaState.html">SunLuaState</a> *state, <a class="el" href="class__SunPrivateScripting_1_1SunLuaValue.html">SunLuaValue</a> value, S *object, T...functions)</td></tr>
 <tr class="separator:a3847b0932b3608bfeffb4ed8279d3b72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:af1a5ea158033278148e01af5aa5a88e9"><td class="memTemplParams" colspan="2"><a class="anchor" id="af1a5ea158033278148e01af5aa5a88e9"></a>
+template&lt;typename Func , typename... Tail&gt; </td></tr>
+<tr class="memitem:af1a5ea158033278148e01af5aa5a88e9"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>iterateRegister</b> (<a class="el" href="class__SunPrivateScripting_1_1SunLuaState.html">SunLuaState</a> *state, S *object, std::string name, Func function, Tail...tail)</td></tr>
+<tr class="separator:af1a5ea158033278148e01af5aa5a88e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac852a876b31ed5c38ee02960bb6cc65b"><td class="memTemplParams" colspan="2"><a class="anchor" id="ac852a876b31ed5c38ee02960bb6cc65b"></a>
+template&lt;typename Func &gt; </td></tr>
+<tr class="memitem:ac852a876b31ed5c38ee02960bb6cc65b"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>iterateRegister</b> (<a class="el" href="class__SunPrivateScripting_1_1SunLuaState.html">SunLuaState</a> *state, S *object, std::string name, Func function)</td></tr>
+<tr class="separator:ac852a876b31ed5c38ee02960bb6cc65b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefc8a2a4b6a50f8a9139f18901ccc134"><td class="memTemplParams" colspan="2"><a class="anchor" id="aefc8a2a4b6a50f8a9139f18901ccc134"></a>
+template&lt;typename Ret , typename... Args&gt; </td></tr>
+<tr class="memitem:aefc8a2a4b6a50f8a9139f18901ccc134"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>registerFunction</b> (<a class="el" href="class__SunPrivateScripting_1_1SunLuaState.html">SunLuaState</a> *state, S *object, const char *functionName, Ret(S::*function)(Args...))</td></tr>
+<tr class="separator:aefc8a2a4b6a50f8a9139f18901ccc134"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cb3be092d6c6c3de0c65152de19ad17"><td class="memTemplParams" colspan="2"><a class="anchor" id="a7cb3be092d6c6c3de0c65152de19ad17"></a>
+template&lt;typename Member &gt; </td></tr>
+<tr class="memitem:a7cb3be092d6c6c3de0c65152de19ad17"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>registerFunction</b> (<a class="el" href="class__SunPrivateScripting_1_1SunLuaState.html">SunLuaState</a> *state, S *object, const char *functionName, Member S::*var)</td></tr>
+<tr class="separator:a7cb3be092d6c6c3de0c65152de19ad17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:adbd8fbcb69bbb7077485f8cf619d6e8d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adbd8fbcb69bbb7077485f8cf619d6e8d"></a>
+std::vector&lt; std::unique_ptr&lt; <a class="el" href="class__SunPrivateScripting_1_1__SunLuaCFunction__Base.html">_SunPrivateScripting::_SunLuaCFunction_Base</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>functions</b></td></tr>
+<tr class="separator:adbd8fbcb69bbb7077485f8cf619d6e8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Engine/Runtime/src/Scripting/<a class="el" href="SunLuaObject_8h_source.html">SunLuaObject.h</a></li>

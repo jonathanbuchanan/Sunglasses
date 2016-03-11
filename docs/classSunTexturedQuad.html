@@ -63,6 +63,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -83,6 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classSunTexturedQuad-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">SunTexturedQuad Class Reference</div>  </div>
@@ -100,7 +102,64 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>render</b> (map&lt; s
 <tr class="memitem:ad3063dfd848599d02faa80a4285d9fc8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad3063dfd848599d02faa80a4285d9fc8"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>renderWithUsedShader</b> (map&lt; string, pair&lt; GLuint, GLuint &gt;&gt; _textures, <a class="el" href="classSunShader.html">SunShader</a> _shader)</td></tr>
 <tr class="separator:ad3063dfd848599d02faa80a4285d9fc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a3eddcfc41a5593c7b12645052eb2f690"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="structSunVertex.html">SunVertex</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>vertices</b></td></tr>
+<tr class="separator:a3eddcfc41a5593c7b12645052eb2f690"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6799788ce9fd6dca6602d0437b6e65a"><td class="memItemLeft" align="right" valign="top">vector&lt; GLuint &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>indices</b></td></tr>
+<tr class="separator:ad6799788ce9fd6dca6602d0437b6e65a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13a13bbf4c80820fd268b37205fd51e4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a13a13bbf4c80820fd268b37205fd51e4"></a>
+GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>VBO</b></td></tr>
+<tr class="separator:a13a13bbf4c80820fd268b37205fd51e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1220f07a1b05ac532a31304ede647a50"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1220f07a1b05ac532a31304ede647a50"></a>
+GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>EBO</b></td></tr>
+<tr class="separator:a1220f07a1b05ac532a31304ede647a50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76b282dd8b74777c38fc709d7cc4582d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76b282dd8b74777c38fc709d7cc4582d"></a>
+GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>VAO</b></td></tr>
+<tr class="separator:a76b282dd8b74777c38fc709d7cc4582d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="ad6799788ce9fd6dca6602d0437b6e65a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;GLuint&gt; SunTexturedQuad::indices</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div><div class="line">        0, 1, 2,</div><div class="line">        2, 3, 0</div><div class="line">    }</div></div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a3eddcfc41a5593c7b12645052eb2f690"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;<a class="el" href="structSunVertex.html">SunVertex</a>&gt; SunTexturedQuad::vertices</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div><div class="line">        <a class="code" href="structSunVertex.html">SunVertex</a>(glm::vec3(1.0, 1.0, 0.0), glm::vec2(1.0, 1.0)),</div><div class="line">        <a class="code" href="structSunVertex.html">SunVertex</a>(glm::vec3(1.0, -1.0, 0.0), glm::vec2(1.0, 0.0)),</div><div class="line">        <a class="code" href="structSunVertex.html">SunVertex</a>(glm::vec3(-1.0, -1.0, 0.0), glm::vec2(0.0, 0.0)),</div><div class="line">        <a class="code" href="structSunVertex.html">SunVertex</a>(glm::vec3(-1.0, 1.0, 0.0), glm::vec2(0.0, 1.0))</div><div class="line">    }</div></div><!-- fragment -->
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Engine/Runtime/src/Graphics/<a class="el" href="SunTexturedQuad_8h_source.html">SunTexturedQuad.h</a></li>
 <li>Engine/Runtime/src/Graphics/SunTexturedQuad.cpp</li>

@@ -63,6 +63,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -87,6 +88,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class__SunPrivateScripting_1_1SunLuaObjectFunction_3_01void_00_01T_8_8_8_01_4-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">_SunPrivateScripting::SunLuaObjectFunction&lt; void, T... &gt; Class Template Reference</div>  </div>
@@ -124,6 +127,29 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setName</b> (const ch
 template&lt;typename Return , typename... Args&gt; </td></tr>
 <tr class="memitem:a41815da7b4e79385e4e28b09ca8a9b6b"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>setFunction</b> (std::function&lt; Return(Args...)&gt; f)</td></tr>
 <tr class="separator:a41815da7b4e79385e4e28b09ca8a9b6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ab2e6f3972ba4ff74f0363f690e812028"><td class="memTemplParams" colspan="2"><a class="anchor" id="ab2e6f3972ba4ff74f0363f690e812028"></a>
+template&lt;int... N&gt; </td></tr>
+<tr class="memitem:ab2e6f3972ba4ff74f0363f690e812028"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>execute</b> (std::tuple&lt; T... &gt; tuple, <a class="el" href="struct__SunPrivateScripting_1_1seq.html">_SunPrivateScripting::seq</a>&lt; N... &gt;)</td></tr>
+<tr class="separator:ab2e6f3972ba4ff74f0363f690e812028"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a952f64444bb3952cfb87173571556a08"><td class="memTemplParams" colspan="2"><a class="anchor" id="a952f64444bb3952cfb87173571556a08"></a>
+template&lt;int... N&gt; </td></tr>
+<tr class="memitem:a952f64444bb3952cfb87173571556a08"><td class="memTemplItemLeft" align="right" valign="top">std::tuple&lt; T... &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>getArguments</b> (lua_State *l, <a class="el" href="struct__SunPrivateScripting_1_1seq.html">_SunPrivateScripting::seq</a>&lt; N... &gt;)</td></tr>
+<tr class="separator:a952f64444bb3952cfb87173571556a08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb732d36d779c291f637d8d2a211d001"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeb732d36d779c291f637d8d2a211d001"></a>
+std::tuple&lt; T... &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getArguments</b> (lua_State *l)</td></tr>
+<tr class="separator:aeb732d36d779c291f637d8d2a211d001"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aa528bd85f8873a108f4acaee6019f7a4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa528bd85f8873a108f4acaee6019f7a4"></a>
+const char *&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
+<tr class="separator:aa528bd85f8873a108f4acaee6019f7a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e2af8cbf951e48665b4796c960267db"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3e2af8cbf951e48665b4796c960267db"></a>
+std::function&lt; void(T...)&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>function</b></td></tr>
+<tr class="separator:a3e2af8cbf951e48665b4796c960267db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Engine/Runtime/src/Scripting/<a class="el" href="SunLuaObjectFunction_8h_source.html">SunLuaObjectFunction.h</a></li>

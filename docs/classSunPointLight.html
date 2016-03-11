@@ -63,6 +63,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -83,6 +84,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="classSunPointLight-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">SunPointLight Class Reference</div>  </div>
@@ -349,6 +352,45 @@ std::map&lt; std::string, <a class="el" href="classSunService.html">SunService</
 <tr class="memitem:a38f956b9eee90163ed6cfeeebe9aee70 inherit pub_methods_classSunBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a38f956b9eee90163ed6cfeeebe9aee70"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>addService</b> (<a class="el" href="classSunService.html">SunService</a> *s)</td></tr>
 <tr class="separator:a38f956b9eee90163ed6cfeeebe9aee70 inherit pub_methods_classSunBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a8d464218f166d3f69ce76fa02b2a21ce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d464218f166d3f69ce76fa02b2a21ce"></a>
+glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><b>color</b></td></tr>
+<tr class="separator:a8d464218f166d3f69ce76fa02b2a21ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82786ad4c6209662cf5e22046f21657a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82786ad4c6209662cf5e22046f21657a"></a>
+GLboolean&#160;</td><td class="memItemRight" valign="bottom"><b>attenuate</b></td></tr>
+<tr class="separator:a82786ad4c6209662cf5e22046f21657a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21eabd11f2125e93aaf3b30d97c42b88"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a21eabd11f2125e93aaf3b30d97c42b88"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>id</b></td></tr>
+<tr class="separator:a21eabd11f2125e93aaf3b30d97c42b88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c23a9b83c0636857e500be03f089cf3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c23a9b83c0636857e500be03f089cf3"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>countUniform</b></td></tr>
+<tr class="separator:a5c23a9b83c0636857e500be03f089cf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa698e202698316f3cef2998da1ef1b81"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa698e202698316f3cef2998da1ef1b81"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>arrayUniform</b></td></tr>
+<tr class="separator:aa698e202698316f3cef2998da1ef1b81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdb12d6a7e119e3d058c74ef2ee71200"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afdb12d6a7e119e3d058c74ef2ee71200"></a>
+GLboolean&#160;</td><td class="memItemRight" valign="bottom"><b>shadows</b> = false</td></tr>
+<tr class="separator:afdb12d6a7e119e3d058c74ef2ee71200"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cb0f22fc21654140c13f65fd1db64c2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3cb0f22fc21654140c13f65fd1db64c2"></a>
+glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><b>shadowMapSize</b> = glm::vec2(1024.0f, 1024.0f)</td></tr>
+<tr class="separator:a3cb0f22fc21654140c13f65fd1db64c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c2c2f4b15307f5dee8a62661648e923"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1c2c2f4b15307f5dee8a62661648e923"></a>
+GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>shadowMapFramebuffer</b></td></tr>
+<tr class="separator:a1c2c2f4b15307f5dee8a62661648e923"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09a7aad0febd9262b96caa8a297bcf92"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a09a7aad0febd9262b96caa8a297bcf92"></a>
+GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>shadowMapTexture</b></td></tr>
+<tr class="separator:a09a7aad0febd9262b96caa8a297bcf92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22062d9188ef940a51d0168574810e48"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a22062d9188ef940a51d0168574810e48"></a>
+vector&lt; glm::mat4 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lightTransforms</b></td></tr>
+<tr class="separator:a22062d9188ef940a51d0168574810e48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:acfd92887311d5df5291b7748551e0fe0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acfd92887311d5df5291b7748551e0fe0"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>lastId</b> = 0</td></tr>
+<tr class="separator:acfd92887311d5df5291b7748551e0fe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
