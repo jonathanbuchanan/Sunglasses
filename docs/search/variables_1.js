@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['name',['name',['../classSunBase.html#af61b7e08febf10da55e099bc08f0249a',1,'SunBase']]]
+  ['ignoretags',['ignoreTags',['../classSunNode.html#a5ff01cf3bc2f6920465f8705b6dae317',1,'SunNode']]]
 ];

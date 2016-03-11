@@ -43,6 +43,7 @@ TEST_F(SunActionTest, recursive) {
 
 class MockSunBase : public SunBase {
 public:
+    void init() { }
     MOCK_METHOD0(test, void());
 };
 

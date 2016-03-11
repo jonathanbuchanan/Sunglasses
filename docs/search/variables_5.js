@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['window',['window',['../classSunGame.html#ab21de35b72801728f5c8fa8cfa10a6e9',1,'SunGame']]]
+  ['recursive',['recursive',['../classSunAction.html#aceb2429827484042e112a586cd869122',1,'SunAction']]]
 ];
