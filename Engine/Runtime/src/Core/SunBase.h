@@ -79,11 +79,14 @@ public:
      */
     void addService(SunService *s) { services[s->name] = s; }
 
-	static std::map<std::string, SunService *> services; /**< A map containing services that correspond to names (strings) */
+    /// A map containing services that correspond to names (strings)
+	static std::map<std::string, SunService *> services;
 private:
-    std::string name; /**< A string containing the name of the object */
+    /// A string containing the name of the object
+    std::string name;
 
-    std::map<std::string, SunActionFunction> actions; /**< A map containing functions that correspond to names (strings) */
+    /// A map containing functions that correspond to names (strings)
+    std::map<std::string, SunActionFunction> actions;
 };
 
 /// Sends a SunAction to a SunBase.

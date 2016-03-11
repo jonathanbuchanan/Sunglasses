@@ -3,6 +3,10 @@
 // See LICENSE.md for details.
 #include "SunGame.h"
 
+SunGame::SunGame() {
+
+}
+
 void SunGame::run() {
 	while (!glfwWindowShouldClose(window)) {
 		updateServices();
@@ -13,11 +17,6 @@ void SunGame::run() {
 
         scene->cycle();
     }
-    glfwTerminate();
-}
-
-void SunGame::loop() {
-
 }
 
 void SunGame::updateServices() {
@@ -26,7 +25,7 @@ void SunGame::updateServices() {
     }
 }
 
-void SunGame::cleanUp() {
+void SunGame::cleanUp() { /* THIS MUST BE IMPLEMENTED!!! */
 	glfwTerminate();
 }
 

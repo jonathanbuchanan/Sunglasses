@@ -103,10 +103,14 @@ public:
     /// Sets the recursive member (boolean).
 	void setRecursive(bool r) { recursive = r; }
 private:
-	std::string action; /**< A string containing the name of the action to be performed */
-	SunActionParameterMap parameters; /**< A map of parameters */
-	bool recursive; /**< A boolean that determines whether this action should
-                     * be recursive when performed on SunNode */
+    /// A string containing the name of the action to be performed
+	std::string action;
+
+    /// A map of parameters
+	SunActionParameterMap parameters;
+
+    /// A boolean that determines whether this action should be recursive when performed on SunNode
+	bool recursive;
 };
 
 typedef std::function<void(SunAction)> SunActionFunction;

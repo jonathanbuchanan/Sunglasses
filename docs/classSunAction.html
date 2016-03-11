@@ -147,11 +147,17 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a65f5bbc52e59f1ee19226cc0db7036f0"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunAction.html#a65f5bbc52e59f1ee19226cc0db7036f0">action</a></td></tr>
+<tr class="memitem:a65f5bbc52e59f1ee19226cc0db7036f0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a65f5bbc52e59f1ee19226cc0db7036f0"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunAction.html#a65f5bbc52e59f1ee19226cc0db7036f0">action</a></td></tr>
+<tr class="memdesc:a65f5bbc52e59f1ee19226cc0db7036f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">A string containing the name of the action to be performed. <br /></td></tr>
 <tr class="separator:a65f5bbc52e59f1ee19226cc0db7036f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9ab3cfc37824b097f41243ba7f117ad"><td class="memItemLeft" align="right" valign="top">SunActionParameterMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunAction.html#ae9ab3cfc37824b097f41243ba7f117ad">parameters</a></td></tr>
+<tr class="memitem:ae9ab3cfc37824b097f41243ba7f117ad"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae9ab3cfc37824b097f41243ba7f117ad"></a>
+SunActionParameterMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunAction.html#ae9ab3cfc37824b097f41243ba7f117ad">parameters</a></td></tr>
+<tr class="memdesc:ae9ab3cfc37824b097f41243ba7f117ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">A map of parameters. <br /></td></tr>
 <tr class="separator:ae9ab3cfc37824b097f41243ba7f117ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aceb2429827484042e112a586cd869122"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunAction.html#aceb2429827484042e112a586cd869122">recursive</a></td></tr>
+<tr class="memitem:aceb2429827484042e112a586cd869122"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aceb2429827484042e112a586cd869122"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunAction.html#aceb2429827484042e112a586cd869122">recursive</a></td></tr>
+<tr class="memdesc:aceb2429827484042e112a586cd869122"><td class="mdescLeft">&#160;</td><td class="mdescRight">A boolean that determines whether this action should be recursive when performed on <a class="el" href="classSunNode.html">SunNode</a>. <br /></td></tr>
 <tr class="separator:aceb2429827484042e112a586cd869122"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -379,70 +385,6 @@ template&lt;typename T &gt; </div>
 
 <p>Gets a parameter from the parameter map in pointer form. </p>
 <p>Since the parameter map is a map that has strings for keys and void pointers as values so it can store any size type, each pointer needs to be casted. This function takes a template parameter and a string that is the name of the parameter. This functions gets the value for the key, casts it to a pointer of the specified type, and returns it. </p>
-
-</div>
-</div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a65f5bbc52e59f1ee19226cc0db7036f0"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string SunAction::action</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>A string containing the name of the action to be performed </p>
-
-</div>
-</div>
-<a class="anchor" id="ae9ab3cfc37824b097f41243ba7f117ad"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">SunActionParameterMap SunAction::parameters</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>A map of parameters </p>
-
-</div>
-</div>
-<a class="anchor" id="aceb2429827484042e112a586cd869122"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool SunAction::recursive</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>A boolean that determines whether this action should be recursive when performed on <a class="el" href="classSunNode.html">SunNode</a> </p>
 
 </div>
 </div>

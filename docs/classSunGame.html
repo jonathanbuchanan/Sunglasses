@@ -87,9 +87,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classSunGame-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">SunGame Class Reference</div>  </div>
+<div class="title">SunGame Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>An abstract class which controls the scene.  
+ <a href="classSunGame.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="SunGame_8h_source.html">SunGame.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for SunGame:</div>
 <div class="dyncontent">
@@ -102,23 +107,27 @@ Inheritance diagram for SunGame:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0a0f93ffe5a64eed30776af0c72cd360"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a0f93ffe5a64eed30776af0c72cd360"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> ()</td></tr>
+<tr class="memitem:af3777a071518937a4bb4b0ef67804e59"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3777a071518937a4bb4b0ef67804e59"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunGame.html#af3777a071518937a4bb4b0ef67804e59">SunGame</a> ()</td></tr>
+<tr class="memdesc:af3777a071518937a4bb4b0ef67804e59"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the default constructor which does nothing. <br /></td></tr>
+<tr class="separator:af3777a071518937a4bb4b0ef67804e59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a0f93ffe5a64eed30776af0c72cd360"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunGame.html#a0a0f93ffe5a64eed30776af0c72cd360">run</a> ()</td></tr>
+<tr class="memdesc:a0a0f93ffe5a64eed30776af0c72cd360"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains the game loop.  <a href="#a0a0f93ffe5a64eed30776af0c72cd360">More...</a><br /></td></tr>
 <tr class="separator:a0a0f93ffe5a64eed30776af0c72cd360"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a979816b605e99aeb471493faa6c22856"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a979816b605e99aeb471493faa6c22856"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>loop</b> ()</td></tr>
-<tr class="separator:a979816b605e99aeb471493faa6c22856"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bb26516d9dacc87ef0ac814eab96d70"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7bb26516d9dacc87ef0ac814eab96d70"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>updateServices</b> ()</td></tr>
+<tr class="memitem:aea34737a92fd5ed56ee829f1c32f5445"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunGame.html#aea34737a92fd5ed56ee829f1c32f5445">loop</a> ()=0</td></tr>
+<tr class="memdesc:aea34737a92fd5ed56ee829f1c32f5445"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pure virtual function exectued every game cycle.  <a href="#aea34737a92fd5ed56ee829f1c32f5445">More...</a><br /></td></tr>
+<tr class="separator:aea34737a92fd5ed56ee829f1c32f5445"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bb26516d9dacc87ef0ac814eab96d70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunGame.html#a7bb26516d9dacc87ef0ac814eab96d70">updateServices</a> ()</td></tr>
+<tr class="memdesc:a7bb26516d9dacc87ef0ac814eab96d70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the registered services.  <a href="#a7bb26516d9dacc87ef0ac814eab96d70">More...</a><br /></td></tr>
 <tr class="separator:a7bb26516d9dacc87ef0ac814eab96d70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f91bef3c8eccce32f9d7fdf3138ecff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3f91bef3c8eccce32f9d7fdf3138ecff"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>cleanUp</b> ()</td></tr>
+<tr class="memitem:a3f91bef3c8eccce32f9d7fdf3138ecff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunGame.html#a3f91bef3c8eccce32f9d7fdf3138ecff">cleanUp</a> ()</td></tr>
+<tr class="memdesc:a3f91bef3c8eccce32f9d7fdf3138ecff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cleans up the game after termination.  <a href="#a3f91bef3c8eccce32f9d7fdf3138ecff">More...</a><br /></td></tr>
 <tr class="separator:a3f91bef3c8eccce32f9d7fdf3138ecff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9235ae8ec7393b9f264d368f5c64d4b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunGame.html#a9235ae8ec7393b9f264d368f5c64d4b2">init</a> ()</td></tr>
-<tr class="memdesc:a9235ae8ec7393b9f264d368f5c64d4b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the object.  <a href="#a9235ae8ec7393b9f264d368f5c64d4b2">More...</a><br /></td></tr>
+<tr class="memdesc:a9235ae8ec7393b9f264d368f5c64d4b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the services (window manager, cursor manager, keyboard manager, mouse button manager, and logger).  <a href="#a9235ae8ec7393b9f264d368f5c64d4b2">More...</a><br /></td></tr>
 <tr class="separator:a9235ae8ec7393b9f264d368f5c64d4b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6dbc7c7635e7738f0a0996deb76bc28"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab6dbc7c7635e7738f0a0996deb76bc28"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> (std::string title, glm::vec4 color)</td></tr>
+<tr class="memitem:ab6dbc7c7635e7738f0a0996deb76bc28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunGame.html#ab6dbc7c7635e7738f0a0996deb76bc28">init</a> (std::string title, glm::vec4 color)</td></tr>
+<tr class="memdesc:ab6dbc7c7635e7738f0a0996deb76bc28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the services (window manager, cursor manager, keyboard manager, mouse button manager, and logger) with the parameters.  <a href="#ab6dbc7c7635e7738f0a0996deb76bc28">More...</a><br /></td></tr>
 <tr class="separator:ab6dbc7c7635e7738f0a0996deb76bc28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classSunBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classSunBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classSunBase.html">SunBase</a></td></tr>
 <tr class="memitem:a24d3c6a7961e6535097bdb63d50a30f8 inherit pub_methods_classSunBase"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunBase.html#a24d3c6a7961e6535097bdb63d50a30f8">SunBase</a> ()</td></tr>
@@ -153,19 +162,44 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:ab927c811021639d254e5c0fb64897ade"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab927c811021639d254e5c0fb64897ade"></a>
-<a class="el" href="classSunScene.html">SunScene</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>scene</b></td></tr>
+<a class="el" href="classSunScene.html">SunScene</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunGame.html#ab927c811021639d254e5c0fb64897ade">scene</a></td></tr>
+<tr class="memdesc:ab927c811021639d254e5c0fb64897ade"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the scene, which contains the scene graph. <br /></td></tr>
 <tr class="separator:ab927c811021639d254e5c0fb64897ade"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab21de35b72801728f5c8fa8cfa10a6e9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab21de35b72801728f5c8fa8cfa10a6e9"></a>
-GLFWwindow *&#160;</td><td class="memItemRight" valign="bottom"><b>window</b></td></tr>
+GLFWwindow *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunGame.html#ab21de35b72801728f5c8fa8cfa10a6e9">window</a></td></tr>
+<tr class="memdesc:ab21de35b72801728f5c8fa8cfa10a6e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the GLFW window. <br /></td></tr>
 <tr class="separator:ab21de35b72801728f5c8fa8cfa10a6e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_static_attribs_classSunBase"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_classSunBase')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classSunBase.html">SunBase</a></td></tr>
-<tr class="memitem:a8f3e701f17a90bc38c224c76b1687e6b inherit pub_static_attribs_classSunBase"><td class="memItemLeft" align="right" valign="top">static std::map&lt; std::string, <a class="el" href="classSunService.html">SunService</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunBase.html#a8f3e701f17a90bc38c224c76b1687e6b">services</a></td></tr>
+<tr class="memitem:a8f3e701f17a90bc38c224c76b1687e6b inherit pub_static_attribs_classSunBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8f3e701f17a90bc38c224c76b1687e6b"></a>
+static std::map&lt; std::string, <a class="el" href="classSunService.html">SunService</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunBase.html#a8f3e701f17a90bc38c224c76b1687e6b">services</a></td></tr>
+<tr class="memdesc:a8f3e701f17a90bc38c224c76b1687e6b inherit pub_static_attribs_classSunBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">A map containing services that correspond to names (strings) <br /></td></tr>
 <tr class="separator:a8f3e701f17a90bc38c224c76b1687e6b inherit pub_static_attribs_classSunBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>An abstract class which controls the scene. </p>
+<p>The <a class="el" href="classSunGame.html" title="An abstract class which controls the scene. ">SunGame</a> abstract class defines an object that contains the scene. At startup, it instantiates all of the services. It also runs the large loop that controls the game. During this loop it sends an update signal to each service. It also quits when it finds glfwWindowShouldClose is true. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a3f91bef3c8eccce32f9d7fdf3138ecff"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SunGame::cleanUp </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cleans up the game after termination. </p>
+<p>This function should be called by main() after the run function is over. It cleans up all of the memory that relates to the game and then closes the application. </p>
+
+</div>
+</div>
 <a class="anchor" id="a9235ae8ec7393b9f264d368f5c64d4b2"></a>
 <div class="memitem">
 <div class="memproto">
@@ -187,10 +221,101 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Initializes the object. </p>
-<p>This function should be called to initialize the object. Since <a class="el" href="classSunBase.html" title="An object with a name, a map of actions, and a map of services. ">SunBase</a> shouldn't ever be used on its own, this is a pure virtual member function which makes <a class="el" href="classSunBase.html" title="An object with a name, a map of actions, and a map of services. ">SunBase</a> abstract. </p>
+<p>Initializes the services (window manager, cursor manager, keyboard manager, mouse button manager, and logger). </p>
+<p>Initializes the services (window manager, cursor manager, keyboard manager, mouse button manager, and logger). By default, this creates a window with no title and a clear color of (0, 0, 0, 0). </p>
 
 <p>Implements <a class="el" href="classSunBase.html#a877baf14bba4eb902b8bd7062c351046">SunBase</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab6dbc7c7635e7738f0a0996deb76bc28"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SunGame::init </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>title</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::vec4&#160;</td>
+          <td class="paramname"><em>color</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes the services (window manager, cursor manager, keyboard manager, mouse button manager, and logger) with the parameters. </p>
+<p>Initializes the services (window manager, cursor manager, keyboard manager, mouse button manager, and logger). The first parameter (string) determines the title of the window, and the second parameter (vec4) determines the clear color of the window. </p>
+
+</div>
+</div>
+<a class="anchor" id="aea34737a92fd5ed56ee829f1c32f5445"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void SunGame::loop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pure virtual function exectued every game cycle. </p>
+<p>This function is called by the game loop every time that it runs. Since it is a pure virtual function, the functionality must be defined by the user in a subclass. </p>
+
+</div>
+</div>
+<a class="anchor" id="a0a0f93ffe5a64eed30776af0c72cd360"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SunGame::run </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Contains the game loop. </p>
+<p>This function contains the game loop. Once run, it doesn't stop until glfwWindowShouldClose is set to true. Upon the loop ending, it terminates the window. Inside the loop, it calls the pure virtual function <a class="el" href="classSunGame.html#aea34737a92fd5ed56ee829f1c32f5445" title="Pure virtual function exectued every game cycle. ">loop()</a>. This is where user defined functionality should go. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7bb26516d9dacc87ef0ac814eab96d70"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SunGame::updateServices </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Updates the registered services. </p>
+<p>This function is called by the game loop every time that it runs. It iterates through the map of services and updates each one. </p>
 
 </div>
 </div>
