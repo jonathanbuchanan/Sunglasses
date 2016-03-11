@@ -21,7 +21,7 @@ public:
 
     void render();
     void swapBuffers();
-	virtual void initialize();
+	virtual void init();
 
 	inline void setSceneNode(SunScene *s) { scene = s; }
 

@@ -1,9 +1,9 @@
 var indexSectionsWithContent =
 {
-  0: "_aegprst",
+  0: "_aeginprst",
   1: "_egst",
-  2: "agps",
-  3: "apr"
+  2: "agips",
+  3: "anprs"
 };
 
 var indexSectionNames =

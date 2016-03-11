@@ -221,6 +221,10 @@ SunShader::SunShader(string vertexPath, string geometryPath, string fragmentPath
     glDeleteShader(fragment);
 }
 
+void SunShader::init() {
+    
+}
+
 void SunShader::uniforms(SunNode *root) {
 	SunAction uniform("uniform");
 	uniform.addParameter("shader", this);

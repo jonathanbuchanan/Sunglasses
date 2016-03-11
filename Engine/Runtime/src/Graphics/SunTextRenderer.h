@@ -43,7 +43,7 @@ class SunTextRenderer : public SunBase {
 public:
     SunTextRenderer() { }
 
-    void initialize();
+    void init();
     void loadFont(string _file, string _name);
     void renderText(string text, string _fontName, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color);
 

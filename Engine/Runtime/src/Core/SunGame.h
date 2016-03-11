@@ -34,8 +34,8 @@ public:
 	virtual void loop();
     void updateServices();
     void cleanUp();
-    void initialize();
-	void initialize(std::string title, glm::vec4 color);
+    void init();
+	void init(std::string title, glm::vec4 color);
 protected:
 	SunScene *scene;
     GLFWwindow *window;

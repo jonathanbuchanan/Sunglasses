@@ -22,7 +22,7 @@ void FeatureScene::init() {
 	initRenderer<FeatureRenderer>();
     renderer->setSceneNode(this);
 	renderer->setWindow(window);
-    renderer->initialize();
+    renderer->init();
 
     house = new SunObject("cube", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Teapot.dae", "solid", false);
 	house->init();
@@ -55,7 +55,7 @@ void FeatureScene::init() {
     ((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->init();
 
 	textRenderer = new SunTextRenderer();
-    textRenderer->initialize();
+    textRenderer->init();
     textRenderer->loadFont("Resources/Graphics/Fonts/arial.ttf", "Arial");
     menu = new SunGUIMenu();
 	menu->init();

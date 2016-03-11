@@ -6,7 +6,7 @@
 
 int main() {
     FeatureGame game = FeatureGame();
-    game.initialize();
+    game.init();
 
     game.run();
 

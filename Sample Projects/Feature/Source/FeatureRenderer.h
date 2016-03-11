@@ -8,7 +8,7 @@
 
 class FeatureRenderer : public SunRenderer {
 public:
-	void initialize();
+	void init();
 };
 
 #endif

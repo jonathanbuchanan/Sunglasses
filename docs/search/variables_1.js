@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['parameters',['parameters',['../classSunAction.html#ae9ab3cfc37824b097f41243ba7f117ad',1,'SunAction']]]
+  ['name',['name',['../classSunBase.html#af61b7e08febf10da55e099bc08f0249a',1,'SunBase']]]
 ];

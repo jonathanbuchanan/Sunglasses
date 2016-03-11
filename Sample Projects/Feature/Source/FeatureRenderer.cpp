@@ -3,7 +3,7 @@
 // See LICENSE.md for details.
 #include "FeatureRenderer.h"
 
-void FeatureRenderer::initialize() {
+void FeatureRenderer::init() {
     // GBuffer Inputs
     vector<SunRenderingNodeInput> gbufferInputs = {};
 

@@ -30,21 +30,21 @@ public:
      */
 	SunAction();
 
-    /// Constructor for the action member (string).
+    /// Constructor for the action member (string)
     /**
      * This constructor initializes the action member (string) with the single parameter.
      * Recursive (boolean) is set to false.
      */
 	SunAction(std::string a);
 
-    /// Constructor for the action member (string) and parameter map (map).
+    /// Constructor for the action member (string) and parameter map (map)
     /**
      * This constructor initializes the action member (string) and the parameter
      * map member. Recursive (boolean) is set to false.
      */
 	SunAction(std::string a, SunActionParameterMap p);
 
-    /// Constructor for the action member (string), parameter map (map), and recursive member (boolean).
+    /// Constructor for the action member (string), parameter map (map), and recursive member (boolean)
     /**
      * This constructor initializes the action member (string), the parameter map
      * member (map), and the recursive member (boolean).
@@ -106,7 +106,7 @@ private:
 	std::string action; /**< A string containing the name of the action to be performed */
 	SunActionParameterMap parameters; /**< A map of parameters */
 	bool recursive; /**< A boolean that determines whether this action should
-                             * be recursive when performed on SunNode */
+                     * be recursive when performed on SunNode */
 };
 
 typedef std::function<void(SunAction)> SunActionFunction;

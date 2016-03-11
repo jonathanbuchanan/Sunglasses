@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['recursive',['recursive',['../classSunAction.html#aceb2429827484042e112a586cd869122',1,'SunAction']]]
+  ['parameters',['parameters',['../classSunAction.html#ae9ab3cfc37824b097f41243ba7f117ad',1,'SunAction']]]
 ];
