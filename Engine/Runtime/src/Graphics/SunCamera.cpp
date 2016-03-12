@@ -32,7 +32,9 @@ void SunCamera::init() {
     script.registerObject("camera", this, "yaw", &SunCamera::yaw, "pitch", &SunCamera::pitch, "FOV", &SunCamera::FOV);
     script.registerObject(script["camera"]["position"], &position, "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
     script.registerObject(script["camera"]["direction"], &direction, "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
+    script.registerObject(script["camera"]["up"], &cameraUp, "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
 
+    script.registerObject("window_manager", (SunWindowManager *)getService("window_manager"), "getDelta", &SunWindowManager::getDelta);
     script.registerObject("keyboard_manager", (SunKeyboardManager *)getService("keyboard_manager"), "pollKey", &SunKeyboardManager::keyDown);
 
 	setIgnoreTags(true);
@@ -48,41 +50,8 @@ void SunCamera::update(SunAction action) {
 	double delta = ((SunWindowManager *)getService("window_manager"))->getDelta();
 
 	glm::vec2 mouse = ((SunCursorManager *)getService("cursor_manager"))->getCursorPosition();
-    static glm::vec2 oldMouse;
-    glm::vec2 offset = glm::vec2(mouse.x - oldMouse.x, oldMouse.y - mouse.y);
-    oldMouse = mouse;
 
-    const float sensitivity = 0.1f;
-    offset *= sensitivity;
-    yaw += offset.x;
-    pitch += offset.y;
-
-    if (pitch > 89.0f)
-        pitch = 89.0f;
-    if (pitch < -89.0f)
-        pitch = -89.0f;
-
-    float speed = 5.0f;
-    float finalSpeed = speed * delta;
-	SunKeyboardManager *keyboard = (SunKeyboardManager *)getService("keyboard_manager");
-    if (keyboard->pollKey(GLFW_KEY_UP) == SunButtonStateDown)
-        position += finalSpeed * direction;
-    if (keyboard->pollKey(GLFW_KEY_DOWN) == SunButtonStateDown)
-        position += finalSpeed * -direction;
-    if (keyboard->pollKey(GLFW_KEY_RIGHT) == SunButtonStateDown)
-        position += finalSpeed * glm::normalize(glm::cross(direction, cameraUp));
-    if (keyboard->pollKey(GLFW_KEY_LEFT) == SunButtonStateDown)
-        position += finalSpeed * -glm::normalize(glm::cross(direction, cameraUp));
-    if (keyboard->pollKey(GLFW_KEY_SPACE) == SunButtonStateDown)
-        position += finalSpeed * glm::vec3(0.0f, 1.0f, 0.0f);
-    if (keyboard->pollKey(GLFW_KEY_LEFT_SHIFT) == SunButtonStateDown)
-        position += finalSpeed * -glm::vec3(0.0f, 1.0f, 0.0f);
-
-    direction.x = cos(glm::radians(pitch)) * cos(glm::radians(yaw));
-    direction.y = sin(glm::radians(pitch));
-    direction.z = cos(glm::radians(pitch)) * sin(glm::radians(yaw));
-
-    script["update"](delta);
+    script["update"](delta, mouse.x, mouse.y);
 }
 
 glm::mat4 SunCamera::viewMatrix() {

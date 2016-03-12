@@ -41,7 +41,7 @@ namespace _SunPrivateScripting {
                 state->setGlobal((const char *)tables[0]);
             else
                 state->setTable(-3);
-            state->pop(tables.size());
+            state->pop(tables.size() - 1);
         }
     private:
         template<typename Func, typename... Tail>

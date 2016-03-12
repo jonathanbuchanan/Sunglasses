@@ -6,6 +6,7 @@
 
 #include <map>
 #include <memory>
+#include <iostream>
 #include <lua.hpp>
 
 #include "SunLuaValue.h"
@@ -54,6 +55,10 @@ public:
     template<typename S, typename... T>
     void registerObject(_SunPrivateScripting::SunLuaValue value, S *object, T... functions) {
         objects.push_back(std::unique_ptr<_SunPrivateScripting::_SunLuaObject_Base>(new _SunPrivateScripting::SunLuaObject<S, T...>(state, value, object, functions...)));
+    }
+
+    void printTop() {
+        std::cout << std::to_string(state->getTop());
     }
 
 private:
