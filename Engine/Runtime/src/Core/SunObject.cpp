@@ -5,24 +5,25 @@
 #include "../Graphics/SunWindowManager.h"
 
 SunObject::SunObject() {
-    init();
+    position = glm::vec3(0.0f, 0.0f, 0.0f);
+    rotation = glm::vec3(0.0f, 0.0f, 0.0f);
+    scale = glm::vec3(1.0f, 1.0f, 1.0f);
+    physicsEnabled = false;
+    flipNormals = false;
 }
 
-SunObject::SunObject(string _name, string _modelPath, bool _flipNormals) {
+SunObject::SunObject(string _name, string _modelPath, bool _flipNormals) : flipNormals(_flipNormals) {
+    SunObject();
 	setName(_name);
-    setFlipNormals(_flipNormals);
-
-    init();
 
     SunModel model = SunModel(_modelPath, flipNormals);
     models.push_back(model);
 }
 
-SunObject::SunObject(string _name, string _modelPath, string tag, bool _flipNormals) {
+SunObject::SunObject(string _name, string _modelPath, string tag, bool _flipNormals) : flipNormals(_flipNormals) {
+    SunObject();
 	setName(_name);
-	setFlipNormals(_flipNormals);
 	addTag(tag);
-	init();
 
 	SunModel model = SunModel(_modelPath, flipNormals);
 	models.push_back(model);

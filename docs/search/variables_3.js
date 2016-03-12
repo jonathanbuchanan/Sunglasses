@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['name',['name',['../classSunBase.html#af61b7e08febf10da55e099bc08f0249a',1,'SunBase']]]
+  ['level',['level',['../classSunNode.html#a286c215217631ef999fbfeefa5c5958e',1,'SunNode']]]
 ];

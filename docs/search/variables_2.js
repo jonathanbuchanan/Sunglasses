@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['level',['level',['../classSunNode.html#a286c215217631ef999fbfeefa5c5958e',1,'SunNode']]]
+  ['ignoretags',['ignoreTags',['../classSunNode.html#a5ff01cf3bc2f6920465f8705b6dae317',1,'SunNode']]]
 ];

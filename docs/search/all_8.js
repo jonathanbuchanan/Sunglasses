@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['name',['name',['../classSunBase.html#af61b7e08febf10da55e099bc08f0249a',1,'SunBase']]]
+  ['material',['material',['../classSunObject.html#ac734960672dc43437414d395685fb229',1,'SunObject']]],
+  ['models',['models',['../classSunObject.html#a313cd7dae68a945609f2dad46652a769',1,'SunObject']]]
 ];

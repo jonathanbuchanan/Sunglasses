@@ -26,6 +26,7 @@ void FeatureScene::init() {
 
     house = new SunObject("cube", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Teapot.dae", "solid", false);
 	house->init();
+    house->setScale(glm::vec3(1.0f, 1.0f, 1.0f));
 	house->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f));
     root->addSubNode(house);
 

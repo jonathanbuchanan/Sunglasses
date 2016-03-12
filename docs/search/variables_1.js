@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ignoretags',['ignoreTags',['../classSunNode.html#a5ff01cf3bc2f6920465f8705b6dae317',1,'SunNode']]]
+  ['flipnormals',['flipNormals',['../classSunObject.html#ad7f983bbc90110e7078864ee5ee07648',1,'SunObject']]]
 ];
