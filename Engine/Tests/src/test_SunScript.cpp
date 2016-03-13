@@ -156,21 +156,21 @@ TEST_F(SunScriptTest, CFunctions) {
     EXPECT_EQ(zaz, 12);
 }
 
-struct TestClass {
-    glm::vec2 vector = glm::vec2(1.5f, -0.777f);
-    int x;
-    TestClass(int _x) { x = _x; }
-
-    void add(int a) {
-        x = x + a;
-    }
-
-    void multiply(int a) {
-        x = x * a;
-    }
-};
-
 TEST_F(SunScriptTest, Objects) {
+    struct TestClass {
+        glm::vec2 vector = glm::vec2(1.5f, -0.777f);
+        int x;
+        TestClass(int _x) { x = _x; }
+
+        void add(int a) {
+            x = x + a;
+        }
+
+        void multiply(int a) {
+            x = x * a;
+        }
+    };
+
     TestClass test(6);
     script.registerObject(script["test"], &test, "add", &TestClass::add, "multiply", &TestClass::multiply, "x", &TestClass::x);
     script.registerObject(script["test"]["vector"], &test.vector, "x", &glm::vec2::x, "y", &glm::vec2::y);
@@ -189,4 +189,15 @@ TEST_F(SunScriptTest, Objects) {
 
     script("test.set_x(-6)");
     EXPECT_EQ(test.x, -6);
+}
+
+TEST_F(SunScriptTest, Types) {
+    script.registerType<glm::vec3>("vec3");
+    script.registerTypeMembers("vec3", "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
+    glm::vec3 testvec = glm::vec3(0.1, 2.3, 45.67);
+    script.registerObjectAsType("testvec", "vec3", &testvec);
+    script("vectable = testvec.table()");
+
+    double x = script["vectable"]["x"];
+    EXPECT_DOUBLE_EQ(x, 0.1);
 }

@@ -57,6 +57,21 @@ public:
         objects.push_back(std::unique_ptr<_SunPrivateScripting::_SunLuaObject_Base>(new _SunPrivateScripting::SunLuaObject<S, T...>(state, value, object, functions...)));
     }
 
+    template<typename T>
+    void registerType(std::string type) {
+
+    }
+
+    template<typename... T>
+    void registerTypeMembers(std::string type, T... members) {
+
+    }
+
+    template<typename T>
+    void registerObjectAsType(std::string name, std::string type, T *object) {
+
+    }
+
     void printTop() {
         std::cout << std::to_string(state->getTop());
     }
