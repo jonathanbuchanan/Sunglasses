@@ -18,24 +18,24 @@ for directory, subFolders, files in os.walk("./"):
             allowedDirectory = False
             break
     if allowedDirectory:
-        print(directory)
         for file in files:
             allowed = False
             for ending in allowedEndings:
                 if file.endswith(ending):
                     allowed = True
-                if allowed:
-                    inHeader = True
-                    filepath = directory + '/' + file
-                    for line in fileinput.input(filepath, inplace = True, backup = False):
-                        if line.startswith('//') and inHeader:
-                            continue
-                        else:
-                            print(line, end = '')
-                            inHeader = False
-                    for lineNumber, line in enumerate(fileinput.input(filepath, inplace = True, backup = False)):
-                        if lineNumber == 0:
-                            print(copyright, end = '')
-                            print(line, end = '')
-                        else:
-                            print(line, end = '')
+            if allowed:
+                inHeader = True
+                filepath = directory + '/' + file
+                print(filepath)
+                for line in fileinput.input(filepath, inplace = True, backup = False):
+                    if line.startswith('//') and inHeader:
+                        continue
+                    else:
+                        print(line, end = '')
+                        inHeader = False
+                for lineNumber, line in enumerate(fileinput.input(filepath, inplace = True, backup = False)):
+                    if lineNumber == 0:
+                        print(copyright, end = '')
+                        print(line, end = '')
+                    else:
+                        print(line, end = '')
