@@ -65,7 +65,7 @@ namespace _SunPrivateScripting {
         }
 
         void registerAsFunction(SunLuaState *state, SunLuaValue value) {
-            std::vector<_SunPrivateScripting::SunLuaType> tables = value.getTables();
+            std::vector<_SunPrivateScripting::SunLuaPrimitive> tables = value.getTables();
             if (tables.size() >= 2) {
                 state->getGlobal((const char *)tables[0]);
                 for (int i = 1; i < tables.size() - 1; i++) {
@@ -134,7 +134,7 @@ namespace _SunPrivateScripting {
         }
 
         void registerAsFunction(SunLuaState *state, SunLuaValue value) {
-            std::vector<_SunPrivateScripting::SunLuaType> tables = value.getTables();
+            std::vector<_SunPrivateScripting::SunLuaPrimitive> tables = value.getTables();
             if (tables.size() >= 2) {
                 state->getGlobal((const char *)tables[0]);
                 for (int i = 1; i < tables.size() - 1; i++) {

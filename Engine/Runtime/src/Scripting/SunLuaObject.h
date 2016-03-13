@@ -26,7 +26,7 @@ namespace _SunPrivateScripting {
         }
 
         SunLuaObject(SunLuaState *state, SunLuaValue value, S *object, T... functions) {
-            std::vector<_SunPrivateScripting::SunLuaType> tables = value.getTables();
+            std::vector<_SunPrivateScripting::SunLuaPrimitive> tables = value.getTables();
             if (tables.size() >= 2) {
                 state->getGlobal((const char *)tables[0]);
                 for (int i = 1; i < tables.size() - 1; i++) {

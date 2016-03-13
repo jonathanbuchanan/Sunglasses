@@ -51,11 +51,11 @@ namespace _SunPrivateScripting {
     }
 
     SunLuaValue SunLuaValue::operator[](const int &element) {
-        return SunLuaValue(state, tables, _SunPrivateScripting::SunLuaType(element));
+        return SunLuaValue(state, tables, _SunPrivateScripting::SunLuaPrimitive(element));
     }
 
     SunLuaValue SunLuaValue::operator[](const char *element) {
-        return SunLuaValue(state, tables, _SunPrivateScripting::SunLuaType(element));
+        return SunLuaValue(state, tables, _SunPrivateScripting::SunLuaPrimitive(element));
     }
 
     void SunLuaValue::operator=(const int &x) {

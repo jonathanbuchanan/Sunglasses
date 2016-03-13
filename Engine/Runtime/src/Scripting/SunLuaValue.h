@@ -14,11 +14,11 @@
 #include <iostream>
 
 namespace _SunPrivateScripting {
-    struct SunLuaType {
-        SunLuaType(int x) : i(x) { type = Integer; }
-        SunLuaType(double x) : n(x) { type = Number; }
-        SunLuaType(bool x) : b(x) { type = Boolean; }
-        SunLuaType(const char *x) : s(x) { type = String; }
+    struct SunLuaPrimitive {
+        SunLuaPrimitive(int x) : i(x) { type = Integer; }
+        SunLuaPrimitive(double x) : n(x) { type = Number; }
+        SunLuaPrimitive(bool x) : b(x) { type = Boolean; }
+        SunLuaPrimitive(const char *x) : s(x) { type = String; }
 
         operator int() {
             return i;
@@ -70,9 +70,9 @@ namespace _SunPrivateScripting {
 
     class SunLuaValue {
     public:
-        SunLuaValue(SunLuaState *s, const char *_var) : state(s), tables() { tables.push_back(_SunPrivateScripting::SunLuaType(_var)); }
+        SunLuaValue(SunLuaState *s, const char *_var) : state(s), tables() { tables.push_back(_SunPrivateScripting::SunLuaPrimitive(_var)); }
         SunLuaValue(SunLuaState *s, bool _isFunctionReturn, int _index);
-        SunLuaValue(SunLuaState *s, std::vector<_SunPrivateScripting::SunLuaType> _tables, _SunPrivateScripting::SunLuaType _next) : state(s), tables(_tables) { tables.push_back(_next); }
+        SunLuaValue(SunLuaState *s, std::vector<_SunPrivateScripting::SunLuaPrimitive> _tables, _SunPrivateScripting::SunLuaPrimitive _next) : state(s), tables(_tables) { tables.push_back(_next); }
 
         void newTable();
 
@@ -111,7 +111,7 @@ namespace _SunPrivateScripting {
         void operator=(const bool &x);
         void operator=(const char *x);
 
-        std::vector<_SunPrivateScripting::SunLuaType> getTables() { return tables; }
+        std::vector<_SunPrivateScripting::SunLuaPrimitive> getTables() { return tables; }
     private:
         void getGlobal();
         void cleanGet();
@@ -144,7 +144,7 @@ namespace _SunPrivateScripting {
         void setUpSetTable();
         void cleanUpSetTable();
 
-        std::vector<_SunPrivateScripting::SunLuaType> tables;
+        std::vector<_SunPrivateScripting::SunLuaPrimitive> tables;
         int index = -1;
         bool isFunctionReturn = false;
         SunLuaState *state;
