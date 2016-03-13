@@ -15,10 +15,12 @@ var searchData=
   ['getphysicsenabled',['getPhysicsEnabled',['../classSunObject.html#a95754406a40e4489cf8f0159d34a1b75',1,'SunObject']]],
   ['getposition',['getPosition',['../classSunObject.html#a3c858712b173f5b4045161af93d2d0b3',1,'SunObject']]],
   ['getrecursive',['getRecursive',['../classSunAction.html#aab25aa17f79c4fb8878d598023d121e7',1,'SunAction']]],
+  ['getroot',['getRoot',['../classSunScene.html#a071d6d827d7af8b09d057c67fdc16af9',1,'SunScene']]],
   ['getrotation',['getRotation',['../classSunObject.html#a732053ae953d4e67a44343c957f0b105',1,'SunObject']]],
   ['getscale',['getScale',['../classSunObject.html#a3d8546997918dffc9c160c7a51e4a30c',1,'SunObject']]],
   ['getservice',['getService',['../classSunBase.html#a09597065ea3014c89cf03b097800fcce',1,'SunBase']]],
   ['getsubnodeatindex',['getSubNodeAtIndex',['../classSunNode.html#a3bf99676da86e63b01b2d039876858b9',1,'SunNode']]],
   ['getsubnodes',['getSubNodes',['../classSunNode.html#af3d52bc6f92db45e04061c1c8b716a7d',1,'SunNode']]],
-  ['getsubnodessize',['getSubNodesSize',['../classSunNode.html#aee504e58b401c3ff4ed7b015b57e3749',1,'SunNode']]]
+  ['getsubnodessize',['getSubNodesSize',['../classSunNode.html#aee504e58b401c3ff4ed7b015b57e3749',1,'SunNode']]],
+  ['guirenderer',['guiRenderer',['../classSunScene.html#a061f3d18b96a6bc0b4495ecfa52c2094',1,'SunScene']]]
 ];

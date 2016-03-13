@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['flipnormals',['flipNormals',['../classSunObject.html#ad7f983bbc90110e7078864ee5ee07648',1,'SunObject']]]
+  ['camera',['camera',['../classSunScene.html#ac24aa746af58cba0e98e23a39d1d4875',1,'SunScene']]]
 ];

@@ -19,7 +19,7 @@ void FeatureScene::init() {
 	camera.init();
 	root->addSubNode(&camera);
 
-	initRenderer<FeatureRenderer>();
+	renderer = new FeatureRenderer();
     renderer->setSceneNode(this);
 	renderer->setWindow(window);
     renderer->init();

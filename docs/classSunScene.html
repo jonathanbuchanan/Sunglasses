@@ -85,12 +85,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classSunScene-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">SunScene Class Reference</div>  </div>
+<div class="title">SunScene Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>An abstract class that is responsible for game objects, rendering, etc.  
+ <a href="classSunScene.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="SunScene_8h_source.html">SunScene.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for SunScene:</div>
 <div class="dyncontent">
@@ -103,51 +107,22 @@ Inheritance diagram for SunScene:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad47224eea0273cf252b32c5da4297251"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunScene.html#ad47224eea0273cf252b32c5da4297251">init</a> ()</td></tr>
-<tr class="memdesc:ad47224eea0273cf252b32c5da4297251"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the object.  <a href="#ad47224eea0273cf252b32c5da4297251">More...</a><br /></td></tr>
-<tr class="separator:ad47224eea0273cf252b32c5da4297251"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7755d9fe5495f3b539acc32e40822141"><td class="memTemplParams" colspan="2"><a class="anchor" id="a7755d9fe5495f3b539acc32e40822141"></a>
-template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a7755d9fe5495f3b539acc32e40822141"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>initRenderer</b> ()</td></tr>
-<tr class="separator:a7755d9fe5495f3b539acc32e40822141"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a071a471f28776ee2e530c4eb14e7fbec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a071a471f28776ee2e530c4eb14e7fbec"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>cycle</b> ()</td></tr>
+<tr class="memitem:ac6b7fb5c1eeb0317d2051b6fba9e076f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunScene.html#ac6b7fb5c1eeb0317d2051b6fba9e076f">SunScene</a> ()</td></tr>
+<tr class="memdesc:ac6b7fb5c1eeb0317d2051b6fba9e076f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Constructor.  <a href="#ac6b7fb5c1eeb0317d2051b6fba9e076f">More...</a><br /></td></tr>
+<tr class="separator:ac6b7fb5c1eeb0317d2051b6fba9e076f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8555030214ba72ad265bdbb3af8e713"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunScene.html#af8555030214ba72ad265bdbb3af8e713">init</a> ()=0</td></tr>
+<tr class="memdesc:af8555030214ba72ad265bdbb3af8e713"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the object.  <a href="#af8555030214ba72ad265bdbb3af8e713">More...</a><br /></td></tr>
+<tr class="separator:af8555030214ba72ad265bdbb3af8e713"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a071a471f28776ee2e530c4eb14e7fbec"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunScene.html#a071a471f28776ee2e530c4eb14e7fbec">cycle</a> ()</td></tr>
+<tr class="memdesc:a071a471f28776ee2e530c4eb14e7fbec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the actions required every game loop.  <a href="#a071a471f28776ee2e530c4eb14e7fbec">More...</a><br /></td></tr>
 <tr class="separator:a071a471f28776ee2e530c4eb14e7fbec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a230312c102093b00d9b1eeb7d078d2e5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a230312c102093b00d9b1eeb7d078d2e5"></a>
-<a class="el" href="classSunPhysicsSimulator.html">SunPhysicsSimulator</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPhysicsSimulator</b> ()</td></tr>
-<tr class="separator:a230312c102093b00d9b1eeb7d078d2e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a071d6d827d7af8b09d057c67fdc16af9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a071d6d827d7af8b09d057c67fdc16af9"></a>
-<a class="el" href="classSunObject.html">SunObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getRoot</b> ()</td></tr>
+<a class="el" href="classSunObject.html">SunObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunScene.html#a071d6d827d7af8b09d057c67fdc16af9">getRoot</a> ()</td></tr>
+<tr class="memdesc:a071d6d827d7af8b09d057c67fdc16af9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the root member (<a class="el" href="classSunObject.html" title="A SunNode intended to be used in the scene graph as a game object. ">SunObject</a> pointer). <br /></td></tr>
 <tr class="separator:a071d6d827d7af8b09d057c67fdc16af9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a785088780a2009c4991aa8bcd358373d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a785088780a2009c4991aa8bcd358373d"></a>
-<a class="el" href="classSunCamera.html">SunCamera</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getCamera</b> ()</td></tr>
-<tr class="separator:a785088780a2009c4991aa8bcd358373d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae89c35212d64ab57dcbbf294ecdca2c9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae89c35212d64ab57dcbbf294ecdca2c9"></a>
-<a class="el" href="classSunSoundListener.html">SunSoundListener</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getListener</b> ()</td></tr>
-<tr class="separator:ae89c35212d64ab57dcbbf294ecdca2c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8fd6c8bb1acfcee9783fd8297ee9dab3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8fd6c8bb1acfcee9783fd8297ee9dab3"></a>
-GLboolean &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getDoCameraInput</b> ()</td></tr>
-<tr class="separator:a8fd6c8bb1acfcee9783fd8297ee9dab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1454fcacf06caa9f31a5a351c25bf045"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1454fcacf06caa9f31a5a351c25bf045"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setDoCameraInput</b> (GLboolean _x)</td></tr>
-<tr class="separator:a1454fcacf06caa9f31a5a351c25bf045"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73e41197c1e23410fba71451f7b9201c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73e41197c1e23410fba71451f7b9201c"></a>
-<a class="el" href="classSunSoundBufferStorage.html">SunSoundBufferStorage</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getSoundStorage</b> ()</td></tr>
-<tr class="separator:a73e41197c1e23410fba71451f7b9201c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef4a0f0659e73391e921132da8d32224"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aef4a0f0659e73391e921132da8d32224"></a>
-<a class="el" href="classSunMusicObject.html">SunMusicObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getMusic</b> ()</td></tr>
-<tr class="separator:aef4a0f0659e73391e921132da8d32224"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03160c2b31b8a30586234f5bd837d08b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a03160c2b31b8a30586234f5bd837d08b"></a>
-bool &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getAutoplay</b> ()</td></tr>
-<tr class="separator:a03160c2b31b8a30586234f5bd837d08b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac10a4fabfb87cfcbd04bec65e06b526e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac10a4fabfb87cfcbd04bec65e06b526e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setAutoplay</b> (bool _autoplay)</td></tr>
-<tr class="separator:ac10a4fabfb87cfcbd04bec65e06b526e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3296b6cf9f2e6af062d9915122dfe428"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3296b6cf9f2e6af062d9915122dfe428"></a>
-GLFWwindow *&#160;</td><td class="memItemRight" valign="bottom"><b>getWindow</b> ()</td></tr>
-<tr class="separator:a3296b6cf9f2e6af062d9915122dfe428"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74c9a99c14d179b5a72c0f8391ccae81"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a74c9a99c14d179b5a72c0f8391ccae81"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setWindow</b> (GLFWwindow *_window)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunScene.html#a74c9a99c14d179b5a72c0f8391ccae81">setWindow</a> (GLFWwindow *_window)</td></tr>
+<tr class="memdesc:a74c9a99c14d179b5a72c0f8391ccae81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the window member (GLFWwindow pointer). <br /></td></tr>
 <tr class="separator:a74c9a99c14d179b5a72c0f8391ccae81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classSunBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classSunBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classSunBase.html">SunBase</a></td></tr>
 <tr class="memitem:a24d3c6a7961e6535097bdb63d50a30f8 inherit pub_methods_classSunBase"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunBase.html#a24d3c6a7961e6535097bdb63d50a30f8">SunBase</a> ()</td></tr>
@@ -182,43 +157,48 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:abdb566d09ff7a70787f7eeb91bb931ec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abdb566d09ff7a70787f7eeb91bb931ec"></a>
-<a class="el" href="classSunObject.html">SunObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>root</b></td></tr>
+<a class="el" href="classSunObject.html">SunObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunScene.html#abdb566d09ff7a70787f7eeb91bb931ec">root</a></td></tr>
+<tr class="memdesc:abdb566d09ff7a70787f7eeb91bb931ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the root object in the scene graph. <br /></td></tr>
 <tr class="separator:abdb566d09ff7a70787f7eeb91bb931ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a337913c8697200b0f7e90a965d024cb9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a337913c8697200b0f7e90a965d024cb9"></a>
-<a class="el" href="classSunRenderer.html">SunRenderer</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>renderer</b></td></tr>
+<a class="el" href="classSunRenderer.html">SunRenderer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunScene.html#a337913c8697200b0f7e90a965d024cb9">renderer</a></td></tr>
+<tr class="memdesc:a337913c8697200b0f7e90a965d024cb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the scene renderer. <br /></td></tr>
 <tr class="separator:a337913c8697200b0f7e90a965d024cb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a061f3d18b96a6bc0b4495ecfa52c2094"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a061f3d18b96a6bc0b4495ecfa52c2094"></a>
-<a class="el" href="classSunGUIRenderer.html">SunGUIRenderer</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>guiRenderer</b></td></tr>
+<a class="el" href="classSunGUIRenderer.html">SunGUIRenderer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunScene.html#a061f3d18b96a6bc0b4495ecfa52c2094">guiRenderer</a></td></tr>
+<tr class="memdesc:a061f3d18b96a6bc0b4495ecfa52c2094"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the GUI renderer. <br /></td></tr>
 <tr class="separator:a061f3d18b96a6bc0b4495ecfa52c2094"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a250357c5483241033e4cfeed9a443c43"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a250357c5483241033e4cfeed9a443c43"></a>
-<a class="el" href="classSunTextRenderer.html">SunTextRenderer</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>textRenderer</b></td></tr>
+<a class="el" href="classSunTextRenderer.html">SunTextRenderer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunScene.html#a250357c5483241033e4cfeed9a443c43">textRenderer</a></td></tr>
+<tr class="memdesc:a250357c5483241033e4cfeed9a443c43"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the text renderer. <br /></td></tr>
 <tr class="separator:a250357c5483241033e4cfeed9a443c43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac24aa746af58cba0e98e23a39d1d4875"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac24aa746af58cba0e98e23a39d1d4875"></a>
-<a class="el" href="classSunCamera.html">SunCamera</a>&#160;</td><td class="memItemRight" valign="bottom"><b>camera</b></td></tr>
+<a class="el" href="classSunCamera.html">SunCamera</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunScene.html#ac24aa746af58cba0e98e23a39d1d4875">camera</a></td></tr>
+<tr class="memdesc:ac24aa746af58cba0e98e23a39d1d4875"><td class="mdescLeft">&#160;</td><td class="mdescRight">The scene's camera. <br /></td></tr>
 <tr class="separator:ac24aa746af58cba0e98e23a39d1d4875"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e9ca117616bdaeaf076bf17d2c2656c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3e9ca117616bdaeaf076bf17d2c2656c"></a>
-<a class="el" href="classSunSoundListener.html">SunSoundListener</a>&#160;</td><td class="memItemRight" valign="bottom"><b>listener</b></td></tr>
+<a class="el" href="classSunSoundListener.html">SunSoundListener</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunScene.html#a3e9ca117616bdaeaf076bf17d2c2656c">listener</a></td></tr>
+<tr class="memdesc:a3e9ca117616bdaeaf076bf17d2c2656c"><td class="mdescLeft">&#160;</td><td class="mdescRight">OLD. <br /></td></tr>
 <tr class="separator:a3e9ca117616bdaeaf076bf17d2c2656c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8b43570c06399a2182a15a2a93145b3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af8b43570c06399a2182a15a2a93145b3"></a>
-GLboolean&#160;</td><td class="memItemRight" valign="bottom"><b>doCameraInput</b> = true</td></tr>
-<tr class="separator:af8b43570c06399a2182a15a2a93145b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
 <tr class="memitem:aaff501e1c38d12e48b4a2c56c10ee25e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaff501e1c38d12e48b4a2c56c10ee25e"></a>
-<a class="el" href="classSunPhysicsSimulator.html">SunPhysicsSimulator</a>&#160;</td><td class="memItemRight" valign="bottom"><b>physicsSimulator</b></td></tr>
+<a class="el" href="classSunPhysicsSimulator.html">SunPhysicsSimulator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunScene.html#aaff501e1c38d12e48b4a2c56c10ee25e">physicsSimulator</a></td></tr>
+<tr class="memdesc:aaff501e1c38d12e48b4a2c56c10ee25e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The physics simulator. <br /></td></tr>
 <tr class="separator:aaff501e1c38d12e48b4a2c56c10ee25e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41b6b5048c96d41bd7261a13de82cf35"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a41b6b5048c96d41bd7261a13de82cf35"></a>
-<a class="el" href="classSunSoundBufferStorage.html">SunSoundBufferStorage</a>&#160;</td><td class="memItemRight" valign="bottom"><b>storage</b></td></tr>
+<a class="el" href="classSunSoundBufferStorage.html">SunSoundBufferStorage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunScene.html#a41b6b5048c96d41bd7261a13de82cf35">storage</a></td></tr>
+<tr class="memdesc:a41b6b5048c96d41bd7261a13de82cf35"><td class="mdescLeft">&#160;</td><td class="mdescRight">OLD. <br /></td></tr>
 <tr class="separator:a41b6b5048c96d41bd7261a13de82cf35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a906f913220d9025b0ade15085e9f3bac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a906f913220d9025b0ade15085e9f3bac"></a>
-<a class="el" href="classSunMusicObject.html">SunMusicObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>music</b></td></tr>
+<a class="el" href="classSunMusicObject.html">SunMusicObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunScene.html#a906f913220d9025b0ade15085e9f3bac">music</a></td></tr>
+<tr class="memdesc:a906f913220d9025b0ade15085e9f3bac"><td class="mdescLeft">&#160;</td><td class="mdescRight">OLD. <br /></td></tr>
 <tr class="separator:a906f913220d9025b0ade15085e9f3bac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56504a333e4df4e4c1f36168fd6adc02"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a56504a333e4df4e4c1f36168fd6adc02"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>autoplay</b></td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunScene.html#a56504a333e4df4e4c1f36168fd6adc02">autoplay</a></td></tr>
+<tr class="memdesc:a56504a333e4df4e4c1f36168fd6adc02"><td class="mdescLeft">&#160;</td><td class="mdescRight">OLD. <br /></td></tr>
 <tr class="separator:a56504a333e4df4e4c1f36168fd6adc02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b08e1db4cb25bfaede3be05c0b3d8b9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9b08e1db4cb25bfaede3be05c0b3d8b9"></a>
-GLFWwindow *&#160;</td><td class="memItemRight" valign="bottom"><b>window</b></td></tr>
+GLFWwindow *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunScene.html#a9b08e1db4cb25bfaede3be05c0b3d8b9">window</a></td></tr>
+<tr class="memdesc:a9b08e1db4cb25bfaede3be05c0b3d8b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the window (GLFWwindow) <br /></td></tr>
 <tr class="separator:a9b08e1db4cb25bfaede3be05c0b3d8b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
@@ -229,8 +209,56 @@ static std::map&lt; std::string, <a class="el" href="classSunService.html">SunSe
 <tr class="memdesc:a8f3e701f17a90bc38c224c76b1687e6b inherit pub_static_attribs_classSunBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">A map containing services that correspond to names (strings) <br /></td></tr>
 <tr class="separator:a8f3e701f17a90bc38c224c76b1687e6b inherit pub_static_attribs_classSunBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>An abstract class that is responsible for game objects, rendering, etc. </p>
+<p>The <a class="el" href="classSunScene.html" title="An abstract class that is responsible for game objects, rendering, etc. ">SunScene</a> class is a class that is responsible for maintaining the scene graph, the rendering, audio, physics, game logic, and AI systems. The class is abstract, so you must implement its initialization code yourself. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ac6b7fb5c1eeb0317d2051b6fba9e076f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SunScene::SunScene </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default Constructor. </p>
+<p>The default constructor of <a class="el" href="classSunScene.html" title="An abstract class that is responsible for game objects, rendering, etc. ">SunScene</a> initializes it with nothing. </p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ad47224eea0273cf252b32c5da4297251"></a>
+<a class="anchor" id="a071a471f28776ee2e530c4eb14e7fbec"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SunScene::cycle </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Performs the actions required every game loop. </p>
+<p>This function does the things required every cycle to make the game run. These things include sending the update action to the scene graph, rendering the scene, simulating physics, etc. You must override this to provide your own functionality every cycle in your scene. </p>
+
+</div>
+</div>
+<a class="anchor" id="af8555030214ba72ad265bdbb3af8e713"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -246,13 +274,13 @@ static std::map&lt; std::string, <a class="el" href="classSunService.html">SunSe
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>Initializes the object. </p>
-<p>This function should be called to initialize the object. Since <a class="el" href="classSunBase.html" title="An object with a name, a map of actions, and a map of services. ">SunBase</a> shouldn't ever be used on its own, this is a pure virtual member function which makes <a class="el" href="classSunBase.html" title="An object with a name, a map of actions, and a map of services. ">SunBase</a> abstract. </p>
+<p>This pure virtual member function is where the code that sets up the scene graph and initializes the "cycle objects (renderer, physics simulator, etc.)". </p>
 
 <p>Implements <a class="el" href="classSunBase.html#a877baf14bba4eb902b8bd7062c351046">SunBase</a>.</p>
 
