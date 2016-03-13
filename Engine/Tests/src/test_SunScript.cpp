@@ -192,10 +192,20 @@ TEST_F(SunScriptTest, Objects) {
 }
 
 TEST_F(SunScriptTest, Types) {
-    script.registerType<glm::vec3>("vec3");
-    script.registerTypeMembers("vec3", "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
+    script.registerType<glm::vec3>("vec3", "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
     glm::vec3 testvec = glm::vec3(0.1, 2.3, 45.67);
     script.registerObjectAsType("testvec", "vec3", &testvec);
+    double y = script["testvec"]["y"]();
+    EXPECT_FLOAT_EQ(y, 2.3);
+
+    script["vectors"].newTable();
+
+    script.registerType<glm::vec2>("vec2", "x", &glm::vec2::x, "y", &glm::vec2::y);
+    glm::vec2 testvec2 = glm::vec2(123.4, 567.809);
+    script.registerObjectAsType(script["vectors"]["testvec2"], "vec2", &testvec2);
+    EXPECT_FLOAT_EQ((double)script["vectors"]["testvec2"]["x"](), 123.4);
+
+
     script("vectable = testvec.table()");
 
     double x = script["vectable"]["x"];

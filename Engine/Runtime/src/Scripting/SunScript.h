@@ -4,6 +4,7 @@
 #ifndef SUNSCRIPT_H
 #define SUNSCRIPT_H
 
+#include <vector>
 #include <map>
 #include <memory>
 #include <iostream>
@@ -13,6 +14,7 @@
 #include "SunLuaState.h"
 #include "SunLuaCFunction.h"
 #include "SunLuaObject.h"
+#include "SunLuaType.h"
 
 class SunScript {
 public:
@@ -57,19 +59,21 @@ public:
         objects.push_back(std::unique_ptr<_SunPrivateScripting::_SunLuaObject_Base>(new _SunPrivateScripting::SunLuaObject<S, T...>(state, value, object, functions...)));
     }
 
-    template<typename T>
-    void registerType(std::string type) {
-
-    }
-
-    template<typename... T>
-    void registerTypeMembers(std::string type, T... members) {
-
+    template<typename S, typename... T>
+    void registerType(std::string type, T... members) {
+        types[type] = std::shared_ptr<_SunPrivateScripting::_SunLuaType_Base>(new _SunPrivateScripting::SunLuaType<S, T...>(members...));
     }
 
     template<typename T>
     void registerObjectAsType(std::string name, std::string type, T *object) {
+        auto element = types[type];
+        element->registerObject(state, name.c_str(), object);
+    }
 
+    template<typename T>
+    void registerObjectAsType(_SunPrivateScripting::SunLuaValue value, std::string type, T *object) {
+        auto element = types[type];
+        element->registerObject(state, value, object);
     }
 
     void printTop() {
@@ -81,6 +85,7 @@ private:
 
     std::vector<_SunPrivateScripting::_SunLuaCFunction_Base *> functions;
     std::vector<std::shared_ptr<_SunPrivateScripting::_SunLuaObject_Base>> objects;
+    std::map<std::string, std::shared_ptr<_SunPrivateScripting::_SunLuaType_Base>> types;
 };
 
 #endif
