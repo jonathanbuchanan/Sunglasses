@@ -210,4 +210,10 @@ TEST_F(SunScriptTest, Types) {
 
     double x = script["vectable"]["x"];
     EXPECT_FLOAT_EQ(x, 0.1);
+
+    script("vectable.z = 24");
+    script("testvec.assignTable(vectable)");
+
+    double z = script["testvec"]["z"]();
+    EXPECT_FLOAT_EQ(z, 24);
 }
