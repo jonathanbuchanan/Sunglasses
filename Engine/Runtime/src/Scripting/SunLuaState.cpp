@@ -195,6 +195,10 @@ namespace _SunPrivateScripting {
         lua_pushcclosure(state, function, upvalues);
     }
 
+    void SunLuaState::pushCFunction(lua_CFunction function) {
+        lua_pushcfunction(state, function);
+    }
+
     void SunLuaState::pop(int count) {
         lua_pop(state, count);
     }

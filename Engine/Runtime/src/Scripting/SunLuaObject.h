@@ -10,6 +10,7 @@
 
 #include "SunLuaObjectFunction.h"
 #include "SunLuaValue.h"
+#include "SunLuaRawCFunction.h"
 
 namespace _SunPrivateScripting {
     class _SunLuaObject_Base {
@@ -20,12 +21,15 @@ namespace _SunPrivateScripting {
     class SunLuaObject : public _SunPrivateScripting::_SunLuaObject_Base {
     public:
         SunLuaObject(SunLuaState *state, const char *name, S *object, T... functions) {
+            members = std::make_tuple(functions...);
             state->newTable();
             iterateRegister(state, object, functions...);
+            registerToTable(state, object);
             state->setGlobal(name);
         }
 
         SunLuaObject(SunLuaState *state, SunLuaValue value, S *object, T... functions) {
+            members = std::make_tuple(functions...);
             std::vector<_SunPrivateScripting::SunLuaPrimitive> tables = value.getTables();
             if (tables.size() >= 2) {
                 state->getGlobal((const char *)tables[0]);
@@ -37,13 +41,50 @@ namespace _SunPrivateScripting {
             }
             state->newTable();
             iterateRegister(state, object, functions...);
+            registerToTable(state, object);
             if (tables.size() < 2)
                 state->setGlobal((const char *)tables[0]);
             else
                 state->setTable(-3);
             state->pop(tables.size() - 1);
         }
+
+        template<int... N>
+        void beginTable(lua_State *l, S *object, _SunPrivateScripting::seq<N...>) {
+            generateTable(l, object, std::get<N>(members)...);
+        }
+
+        template<typename Head, typename... Tail>
+        void generateTable(lua_State *l, S *object, const char *name, Head head, Tail... tail) {
+            luaTableAdd(l, object, name, head);
+            generateTable(l, object, tail...);
+        }
+
+        template<typename Head>
+        void generateTable(lua_State *l, S *object, const char *name, Head head) {
+            luaTableAdd(l, object, name, head);
+        }
     private:
+        void registerToTable(SunLuaState *state, S *object) {
+            std::function<void(lua_State *l)> toTable = [this, object](lua_State *l) -> void {
+                lua_newtable(l); // Create table
+                beginTable(l, object, typename _SunPrivateScripting::gens<sizeof...(T)>::type());
+            };
+            functions.push_back(std::unique_ptr<_SunLuaCFunction_Base>(new SunLuaRawCFunction(state, "toTable", toTable, true)));
+        }
+
+        template<typename Member>
+        void luaTableAdd(lua_State *l, S *object, const char *name, Member S::*var) {
+            lua_pushstring(l, name);
+            push(l, object->*var);
+            lua_settable(l, -3);
+        }
+
+        template<typename Ret, typename... Args>
+        void luaTableAdd(lua_State *l, S *object, const char *name, Ret(S::*function)(Args...)) {
+
+        }
+
         template<typename Func, typename... Tail>
         void iterateRegister(SunLuaState *state, S *object, std::string name, Func function, Tail... tail) {
             registerFunction(state, object, name.c_str(), function);
@@ -78,6 +119,7 @@ namespace _SunPrivateScripting {
             functions.push_back(std::unique_ptr<_SunPrivateScripting::_SunLuaCFunction_Base>(new SunLuaObjectFunction<void, Member>(state, prefix, setter)));
         }
 
+        std::tuple<T...> members;
         std::vector<std::unique_ptr<_SunPrivateScripting::_SunLuaCFunction_Base>> functions;
     };
 }

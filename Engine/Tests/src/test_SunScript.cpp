@@ -206,8 +206,8 @@ TEST_F(SunScriptTest, Types) {
     EXPECT_FLOAT_EQ((double)script["vectors"]["testvec2"]["x"](), 123.4);
 
 
-    script("vectable = testvec.table()");
+    script("vectable = testvec.toTable()");
 
     double x = script["vectable"]["x"];
-    EXPECT_DOUBLE_EQ(x, 0.1);
+    EXPECT_FLOAT_EQ(x, 0.1);
 }

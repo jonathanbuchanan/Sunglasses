@@ -4,6 +4,7 @@
 #include "SunLuaCFunction.h"
 #include "SunLuaObject.h"
 #include "SunLuaObjectFunction.h"
+#include "SunLuaRawCFunction.h"
 #include "SunLuaState.h"
 #include "SunLuaType.h"
 #include "SunLuaValue.h"

@@ -111,6 +111,7 @@ namespace _SunPrivateScripting {
         void pushLightUserdata(void *data);
 
         void pushCClosure(lua_CFunction function, int upvalues);
+        void pushCFunction(lua_CFunction function);
 
         void pop(int count);
         void pop(); // Default Count = 1
