@@ -30,9 +30,10 @@ void SunCamera::init() {
     script.loadFile("../../Engine/Scripts/SunCamera.lua");
 
     script.registerObject("camera", this, "yaw", &SunCamera::yaw, "pitch", &SunCamera::pitch, "FOV", &SunCamera::FOV);
-    script.registerObject(script["camera"]["position"], &position, "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
-    script.registerObject(script["camera"]["direction"], &direction, "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
-    script.registerObject(script["camera"]["up"], &cameraUp, "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
+    script.registerType<glm::vec3>("vec3", "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
+    script.registerObjectAsType(script["camera"]["position"], "vec3", &position);
+    script.registerObjectAsType(script["camera"]["direction"], "vec3", &direction);
+    script.registerObjectAsType(script["camera"]["up"], "vec3", &cameraUp);
 
     script.registerObject("window_manager", (SunWindowManager *)getService("window_manager"), "getDelta", &SunWindowManager::getDelta);
     script.registerObject("keyboard_manager", (SunKeyboardManager *)getService("keyboard_manager"), "pollKey", &SunKeyboardManager::keyDown);
