@@ -12,8 +12,6 @@
 #include "../Audio/SunSoundObject.h"
 #include "../Graphics/SunModel.h"
 
-#include "Utility.h"
-
 /// A SunNode intended to be used in the scene graph as a game object
 /**
  * SunObject is a SunNode subclass that is intended to be used as an object in the

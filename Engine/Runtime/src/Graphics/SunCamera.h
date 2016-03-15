@@ -13,8 +13,8 @@ using namespace std;
 #include <glm/gtc/type_ptr.hpp>
 
 #include "../Core/SunNode.h"
-#include "../Core/Utility.h"
 #include "SunWindowManager.h"
+class SunShader;
 #include "../Input/SunKeyboardManager.h"
 #include "../Input/SunCursorManager.h"
 #include "../Scripting/SunScript.h"
