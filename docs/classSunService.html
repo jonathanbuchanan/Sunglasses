@@ -84,12 +84,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classSunService-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">SunService Class Reference</div>  </div>
+<div class="title">SunService Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>An abstract class that is used to provide services to all <a class="el" href="classSunBase.html" title="An object with a name, a map of actions, and a map of services. ">SunBase</a> objects.  
+ <a href="classSunService.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="SunService_8h_source.html">SunService.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for SunService:</div>
 <div class="dyncontent">
@@ -106,19 +111,101 @@ Inheritance diagram for SunService:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9e9a696e3c348814db7e682bb62d03fd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9e9a696e3c348814db7e682bb62d03fd"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>SunService</b> (std::string _name)</td></tr>
+<tr class="memitem:a73f015cd87d1e2c1decd64cb7fd9f556"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunService.html#a73f015cd87d1e2c1decd64cb7fd9f556">SunService</a> ()</td></tr>
+<tr class="memdesc:a73f015cd87d1e2c1decd64cb7fd9f556"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default constructor.  <a href="#a73f015cd87d1e2c1decd64cb7fd9f556">More...</a><br /></td></tr>
+<tr class="separator:a73f015cd87d1e2c1decd64cb7fd9f556"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e9a696e3c348814db7e682bb62d03fd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunService.html#a9e9a696e3c348814db7e682bb62d03fd">SunService</a> (std::string _name)</td></tr>
+<tr class="memdesc:a9e9a696e3c348814db7e682bb62d03fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor for the name member (string)  <a href="#a9e9a696e3c348814db7e682bb62d03fd">More...</a><br /></td></tr>
 <tr class="separator:a9e9a696e3c348814db7e682bb62d03fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a651d6e610bbdb712bbb641b8f51c9c8c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a651d6e610bbdb712bbb641b8f51c9c8c"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> ()</td></tr>
-<tr class="separator:a651d6e610bbdb712bbb641b8f51c9c8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03335ffd8e94184fae06df4815cb01bc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunService.html#a03335ffd8e94184fae06df4815cb01bc">update</a> ()=0</td></tr>
+<tr class="memdesc:a03335ffd8e94184fae06df4815cb01bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pure virtual function that should update the service.  <a href="#a03335ffd8e94184fae06df4815cb01bc">More...</a><br /></td></tr>
+<tr class="separator:a03335ffd8e94184fae06df4815cb01bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfddbc96a639578582aa9dbf2fcd4d2d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adfddbc96a639578582aa9dbf2fcd4d2d"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunService.html#adfddbc96a639578582aa9dbf2fcd4d2d">getName</a> ()</td></tr>
+<tr class="memdesc:adfddbc96a639578582aa9dbf2fcd4d2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name member (string). <br /></td></tr>
+<tr class="separator:adfddbc96a639578582aa9dbf2fcd4d2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fb086f0fe1c32789c170b9c5012d4c4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9fb086f0fe1c32789c170b9c5012d4c4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunService.html#a9fb086f0fe1c32789c170b9c5012d4c4">setName</a> (std::string _name)</td></tr>
+<tr class="memdesc:a9fb086f0fe1c32789c170b9c5012d4c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the name member (string). <br /></td></tr>
+<tr class="separator:a9fb086f0fe1c32789c170b9c5012d4c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
 <tr class="memitem:af49fc7381d5fc0d3579c3eaa261a782b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af49fc7381d5fc0d3579c3eaa261a782b"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSunService.html#af49fc7381d5fc0d3579c3eaa261a782b">name</a></td></tr>
+<tr class="memdesc:af49fc7381d5fc0d3579c3eaa261a782b"><td class="mdescLeft">&#160;</td><td class="mdescRight">A string that is used to identify the service. <br /></td></tr>
 <tr class="separator:af49fc7381d5fc0d3579c3eaa261a782b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>An abstract class that is used to provide services to all <a class="el" href="classSunBase.html" title="An object with a name, a map of actions, and a map of services. ">SunBase</a> objects. </p>
+<p><a class="el" href="classSunService.html" title="An abstract class that is used to provide services to all SunBase objects. ">SunService</a> is an abstract class that is meant to be subclassed and used to provide services to <a class="el" href="classSunBase.html" title="An object with a name, a map of actions, and a map of services. ">SunBase</a> objects. <a class="el" href="classSunBase.html" title="An object with a name, a map of actions, and a map of services. ">SunBase</a> has a static map of SunServices, which can be used to identify and use services. <a class="el" href="classSunGame.html" title="An abstract class which controls the scene. ">SunGame</a> also updates each service every game cycle. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a73f015cd87d1e2c1decd64cb7fd9f556"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SunService::SunService </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The default constructor. </p>
+<p>This constructor, which is the default constructor with no arguments, does not initialize the name member (string). </p>
+
+</div>
+</div>
+<a class="anchor" id="a9e9a696e3c348814db7e682bb62d03fd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SunService::SunService </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The constructor for the name member (string) </p>
+<p>This constructor takes the single parameter (string) and initializes the name member with it. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a03335ffd8e94184fae06df4815cb01bc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SunService::update </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A pure virtual function that should update the service. </p>
+<p>This member function, which is a pure virtual function, should be implemented in each subclass and should update the service in its implementation. </p>
+
+<p>Implemented in <a class="el" href="classSunLogger.html#acd8c15b05e0c2650bc388c33c7466025">SunLogger</a>, <a class="el" href="classSunCursorManager.html#abfa88067a2d372d979ad92bd44894255">SunCursorManager</a>, <a class="el" href="classSunWindowManager.html#a46be2ff2f2ae05ff4de2b82ce7a8a0f3">SunWindowManager</a>, <a class="el" href="classSunKeyboardManager.html#ac2eb0af942d3456aac7a664e79676678">SunKeyboardManager</a>, and <a class="el" href="classSunMouseButtonManager.html#ad3c8132ed6ac97e4be009d3636415a34">SunMouseButtonManager</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Engine/Runtime/src/Core/<a class="el" href="SunService_8h_source.html">SunService.h</a></li>
 <li>Engine/Runtime/src/Core/SunService.cpp</li>

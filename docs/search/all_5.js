@@ -6,7 +6,7 @@ var searchData=
   ['getflipnormals',['getFlipNormals',['../classSunObject.html#ac2a215ce69740cf1fa63d912a6b2d634',1,'SunObject']]],
   ['getlevel',['getLevel',['../classSunNode.html#abe94b2ec1027e17b4e2b81910adb9d69',1,'SunNode']]],
   ['getmaterial',['getMaterial',['../classSunObject.html#a88caa2b420e3c20f2337592d9eaefc80',1,'SunObject']]],
-  ['getname',['getName',['../classSunBase.html#a721cdd9a69e471fb4c5b55dc470e566b',1,'SunBase']]],
+  ['getname',['getName',['../classSunBase.html#a721cdd9a69e471fb4c5b55dc470e566b',1,'SunBase::getName()'],['../classSunService.html#adfddbc96a639578582aa9dbf2fcd4d2d',1,'SunService::getName()']]],
   ['getparameter',['getParameter',['../classSunAction.html#a2727262e9d77db944768e834bc73744b',1,'SunAction::getParameter(std::string parameter)'],['../classSunAction.html#a056cca34dbde20212466c2e95cf1396c',1,'SunAction::getParameter(std::string p)']]],
   ['getparameterpointer',['getParameterPointer',['../classSunAction.html#ad4f53f623b73ef91842d4196e9ada7a1',1,'SunAction']]],
   ['getparentatindex',['getParentAtIndex',['../classSunNode.html#a7b1294716ba9b68265f01fbbcde5e5d3',1,'SunNode']]],

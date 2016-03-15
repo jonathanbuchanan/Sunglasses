@@ -18,6 +18,8 @@ public:
 	SunWindowManager();
 	SunWindowManager(glm::vec2 _size, std::string _title, glm::vec4 _clearColor);
 
+    void update();
+
 	void initialize();
 	void terminate();
 
