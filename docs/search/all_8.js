@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['material',['material',['../classSunObject.html#ac734960672dc43437414d395685fb229',1,'SunObject']]],
-  ['models',['models',['../classSunObject.html#a313cd7dae68a945609f2dad46652a769',1,'SunObject']]],
-  ['music',['music',['../classSunScene.html#a906f913220d9025b0ade15085e9f3bac',1,'SunScene']]]
+  ['name',['name',['../classSunBase.html#af61b7e08febf10da55e099bc08f0249a',1,'SunBase::name()'],['../classSunService.html#af49fc7381d5fc0d3579c3eaa261a782b',1,'SunService::name()']]]
 ];
