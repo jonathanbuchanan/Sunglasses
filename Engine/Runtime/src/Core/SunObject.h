@@ -12,6 +12,7 @@ using namespace std;
 #include "../Physics/SunPhysicsObject.h"
 #include "../Audio/SunSoundObject.h"
 #include "../Graphics/SunModel.h"
+#include "../Scripting/SunScript.h"
 
 #include <glm/gtx/string_cast.hpp>
 #include "Utility.h"
@@ -21,6 +22,8 @@ public:
     SunObject();
     SunObject(string _name, string _modelPath, bool _flipNormals);
 	SunObject(string _name, string _modelPath, string tag, bool _flipNormals);
+
+    void loadScript(std::string _script);
 
     virtual void init();
     virtual void update(SunAction action);
@@ -56,10 +59,6 @@ public:
     inline SunSoundObject & getSoundObject() { return sound; }
     inline void setSoundObject(SunSoundObject _sound) { sound = _sound; }
 
-    inline vector<SunModel> & getModels() { return models; }
-    inline SunModel & getModelAtIndex(int i) { return models[i]; }
-    inline void addModelToModels(SunModel model) { models.push_back(model); }
-
     inline SunObjectMaterial & getMaterial() { return material; }
     inline void setMaterial(SunObjectMaterial _material) { material = _material; }
 
@@ -68,6 +67,8 @@ public:
 
     inline bool & getFlipNormals() { return flipNormals; }
     inline void setFlipNormals(bool _f) { flipNormals = _f; }
+
+    void setScriptingEnabled(bool s) { scriptingEnabled = s; }
 private:
     // Object position and rotation
     glm::vec3 position;
@@ -82,11 +83,15 @@ private:
     SunSoundObject sound;
 
     // Sub-models
-    vector<SunModel> models;
+    SunModel model;
 
     SunObjectMaterial material;
     SunMeshRenderType renderType;
     bool flipNormals = false;
+
+    // Scripting
+    SunScript script;
+    bool scriptingEnabled = false;
 };
 
 #endif

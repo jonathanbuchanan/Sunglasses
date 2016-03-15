@@ -24,24 +24,12 @@ void FeatureScene::init() {
 	renderer->setWindow(window);
     renderer->initialize();
 
-    house = new SunObject("cube", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Teapot.dae", "solid", false);
-	house->init();
-	house->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f));
-    root->addSubNode(house);
-
-	plane = new SunObject("plane", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Plane.dae", "solid", true);
+	plane = new SunObject("plane", "Resources/Graphics/Models/Plane.dae", "solid", true);
 	plane->init();
 	plane->setScale(glm::vec3(10.0f, 1.0f, 10.0f));
-	plane->setPosition(glm::vec3(0.0f, -2.0f, 0.0f));
+	plane->setPosition(glm::vec3(0.0f, -5.0f, 0.0f));
 	plane->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f));
 	root->addSubNode(plane);
-
-	light = new SunPointLight(glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(2.0f, -1.0f, 2.0f));
-	light->setCountUniform("pointLightCount");
-	light->setArrayUniform("pointLights");
-	light->addTag("light");
-	light->addTag("pointLight");
-	//root->addSubNode(light);
 
 	dir = new SunDirectionalLight(glm::vec3(1.0f, 0.75f, 0.75f), glm::vec3(2.0f, -2.0f, 1.0f));
 	dir->setCountUniform("directionalLightCount");
@@ -104,4 +92,32 @@ void FeatureScene::init() {
     item->setSize(glm::vec2(1.0f, 0.2f));
     item->setPosition(glm::vec2(-0.5f, -0.1f));
     item->setColor(glm::vec3(1.0f, 1.0f, 1.0f));
+}
+
+void FeatureScene::cycle() {
+    SunScene::cycle();
+    static bool idown = false;
+    static bool odown = false;
+    SunKeyboardManager *keyboard = ((SunKeyboardManager *)getService("keyboard_manager"));
+    if (keyboard->pollKey(GLFW_KEY_I) == true && idown == false) {
+        SunObject *teapot = new SunObject("cube", "Resources/Graphics/Models/Teapot.dae", "solid", false);
+        if (teapots.size() > 0)
+            teapot->setPosition(teapots[teapots.size() - 1]->getPosition() + glm::vec3(7.0f, 0.0f, 0.0f));
+    	teapot->init();
+        teapot->loadScript("Scripts/Teapot.lua");
+    	teapot->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f));
+        root->addSubNode(teapot);
+        teapots.push_back(teapot);
+        idown = true;
+    }
+    if (keyboard->pollKey(GLFW_KEY_I) == false)
+        idown = false;
+    if (keyboard->pollKey(GLFW_KEY_O) == true && odown == false) {
+        root->recursiveDeleteSubnode(teapots[teapots.size() - 1]);
+        delete teapots[teapots.size() - 1];
+        teapots.pop_back();
+        odown = true;
+    }
+    if (keyboard->pollKey(GLFW_KEY_O) == false)
+        odown = false;
 }

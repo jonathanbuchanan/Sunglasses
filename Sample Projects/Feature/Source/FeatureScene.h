@@ -13,6 +13,7 @@ public:
     FeatureScene();
 
     void init();
+    void cycle();
 
     inline void setWindow(GLFWwindow *w) { window = w; }
 private:
@@ -26,6 +27,7 @@ private:
 	SunObject *plane;
 	SunPointLight *light;
 	SunDirectionalLight *dir;
+    std::vector<SunObject *> teapots;
 
     GLFWwindow *window;
 };

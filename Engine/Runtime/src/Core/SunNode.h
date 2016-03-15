@@ -36,6 +36,8 @@ public:
 
     virtual void findPointerNodeWithName(std::string _name, SunNode *&_node);
 
+    virtual void recursiveDeleteSubnode(const SunNode *node);
+
     inline std::vector<SunNode *> & getSubNodes() { return subNodes; }
     inline int getSubNodesSize() { return subNodes.size(); }
     inline SunNode * getSubNodeAtIndex(int i) { return subNodes[i]; }

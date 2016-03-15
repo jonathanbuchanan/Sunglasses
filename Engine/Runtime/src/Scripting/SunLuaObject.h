@@ -56,6 +56,8 @@ namespace _SunPrivateScripting {
             generateTable(l, object, std::get<N>(members)...);
         }
 
+        void generateTable(lua_State *l, S *object) { }
+
         template<typename Head, typename... Tail>
         void generateTable(lua_State *l, S *object, const char *name, Head head, Tail... tail) {
             luaTableAdd(l, object, name, head);
@@ -71,6 +73,8 @@ namespace _SunPrivateScripting {
         void beginAssignTable(lua_State *l, S *object, seq<N...>) {
             assignTable(l, object, std::get<N>(members)...);
         }
+
+        void assignTable(lua_State *l, S *object) { }
 
         template<typename Head, typename... Tail>
         void assignTable(lua_State *l, S *object, const char *name, Head head, Tail... tail) {
@@ -120,6 +124,10 @@ namespace _SunPrivateScripting {
 
         template<typename Ret, typename... Args>
         void luaTableGet(lua_State *l, S *object, const char *name, Ret(S::*function)(Args...)) {
+
+        }
+
+        void iterateRegister(SunLuaState *state, S *object) {
 
         }
 

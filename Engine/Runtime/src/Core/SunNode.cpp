@@ -98,3 +98,12 @@ void SunNode::findPointerNodeWithName(string _name, SunNode *&_node) {
         }
     }
 }
+
+void SunNode::recursiveDeleteSubnode(const SunNode *node) {
+    for (int i = 0; i < subNodes.size(); i++) {
+        if (subNodes[i] == node)
+            subNodes.erase(subNodes.begin() + i);
+        else
+            subNodes[i]->recursiveDeleteSubnode(node);
+    }
+}
