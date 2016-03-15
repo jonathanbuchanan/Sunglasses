@@ -32,28 +32,28 @@ void SunGame::cleanUp() { /* THIS MUST BE IMPLEMENTED!!! */
 void SunGame::init(std::string title, glm::vec4 color) {
 	// Initialize the Window Manager
 	SunWindowManager *windowManager = new SunWindowManager(glm::vec2(800.0f, 600.0f), title, color);
-	windowManager->name = "window_manager";
+	windowManager->setName("window_manager");
 	addService(windowManager);
 	window = windowManager->getWindow();
 
 	// Initialize the Keyboard Manager
 	SunKeyboardManager *keyboard = new SunKeyboardManager(window);
-	keyboard->name = "keyboard_manager";
+	keyboard->setName("keyboard_manager");
 	addService(keyboard);
 
 	// Initialize the Cursor Manager
 	SunCursorManager *cursor = new SunCursorManager(window, true);
-	cursor->name = "cursor_manager";
+	cursor->setName("cursor_manager");
 	addService(cursor);
 
 	// Initialize the Mouse Button Manager
 	SunMouseButtonManager *mouseButton = new SunMouseButtonManager(window);
-	mouseButton->name = "mouse_button_manager";
+	mouseButton->setName("mouse_button_manager");
 	addService(mouseButton);
 
 	// Initialize the Logger
 	SunLogger *logger = new SunLogger();
-	logger->name = "logger";
+	logger->setName("logger");
 	addService(logger);
 }
 

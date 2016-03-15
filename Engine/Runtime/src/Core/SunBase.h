@@ -77,7 +77,7 @@ public:
      * This function adds a service (first parameter) to the service map. The key
      * in the map is automatically determined by the name of the service.
      */
-    void addService(SunService *s) { services[s->name] = s; }
+    void addService(SunService *s) { services[s->getName()] = s; }
 
     /// A map containing services that correspond to names (strings)
 	static std::map<std::string, SunService *> services;
