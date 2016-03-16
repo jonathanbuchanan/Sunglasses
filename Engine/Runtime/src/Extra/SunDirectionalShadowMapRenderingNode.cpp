@@ -3,6 +3,10 @@
 // See LICENSE.md for details.
 #include "SunDirectionalShadowMapRenderingNode.h"
 
+
+#include "../Graphics/SunWindowManager.h"
+
+
 SunShader SunDirectionalShadowMapRenderingNode::shader = {};
 bool SunDirectionalShadowMapRenderingNode::shaderInitialized = false;
 
@@ -57,9 +61,9 @@ void SunDirectionalShadowMapRenderingNode::render(SunAction action) {
 
 	// Create the light-space matrix
 	glm::mat4 projection = glm::ortho(-size.x, size.x, -size.y, size.y, nearPlane, farPlane);
-	glm::mat4 view = glm::lookAt(-light->getDirection(), glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, 1.0f)); 
+	glm::mat4 view = glm::lookAt(-light->getDirection(), glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 	glm::mat4 lightMatrix = projection * view;
-	
+
 	glViewport(0, 0, resolution.x, resolution.y);
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 	glClear(GL_DEPTH_BUFFER_BIT);
@@ -67,4 +71,4 @@ void SunDirectionalShadowMapRenderingNode::render(SunAction action) {
 	glUniformMatrix4fv(glGetUniformLocation(shader.getProgram(), "lightMatrix"), 1, GL_FALSE, glm::value_ptr(lightMatrix));
 	shader.send("", delta, root);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-} 
+}

@@ -11,6 +11,8 @@
 #include "SunTexturedQuad.h"
 #include "../Core/SunGame.h"
 
+class SunWindowManager;
+
 #ifndef SunRenderingNode_h
 #define	SunRenderingNode_h
 

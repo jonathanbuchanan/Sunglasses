@@ -15,12 +15,7 @@
 
 #include "SunBase.h"
 
-#include "SunScene.h"
-#include "../Graphics/SunWindowManager.h"
-#include "../Input/SunKeyboardManager.h"
-#include "../Input/SunCursorManager.h"
-#include "../Input/SunMouseButtonManager.h"
-#include "../Output/SunLogger.h"
+class SunScene;
 
 using namespace std;
 

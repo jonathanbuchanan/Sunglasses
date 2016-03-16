@@ -1,0 +1,60 @@
+// Copyright 2016 Jonathan Buchanan.
+// This file is part of Sunglasses, which is licensed under the MIT License.
+// See LICENSE.md for details.
+#include "SunGlobalLogicEnvironment.h"
+
+
+#include "../Scripting/SunScript.h"
+
+
+SunGlobalLogicEnvironment::SunGlobalLogicEnvironment() {
+    initialize();
+}
+
+void SunGlobalLogicEnvironment::initialize() {
+
+}
+
+void SunGlobalLogicEnvironment::update() {
+
+}
+
+void SunGlobalLogicEnvironment::registerWithScript(SunScript *script) {
+    script->registerObject("globalenvironment", this, "setInteger", &SunGlobalLogicEnvironment::setInteger, "setBoolean", &SunGlobalLogicEnvironment::setBoolean, "setNumber", &SunGlobalLogicEnvironment::setNumber, "setString", &SunGlobalLogicEnvironment::setString, "getInteger", &SunGlobalLogicEnvironment::getInteger, "getBoolean", &SunGlobalLogicEnvironment::getBoolean, "getNumber", &SunGlobalLogicEnvironment::getNumber, "getString", &SunGlobalLogicEnvironment::getString);
+}
+
+void SunGlobalLogicEnvironment::registerGlobal(std::string key, _SunPrivateScripting::SunLuaPrimitive value) {
+    globals[key] = value;
+}
+
+void SunGlobalLogicEnvironment::setInteger(const char *key, int value) {
+    globals[key] = value;
+}
+
+void SunGlobalLogicEnvironment::setBoolean(const char *key, bool value) {
+    globals[key] = value;
+}
+
+void SunGlobalLogicEnvironment::setNumber(const char *key, double value) {
+    globals[key] = value;
+}
+
+void SunGlobalLogicEnvironment::setString(const char *key, const char *value) {
+    globals[key] = value;
+}
+
+int SunGlobalLogicEnvironment::getInteger(const char *key) {
+    return globals[key];
+}
+
+bool SunGlobalLogicEnvironment::getBoolean(const char *key) {
+    return globals[key];
+}
+
+double SunGlobalLogicEnvironment::getNumber(const char *key) {
+    return globals[key];
+}
+
+const char * SunGlobalLogicEnvironment::getString(const char *key) {
+    return globals[key];
+}

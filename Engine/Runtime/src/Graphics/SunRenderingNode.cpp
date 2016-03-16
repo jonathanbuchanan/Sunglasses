@@ -3,6 +3,10 @@
 // See LICENSE.md for details.
 #include "SunRenderingNode.h"
 
+
+#include "SunWindowManager.h"
+
+
 SunTexturedQuad SunRenderingNode::renderQuad = SunTexturedQuad();
 bool SunRenderingNode::quadInitialized = false;
 
@@ -12,7 +16,7 @@ SunRenderingNodeOutput::SunRenderingNodeOutput(SunRenderingNodeDataType _type, S
 	slot = _slot;
 	size = _size;
 	textureType = _textureType;
-} 
+}
 
 SunRenderingNodeInput::SunRenderingNodeInput(SunRenderingNodeOutput *_link, SunRenderingNodeDataType _type, string _name, SunRenderingNodeDataFormat _format, SunRenderingNodeTextureType _textureType) {
 	output = _link;
@@ -23,11 +27,11 @@ SunRenderingNodeInput::SunRenderingNodeInput(SunRenderingNodeOutput *_link, SunR
 }
 
 SunRenderingNode::SunRenderingNode() {
-    
+
 }
 
 SunRenderingNode::SunRenderingNode(string _name) {
-    setName(_name); 
+    setName(_name);
 }
 
 SunRenderingNode::SunRenderingNode(string _name, SunRenderingNodeType _renderingType, SunNode *_root) {
@@ -40,26 +44,26 @@ SunRenderingNode::SunRenderingNode(string _name, SunRenderingNodeType _rendering
 	setName(_name);
 	setRenderingType(_renderingType);
 	inputs = _inputs;
-	outputs = _outputs; 
+	outputs = _outputs;
 }
 
 SunRenderingNode::SunRenderingNode(string _name, SunRenderingNodeType _renderingType, vector<SunRenderingNodeInput> _inputs, vector<SunRenderingNodeOutput> _outputs, SunNode *_root) {
 	setName(_name);
 	setRenderingType(_renderingType);
 	inputs = _inputs;
-	outputs = _outputs; 
+	outputs = _outputs;
 	setRoot(_root);
-} 
+}
 
 void SunRenderingNode::render(SunAction action) {
 	GLdouble delta = ((SunWindowManager *)getService("window_manager"))->getDelta();
     if (renderingType == SunRenderingNodeTypeRoot) {
 		glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 		clear();
-			
-		for (auto shader : shaders) { 
-			shader.second.use(shader.first, delta, root); 
-		} 
+
+		for (auto shader : shaders) {
+			shader.second.use(shader.first, delta, root);
+		}
     } else if (renderingType == SunRenderingNodeTypeIntermediate) {
         // Get the input textures
         /*map<string, pair<GLuint, GLuint>> _textures;
@@ -79,7 +83,7 @@ void SunRenderingNode::render(SunAction action) {
         glBindFramebuffer(GL_FRAMEBUFFER, outputFramebuffer.framebuffer);
         clear();
         //glClear(GL_DEPTH_BUFFER_BIT);
-        
+
         if (shaderType == SunRenderingNodeShaderTypeScene) {
             // Tell the scene to render with the shaders
 			SunAction renderAction("render");
@@ -111,22 +115,22 @@ void SunRenderingNode::render(SunAction action) {
 				_textures[inputs[i].name] = make_pair(inputs[i].output->texture, GL_TEXTURE_2D);
             } else if (inputs[i].textureType == SunRenderingNodeTextureTypeCubemap)
                 _textures[inputs[i].name] = make_pair(inputs[i].output->texture, GL_TEXTURE_CUBE_MAP);
-        } 
+        }
 
         // Bind the screen-framebuffer
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
         clear();
-		
+
 		glm::vec2 screen = ((SunWindowManager *)getService("window_manager"))->getSize();
 
 		glViewport(0, 0, screen.x * 2, screen.y * 2);
 
         shaders[0].second.use();
-		shaders[0].second.uniforms(root); 
-        
+		shaders[0].second.uniforms(root);
+
         renderQuad.renderWithUsedShader(_textures, shaders[0].second);
 
-		glViewport(0, 0, screen.x, screen.y); 
+		glViewport(0, 0, screen.x, screen.y);
     } else if (renderingType == SunRenderingNodeTypeOnly) {
         // Bind the screen-framebuffer
         /*clear();
@@ -211,7 +215,7 @@ void SunRenderingNode::init() {
         //glDrawBuffers(outputs.size(), colorAttachments);
         glDrawBuffer(GL_NONE);
         glReadBuffer(GL_NONE);
-        
+
         if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
             std::cout << "Frame buffer (" + this->getName() + ") not complete!" << std::endl;
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -230,7 +234,7 @@ void SunRenderingNode::initializeOutput(SunRenderingNodeOutput *_output) {
     glGenTextures(1, &_output->texture);
 
     glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-    
+
     if (_output->textureType == SunRenderingNodeTextureType2D) {
         glBindTexture(GL_TEXTURE_2D, _output->texture);
         if (_output->format == SunRenderingNodeDataFormatRGB16F)
@@ -239,7 +243,7 @@ void SunRenderingNode::initializeOutput(SunRenderingNodeOutput *_output) {
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, _output->size.x, _output->size.y, 0, GL_RGBA, GL_FLOAT, NULL);
         else if (_output->format == SunRenderingNodeDataFormat16F)
             glTexImage2D(GL_TEXTURE_2D, 0, GL_R16F, _output->size.x, _output->size.y, 0, GL_RED, GL_FLOAT, NULL);
-        
+
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -248,13 +252,13 @@ void SunRenderingNode::initializeOutput(SunRenderingNodeOutput *_output) {
         glBindTexture(GL_TEXTURE_2D, 0);
     } else if (_output->textureType == SunRenderingNodeTextureTypeCubemap) {
         glBindTexture(GL_TEXTURE_CUBE_MAP, _output->texture);
-        
+
         glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-        
+
         if (_output->format == SunRenderingNodeDataFormatRGB16F) {
             for (int i = 0; i < 6; i++)
                 glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB16F, _output->size.x, _output->size.y, 0, GL_RGB, GL_FLOAT, NULL);
@@ -270,4 +274,4 @@ void SunRenderingNode::initializeOutput(SunRenderingNodeOutput *_output) {
     }
 
     outputSlotMap[_output->slot] = _output;
-} 
+}

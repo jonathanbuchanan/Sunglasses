@@ -2,8 +2,8 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 
-#ifndef OpenGL_Test_3_SunPointLightObject_h
-#define OpenGL_Test_3_SunPointLightObject_h
+#ifndef SUNPOINTLIGHTOBJECT_H
+#define SUNPOINTLIGHTOBJECT_H
 
 #include "../Core/SunObject.h"
 #include <vector>
@@ -12,7 +12,9 @@ using namespace std;
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include "../Core/SunGame.h" 
+#include "../Core/SunGame.h"
+
+class SunWindowManager;
 
 class SunPointLight : public SunObject {
 public:

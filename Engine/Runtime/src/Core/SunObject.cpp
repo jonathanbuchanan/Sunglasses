@@ -4,6 +4,7 @@
 #include "SunObject.h"
 #include "../Graphics/SunWindowManager.h"
 #include "../Input/SunKeyboardManager.h"
+#include "../Logic/SunGlobalLogicEnvironment.h"
 
 SunObject::SunObject() {
     init();
@@ -38,6 +39,7 @@ void SunObject::loadScript(std::string _script) {
     script.registerObjectAsType(script["object"]["rotation"], "vec3", &rotation);
     script.registerObjectAsType(script["object"]["scale"], "vec3", &scale);
     script.registerObjectAsType(script["object"]["color"], "vec3", &material.color);
+    ((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->registerWithScript(&script);
 
     script.registerObject("keyboard_manager", (SunKeyboardManager *)getService("keyboard_manager"), "pollKey", &SunKeyboardManager::keyDown);
 }

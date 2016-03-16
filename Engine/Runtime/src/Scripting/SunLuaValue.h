@@ -15,6 +15,7 @@
 
 namespace _SunPrivateScripting {
     struct SunLuaPrimitive {
+        SunLuaPrimitive() { }
         SunLuaPrimitive(int x) : i(x) { type = Integer; }
         SunLuaPrimitive(double x) : n(x) { type = Number; }
         SunLuaPrimitive(bool x) : b(x) { type = Boolean; }
