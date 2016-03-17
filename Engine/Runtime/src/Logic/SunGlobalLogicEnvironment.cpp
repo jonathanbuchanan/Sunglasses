@@ -63,5 +63,5 @@ double SunGlobalLogicEnvironment::getNumber(const char *key) {
 }
 
 const char * SunGlobalLogicEnvironment::getString(const char *key) {
-    return globals[key];
+    return globals[std::string(key)];
 }
