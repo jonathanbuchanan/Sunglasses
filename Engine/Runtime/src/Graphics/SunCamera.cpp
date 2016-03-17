@@ -2,7 +2,10 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include "SunCamera.h"
-#include <lua.hpp>
+
+
+#include "../Logic/SunGlobalLogicEnvironment.h"
+
 
 SunCamera::SunCamera() {
 
@@ -37,6 +40,7 @@ void SunCamera::init() {
 
     script.registerObject("window_manager", (SunWindowManager *)getService("window_manager"), "getDelta", &SunWindowManager::getDelta);
     script.registerObject("keyboard_manager", (SunKeyboardManager *)getService("keyboard_manager"), "pollKey", &SunKeyboardManager::keyDown);
+    ((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->registerWithScript(&script);
 
 	setIgnoreTags(true);
 	addAction("update", &SunCamera::update);

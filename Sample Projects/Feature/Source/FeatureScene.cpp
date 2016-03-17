@@ -18,6 +18,7 @@ void FeatureScene::init() {
     camera = SunCamera();
 	camera.init();
 	root->addSubNode(&camera);
+    ((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->registerGlobal("doCameraInput", true);
 
 	initRenderer<FeatureRenderer>();
     renderer->setSceneNode(this);
@@ -46,6 +47,7 @@ void FeatureScene::init() {
     textRenderer->initialize();
     textRenderer->loadFont("Resources/Graphics/Fonts/arial.ttf", "Arial");
     menu = new SunGUIMenu();
+    menu->loadScript("Scripts/Menu0.lua");
 	menu->init();
 	guiSystem.init();
     guiSystem.addSubNode(menu);
@@ -55,20 +57,6 @@ void FeatureScene::init() {
 	guiRenderer->setTextRenderer(textRenderer);
 
     ((SunKeyboardManager *)getService("keyboard_manager"))->subscribe(menu, GLFW_KEY_ESCAPE, SunButtonEventDownSingle);
-
-    auto show = [](SunBase *base) {
-        SunGUIMenu *menu = (SunGUIMenu *)base;
-        menu->setVisible(!menu->getVisible());
-        if (((SunCursorManager *)menu->getService("cursor_manager"))->getMode() == GLFW_CURSOR_DISABLED) {
-            ((SunCursorManager *)menu->getService("cursor_manager"))->enableCursor();
-        } else if (((SunCursorManager *)menu->getService("cursor_manager"))->getMode() == GLFW_CURSOR_NORMAL) {
-            ((SunCursorManager *)menu->getService("cursor_manager"))->disableCursor();
-        }
-    };
-
-    SunLambdaAction showAction(show);
-
-    menu->addActionForKey(showAction, GLFW_KEY_ESCAPE);
 
     item = new SunGUIItem();
 	item->init();

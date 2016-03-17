@@ -25,6 +25,8 @@ public:
 
     void registerGlobal(std::string key, _SunPrivateScripting::SunLuaPrimitive value);
 
+    bool globalExists(const char *key);
+
     void setInteger(const char *key, int value);
     void setBoolean(const char *key, bool value);
     void setNumber(const char *key, double value);

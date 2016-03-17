@@ -9,6 +9,7 @@
 
 #include "SunGUIItem.h"
 #include "../Input/SunCursorManager.h"
+#include "../Scripting/SunScript.h"
 
 class SunGUIMenu : public SunNode {
 public:
@@ -16,6 +17,8 @@ public:
     SunGUIMenu();
 
     virtual void init();
+
+    void loadScript(std::string _script);
 
     void render(SunAction action);
 
@@ -27,13 +30,13 @@ public:
     inline bool & getVisible() { return visible; }
     inline void setVisible(bool v) { visible = v; }
 
-    inline void addActionForKey(SunLambdaAction a, int k) { actions[k] = a; }
+    SunScript * getScript() { return &script; }
 private:
     SunCursorManager *cursor;
 
     bool visible = false;
 
-    std::map<int, SunLambdaAction> actions;
+    SunScript script;
 };
 
 #endif
