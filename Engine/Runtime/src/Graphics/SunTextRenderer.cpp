@@ -3,7 +3,7 @@
 // See LICENSE.md for details.
 #include "SunTextRenderer.h"
 
-void SunTextRenderer::initialize() {
+void SunTextRenderer::init() {
     shader = SunShader("../../Engine/Shaders/Old/Text.vert", "../../Engine/Shaders/Old/Text.frag");
     projection = glm::ortho(0.0f, 800.0f, 0.0f, 600.0f);
 
@@ -87,7 +87,7 @@ void SunTextRenderer::renderText(string text, string _fontName, GLfloat x, GLflo
     glUniformMatrix4fv(shader.getUniformLocation("projection"), 1, GL_FALSE, glm::value_ptr(projection));
     glActiveTexture(GL_TEXTURE0);
     glBindVertexArray(VAO);
-    
+
     SunFont font = fonts[_fontName];
 
     std::string::const_iterator c;
@@ -123,4 +123,3 @@ void SunTextRenderer::renderText(string text, string _fontName, GLfloat x, GLflo
     glBindVertexArray(0);
     glBindTexture(GL_TEXTURE_2D, 0);
 }
-

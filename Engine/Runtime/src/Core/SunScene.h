@@ -2,8 +2,8 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 
-#ifndef OpenGL_Test_3_Scene_h
-#define OpenGL_Test_3_Scene_h
+#ifndef SUNSCENE_H
+#define SUNSCENE_H
 
 #include "SunBase.h"
 #include "../Physics/SunPhysicsSimulator.h"
@@ -19,62 +19,69 @@
 
 class SunRenderer;
 
+/// An abstract class that is responsible for game objects, rendering, etc.
+/**
+ * The SunScene class is a class that is responsible for maintaining the scene
+ * graph, the rendering, audio, physics, game logic, and AI systems. The class
+ * is abstract, so you must implement its initialization code yourself.
+ */
 class SunScene : public SunBase {
 public:
+    /// Default Constructor
+    /**
+     * The default constructor of SunScene initializes it with nothing.
+     */
     SunScene();
 
-    virtual void init();
+    /// Initializes the object.
+    /**
+     * This pure virtual member function is where the code that sets up the scene
+     * graph and initializes the "cycle objects (renderer, physics simulator, etc.)".
+     */
+    virtual void init() = 0;
 
-	template<typename T>
-	void initRenderer() {
-		renderer = new T();
-	}
-
+    /// Performs the actions required every game loop.
+    /**
+     * This function does the things required every cycle to make the game run.
+     * These things include sending the update action to the scene graph, rendering
+     * the scene, simulating physics, etc. You must override this to provide your own
+     * functionality every cycle in your scene.
+     */
 	virtual void cycle();
 
-    inline SunPhysicsSimulator & getPhysicsSimulator() { return physicsSimulator; }
+    /// Gets the root member (SunObject pointer).
+    SunObject * getRoot() { return root; }
 
-    inline SunObject * getRoot() { return root; }
-
-    inline SunCamera & getCamera() { return camera; }
-    inline SunSoundListener & getListener() { return listener; }
-
-    inline GLboolean & getDoCameraInput() { return doCameraInput; }
-    inline void setDoCameraInput(GLboolean _x) { doCameraInput = _x; }
-
-    inline SunSoundBufferStorage & getSoundStorage() { return storage; }
-
-    inline SunMusicObject * getMusic() { return music; }
-    inline bool & getAutoplay() { return autoplay; }
-    inline void setAutoplay(bool _autoplay) { autoplay = _autoplay; }
-
-    inline GLFWwindow * getWindow() { return window; }
-    inline void setWindow(GLFWwindow *_window) { window = _window; }
+    /// Sets the window member (GLFWwindow pointer).
+    void setWindow(GLFWwindow *_window) { window = _window; }
 protected:
-    // Root
+    /// A pointer to the root object in the scene graph
     SunObject *root;
 
-	// Renderers
+	/// A pointer to the scene renderer
 	SunRenderer *renderer;
+    /// A pointer to the GUI renderer
 	SunGUIRenderer *guiRenderer;
+    /// A pointer to the text renderer
 	SunTextRenderer *textRenderer;
 
-    // Camera
+    /// The scene's camera
     SunCamera camera;
+    /// OLD
     SunSoundListener listener;
-    GLboolean doCameraInput = true;
-private:
-    // Physics Simulator
+
+    /// The physics simulator
     SunPhysicsSimulator physicsSimulator;
 
-    // Sound Storage
+    /// OLD
     SunSoundBufferStorage storage;
 
-    // Music
+    /// OLD
     SunMusicObject *music;
+    /// OLD
     bool autoplay;
 
-    // Pointer to window
+    /// A pointer to the window (GLFWwindow)
     GLFWwindow *window;
 };
 

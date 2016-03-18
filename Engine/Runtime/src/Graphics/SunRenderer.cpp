@@ -16,4 +16,4 @@ void SunRenderer::swapBuffers() {
 	((SunWindowManager *)getService("window_manager"))->swapBuffers();
 }
 
-void SunRenderer::initialize() { }
+void SunRenderer::init() { }

@@ -78,6 +78,8 @@ class SunLogger : public SunService {
 public:
     SunLogger();
 
+    void update();
+
     void reset();
     void bright();
     void dim();

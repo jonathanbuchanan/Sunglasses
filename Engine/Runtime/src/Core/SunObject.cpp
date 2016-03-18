@@ -6,24 +6,24 @@
 #include "../Input/SunKeyboardManager.h"
 #include "../Logic/SunGlobalLogicEnvironment.h"
 
-SunObject::SunObject() {
-    init();
+SunObject::SunObject() : physicsEnabled(false) {
+    position = glm::vec3(0.0f, 0.0f, 0.0f);
+    rotation = glm::vec3(0.0f, 0.0f, 0.0f);
+    scale = glm::vec3(1.0f, 1.0f, 1.0f);
+    flipNormals = false;
 }
 
-SunObject::SunObject(string _name, string _modelPath, bool _flipNormals) {
+SunObject::SunObject(string _name, string _modelPath, bool _flipNormals) : flipNormals(_flipNormals), physicsEnabled(false) {
+    SunObject();
 	setName(_name);
-    setFlipNormals(_flipNormals);
-
-    init();
 
     model = SunModel(_modelPath, flipNormals);
 }
 
-SunObject::SunObject(string _name, string _modelPath, string tag, bool _flipNormals) {
+SunObject::SunObject(string _name, string _modelPath, string tag, bool _flipNormals) : flipNormals(_flipNormals), physicsEnabled(false) {
+    SunObject();
 	setName(_name);
-	setFlipNormals(_flipNormals);
 	addTag(tag);
-	init();
 
 	model = SunModel(_modelPath, flipNormals);
 }
@@ -35,8 +35,8 @@ void SunObject::loadScript(std::string _script) {
     // Register the object
     script.registerObject("object", this);
     script.registerType<glm::vec3>("vec3", "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
-    script.registerObjectAsType(script["object"]["position"], "vec3", &position);
     script.registerObjectAsType(script["object"]["rotation"], "vec3", &rotation);
+    script.registerObjectAsType(script["object"]["position"], "vec3", &position);
     script.registerObjectAsType(script["object"]["scale"], "vec3", &scale);
     script.registerObjectAsType(script["object"]["color"], "vec3", &material.color);
     ((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->registerWithScript(&script);

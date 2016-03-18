@@ -5,7 +5,7 @@
 
 
 #include "../Logic/SunGlobalLogicEnvironment.h"
-
+#include "SunShader.h"
 
 SunCamera::SunCamera() {
 

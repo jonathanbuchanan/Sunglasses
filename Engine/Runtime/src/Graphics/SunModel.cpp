@@ -5,24 +5,24 @@
 
 GLint textureFromFile(const char *path, string directory) {
     string filename = directory + string(path);
-    
+
     GLuint textureID;
     glGenTextures(1, &textureID);
     int width, height;
     unsigned char *image = SOIL_load_image(filename.c_str(), &width, &height, 0, SOIL_LOAD_RGB);
-    
+
     glBindTexture(GL_TEXTURE_2D, textureID);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
     glGenerateMipmap(GL_TEXTURE_2D);
-    
+
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glBindTexture(GL_TEXTURE_2D, 0);
-    
+
     SOIL_free_image_data(image);
-    
+
     return textureID;
 }
 
@@ -31,11 +31,15 @@ SunModel::SunModel(string _file, bool _flipNormals) {
     importMeshData(_file, _flipNormals);
 }
 
+void SunModel::init() {
+    
+}
+
 void SunModel::importMeshData(string _file, bool _flipNormals) {
 	((SunLogger *)getService("logger"))->log("Attempting to load model " + _file);
     // Set Flip Normals
     flipNormals = _flipNormals;
-    
+
     // Create an importer and import the file
     Assimp::Importer importer;
     const aiScene *scene = importer.ReadFile(_file, aiProcess_GenNormals | aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace | aiProcess_JoinIdenticalVertices);
@@ -141,11 +145,11 @@ SunMesh SunModel::processMeshData(aiMesh* _mesh, const aiScene* _scene) {
         normal.x = _mesh->mNormals[i].x;
         normal.y = _mesh->mNormals[i].y;
         normal.z = _mesh->mNormals[i].z;
-        
-        if (flipNormals) { 
+
+        if (flipNormals) {
             normal = -normal;
 		}
-        
+
         // Tangent
         glm::vec3 tangent = glm::vec3(0.0, 0.0, 0.0);
 
@@ -215,7 +219,7 @@ SunMesh SunModel::processMeshData(aiMesh* _mesh, const aiScene* _scene) {
 
         animations.push_back(animation);
     }
-    
+
     // Loop throught the faces of the mesh (Triangles)
     for (int i = 0; i < _mesh->mNumFaces; i++) {
         // Face
@@ -227,7 +231,7 @@ SunMesh SunModel::processMeshData(aiMesh* _mesh, const aiScene* _scene) {
             indices.push_back(face.mIndices[j]);
         }
     }
-    
+
     // Check for materials
     if (_scene->HasMaterials()) {
         // Load the material
@@ -250,10 +254,10 @@ SunMesh SunModel::processMeshData(aiMesh* _mesh, const aiScene* _scene) {
     }
 
     SunMesh mesh = SunMesh(vertices, indices, textures, bones, animations);
-    
+
     aiMatrix4x4 m = _scene->mRootNode->mTransformation;
     mesh.setGlobalInverseTransform(glm::inverse(glm::mat4(m.a1, m.a2, m.a3, m.a4, m.b1, m.b2, m.b3, m.b4, m.c1, m.c2, m.c3, m.c4, m.d1, m.d2, m.d3, m.d4)));
-    
+
     return mesh;
 }
 
@@ -270,7 +274,7 @@ vector<SunTexture> SunModel::loadMaterialTextures(aiMaterial* _material, aiTextu
                 break;
             }
         }
-        
+
         if (!skip) {
             SunTexture texture;
             texture.id = textureFromFile(string.C_Str(), directory);

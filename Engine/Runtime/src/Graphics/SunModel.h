@@ -34,6 +34,8 @@ public:
     SunModel() { }
     SunModel(string _file, bool _flipNormals);
 
+    void init();
+
     void importMeshData(string _file, bool _flipNormals);
     void render(SunShader _shader, GLfloat _deltaTime, glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale, SunObjectMaterial _material, SunMeshRenderType _renderType);
 

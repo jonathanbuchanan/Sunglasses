@@ -24,7 +24,6 @@ private:
     SunGUIItem *back;
 
 	// Objects
-    SunObject *house;
 	SunObject *plane;
 	SunPointLight *light;
 	SunDirectionalLight *dir;

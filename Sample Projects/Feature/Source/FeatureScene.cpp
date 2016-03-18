@@ -20,12 +20,21 @@ void FeatureScene::init() {
 	root->addSubNode(&camera);
     ((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->registerGlobal("doCameraInput", true);
 
-	initRenderer<FeatureRenderer>();
+	renderer = new FeatureRenderer();
     renderer->setSceneNode(this);
 	renderer->setWindow(window);
-    renderer->initialize();
+    renderer->init();
 
-	plane = new SunObject("plane", "Resources/Graphics/Models/Plane.dae", "solid", true);
+    SunObject *teapot = new SunObject("cube", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Teapot.dae", "solid", false);
+    teapot->loadScript("Scripts/Teapot.lua");
+	teapot->init();
+    teapot->setScale(glm::vec3(1.0f, 1.0f, 1.0f));
+	teapot->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f));
+    teapots.push_back(teapot);
+    root->addSubNode(teapot);
+
+	plane = new SunObject("plane", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Plane.dae", "solid", true);
+
 	plane->init();
 	plane->setScale(glm::vec3(10.0f, 1.0f, 10.0f));
 	plane->setPosition(glm::vec3(0.0f, -5.0f, 0.0f));
@@ -44,7 +53,7 @@ void FeatureScene::init() {
     ((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->init();
 
 	textRenderer = new SunTextRenderer();
-    textRenderer->initialize();
+    textRenderer->init();
     textRenderer->loadFont("Resources/Graphics/Fonts/arial.ttf", "Arial");
     menu = new SunGUIMenu();
     menu->loadScript("Scripts/Menu0.lua");
@@ -98,9 +107,10 @@ void FeatureScene::cycle() {
         SunObject *teapot = new SunObject("cube", "Resources/Graphics/Models/Teapot.dae", "solid", false);
         if (teapots.size() > 0)
             teapot->setPosition(teapots[teapots.size() - 1]->getPosition() + glm::vec3(7.0f, 0.0f, 0.0f));
-    	teapot->init();
+        teapot->setScale(glm::vec3(1.0f, 1.0f, 1.0f));
         teapot->loadScript("Scripts/Teapot.lua");
-    	teapot->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f));
+        teapot->init();
+        teapot->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f));
         root->addSubNode(teapot);
         teapots.push_back(teapot);
         idown = true;

@@ -4,15 +4,20 @@
 #include "SunNode.h"
 
 SunNode::SunNode() {
-
+    parentsReady = 0;
+    level = 0;
 }
 
-SunNode::SunNode(std::string _tag) {
-	addTag(_tag);
+SunNode::SunNode(std::string _tag) : tags({_tag}) {
+	SunNode();
 }
 
-SunNode::SunNode(std::vector<std::string> _tags) {
-	tags = _tags;
+SunNode::SunNode(std::vector<std::string> _tags) : tags(_tags) {
+	SunNode();
+}
+
+void SunNode::init() {
+
 }
 
 void SunNode::processAction(SunAction action) {
@@ -23,6 +28,10 @@ void SunNode::processAction(SunAction action) {
 		SunBase::processAction(action);
 	if (action.getRecursive() == true)
 		sendActionToAllSubNodes(action);
+}
+
+bool SunNode::tagPresent(std::string t) {
+    return (std::find(tags.begin(), tags.end(), t) != tags.end()) ? true : false;
 }
 
 void SunNode::sendActionToAllSubNodes(SunAction action) {
@@ -36,7 +45,6 @@ void SunNode::addSubNode(SunNode *_subNode) {
         subNodes.push_back(_subNode);
         _subNode->parents.push_back(this);
         _subNode->level = level + 1;
-        _subNode->rootNode = rootNode;
     }
 }
 

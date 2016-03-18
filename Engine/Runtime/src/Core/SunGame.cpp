@@ -3,7 +3,6 @@
 // See LICENSE.md for details.
 #include "SunGame.h"
 
-
 #include "../Graphics/SunWindowManager.h"
 #include "../Input/SunKeyboardManager.h"
 #include "../Input/SunCursorManager.h"
@@ -13,6 +12,9 @@
 
 #include "SunScene.h"
 
+SunGame::SunGame() {
+
+}
 
 void SunGame::run() {
 	while (!glfwWindowShouldClose(window)) {
@@ -24,11 +26,6 @@ void SunGame::run() {
 
         scene->cycle();
     }
-    glfwTerminate();
-}
-
-void SunGame::loop() {
-
 }
 
 void SunGame::updateServices() {
@@ -37,43 +34,43 @@ void SunGame::updateServices() {
     }
 }
 
-void SunGame::cleanUp() {
+void SunGame::cleanUp() { /* THIS MUST BE IMPLEMENTED!!! */
 	glfwTerminate();
 }
 
-void SunGame::initialize(std::string title, glm::vec4 color) {
+void SunGame::init(std::string title, glm::vec4 color) {
 	// Initialize the Window Manager
 	SunWindowManager *windowManager = new SunWindowManager(glm::vec2(800.0f, 600.0f), title, color);
-	windowManager->name = "window_manager";
+	windowManager->setName("window_manager");
 	addService(windowManager);
 	window = windowManager->getWindow();
 
 	// Initialize the Keyboard Manager
 	SunKeyboardManager *keyboard = new SunKeyboardManager(window);
-	keyboard->name = "keyboard_manager";
+	keyboard->setName("keyboard_manager");
 	addService(keyboard);
 
 	// Initialize the Cursor Manager
 	SunCursorManager *cursor = new SunCursorManager(window, true);
-	cursor->name = "cursor_manager";
+	cursor->setName("cursor_manager");
 	addService(cursor);
 
 	// Initialize the Mouse Button Manager
 	SunMouseButtonManager *mouseButton = new SunMouseButtonManager(window);
-	mouseButton->name = "mouse_button_manager";
+	mouseButton->setName("mouse_button_manager");
 	addService(mouseButton);
 
 	// Initialize the Logger
 	SunLogger *logger = new SunLogger();
-	logger->name = "logger";
+	logger->setName("logger");
 	addService(logger);
 
     // Initialize the Global Logic Environment
     SunGlobalLogicEnvironment *globalEnvironment = new SunGlobalLogicEnvironment();
-    globalEnvironment->name = "global_logic_environment";
+    globalEnvironment->setName("global_logic_environment");
     addService(globalEnvironment);
 }
 
-void SunGame::initialize() {
-	initialize("", glm::vec4(0.0f, 0.0f, 0.0f, 0.0f));
+void SunGame::init() {
+	init("", glm::vec4(0.0f, 0.0f, 0.0f, 0.0f));
 }

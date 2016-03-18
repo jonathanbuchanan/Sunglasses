@@ -8,4 +8,3 @@
 #include "SunObject.h"
 #include "SunScene.h"
 #include "SunService.h"
-#include "Utility.h"

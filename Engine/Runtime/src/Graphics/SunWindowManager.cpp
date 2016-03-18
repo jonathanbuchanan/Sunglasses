@@ -4,7 +4,7 @@
 #include "SunWindowManager.h"
 
 SunWindowManager::SunWindowManager() {
-	
+
 }
 
 SunWindowManager::SunWindowManager(glm::vec2 _size, std::string _title, glm::vec4 _clearColor) {
@@ -12,6 +12,10 @@ SunWindowManager::SunWindowManager(glm::vec2 _size, std::string _title, glm::vec
 	title = _title;
 	clearColor = _clearColor;
 	initialize();
+}
+
+void SunWindowManager::update() {
+    
 }
 
 void SunWindowManager::initialize() {

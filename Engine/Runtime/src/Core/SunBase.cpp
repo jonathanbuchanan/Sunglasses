@@ -7,17 +7,13 @@ std::map<std::string, SunService *> SunBase::services;
 
 SunBase::SunBase() { }
 
-SunBase::SunBase(std::string n) {
-    name = n;
-}
+SunBase::SunBase(std::string n) : name(n) {
 
-void SunBase::init() {
-    
 }
 
 void SunBase::processAction(SunAction action) {
-	if (functions.find(action.getAction()) != functions.end())
-		functions[action.getAction()](action);
+	if (actions.find(action.getAction()) != actions.end())
+		actions[action.getAction()](action);
 }
 
 void sendAction(SunAction action, SunBase *base) {
