@@ -46,25 +46,3 @@ public:
     void init() { }
     MOCK_METHOD0(test, void());
 };
-
-struct SunLambdaActionTest : ::testing::Test {
-    MockSunBase base;
-    SunLambdaAction action;
-    SunLambdaActionTest() {
-        auto function = [](SunBase *base) {
-            ((MockSunBase *)base)->test();
-        };
-        action = SunLambdaAction(function);
-        EXPECT_CALL(base, test()).Times(3);
-    }
-
-    ~SunLambdaActionTest() {
-
-    }
-};
-
-TEST_F(SunLambdaActionTest, run) {
-    action.run(&base);
-    action.run(&base);
-    action.run(&base);
-}
