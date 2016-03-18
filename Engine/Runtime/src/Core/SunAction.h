@@ -45,18 +45,4 @@ private:
 
 typedef std::function<void(SunAction)> SunActionFunction;
 
-typedef std::function<void(SunBase *)> SunLambdaActionFunction;
-
-class SunLambdaAction {
-public:
-	SunLambdaAction();
-	SunLambdaAction(SunLambdaActionFunction f);
-
-	void run(SunBase *base);
-
-	inline void setFunction(SunLambdaActionFunction f) { function = f; }
-private:
-	SunLambdaActionFunction function;
-};
-
 #endif

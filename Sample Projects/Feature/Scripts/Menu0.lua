@@ -15,6 +15,10 @@ function show()
     cursor_manager.enableCursor()
 end
 
+function close()
+    window_manager.setWindowShouldClose()
+end
+
 
 
 
@@ -33,4 +37,8 @@ function escapePressed()
     elseif menu.visible() == false then
         show()
     end
+end
+
+function exitPressed()
+    close()
 end

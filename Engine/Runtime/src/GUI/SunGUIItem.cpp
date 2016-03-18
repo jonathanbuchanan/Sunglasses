@@ -2,6 +2,9 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include "SunGUIItem.h"
+#include "SunGUIMenu.h"
+#include "../Input/SunCursorManager.h"
+#include "../Scripting/SunScript.h"
 
 SunGUIItem::SunGUIItem() {
     mesh.setUpGL();
@@ -18,9 +21,10 @@ void SunGUIItem::render(SunAction action) {
 }
 
 void SunGUIItem::button(SunAction action) {
-    int button = *(int *)action.getParameter("button");
-
-    actions[button].run(this);
+    if (cursorInItem()) {
+        int button = *(int *)action.getParameter("button");
+        script->run(mouseActions[button] + "()");
+    }
 }
 
 void SunGUIItem::loadTexture() {
@@ -34,5 +38,11 @@ bool SunGUIItem::pointInItem(glm::vec2 _point) {
 }
 
 bool SunGUIItem::cursorInItem() {
-    return pointInItem(cursor->getCursorPositionNDC());
+    glm::vec2 point = ((SunCursorManager *)getService("cursor_manager"))->getCursorPositionNDC();
+    point.y = -point.y;
+    return pointInItem(point);
+}
+
+void SunGUIItem::setScript(SunGUIMenu *m) {
+    script = m->getScript();
 }

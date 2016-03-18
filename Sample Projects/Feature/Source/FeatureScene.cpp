@@ -60,26 +60,33 @@ void FeatureScene::init() {
 
     item = new SunGUIItem();
 	item->init();
-    item->setWindow(window);
+    item->setScript(menu);
     menu->addSubNode(item);
 
     ((SunMouseButtonManager *)getService("mouse_button_manager"))->subscribe(item, GLFW_MOUSE_BUTTON_LEFT, SunButtonEventDownSingle);
-    item->setCursorManager((SunCursorManager *)getService("cursor_manager"));
 
-    auto exit = [](SunBase *base) {
-        SunGUIItem *item = (SunGUIItem *)base;
-        if (item->cursorInItem())
-			((SunWindowManager *)item->getService("window_manager"))->setWindowShouldClose();
-    };
-    SunLambdaAction exitAction(exit);
-
-    item->addActionForKey(exitAction, GLFW_MOUSE_BUTTON_LEFT);
+    item->addMouseActionForTrigger(GLFW_MOUSE_BUTTON_LEFT, "exitPressed");
 
     item->setText("Exit");
     item->setFont("Arial");
     item->setSize(glm::vec2(1.0f, 0.2f));
     item->setPosition(glm::vec2(-0.5f, -0.1f));
     item->setColor(glm::vec3(1.0f, 1.0f, 1.0f));
+
+    back = new SunGUIItem();
+    back->init();
+    back->setScript(menu);
+    menu->addSubNode(back);
+
+    ((SunMouseButtonManager *)getService("mouse_button_manager"))->subscribe(back, GLFW_MOUSE_BUTTON_LEFT, SunButtonEventDownSingle);
+
+    back->addMouseActionForTrigger(GLFW_MOUSE_BUTTON_LEFT, "hide");
+
+    back->setText("Back");
+    back->setFont("Arial");
+    back->setSize(glm::vec2(1.0f, 0.2f));
+    back->setPosition(glm::vec2(-0.5f, -0.4f));
+    back->setColor(glm::vec3(1.0f, 1.0f, 1.0f));
 }
 
 void FeatureScene::cycle() {

@@ -4,7 +4,7 @@
 #include "SunCursorManager.h"
 
 SunCursorManager::SunCursorManager() {
-    
+
 }
 
 SunCursorManager::SunCursorManager(GLFWwindow *_window) {
@@ -28,12 +28,12 @@ void SunCursorManager::initialize(GLFWwindow *_window, bool disable) {
 void SunCursorManager::update() {
     double x, y;
     glfwGetCursorPos(window, &x, &y);
-    
+
 	SunAction action("cursor");
 
     action.addParameter("x", &x);
-	action.addParameter("y", &y); 
-    
+	action.addParameter("y", &y);
+
     for (auto subscriber : subscribers)
         sendAction(action, subscriber);
 }
@@ -59,10 +59,10 @@ glm::vec2 SunCursorManager::getCursorPosition() {
 glm::vec2 SunCursorManager::getCursorPositionNDC() {
     double x, y;
     glfwGetCursorPos(window, &x, &y);
-    
+
     int width, height;
     glfwGetWindowSize(window, &width, &height);
-    
+
     return glm::vec2((x - (width / 2)) / (width / 2), (y - (height / 2)) / (height / 2));
 }
 

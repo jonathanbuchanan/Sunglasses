@@ -21,6 +21,7 @@ private:
     SunGUISystem guiSystem = SunGUISystem();
     SunGUIMenu *menu;
     SunGUIItem *item;
+    SunGUIItem *back;
 
 	// Objects
     SunObject *house;

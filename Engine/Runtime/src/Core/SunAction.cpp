@@ -16,15 +16,3 @@ SunAction::SunAction(std::string a, SunActionParameterMap p, bool r) {
 	parameters = p;
 	recursive = r;
 }
-
-
-
-SunLambdaAction::SunLambdaAction() { }
-
-SunLambdaAction::SunLambdaAction(SunLambdaActionFunction f) {
-	function = f;
-}
-
-void SunLambdaAction::run(SunBase *base) {
-	function(base);
-}
