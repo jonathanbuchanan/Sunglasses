@@ -5,7 +5,7 @@
 
 GLuint SunUniformPasser::bindingPoint = 0;
 
-int SunUniformPasser::createBuffer(std::string name, GLuint size) {
+void SunUniformPasser::createBuffer(std::string name, GLuint size) {
 	GLuint buffer;
 	glGenBuffers(1, &buffer);
 	glBindBuffer(GL_UNIFORM_BUFFER, buffer);
@@ -22,12 +22,12 @@ int SunUniformPasser::createBuffer(std::string name, GLuint size) {
 	addBuffer(name, ubo);
 }
 
-int SunUniformPasser::bindBufferToShader(std::string block, SunShader shader) {
+void SunUniformPasser::bindBufferToShader(std::string block, SunShader shader) {
 	GLuint blockIndex = glGetUniformBlockIndex(shader.getProgram(), block.c_str());
 	glUniformBlockBinding(shader.getProgram(), blockIndex, uniformBuffers[block].bindingPoint);
 }
 
-int SunUniformPasser::bufferSubData(std::string block, GLuint offset, GLuint length, const GLvoid *data) {
+void SunUniformPasser::bufferSubData(std::string block, GLuint offset, GLuint length, const GLvoid *data) {
 	glBindBuffer(GL_UNIFORM_BUFFER, uniformBuffers[block].buffer);
 	glBufferSubData(GL_UNIFORM_BUFFER, offset, length, data);
 }

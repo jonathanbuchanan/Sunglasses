@@ -30,3 +30,7 @@ void SunScript::run(std::string code) {
 void SunScript::operator()(std::string code) {
     run(code);
 }
+
+void SunScript::_addObject(std::shared_ptr<_SunPrivateScripting::_SunLuaObject_Base> object) {
+    objects.push_back(object);
+}

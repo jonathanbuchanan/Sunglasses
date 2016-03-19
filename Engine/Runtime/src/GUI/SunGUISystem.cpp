@@ -4,10 +4,10 @@
 #include "SunGUISystem.h"
 
 void SunGUISystem::init() {
-	addAction("render", &SunGUISystem::render); 
+	addAction("render", &SunGUISystem::render);
 }
 
-void SunGUISystem::render(SunAction action) { 
+void SunGUISystem::render(SunAction action) {
     glEnable(GL_BLEND);
 
     // Loop through the sub-objects and force them to render
@@ -17,9 +17,9 @@ void SunGUISystem::render(SunAction action) {
 }
 
 void SunGUISystem::loadFonts(SunTextRenderer *_textRenderer) {
-    for (int i = 0; i < fonts.size(); i++) {
+    for (size_t i = 0; i < fonts.size(); i++) {
         _textRenderer->loadFont(fonts[i].file, fonts[i].name);
     }
-    
+
     fontsLoaded = true;
 }

@@ -25,7 +25,7 @@ void SunKeyboardManager::update() {
         keys[i] = glfwGetKey(window, i);
     }
 
-    for (int i = 0; i < subscribers.size(); i++) {
+    for (size_t i = 0; i < subscribers.size(); i++) {
         SunBase *subscriber = std::get<0>(subscribers[i]);
         int key = std::get<1>(subscribers[i]);
         int keyState = keys[key];
@@ -71,6 +71,7 @@ SunButtonState SunKeyboardManager::pollKey(int key) {
         return SunButtonStateDown;
     else if (state == GLFW_RELEASE)
         return SunButtonStateUp;
+    return SunButtonStateNone;
 }
 
 bool SunKeyboardManager::keyDown(int key) {
@@ -79,4 +80,5 @@ bool SunKeyboardManager::keyDown(int key) {
         return true;
     else if (state == GLFW_RELEASE)
         return false;
+    return false;
 }

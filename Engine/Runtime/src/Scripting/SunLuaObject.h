@@ -34,7 +34,7 @@ namespace _SunPrivateScripting {
             std::vector<_SunPrivateScripting::SunLuaPrimitive> tables = value.getTables();
             if (tables.size() >= 2) {
                 state->getGlobal((const char *)tables[0]);
-                for (int i = 1; i < tables.size() - 1; i++) {
+                for (size_t i = 1; i < tables.size() - 1; i++) {
                     tables[i].push(state);
                     state->getTable(-2);
                 }

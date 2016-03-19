@@ -35,7 +35,7 @@ std::map<BashColor, std::string> ColorMap = {
 string getBashColorSetter(std::vector<BashColor> colors) {
     string colorString = BASH_COLOR_PREFIX;
 
-    for (int i = 0; i < colors.size(); i++) {
+    for (size_t i = 0; i < colors.size(); i++) {
         if (i > 0)
             colorString += BASH_COLOR_SEPARATOR;
         colorString += ColorMap[colors[i]];
@@ -61,7 +61,7 @@ SunLogger::SunLogger() {
 }
 
 void SunLogger::update() {
-    
+
 }
 
 void SunLogger::reset() {

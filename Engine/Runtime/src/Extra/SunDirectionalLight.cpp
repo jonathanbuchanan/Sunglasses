@@ -34,9 +34,9 @@ void SunDirectionalLight::uniform(SunAction action) {
     SunObject::uniform(action);
     SunShader *_shader = action.getParameterPointer<SunShader>("shader");
 	glUniform1i(_shader->getUniformLocation(countUniform), lastId);
-	int usedTextureUnits;
+	/*int usedTextureUnits;
 	if (action.parameterExists("usedTextureUnits"))
-		usedTextureUnits = action.getParameter<int>("usedTextureUnits");
+		usedTextureUnits = action.getParameter<int>("usedTextureUnits");*/
 
     glUniform3f(_shader->getUniformLocation(arrayUniform + "[" + std::to_string(id) + "].color"), color.r, color.g, color.b);
 

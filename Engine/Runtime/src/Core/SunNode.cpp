@@ -35,7 +35,7 @@ bool SunNode::tagPresent(std::string t) {
 }
 
 void SunNode::sendActionToAllSubNodes(SunAction action) {
-    for (int i = 0; i < subNodes.size(); ++i)
+    for (size_t i = 0; i < subNodes.size(); ++i)
         sendAction(action, subNodes[i]);
 }
 
@@ -87,7 +87,7 @@ void SunNode::findNode(string _path, SunNode *&_node) {
 }
 
 void SunNode::findNodeWithName(string _name, SunNode &_node) {
-    for (int i = 0; i < subNodes.size(); i++) {
+    for (size_t i = 0; i < subNodes.size(); i++) {
         if (subNodes[i]->getName() == _name) {
             _node = *subNodes[i];
             break;
@@ -101,14 +101,14 @@ void SunNode::findPointerNodeWithName(string _name, SunNode *&_node) {
     if (getName() == _name) {
         _node = this;
     } else {
-        for (int i = 0; i < subNodes.size(); i++) {
+        for (size_t i = 0; i < subNodes.size(); i++) {
             subNodes[i]->findPointerNodeWithName(_name, _node);
         }
     }
 }
 
 void SunNode::recursiveDeleteSubnode(const SunNode *node) {
-    for (int i = 0; i < subNodes.size(); i++) {
+    for (size_t i = 0; i < subNodes.size(); i++) {
         if (subNodes[i] == node)
             subNodes.erase(subNodes.begin() + i);
         else

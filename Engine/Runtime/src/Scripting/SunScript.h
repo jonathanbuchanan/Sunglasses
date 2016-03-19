@@ -176,6 +176,8 @@ public:
         std::cout << std::to_string(state->getTop());
     }
 
+    /// Adds an object.
+    void _addObject(std::shared_ptr<_SunPrivateScripting::_SunLuaObject_Base> object);
 private:
     /// The Lua state.
     _SunPrivateScripting::SunLuaState *state;

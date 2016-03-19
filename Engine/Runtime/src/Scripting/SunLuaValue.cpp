@@ -131,7 +131,7 @@ namespace _SunPrivateScripting {
         state->getGlobal((const char *)tables[0]);
         tables[1].push(state);
         state->getTable(-2);
-        for (int i = 1; i < tables.size() - 1; i++) {
+        for (size_t i = 1; i < tables.size() - 1; i++) {
             tables[i + 1].push(state);
             state->getTable(-2);
         }
@@ -144,7 +144,7 @@ namespace _SunPrivateScripting {
     void SunLuaValue::setUpSetTable() {
         // Global Table
         state->getGlobal((const char *)tables[0]);
-        for (int i = 1; i < tables.size() - 1; i++) {
+        for (size_t i = 1; i < tables.size() - 1; i++) {
             tables[i].push(state);
             state->getTable(-2);
         }

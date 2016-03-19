@@ -32,7 +32,7 @@ SunModel::SunModel(string _file, bool _flipNormals) {
 }
 
 void SunModel::init() {
-    
+
 }
 
 void SunModel::importMeshData(string _file, bool _flipNormals) {
@@ -56,13 +56,13 @@ void SunModel::importMeshData(string _file, bool _flipNormals) {
 
 void SunModel::render(SunShader _shader, GLfloat _deltaTime, glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale, SunObjectMaterial _material, SunMeshRenderType _renderType) {
     // Loop through sub-meshes and render
-    for (int i = 0; i < meshes.size(); i++)
+    for (size_t i = 0; i < meshes.size(); i++)
         meshes[i].render(_shader, _deltaTime, _position, _rotation, _scale, _material, _renderType);
 }
 
 void SunModel::processMeshNode(aiNode *_node, const aiScene *_scene) {
     // Loop through meshes
-    for (int i = 0; i < _node->mNumMeshes; i++) {
+    for (size_t i = 0; i < _node->mNumMeshes; i++) {
         // Mesh at [i] of the node
         aiMesh *mesh = _scene->mMeshes[_node->mMeshes[i]];
 
@@ -71,21 +71,21 @@ void SunModel::processMeshNode(aiNode *_node, const aiScene *_scene) {
     }
 
     // Loop through sub-nodes
-    for (int i = 0; i < _node->mNumChildren; i++) {
+    for (size_t i = 0; i < _node->mNumChildren; i++) {
         // Process sub-nodes
         processMeshNode(_node->mChildren[i], _scene);
     }
 }
 
 void SunModel::processMeshNodeForBones(aiNode* _node, const aiScene* _scene) {
-    for (int i = 0; i < boneNames.size(); i++) {
+    for (size_t i = 0; i < boneNames.size(); i++) {
         if (_node->mName.C_Str() == boneNames[i]) {
             bones[i].parentID = -1;
             aiMatrix4x4 m = assimpBones[i]->mOffsetMatrix;
             glm::mat4 offsetMatrix = glm::mat4(m.a1, m.a2, m.a3, m.a4, m.b1, m.b2, m.b3, m.b4, m.c1, m.c2, m.c3, m.c4, m.d1, m.d2, m.d3, m.d4);
             //bones[i].relativeTransform = offsetMatrix;
             bones[i].inverseBindPose = offsetMatrix;
-            for (int j = 0; j < boneNames.size(); j++) {
+            for (size_t j = 0; j < boneNames.size(); j++) {
                 if (boneNames[j] == _node->mParent->mName.C_Str()) {
                     int position = find(boneNames.begin(), boneNames.end(), _node->mParent->mName.C_Str()) - boneNames.begin();
                     bones[i].parentID = position;
@@ -95,7 +95,7 @@ void SunModel::processMeshNodeForBones(aiNode* _node, const aiScene* _scene) {
     }
 
     // Loop through sub-nodes
-    for (int i = 0; i < _node->mNumChildren; i++) {
+    for (size_t i = 0; i < _node->mNumChildren; i++) {
         // Process sub-nodes
         processMeshNodeForBones(_node->mChildren[i], _scene);
     }
@@ -109,7 +109,7 @@ SunMesh SunModel::processMeshData(aiMesh* _mesh, const aiScene* _scene) {
     map<string, SunBone> boneMap;
     vector<SunAnimation> animations;
 
-    for (int i = 0; i < _mesh->mNumBones; i++) {
+    for (size_t i = 0; i < _mesh->mNumBones; i++) {
         string boneName = _mesh->mBones[i]->mName.C_Str();
         assimpBones.push_back(_mesh->mBones[i]);
 
@@ -126,7 +126,7 @@ SunMesh SunModel::processMeshData(aiMesh* _mesh, const aiScene* _scene) {
     processMeshNodeForBones(_scene->mRootNode, _scene);
 
     // Loop through the vertices of the mesh
-    for (int i = 0; i < _mesh->mNumVertices; i++) {
+    for (size_t i = 0; i < _mesh->mNumVertices; i++) {
         // Create vertex object
         SunVertex vertex;
 
@@ -187,26 +187,26 @@ SunMesh SunModel::processMeshData(aiMesh* _mesh, const aiScene* _scene) {
         vertices.push_back(vertex);
     }
 
-    for (int i = 0; i < _mesh->mNumBones; i++) {
-        for (int j = 0; j < _mesh->mBones[i]->mNumWeights; j++) {
+    for (size_t i = 0; i < _mesh->mNumBones; i++) {
+        for (size_t j = 0; j < _mesh->mBones[i]->mNumWeights; j++) {
             vertices[_mesh->mBones[i]->mWeights[j].mVertexId].boneIDs[i] = i;
             vertices[_mesh->mBones[i]->mWeights[j].mVertexId].boneWeights[i] = _mesh->mBones[i]->mWeights[j].mWeight;
         }
     }
 
-    for (int i = 0; i < _scene->mNumAnimations; i++) {
+    for (size_t i = 0; i < _scene->mNumAnimations; i++) {
         SunAnimation animation;
 
         animation.ticksPerSecond = 30;
         animation.length = _scene->mAnimations[i]->mDuration;
 
-        for (int j = 0; j < _scene->mAnimations[i]->mNumChannels; j++) {
+        for (size_t j = 0; j < _scene->mAnimations[i]->mNumChannels; j++) {
             SunAnimationChannel channel;
 
             int position = find(boneNames.begin(), boneNames.end(), _scene->mAnimations[i]->mChannels[j]->mNodeName.C_Str()) - boneNames.begin();
             channel.boneID = position;
 
-            for (int k = 0; k < _scene->mAnimations[i]->mChannels[j]->mNumRotationKeys; k++) {
+            for (size_t k = 0; k < _scene->mAnimations[i]->mChannels[j]->mNumRotationKeys; k++) {
                 aiQuaternion quaternion = _scene->mAnimations[i]->mChannels[j]->mRotationKeys[k].mValue;
                 glm::quat rotation = glm::quat(quaternion.w, quaternion.x, quaternion.y, quaternion.z);
 
@@ -221,12 +221,12 @@ SunMesh SunModel::processMeshData(aiMesh* _mesh, const aiScene* _scene) {
     }
 
     // Loop throught the faces of the mesh (Triangles)
-    for (int i = 0; i < _mesh->mNumFaces; i++) {
+    for (size_t i = 0; i < _mesh->mNumFaces; i++) {
         // Face
         aiFace face = _mesh->mFaces[i];
 
         // Loop through the indices of the face
-        for (int j = 0; j < face.mNumIndices; j++) {
+        for (size_t j = 0; j < face.mNumIndices; j++) {
             // Add the indices to the mesh's list of indices
             indices.push_back(face.mIndices[j]);
         }
@@ -263,7 +263,7 @@ SunMesh SunModel::processMeshData(aiMesh* _mesh, const aiScene* _scene) {
 
 vector<SunTexture> SunModel::loadMaterialTextures(aiMaterial* _material, aiTextureType _type, string _typeName) {
     vector<SunTexture> textures;
-    for (int i = 0; i < _material->GetTextureCount(_type); i++) {
+    for (size_t i = 0; i < _material->GetTextureCount(_type); i++) {
         aiString string;
         _material->GetTexture(_type, i, &string);
         GLboolean skip = false;

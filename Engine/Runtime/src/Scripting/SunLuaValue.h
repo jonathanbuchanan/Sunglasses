@@ -71,9 +71,9 @@ namespace _SunPrivateScripting {
 
     class SunLuaValue {
     public:
-        SunLuaValue(SunLuaState *s, const char *_var) : state(s), tables() { tables.push_back(_SunPrivateScripting::SunLuaPrimitive(_var)); }
+        SunLuaValue(SunLuaState *s, const char *_var) : tables(), index(-1), isFunctionReturn(false), state(s) { tables.push_back(_SunPrivateScripting::SunLuaPrimitive(_var)); }
         SunLuaValue(SunLuaState *s, bool _isFunctionReturn, int _index);
-        SunLuaValue(SunLuaState *s, std::vector<_SunPrivateScripting::SunLuaPrimitive> _tables, _SunPrivateScripting::SunLuaPrimitive _next) : state(s), tables(_tables) { tables.push_back(_next); }
+        SunLuaValue(SunLuaState *s, std::vector<_SunPrivateScripting::SunLuaPrimitive> _tables, _SunPrivateScripting::SunLuaPrimitive _next) :  tables(_tables), index(-1), isFunctionReturn(false), state(s) { tables.push_back(_next); }
 
         void newTable();
 
@@ -146,8 +146,8 @@ namespace _SunPrivateScripting {
         void cleanUpSetTable();
 
         std::vector<_SunPrivateScripting::SunLuaPrimitive> tables;
-        int index = -1;
-        bool isFunctionReturn = false;
+        int index;
+        bool isFunctionReturn;
         SunLuaState *state;
     };
 }

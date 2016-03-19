@@ -7,6 +7,7 @@
 #include <string>
 
 enum SunButtonState {
+    SunButtonStateNone = -1,
     SunButtonStateUp = 0,
     SunButtonStateDown = 1
 };

@@ -110,7 +110,7 @@ void SunRenderingNode::render(SunAction action) {
         glViewport(0, 0, screenWidth, screenHeight);*/
     } else if (renderingType == SunRenderingNodeTypeEnd) {
 		map<string, pair<GLuint, GLuint>> _textures;
-        for (int i = 0; i < inputs.size(); i++) {
+        for (size_t i = 0; i < inputs.size(); i++) {
 			if (inputs[i].textureType == SunRenderingNodeTextureType2D) {
 				_textures[inputs[i].name] = make_pair(inputs[i].output->texture, GL_TEXTURE_2D);
             } else if (inputs[i].textureType == SunRenderingNodeTextureTypeCubemap)
@@ -170,7 +170,7 @@ void SunRenderingNode::init() {
         glGenFramebuffers(1, &fbo);
         glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
-        for (int i = 0; i < outputs.size(); i++) {
+        for (size_t i = 0; i < outputs.size(); i++) {
             initializeOutput(&outputs[i]);
         }
 
@@ -184,7 +184,7 @@ void SunRenderingNode::init() {
 
         GLuint colorAttachments[outputs.size()];
 
-        for (int i = 0; i < outputs.size(); i++)
+        for (size_t i = 0; i < outputs.size(); i++)
             colorAttachments[i] = GL_COLOR_ATTACHMENT0 + i;
 
         glDrawBuffers(outputs.size(), colorAttachments);
@@ -196,7 +196,7 @@ void SunRenderingNode::init() {
         glGenFramebuffers(1, &fbo);
         glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
-        for (int i = 0; i < outputs.size(); i++) {
+        for (size_t i = 0; i < outputs.size(); i++) {
             initializeOutput(&outputs[i]);
         }
 

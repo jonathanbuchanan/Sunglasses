@@ -6,12 +6,12 @@
 
 #include "../Core/SunService.h"
 #include "../Scripting/SunLuaValue.h"
-#include "../Scripting/SunLuaObject.h"
 #include "../Scripting/SunLuaType.h"
 #include <map>
 #include <string>
 #include <memory>
 
+class SunObject;
 class SunScript;
 namespace _SunPrivateScripting {
     class SunLuaPrimitive;
@@ -25,6 +25,13 @@ public:
     void initialize();
     void update();
 
+    /// Registers an object with the logic environment.
+    /**
+     * This function registers an object within the logic environment. Upon calling
+     * register with script, all registered objects within the logic environment will
+     * be registered in the script.
+     */
+    void registerObject(std::string name, SunObject *object);
     void registerWithScript(SunScript *script);
 
     void registerGlobal(std::string key, _SunPrivateScripting::SunLuaPrimitive value);
@@ -36,7 +43,7 @@ public:
 
     template<typename T>
     void registerObjectAsType(std::string name, std::string type, T *object) {
-        
+
     }
 
     template<typename T>

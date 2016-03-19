@@ -39,9 +39,9 @@ void SunPointLight::uniform(SunAction action) {
     SunObject::uniform(action);
 	SunShader *_shader = action.getParameterPointer<SunShader>("shader");
 	glUniform1i(_shader->getUniformLocation(countUniform), lastId);
-	int usedTextureUnits;
+	/*int usedTextureUnits;
 	if (action.parameterExists("usedTextureUnits"))
-		usedTextureUnits = action.getParameter<int>("usedTextureUnits");
+		usedTextureUnits = action.getParameter<int>("usedTextureUnits");*/
 
 	if (shadows) {
 		// Set the uniforms for the point light's color

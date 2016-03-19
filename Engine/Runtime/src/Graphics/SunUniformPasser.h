@@ -5,7 +5,7 @@
 #define SUNUNIFORMPASSER_H
 
 #include "../Core/SunBase.h"
-#include "SunShader.h" 
+#include "SunShader.h"
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include <string>
@@ -20,9 +20,9 @@ class SunUniformPasser : public SunBase {
 public:
 	virtual void init();
 
-	int createBuffer(std::string name, GLuint size);
-	int bindBufferToShader(std::string block, SunShader shader);
-	int bufferSubData(std::string block, GLuint offset, GLuint length, const GLvoid *data);
+	void createBuffer(std::string name, GLuint size);
+	void bindBufferToShader(std::string block, SunShader shader);
+	void bufferSubData(std::string block, GLuint offset, GLuint length, const GLvoid *data);
 protected:
 	std::map<std::string, SunUniformBuffer> uniformBuffers;
 	inline void addBuffer(std::string s, SunUniformBuffer b) { uniformBuffers[s] = b; }

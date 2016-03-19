@@ -9,6 +9,8 @@
 #include <memory>
 #include <tuple>
 
+class SunScript;
+
 namespace _SunPrivateScripting {
     class _SunLuaType_Base {
     public:
@@ -37,13 +39,13 @@ namespace _SunPrivateScripting {
 
     private:
         template<int... N>
-        void constructObject(SunLuaState *state, const char *name, S *object, _SunPrivateScripting::seq<N...>) {
-            SunLuaObject<S, T...> *x = new SunLuaObject<S, T...>(state, name, object, std::get<N>(functions)...);
+        SunLuaObject<S, T...> * constructObject(SunLuaState *state, const char *name, S *object, _SunPrivateScripting::seq<N...>) {
+            return new SunLuaObject<S, T...>(state, name, object, std::get<N>(functions)...);
         }
 
         template<int... N>
-        void constructObject(SunLuaState *state, SunLuaValue value, S *object, _SunPrivateScripting::seq<N...>) {
-            SunLuaObject<S, T...> *x = new SunLuaObject<S, T...>(state, value, object, std::get<N>(functions)...);
+        SunLuaObject<S, T...> * constructObject(SunLuaState *state, SunLuaValue value, S *object, _SunPrivateScripting::seq<N...>) {
+            return new SunLuaObject<S, T...>(state, value, object, std::get<N>(functions)...);
         }
 
         std::tuple<T...> functions;

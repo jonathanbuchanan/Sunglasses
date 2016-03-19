@@ -13,14 +13,14 @@ SunObject::SunObject() : physicsEnabled(false) {
     flipNormals = false;
 }
 
-SunObject::SunObject(string _name, string _modelPath, bool _flipNormals) : flipNormals(_flipNormals), physicsEnabled(false) {
+SunObject::SunObject(string _name, string _modelPath, bool _flipNormals) : physicsEnabled(false), flipNormals(_flipNormals) {
     SunObject();
 	setName(_name);
 
     model = SunModel(_modelPath, flipNormals);
 }
 
-SunObject::SunObject(string _name, string _modelPath, string tag, bool _flipNormals) : flipNormals(_flipNormals), physicsEnabled(false) {
+SunObject::SunObject(string _name, string _modelPath, string tag, bool _flipNormals) : physicsEnabled(false), flipNormals(_flipNormals) {
     SunObject();
 	setName(_name);
 	addTag(tag);

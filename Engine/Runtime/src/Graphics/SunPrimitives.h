@@ -34,15 +34,15 @@ struct SunVertex {
     glm::vec2 textureCoordinates;
     GLuint boneIDs[4];
     GLfloat boneWeights[4];
-    
+
     SunVertex() {
-        
+
     }
-    
+
     SunVertex(glm::vec3 _position) {
         position = _position;
     }
-    
+
     SunVertex(glm::vec3 _position, glm::vec2 _textureCoordinates) {
         position = _position;
         textureCoordinates = _textureCoordinates;
@@ -92,7 +92,7 @@ struct Simplex {
 
     void add(glm::vec3 point) {
         size = std::min(size + 1, 4);
-        for (int i = size - 1; i > 0; i--) vertices[i] = vertices[i - 1];
+        for (size_t i = size - 1; i > 0; i--) vertices[i] = vertices[i - 1];
             vertices[0] = point;
     }
 };
@@ -101,7 +101,7 @@ struct Simplex {
 struct SunBone {
     string name;
     GLint parentID;
-    
+
     glm::mat4 relativeTransform;
     glm::mat4 globalTransform;
     glm::mat4 bindPose;
@@ -111,7 +111,7 @@ struct SunBone {
 // SunAnimationChannel Declaration
 struct SunAnimationChannel {
     GLuint boneID;
-    
+
     vector<GLdouble> rotationKeyTicks;
     vector<glm::quat> rotationKeyValues;
 };
@@ -120,7 +120,7 @@ struct SunAnimationChannel {
 struct SunAnimation {
     GLdouble length;
     GLdouble ticksPerSecond;
-    
+
     vector<SunAnimationChannel> channels;
 };
 
@@ -141,37 +141,37 @@ struct SunTexture {
     GLuint width;
     GLuint height;
     SunTextureType type;
-    
+
     SunTexture() {
-        
+
     }
-    
+
     SunTexture(GLuint _width, GLuint _height, SunTextureType _type) {
         width = _width;
         height = _height;
         type = _type;
-        
+
         generate();
     }
-    
+
     void generate() {
         if (type == SunTextureTypeNoiseHemisphere) {
             vector<glm::vec3> noise;
-            for (int i = 0; i < width * height; i++) {
+            for (size_t i = 0; i < width * height; i++) {
                 glm::vec3 value = glm::vec3(randomFloats(generator) * 2.0 - 1.0, randomFloats(generator) * 2.0 - 1.0, 0.0);
                 noise.push_back(value);
             }
-            
+
             glGenTextures(1, &id);
             glBindTexture(GL_TEXTURE_2D, id);
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16F, width, height, 0, GL_RGB, GL_FLOAT, &noise[0]);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);  
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         }
     }
-    
+
 };
 
 typedef GLuint SunFramebufferObject;

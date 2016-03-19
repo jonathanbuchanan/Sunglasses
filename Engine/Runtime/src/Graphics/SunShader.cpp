@@ -30,7 +30,7 @@ GLuint compileShaderFromString(string shaderString, GLint shaderType) {
 
 GLuint compileShaderFromStrings(vector<string> shaderStrings, GLint shaderType) {
     const GLchar *sources[shaderStrings.size()];
-    for (int i = 0; i < shaderStrings.size(); i++) {
+    for (size_t i = 0; i < shaderStrings.size(); i++) {
         sources[i] = shaderStrings[i].c_str();
     }
     GLuint shader;
@@ -222,7 +222,7 @@ SunShader::SunShader(string vertexPath, string geometryPath, string fragmentPath
 }
 
 void SunShader::init() {
-    
+
 }
 
 void SunShader::uniforms(SunNode *root) {

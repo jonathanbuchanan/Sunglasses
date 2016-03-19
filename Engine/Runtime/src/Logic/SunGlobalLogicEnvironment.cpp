@@ -22,6 +22,15 @@ void SunGlobalLogicEnvironment::update() {
 
 }
 
+void SunGlobalLogicEnvironment::registerObject(std::string name, SunObject *object) {
+    //objects.push_back(std::unique_ptr<_SunPrivateScripting::_SunLuaObject_Base>(new _SunPrivateScripting::SunLuaObject<S, T...>(state, name.c_str(), object, functions...)));
+    //registerType<glm::vec3>("vec3", "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
+    /*script.registerObjectAsType(script["object"]["rotation"], "vec3", &rotation);
+    script.registerObjectAsType(script["object"]["position"], "vec3", &position);
+    script.registerObjectAsType(script["object"]["scale"], "vec3", &scale);
+    script.registerObjectAsType(script["object"]["color"], "vec3", &material.color);*/
+}
+
 void SunGlobalLogicEnvironment::registerWithScript(SunScript *script) {
     script->registerObject("globalenvironment", this, "globalExists", &SunGlobalLogicEnvironment::globalExists, "setInteger", &SunGlobalLogicEnvironment::setInteger, "setBoolean", &SunGlobalLogicEnvironment::setBoolean, "setNumber", &SunGlobalLogicEnvironment::setNumber, "setString", &SunGlobalLogicEnvironment::setString, "getInteger", &SunGlobalLogicEnvironment::getInteger, "getBoolean", &SunGlobalLogicEnvironment::getBoolean, "getNumber", &SunGlobalLogicEnvironment::getNumber, "getString", &SunGlobalLogicEnvironment::getString);
 }

@@ -63,7 +63,7 @@ void SunMesh::setUpGL() {
 }
 
 void SunMesh::calculateBindPoseAndInverseBindPose() {
-    for (int i = 0; i < bones.size(); i++) {
+    for (size_t i = 0; i < bones.size(); i++) {
         if (bones[i].parentID == -1) {
             bones[i].globalTransform = bones[i].relativeTransform;
         } else {
@@ -73,7 +73,7 @@ void SunMesh::calculateBindPoseAndInverseBindPose() {
 }
 
 void SunMesh::calculateBoneGlobalTransforms(GLfloat _currentTick) {
-    for (int i = 0; i < bones.size(); i++) {
+    for (size_t i = 0; i < bones.size(); i++) {
         SunAnimationChannel channel = animations[0].channels[i];
 
         int firstKeyIndex;
@@ -81,7 +81,7 @@ void SunMesh::calculateBoneGlobalTransforms(GLfloat _currentTick) {
 
         bool onKeyframe = false;
 
-        for (int j = 0; j < channel.rotationKeyTicks.size(); j++) {
+        for (size_t j = 0; j < channel.rotationKeyTicks.size(); j++) {
             if (floor(_currentTick) < round(channel.rotationKeyTicks[j])) {
                 firstKeyIndex = j - 1;
                 secondKeyIndex = j;
@@ -118,7 +118,7 @@ void SunMesh::calculateBoneGlobalTransforms(GLfloat _currentTick) {
 }
 
 void SunMesh::passGlobalTransformUniforms(SunShader _shader) {
-    for (int i = 0; i < bones.size(); i++) {
+    for (size_t i = 0; i < bones.size(); i++) {
         glm::mat4 boneMatrix = bones[i].globalTransform * globalInverseTransform;
 
         glUniformMatrix4fv(_shader.getUniformLocation(("boneMatrices[" + to_string(i) + "]")), 1, GL_FALSE, glm::value_ptr(boneMatrix));
@@ -158,7 +158,7 @@ void SunMesh::render(SunShader _shader, GLfloat _deltaTime, glm::vec3 _position,
 
         // Unbind the VAO
         glBindVertexArray(0);
-    } else { 
+    } else {
         glUniform3f(_shader.getUniformLocation("material.diffuse"), _material.color.r, _material.color.g, _material.color.b);
 
         glUniform1f(_shader.getUniformLocation("material.shininess"), _material.shininess);
