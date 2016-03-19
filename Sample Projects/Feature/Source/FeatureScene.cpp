@@ -25,7 +25,7 @@ void FeatureScene::init() {
 	renderer->setWindow(window);
     renderer->init();
 
-    SunObject *teapot = new SunObject("cube", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Teapot.dae", "solid", false);
+    SunObject *teapot = new SunObject("teapot0", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Teapot.dae", "solid", false);
     teapot->loadScript("Scripts/Teapot.lua");
 	teapot->init();
     teapot->setScale(glm::vec3(1.0f, 1.0f, 1.0f));
@@ -33,8 +33,7 @@ void FeatureScene::init() {
     teapots.push_back(teapot);
     root->addSubNode(teapot);
 
-	plane = new SunObject("plane", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Plane.dae", "solid", true);
-
+    plane = new SunObject("plane", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Plane.dae", "solid", true);
 	plane->init();
 	plane->setScale(glm::vec3(10.0f, 1.0f, 10.0f));
 	plane->setPosition(glm::vec3(0.0f, -5.0f, 0.0f));

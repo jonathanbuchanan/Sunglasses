@@ -10,6 +10,7 @@
 #include <map>
 #include <string>
 #include <memory>
+#include <algorithm>
 
 class SunObject;
 class SunScript;
@@ -31,25 +32,10 @@ public:
      * register with script, all registered objects within the logic environment will
      * be registered in the script.
      */
-    void registerObject(std::string name, SunObject *object);
+    void registerObject(SunObject *object);
     void registerWithScript(SunScript *script);
 
     void registerGlobal(std::string key, _SunPrivateScripting::SunLuaPrimitive value);
-
-    template<typename S, typename... T>
-    void registerType(std::string type, T... members) {
-        types[type] = std::shared_ptr<_SunPrivateScripting::_SunLuaType_Base>(new _SunPrivateScripting::SunLuaType<S, T...>(members...));
-    }
-
-    template<typename T>
-    void registerObjectAsType(std::string name, std::string type, T *object) {
-
-    }
-
-    template<typename T>
-    void registerObjectAsType(_SunPrivateScripting::SunLuaValue value, std::string type, T *object) {
-
-    }
 
     bool globalExists(const char *key);
 
@@ -65,8 +51,8 @@ public:
 
 private:
     std::map<std::string, _SunPrivateScripting::SunLuaPrimitive> globals;
-    std::vector<std::shared_ptr<_SunPrivateScripting::_SunLuaObject_Base>> objects;
-    std::map<std::string, std::shared_ptr<_SunPrivateScripting::_SunLuaType_Base>> types;
+    std::vector<std::shared_ptr<SunObject>> objects;
+    std::vector<std::pair<std::shared_ptr<SunScript>, std::vector<std::string>>> scripts;
 };
 
 #endif

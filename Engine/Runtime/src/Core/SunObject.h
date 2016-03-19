@@ -13,6 +13,8 @@
 #include "../Graphics/SunModel.h"
 #include "../Scripting/SunScript.h"
 
+class SunGlobalLogicEnvironment;
+
 /// A SunNode intended to be used in the scene graph as a game object
 /**
  * SunObject is a SunNode subclass that is intended to be used as an object in the
@@ -20,6 +22,7 @@
  * (coming), and AI (coming).
  */
 class SunObject : public SunNode {
+    friend SunGlobalLogicEnvironment;
 public:
     /// Default Constructor
     /**

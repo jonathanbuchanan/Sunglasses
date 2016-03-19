@@ -13,26 +13,35 @@ SunGlobalLogicEnvironment::SunGlobalLogicEnvironment() {
 }
 
 void SunGlobalLogicEnvironment::initialize() {
-    // Create the vec3 type
-    registerType<glm::vec3>("vec3", "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
-    // Create the SunObject type
+
 }
 
 void SunGlobalLogicEnvironment::update() {
-
+    for (size_t i = 0; i < scripts.size(); i++) {
+        std::shared_ptr<SunScript> script = scripts[i].first;
+        std::vector<std::string> &registered = scripts[i].second;
+        for (size_t j = 0; j < objects.size(); j++) {
+            if (std::find(registered.begin(), registered.end(), objects[j]->getName()) == registered.end()) {
+                script->registerObject(script->getVariable("globalenvironment")[objects[j]->getName().c_str()], objects[i].get());
+                script->registerObjectAsType(script->getVariable("globalenvironment")[objects[j]->getName().c_str()]["rotation"], "vec3", &objects[j]->rotation);
+                script->registerObjectAsType(script->getVariable("globalenvironment")[objects[j]->getName().c_str()]["position"], "vec3", &objects[j]->position);
+                script->registerObjectAsType(script->getVariable("globalenvironment")[objects[j]->getName().c_str()]["scale"], "vec3", &objects[j]->scale);
+                script->registerObjectAsType(script->getVariable("globalenvironment")[objects[j]->getName().c_str()]["color"], "vec3", &objects[j]->material.color);
+                registered.push_back(objects[j]->getName());
+            }
+        }
+    }
 }
 
-void SunGlobalLogicEnvironment::registerObject(std::string name, SunObject *object) {
-    //objects.push_back(std::unique_ptr<_SunPrivateScripting::_SunLuaObject_Base>(new _SunPrivateScripting::SunLuaObject<S, T...>(state, name.c_str(), object, functions...)));
-    //registerType<glm::vec3>("vec3", "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
-    /*script.registerObjectAsType(script["object"]["rotation"], "vec3", &rotation);
-    script.registerObjectAsType(script["object"]["position"], "vec3", &position);
-    script.registerObjectAsType(script["object"]["scale"], "vec3", &scale);
-    script.registerObjectAsType(script["object"]["color"], "vec3", &material.color);*/
+void SunGlobalLogicEnvironment::registerObject(SunObject *object) {
+    objects.push_back(std::shared_ptr<SunObject>(object));
 }
 
 void SunGlobalLogicEnvironment::registerWithScript(SunScript *script) {
+    script->registerType<glm::vec3>("vec3", "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
     script->registerObject("globalenvironment", this, "globalExists", &SunGlobalLogicEnvironment::globalExists, "setInteger", &SunGlobalLogicEnvironment::setInteger, "setBoolean", &SunGlobalLogicEnvironment::setBoolean, "setNumber", &SunGlobalLogicEnvironment::setNumber, "setString", &SunGlobalLogicEnvironment::setString, "getInteger", &SunGlobalLogicEnvironment::getInteger, "getBoolean", &SunGlobalLogicEnvironment::getBoolean, "getNumber", &SunGlobalLogicEnvironment::getNumber, "getString", &SunGlobalLogicEnvironment::getString);
+    std::vector<std::string> registered;
+    scripts.push_back(std::make_pair(std::shared_ptr<SunScript>(script), registered));
 }
 
 void SunGlobalLogicEnvironment::registerGlobal(std::string key, _SunPrivateScripting::SunLuaPrimitive value) {

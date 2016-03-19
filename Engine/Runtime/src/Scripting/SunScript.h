@@ -183,9 +183,9 @@ private:
     _SunPrivateScripting::SunLuaState *state;
     /// The vector of C functions.
     std::vector<_SunPrivateScripting::_SunLuaCFunction_Base *> functions;
-    /// The vector of registered objects.
+    /// The map of registered objects.
     std::vector<std::shared_ptr<_SunPrivateScripting::_SunLuaObject_Base>> objects;
-    /// The vector of registered types.
+    /// The map of registered types.
     std::map<std::string, std::shared_ptr<_SunPrivateScripting::_SunLuaType_Base>> types;
 };
 

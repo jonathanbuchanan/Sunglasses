@@ -64,23 +64,24 @@ function update(delta, mousex, mousey)
         position = camera.position.toTable()
         up = camera.up.toTable()
         if keyboard_manager.pollKey(keys.up) == true then
-            camera.position.assignTable(vec3plusvec3(vec3timesscalar(direction, finalSpeed), position))
+            position = vec3plusvec3(vec3timesscalar(direction, finalSpeed), position)
         end
         if keyboard_manager.pollKey(keys.down) == true then
-            camera.position.assignTable(vec3plusvec3(vec3timesscalar(direction, -finalSpeed), position))
+            position = vec3plusvec3(vec3timesscalar(direction, -finalSpeed), position)
         end
         if keyboard_manager.pollKey(keys.right) == true then
-            camera.position.assignTable(vec3plusvec3(vec3timesscalar(normalizevec3(vec3crossvec3(direction, up)), finalSpeed), position))
+            position = vec3plusvec3(vec3timesscalar(normalizevec3(vec3crossvec3(direction, up)), finalSpeed), position)
         end
         if keyboard_manager.pollKey(keys.left) == true then
-            camera.position.assignTable(vec3plusvec3(vec3timesscalar(normalizevec3(vec3crossvec3(direction, up)), -finalSpeed), position))
+            position = vec3plusvec3(vec3timesscalar(normalizevec3(vec3crossvec3(direction, up)), -finalSpeed), position)
         end
         if keyboard_manager.pollKey(keys.space) == true then
-            camera.position.assignTable(vec3plusvec3(vec3timesscalar({x = 0, y = 1, z = 0}, finalSpeed), position))
+            position = vec3plusvec3(vec3timesscalar({x = 0, y = 1, z = 0}, finalSpeed), position)
         end
         if keyboard_manager.pollKey(keys.leftshift) == true then
-            camera.position.assignTable(vec3plusvec3(vec3timesscalar({x = 0, y = -1, z = 0}, finalSpeed), position))
+            position = vec3plusvec3(vec3timesscalar({x = 0, y = -1, z = 0}, finalSpeed), position)
         end
+        camera.position.assignTable(position)
     end
     firstFrame = false
 end

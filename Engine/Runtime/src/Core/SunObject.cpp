@@ -49,6 +49,7 @@ void SunObject::init() {
 	addAction("render", &SunObject::render);
 	addAction("playSound", &SunObject::playSound);
 	addAction("uniform", &SunObject::uniform);
+    ((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->registerObject(this);
     if (scriptingEnabled == true)
         script["init"]();
 }
