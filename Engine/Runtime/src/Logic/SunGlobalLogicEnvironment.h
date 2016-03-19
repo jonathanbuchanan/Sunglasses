@@ -14,7 +14,7 @@
 class SunObject;
 class SunScript;
 namespace _SunPrivateScripting {
-    class SunLuaPrimitive;
+    struct SunLuaPrimitive;
 }
 
 class SunGlobalLogicEnvironment : public SunService {

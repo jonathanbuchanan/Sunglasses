@@ -140,7 +140,6 @@ private:
     /// The material of the models
     SunObjectMaterial material;
 
-    SunMeshRenderType renderType;
     /// Flips normals of models
     bool flipNormals = false;
 

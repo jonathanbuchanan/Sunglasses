@@ -52,7 +52,7 @@ void SunPhysicsSimulator::respondToCollisions(vector<SunPhysicsCollisionTuple> c
         SunPhysicsCollider *firstCollider = std::get<1>(collisions[i]);
         SunPhysicsObject *second = std::get<2>(collisions[i]);
         SunPhysicsCollider *secondCollider = std::get<3>(collisions[i]);
-        SunPhysicsCollisionData data = std::get<4>(collisions[i]);
+        //SunPhysicsCollisionData data = std::get<4>(collisions[i]);
 
         // Perfectly Elastic Collision
         if (first->getElasticity() == 1 && second->getElasticity() == 1) {
