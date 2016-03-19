@@ -5,8 +5,12 @@
 #define SUNGLOBALLOGICENVIRONMENT_H
 
 #include "../Core/SunService.h"
+#include "../Scripting/SunLuaValue.h"
+#include "../Scripting/SunLuaObject.h"
+#include "../Scripting/SunLuaType.h"
 #include <map>
 #include <string>
+#include <memory>
 
 class SunScript;
 namespace _SunPrivateScripting {
@@ -25,6 +29,21 @@ public:
 
     void registerGlobal(std::string key, _SunPrivateScripting::SunLuaPrimitive value);
 
+    template<typename S, typename... T>
+    void registerType(std::string type, T... members) {
+        types[type] = std::shared_ptr<_SunPrivateScripting::_SunLuaType_Base>(new _SunPrivateScripting::SunLuaType<S, T...>(members...));
+    }
+
+    template<typename T>
+    void registerObjectAsType(std::string name, std::string type, T *object) {
+        
+    }
+
+    template<typename T>
+    void registerObjectAsType(_SunPrivateScripting::SunLuaValue value, std::string type, T *object) {
+
+    }
+
     bool globalExists(const char *key);
 
     void setInteger(const char *key, int value);
@@ -39,6 +58,8 @@ public:
 
 private:
     std::map<std::string, _SunPrivateScripting::SunLuaPrimitive> globals;
+    std::vector<std::shared_ptr<_SunPrivateScripting::_SunLuaObject_Base>> objects;
+    std::map<std::string, std::shared_ptr<_SunPrivateScripting::_SunLuaType_Base>> types;
 };
 
 #endif

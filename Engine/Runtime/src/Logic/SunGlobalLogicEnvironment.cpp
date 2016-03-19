@@ -5,6 +5,7 @@
 
 
 #include "../Scripting/SunScript.h"
+#include "../Core/SunObject.h"
 
 
 SunGlobalLogicEnvironment::SunGlobalLogicEnvironment() {
@@ -12,7 +13,9 @@ SunGlobalLogicEnvironment::SunGlobalLogicEnvironment() {
 }
 
 void SunGlobalLogicEnvironment::initialize() {
-
+    // Create the vec3 type
+    registerType<glm::vec3>("vec3", "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
+    // Create the SunObject type
 }
 
 void SunGlobalLogicEnvironment::update() {
