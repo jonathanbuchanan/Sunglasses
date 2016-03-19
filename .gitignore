@@ -40,7 +40,8 @@ cmake_install.cmake
 install_manifest.txt
 
 # Docs
-docs/
+docs-html
+docs-latex
 
 # Google Test
 gmock/
