@@ -40,7 +40,7 @@ project(Test-Sunglasses)
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 
 add_executable(Test-Sunglasses ${SOURCES})
-include_directories(${gtest_SOURCE_DIR}/include ${gmock_SOURCE_DIR}/include /usr/include/freetype2)
+include_directories(/usr/include/freetype2)
 target_link_libraries(Test-Sunglasses sunglasses pthread lua ${GTEST_LIBRARY})
 add_dependencies(Test-Sunglasses gtest)
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -Wextra -Wpedantic -g")

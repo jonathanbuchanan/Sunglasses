@@ -41,3 +41,7 @@ install_manifest.txt
 
 # Docs
 docs/
+
+# Google Test
+gmock/
+gtest/
