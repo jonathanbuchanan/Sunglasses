@@ -4,7 +4,7 @@
 #ifndef SunDirectionalShadowMapRenderingNode_h
 #define SunDirectionalShadowMapRenderingNode_h
 
-#include "../Graphics/SunRenderingNode.h"
+#include "../Graphics/SunRenderNode.h"
 
 #include "SunDirectionalLight.h"
 

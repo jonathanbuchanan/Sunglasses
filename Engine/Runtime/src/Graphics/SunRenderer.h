@@ -8,7 +8,7 @@
 #include <iostream>
 
 #include "SunTextRenderer.h"
-#include "SunRenderingNode.h"
+#include "SunRenderNode.h"
 #include "SunTexturedQuad.h"
 #include "SunPrimitives.h"
 #include "SunCamera.h"
@@ -25,8 +25,8 @@ public:
 
 	inline void setSceneNode(SunScene *s) { scene = s; }
 
-    inline SunRenderingNode * getRootRenderNode() { return rootRenderNode; }
-    inline void setRootRenderNode(SunRenderingNode *_root) { rootRenderNode = _root; }
+    inline SunRenderNode * getRootRenderNode() { return rootRenderNode; }
+    inline void setRootRenderNode(SunRenderNode *_root) { rootRenderNode = _root; }
 
 	inline SunNode * getRenderingNodeForString(std::string string) { return renderingNodeMap[string]; }
 	inline void addRenderingNodeForString(SunNode *node, std::string string) { renderingNodeMap[string] = node; }
@@ -35,7 +35,7 @@ public:
 protected:
 	// Scene Objects
 	SunScene *scene;
-    SunRenderingNode *rootRenderNode;
+    SunRenderNode *rootRenderNode;
 
 	std::map<std::string, SunNode *> renderingNodeMap;
 private:

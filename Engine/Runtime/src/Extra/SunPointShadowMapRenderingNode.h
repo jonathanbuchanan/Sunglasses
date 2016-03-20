@@ -1,7 +1,7 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include "../Graphics/SunRenderingNode.h"
+#include "../Graphics/SunRenderNode.h"
 #include "SunPointLight.h"
 
 #ifndef SunPointShadowMapRenderingNode_h
@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class SunPointShadowMapRenderingNode : public SunRenderingNode {
+class SunPointShadowMapRenderingNode : public SunRenderNode {
 public:
 	SunPointShadowMapRenderingNode();
 

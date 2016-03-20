@@ -1,10 +1,20 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include "SunRenderingNode.h"
+#include "SunRenderNode.h"
 
 
-#include "SunWindowManager.h"
+
+SunRenderNode::SunRenderNode() {
+
+}
+
+void SunRenderNode::init() {
+    addAction("render", &SunRenderNode::render);
+}
+
+
+/*#include "SunWindowManager.h"
 
 
 SunTexturedQuad SunRenderingNode::renderQuad = SunTexturedQuad();
@@ -66,7 +76,7 @@ void SunRenderingNode::render(SunAction action) {
 		}
     } else if (renderingType == SunRenderingNodeTypeIntermediate) {
         // Get the input textures
-        /*map<string, pair<GLuint, GLuint>> _textures;
+        *//*map<string, pair<GLuint, GLuint>> _textures;
         for (int i = 0; i < inputs.size(); i++) {
             if (inputs[i].textureType == SunRenderingNodeTextureType2D)
                 _textures[inputs[i].name] = make_pair(inputs[i].link->outputSlotMap[inputs[i].slot]->texture, GL_TEXTURE_2D);
@@ -108,7 +118,7 @@ void SunRenderingNode::render(SunAction action) {
             renderQuad.renderWithUsedShader(_textures, shaders["quad"].shader);
         }
         glViewport(0, 0, screenWidth, screenHeight);*/
-    } else if (renderingType == SunRenderingNodeTypeEnd) {
+    /*} else if (renderingType == SunRenderingNodeTypeEnd) {
 		map<string, pair<GLuint, GLuint>> _textures;
         for (size_t i = 0; i < inputs.size(); i++) {
 			if (inputs[i].textureType == SunRenderingNodeTextureType2D) {
@@ -133,7 +143,7 @@ void SunRenderingNode::render(SunAction action) {
 		glViewport(0, 0, screen.x, screen.y);
     } else if (renderingType == SunRenderingNodeTypeOnly) {
         // Bind the screen-framebuffer
-        /*clear();
+        *//*clear();
 
         // Bind the framebuffer
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -154,7 +164,7 @@ void SunRenderingNode::render(SunAction action) {
 		renderAction.addParameter("deltaTime", &_deltaTime);
 
         sendAction(renderAction, scene);*/
-    }
+    /*}
 }
 
 void SunRenderingNode::init() {
@@ -274,4 +284,4 @@ void SunRenderingNode::initializeOutput(SunRenderingNodeOutput *_output) {
     }
 
     outputSlotMap[_output->slot] = _output;
-}
+}*/

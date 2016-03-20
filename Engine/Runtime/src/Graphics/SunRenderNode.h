@@ -1,12 +1,31 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
+#ifndef SUNRENDERNODE_H
+#define SUNRENDERNODE_H
 
 #include <vector>
 #include <map>
 #include <functional>
 
-#include "SunShader.h"
+
+#include "../Core/SunNode.h"
+
+
+
+class SunRenderNode : public SunNode {
+public:
+    SunRenderNode();
+
+    virtual void init();
+
+    virtual void render(SunAction action) = 0;
+    virtual void bindOutputs() = 0;
+private:
+
+};
+
+/*#include "SunShader.h"
 #include "../Core/SunObject.h"
 #include "SunTexturedQuad.h"
 #include "../Core/SunGame.h"
@@ -112,6 +131,6 @@ protected:
     SunNode *root;
     static SunTexturedQuad renderQuad;
 	static bool quadInitialized;
-};
+};*/
 
 #endif
