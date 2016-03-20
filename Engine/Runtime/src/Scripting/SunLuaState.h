@@ -50,6 +50,8 @@ namespace _SunPrivateScripting {
 
         void loadFile(const char *file);
 
+        void close();
+
         void run(const char *code);
 
         template<typename T> SunLuaBasicType getType() {
@@ -109,6 +111,7 @@ namespace _SunPrivateScripting {
         void pushBoolean(bool x);
         void pushString(const char *x);
         void pushLightUserdata(void *data);
+        void pushNil();
 
         void pushCClosure(lua_CFunction function, int upvalues);
         void pushCFunction(lua_CFunction function);

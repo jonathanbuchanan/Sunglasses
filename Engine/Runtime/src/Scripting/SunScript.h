@@ -27,6 +27,9 @@ public:
     SunScript();
     ~SunScript();
 
+    /// Closes the Lua state
+    void close();
+
     /// Loads a Lua file.
     /**
      * This function loads a Lua file upon being called. Specifically, it runs

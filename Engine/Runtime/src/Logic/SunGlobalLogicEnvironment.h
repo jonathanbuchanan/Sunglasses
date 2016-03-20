@@ -33,6 +33,17 @@ public:
      * be registered in the script.
      */
     void registerObject(SunObject *object);
+
+    /// Removes a registered object from the logic environment.
+    /**
+     * This function takes a pointer and removes it from the list of objects if present.
+     * It will also update all of the scripts by removing it from the globalenvironment
+     * global table as well.
+     * @retval  0   Function executed successfully
+     * @retval  -1  Function did not execute successfully (object wasn't present, most likely)
+     */
+    int removeObject(SunObject *object);
+
     void registerWithScript(SunScript *script);
 
     void registerGlobal(std::string key, _SunPrivateScripting::SunLuaPrimitive value);
@@ -51,8 +62,8 @@ public:
 
 private:
     std::map<std::string, _SunPrivateScripting::SunLuaPrimitive> globals;
-    std::vector<std::shared_ptr<SunObject>> objects;
-    std::vector<std::pair<std::shared_ptr<SunScript>, std::vector<std::string>>> scripts;
+    std::vector<SunObject *> objects;
+    std::vector<SunScript *> scripts;
 };
 
 #endif

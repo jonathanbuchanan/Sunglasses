@@ -110,6 +110,19 @@ namespace _SunPrivateScripting {
         }
     }
 
+    void SunLuaValue::setNil() {
+        if (tables.size() < 2) {
+            state->pushNil();
+            state->setGlobal((const char *)tables[tables.size() - 1]);
+        } else {
+            setUpSetTable();
+            tables[tables.size() - 1].push(state);
+            state->pushNil();
+            state->setTable(-3);
+            cleanUpSetTable();
+        }
+    }
+
     void SunLuaValue::getGlobal() {
         if (isFunctionReturn)
             return;

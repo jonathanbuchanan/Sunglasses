@@ -112,6 +112,8 @@ namespace _SunPrivateScripting {
         void operator=(const bool &x);
         void operator=(const char *x);
 
+        void setNil();
+
         std::vector<_SunPrivateScripting::SunLuaPrimitive> getTables() { return tables; }
     private:
         void getGlobal();

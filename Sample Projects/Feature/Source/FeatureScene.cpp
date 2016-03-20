@@ -15,9 +15,9 @@ void FeatureScene::init() {
     root->init();
 	root->setIgnoreTags(true);
 
-    camera = SunCamera();
-	camera.init();
-	root->addSubNode(&camera);
+    camera = new SunCamera();
+	camera->init();
+	root->addSubNode(camera);
     ((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->registerGlobal("doCameraInput", true);
 
 	renderer = new FeatureRenderer();
@@ -25,7 +25,7 @@ void FeatureScene::init() {
 	renderer->setWindow(window);
     renderer->init();
 
-    SunObject *teapot = new SunObject("teapot0", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Teapot.dae", "solid", false);
+    SunObject *teapot = new SunObject("teapot0", "Resources/Graphics/Models/Teapot.dae", "solid", false);
     teapot->loadScript("Scripts/Teapot.lua");
 	teapot->init();
     teapot->setScale(glm::vec3(1.0f, 1.0f, 1.0f));
@@ -33,7 +33,7 @@ void FeatureScene::init() {
     teapots.push_back(teapot);
     root->addSubNode(teapot);
 
-    plane = new SunObject("plane", "/home/jonathan/Dev/Sunglasses/Sample Projects/Feature/Resources/Graphics/Models/Plane.dae", "solid", true);
+    plane = new SunObject("plane", "Resources/Graphics/Models/Plane.dae", "solid", true);
 	plane->init();
 	plane->setScale(glm::vec3(10.0f, 1.0f, 10.0f));
 	plane->setPosition(glm::vec3(0.0f, -5.0f, 0.0f));
@@ -103,7 +103,7 @@ void FeatureScene::cycle() {
     static bool odown = false;
     SunKeyboardManager *keyboard = ((SunKeyboardManager *)getService("keyboard_manager"));
     if (keyboard->pollKey(GLFW_KEY_I) == true && idown == false) {
-        SunObject *teapot = new SunObject("cube", "Resources/Graphics/Models/Teapot.dae", "solid", false);
+        SunObject *teapot = new SunObject("teapot" + std::to_string(teapots.size()), "Resources/Graphics/Models/Teapot.dae", "solid", false);
         if (teapots.size() > 0)
             teapot->setPosition(teapots[teapots.size() - 1]->getPosition() + glm::vec3(7.0f, 0.0f, 0.0f));
         teapot->setScale(glm::vec3(1.0f, 1.0f, 1.0f));
@@ -117,6 +117,7 @@ void FeatureScene::cycle() {
     if (keyboard->pollKey(GLFW_KEY_I) == false)
         idown = false;
     if (keyboard->pollKey(GLFW_KEY_O) == true && odown == false) {
+        ((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->removeObject(teapots[teapots.size() - 1]);
         root->recursiveDeleteSubnode(teapots[teapots.size() - 1]);
         delete teapots[teapots.size() - 1];
         teapots.pop_back();

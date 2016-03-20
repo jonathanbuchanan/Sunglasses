@@ -64,6 +64,10 @@ namespace _SunPrivateScripting {
         luaL_dofile(state, file);
     }
 
+    void SunLuaState::close() {
+        lua_close(state);
+    }
+
     void SunLuaState::run(const char *code) {
         luaL_dostring(state, code);
     }
@@ -189,6 +193,10 @@ namespace _SunPrivateScripting {
 
     void SunLuaState::pushLightUserdata(void *data) {
         lua_pushlightuserdata(state, data);
+    }
+
+    void SunLuaState::pushNil() {
+        lua_pushnil(state);
     }
 
     void SunLuaState::pushCClosure(lua_CFunction function, int upvalues) {

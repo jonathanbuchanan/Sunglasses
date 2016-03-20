@@ -8,7 +8,11 @@ SunScript::SunScript() {
 }
 
 SunScript::~SunScript() {
+    close();
+}
 
+void SunScript::close() {
+    state->close();
 }
 
 void SunScript::loadFile(std::string file) {
