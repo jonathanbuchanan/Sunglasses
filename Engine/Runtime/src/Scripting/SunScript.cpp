@@ -8,7 +8,7 @@ SunScript::SunScript() {
 }
 
 SunScript::~SunScript() {
-    close();
+
 }
 
 void SunScript::close() {

@@ -13,8 +13,8 @@ struct SunScriptTest : ::testing::Test {
         script.loadFile("src/test_SunScript_1.lua");
     }
 
-    ~SunScriptTest() {
-
+    virtual void TearDown() {
+        
     }
 };
 
