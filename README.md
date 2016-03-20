@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/jonathanbuchanan/Sunglasses.svg?branch=doxygen)](https://travis-ci.org/jonathanbuchanan/Sunglasses)
+[![Build Status](https://travis-ci.org/jonathanbuchanan/Sunglasses.svg?branch=master)](https://travis-ci.org/jonathanbuchanan/Sunglasses)
 
 Dependencies:
 
