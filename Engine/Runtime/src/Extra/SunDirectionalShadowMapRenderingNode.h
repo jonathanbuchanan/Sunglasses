@@ -4,7 +4,7 @@
 #ifndef SunDirectionalShadowMapRenderingNode_h
 #define SunDirectionalShadowMapRenderingNode_h
 
-#include "../Graphics/SunRenderNode.h"
+/*#include "../Graphics/SunRenderNode.h"
 
 #include "SunDirectionalLight.h"
 
@@ -47,6 +47,6 @@ private:
 	SunNode *root;
 	static SunShader shader;
 	static bool shaderInitialized;
-};
+};*/
 
 #endif

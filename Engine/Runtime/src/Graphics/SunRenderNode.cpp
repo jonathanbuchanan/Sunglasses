@@ -2,7 +2,7 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include "SunRenderNode.h"
-
+#include <iostream>
 
 
 SunRenderNode::SunRenderNode() {
@@ -10,7 +10,12 @@ SunRenderNode::SunRenderNode() {
 }
 
 void SunRenderNode::init() {
-    addAction("render", &SunRenderNode::render);
+    addAction("render", &SunRenderNode::_render);
+}
+
+void SunRenderNode::_render(SunAction action) {
+    render(action);
+    bindOutputs();
 }
 
 

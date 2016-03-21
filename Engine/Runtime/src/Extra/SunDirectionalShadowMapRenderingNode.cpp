@@ -4,7 +4,7 @@
 #include "SunDirectionalShadowMapRenderingNode.h"
 
 
-#include "../Graphics/SunWindowManager.h"
+/*#include "../Graphics/SunWindowManager.h"
 
 
 SunShader SunDirectionalShadowMapRenderingNode::shader = {};
@@ -71,4 +71,4 @@ void SunDirectionalShadowMapRenderingNode::render(SunAction action) {
 	glUniformMatrix4fv(glGetUniformLocation(shader.getProgram(), "lightMatrix"), 1, GL_FALSE, glm::value_ptr(lightMatrix));
 	shader.send("", delta, root);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-}
+}*/

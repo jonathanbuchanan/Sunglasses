@@ -12,17 +12,45 @@
 #include "../Core/SunNode.h"
 
 
-
+/// An abstract class for defining rendering behavior.
+/**
+ * This abstract class is used to define rendering behavior. To define render
+ * behavior, override the render member function. You must also override the bindOutputs
+ * member function, which prepares the outputs for the next render node.
+ */
 class SunRenderNode : public SunNode {
 public:
+    /// The default constructor
     SunRenderNode();
 
+    /// This function initializes the render node.
+    /**
+     * When subclassing SunRenderNode, always call SunRenderNode::init() to guarantee
+     * that the 'render' action is added.
+     */
     virtual void init();
 
+    /// This function performs the rendering.
+    /**
+     * This function is used to perform rendering. You must override this to
+     * subclass SunRenderNode.
+     */
     virtual void render(SunAction action) = 0;
+
+    /// This function binds the outputs for the next node.
+    /**
+     * This function is used to prepare the output of the current node for the
+     * next one's job. You must overrid this to subclass SunRenderNode.
+     */
     virtual void bindOutputs() = 0;
 private:
-
+    /// The private function that is called when the 'render' action is passed
+    /**
+     * This member function is the actual function that gets called when the render
+     * node receives the 'render' action. This automatically calls render() and
+     * bindOutputs() for you.
+     */
+    void _render(SunAction action);
 };
 
 /*#include "SunShader.h"

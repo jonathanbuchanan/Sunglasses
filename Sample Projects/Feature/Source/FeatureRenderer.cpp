@@ -4,7 +4,13 @@
 #include "FeatureRenderer.h"
 
 void FeatureRenderer::init() {
-    // GBuffer Inputs
+    SunRenderNodeScene *root = new SunRenderNodeScene(scene->getRoot());
+    root->setSize(glm::vec2(1600.0f, 800.0f));
+    root->addShader("textured", SunShader("../../Engine/Shaders/Old/Variable Pipeline/Scene.vert", "../../Engine/Shaders/Old/Variable Pipeline/Scene.frag", "../../Engine/Shaders/Old/TexturedScene.pre"));
+    root->addShader("solid", SunShader("../../Engine/Shaders/Old/Variable Pipeline/Scene.vert", "../../Engine/Shaders/Old/Variable Pipeline/Scene.frag", "../../Engine/Shaders/Old/SolidScene.pre"));
+    root->init();
+    rootRenderNode = root;
+    /*// GBuffer Inputs
     vector<SunRenderingNodeInput> gbufferInputs = {};
 
     // GBuffer Outputs
@@ -57,5 +63,5 @@ void FeatureRenderer::init() {
 	finalNode->setShaders(finalShaders);
     finalNode->init();
     shadowMap0->addSubNode(finalNode);
-	addRenderingNodeForString(finalNode, "final");
+	addRenderingNodeForString(finalNode, "final");*/
 }
