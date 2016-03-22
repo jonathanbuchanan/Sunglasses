@@ -5,7 +5,7 @@
 
 void FeatureRenderer::init() {
     // GBuffer Inputs
-    vector<SunRenderingNodeInput> gbufferInputs = {};
+    std::vector<SunRenderingNodeInput> gbufferInputs = {};
 
     // GBuffer Outputs
     std::vector<SunRenderingNodeOutput> gbufferOutputs;
@@ -37,7 +37,7 @@ void FeatureRenderer::init() {
 	addRenderingNodeForString(shadowMap0, "shadowMap0");
 
     // Final Inputs
-    vector<SunRenderingNodeInput> finalInputs = {
+    std::vector<SunRenderingNodeInput> finalInputs = {
         SunRenderingNodeInput(gbuffer->getOutput(0), SunRenderingNodeDataTypePosition, "position", SunRenderingNodeDataFormatRGB16F, SunRenderingNodeTextureType2D),
         SunRenderingNodeInput(gbuffer->getOutput(1), SunRenderingNodeDataTypeNormal, "normal", SunRenderingNodeDataFormatRGB16F, SunRenderingNodeTextureType2D),
         SunRenderingNodeInput(gbuffer->getOutput(2), SunRenderingNodeDataTypeColor, "color", SunRenderingNodeDataFormatRGBA16F, SunRenderingNodeTextureType2D),
@@ -45,7 +45,7 @@ void FeatureRenderer::init() {
     };
 
     // Final Outputs
-    vector<SunRenderingNodeOutput> finalOutputs = {
+    std::vector<SunRenderingNodeOutput> finalOutputs = {
         SunRenderingNodeOutput(SunRenderingNodeDataTypeColor, SunRenderingNodeDataFormatRGBA16F, 0, glm::vec2(1600, 1200), SunRenderingNodeTextureType2D)
     };
 
