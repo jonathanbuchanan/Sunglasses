@@ -24,7 +24,7 @@ struct SunCLOption {
      * @param _description The description of the new option.
      * @param _function The function of the new option.
      */
-    SunCLOption(std::string _shortName, std::string _longName, std::string _description, std::function<void()> _function);
+    SunCLOption(std::string _shortName, std::string _longName, std::string _description, std::function<void(int, char **, int)> _function);
 
     /// The short name of the option ('-x')
     /**
@@ -55,9 +55,11 @@ struct SunCLOption {
 
     /// The function of the option
     /**
-     * This member is the function that is invoked when the option is used.
+     * This member is the function that is invoked when the option is used. The first
+     * parameter for the function is argc (int), the second parameter is argv (char **),
+     * and the third parameter is the option's index within argv (int).
      */
-    std::function<void()> function;
+    std::function<void(int, char **, int)> function;
 };
 
 /// A namespace for internal use for parsing command line options
@@ -88,6 +90,17 @@ namespace _SunPrivateCLOptionParsing {
  * @return An option that generates the help message
  */
 extern SunCLOption generateHelpOption(const std::vector<SunCLOption> &options);
+
+/// Gets the option's argument
+/**
+ * Use this when writing the function for an option to get the argument if it
+ * has one.
+ * @param argc The argument count (given in main())
+ * @param argv The argument array (given in main())
+ * @param options The vector of options (defined in SunGame)
+ * @return A char * that is the option's argument
+ */
+extern char * getArgument(int argc, char **argv, int index);
 
 /// Parses command line options.
 /**
