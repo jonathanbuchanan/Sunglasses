@@ -18,7 +18,7 @@ void SunTextRenderer::init() {
     glBindVertexArray(0);
 }
 
-void SunTextRenderer::loadFont(string _file, string _name) {
+void SunTextRenderer::loadFont(std::string _file, std::string _name) {
     // 0: Could not init FreeType
     // 1: Could not load font
     // 2: Could not load glyph
@@ -60,7 +60,7 @@ void SunTextRenderer::loadFont(string _file, string _name) {
             font.characters.insert(std::pair<GLchar, SunCharacter>(c, character));
         }
 
-        fonts.insert(std::pair<string, SunFont>(_name, font));
+        fonts.insert(std::pair<std::string, SunFont>(_name, font));
 
         FT_Done_Face(face);
         FT_Done_FreeType(ft);
@@ -81,7 +81,7 @@ void SunTextRenderer::loadFont(string _file, string _name) {
     }
 }
 
-void SunTextRenderer::renderText(string text, string _fontName, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color) {
+void SunTextRenderer::renderText(std::string text, std::string _fontName, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color) {
     shader.use();
     glUniform3f(shader.getUniformLocation("textColor"), color.x, color.y, color.z);
     glUniformMatrix4fv(shader.getUniformLocation("projection"), 1, GL_FALSE, glm::value_ptr(projection));

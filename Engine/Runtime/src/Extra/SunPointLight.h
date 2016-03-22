@@ -7,7 +7,6 @@
 
 #include "../Core/SunObject.h"
 #include <vector>
-using namespace std;
 
 #include <GL/glew.h>
 #include <glm/glm.hpp>
@@ -20,7 +19,7 @@ class SunPointLight : public SunObject {
 public:
     SunPointLight();
     SunPointLight(glm::vec3 _color, glm::vec3 _position);
-    SunPointLight(string _name);
+    SunPointLight(std::string _name);
 
     virtual void init();
     void uniform(SunAction action);
@@ -61,7 +60,7 @@ private:
 	glm::vec2 shadowMapSize = glm::vec2(1024.0f, 1024.0f);
 	GLuint shadowMapFramebuffer;
 	GLuint shadowMapTexture;
-	vector<glm::mat4> lightTransforms;
+	std::vector<glm::mat4> lightTransforms;
 	//vector<SunShaderUniformObject> _lightTransforms;
 };
 

@@ -40,7 +40,7 @@ public:
      * disabled by default. Also, it has no sounds. It loads a single model from the
      * file provided, and flipNormals is set by the constructor.
      */
-    SunObject(string _name, string _modelPath, bool _flipNormals);
+    SunObject(std::string _name, std::string _modelPath, bool _flipNormals);
 
     /// Constructor for name (string), model (string), tag (string), and flip normals (boolean)
     /**
@@ -50,7 +50,7 @@ public:
      * file provided, and flipNormals is set by the constructor. Finally, it adds
      * a single tag from the third parameter.
      */
-	SunObject(string _name, string _modelPath, string tag, bool _flipNormals);
+	SunObject(std::string _name, std::string _modelPath, std::string tag, bool _flipNormals);
 
     void loadScript(std::string _script);
 

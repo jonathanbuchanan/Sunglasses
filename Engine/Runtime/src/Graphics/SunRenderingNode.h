@@ -16,8 +16,6 @@ class SunWindowManager;
 #ifndef SunRenderingNode_h
 #define	SunRenderingNode_h
 
-using namespace std;
-
 class SunRenderingNode;
 
 enum SunRenderingNodeType {
@@ -63,20 +61,20 @@ struct SunRenderingNodeInput {
     SunRenderingNodeDataFormat format;
     SunRenderingNodeOutput *output;
     SunRenderingNodeTextureType textureType;
-	string linkName;
-    string name;
+	std::string linkName;
+    std::string name;
 
     SunRenderingNodeInput() { }
-    SunRenderingNodeInput(SunRenderingNodeOutput *_link, SunRenderingNodeDataType _type, string _name, SunRenderingNodeDataFormat _format, SunRenderingNodeTextureType _textureType);
+    SunRenderingNodeInput(SunRenderingNodeOutput *_link, SunRenderingNodeDataType _type, std::string _name, SunRenderingNodeDataFormat _format, SunRenderingNodeTextureType _textureType);
 };
 
 class SunRenderingNode : public SunNode {
 public:
     SunRenderingNode();
-    SunRenderingNode(string _name);
-    SunRenderingNode(string _name, SunRenderingNodeType _renderingType, SunNode *_root);
-    SunRenderingNode(string _name, SunRenderingNodeType _renderingType, vector<SunRenderingNodeInput> _inputs, vector<SunRenderingNodeOutput> _outputs);
-    SunRenderingNode(string _name, SunRenderingNodeType _renderingType, vector<SunRenderingNodeInput> _inputs, vector<SunRenderingNodeOutput> _outputs, SunNode *_root);
+    SunRenderingNode(std::string _name);
+    SunRenderingNode(std::string _name, SunRenderingNodeType _renderingType, SunNode *_root);
+    SunRenderingNode(std::string _name, SunRenderingNodeType _renderingType, std::vector<SunRenderingNodeInput> _inputs, std::vector<SunRenderingNodeOutput> _outputs);
+    SunRenderingNode(std::string _name, SunRenderingNodeType _renderingType, std::vector<SunRenderingNodeInput> _inputs, std::vector<SunRenderingNodeOutput> _outputs, SunNode *_root);
 
     virtual void init();
     virtual void render(SunAction action);
@@ -85,14 +83,14 @@ public:
     inline SunRenderingNodeType & getRenderingType() { return renderingType; }
     inline void setRenderingType(SunRenderingNodeType _type) { renderingType = _type; }
 
-    inline vector<SunRenderingNodeInput> & getInputs() { return inputs; }
+    inline std::vector<SunRenderingNodeInput> & getInputs() { return inputs; }
     inline SunRenderingNodeInput & getInputAtIndex(int i) { return inputs[i]; }
     inline void addInputToInputs(SunRenderingNodeInput _input) { inputs.push_back(_input); }
-    void setInputs(vector<SunRenderingNodeInput> &_inputs) { inputs = _inputs; }
+    void setInputs(std::vector<SunRenderingNodeInput> &_inputs) { inputs = _inputs; }
 
     inline SunRenderingNodeOutput * getOutput(int i) { return outputSlotMap[i]; }
     inline void addOutputToOutputs(SunRenderingNodeOutput output) { outputs.push_back(output); }
-    inline void setOutputs(vector<SunRenderingNodeOutput> _outputs) { outputs = _outputs; }
+    inline void setOutputs(std::vector<SunRenderingNodeOutput> _outputs) { outputs = _outputs; }
 	inline void addShaderForString(SunShader shader, std::string string) { shaders.push_back(std::make_pair(string, shader)); }
 	inline void setShaders(std::vector<std::pair<std::string, SunShader>> shaders_) { shaders = shaders_; }
 
@@ -101,13 +99,13 @@ private:
     SunRenderingNodeType renderingType;
 protected:
     // Inputs, Outputs, and Shaders
-    vector<SunRenderingNodeInput> inputs;
-    vector<SunRenderingNodeOutput> outputs;
+    std::vector<SunRenderingNodeInput> inputs;
+    std::vector<SunRenderingNodeOutput> outputs;
 	std::vector<std::pair<std::string, SunShader>> shaders;
 
 	GLuint fbo;
 	GLuint rbo;
-    map<int, SunRenderingNodeOutput *> outputSlotMap;
+    std::map<int, SunRenderingNodeOutput *> outputSlotMap;
 
     SunNode *root;
     static SunTexturedQuad renderQuad;

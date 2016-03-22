@@ -1,15 +1,12 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-/*
- * File:   SunSoundObject.h
- * Author: jonathan
- *
- * Created on August 1, 2015, 7:33 PM
- */
 
 #ifndef SUNSOUNDOBJECT_H
 #define	SUNSOUNDOBJECT_H
+
+#include <map>
+#include <string>
 
 #include "../Core/SunNode.h"
 #include "SunSoundBufferStorage.h"
@@ -18,7 +15,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 struct SunSound {
-    string name;
+    std::string name;
     sf::Sound sound;
 
     void play() {
@@ -31,14 +28,14 @@ public:
     SunSoundObject();
 
     virtual void init();
-    void addSoundFromBuffer(SunSoundBufferStorage *_storage, string _soundName, float _minimumDistance, float _attenuation);
+    void addSoundFromBuffer(SunSoundBufferStorage *_storage, std::string _soundName, float _minimumDistance, float _attenuation);
     void playSound(SunAction action);
 
-    inline map<string, SunSound> & getSounds() { return sounds; }
-    inline SunSound & getSoundForString(string s) { return sounds[s]; }
-    inline void addSoundForString(SunSound _sound, string s) { sounds[s] = _sound; }
+    std::map<std::string, SunSound> & getSounds() { return sounds; }
+    SunSound & getSoundForString(std::string s) { return sounds[s]; }
+    void addSoundForString(SunSound _sound, std::string s) { sounds[s] = _sound; }
 private:
-    map<string, SunSound> sounds;
+    std::map<std::string, SunSound> sounds;
 };
 
 #endif

@@ -11,11 +11,9 @@
 #include "SunGUIMenu.h"
 #include "SunGUIItem.h"
 
-using namespace std;
-
 struct SunGUIFont {
-    string file;
-    string name;
+    std::string file;
+    std::string name;
 };
 
 class SunGUISystem : public SunNode {
@@ -26,14 +24,14 @@ public:
     virtual void render(SunAction action);
     void loadFonts(SunTextRenderer *_textRenderer);
 
-    inline vector<SunGUIFont> & getFonts() { return fonts; }
+    inline std::vector<SunGUIFont> & getFonts() { return fonts; }
     inline SunGUIFont & getFontAtIndex(int i) { return fonts[i]; }
     inline void addFont(SunGUIFont font) { fonts.push_back(font); }
 
     inline bool & getFontsLoaded() { return fontsLoaded; }
     inline void setFontsLoaded(bool _fontsLoaded) { fontsLoaded = _fontsLoaded; }
 private:
-    vector<SunGUIFont> fonts;
+    std::vector<SunGUIFont> fonts;
     bool fontsLoaded = false;
 };
 

@@ -3,7 +3,7 @@
 // See LICENSE.md for details.
 #include "SunSoundBufferStorage.h"
 
-void SunSoundBufferStorage::loadSoundFromFileWithName(string _file, string _name) {
+void SunSoundBufferStorage::loadSoundFromFileWithName(std::string _file, std::string _name) {
     SunSoundBuffer newBuffer;
 
     newBuffer.name = _name;

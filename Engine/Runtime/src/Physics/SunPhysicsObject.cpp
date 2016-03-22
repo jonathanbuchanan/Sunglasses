@@ -9,7 +9,7 @@ SunPhysicsObject::SunPhysicsObject() {
 
 }
 
-void SunPhysicsObject::updatePositionForForcesAndDelta(vector<SunPhysicsForce> forces, float delta) {
+void SunPhysicsObject::updatePositionForForcesAndDelta(std::vector<SunPhysicsForce> forces, float delta) {
     if (!stationary) {
         glm::vec3 netDirection = glm::vec3(0, 0, 0);
         for (size_t i = 0; i < forces.size(); i++)

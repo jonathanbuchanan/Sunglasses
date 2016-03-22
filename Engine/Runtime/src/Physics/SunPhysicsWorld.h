@@ -1,12 +1,6 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-/*
- * File:   SunPhysicsWorld.h
- * Author: jonathan
- *
- * Created on August 14, 2015, 11:25 PM
- */
 
 #ifndef SUNPHYSICSWORLD_H
 #define	SUNPHYSICSWORLD_H
@@ -15,7 +9,6 @@
 #include "SunPhysicsObject.h"
 
 #include <vector>
-using namespace std;
 
 class SunPhysicsWorld {
 public:
@@ -24,12 +17,12 @@ public:
     inline SunPhysicsForce & getGravity() { return gravity; }
     inline void setGravity(SunPhysicsForce _gravity) { gravity = _gravity; }
 
-    inline vector<SunPhysicsObject *> & getObjects() { return objects; }
+    inline std::vector<SunPhysicsObject *> & getObjects() { return objects; }
     inline SunPhysicsObject * getObjectAtIndex(int i) { return objects[i]; }
     inline void addObjectToObjects(SunPhysicsObject *object) { objects.push_back(object); }
 private:
     SunPhysicsForce gravity;
-    vector<SunPhysicsObject *> objects;
+    std::vector<SunPhysicsObject *> objects;
 };
 
 #endif

@@ -2,11 +2,10 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 
-#ifndef Sunglasses_SunGUIItemMesh_h
-#define Sunglasses_SunGUIItemMesh_h
+#ifndef SUNGUIITEMMESH_H
+#define SUNGUIITEMMESH_H
 
 #include <vector>
-using namespace std;
 
 #include <GL/glew.h>
 #include "../Graphics/SunShader.h"
@@ -38,13 +37,13 @@ public:
 
     void setUpGL();
 
-    void loadTexture(string texturePath);
+    void loadTexture(std::string texturePath);
 
-    void render(glm::vec2 _position, glm::vec2 _size, glm::vec3 _color, GLboolean _textured, glm::vec3 _highlightColor, GLboolean _highlighted, string _text, string _font, SunTextRenderer *_renderer);
+    void render(glm::vec2 _position, glm::vec2 _size, glm::vec3 _color, GLboolean _textured, glm::vec3 _highlightColor, GLboolean _highlighted, std::string _text, std::string _font, SunTextRenderer *_renderer);
 
-    inline vector<SunBasicVertex> & getVertices() { return vertices; }
-    inline vector<GLuint> & getIndices() { return indices; }
-    inline vector<GLuint> & getTextures() { return textures; }
+    inline std::vector<SunBasicVertex> & getVertices() { return vertices; }
+    inline std::vector<GLuint> & getIndices() { return indices; }
+    inline std::vector<GLuint> & getTextures() { return textures; }
     inline SunShader & getShader() { return shader; }
     inline GLuint getVBO() { return VBO; }
     inline GLuint getEBO() { return EBO; }
@@ -52,17 +51,17 @@ public:
     inline GLuint getTexture() { return texture; }
 private:
     // Vertices and Indices
-    vector<SunBasicVertex> vertices = {
+    std::vector<SunBasicVertex> vertices = {
         SunBasicVertex(glm::vec2(1.0, 1.0), glm::vec2(1.0, 0.0)),
         SunBasicVertex(glm::vec2(0.0, 1.0), glm::vec2(0.0, 0.0)),
         SunBasicVertex(glm::vec2(0.0, 0.0), glm::vec2(0.0, 1.0)),
         SunBasicVertex(glm::vec2(1.0, 0.0), glm::vec2(1.0, 1.0))
     };
-    vector<GLuint> indices = {
+    std::vector<GLuint> indices = {
         0, 1, 2,
         0, 3, 2
     };
-    vector<GLuint> textures;
+    std::vector<GLuint> textures;
 
     // Shader
     SunShader shader = SunShader("../../Engine/Shaders/Old/2DQuad.vert", "../../Engine/Shaders/Old/2DQuad.frag");

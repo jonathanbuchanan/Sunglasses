@@ -16,7 +16,7 @@ SunDirectionalLight::SunDirectionalLight(glm::vec3 _color, glm::vec3 _direction)
 	init();
 }
 
-SunDirectionalLight::SunDirectionalLight(string _name) {
+SunDirectionalLight::SunDirectionalLight(std::string _name) {
     setName(_name);
 
 	init();

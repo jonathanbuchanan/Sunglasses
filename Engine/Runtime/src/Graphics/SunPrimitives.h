@@ -2,8 +2,8 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 
-#ifndef Sunglasses_SunPrimitives_h
-#define Sunglasses_SunPrimitives_h
+#ifndef SUNPRIMITIVES_H
+#define SUNPRIMITIVES_H
 
 #include <GL/glew.h>
 #include <vector>
@@ -20,10 +20,8 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
-using namespace std;
-
-extern uniform_real_distribution<GLfloat> randomFloats;
-extern default_random_engine generator;
+extern std::uniform_real_distribution<GLfloat> randomFloats;
+extern std::default_random_engine generator;
 
 // SunVertex Declaration
 struct SunVertex {
@@ -99,7 +97,7 @@ struct Simplex {
 
 // SunBone Declaration
 struct SunBone {
-    string name;
+    std::string name;
     GLint parentID;
 
     glm::mat4 relativeTransform;
@@ -112,8 +110,8 @@ struct SunBone {
 struct SunAnimationChannel {
     GLuint boneID;
 
-    vector<GLdouble> rotationKeyTicks;
-    vector<glm::quat> rotationKeyValues;
+    std::vector<GLdouble> rotationKeyTicks;
+    std::vector<glm::quat> rotationKeyValues;
 };
 
 // SunAnimation Declaration
@@ -121,7 +119,7 @@ struct SunAnimation {
     GLdouble length;
     GLdouble ticksPerSecond;
 
-    vector<SunAnimationChannel> channels;
+    std::vector<SunAnimationChannel> channels;
 };
 
 enum SunTextureType {
@@ -136,7 +134,7 @@ enum SunTextureType {
 struct SunTexture {
     // ID, type, and path
     GLuint id;
-    string name;
+    std::string name;
     aiString path;
     GLuint width;
     GLuint height;
@@ -156,7 +154,7 @@ struct SunTexture {
 
     void generate() {
         if (type == SunTextureTypeNoiseHemisphere) {
-            vector<glm::vec3> noise;
+            std::vector<glm::vec3> noise;
             for (size_t i = 0; i < width * height; i++) {
                 glm::vec3 value = glm::vec3(randomFloats(generator) * 2.0 - 1.0, randomFloats(generator) * 2.0 - 1.0, 0.0);
                 noise.push_back(value);
@@ -181,11 +179,11 @@ typedef GLuint SunFramebufferColorAttachmentObject;
 struct SunFramebuffer {
     GLuint framebuffer;
     GLuint renderbuffer;
-    vector<SunFramebufferColorAttachmentObject> colorAttachments;
-    map<string, SunFramebufferTextureObject> textures;
+    std::vector<SunFramebufferColorAttachmentObject> colorAttachments;
+    std::map<std::string, SunFramebufferTextureObject> textures;
 };
 
-typedef map<string, SunFramebufferTextureObject>::iterator SunFramebufferTextureObjectIterator;
+typedef std::map<std::string, SunFramebufferTextureObject>::iterator SunFramebufferTextureObjectIterator;
 
 extern void clear();
 

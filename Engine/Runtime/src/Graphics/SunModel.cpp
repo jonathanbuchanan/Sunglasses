@@ -3,8 +3,8 @@
 // See LICENSE.md for details.
 #include "SunModel.h"
 
-GLint textureFromFile(const char *path, string directory) {
-    string filename = directory + string(path);
+GLint textureFromFile(const char *path, std::string directory) {
+    std::string filename = directory + std::string(path);
 
     GLuint textureID;
     glGenTextures(1, &textureID);
@@ -26,7 +26,7 @@ GLint textureFromFile(const char *path, string directory) {
     return textureID;
 }
 
-SunModel::SunModel(string _file, bool _flipNormals) {
+SunModel::SunModel(std::string _file, bool _flipNormals) {
 	// Import the mesh data
     importMeshData(_file, _flipNormals);
 }
@@ -35,7 +35,7 @@ void SunModel::init() {
 
 }
 
-void SunModel::importMeshData(string _file, bool _flipNormals) {
+void SunModel::importMeshData(std::string _file, bool _flipNormals) {
 	((SunLogger *)getService("logger"))->log("Attempting to load model " + _file);
     // Set Flip Normals
     flipNormals = _flipNormals;
@@ -103,14 +103,14 @@ void SunModel::processMeshNodeForBones(aiNode* _node, const aiScene* _scene) {
 
 SunMesh SunModel::processMeshData(aiMesh* _mesh, const aiScene* _scene) {
     // Vertices, Indices, and Textures
-    vector<SunVertex> vertices;
-    vector<GLuint> indices;
-    vector<SunTexture> textures;
-    map<string, SunBone> boneMap;
-    vector<SunAnimation> animations;
+    std::vector<SunVertex> vertices;
+    std::vector<GLuint> indices;
+    std::vector<SunTexture> textures;
+    std::map<std::string, SunBone> boneMap;
+    std::vector<SunAnimation> animations;
 
     for (size_t i = 0; i < _mesh->mNumBones; i++) {
-        string boneName = _mesh->mBones[i]->mName.C_Str();
+        std::string boneName = _mesh->mBones[i]->mName.C_Str();
         assimpBones.push_back(_mesh->mBones[i]);
 
         boneNames.push_back(boneName);
@@ -238,17 +238,17 @@ SunMesh SunModel::processMeshData(aiMesh* _mesh, const aiScene* _scene) {
         aiMaterial *material = _scene->mMaterials[_mesh->mMaterialIndex];
 
         // Load the diffuse textures
-        vector<SunTexture> diffuseMaps = this->loadMaterialTextures(material, aiTextureType_DIFFUSE, "diffuse");
+        std::vector<SunTexture> diffuseMaps = this->loadMaterialTextures(material, aiTextureType_DIFFUSE, "diffuse");
         // Add the diffuse textures to the mesh's list of textures
        	textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
 
         // Load the specular textures
-        vector<SunTexture> specularMaps = this->loadMaterialTextures(material, aiTextureType_SPECULAR, "specular");
+        std::vector<SunTexture> specularMaps = this->loadMaterialTextures(material, aiTextureType_SPECULAR, "specular");
         // Add the specular textures to the mesh's list of textures
         textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
 
         // Load the normal textures
-        vector<SunTexture> normalMaps = this->loadMaterialTextures(material, aiTextureType_HEIGHT, "normal");
+        std::vector<SunTexture> normalMaps = this->loadMaterialTextures(material, aiTextureType_HEIGHT, "normal");
         // Add the normal textures to the mesh's list of textures
         textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
     }
@@ -261,8 +261,8 @@ SunMesh SunModel::processMeshData(aiMesh* _mesh, const aiScene* _scene) {
     return mesh;
 }
 
-vector<SunTexture> SunModel::loadMaterialTextures(aiMaterial* _material, aiTextureType _type, string _typeName) {
-    vector<SunTexture> textures;
+std::vector<SunTexture> SunModel::loadMaterialTextures(aiMaterial* _material, aiTextureType _type, std::string _typeName) {
+    std::vector<SunTexture> textures;
     for (size_t i = 0; i < _material->GetTextureCount(_type); i++) {
         aiString string;
         _material->GetTexture(_type, i, &string);

@@ -48,7 +48,7 @@ void SunNode::addSubNode(SunNode *_subNode) {
     }
 }
 
-void SunNode::findNode(string _path, SunNode &_node) {
+void SunNode::findNode(std::string _path, SunNode &_node) {
     /*vector<string> levels = splitString(_path, *"/");
 
     GLboolean done = false;
@@ -67,7 +67,7 @@ void SunNode::findNode(string _path, SunNode &_node) {
     }*/
 }
 
-void SunNode::findNode(string _path, SunNode *&_node) {
+void SunNode::findNode(std::string _path, SunNode *&_node) {
     /*vector<string> levels = splitString(_path, *"/");
 
     GLboolean done = false;
@@ -86,7 +86,7 @@ void SunNode::findNode(string _path, SunNode *&_node) {
     }*/
 }
 
-void SunNode::findNodeWithName(string _name, SunNode &_node) {
+void SunNode::findNodeWithName(std::string _name, SunNode &_node) {
     for (size_t i = 0; i < subNodes.size(); i++) {
         if (subNodes[i]->getName() == _name) {
             _node = *subNodes[i];
@@ -97,7 +97,7 @@ void SunNode::findNodeWithName(string _name, SunNode &_node) {
     }
 }
 
-void SunNode::findPointerNodeWithName(string _name, SunNode *&_node) {
+void SunNode::findPointerNodeWithName(std::string _name, SunNode *&_node) {
     if (getName() == _name) {
         _node = this;
     } else {

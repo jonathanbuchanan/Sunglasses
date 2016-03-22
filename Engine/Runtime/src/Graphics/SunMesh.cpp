@@ -3,7 +3,7 @@
 // See LICENSE.md for details.
 #include "SunMesh.h"
 
-SunMesh::SunMesh(vector<SunVertex> _vertices, vector<GLuint> _indices, vector<SunTexture> _textures, vector<SunBone> _bones, vector<SunAnimation> _animations) {
+SunMesh::SunMesh(std::vector<SunVertex> _vertices, std::vector<GLuint> _indices, std::vector<SunTexture> _textures, std::vector<SunBone> _bones, std::vector<SunAnimation> _animations) {
     vertices = _vertices;
     indices = _indices;
     textures = _textures;
@@ -121,7 +121,7 @@ void SunMesh::passGlobalTransformUniforms(SunShader _shader) {
     for (size_t i = 0; i < bones.size(); i++) {
         glm::mat4 boneMatrix = bones[i].globalTransform * globalInverseTransform;
 
-        glUniformMatrix4fv(_shader.getUniformLocation(("boneMatrices[" + to_string(i) + "]")), 1, GL_FALSE, glm::value_ptr(boneMatrix));
+        glUniformMatrix4fv(_shader.getUniformLocation(("boneMatrices[" + std::to_string(i) + "]")), 1, GL_FALSE, glm::value_ptr(boneMatrix));
     }
 }
 

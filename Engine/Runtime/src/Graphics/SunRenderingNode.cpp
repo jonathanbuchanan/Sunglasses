@@ -18,7 +18,7 @@ SunRenderingNodeOutput::SunRenderingNodeOutput(SunRenderingNodeDataType _type, S
 	textureType = _textureType;
 }
 
-SunRenderingNodeInput::SunRenderingNodeInput(SunRenderingNodeOutput *_link, SunRenderingNodeDataType _type, string _name, SunRenderingNodeDataFormat _format, SunRenderingNodeTextureType _textureType) {
+SunRenderingNodeInput::SunRenderingNodeInput(SunRenderingNodeOutput *_link, SunRenderingNodeDataType _type, std::string _name, SunRenderingNodeDataFormat _format, SunRenderingNodeTextureType _textureType) {
 	output = _link;
 	type = _type;
 	name = _name;
@@ -30,24 +30,24 @@ SunRenderingNode::SunRenderingNode() {
 
 }
 
-SunRenderingNode::SunRenderingNode(string _name) {
+SunRenderingNode::SunRenderingNode(std::string _name) {
     setName(_name);
 }
 
-SunRenderingNode::SunRenderingNode(string _name, SunRenderingNodeType _renderingType, SunNode *_root) {
+SunRenderingNode::SunRenderingNode(std::string _name, SunRenderingNodeType _renderingType, SunNode *_root) {
 	setName(_name);
 	setRenderingType(_renderingType);
 	setRoot(_root);
 }
 
-SunRenderingNode::SunRenderingNode(string _name, SunRenderingNodeType _renderingType, vector<SunRenderingNodeInput> _inputs, vector<SunRenderingNodeOutput> _outputs) {
+SunRenderingNode::SunRenderingNode(std::string _name, SunRenderingNodeType _renderingType, std::vector<SunRenderingNodeInput> _inputs, std::vector<SunRenderingNodeOutput> _outputs) {
 	setName(_name);
 	setRenderingType(_renderingType);
 	inputs = _inputs;
 	outputs = _outputs;
 }
 
-SunRenderingNode::SunRenderingNode(string _name, SunRenderingNodeType _renderingType, vector<SunRenderingNodeInput> _inputs, vector<SunRenderingNodeOutput> _outputs, SunNode *_root) {
+SunRenderingNode::SunRenderingNode(std::string _name, SunRenderingNodeType _renderingType, std::vector<SunRenderingNodeInput> _inputs, std::vector<SunRenderingNodeOutput> _outputs, SunNode *_root) {
 	setName(_name);
 	setRenderingType(_renderingType);
 	inputs = _inputs;
@@ -109,12 +109,12 @@ void SunRenderingNode::render(SunAction action) {
         }
         glViewport(0, 0, screenWidth, screenHeight);*/
     } else if (renderingType == SunRenderingNodeTypeEnd) {
-		map<string, pair<GLuint, GLuint>> _textures;
+		std::map<std::string, std::pair<GLuint, GLuint>> _textures;
         for (size_t i = 0; i < inputs.size(); i++) {
 			if (inputs[i].textureType == SunRenderingNodeTextureType2D) {
-				_textures[inputs[i].name] = make_pair(inputs[i].output->texture, GL_TEXTURE_2D);
+				_textures[inputs[i].name] = std::make_pair(inputs[i].output->texture, GL_TEXTURE_2D);
             } else if (inputs[i].textureType == SunRenderingNodeTextureTypeCubemap)
-                _textures[inputs[i].name] = make_pair(inputs[i].output->texture, GL_TEXTURE_CUBE_MAP);
+                _textures[inputs[i].name] = std::make_pair(inputs[i].output->texture, GL_TEXTURE_CUBE_MAP);
         }
 
         // Bind the screen-framebuffer

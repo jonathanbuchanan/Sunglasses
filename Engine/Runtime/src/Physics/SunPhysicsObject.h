@@ -1,12 +1,6 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-/*
- * File:   SunPhysicsObject.h
- * Author: jonathan
- *
- * Created on August 6, 2015, 11:37 AM
- */
 
 #ifndef SUNPHYSICSOBJECT_H
 #define	SUNPHYSICSOBJECT_H
@@ -19,13 +13,12 @@
 #include "SunPhysicsColliderMesh.h"
 
 #include <vector>
-using namespace std;
 
 class SunPhysicsObject {
 public:
     SunPhysicsObject();
 
-    void updatePositionForForcesAndDelta(vector<SunPhysicsForce> forces, float delta);
+    void updatePositionForForcesAndDelta(std::vector<SunPhysicsForce> forces, float delta);
     SunPhysicsCollisionData collideWith(SunPhysicsObject *_other);
 
     inline glm::vec3 & getPosition() { return position; }
@@ -51,7 +44,7 @@ public:
     inline float & getElasticity() { return elasticity; }
     inline void setElasticity(float _e) { elasticity = _e; }
 
-    inline vector<SunPhysicsCollider *> & getColliders() { return colliders; }
+    inline std::vector<SunPhysicsCollider *> & getColliders() { return colliders; }
     inline int getCollidersSize() { return colliders.size(); }
     inline SunPhysicsCollider * getColliderAtIndex(int i) { return colliders[i]; }
     inline void addCollider(SunPhysicsCollider *c) { colliders.push_back(c); }
@@ -75,7 +68,7 @@ private:
     float elasticity;
 
     // Physics Colliders
-    vector<SunPhysicsCollider *> colliders;
+    std::vector<SunPhysicsCollider *> colliders;
 
     // Do Self Collision
     bool selfCollision;

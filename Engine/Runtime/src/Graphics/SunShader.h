@@ -2,16 +2,14 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 
-#ifndef OpenGL_Test_3_SunShader_h
-#define OpenGL_Test_3_SunShader_h
+#ifndef SUNSHADER_H
+#define SUNSHADER_H
 
 #include <string>
 #include <fstream>
 #include <sstream>
 #include <iostream>
 #include <vector>
-
-using namespace std;
 
 #include <GL/glew.h>
 
@@ -24,19 +22,19 @@ enum SunShaderSourceType {
     SunShaderSourceTypeGeometry = GL_GEOMETRY_SHADER
 };
 
-extern string getShaderCodeFromFile(string filepath);
-extern GLuint compileShaderFromString(string shaderString, GLint shaderType);
-extern GLuint compileShaderFromStrings(vector<string> shaderStrings, GLint shaderType);
+extern std::string getShaderCodeFromFile(std::string filepath);
+extern GLuint compileShaderFromString(std::string shaderString, GLint shaderType);
+extern GLuint compileShaderFromStrings(std::vector<std::string> shaderStrings, GLint shaderType);
 
 class SunShader : public SunBase {
 public:
     SunShader() { }
 
-    SunShader(string vertexPath, string fragmentPath);
-    SunShader(string vertexPath, string fragmentPath, string preprocessorPath);
-    SunShader(string vertexPath, string geometryPath, string fragmentPath, string preprocessorPath);
-    SunShader(vector<string> sources, vector<SunShaderSourceType> sourceTypes, string preprocessorPath);
-    SunShader(string vertexPath, string geometryPath, string fragmentPath, int a);
+    SunShader(std::string vertexPath, std::string fragmentPath);
+    SunShader(std::string vertexPath, std::string fragmentPath, std::string preprocessorPath);
+    SunShader(std::string vertexPath, std::string geometryPath, std::string fragmentPath, std::string preprocessorPath);
+    SunShader(std::vector<std::string> sources, std::vector<SunShaderSourceType> sourceTypes, std::string preprocessorPath);
+    SunShader(std::string vertexPath, std::string geometryPath, std::string fragmentPath, int a);
 
     void init();
 
@@ -48,7 +46,7 @@ public:
 
     inline GLuint getProgram() { return program; }
     inline void setProgram(GLuint _program) { program = _program; }
-    inline GLuint getUniformLocation(string uniform) { return glGetUniformLocation(program, uniform.c_str()); }
+    inline GLuint getUniformLocation(std::string uniform) { return glGetUniformLocation(program, uniform.c_str()); }
 private:
     GLuint program;
 };

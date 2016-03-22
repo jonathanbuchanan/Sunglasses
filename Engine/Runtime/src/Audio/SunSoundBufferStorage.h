@@ -1,12 +1,6 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-/* 
- * File:   SunSoundBufferStorage.h
- * Author: jonathan
- *
- * Created on August 4, 2015, 7:55 PM
- */
 
 #ifndef SUNSOUNDBUFFERSTORAGE_H
 #define	SUNSOUNDBUFFERSTORAGE_H
@@ -14,25 +8,22 @@
 #include <vector>
 #include <map>
 
-using namespace std;
-
 #include <SFML/Audio.hpp>
 
 struct SunSoundBuffer {
-    string name;
+    std::string name;
     sf::SoundBuffer buffer;
 };
 
 class SunSoundBufferStorage {
 public:
-    void loadSoundFromFileWithName(string _file, string _name);
-    
-    inline map<string, SunSoundBuffer> & getBufferMap() { return bufferMap; }
-    inline SunSoundBuffer & getBufferForString(string s) { return bufferMap[s]; }
-    inline void addBufferForString(SunSoundBuffer _buffer, string s) { bufferMap[s] = _buffer; }
+    void loadSoundFromFileWithName(std::string _file, std::string _name);
+
+    inline std::map<std::string, SunSoundBuffer> & getBufferMap() { return bufferMap; }
+    inline SunSoundBuffer & getBufferForString(std::string s) { return bufferMap[s]; }
+    inline void addBufferForString(SunSoundBuffer _buffer, std::string s) { bufferMap[s] = _buffer; }
 private:
-    map<string, SunSoundBuffer> bufferMap;
+    std::map<std::string, SunSoundBuffer> bufferMap;
 };
 
 #endif
-

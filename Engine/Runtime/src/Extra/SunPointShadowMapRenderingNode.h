@@ -4,10 +4,8 @@
 #include "../Graphics/SunRenderingNode.h"
 #include "SunPointLight.h"
 
-#ifndef SunPointShadowMapRenderingNode_h
-#define SunPointShadowMapRenderingNode_h
-
-using namespace std;
+#ifndef SUNPOINTSHADOWMAPRENDERINGNODE_H
+#define SUNPOINTSHADOWMAPRENDERINGNODE_H
 
 class SunPointShadowMapRenderingNode : public SunRenderingNode {
 public:
@@ -17,11 +15,11 @@ public:
 	void loadPointLights(SunAction action);
 	virtual void render(SunAction action);
 
-	inline vector<SunPointLight *> & getLights() { return lights; }
+	inline std::vector<SunPointLight *> & getLights() { return lights; }
 	inline SunPointLight * getLightAtIndex(int i) { return lights[i]; }
 	inline void addLightToLights(SunPointLight *_p) { lights.push_back(_p); }
 private:
-	vector<SunPointLight *> lights;
+	std::vector<SunPointLight *> lights;
 	SunShader shadowMapShader;
 };
 

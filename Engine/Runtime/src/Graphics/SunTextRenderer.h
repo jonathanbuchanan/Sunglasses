@@ -2,8 +2,8 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 
-#ifndef OpenGL_Test_3_SunTextRenderer_h
-#define OpenGL_Test_3_SunTextRenderer_h
+#ifndef SUNTEXTRENDERER_H
+#define SUNTEXTRENDERER_H
 
 #include <map>
 #include <iostream>
@@ -25,8 +25,6 @@
 #include <glm/gtx/quaternion.hpp>
 #include <glm/gtx/string_cast.hpp>
 
-using namespace std;
-
 struct SunCharacter {
     GLuint texture;
     glm::ivec2 size;
@@ -35,8 +33,8 @@ struct SunCharacter {
 };
 
 struct SunFont {
-    string name;
-    std::map <GLchar, SunCharacter> characters;
+    std::string name;
+    std::map<GLchar, SunCharacter> characters;
 };
 
 class SunTextRenderer : public SunBase {
@@ -44,11 +42,11 @@ public:
     SunTextRenderer() { }
 
     void init();
-    void loadFont(string _file, string _name);
-    void renderText(string text, string _fontName, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color);
+    void loadFont(std::string _file, std::string _name);
+    void renderText(std::string text, std::string _fontName, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color);
 
-    inline map<string, SunFont> & getFonts() { return fonts; }
-    inline SunFont & getFontForString(string s) { return fonts[s]; }
+    inline std::map<std::string, SunFont> & getFonts() { return fonts; }
+    inline SunFont & getFontForString(std::string s) { return fonts[s]; }
 
     inline glm::mat4 & getProjectionMatrix() { return projection; }
 
@@ -58,7 +56,7 @@ public:
     inline GLuint getVAO() { return VAO; }
     inline GLuint getVBO() { return VBO; }
 private:
-	map<string, SunFont> fonts;
+	std::map<std::string, SunFont> fonts;
 
     glm::mat4 projection;
 

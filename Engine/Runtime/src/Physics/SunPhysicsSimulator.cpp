@@ -6,20 +6,20 @@
 
 void SunPhysicsSimulator::cycle(float delta) {
     integrate(delta);
-    vector<SunPhysicsCollisionTuple> collisions = detectCollisions(delta);
+    std::vector<SunPhysicsCollisionTuple> collisions = detectCollisions(delta);
     respondToCollisions(collisions, delta);
 }
 
 void SunPhysicsSimulator::integrate(float delta) {
-    vector<SunPhysicsForce> forces;
+    std::vector<SunPhysicsForce> forces;
     forces.push_back(world.getGravity());
     for (size_t i = 0; i < world.getObjects().size(); i++) {
         world.getObjectAtIndex(i)->updatePositionForForcesAndDelta(forces, delta);
     }
 }
 
-vector<SunPhysicsCollisionTuple> SunPhysicsSimulator::detectCollisions(float delta) {
-    vector<SunPhysicsCollisionTuple> collidingObjects;
+std::vector<SunPhysicsCollisionTuple> SunPhysicsSimulator::detectCollisions(float delta) {
+    std::vector<SunPhysicsCollisionTuple> collidingObjects;
     for (size_t i = 0; i < world.getObjects().size(); i++) {
         for (int j = 0; j < world.getObjectAtIndex(i)->getCollidersSize(); j++) {
             if (world.getObjectAtIndex(i)->getSelfCollision() == true) {
@@ -46,7 +46,7 @@ vector<SunPhysicsCollisionTuple> SunPhysicsSimulator::detectCollisions(float del
     return collidingObjects;
 }
 
-void SunPhysicsSimulator::respondToCollisions(vector<SunPhysicsCollisionTuple> collisions, float delta) {
+void SunPhysicsSimulator::respondToCollisions(std::vector<SunPhysicsCollisionTuple> collisions, float delta) {
     for (size_t i = 0; i < collisions.size(); i++) {
         SunPhysicsObject *first = std::get<0>(collisions[i]);
         SunPhysicsCollider *firstCollider = std::get<1>(collisions[i]);

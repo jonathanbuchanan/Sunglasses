@@ -2,11 +2,10 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 
-#ifndef OpenGL_Test_3_SunMesh_h
-#define OpenGL_Test_3_SunMesh_h
+#ifndef SUNMESH_H
+#define SUNMESH_H
 
 #include <vector>
-using namespace std;
 
 #include <GL/glew.h>
 #include <glm/glm.hpp>
@@ -43,7 +42,7 @@ class SunMesh {
 public:
     SunMesh() { }
 
-    SunMesh(vector<SunVertex> _vertices, vector<GLuint> _indices, vector<SunTexture> _textures, vector<SunBone> _bones, vector<SunAnimation> _animations);
+    SunMesh(std::vector<SunVertex> _vertices, std::vector<GLuint> _indices, std::vector<SunTexture> _textures, std::vector<SunBone> _bones, std::vector<SunAnimation> _animations);
 
     void setUpGL();
     void calculateBindPoseAndInverseBindPose();
@@ -51,23 +50,23 @@ public:
     void passGlobalTransformUniforms(SunShader _shader);
     void render(SunShader _shader, GLfloat _deltaTime, glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale, SunObjectMaterial _material, SunMeshRenderType _renderType);
 
-    inline vector<SunVertex> & getVertices() { return vertices; }
+    inline std::vector<SunVertex> & getVertices() { return vertices; }
     inline SunVertex & getVertexAtIndex(int i) { return vertices[i]; }
     inline void addVertexToVertices(SunVertex vertex) { vertices.push_back(vertex); }
 
-    inline vector<GLuint> & getIndices() { return indices; }
+    inline std::vector<GLuint> & getIndices() { return indices; }
     inline GLuint & getIndexAtIndex(int i) { return indices[i]; }
     inline void addIndexToIndices(GLuint index) { indices.push_back(index); }
 
-    inline vector<SunTexture> & getTextures() { return textures; }
+    inline std::vector<SunTexture> & getTextures() { return textures; }
     inline SunTexture & getTextureAtIndex(int i) { return textures[i]; }
     inline void addTextureToTextures(SunTexture texture) { textures.push_back(texture); }
 
-    inline vector<SunBone> & getBones() { return bones; }
+    inline std::vector<SunBone> & getBones() { return bones; }
     inline SunBone & getBoneAtIndex(int i) { return bones[i]; }
     inline void addBoneToBones(SunBone bone) { bones.push_back(bone); }
 
-    inline vector<SunAnimation> & getAnimations() { return animations; }
+    inline std::vector<SunAnimation> & getAnimations() { return animations; }
     inline SunAnimation & getAnimationAtIndex(int i) { return animations[i]; }
     inline void addAnimationToAnimations(SunAnimation animation) { animations.push_back(animation); }
 
@@ -84,11 +83,11 @@ public:
     inline void setEBO(GLuint _EBO) { EBO = _EBO; }
 private:
     // Vertices, indices, and textures
-    vector<SunVertex> vertices;
-    vector<GLuint> indices;
-    vector<SunTexture> textures;
-    vector<SunBone> bones;
-    vector<SunAnimation> animations;
+    std::vector<SunVertex> vertices;
+    std::vector<GLuint> indices;
+    std::vector<SunTexture> textures;
+    std::vector<SunBone> bones;
+    std::vector<SunAnimation> animations;
 
     // Global Inverse Transform
     glm::mat4 globalInverseTransform;

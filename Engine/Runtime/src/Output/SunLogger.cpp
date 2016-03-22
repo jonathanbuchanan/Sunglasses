@@ -32,8 +32,8 @@ std::map<BashColor, std::string> ColorMap = {
     {BashColorBackgroundWhite,   BASH_COLOR_BACKGROUND_WHITE}
 };
 
-string getBashColorSetter(std::vector<BashColor> colors) {
-    string colorString = BASH_COLOR_PREFIX;
+std::string getBashColorSetter(std::vector<BashColor> colors) {
+    std::string colorString = BASH_COLOR_PREFIX;
 
     for (size_t i = 0; i < colors.size(); i++) {
         if (i > 0)
@@ -46,8 +46,8 @@ string getBashColorSetter(std::vector<BashColor> colors) {
     return colorString;
 }
 
-string getBashColorSetter(BashColor color) {
-    string colorString = BASH_COLOR_PREFIX;
+std::string getBashColorSetter(BashColor color) {
+    std::string colorString = BASH_COLOR_PREFIX;
 
     colorString += ColorMap[color];
 

@@ -2,8 +2,8 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 
-#ifndef Sunglasses_SunTexturedQuad_h
-#define Sunglasses_SunTexturedQuad_h
+#ifndef SUNTEXTUREDQUAD_H
+#define SUNTEXTUREDQUAD_H
 
 #include <GL/glew.h>
 #include <glm/glm.hpp>
@@ -15,24 +15,24 @@
 #include "SunPrimitives.h"
 #include "SunShader.h"
 
-typedef map<string, pair<GLuint, GLuint>>::iterator SunTextureMapIterator;
+typedef std::map<std::string, std::pair<GLuint, GLuint>>::iterator SunTextureMapIterator;
 
 class SunTexturedQuad {
 public:
     SunTexturedQuad() { }
 
     void setUpGL();
-    void render(map<string, pair<GLuint, GLuint>> _textures, SunShader _shader);
-    void renderWithUsedShader(map<string, pair<GLuint, GLuint>> _textures, SunShader _shader);
+    void render(std::map<std::string, std::pair<GLuint, GLuint>> _textures, SunShader _shader);
+    void renderWithUsedShader(std::map<std::string, std::pair<GLuint, GLuint>> _textures, SunShader _shader);
 private:
     // Vertices, indices, and textures
-    vector<SunVertex> vertices = {
+    std::vector<SunVertex> vertices = {
         SunVertex(glm::vec3(1.0, 1.0, 0.0), glm::vec2(1.0, 1.0)),
         SunVertex(glm::vec3(1.0, -1.0, 0.0), glm::vec2(1.0, 0.0)),
         SunVertex(glm::vec3(-1.0, -1.0, 0.0), glm::vec2(0.0, 0.0)),
         SunVertex(glm::vec3(-1.0, 1.0, 0.0), glm::vec2(0.0, 1.0))
     };
-    vector<GLuint> indices = {
+    std::vector<GLuint> indices = {
         0, 1, 2,
         2, 3, 0
     };

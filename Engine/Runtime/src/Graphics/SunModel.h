@@ -2,8 +2,8 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 
-#ifndef OpenGL_Test_3_SunModel_h
-#define OpenGL_Test_3_SunModel_h
+#ifndef SUNMODEL_H
+#define SUNMODEL_H
 
 #include <string>
 #include <fstream>
@@ -11,7 +11,6 @@
 #include <iostream>
 #include <vector>
 #include <map>
-using namespace std;
 
 #include <GL/glew.h>
 #include <glm/glm.hpp>
@@ -27,19 +26,19 @@ using namespace std;
 #include "../Output/SunLogger.h"
 #include "SunMesh.h"
 
-extern GLint textureFromFile(const char *path, string directory);
+extern GLint textureFromFile(const char *path, std::string directory);
 
 class SunModel : public SunBase {
 public:
     SunModel() { }
-    SunModel(string _file, bool _flipNormals);
+    SunModel(std::string _file, bool _flipNormals);
 
     void init();
 
-    void importMeshData(string _file, bool _flipNormals);
+    void importMeshData(std::string _file, bool _flipNormals);
     void render(SunShader _shader, GLfloat _deltaTime, glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale, SunObjectMaterial _material, SunMeshRenderType _renderType);
 
-    inline vector<SunMesh> & getMeshes() { return meshes; }
+    inline std::vector<SunMesh> & getMeshes() { return meshes; }
     inline SunMesh & getMeshAtIndex(int i) { return meshes[i]; }
     inline void addMesh(SunMesh mesh) { meshes.push_back(mesh); }
 
@@ -47,15 +46,15 @@ public:
     inline void setFlipNormals(bool _f) { flipNormals = _f; }
 private:
     // Textures
-    vector<SunTexture> loadedTextures;
-    vector<string> boneNames;
-    vector<SunBone> bones;
-    vector<const aiBone *> assimpBones;
+    std::vector<SunTexture> loadedTextures;
+    std::vector<std::string> boneNames;
+    std::vector<SunBone> bones;
+    std::vector<const aiBone *> assimpBones;
 
     // Meshes attached to the model
-    vector<SunMesh> meshes;
+    std::vector<SunMesh> meshes;
     // Directory of the file
-    string directory;
+    std::string directory;
 
     // Flip Normals (quick hack) REMOVE LATER, QUICK HACK
     bool flipNormals;
@@ -63,7 +62,7 @@ private:
     void processMeshNode(aiNode *_node, const aiScene *_scene);
     void processMeshNodeForBones(aiNode *_node, const aiScene *_scene);
     SunMesh processMeshData(aiMesh *_mesh, const aiScene *_scene);
-    vector<SunTexture> loadMaterialTextures(aiMaterial *_material, aiTextureType _type, string _typeName);
+    std::vector<SunTexture> loadMaterialTextures(aiMaterial *_material, aiTextureType _type, std::string _typeName);
 };
 
 #endif

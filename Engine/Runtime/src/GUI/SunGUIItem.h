@@ -2,8 +2,8 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 
-#ifndef Sunglasses_SunGUIItem_h
-#define Sunglasses_SunGUIItem_h
+#ifndef SUNGUIITEM_H
+#define SUNGUIITEM_H
 
 class SunScript;
 class SunGUIMenu;
@@ -29,11 +29,11 @@ public:
     bool pointInItem(glm::vec2 _point);
     bool cursorInItem();
 
-    string & getText() { return text; }
-    void setText(string _text) { text = _text; }
+    std::string & getText() { return text; }
+    void setText(std::string _text) { text = _text; }
 
-    string & getFont() { return font; }
-    void setFont(string _font) { font = _font; }
+    std::string & getFont() { return font; }
+    void setFont(std::string _font) { font = _font; }
 
     bool & getIsButton() { return isButton; }
     void setIsButton(bool _isButton) { isButton = _isButton; }
@@ -53,8 +53,8 @@ public:
     GLboolean & getTextured() { return textured; }
     void setTextured(GLboolean _textured) { textured = _textured; }
 
-    string & getTexturePath() { return texturePath; }
-    void setTexturePath(string _texturePath) { texturePath = _texturePath; }
+    std::string & getTexturePath() { return texturePath; }
+    void setTexturePath(std::string _texturePath) { texturePath = _texturePath; }
 
     GLboolean & getHighlighted() { return highlighted; }
     void setHighlighted(GLboolean _highlighted) { highlighted = _highlighted; }
@@ -67,9 +67,9 @@ public:
 
     void addMouseActionForTrigger(int trigger, std::string action) { mouseActions[trigger] = action; }
 private:
-    string text;
+    std::string text;
 
-    string font;
+    std::string font;
 
     bool isButton;
 
@@ -80,7 +80,7 @@ private:
     glm::vec3 color;
     glm::vec3 highlightColor;
     GLboolean textured = false;
-    string texturePath;
+    std::string texturePath;
 
     GLboolean highlighted = false;
 

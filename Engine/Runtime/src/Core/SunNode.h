@@ -13,8 +13,6 @@
 #include <functional>
 #include <algorithm>
 
-using namespace std;
-
 /// A node class derived from SunBase
 /**
  * SunNode is a class derived from SunBase. A single node can have multiple

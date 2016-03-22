@@ -11,7 +11,7 @@ void SunSoundObject::init() {
 	addAction("playSound", &SunSoundObject::playSound);
 }
 
-void SunSoundObject::addSoundFromBuffer(SunSoundBufferStorage* _storage, string _soundName, float _minimumDistance, float _attenuation) {
+void SunSoundObject::addSoundFromBuffer(SunSoundBufferStorage* _storage, std::string _soundName, float _minimumDistance, float _attenuation) {
     SunSound newSound;
     newSound.name = _soundName;
 
@@ -23,7 +23,7 @@ void SunSoundObject::addSoundFromBuffer(SunSoundBufferStorage* _storage, string 
 }
 
 void SunSoundObject::playSound(SunAction action) {
-    string soundName = action.getParameter<std::string>("soundName");
+    std::string soundName = action.getParameter<std::string>("soundName");
 
         if (action.parameterExists("position")) {
             glm::vec3 position = action.getParameter<glm::vec3>("position");

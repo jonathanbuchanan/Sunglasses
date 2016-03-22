@@ -2,8 +2,8 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 
-#ifndef OpenGL_Test_3_SunDirectionalLightObject_h
-#define OpenGL_Test_3_SunDirectionalLightObject_h
+#ifndef SUNDIRECTIONALLIGHT_H
+#define SUNDIRECTIONALLIGHT_H
 
 #include "../Core/SunObject.h"
 
@@ -15,7 +15,7 @@ class SunDirectionalLight : public SunObject {
 public:
     SunDirectionalLight();
     SunDirectionalLight(glm::vec3 _color, glm::vec3 _direction);
-    SunDirectionalLight(string _name);
+    SunDirectionalLight(std::string _name);
 
     virtual void init();
     virtual void uniform(SunAction action);

@@ -13,7 +13,7 @@ SunPhysicsColliderMesh::SunPhysicsColliderMesh() {
     setType(SunPhysicsColliderTypeMesh);
 }
 
-void SunPhysicsColliderMesh::importMeshDataFromFile(string file) {
+void SunPhysicsColliderMesh::importMeshDataFromFile(std::string file) {
     Assimp::Importer importer;
     const aiScene *scene = importer.ReadFile(file, aiProcess_JoinIdenticalVertices);
     processAssimpNode(scene->mRootNode, scene);

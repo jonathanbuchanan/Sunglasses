@@ -36,7 +36,7 @@ void SunGUIItemMesh::setUpGL() {
     glBindVertexArray(0);
 }
 
-void SunGUIItemMesh::loadTexture(string texturePath) {
+void SunGUIItemMesh::loadTexture(std::string texturePath) {
     GLuint textureID;
     glGenTextures(1, &textureID);
     int width, height;
@@ -57,10 +57,10 @@ void SunGUIItemMesh::loadTexture(string texturePath) {
     texture = textureID;
 }
 
-void SunGUIItemMesh::render(glm::vec2 _position, glm::vec2 _size, glm::vec3 _color, GLboolean _textured, glm::vec3 _highlightColor, GLboolean _highlighted, string _text, string _font, SunTextRenderer *_renderer) {
+void SunGUIItemMesh::render(glm::vec2 _position, glm::vec2 _size, glm::vec3 _color, GLboolean _textured, glm::vec3 _highlightColor, GLboolean _highlighted, std::string _text, std::string _font, SunTextRenderer *_renderer) {
     // Use the Shader
     shader.use();
-    
+
     glm::mat4 model;
     model = glm::translate(model, glm::vec3(_position, 0.0f));
     model = glm::scale(model, glm::vec3(_size, 1.0f));

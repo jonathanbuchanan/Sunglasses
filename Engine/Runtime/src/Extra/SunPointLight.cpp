@@ -21,7 +21,7 @@ SunPointLight::SunPointLight(glm::vec3 _color, glm::vec3 _position) {
     init();
 }
 
-SunPointLight::SunPointLight(string _name) {
+SunPointLight::SunPointLight(std::string _name) {
     setName(_name);
 
     init();
@@ -71,7 +71,7 @@ void SunPointLight::uniform(SunAction action) {
 
 void SunPointLight::passPOVUniforms(SunShader _shader) {
 	for (int i = 0; i < 6; i++)
-		glUniformMatrix4fv(_shader.getUniformLocation("shadowMatrices[" + to_string(i) + "]"), 1, GL_FALSE, glm::value_ptr(lightTransforms[i]));
+		glUniformMatrix4fv(_shader.getUniformLocation("shadowMatrices[" + std::to_string(i) + "]"), 1, GL_FALSE, glm::value_ptr(lightTransforms[i]));
 }
 
 void SunPointLight::shadowMap(SunAction action) {
@@ -83,8 +83,8 @@ void SunPointLight::shadowMap(SunAction action) {
 
 	SunAction renderAction("render");
 
-	string POVtype = "light";
-	string POV = this->getName();
+	std::string POVtype = "light";
+	std::string POV = this->getName();
 
 	renderAction.addParameter("POVtype", &POVtype);
 	renderAction.addParameter("POV", &POV);

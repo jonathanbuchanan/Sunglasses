@@ -3,10 +3,9 @@
 // See LICENSE.md for details.
 #include "SunPhysicsForce.h"
 #include <iostream>
-using namespace std;
 
 SunPhysicsForce::SunPhysicsForce() {
-    
+
 }
 
 SunPhysicsForce::SunPhysicsForce(glm::vec3 _direction) {

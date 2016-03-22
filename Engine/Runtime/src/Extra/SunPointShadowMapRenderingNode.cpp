@@ -29,7 +29,7 @@ void SunPointShadowMapRenderingNode::render(SunAction action) {
 	SunAction shadowMapAction("shadowMap");
 
 	// Shader Map
-	map<string, SunShader> shaderMap = {{"scene_all", shadowMapShader}};
+	std::map<std::string, SunShader> shaderMap = {{"scene_all", shadowMapShader}};
 	shadowMapAction.addParameter("shaderMap", &shaderMap);
 
 	// Scene
