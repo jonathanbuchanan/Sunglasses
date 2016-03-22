@@ -38,8 +38,23 @@ void SunGame::cleanUp() { /* THIS MUST BE IMPLEMENTED!!! */
 	glfwTerminate();
 }
 
+void SunGame::init() {
+	init(0, NULL, "", glm::vec4(0.0f, 0.0f, 0.0f, 0.0f));
+}
+
+
+void SunGame::init(int argc, char **argv) {
+    init(argc, argv, "", glm::vec4(0.0f, 0.0f, 0.0f, 0.0f));
+}
+
 void SunGame::init(std::string title, glm::vec4 color) {
-	// Initialize the Window Manager
+    init(0, NULL, title, color);
+}
+
+void SunGame::init(int argc, char **argv, std::string title, glm::vec4 color) {
+    /* COMMAND LINE OPTIONS STUFF */
+
+    // Initialize the Window Manager
 	SunWindowManager *windowManager = new SunWindowManager(glm::vec2(800.0f, 600.0f), title, color);
 	windowManager->setName("window_manager");
 	addService(windowManager);
@@ -69,8 +84,4 @@ void SunGame::init(std::string title, glm::vec4 color) {
     SunGlobalLogicEnvironment *globalEnvironment = new SunGlobalLogicEnvironment();
     globalEnvironment->setName("global_logic_environment");
     addService(globalEnvironment);
-}
-
-void SunGame::init() {
-	init("", glm::vec4(0.0f, 0.0f, 0.0f, 0.0f));
 }

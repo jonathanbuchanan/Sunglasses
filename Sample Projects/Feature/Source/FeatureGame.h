@@ -11,7 +11,7 @@ class FeatureGame : public SunGame {
 public:
     FeatureGame() { }
 
-    void init();
+    void init(int argc, char **argv);
     void loop();
     void cleanUp();
 };
