@@ -3,6 +3,10 @@
 // See LICENSE.md for details.
 #include "SunCLOptionParsing.h"
 
+#include <iostream>
+#include <algorithm>
+#include <string.h>
+
 SunCLOption::SunCLOption() {
 
 }
@@ -13,7 +17,50 @@ SunCLOption::SunCLOption(std::string _shortName, std::string _longName, std::str
 
 
 
+namespace _SunPrivateCLOptionParsing {
+    extern bool isLongOption(char *option) {
+        if (strlen(option) > 2) {
+            if (strncmp(option, "--", 2) == 0)
+                return true;
+        }
+        return false;
+    }
 
-int parseOptions(int argc, char **argv, std::vector<SunCLOption> options) {
+    extern bool isShortOption(char *option) {
+        if (strlen(option) > 1) {
+            if (option[0] == '-' && option[1] != '-')
+                return true;
+        }
+        return false;
+    }
+};
+
+SunCLOption generateHelpOption(const std::vector<SunCLOption> &options) {
+    std::function<void()> function = []() -> void {
+        std::cout << "HELP!" << std::endl;
+    };
+
+    return SunCLOption("h", "help", "Shows the help message.", function);
+}
+
+int parseOptions(int argc, char **argv, const std::vector<SunCLOption> &options) {
+    for (int i = 1; i < argc; ++i) { // Iterate through the arguments (starting at 1 because argv[0] == command)
+        char *arg = argv[i]; // Get the argument/option
+        if (_SunPrivateCLOptionParsing::isShortOption(arg)) {
+            auto findshortname = [arg](const SunCLOption &option) -> bool {
+                return (strcmp(arg, ("-" + option.shortName).c_str()) == 0);
+            };
+            auto iterator = std::find_if(options.begin(), options.end(), findshortname);
+            if (iterator != options.end())
+                iterator->function();
+        } else if (_SunPrivateCLOptionParsing::isLongOption(arg)) {
+            auto findlongname = [arg](const SunCLOption &option) -> bool {
+                return (strcmp(arg, ("--" + option.longName).c_str()) == 0);
+            };
+            auto iterator = std::find_if(options.begin(), options.end(), findlongname);
+            if (iterator != options.end())
+                iterator->function();
+        }
+    }
     return 0;
 }

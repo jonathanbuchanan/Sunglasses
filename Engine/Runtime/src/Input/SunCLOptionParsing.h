@@ -42,7 +42,7 @@ struct SunCLOption {
      * This member is the long name of the option. It can be invoked is '--name', where
      * 'name' is the long name. Unlike short names, long names are prefixed with '-\-'.
      * You cannot combine long names. To specify an argument, append an equals sign and the
-     * desired argument ('-\-somebool=yes').
+     * desired argument ('-\-somebool=yes') or separate it by a space ('-\-somebool yes').
      */
     std::string longName;
 
@@ -60,14 +60,43 @@ struct SunCLOption {
     std::function<void()> function;
 };
 
+/// A namespace for internal use for parsing command line options
+namespace _SunPrivateCLOptionParsing {
+    /// Determines whether a string is a long option
+    /**
+     * This function tells whether a string forms a long option. It must be of the form
+     * '-\-x' to be true.
+     * @param option The string to be tested
+     * @return A boolean indicating whether the string was a long option
+     */
+    extern bool isLongOption(char *option);
+
+    /// Determines whether a string is a short option
+    /**
+     * This function tells whether a string forms a short option. It must be of the
+     * form '-x' to be true.
+     * @param option The string to be tested
+     * @return A boolean indicating whether the string was a short option
+     */
+    extern bool isShortOption(char *option);
+};
+
+/// Generates a help option
+/**
+ * This function generates a help option for use in parsing arguments.
+ * @param options The vector of options (defined in SunGame)
+ * @return An option that generates the help message
+ */
+extern SunCLOption generateHelpOption(const std::vector<SunCLOption> &options);
+
 /// Parses command line options.
 /**
- * @param argc The argument count (given in main()).
- * @param argv The argument array (given in main()).
- * @param options The vector of options (defined in SunGame).
+ * @param argc The argument count (given in main())
+ * @param argv The argument array (given in main())
+ * @param options The vector of options (defined in SunGame)
  * @retval 0    Parsing executed successfully
  * @retval -1   Parsing did not execute successfully
  */
-extern int parseOptions(int argc, char **argv, std::vector<SunCLOption> options);
+extern int parseOptions(int argc, char **argv, const std::vector<SunCLOption> &options);
 
 #endif

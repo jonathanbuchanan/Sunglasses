@@ -52,7 +52,11 @@ void SunGame::init(std::string title, glm::vec4 color) {
 }
 
 void SunGame::init(int argc, char **argv, std::string title, glm::vec4 color) {
-    /* COMMAND LINE OPTIONS STUFF */
+    options = {
+        SunCLOption()
+    };
+    options.push_back(generateHelpOption(options));
+    parseOptions(argc, argv, options);
 
     // Initialize the Window Manager
 	SunWindowManager *windowManager = new SunWindowManager(glm::vec2(800.0f, 600.0f), title, color);
