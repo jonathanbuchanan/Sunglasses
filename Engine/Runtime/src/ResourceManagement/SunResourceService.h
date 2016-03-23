@@ -13,7 +13,7 @@
 
 /// This service provides access to a set of resource managers
 /**
- * This subclass of SunService is designed to give access to an array of
+ * This subclass of SunService is designed to give access to an map of
  * SunResourceManager to all objects that load resources. Using this
  * it makes it easy to access resources and avoid loading duplicates.
  */

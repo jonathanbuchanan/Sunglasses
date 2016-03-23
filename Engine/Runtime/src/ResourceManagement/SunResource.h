@@ -6,7 +6,10 @@
 
 class SunResource {
 public:
+    SunResource();
+    virtual ~SunResource();
 
+    virtual void init();
 private:
 
 };

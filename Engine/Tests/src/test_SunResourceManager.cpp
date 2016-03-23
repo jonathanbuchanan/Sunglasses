@@ -18,11 +18,12 @@ struct SunResourceManagerTest : ::testing::Test {
     }
 
     ~SunResourceManagerTest() {
-
+        delete manager;
     }
 };
 
 TEST_F(SunResourceManagerTest, Resources) {
+    EXPECT_CALL((*resource), init()).Times(1);
     EXPECT_EQ(manager->addResource("res0", resource), 0);
 
     EXPECT_EQ(manager->getResource("res0"), resource);
