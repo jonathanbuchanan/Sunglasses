@@ -4,6 +4,13 @@
 #ifndef SUNRESOURCEMANAGER_H
 #define SUNRESOURCEMANAGER_H
 
+#include "SunResource.h"
 
+class SunResourceManager {
+public:
+
+private:
+
+};
 
 #endif

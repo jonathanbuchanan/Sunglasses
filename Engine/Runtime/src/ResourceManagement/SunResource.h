@@ -4,6 +4,11 @@
 #ifndef SUNRESOURCE_H
 #define SUNRESOURCE_H
 
+class SunResource {
+public:
 
+private:
+
+};
 
 #endif
