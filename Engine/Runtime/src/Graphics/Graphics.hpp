@@ -7,7 +7,6 @@
 #include "SunPrimitives.h"
 #include "SunRenderer.h"
 #include "SunShader.h"
-#include "SunTextRenderer.h"
 #include "SunTexturedQuad.h"
 #include "SunUniformPasser.h"
 #include "SunWindowManager.h"
