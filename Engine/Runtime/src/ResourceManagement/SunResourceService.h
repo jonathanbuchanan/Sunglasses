@@ -29,6 +29,7 @@ public:
      * Returns a pointer found in the map in exchange for the name.
      * @param name The name of the resource manager to be searched for
      * @return A pointer to the requested resource manager
+     * @retval nullptr The requested resource manager could not be found
      */
     SunResourceManager * operator[](std::string name);
 
@@ -37,6 +38,7 @@ public:
      * Returns a pointer found in the map in exchange for the name.
      * @param name The name of the resource manager to be searched for
      * @return A pointer to the requested resource manager
+     * @retval nullptr The requested resource manager could not be found
      */
     SunResourceManager * getResourceManager(std::string name);
 
@@ -48,9 +50,18 @@ public:
      * @param name The name of the resource manager
      * @param manager A pointer to the resource manager
      * @retval 0 The function executed successfully
-     * @retval -1 The function did not execute succesfully (probably an item already had the same spot)
+     * @retval -1 The function did not execute successfully (probably an item already had the same spot)
      */
     int addResourceManager(std::string name, SunResourceManager *manager);
+
+    /// Removes a resource manager
+    /**
+     * This function removes a resource manager from the map.
+     * @param name The name of the resource manager to be removed
+     * @retval 0 The function executed successfully
+     * @retval -1 The function did not execute successfully (probably the item did not exist in the map)
+     */
+    int removeResourceManager(std::string name);
 private:
     /// The map of resource managers (strings are keys)
     std::map<std::string, std::unique_ptr<SunResourceManager>> resourceManagers;
