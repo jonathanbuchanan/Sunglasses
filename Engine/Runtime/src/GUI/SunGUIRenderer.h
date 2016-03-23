@@ -5,7 +5,7 @@
 #define SUNGUIRENDERER_H
 
 #include "../Core/SunNode.h"
-#include "../Graphics/SunTextRenderer.h"
+#include "SunTextRenderer.h"
 
 class SunGUIRenderer {
 public:

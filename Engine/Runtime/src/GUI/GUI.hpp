@@ -6,3 +6,4 @@
 #include "SunGUIMenu.h"
 #include "SunGUIRenderer.h"
 #include "SunGUISystem.h"
+#include "SunTextRenderer.h"

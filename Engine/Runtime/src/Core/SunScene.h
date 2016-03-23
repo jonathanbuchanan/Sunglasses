@@ -7,11 +7,10 @@
 
 #include "SunBase.h"
 #include "../Physics/SunPhysicsSimulator.h"
-#include "../Graphics/SunTextRenderer.h"
+#include "../GUI/SunTextRenderer.h"
 #include "../GUI/SunGUISystem.h"
 #include "../GUI/SunGUIRenderer.h"
 #include "../Graphics/SunCamera.h"
-#include "../Graphics/SunTextRenderer.h"
 #include "../Audio/SunSoundListener.h"
 #include "../Audio/SunSoundBufferStorage.h"
 #include "../Audio/SunMusicObject.h"
