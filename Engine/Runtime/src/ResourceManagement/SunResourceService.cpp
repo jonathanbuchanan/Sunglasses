@@ -13,13 +13,13 @@ void SunResourceService::update() {
 
 SunResourceManager * SunResourceService::operator[](std::string name) {
     if (resourceManagers.find(name) == resourceManagers.end())
-        return nullptr;
+        return nullptr; // Resource manager is not present, return -1
     return resourceManagers[name].get();
 }
 
 SunResourceManager * SunResourceService::getResourceManager(std::string name) {
     if (resourceManagers.find(name) == resourceManagers.end())
-        return nullptr;
+        return nullptr; // Resource manager is not present, return -1
     return resourceManagers[name].get();
 }
 

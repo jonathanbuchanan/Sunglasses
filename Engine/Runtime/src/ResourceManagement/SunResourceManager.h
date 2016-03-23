@@ -6,9 +6,19 @@
 
 #include "SunResource.h"
 
+#include <string>
+
 class SunResourceManager {
 public:
+    SunResourceManager();
 
+    int addResource(std::string name, SunResource *resource);
+
+    SunResource * getResource(std::string name);
+
+    SunResource * operator[](std::string name);
+
+    int removeResource(std::string name);
 private:
 
 };

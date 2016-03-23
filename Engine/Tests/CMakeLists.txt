@@ -31,6 +31,7 @@ set_target_properties(libgmock PROPERTIES
     "IMPORTED_LOCATION" "${binary_dir}/libgmock.a"
     "IMPORTED_LINK_INTERFACE_LIBRARIES" "${CMAKE_THREAD_LIBS_INIT}")
 include_directories("${source_dir}/include")
+set(GMOCK_LIBRARY "${binary_dir}/libgmock.a")
 
 
 
@@ -41,7 +42,7 @@ file(GLOB_RECURSE SOURCES "src/*.cpp")
 
 add_executable(Test-Sunglasses ${SOURCES})
 include_directories(/usr/include/freetype2)
-target_link_libraries(Test-Sunglasses sunglasses lua ${GTEST_LIBRARY} pthread)
+target_link_libraries(Test-Sunglasses sunglasses lua ${GTEST_LIBRARY} ${GMOCK_LIBRARY} pthread)
 add_dependencies(Test-Sunglasses gtest)
 add_dependencies(Test-Sunglasses gmock)
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -Wextra -Wpedantic -g")

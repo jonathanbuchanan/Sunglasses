@@ -28,6 +28,7 @@ TEST_F(SunResourceServiceTest, ResourceManagers) {
     EXPECT_EQ(service->removeResourceManager("manager0"), 0);
 
     EXPECT_EQ((*service)["manager0"], nullptr);
+    EXPECT_EQ(service->getResourceManager("manager0"), nullptr);
 
     EXPECT_EQ(service->removeResourceManager("manager0"), -1);
 }
