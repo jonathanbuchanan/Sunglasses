@@ -3,14 +3,4 @@
 // See LICENSE.md for details.
 #include "SunResource.h"
 
-SunResource::SunResource() {
-
-}
-
-SunResource::~SunResource() {
-    
-}
-
-void SunResource::init() {
-
-}
+SunResource::~SunResource() { }
