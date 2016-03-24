@@ -19,19 +19,14 @@ typedef std::map<std::string, std::pair<GLuint, GLuint>>::iterator SunTextureMap
 
 class SunTexturedQuad {
 public:
-    SunTexturedQuad() { }
+    SunTexturedQuad();
 
     void setUpGL();
     void render(std::map<std::string, std::pair<GLuint, GLuint>> _textures, SunShader _shader);
     void renderWithUsedShader(std::map<std::string, std::pair<GLuint, GLuint>> _textures, SunShader _shader);
 private:
     // Vertices, indices, and textures
-    std::vector<SunVertex> vertices = {
-        SunVertex(glm::vec3(1.0, 1.0, 0.0), glm::vec2(1.0, 1.0)),
-        SunVertex(glm::vec3(1.0, -1.0, 0.0), glm::vec2(1.0, 0.0)),
-        SunVertex(glm::vec3(-1.0, -1.0, 0.0), glm::vec2(0.0, 0.0)),
-        SunVertex(glm::vec3(-1.0, 1.0, 0.0), glm::vec2(0.0, 1.0))
-    };
+    std::vector<SunVertex> vertices;
     std::vector<GLuint> indices = {
         0, 1, 2,
         2, 3, 0
