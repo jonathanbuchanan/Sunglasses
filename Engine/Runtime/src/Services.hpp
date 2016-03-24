@@ -5,6 +5,6 @@
 #include "Input/SunCursorManager.h"
 #include "Input/SunKeyboardManager.h"
 #include "Input/SunMouseButtonManager.h"
-#include "Output/SunGlobalLogicEnvironment.h"
+#include "Logic/SunGlobalLogicEnvironment.h"
 #include "Output/SunLogger.h"
-#include "SunResourceService.h"
+#include "ResourceManagement/SunResourceService.h"

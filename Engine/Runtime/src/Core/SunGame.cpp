@@ -3,12 +3,7 @@
 // See LICENSE.md for details.
 #include "SunGame.h"
 
-#include "../Graphics/SunWindowManager.h"
-#include "../Input/SunKeyboardManager.h"
-#include "../Input/SunCursorManager.h"
-#include "../Input/SunMouseButtonManager.h"
-#include "../Output/SunLogger.h"
-#include "../Logic/SunGlobalLogicEnvironment.h"
+#include "../Services.hpp"
 
 #include "SunScene.h"
 
@@ -69,6 +64,11 @@ void SunGame::init(std::string title, glm::vec4 color) {
     SunGlobalLogicEnvironment *globalEnvironment = new SunGlobalLogicEnvironment();
     globalEnvironment->setName("global_logic_environment");
     addService(globalEnvironment);
+
+    // Initialize the Resource Management Service
+    SunResourceService *resourceService = new SunResourceService();
+    resourceService->setName("resource_service");
+    addService(resourceService);
 }
 
 void SunGame::init() {

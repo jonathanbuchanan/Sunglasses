@@ -3,9 +3,13 @@
 // See LICENSE.md for details.
 #include "SunTextRenderer.h"
 
+#include "../ResourceManagement/SunResourceService.h"
+
 void SunTextRenderer::init() {
     shader = SunShader("../../Engine/Shaders/Old/Text.vert", "../../Engine/Shaders/Old/Text.frag");
     projection = glm::ortho(0.0f, 800.0f, 0.0f, 600.0f);
+
+    ((SunResourceService *)getService("resource_service"))->addResourceManager("fonts", new SunResourceManager());
 
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);

@@ -10,7 +10,7 @@ FeatureScene::FeatureScene() {
 void FeatureScene::init() {
 	this->setName("Scene");
 
-	root = new SunObject();
+	root = new SunNode();
     root->setName("root");
     root->init();
 	root->setIgnoreTags(true);
