@@ -7,4 +7,4 @@
 #include "Input/SunMouseButtonManager.h"
 #include "Logic/SunGlobalLogicEnvironment.h"
 #include "Output/SunLogger.h"
-#include "ResourceManagement/SunResourceService.h"
+#include "Extern/SunResourceService.h"

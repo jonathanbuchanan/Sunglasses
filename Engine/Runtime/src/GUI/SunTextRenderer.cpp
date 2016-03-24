@@ -4,7 +4,7 @@
 #include "SunTextRenderer.h"
 
 #include "SunFontResource.h"
-#include "../ResourceManagement/SunResourceService.h"
+#include "../Extern/SunResourceService.h"
 
 void SunTextRenderer::init() {
     shader = SunShader("../../Engine/Shaders/Old/Text.vert", "../../Engine/Shaders/Old/Text.frag");

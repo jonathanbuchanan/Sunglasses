@@ -4,7 +4,7 @@
 #ifndef SUNFONTRESOURCE_H
 #define SUNFONTRESOURCE_H
 
-#include "../ResourceManagement/SunResource.h"
+#include "../Extern/SunResource.h"
 
 #include <string>
 #include <map>
