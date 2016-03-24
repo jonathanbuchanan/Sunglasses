@@ -25,18 +25,6 @@
 #include <glm/gtx/quaternion.hpp>
 #include <glm/gtx/string_cast.hpp>
 
-struct SunCharacter {
-    GLuint texture;
-    glm::ivec2 size;
-    glm::ivec2 bearing;
-    GLuint advance;
-};
-
-struct SunFont {
-    std::string name;
-    std::map<GLchar, SunCharacter> characters;
-};
-
 class SunTextRenderer : public SunBase {
 public:
     SunTextRenderer() { }
@@ -44,9 +32,6 @@ public:
     void init();
     void loadFont(std::string _file, std::string _name);
     void renderText(std::string text, std::string _fontName, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color);
-
-    inline std::map<std::string, SunFont> & getFonts() { return fonts; }
-    inline SunFont & getFontForString(std::string s) { return fonts[s]; }
 
     inline glm::mat4 & getProjectionMatrix() { return projection; }
 
@@ -56,8 +41,6 @@ public:
     inline GLuint getVAO() { return VAO; }
     inline GLuint getVBO() { return VBO; }
 private:
-	std::map<std::string, SunFont> fonts;
-
     glm::mat4 projection;
 
     SunShader shader;

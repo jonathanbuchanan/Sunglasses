@@ -3,6 +3,7 @@
 // See LICENSE.md for details.
 #include "SunTextRenderer.h"
 
+#include "SunFontResource.h"
 #include "../ResourceManagement/SunResourceService.h"
 
 void SunTextRenderer::init() {
@@ -23,66 +24,9 @@ void SunTextRenderer::init() {
 }
 
 void SunTextRenderer::loadFont(std::string _file, std::string _name) {
-    // 0: Could not init FreeType
-    // 1: Could not load font
-    // 2: Could not load glyph
-	SunLogger *logger = (SunLogger *)getService("logger");
-    logger->log("Attempting to load " + _file + " as " + _name + ".");
-    try {
-        FT_Library ft;
-        if (FT_Init_FreeType(&ft))
-            throw 0;
-
-        FT_Face face;
-        if (FT_New_Face(ft, _file.c_str(), 0, &face))
-            throw 1;
-
-        FT_Set_Pixel_Sizes(face, 0, 48);
-
-        glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-
-        SunFont font;
-        font.name = _name;
-
-        for (GLubyte c = 0; c < 128; c++) {
-            if (FT_Load_Char(face, c, FT_LOAD_RENDER)) {
-                throw 2;
-                continue;
-            }
-
-            GLuint texture;
-            glGenTextures(1, &texture);
-            glBindTexture(GL_TEXTURE_2D, texture);
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, face->glyph->bitmap.width, face->glyph->bitmap.rows, 0, GL_RED, GL_UNSIGNED_BYTE, face->glyph->bitmap.buffer);
-
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-            SunCharacter character = {texture, glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows), glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top), static_cast<GLuint> (face->glyph->advance.x)};
-            font.characters.insert(std::pair<GLchar, SunCharacter>(c, character));
-        }
-
-        fonts.insert(std::pair<std::string, SunFont>(_name, font));
-
-        FT_Done_Face(face);
-        FT_Done_FreeType(ft);
-        logger->logSuccess("Loaded " + _file + " as " + _name + ".");
-    } catch (int e) {
-        switch (e) {
-            case 0:
-                logger->logError("Couldn't init FreeType Library.");
-                break;
-            case 1:
-                logger->logError("Couldn't load font.");
-                break;
-            case 2:
-                logger->logError("Couldn't load glyph.");
-                break;
-        }
-        logger->logError("Couldn't Load " + _file + " as " + _name + ".");
-    }
+    // Load the font
+    SunResource *font = new SunFontResource("Resources/Graphics/Fonts/arial.ttf");
+    ((SunResourceService *)getService("resource_service"))->getResourceManager("fonts")->addResource("Arial", font);
 }
 
 void SunTextRenderer::renderText(std::string text, std::string _fontName, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color) {
@@ -92,11 +36,11 @@ void SunTextRenderer::renderText(std::string text, std::string _fontName, GLfloa
     glActiveTexture(GL_TEXTURE0);
     glBindVertexArray(VAO);
 
-    SunFont font = fonts[_fontName];
+    SunFontResource *font = (SunFontResource *)((SunResourceService *)getService("resource_service"))->getResourceManager("fonts")->getResource("Arial");
 
     std::string::const_iterator c;
     for (c = text.begin(); c != text.end(); c++) {
-        SunCharacter ch = font.characters[*c];
+        SunFontCharacter ch = font->getCharacters()[*c];
 
         GLfloat xpos = x + ch.bearing.x * scale;
         GLfloat ypos = y - (ch.size.y - ch.bearing.y) * scale;
