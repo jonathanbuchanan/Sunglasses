@@ -3,8 +3,31 @@
 // See LICENSE.md for details.
 #include "SunModelResource.h"
 
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
+
+SunModelResource::SunModelResource(std::string _path) : path(_path) {
+
+}
+
 void SunModelResource::init() {
-    this->processMeshes();
+    Assimp::Importer importer;
+    const aiScene *scene = importer.ReadFile(path.c_str(), aiProcess_Triangulate | aiProcess_FlipUVs);
+
+    // Loop through meshes
+    for (size_t i = 0; i < scene->mNumMeshes; i++) {
+        // Get mesh
+        const aiMesh *mesh = scene->mMeshes[i];
+
+        // Get name
+        std::string name = std::string(mesh->mName.C_Str());
+    }
+}
+
+SunMeshData & SunModelResource::getMesh(std::string mesh) {
+    return *(meshes[mesh].get());
 }
 
 void SunModelResource::addMesh(std::string name, SunMeshData *mesh) {

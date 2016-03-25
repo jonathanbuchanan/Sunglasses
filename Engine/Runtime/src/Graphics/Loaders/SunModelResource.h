@@ -35,30 +35,33 @@ struct SunMeshData {
     GLuint EBO;
 };
 
-/// An abstract SunResource subclass for loading .dae (collada) files
+/// An SunResource subclass for loading .dae (collada) files
 /**
- * This subclass of SunResource is made to contain 3D model data. There is not
- * code for loading the data from disk, that must be provided in subclasses.
+ * This subclass of SunResource is made to contain 3D model data. It has code to load
+ * mesh data from a file using Assimp.
  * It provides access to its OpenGL buffers so that it can be used by meshes,
  * or it can be copied for a more direct manipulation of it.
  */
 class SunModelResource : public SunResource {
 public:
-    /// Loads the meshes
-    /**
-     * This pure virtual method should be overridden in every subclass and should
-     * load the mesh data from a file. In that process, it should call addMesh()
-     * for each mesh loaded.
-     */
-    virtual void processMeshes() = 0;
+    /// Constructor that initializes the the path
+    SunModelResource(std::string _path);
 
     /// Initializes the resource
     /**
-     * This method is called when the resource is added to the resource manager,
-     * and calls processMeshes(), which should be overridden to load the mesh data.
+     * This method is called when the resource is added to the resource manager.
+     * It loads meshes by iterating through the meshes loaded by Assimp
+     * and creating a SunMeshData. Then, it calls addMesh() for each mesh.
      */
     virtual void init();
-protected:
+
+    /// Get a mesh
+    /**
+     * Returns a reference to the mesh with the specified name.
+     * @param name The name of the mesh
+     */
+    SunMeshData & getMesh(std::string mesh);
+private:
     /// Loads a SunMeshData into the OpenGL context
     /**
      * This member function adds the given SunMeshData pointer to the map for the
@@ -68,7 +71,10 @@ protected:
      * @param mesh The pointer to the mesh
      */
     void addMesh(std::string name, SunMeshData *mesh);
-private:
+
+    /// The path to the 3D model file
+    std::string path;
+
     /// The map of mesh pointers with strings as keys
     std::map<std::string, std::unique_ptr<SunMeshData>> meshes;
 };

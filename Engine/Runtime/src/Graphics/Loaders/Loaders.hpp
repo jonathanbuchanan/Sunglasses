@@ -1,6 +1,7 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include "SunDAEResource.h"
+#include "SunMaterialResource.h"
+#include "SunMeshResource.h"
 #include "SunModelResource.h"
-#include "SunOBJResource.h"
+#include "SunTextureResource.h"
