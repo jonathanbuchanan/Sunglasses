@@ -27,7 +27,7 @@ GLint textureFromFile(const char *path, std::string directory) {
 }
 
 SunModel::SunModel(std::string _file, bool _flipNormals) {
-	// Import the mesh data
+    // Import the mesh data
     importMeshData(_file, _flipNormals);
 }
 
@@ -36,7 +36,7 @@ void SunModel::init() {
 }
 
 void SunModel::importMeshData(std::string _file, bool _flipNormals) {
-	((SunLogger *)getService("logger"))->log("Attempting to load model " + _file);
+    ((SunLogger *)getService("logger"))->log("Attempting to load model " + _file);
     // Set Flip Normals
     flipNormals = _flipNormals;
 
@@ -51,7 +51,7 @@ void SunModel::importMeshData(std::string _file, bool _flipNormals) {
     aiNode *node = scene->mRootNode;
     // Process the root node
     processMeshNode(node, scene);
-	((SunLogger *)getService("logger"))->logSuccess("Loaded model " + _file);
+    ((SunLogger *)getService("logger"))->logSuccess("Loaded model " + _file);
 }
 
 void SunModel::render(SunShader _shader, GLfloat _deltaTime, glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale, SunObjectMaterial _material, SunMeshRenderType _renderType) {
@@ -148,7 +148,7 @@ SunMesh SunModel::processMeshData(aiMesh* _mesh, const aiScene* _scene) {
 
         if (flipNormals) {
             normal = -normal;
-		}
+        }
 
         // Tangent
         glm::vec3 tangent = glm::vec3(0.0, 0.0, 0.0);
@@ -240,7 +240,7 @@ SunMesh SunModel::processMeshData(aiMesh* _mesh, const aiScene* _scene) {
         // Load the diffuse textures
         std::vector<SunTexture> diffuseMaps = this->loadMaterialTextures(material, aiTextureType_DIFFUSE, "diffuse");
         // Add the diffuse textures to the mesh's list of textures
-       	textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
+           textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
 
         // Load the specular textures
         std::vector<SunTexture> specularMaps = this->loadMaterialTextures(material, aiTextureType_SPECULAR, "specular");

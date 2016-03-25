@@ -3,7 +3,7 @@
 // See LICENSE.md for details.
 
 #ifndef SUNPHYSICSSIMULATOR_H
-#define	SUNPHYSICSSIMULATOR_H
+#define    SUNPHYSICSSIMULATOR_H
 
 #include <vector>
 #include <tuple>

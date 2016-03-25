@@ -3,7 +3,7 @@
 // See LICENSE.md for details.
 
 #ifndef SUNPHYSICSCOLLIDERMESH_H
-#define	SUNPHYSICSCOLLIDERMESH_H
+#define    SUNPHYSICSCOLLIDERMESH_H
 
 #include "SunPhysicsCollider.h"
 #include "../Graphics/SunPrimitives.h"

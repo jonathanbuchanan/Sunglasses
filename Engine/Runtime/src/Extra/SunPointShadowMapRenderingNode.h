@@ -9,18 +9,18 @@
 
 class SunPointShadowMapRenderingNode : public SunRenderingNode {
 public:
-	SunPointShadowMapRenderingNode();
+    SunPointShadowMapRenderingNode();
 
-	virtual void init();
-	void loadPointLights(SunAction action);
-	virtual void render(SunAction action);
+    virtual void init();
+    void loadPointLights(SunAction action);
+    virtual void render(SunAction action);
 
-	inline std::vector<SunPointLight *> & getLights() { return lights; }
-	inline SunPointLight * getLightAtIndex(int i) { return lights[i]; }
-	inline void addLightToLights(SunPointLight *_p) { lights.push_back(_p); }
+    inline std::vector<SunPointLight *> & getLights() { return lights; }
+    inline SunPointLight * getLightAtIndex(int i) { return lights[i]; }
+    inline void addLightToLights(SunPointLight *_p) { lights.push_back(_p); }
 private:
-	std::vector<SunPointLight *> lights;
-	SunShader shadowMapShader;
+    std::vector<SunPointLight *> lights;
+    SunShader shadowMapShader;
 };
 
 #endif

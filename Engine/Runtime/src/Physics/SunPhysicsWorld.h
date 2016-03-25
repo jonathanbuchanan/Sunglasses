@@ -3,7 +3,7 @@
 // See LICENSE.md for details.
 
 #ifndef SUNPHYSICSWORLD_H
-#define	SUNPHYSICSWORLD_H
+#define    SUNPHYSICSWORLD_H
 
 #include "SunPhysicsForce.h"
 #include "SunPhysicsObject.h"

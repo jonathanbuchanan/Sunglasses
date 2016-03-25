@@ -22,7 +22,7 @@ void SunTextRenderer::loadFont(std::string _file, std::string _name) {
     // 0: Could not init FreeType
     // 1: Could not load font
     // 2: Could not load glyph
-	SunLogger *logger = (SunLogger *)getService("logger");
+    SunLogger *logger = (SunLogger *)getService("logger");
     logger->log("Attempting to load " + _file + " as " + _name + ".");
     try {
         FT_Library ft;

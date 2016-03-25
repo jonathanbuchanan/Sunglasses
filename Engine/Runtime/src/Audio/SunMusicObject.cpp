@@ -14,7 +14,7 @@ SunMusicObject::SunMusicObject(std::string _file, std::string _name, bool _loops
 }
 
 void SunMusicObject::init() {
-	addAction("play", &SunMusicObject::play);
-	addAction("pause", &SunMusicObject::pause);
-	addAction("stop", &SunMusicObject::stop);
+    addAction("play", &SunMusicObject::play);
+    addAction("pause", &SunMusicObject::pause);
+    addAction("stop", &SunMusicObject::stop);
 }

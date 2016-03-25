@@ -24,8 +24,8 @@ public:
     virtual void init();
     void uniform(SunAction action);
     void passPOVUniforms(SunShader _shader);
-	void shadowMap(SunAction action);
-	void initializeShadowMap();
+    void shadowMap(SunAction action);
+    void initializeShadowMap();
 
     inline glm::vec3 & getColor() { return color; }
     inline void setColor(glm::vec3 _color) { color = _color; }
@@ -33,14 +33,14 @@ public:
     inline GLboolean & getAttenuate() { return attenuate; }
     inline void setAttenuate(GLboolean _attenuate) { attenuate = _attenuate; }
 
-	inline void setCountUniform(std::string c) { countUniform = c; }
-	inline void setArrayUniform(std::string a) { arrayUniform = a; }
+    inline void setCountUniform(std::string c) { countUniform = c; }
+    inline void setArrayUniform(std::string a) { arrayUniform = a; }
 
-	inline GLboolean & getShadows() { return shadows; }
-	inline void setShadows(GLboolean _s) { shadows = _s; }
+    inline GLboolean & getShadows() { return shadows; }
+    inline void setShadows(GLboolean _s) { shadows = _s; }
 
-	inline glm::vec2 & getShadowMapSize() { return shadowMapSize; }
-	inline void setShadowMapSize(glm::vec2 _s) { shadowMapSize = _s; }
+    inline glm::vec2 & getShadowMapSize() { return shadowMapSize; }
+    inline void setShadowMapSize(glm::vec2 _s) { shadowMapSize = _s; }
 private:
     // Color
     glm::vec3 color;
@@ -48,20 +48,20 @@ private:
     // Attenuation
     GLboolean attenuate;
 
-	// Shaders
-	int id;
-	std::string countUniform;
-	std::string arrayUniform;
+    // Shaders
+    int id;
+    std::string countUniform;
+    std::string arrayUniform;
 
-	static int lastId;
+    static int lastId;
 
-	// Shadow Maps
-	GLboolean shadows = false;
-	glm::vec2 shadowMapSize = glm::vec2(1024.0f, 1024.0f);
-	GLuint shadowMapFramebuffer;
-	GLuint shadowMapTexture;
-	std::vector<glm::mat4> lightTransforms;
-	//vector<SunShaderUniformObject> _lightTransforms;
+    // Shadow Maps
+    GLboolean shadows = false;
+    glm::vec2 shadowMapSize = glm::vec2(1024.0f, 1024.0f);
+    GLuint shadowMapFramebuffer;
+    GLuint shadowMapTexture;
+    std::vector<glm::mat4> lightTransforms;
+    //vector<SunShaderUniformObject> _lightTransforms;
 };
 
 #endif

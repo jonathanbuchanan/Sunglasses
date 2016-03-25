@@ -15,40 +15,40 @@
 
 class SunWindowManager : public SunService {
 public:
-	SunWindowManager();
-	SunWindowManager(glm::vec2 _size, std::string _title, glm::vec4 _clearColor);
+    SunWindowManager();
+    SunWindowManager(glm::vec2 _size, std::string _title, glm::vec4 _clearColor);
 
     void update();
 
-	void initialize();
-	void terminate();
+    void initialize();
+    void terminate();
 
-	void swapBuffers();
-	void setWindowShouldClose();
+    void swapBuffers();
+    void setWindowShouldClose();
 
-	void calculateDelta();
+    void calculateDelta();
 
-	inline GLFWwindow * getWindow() { return window; }
+    inline GLFWwindow * getWindow() { return window; }
 
-	inline glm::vec2 getSize() { return size; }
-	inline void setSize(glm::vec2 s) { size = s; }
+    inline glm::vec2 getSize() { return size; }
+    inline void setSize(glm::vec2 s) { size = s; }
 
-	inline std::string getTitle() { return title; }
-	inline void setTitle(std::string t) { title = t; }
+    inline std::string getTitle() { return title; }
+    inline void setTitle(std::string t) { title = t; }
 
-	inline void setClearColor(glm::vec4 c) { clearColor = c; }
+    inline void setClearColor(glm::vec4 c) { clearColor = c; }
 
-	inline double getDelta() { return delta; }
+    inline double getDelta() { return delta; }
 private:
-	GLFWwindow *window;
+    GLFWwindow *window;
 
-	glm::vec2 size;
-	std::string title;
+    glm::vec2 size;
+    std::string title;
 
-	glm::vec4 clearColor;
+    glm::vec4 clearColor;
 
-	double lastFrame;
-	double delta;
+    double lastFrame;
+    double delta;
 };
 
 #endif

@@ -12,10 +12,10 @@ SunBase::SunBase(std::string n) : name(n) {
 }
 
 void SunBase::processAction(SunAction action) {
-	if (actions.find(action.getAction()) != actions.end())
-		actions[action.getAction()](action);
+    if (actions.find(action.getAction()) != actions.end())
+        actions[action.getAction()](action);
 }
 
 void sendAction(SunAction action, SunBase *base) {
-	base->processAction(action);
+    base->processAction(action);
 }

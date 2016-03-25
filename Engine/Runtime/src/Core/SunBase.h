@@ -47,11 +47,11 @@ public:
      * name (string). Since, all SunBase actions must have the same signature
      * (void(SunAction)), they are stored in the map as std::function.
      */
-	template<typename Ret, typename Class, typename Param>
-	void addAction(std::string action, Ret (Class::*f)(Param)) {
-		std::function<void(SunAction)> bound = std::bind(f, static_cast<Class *>(this), std::placeholders::_1);
-		actions[action] = bound;
-	}
+    template<typename Ret, typename Class, typename Param>
+    void addAction(std::string action, Ret (Class::*f)(Param)) {
+        std::function<void(SunAction)> bound = std::bind(f, static_cast<Class *>(this), std::placeholders::_1);
+        actions[action] = bound;
+    }
 
     /// Processes a SunAction.
     /**
@@ -61,7 +61,7 @@ public:
      * and very useful when extended. This can be seen in SunNode, where the tags
      * feature is implemented.
      */
-	virtual void processAction(SunAction action);
+    virtual void processAction(SunAction action);
 
     /// Gets the name member (string).
     std::string getName() { return name; }
@@ -70,7 +70,7 @@ public:
     void setName(std::string n) { name = n; }
 
     /// Gets the service (SunService pointer) for the key (string).
-	SunService * getService(std::string s) { return services[s]; }
+    SunService * getService(std::string s) { return services[s]; }
 
     /// Adds a service (first parameter).
     /**
@@ -80,7 +80,7 @@ public:
     void addService(SunService *s) { services[s->getName()] = s; }
 
     /// A map containing services that correspond to names (strings)
-	static std::map<std::string, SunService *> services;
+    static std::map<std::string, SunService *> services;
 private:
     /// A string containing the name of the object
     std::string name;

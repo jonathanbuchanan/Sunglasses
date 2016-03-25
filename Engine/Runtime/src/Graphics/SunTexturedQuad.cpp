@@ -63,7 +63,7 @@ void SunTexturedQuad::render(std::map<std::string, std::pair<GLuint, GLuint>> _t
 }
 
 void SunTexturedQuad::renderWithUsedShader(std::map<std::string, std::pair<GLuint, GLuint>> _textures, SunShader _shader) {
-	int iteratorIndex = 0;
+    int iteratorIndex = 0;
     for (SunTextureMapIterator iterator = _textures.begin(); iterator != _textures.end(); iterator++) {
         glActiveTexture(GL_TEXTURE0 + iteratorIndex);
         glBindTexture(iterator->second.second, iterator->second.first);

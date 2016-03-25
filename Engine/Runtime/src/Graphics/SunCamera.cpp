@@ -42,19 +42,19 @@ void SunCamera::init() {
     script.registerObject("keyboard_manager", (SunKeyboardManager *)getService("keyboard_manager"), "pollKey", &SunKeyboardManager::keyDown);
     ((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->registerWithScript(&script);
 
-	setIgnoreTags(true);
-	addAction("update", &SunCamera::update);
-	addAction("uniform", &SunCamera::uniform);
+    setIgnoreTags(true);
+    addAction("update", &SunCamera::update);
+    addAction("uniform", &SunCamera::uniform);
 }
 
 void SunCamera::uniform(SunAction action) {
-	passPerFrameUniforms(action.getParameterPointer<SunShader>("shader"));
+    passPerFrameUniforms(action.getParameterPointer<SunShader>("shader"));
 }
 
 void SunCamera::update(SunAction action) {
-	double delta = ((SunWindowManager *)getService("window_manager"))->getDelta();
+    double delta = ((SunWindowManager *)getService("window_manager"))->getDelta();
 
-	glm::vec2 mouse = ((SunCursorManager *)getService("cursor_manager"))->getCursorPosition();
+    glm::vec2 mouse = ((SunCursorManager *)getService("cursor_manager"))->getCursorPosition();
 
     script["update"](delta, mouse.x, mouse.y);
 }

@@ -48,41 +48,41 @@ GLuint compileShaderFromStrings(std::vector<std::string> shaderStrings, GLint sh
 }
 
 SunShader::SunShader(std::string vertexPath, std::string fragmentPath) {
-	((SunLogger *)getService("logger"))->log("Attempting to load shader from " + vertexPath + " and " + fragmentPath);
+    ((SunLogger *)getService("logger"))->log("Attempting to load shader from " + vertexPath + " and " + fragmentPath);
     std::string vertexCode = getShaderCodeFromFile(vertexPath);
     std::string fragmentCode = getShaderCodeFromFile(fragmentPath);
 
-	GLchar infoLog[512];
+    GLchar infoLog[512];
 
-	try {
-		GLuint vertex = compileShaderFromString(vertexCode, GL_VERTEX_SHADER);
-	    GLuint fragment = compileShaderFromString(fragmentCode, GL_FRAGMENT_SHADER);
+    try {
+        GLuint vertex = compileShaderFromString(vertexCode, GL_VERTEX_SHADER);
+        GLuint fragment = compileShaderFromString(fragmentCode, GL_FRAGMENT_SHADER);
 
-	    GLint success;
-		this->program = glCreateProgram();
-	    glAttachShader(this->program, vertex);
-		glAttachShader(this->program, fragment);
-		glLinkProgram(this->program);
-		glGetProgramiv(this->program, GL_LINK_STATUS, &success);
-		if (!success) {
-			glGetProgramInfoLog(this->program, 512, NULL, infoLog);
-			throw 0;
-		}
-		glDeleteShader(vertex);
-		glDeleteShader(fragment);
-	} catch (int e) {
-		switch (e) {
-			case 0:
-				((SunLogger *)getService("logger"))->logError("Shader Linking Failed\n" + std::string(infoLog));
-				break;
-		}
-		return;
-	}
-	((SunLogger *)getService("logger"))->logSuccess("Linked Shader");
+        GLint success;
+        this->program = glCreateProgram();
+        glAttachShader(this->program, vertex);
+        glAttachShader(this->program, fragment);
+        glLinkProgram(this->program);
+        glGetProgramiv(this->program, GL_LINK_STATUS, &success);
+        if (!success) {
+            glGetProgramInfoLog(this->program, 512, NULL, infoLog);
+            throw 0;
+        }
+        glDeleteShader(vertex);
+        glDeleteShader(fragment);
+    } catch (int e) {
+        switch (e) {
+            case 0:
+                ((SunLogger *)getService("logger"))->logError("Shader Linking Failed\n" + std::string(infoLog));
+                break;
+        }
+        return;
+    }
+    ((SunLogger *)getService("logger"))->logSuccess("Linked Shader");
 }
 
 SunShader::SunShader(std::string vertexPath, std::string fragmentPath, std::string preprocessorPath) {
-	((SunLogger *)getService("logger"))->log("Attempting to load shader from " + vertexPath + ", " + fragmentPath + ", and " + preprocessorPath);
+    ((SunLogger *)getService("logger"))->log("Attempting to load shader from " + vertexPath + ", " + fragmentPath + ", and " + preprocessorPath);
     std::string vertexCode = getShaderCodeFromFile(vertexPath);
     std::string fragmentCode = getShaderCodeFromFile(fragmentPath);
     std::string preprocessorCode = getShaderCodeFromFile(preprocessorPath);
@@ -96,31 +96,31 @@ SunShader::SunShader(std::string vertexPath, std::string fragmentPath, std::stri
 
     GLint success;
     GLchar infoLog[512];
-	try {
-		this->program = glCreateProgram();
-		glAttachShader(this->program, vertex);
-		glAttachShader(this->program, fragment);
-		glLinkProgram(this->program);
-		glGetProgramiv(this->program, GL_LINK_STATUS, &success);
-		if (!success) {
-			glGetProgramInfoLog(this->program, 2048, NULL, infoLog);
-			throw 0;
-		}
-		glDeleteShader(vertex);
-		glDeleteShader(fragment);
-	} catch (int e) {
-		switch (e) {
-			case 0:
-				((SunLogger *)getService("logger"))->logError("Shader Linking Failed\n" + std::string(infoLog));
-				break;
-		}
-		return;
-	}
-	((SunLogger *)getService("logger"))->logSuccess("Linked Shader");
+    try {
+        this->program = glCreateProgram();
+        glAttachShader(this->program, vertex);
+        glAttachShader(this->program, fragment);
+        glLinkProgram(this->program);
+        glGetProgramiv(this->program, GL_LINK_STATUS, &success);
+        if (!success) {
+            glGetProgramInfoLog(this->program, 2048, NULL, infoLog);
+            throw 0;
+        }
+        glDeleteShader(vertex);
+        glDeleteShader(fragment);
+    } catch (int e) {
+        switch (e) {
+            case 0:
+                ((SunLogger *)getService("logger"))->logError("Shader Linking Failed\n" + std::string(infoLog));
+                break;
+        }
+        return;
+    }
+    ((SunLogger *)getService("logger"))->logSuccess("Linked Shader");
 }
 
 SunShader::SunShader(std::string vertexPath, std::string geometryPath, std::string fragmentPath, std::string preprocessorPath) {
-	((SunLogger *)getService("logger"))->log("Attempting to load shader from " + vertexPath + ", " + geometryPath + ", " + fragmentPath + ", and " + preprocessorPath);
+    ((SunLogger *)getService("logger"))->log("Attempting to load shader from " + vertexPath + ", " + geometryPath + ", " + fragmentPath + ", and " + preprocessorPath);
     std::string vertexCode = getShaderCodeFromFile(vertexPath);
     std::string geometryCode = getShaderCodeFromFile(geometryPath);
     std::string fragmentCode = getShaderCodeFromFile(fragmentPath);
@@ -137,29 +137,29 @@ SunShader::SunShader(std::string vertexPath, std::string geometryPath, std::stri
 
     GLint success;
     GLchar infoLog[512];
-	try {
-		this->program = glCreateProgram();
-		glAttachShader(this->program, vertex);
-		glAttachShader(this->program, geometry);
-		glAttachShader(this->program, fragment);
-		glLinkProgram(this->program);
-		glGetProgramiv(this->program, GL_LINK_STATUS, &success);
-		if (!success) {
-			glGetProgramInfoLog(this->program, 2048, NULL, infoLog);
-			throw 0;
-		}
-		glDeleteShader(vertex);
-		glDeleteShader(geometry);
-		glDeleteShader(fragment);
-	} catch (int e) {
-		switch (e) {
-			case 0:
-				((SunLogger *)getService("logger"))->logError("Shader Linking Failed\n" + std::string(infoLog));
-				break;
-		}
-		return;
-	}
-	((SunLogger *)getService("logger"))->logSuccess("Linked Shader");
+    try {
+        this->program = glCreateProgram();
+        glAttachShader(this->program, vertex);
+        glAttachShader(this->program, geometry);
+        glAttachShader(this->program, fragment);
+        glLinkProgram(this->program);
+        glGetProgramiv(this->program, GL_LINK_STATUS, &success);
+        if (!success) {
+            glGetProgramInfoLog(this->program, 2048, NULL, infoLog);
+            throw 0;
+        }
+        glDeleteShader(vertex);
+        glDeleteShader(geometry);
+        glDeleteShader(fragment);
+    } catch (int e) {
+        switch (e) {
+            case 0:
+                ((SunLogger *)getService("logger"))->logError("Shader Linking Failed\n" + std::string(infoLog));
+                break;
+        }
+        return;
+    }
+    ((SunLogger *)getService("logger"))->logSuccess("Linked Shader");
 }
 
 SunShader::SunShader(std::vector<std::string> sources, std::vector<SunShaderSourceType> sourceTypes, std::string preprocessorPath) {
@@ -226,10 +226,10 @@ void SunShader::init() {
 }
 
 void SunShader::uniforms(SunNode *root) {
-	SunAction uniform("uniform");
-	uniform.addParameter("shader", this);
-	uniform.setRecursive(true);
-	sendAction(uniform, root);
+    SunAction uniform("uniform");
+    uniform.addParameter("shader", this);
+    uniform.setRecursive(true);
+    sendAction(uniform, root);
 }
 
 void SunShader::use() {
@@ -237,25 +237,25 @@ void SunShader::use() {
 }
 
 void SunShader::use(std::string tag, float delta, SunNode *root) {
-	use();
+    use();
 
-	uniforms(root);
+    uniforms(root);
 
-	SunAction render("render");
-	render.addParameter("shader", this);
-	if (tag.length() > 0)
-		render.addParameter("tag", &tag);
-	render.setRecursive(true);
-	sendAction(render, root);
+    SunAction render("render");
+    render.addParameter("shader", this);
+    if (tag.length() > 0)
+        render.addParameter("tag", &tag);
+    render.setRecursive(true);
+    sendAction(render, root);
 }
 
 void SunShader::send(std::string tag, float delta, SunNode *root) {
-	uniforms(root);
+    uniforms(root);
 
-	SunAction render("render");
-	render.addParameter("shader", this);
-	if (tag.length() > 0)
-		render.addParameter("tag", &tag);
-	render.setRecursive(true);
-	sendAction(render, root);
+    SunAction render("render");
+    render.addParameter("shader", this);
+    if (tag.length() > 0)
+        render.addParameter("tag", &tag);
+    render.setRecursive(true);
+    sendAction(render, root);
 }

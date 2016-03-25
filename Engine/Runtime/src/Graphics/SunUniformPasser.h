@@ -12,24 +12,24 @@
 #include <map>
 
 struct SunUniformBuffer {
-	GLuint buffer;
-	GLuint bindingPoint;
+    GLuint buffer;
+    GLuint bindingPoint;
 };
 
 class SunUniformPasser : public SunBase {
 public:
-	virtual void init();
+    virtual void init();
 
-	void createBuffer(std::string name, GLuint size);
-	void bindBufferToShader(std::string block, SunShader shader);
-	void bufferSubData(std::string block, GLuint offset, GLuint length, const GLvoid *data);
+    void createBuffer(std::string name, GLuint size);
+    void bindBufferToShader(std::string block, SunShader shader);
+    void bufferSubData(std::string block, GLuint offset, GLuint length, const GLvoid *data);
 protected:
-	std::map<std::string, SunUniformBuffer> uniformBuffers;
-	inline void addBuffer(std::string s, SunUniformBuffer b) { uniformBuffers[s] = b; }
+    std::map<std::string, SunUniformBuffer> uniformBuffers;
+    inline void addBuffer(std::string s, SunUniformBuffer b) { uniformBuffers[s] = b; }
 
-	static GLuint bindingPoint;
+    static GLuint bindingPoint;
 
-	inline GLuint getNewBindingPoint() { GLuint x = bindingPoint; bindingPoint++; return x; }
+    inline GLuint getNewBindingPoint() { GLuint x = bindingPoint; bindingPoint++; return x; }
 };
 
 #endif

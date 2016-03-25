@@ -3,7 +3,7 @@
 // See LICENSE.md for details.
 
 #ifndef SUNSOUNDOBJECT_H
-#define	SUNSOUNDOBJECT_H
+#define    SUNSOUNDOBJECT_H
 
 #include <map>
 #include <string>

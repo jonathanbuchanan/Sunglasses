@@ -9,11 +9,11 @@ SunNode::SunNode() {
 }
 
 SunNode::SunNode(std::string _tag) : tags({_tag}) {
-	SunNode();
+    SunNode();
 }
 
 SunNode::SunNode(std::vector<std::string> _tags) : tags(_tags) {
-	SunNode();
+    SunNode();
 }
 
 void SunNode::init() {
@@ -21,13 +21,13 @@ void SunNode::init() {
 }
 
 void SunNode::processAction(SunAction action) {
-	if (action.parameterExists("tag") && ignoreTags == false) {
-		if (tagPresent(action.getParameter<std::string>("tag")))
-			SunBase::processAction(action);
-	} else
-		SunBase::processAction(action);
-	if (action.getRecursive() == true)
-		sendActionToAllSubNodes(action);
+    if (action.parameterExists("tag") && ignoreTags == false) {
+        if (tagPresent(action.getParameter<std::string>("tag")))
+            SunBase::processAction(action);
+    } else
+        SunBase::processAction(action);
+    if (action.getRecursive() == true)
+        sendActionToAllSubNodes(action);
 }
 
 bool SunNode::tagPresent(std::string t) {

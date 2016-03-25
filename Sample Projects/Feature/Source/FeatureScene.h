@@ -17,16 +17,16 @@ public:
 
     inline void setWindow(GLFWwindow *w) { window = w; }
 private:
-	// GUI
+    // GUI
     SunGUISystem guiSystem = SunGUISystem();
     SunGUIMenu *menu;
     SunGUIItem *item;
     SunGUIItem *back;
 
-	// Objects
-	SunObject *plane;
-	SunPointLight *light;
-	SunDirectionalLight *dir;
+    // Objects
+    SunObject *plane;
+    SunPointLight *light;
+    SunDirectionalLight *dir;
     std::vector<SunObject *> teapots;
 
     GLFWwindow *window;

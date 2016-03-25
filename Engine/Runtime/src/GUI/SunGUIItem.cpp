@@ -11,8 +11,8 @@ SunGUIItem::SunGUIItem() {
 }
 
 void SunGUIItem::init() {
-	addAction("render", &SunGUIItem::render);
-	addAction("button", &SunGUIItem::button);
+    addAction("render", &SunGUIItem::render);
+    addAction("button", &SunGUIItem::button);
 }
 
 void SunGUIItem::render(SunAction action) {

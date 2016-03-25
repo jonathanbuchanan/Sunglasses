@@ -10,8 +10,8 @@ SunGUIMenu::SunGUIMenu() {
 }
 
 void SunGUIMenu::init() {
-	addAction("render", &SunGUIMenu::render);
-	addAction("key", &SunGUIMenu::key);
+    addAction("render", &SunGUIMenu::render);
+    addAction("key", &SunGUIMenu::key);
 }
 
 void SunGUIMenu::loadScript(std::string _script) {

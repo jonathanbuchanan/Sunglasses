@@ -15,17 +15,17 @@ SunObject::SunObject() : physicsEnabled(false) {
 
 SunObject::SunObject(std::string _name, std::string _modelPath, bool _flipNormals) : physicsEnabled(false), flipNormals(_flipNormals) {
     SunObject();
-	setName(_name);
+    setName(_name);
 
     model = SunModel(_modelPath, flipNormals);
 }
 
 SunObject::SunObject(std::string _name, std::string _modelPath, std::string tag, bool _flipNormals) : physicsEnabled(false), flipNormals(_flipNormals) {
     SunObject();
-	setName(_name);
-	addTag(tag);
+    setName(_name);
+    addTag(tag);
 
-	model = SunModel(_modelPath, flipNormals);
+    model = SunModel(_modelPath, flipNormals);
 }
 
 void SunObject::loadScript(std::string _script) {
@@ -45,10 +45,10 @@ void SunObject::loadScript(std::string _script) {
 }
 
 void SunObject::init() {
-	addAction("update", &SunObject::update);
-	addAction("render", &SunObject::render);
-	addAction("playSound", &SunObject::playSound);
-	addAction("uniform", &SunObject::uniform);
+    addAction("update", &SunObject::update);
+    addAction("render", &SunObject::render);
+    addAction("playSound", &SunObject::playSound);
+    addAction("uniform", &SunObject::uniform);
     ((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->registerObject(this);
     if (scriptingEnabled == true)
         script["init"]();
@@ -63,14 +63,14 @@ void SunObject::update(SunAction action) {
 }
 
 void SunObject::render(SunAction action) {
-	SunShader shader = action.getParameter<SunShader>("shader");
-	GLfloat delta = ((SunWindowManager *)getService("window_manager"))->getDelta();
-	model.render(shader, delta, position, rotation, scale, material, SunMeshRenderTypeAll);
+    SunShader shader = action.getParameter<SunShader>("shader");
+    GLfloat delta = ((SunWindowManager *)getService("window_manager"))->getDelta();
+    model.render(shader, delta, position, rotation, scale, material, SunMeshRenderTypeAll);
 }
 
 void SunObject::playSound(SunAction action) {
-	SunAction soundAction("playSound");
-	soundAction.addParameter("position", &position);
+    SunAction soundAction("playSound");
+    soundAction.addParameter("position", &position);
 
     sendAction(soundAction, &sound);
 }

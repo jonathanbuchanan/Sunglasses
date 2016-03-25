@@ -8,10 +8,10 @@ SunWindowManager::SunWindowManager() {
 }
 
 SunWindowManager::SunWindowManager(glm::vec2 _size, std::string _title, glm::vec4 _clearColor) {
-	size = _size;
-	title = _title;
-	clearColor = _clearColor;
-	initialize();
+    size = _size;
+    title = _title;
+    clearColor = _clearColor;
+    initialize();
 }
 
 void SunWindowManager::update() {
@@ -19,7 +19,7 @@ void SunWindowManager::update() {
 }
 
 void SunWindowManager::initialize() {
-	// Initialize GLFW and give window hints
+    // Initialize GLFW and give window hints
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -34,7 +34,7 @@ void SunWindowManager::initialize() {
         glfwTerminate();
     }
 
-	glewExperimental = GL_TRUE;
+    glewExperimental = GL_TRUE;
     if (glewInit() != GLEW_OK) {
         //std::cout << "Failed to initialize GLEW" << std::endl;
     }
@@ -51,24 +51,24 @@ void SunWindowManager::initialize() {
     // Set blending function
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	// Set the clear color
+    // Set the clear color
     glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
 }
 
 void SunWindowManager::terminate() {
-	glfwTerminate();
+    glfwTerminate();
 }
 
 void SunWindowManager::swapBuffers() {
-	glfwSwapBuffers(window);
+    glfwSwapBuffers(window);
 }
 
 void SunWindowManager::setWindowShouldClose() {
-	glfwSetWindowShouldClose(window, true);
+    glfwSetWindowShouldClose(window, true);
 }
 
 void SunWindowManager::calculateDelta() {
-	double currentFrame = glfwGetTime();
-	delta = currentFrame - lastFrame;
-	lastFrame = currentFrame;
+    double currentFrame = glfwGetTime();
+    delta = currentFrame - lastFrame;
+    lastFrame = currentFrame;
 }

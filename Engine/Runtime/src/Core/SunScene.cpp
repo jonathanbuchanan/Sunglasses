@@ -14,10 +14,10 @@ void SunScene::init() {
 }
 
 void SunScene::cycle() {
-	SunAction update("update");
-	update.setRecursive(true);
+    SunAction update("update");
+    update.setRecursive(true);
     sendAction(update, root);
-	renderer->render();
-	guiRenderer->render();
-	renderer->swapBuffers();
+    renderer->render();
+    guiRenderer->render();
+    renderer->swapBuffers();
 }

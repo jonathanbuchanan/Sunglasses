@@ -9,7 +9,7 @@
  */
 
 #ifndef SUNPHYSICSFORCE_H
-#define	SUNPHYSICSFORCE_H
+#define    SUNPHYSICSFORCE_H
 
 #include <glm/glm.hpp>
 

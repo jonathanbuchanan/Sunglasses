@@ -5,15 +5,15 @@
 #include "../Core/SunScene.h"
 
 void SunRenderer::render() {
-	SunAction renderAction("render");
-	renderAction.setRecursive(true);
+    SunAction renderAction("render");
+    renderAction.setRecursive(true);
 
     sendAction(renderAction, rootRenderNode);
 }
 
 void SunRenderer::swapBuffers() {
     // Swap the buffers
-	((SunWindowManager *)getService("window_manager"))->swapBuffers();
+    ((SunWindowManager *)getService("window_manager"))->swapBuffers();
 }
 
 void SunRenderer::init() { }

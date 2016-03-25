@@ -18,7 +18,7 @@ void SunKeyboardManager::initialize(GLFWwindow *_window) {
 }
 
 void SunKeyboardManager::update() {
-	std::array<int, 512> old = keys;
+    std::array<int, 512> old = keys;
 
     glfwPollEvents();
     for (int i = 0; i < 512; i++) {
@@ -33,7 +33,7 @@ void SunKeyboardManager::update() {
         SunButtonEvent event = std::get<2>(subscribers[i]);
 
         SunAction action("key");
-		action.addParameter("key", &key);
+        action.addParameter("key", &key);
 
         switch (event) {
             case SunButtonEventUpSingle:

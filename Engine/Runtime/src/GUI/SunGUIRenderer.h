@@ -9,16 +9,16 @@
 
 class SunGUIRenderer {
 public:
-	SunGUIRenderer();
+    SunGUIRenderer();
 
-	void render();
+    void render();
 
-	inline void setGUIRoot(SunNode *g) { guiRoot = g; }
+    inline void setGUIRoot(SunNode *g) { guiRoot = g; }
 
-	inline void setTextRenderer(SunTextRenderer *t) { textRenderer = t; }
+    inline void setTextRenderer(SunTextRenderer *t) { textRenderer = t; }
 private:
-	SunNode *guiRoot;
-	SunTextRenderer *textRenderer;
+    SunNode *guiRoot;
+    SunTextRenderer *textRenderer;
 };
 
 #endif

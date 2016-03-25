@@ -8,66 +8,66 @@ FeatureScene::FeatureScene() {
 }
 
 void FeatureScene::init() {
-	this->setName("Scene");
+    this->setName("Scene");
 
-	root = new SunObject();
+    root = new SunObject();
     root->setName("root");
     root->init();
-	root->setIgnoreTags(true);
+    root->setIgnoreTags(true);
 
     camera = new SunCamera();
-	camera->init();
-	root->addSubNode(camera);
+    camera->init();
+    root->addSubNode(camera);
     ((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->registerGlobal("doCameraInput", true);
 
-	renderer = new FeatureRenderer();
+    renderer = new FeatureRenderer();
     renderer->setSceneNode(this);
-	renderer->setWindow(window);
+    renderer->setWindow(window);
     renderer->init();
 
     SunObject *teapot = new SunObject("teapot0", "Resources/Graphics/Models/Teapot.dae", "solid", false);
     teapot->loadScript("Scripts/Teapot.lua");
-	teapot->init();
+    teapot->init();
     teapot->setScale(glm::vec3(1.0f, 1.0f, 1.0f));
-	teapot->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f));
+    teapot->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f));
     teapots.push_back(teapot);
     root->addSubNode(teapot);
 
     plane = new SunObject("plane", "Resources/Graphics/Models/Plane.dae", "solid", true);
-	plane->init();
-	plane->setScale(glm::vec3(10.0f, 1.0f, 10.0f));
-	plane->setPosition(glm::vec3(0.0f, -5.0f, 0.0f));
-	plane->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f));
-	root->addSubNode(plane);
+    plane->init();
+    plane->setScale(glm::vec3(10.0f, 1.0f, 10.0f));
+    plane->setPosition(glm::vec3(0.0f, -5.0f, 0.0f));
+    plane->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f));
+    root->addSubNode(plane);
 
-	dir = new SunDirectionalLight(glm::vec3(1.0f, 0.75f, 0.75f), glm::vec3(4.0f, -4.0f, 2.0f));
-	dir->setCountUniform("directionalLightCount");
-	dir->setArrayUniform("directionalLights");
-	dir->addTag("light");
-	dir->addTag("pointLight");
-	root->addSubNode(dir);
-	((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setLight(dir);
-	((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setResolution(glm::vec2(4096.0f, 4096.0f));
-	((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setSize(glm::vec2(50.0f, 50.0f));
+    dir = new SunDirectionalLight(glm::vec3(1.0f, 0.75f, 0.75f), glm::vec3(4.0f, -4.0f, 2.0f));
+    dir->setCountUniform("directionalLightCount");
+    dir->setArrayUniform("directionalLights");
+    dir->addTag("light");
+    dir->addTag("pointLight");
+    root->addSubNode(dir);
+    ((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setLight(dir);
+    ((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setResolution(glm::vec2(4096.0f, 4096.0f));
+    ((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setSize(glm::vec2(50.0f, 50.0f));
     ((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->init();
 
-	textRenderer = new SunTextRenderer();
+    textRenderer = new SunTextRenderer();
     textRenderer->init();
     textRenderer->loadFont("Resources/Graphics/Fonts/arial.ttf", "Arial");
     menu = new SunGUIMenu();
     menu->loadScript("Scripts/Menu0.lua");
-	menu->init();
-	guiSystem.init();
+    menu->init();
+    guiSystem.init();
     guiSystem.addSubNode(menu);
 
-	guiRenderer = new SunGUIRenderer();
-	guiRenderer->setGUIRoot(&guiSystem);
-	guiRenderer->setTextRenderer(textRenderer);
+    guiRenderer = new SunGUIRenderer();
+    guiRenderer->setGUIRoot(&guiSystem);
+    guiRenderer->setTextRenderer(textRenderer);
 
     ((SunKeyboardManager *)getService("keyboard_manager"))->subscribe(menu, GLFW_KEY_ESCAPE, SunButtonEventDownSingle);
 
     item = new SunGUIItem();
-	item->init();
+    item->init();
     item->setScript(menu);
     menu->addSubNode(item);
 

@@ -50,7 +50,7 @@ public:
      * file provided, and flipNormals is set by the constructor. Finally, it adds
      * a single tag from the third parameter.
      */
-	SunObject(std::string _name, std::string _modelPath, std::string tag, bool _flipNormals);
+    SunObject(std::string _name, std::string _modelPath, std::string tag, bool _flipNormals);
 
     void loadScript(std::string _script);
 

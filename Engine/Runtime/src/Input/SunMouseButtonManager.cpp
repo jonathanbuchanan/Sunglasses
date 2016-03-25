@@ -32,8 +32,8 @@ void SunMouseButtonManager::update() {
         int oldState = old[button];
         SunButtonEvent event = std::get<2>(subscribers[i]);
 
-		SunAction action("button");
-		action.addParameter("button", &button);
+        SunAction action("button");
+        action.addParameter("button", &button);
 
         switch (event) {
             case SunButtonEventUpSingle:

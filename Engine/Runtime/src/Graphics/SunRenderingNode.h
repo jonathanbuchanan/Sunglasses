@@ -14,7 +14,7 @@
 class SunWindowManager;
 
 #ifndef SunRenderingNode_h
-#define	SunRenderingNode_h
+#define    SunRenderingNode_h
 
 class SunRenderingNode;
 
@@ -61,7 +61,7 @@ struct SunRenderingNodeInput {
     SunRenderingNodeDataFormat format;
     SunRenderingNodeOutput *output;
     SunRenderingNodeTextureType textureType;
-	std::string linkName;
+    std::string linkName;
     std::string name;
 
     SunRenderingNodeInput() { }
@@ -78,7 +78,7 @@ public:
 
     virtual void init();
     virtual void render(SunAction action);
-	void initializeOutput(SunRenderingNodeOutput *_output);
+    void initializeOutput(SunRenderingNodeOutput *_output);
 
     inline SunRenderingNodeType & getRenderingType() { return renderingType; }
     inline void setRenderingType(SunRenderingNodeType _type) { renderingType = _type; }
@@ -91,8 +91,8 @@ public:
     inline SunRenderingNodeOutput * getOutput(int i) { return outputSlotMap[i]; }
     inline void addOutputToOutputs(SunRenderingNodeOutput output) { outputs.push_back(output); }
     inline void setOutputs(std::vector<SunRenderingNodeOutput> _outputs) { outputs = _outputs; }
-	inline void addShaderForString(SunShader shader, std::string string) { shaders.push_back(std::make_pair(string, shader)); }
-	inline void setShaders(std::vector<std::pair<std::string, SunShader>> shaders_) { shaders = shaders_; }
+    inline void addShaderForString(SunShader shader, std::string string) { shaders.push_back(std::make_pair(string, shader)); }
+    inline void setShaders(std::vector<std::pair<std::string, SunShader>> shaders_) { shaders = shaders_; }
 
     inline void setRoot(SunNode *r) { root = r; }
 private:
@@ -101,15 +101,15 @@ protected:
     // Inputs, Outputs, and Shaders
     std::vector<SunRenderingNodeInput> inputs;
     std::vector<SunRenderingNodeOutput> outputs;
-	std::vector<std::pair<std::string, SunShader>> shaders;
+    std::vector<std::pair<std::string, SunShader>> shaders;
 
-	GLuint fbo;
-	GLuint rbo;
+    GLuint fbo;
+    GLuint rbo;
     std::map<int, SunRenderingNodeOutput *> outputSlotMap;
 
     SunNode *root;
     static SunTexturedQuad renderQuad;
-	static bool quadInitialized;
+    static bool quadInitialized;
 };
 
 #endif

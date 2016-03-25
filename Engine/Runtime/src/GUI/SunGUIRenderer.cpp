@@ -4,12 +4,12 @@
 #include "SunGUIRenderer.h"
 
 SunGUIRenderer::SunGUIRenderer() {
-	
+    
 }
 
 void SunGUIRenderer::render() {
-	// Render the GUI
-	SunAction action("render");
-	action.addParameter("textRenderer", textRenderer);
-	sendAction(action, guiRoot);
+    // Render the GUI
+    SunAction action("render");
+    action.addParameter("textRenderer", textRenderer);
+    sendAction(action, guiRoot);
 }

@@ -4,7 +4,7 @@
 #include "SunGUISystem.h"
 
 void SunGUISystem::init() {
-	addAction("render", &SunGUISystem::render);
+    addAction("render", &SunGUISystem::render);
 }
 
 void SunGUISystem::render(SunAction action) {

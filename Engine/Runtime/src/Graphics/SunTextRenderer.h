@@ -56,7 +56,7 @@ public:
     inline GLuint getVAO() { return VAO; }
     inline GLuint getVBO() { return VBO; }
 private:
-	std::map<std::string, SunFont> fonts;
+    std::map<std::string, SunFont> fonts;
 
     glm::mat4 projection;
 

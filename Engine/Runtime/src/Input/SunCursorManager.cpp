@@ -29,10 +29,10 @@ void SunCursorManager::update() {
     double x, y;
     glfwGetCursorPos(window, &x, &y);
 
-	SunAction action("cursor");
+    SunAction action("cursor");
 
     action.addParameter("x", &x);
-	action.addParameter("y", &y);
+    action.addParameter("y", &y);
 
     for (auto subscriber : subscribers)
         sendAction(action, subscriber);

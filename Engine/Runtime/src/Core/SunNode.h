@@ -30,21 +30,21 @@ public:
      * This constructor initializes the node with empty parents, empty children,
      * an empty list of tags, and ignore tags set to false.
      */
-	SunNode();
+    SunNode();
 
     /// Constructor for the tag list member (string)
     /**
      * This constructor initializes the node with empty parents, empty children,
      * ignore tags set to false, and a single tag.
      */
-	SunNode(std::string _tag);
+    SunNode(std::string _tag);
 
     /// Constructor for the tag list member (vector)
     /**
      * This constructor initializes the node with empty parents, empty children,
      * ignore tags set to false, and a list of tags (strings).
      */
-	SunNode(std::vector<std::string> _tags);
+    SunNode(std::vector<std::string> _tags);
 
     /// Initializes the object.
     /**
@@ -63,7 +63,7 @@ public:
      * subnodes if the recursive boolean of the action is set to true. The success
      * of the tag check doesn't change the recursive behavior of the action.
      */
-	virtual void processAction(SunAction action);
+    virtual void processAction(SunAction action);
 
     /// Checks that a tag is present.
     /**
@@ -111,11 +111,11 @@ public:
     /// Gets the level member (int).
     int getLevel() { return level; }
 
-	/// Adds a tag (string) to the vector of tags.
-	void addTag(std::string t) { tags.push_back(t); }
+    /// Adds a tag (string) to the vector of tags.
+    void addTag(std::string t) { tags.push_back(t); }
 
     /// Sets the ignore tags member (bool).
-	void setIgnoreTags(bool i) { ignoreTags = i; }
+    void setIgnoreTags(bool i) { ignoreTags = i; }
 
     /// Gets the vector of parents.
     std::vector<SunNode *> & getParents() { return parents; }
@@ -136,21 +136,21 @@ private:
     /// The number of 'levels' it is from the root node
     int level;
 
-	/// A vector of tags
+    /// A vector of tags
     /**
      * A vector of strings that are tags. When an action with a parameter named 'tag'
      * is received and the ignoreTags member (bool) is false (default), the action
      * is only performed if this vector contains the tag parameter. The action is
      * always passed to the subnodes if recursive.
      */
-	std::vector<std::string> tags;
+    std::vector<std::string> tags;
 
     /// A boolean controlling whether the node ignores tags
     /**
      * Actions with a parameter named 'tag' will still be performed even if the tags
      * vector doesn't contain the specified tag.
      */
-	bool ignoreTags = false;
+    bool ignoreTags = false;
 };
 
 #endif

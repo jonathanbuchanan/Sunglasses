@@ -28,14 +28,14 @@ public:
     inline glm::vec3 & getDirection() { return direction; }
     inline void setDirection(glm::vec3 _direction) { direction = _direction; }
 
-	inline void setCountUniform(std::string c) { countUniform = c; }
-	inline void setArrayUniform(std::string a) { arrayUniform = a; }
+    inline void setCountUniform(std::string c) { countUniform = c; }
+    inline void setArrayUniform(std::string a) { arrayUniform = a; }
 
-	inline GLboolean & getShadows() { return shadows; }
-	inline void setShadows(GLboolean _s) { shadows = _s; }
+    inline GLboolean & getShadows() { return shadows; }
+    inline void setShadows(GLboolean _s) { shadows = _s; }
 
-	inline glm::vec2 & getShadowMapSize() { return shadowMapSize; }
-	inline void setShadowMapSize(glm::vec2 _s) { shadowMapSize = _s; }
+    inline glm::vec2 & getShadowMapSize() { return shadowMapSize; }
+    inline void setShadowMapSize(glm::vec2 _s) { shadowMapSize = _s; }
 private:
     // Diffuse and specular
     glm::vec3 color;
@@ -43,12 +43,12 @@ private:
     // Direction
     glm::vec3 direction;
 
-	// Shaders
-	int id;
-	std::string countUniform;
-	std::string arrayUniform;
+    // Shaders
+    int id;
+    std::string countUniform;
+    std::string arrayUniform;
 
-	static int lastId;
+    static int lastId;
 
     // Shadow Mapping
     GLboolean shadows;

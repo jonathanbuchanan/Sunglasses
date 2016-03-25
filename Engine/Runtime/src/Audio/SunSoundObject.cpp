@@ -8,7 +8,7 @@ SunSoundObject::SunSoundObject() {
 }
 
 void SunSoundObject::init() {
-	addAction("playSound", &SunSoundObject::playSound);
+    addAction("playSound", &SunSoundObject::playSound);
 }
 
 void SunSoundObject::addSoundFromBuffer(SunSoundBufferStorage* _storage, std::string _soundName, float _minimumDistance, float _attenuation) {

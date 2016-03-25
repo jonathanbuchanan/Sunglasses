@@ -38,7 +38,7 @@ public:
      * the window. Inside the loop, it calls the pure virtual function loop().
      * This is where user defined functionality should go.
      */
-	void run();
+    void run();
 
     /// Pure virtual function exectued every game cycle
     /**
@@ -46,7 +46,7 @@ public:
      * is a pure virtual function, the functionality must be defined by the user
      * in a subclass.
      */
-	virtual void loop() = 0;
+    virtual void loop() = 0;
 
     /// Updates the registered services.
     /**
@@ -78,10 +78,10 @@ public:
      * the title of the window, and the second parameter (vec4) determines the
      * clear color of the window.
      */
-	void init(std::string title, glm::vec4 color);
+    void init(std::string title, glm::vec4 color);
 protected:
     /// A pointer to the scene, which contains the scene graph
-	SunScene *scene;
+    SunScene *scene;
 
     /// A pointer to the GLFW window
     GLFWwindow *window;

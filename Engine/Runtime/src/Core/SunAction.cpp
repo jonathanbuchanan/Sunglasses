@@ -8,13 +8,13 @@ SunAction::SunAction() {
 }
 
 SunAction::SunAction(std::string a) : action(a) {
-	SunAction();
+    SunAction();
 }
 
 SunAction::SunAction(std::string a, SunActionParameterMap p) : action(a), parameters(p) {
-	SunAction();
+    SunAction();
 }
 
 SunAction::SunAction(std::string a, SunActionParameterMap p, bool r) : action(a), parameters(p), recursive(r) {
-	SunAction();
+    SunAction();
 }

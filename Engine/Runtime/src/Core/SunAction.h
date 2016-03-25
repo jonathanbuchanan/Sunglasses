@@ -28,36 +28,36 @@ public:
      * This is the default constructor with no arguments. The action string isn't
      * defined, the parameter map is empty, and recursive is set to false.
      */
-	SunAction();
+    SunAction();
 
     /// Constructor for the action member (string)
     /**
      * This constructor initializes the action member (string) with the single parameter.
      * Recursive (boolean) is set to false.
      */
-	SunAction(std::string a);
+    SunAction(std::string a);
 
     /// Constructor for the action member (string) and parameter map (map)
     /**
      * This constructor initializes the action member (string) and the parameter
      * map member. Recursive (boolean) is set to false.
      */
-	SunAction(std::string a, SunActionParameterMap p);
+    SunAction(std::string a, SunActionParameterMap p);
 
     /// Constructor for the action member (string), parameter map (map), and recursive member (boolean)
     /**
      * This constructor initializes the action member (string), the parameter map
      * member (map), and the recursive member (boolean).
      */
-	SunAction(std::string a, SunActionParameterMap p, bool r);
+    SunAction(std::string a, SunActionParameterMap p, bool r);
 
     /// Sets the action member (string).
-	void setAction(std::string a) { action = a; }
+    void setAction(std::string a) { action = a; }
     /// Gets the action member (string).
-	std::string getAction() { return action; }
+    std::string getAction() { return action; }
 
     /// Checks to see if the parameter map contains the specified parameter name.
-	bool parameterExists(std::string p) { return parameters.find(p) != parameters.end(); }
+    bool parameterExists(std::string p) { return parameters.find(p) != parameters.end(); }
 
     /// Gets a parameter from the parameter map.
     /**
@@ -89,28 +89,28 @@ public:
     /**
      * This function returns a void pointer from the map for the specified key.
      */
-	void * getParameter(std::string p) { return parameters[p]; }
+    void * getParameter(std::string p) { return parameters[p]; }
 
     /// Adds a parameter to the map
     /**
      * This function adds a parameter to the map (in the form of a void pointer)
      * with the specified key.
      */
-	void addParameter(std::string k, void *v) { parameters[k] = v; }
+    void addParameter(std::string k, void *v) { parameters[k] = v; }
 
     /// Gets the recursive member (boolean).
-	bool getRecursive() { return recursive; }
+    bool getRecursive() { return recursive; }
     /// Sets the recursive member (boolean).
-	void setRecursive(bool r) { recursive = r; }
+    void setRecursive(bool r) { recursive = r; }
 private:
     /// A string containing the name of the action to be performed
-	std::string action;
+    std::string action;
 
     /// A map of parameters
-	SunActionParameterMap parameters;
+    SunActionParameterMap parameters;
 
     /// A boolean that determines whether this action should be recursive when performed on SunNode
-	bool recursive;
+    bool recursive;
 };
 
 typedef std::function<void(SunAction)> SunActionFunction;

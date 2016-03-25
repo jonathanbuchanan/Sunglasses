@@ -47,7 +47,7 @@ public:
      * the scene, simulating physics, etc. You must override this to provide your own
      * functionality every cycle in your scene.
      */
-	virtual void cycle();
+    virtual void cycle();
 
     /// Gets the root member (SunObject pointer).
     SunObject * getRoot() { return root; }
@@ -58,12 +58,12 @@ protected:
     /// A pointer to the root object in the scene graph
     SunObject *root;
 
-	/// A pointer to the scene renderer
-	SunRenderer *renderer;
+    /// A pointer to the scene renderer
+    SunRenderer *renderer;
     /// A pointer to the GUI renderer
-	SunGUIRenderer *guiRenderer;
+    SunGUIRenderer *guiRenderer;
     /// A pointer to the text renderer
-	SunTextRenderer *textRenderer;
+    SunTextRenderer *textRenderer;
 
     /// The scene's camera
     SunCamera *camera;

@@ -3,7 +3,7 @@
 // See LICENSE.md for details.
 
 #ifndef SUNSOUNDBUFFERSTORAGE_H
-#define	SUNSOUNDBUFFERSTORAGE_H
+#define    SUNSOUNDBUFFERSTORAGE_H
 
 #include <vector>
 #include <map>

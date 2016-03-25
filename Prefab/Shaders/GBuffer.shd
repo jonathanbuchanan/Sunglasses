@@ -11,7 +11,7 @@ Input(2) vec3 tangent;
 Input(3) vec2 textureCoordinates;
 
 void main() {
-	
+    
 }
 
 ]
@@ -23,7 +23,7 @@ Output(1) vec3 normal;
 Output(2) vec4 color;
 
 void main() {
-	
+    
 }
 
 ]

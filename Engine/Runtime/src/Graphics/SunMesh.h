@@ -20,13 +20,13 @@
 
 // SunObjectMaterial Declaration
 struct SunObjectMaterial {
-	SunObjectMaterial() {
+    SunObjectMaterial() {
 
-	}
-	SunObjectMaterial(glm::vec3 _color, GLfloat _shininess) {
-		color = _color;
-		shininess = _shininess;
-	}
+    }
+    SunObjectMaterial(glm::vec3 _color, GLfloat _shininess) {
+        color = _color;
+        shininess = _shininess;
+    }
     glm::vec3 color;
     GLfloat shininess;
 };
@@ -35,7 +35,7 @@ struct SunObjectMaterial {
 enum SunMeshRenderType {
     SunMeshRenderTypeSolid,
     SunMeshRenderTypeTextured,
-	SunMeshRenderTypeAll
+    SunMeshRenderTypeAll
 };
 
 class SunMesh {

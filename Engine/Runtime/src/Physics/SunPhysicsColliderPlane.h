@@ -9,7 +9,7 @@
  */
 
 #ifndef SUNPHYSICSCOLLIDERPLANE_H
-#define	SUNPHYSICSCOLLIDERPLANE_H
+#define    SUNPHYSICSCOLLIDERPLANE_H
 
 #include "SunPhysicsCollider.h"
 #include <glm/glm.hpp>

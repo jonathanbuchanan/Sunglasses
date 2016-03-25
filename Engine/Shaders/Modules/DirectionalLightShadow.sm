@@ -4,5 +4,5 @@
 Dependency DirectionalLight
 
 bool isShadowed(DirectionalLight light) {
-	
+    
 }

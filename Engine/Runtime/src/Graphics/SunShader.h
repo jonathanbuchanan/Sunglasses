@@ -38,11 +38,11 @@ public:
 
     void init();
 
-	void uniforms(SunNode *root);
+    void uniforms(SunNode *root);
 
     void use();
-	void use(std::string tag, float delta, SunNode *root);
-	void send(std::string tag, float delta, SunNode *root);
+    void use(std::string tag, float delta, SunNode *root);
+    void send(std::string tag, float delta, SunNode *root);
 
     inline GLuint getProgram() { return program; }
     inline void setProgram(GLuint _program) { program = _program; }

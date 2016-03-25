@@ -3,7 +3,7 @@
 // See LICENSE.md for details.
 
 #ifndef SUNMUSICOBJECT_H
-#define	SUNMUSICOBJECT_H
+#define    SUNMUSICOBJECT_H
 
 #include "../Core/SunNode.h"
 #include <SFML/Audio.hpp>

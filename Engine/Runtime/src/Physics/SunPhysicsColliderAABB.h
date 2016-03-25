@@ -9,7 +9,7 @@
  */
 
 #ifndef SUNPHYSICSCOLLIDERAABB_H
-#define	SUNPHYSICSCOLLIDERAABB_H
+#define    SUNPHYSICSCOLLIDERAABB_H
 
 #include "SunPhysicsCollider.h"
 

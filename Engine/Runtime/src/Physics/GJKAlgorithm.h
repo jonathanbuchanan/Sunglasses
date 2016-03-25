@@ -9,7 +9,7 @@
  */
 
 #ifndef GJKALGORITHM_H
-#define	GJKALGORITHM_H
+#define    GJKALGORITHM_H
 
 #include "SunPhysicsColliderMesh.h"
 #include "SunPhysicsColliderSphere.h"
