@@ -30,9 +30,10 @@ void SunMeshResource::init() {
             vertex.textureCoordinates.y = mesh->mTextureCoords[0][i].y;
 
             // Assign the tangent space coordinates
-            vertex.tangent.x = mesh->mTangents[i].x;
+            // FIX ME
+            /*vertex.tangent.x = mesh->mTangents[i].x;
             vertex.tangent.y = mesh->mTangents[i].y;
-            vertex.tangent.z = mesh->mTangents[i].z;
+            vertex.tangent.z = mesh->mTangents[i].z;*/
         }
 
         vertices.push_back(vertex);

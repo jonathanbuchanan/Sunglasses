@@ -2,30 +2,23 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include "SunObject.h"
+
 #include "../Graphics/SunWindowManager.h"
 #include "../Input/SunKeyboardManager.h"
 #include "../Logic/SunGlobalLogicEnvironment.h"
+#include "../Extern/SunResourceService.h"
 
 SunObject::SunObject() : physicsEnabled(false) {
     position = glm::vec3(0.0f, 0.0f, 0.0f);
     rotation = glm::vec3(0.0f, 0.0f, 0.0f);
     scale = glm::vec3(1.0f, 1.0f, 1.0f);
-    flipNormals = false;
 }
 
-SunObject::SunObject(std::string _name, std::string _modelPath, bool _flipNormals) : physicsEnabled(false), flipNormals(_flipNormals) {
-    SunObject();
-	setName(_name);
-
-    model = SunModel(_modelPath, flipNormals);
-}
-
-SunObject::SunObject(std::string _name, std::string _modelPath, std::string tag, bool _flipNormals) : physicsEnabled(false), flipNormals(_flipNormals) {
-    SunObject();
-	setName(_name);
-	addTag(tag);
-
-	model = SunModel(_modelPath, flipNormals);
+SunObject::SunObject(std::string _name) : physicsEnabled(false) {
+    setName(_name);
+    position = glm::vec3(0.0f, 0.0f, 0.0f);
+    rotation = glm::vec3(0.0f, 0.0f, 0.0f);
+    scale = glm::vec3(1.0f, 1.0f, 1.0f);
 }
 
 void SunObject::loadScript(std::string _script) {
@@ -38,7 +31,7 @@ void SunObject::loadScript(std::string _script) {
     script.registerObjectAsType(script["object"]["rotation"], "vec3", &rotation);
     script.registerObjectAsType(script["object"]["position"], "vec3", &position);
     script.registerObjectAsType(script["object"]["scale"], "vec3", &scale);
-    script.registerObjectAsType(script["object"]["color"], "vec3", &material.color);
+    //script.registerObjectAsType(script["object"]["color"], "vec3", &material.color);
     ((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->registerWithScript(&script);
 
     script.registerObject("keyboard_manager", (SunKeyboardManager *)getService("keyboard_manager"), "pollKey", &SunKeyboardManager::keyDown);
@@ -63,9 +56,11 @@ void SunObject::update(SunAction action) {
 }
 
 void SunObject::render(SunAction action) {
-	SunShader shader = action.getParameter<SunShader>("shader");
-	GLfloat delta = ((SunWindowManager *)getService("window_manager"))->getDelta();
-	model.render(shader, delta, position, rotation, scale, material, SunMeshRenderTypeAll);
+	SunShader *shader = action.getParameterPointer<SunShader>("shader");
+	/*GLfloat delta = ((SunWindowManager *)getService("window_manager"))->getDelta();
+	model.render(shader, delta, position, rotation, scale, material, SunMeshRenderTypeAll);*/
+    for (size_t i = 0; i < meshes.size(); ++i)
+        meshes[i].render(shader);
 }
 
 void SunObject::playSound(SunAction action) {
@@ -79,6 +74,6 @@ void SunObject::uniform(SunAction action) {
 
 }
 
-void SunObject::passPOVUniforms(SunShader _shader) {
-
+void SunObject::newMesh(std::string resource) {
+    meshes.push_back(SunMesh((SunMeshResource *)((SunResourceService *)getService("resource_service"))->getResourceManager("meshes")->getResource(resource)));
 }

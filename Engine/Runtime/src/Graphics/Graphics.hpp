@@ -4,7 +4,6 @@
 #include "Loaders/Loaders.hpp"
 #include "SunCamera.h"
 #include "SunMesh.h"
-#include "SunModel.h"
 #include "SunPrimitives.h"
 #include "SunRenderer.h"
 #include "SunShader.h"

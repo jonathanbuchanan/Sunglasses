@@ -6,11 +6,10 @@
 #define SUNOBJECT_H
 
 #include <vector>
-#include <functional>
 
 #include "../Physics/SunPhysicsObject.h"
 #include "../Audio/SunSoundObject.h"
-#include "../Graphics/SunModel.h"
+#include "../Graphics/SunMesh.h"
 #include "../Scripting/SunScript.h"
 
 class SunGlobalLogicEnvironment;
@@ -33,25 +32,10 @@ public:
      */
     SunObject();
 
-    /// Constructor for name (string), model (string), and flip normals (boolean)
-    /**
-     * This is the constructor for name (string), model (string), and flip normals (boolean).
-     * It initializes position and rotation to (0, 0, 0), and initializes scale to (1, 1, 1). Physics is
-     * disabled by default. Also, it has no sounds. It loads a single model from the
-     * file provided, and flipNormals is set by the constructor.
-     */
-    SunObject(std::string _name, std::string _modelPath, bool _flipNormals);
+    /// Constructor for name
+    SunObject(std::string _name);
 
-    /// Constructor for name (string), model (string), tag (string), and flip normals (boolean)
-    /**
-     * This is the constructor for name (string), model (string), and flip normals (boolean).
-     * It initializes position and rotation to (0, 0, 0), and initializes scale to (1, 1, 1). Physics is
-     * disabled by default. Also, it has no sounds. It loads a single model from the
-     * file provided, and flipNormals is set by the constructor. Finally, it adds
-     * a single tag from the third parameter.
-     */
-	SunObject(std::string _name, std::string _modelPath, std::string tag, bool _flipNormals);
-
+    /// Loads a script
     void loadScript(std::string _script);
 
     /// Initializes the object.
@@ -87,9 +71,15 @@ public:
      */
     virtual void uniform(SunAction action);
 
-    /// OLD.
-    virtual void passPOVUniforms(SunShader _shader);
+    /// Adds a mesh with a pointer to the mesh resource associated with the name.
+    /**
+     * This method creates a new mesh and adds it to the vector of meshes. It
+     * associates the mesh with the mesh resource specified in the parameters.
+     * @param resource The name of the mesh resource
+     */
+    void newMesh(std::string resource);
 
+    /// Sets the scripting enabled boolean
     void setScriptingEnabled(bool s) { scriptingEnabled = s; }
 
     /// Gets the position vector member.
@@ -111,16 +101,6 @@ public:
     bool getPhysicsEnabled() { return physicsEnabled; }
     /// Sets the physics enabled member (bool).
     void setPhysicsEnabled(bool _p) { physicsEnabled = _p; }
-
-    /// Gets the material member (SunObjectMaterial).
-    SunObjectMaterial getMaterial() { return material; }
-    /// Sets the material member (SunObjectMaterial).
-    void setMaterial(SunObjectMaterial _material) { material = _material; }
-
-    /// Gets the flip normals member (bool).
-    bool getFlipNormals() { return flipNormals; }
-    /// Sets the flip normals member (bool).
-    void setFlipNormals(bool _f) { flipNormals = _f; }
 private:
     /// Position vector
     glm::vec3 position;
@@ -129,6 +109,9 @@ private:
     /// Scale vector
     glm::vec3 scale;
 
+    /// The vector of meshes
+    std::vector<SunMesh> meshes;
+
     /// The physics objects
     SunPhysicsObject physicsObject;
     /// Enables physics
@@ -136,15 +119,6 @@ private:
 
     /// The sound object
     SunSoundObject sound;
-
-    /// The models
-    SunModel model;
-
-    /// The material of the models
-    SunObjectMaterial material;
-
-    /// Flips normals of models
-    bool flipNormals = false;
 
     // Scripting
     SunScript script;
