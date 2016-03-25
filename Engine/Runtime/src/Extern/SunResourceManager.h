@@ -22,7 +22,7 @@ public:
 
     /// Adds a resource
     /**
-     * This function adds a resource to the map. It is reccomended that
+     * This function adds a resource to the map. It is recommended that
      * you only construct the resource because the service takes control
      * after that.
      * @param name The name of the resource
@@ -31,6 +31,16 @@ public:
      * @retval -1 The function did not execute successfully (probably an item already had the same spot)
      */
     int addResource(std::string name, SunResource *resource);
+
+    /// Adds multiple resources
+    /**
+     * This function adds a set of resources to the map. It is recommended that you
+     * only construct the resources because the service will take control after.
+     * @param _resources The map of resources (key: std::string, value: SunResource *)
+     * @retval 0 The function executed successfully
+     * @retval -1 The function executed with some errors (some items may have been in the map already)
+     */
+    int addResources(const std::map<std::string, SunResource *> &_resources);
 
     /// Gets a pointer to the associated resource
     /**

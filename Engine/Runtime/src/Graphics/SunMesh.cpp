@@ -3,22 +3,29 @@
 // See LICENSE.md for details.
 #include "SunMesh.h"
 
-SunMesh::SunMesh(std::vector<SunVertex> _vertices, std::vector<GLuint> _indices, std::vector<SunTexture> _textures, std::vector<SunBone> _bones, std::vector<SunAnimation> _animations) {
-    vertices = _vertices;
-    indices = _indices;
-    textures = _textures;
-    bones = _bones;
-    animations = _animations;
+#include "Loaders/SunMeshResource.h"
+#include "../Extern/SunResourceService.h"
 
-    calculateBindPoseAndInverseBindPose();
+SunMesh::SunMesh(std::vector<SunVertex> _vertices, std::vector<GLuint> _indices, std::vector<SunTexture> _textures, std::vector<SunBone> _bones, std::vector<SunAnimation> _animations) {
+    //vertices = _vertices;
+    indices = _indices;
+    //textures = _textures;
+    //bones = _bones;
+    //animations = _animations;
+
+    //calculateBindPoseAndInverseBindPose();
 
     // Set up the OpenGL stuff
-    setUpGL();
+    //setUpGL();
+}
+
+void SunMesh::init() {
+
 }
 
 void SunMesh::setUpGL() {
     // Generate the VAO
-    glGenVertexArrays(1, &VAO);
+    /*glGenVertexArrays(1, &VAO);
 
     // Generate the VBO and EBO
     glGenBuffers(1, &VBO);
@@ -59,7 +66,7 @@ void SunMesh::setUpGL() {
     glVertexAttribPointer(5, 4, GL_FLOAT, GL_FALSE, sizeof (SunVertex), (GLvoid *) offsetof(SunVertex, boneWeights));
 
     // Unbind the VBO and EBO
-    glBindVertexArray(0);
+    glBindVertexArray(0);*/
 }
 
 void SunMesh::calculateBindPoseAndInverseBindPose() {
@@ -151,10 +158,11 @@ void SunMesh::render(SunShader _shader, GLfloat _deltaTime, glm::vec3 _position,
         glUniformMatrix3fv(_shader.getUniformLocation("normalMatrix"), 1, GL_FALSE, glm::value_ptr(normalMatrix));
 
         // Bind the VAO
-        glBindVertexArray(VAO);
+        SunResource *mesh = ((SunResourceService *)getService("resource_service"))->getResourceManager("meshes")->getResource("Teapot");
+        glBindVertexArray(((SunMeshResource *)mesh)->getVAO());
 
         // Draw the triangles
-        glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, ((SunMeshResource *)mesh)->getIndicesSize(), GL_UNSIGNED_INT, 0);
 
         // Unbind the VAO
         glBindVertexArray(0);
@@ -181,10 +189,15 @@ void SunMesh::render(SunShader _shader, GLfloat _deltaTime, glm::vec3 _position,
         glUniformMatrix3fv(_shader.getUniformLocation("normalMatrix"), 1, GL_FALSE, glm::value_ptr(normalMatrix));
 
         // Bind the VAO
-        glBindVertexArray(VAO);
+        //glBindVertexArray(VAO);
+        SunResource *mesh = ((SunResourceService *)getService("resource_service"))->getResourceManager("meshes")->getResource("Teapot");
+
+
+
+        glBindVertexArray(((SunMeshResource *)mesh)->getVAO());
 
         // Draw the triangles
-        glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, ((SunMeshResource *)mesh)->getIndicesSize(), GL_UNSIGNED_INT, 0);
 
         // Unbind the VAO
         glBindVertexArray(0);

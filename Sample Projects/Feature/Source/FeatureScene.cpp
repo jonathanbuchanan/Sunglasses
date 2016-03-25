@@ -25,6 +25,12 @@ void FeatureScene::init() {
 	renderer->setWindow(window);
     renderer->init();
 
+    ((SunResourceService *)getService("resource_service"))->addResourceManager("models", new SunResourceManager());
+    ((SunResourceService *)getService("resource_service"))->addResourceManager("meshes", new SunResourceManager());
+    std::map<std::string, SunResource *> meshMap;
+    ((SunResourceService *)getService("resource_service"))->getResourceManager("models")->addResource("teapot", new SunModelResource("Resources/Graphics/Models/Teapot.dae", &meshMap));
+    ((SunResourceService *)getService("resource_service"))->getResourceManager("meshes")->addResources(meshMap);
+
     SunObject *teapot = new SunObject("teapot0", "Resources/Graphics/Models/Teapot.dae", "solid", false);
     teapot->loadScript("Scripts/Teapot.lua");
 	teapot->init();
@@ -35,8 +41,9 @@ void FeatureScene::init() {
 
     plane = new SunObject("plane", "Resources/Graphics/Models/Plane.dae", "solid", true);
 	plane->init();
+    //plane->setScale(glm::vec3(1.0f, 1.0f, 1.0f));
 	plane->setScale(glm::vec3(10.0f, 1.0f, 10.0f));
-	plane->setPosition(glm::vec3(0.0f, -5.0f, 0.0f));
+	plane->setPosition(glm::vec3(0.0f, -7.0f, 0.0f));
 	plane->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f));
 	root->addSubNode(plane);
 
@@ -103,7 +110,7 @@ void FeatureScene::cycle() {
     static bool odown = false;
     SunKeyboardManager *keyboard = ((SunKeyboardManager *)getService("keyboard_manager"));
     if (keyboard->pollKey(GLFW_KEY_I) == true && idown == false) {
-        SunObject *teapot = new SunObject("teapot" + std::to_string(teapots.size()), "Resources/Graphics/Models/Teapot.dae", "solid", false);
+        SunObject *teapot = new SunObject("teapot" + std::to_string(teapots.size()), "Resources/Graphics/Models/Plane.dae", "solid", false);
         if (teapots.size() > 0)
             teapot->setPosition(teapots[teapots.size() - 1]->getPosition() + glm::vec3(7.0f, 0.0f, 0.0f));
         teapot->setScale(glm::vec3(1.0f, 1.0f, 1.0f));

@@ -17,6 +17,7 @@
 
 #include "SunPrimitives.h"
 #include "SunShader.h"
+#include "../Core/SunBase.h"
 
 // SunObjectMaterial Declaration
 struct SunObjectMaterial {
@@ -38,12 +39,13 @@ enum SunMeshRenderType {
 	SunMeshRenderTypeAll
 };
 
-class SunMesh {
+class SunMesh : public SunBase {
 public:
     SunMesh() { }
 
     SunMesh(std::vector<SunVertex> _vertices, std::vector<GLuint> _indices, std::vector<SunTexture> _textures, std::vector<SunBone> _bones, std::vector<SunAnimation> _animations);
 
+    void init();
     void setUpGL();
     void calculateBindPoseAndInverseBindPose();
     void calculateBoneGlobalTransforms(GLfloat _currentTick);

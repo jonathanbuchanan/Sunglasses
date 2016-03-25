@@ -17,6 +17,22 @@ int SunResourceManager::addResource(std::string name, SunResource *resource) {
     return 0;
 }
 
+int SunResourceManager::addResources(const std::map<std::string, SunResource *> &_resources) {
+    bool perfect = true;
+    for (auto &iterator : _resources) {
+        if (resources.find(iterator.first) != resources.end()) {
+            perfect = false;
+        } else {
+            resources[iterator.first] = std::unique_ptr<SunResource>(iterator.second);
+            resources[iterator.first]->init();
+        }
+    }
+    if (perfect)
+        return 0;
+    else
+        return -1;
+}
+
 SunResource * SunResourceManager::getResource(std::string name) {
     if (resources.find(name) == resources.end())
         return nullptr; // Resource is not present, return -1
