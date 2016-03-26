@@ -3,12 +3,14 @@
 // See LICENSE.md for details.
 #include "SunMesh.h"
 
+#include "../Core/SunObject.h"
+
 #include "Loaders/SunMeshResource.h"
 #include "Loaders/SunMaterialResource.h"
 
 #include <glm/gtc/type_ptr.hpp>
 
-SunMesh::SunMesh(SunMeshResource *_mesh, SunMaterialResource *_material) : mesh(_mesh), material(_material) {
+SunMesh::SunMesh(SunObject *_object, SunMeshResource *_mesh, SunMaterialResource *_material) : object(_object), mesh(_mesh), material(_material) {
 
 }
 
@@ -19,9 +21,9 @@ void SunMesh::render(SunShader *shader) {
     GLfloat shininess = material->getShininess();
     glUniform1f(shader->getUniformLocation("material.shininess"), shininess);
 
-    glm::vec3 _position = glm::vec3(0.0f, 0.0f, 0.0f);
-    glm::vec3 _rotation = glm::vec3(0.0f, 0.0f, 0.0f);
-    glm::vec3 _scale = glm::vec3(1.0f, 1.0f, 1.0f);
+    glm::vec3 _position = object->getPosition();
+    glm::vec3 _rotation = object->getRotation();
+    glm::vec3 _scale = object->getScale();
 
     // Calculate the model matrix
     glm::mat4 modelMatrix;

@@ -79,5 +79,5 @@ void SunObject::newMesh(std::string mesh, std::string material) {
     SunMeshResource *_mesh = (SunMeshResource *)((SunResourceService *)getService("resource_service"))->getResourceManager("meshes")->getResource(mesh);
 
     SunMaterialResource *_material = (SunMaterialResource *)((SunResourceService *)getService("resource_service"))->getResourceManager("materials")->getResource(material);
-    meshes.push_back(SunMesh(_mesh, _material));
+    meshes.push_back(SunMesh(this, _mesh, _material));
 }

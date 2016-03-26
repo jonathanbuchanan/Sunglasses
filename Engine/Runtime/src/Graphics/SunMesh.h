@@ -8,6 +8,8 @@
 #include "SunShader.h"
 #include "../Core/SunBase.h"
 
+class SunObject;
+
 class SunMeshResource;
 class SunMaterialResource;
 
@@ -19,8 +21,8 @@ class SunMaterialResource;
  */
 class SunMesh {
 public:
-    /// Constructs the mesh with a pointer to the mesh resource and material resource
-    SunMesh(SunMeshResource *_mesh, SunMaterialResource *_material);
+    /// Constructs the mesh with a pointer to the owining object, mesh resource, and material resource
+    SunMesh(SunObject *_object, SunMeshResource *_mesh, SunMaterialResource *_material);
 
     /// Renders the mesh
     /**
@@ -31,6 +33,9 @@ public:
      */
     void render(SunShader *shader);
 private:
+    /// The pointer to the object that owns it
+    SunObject *object;
+
     /// The pointer to the mesh resource that will be used for data
     SunMeshResource *mesh;
 
