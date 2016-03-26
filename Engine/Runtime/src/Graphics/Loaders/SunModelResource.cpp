@@ -10,11 +10,15 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
-SunModelResource::SunModelResource(std::string _path) : path(_path), meshMap(nullptr) {
+SunModelResource::SunModelResource(std::string _path) : path(_path), meshMap(nullptr), materialMap(nullptr) {
 
 }
 
-SunModelResource::SunModelResource(std::string _path, std::map<std::string, SunResource *> *_meshMap) : path(_path), meshMap(_meshMap) {
+SunModelResource::SunModelResource(std::string _path, std::map<std::string, SunResource *> *_meshMap) : path(_path), meshMap(_meshMap), materialMap(nullptr) {
+
+}
+
+SunModelResource::SunModelResource(std::string _path, std::map<std::string, SunResource *> *_meshMap, std::map<std::string, SunResource *> *_materialMap) : path(_path), meshMap(_meshMap), materialMap(_materialMap) {
 
 }
 
@@ -24,7 +28,7 @@ void SunModelResource::init() {
     // Add meshes
     if (meshMap != nullptr) {
         // Loop through meshes
-        for (size_t i = 0; i < scene->mNumMeshes; i++) {
+        for (size_t i = 0; i < scene->mNumMeshes; ++i) {
             // Get mesh
             aiMesh *mesh = scene->mMeshes[i];
 
@@ -36,6 +40,26 @@ void SunModelResource::init() {
 
             // Add to the mesh map
             meshMap->insert(std::pair<std::string, SunMeshResource *>(name, meshResource));
+        }
+    }
+
+    // Add materials
+    if (materialMap != nullptr) {
+        // Loop through materials
+        for (size_t i = 0; i < scene->mNumMaterials; ++i) {
+            // Get material
+            aiMaterial *material = scene->mMaterials[i];
+
+            // Get name
+            aiString _name;
+            material->Get(AI_MATKEY_NAME, _name);
+            std::string name = std::string(_name.C_Str());
+
+            // Create material resource
+            SunMaterialResource *materialResource = new SunMaterialResource(material);
+
+            // Add to the material map
+            materialMap->insert(std::pair<std::string, SunMaterialResource *>(name, materialResource));
         }
     }
 }

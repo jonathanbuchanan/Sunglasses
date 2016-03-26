@@ -30,6 +30,9 @@ public:
     /// Constructor that initializes the path and the mesh map
     SunModelResource(std::string _path, std::map<std::string, SunResource *> *_meshMap);
 
+    /// Constructor that initializes the path, mesh map, and material map
+    SunModelResource(std::string _path, std::map<std::string, SunResource *> *_meshMap, std::map<std::string, SunResource *> *_materialMap);
+
     /// Initializes the resource
     /**
      * This method is called when the resource is added to the resource manager.
@@ -41,6 +44,9 @@ private:
 
     /// The pointer to the mesh map
     std::map<std::string, SunResource *> *meshMap;
+
+    /// The pointer to the material map
+    std::map<std::string, SunResource *> *materialMap;
 
     /// The Assimp importer
     Assimp::Importer importer;

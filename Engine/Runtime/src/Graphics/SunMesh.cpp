@@ -4,19 +4,20 @@
 #include "SunMesh.h"
 
 #include "Loaders/SunMeshResource.h"
+#include "Loaders/SunMaterialResource.h"
 
 #include <glm/gtc/type_ptr.hpp>
 
-SunMesh::SunMesh(SunMeshResource *_mesh) : mesh(_mesh) {
+SunMesh::SunMesh(SunMeshResource *_mesh, SunMaterialResource *_material) : mesh(_mesh), material(_material) {
 
 }
 
 void SunMesh::render(SunShader *shader) {
-    //glUniform3f(_shader.getUniformLocation("material.diffuse"), _material.color.r, _material.color.g, _material.color.b);
-    glUniform3f(shader->getUniformLocation("material.diffuse"), 1.0f, 1.0f, 1.0f);
+    glm::vec3 diffuse = material->getDiffuse();
+    glUniform3f(shader->getUniformLocation("material.diffuse"), diffuse.r, diffuse.g, diffuse.b);
 
-    //glUniform1f(_shader.getUniformLocation("material.shininess"), _material.shininess);
-    glUniform1f(shader->getUniformLocation("material.shininess"), 256.0f);
+    GLfloat shininess = material->getShininess();
+    glUniform1f(shader->getUniformLocation("material.shininess"), shininess);
 
     glm::vec3 _position = glm::vec3(0.0f, 0.0f, 0.0f);
     glm::vec3 _rotation = glm::vec3(0.0f, 0.0f, 0.0f);

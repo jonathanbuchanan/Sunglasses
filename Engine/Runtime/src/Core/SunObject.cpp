@@ -4,6 +4,7 @@
 #include "SunObject.h"
 
 #include "../Graphics/SunWindowManager.h"
+#include "../Graphics/Loaders/SunMaterialResource.h"
 #include "../Input/SunKeyboardManager.h"
 #include "../Logic/SunGlobalLogicEnvironment.h"
 #include "../Extern/SunResourceService.h"
@@ -74,6 +75,9 @@ void SunObject::uniform(SunAction action) {
 
 }
 
-void SunObject::newMesh(std::string resource) {
-    meshes.push_back(SunMesh((SunMeshResource *)((SunResourceService *)getService("resource_service"))->getResourceManager("meshes")->getResource(resource)));
+void SunObject::newMesh(std::string mesh, std::string material) {
+    SunMeshResource *_mesh = (SunMeshResource *)((SunResourceService *)getService("resource_service"))->getResourceManager("meshes")->getResource(mesh);
+
+    SunMaterialResource *_material = (SunMaterialResource *)((SunResourceService *)getService("resource_service"))->getResourceManager("materials")->getResource(material);
+    meshes.push_back(SunMesh(_mesh, _material));
 }

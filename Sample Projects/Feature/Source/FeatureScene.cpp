@@ -27,21 +27,23 @@ void FeatureScene::init() {
 
     ((SunResourceService *)getService("resource_service"))->addResourceManager("models", new SunResourceManager());
     ((SunResourceService *)getService("resource_service"))->addResourceManager("meshes", new SunResourceManager());
+    ((SunResourceService *)getService("resource_service"))->addResourceManager("materials", new SunResourceManager());
 
     std::map<std::string, SunResource *> meshMap;
 
     ((SunResourceService *)getService("resource_service"))->getResourceManager("models")->addResource("teapot", new SunModelResource("Resources/Graphics/Models/Teapot.dae", &meshMap));
     ((SunResourceService *)getService("resource_service"))->getResourceManager("meshes")->addResources(meshMap);
-    //meshMap.clear();
+    meshMap.clear();
 
-    /*((SunResourceService *)getService("resource_service"))->getResourceManager("models")->addResource("plane", new SunModelResource("Resources/Graphics/Models/Plane.dae", &meshMap));
+    ((SunResourceService *)getService("resource_service"))->getResourceManager("models")->addResource("plane", new SunModelResource("Resources/Graphics/Models/Plane.dae", &meshMap));
     ((SunResourceService *)getService("resource_service"))->getResourceManager("meshes")->addResources(meshMap);
-    meshMap.clear();*/
+    meshMap.clear();
 
-    //SunObject *teapot = new SunObject("teapot0", "Resources/Graphics/Models/Teapot.dae", "solid", false);
+    ((SunResourceService *)getService("resource_service"))->getResourceManager("materials")->addResource("material0", new SunMaterialResource(glm::vec3(0.0f, 1.0f, 1.0f), 1024.0f));
+
     SunObject *teapot = new SunObject("teapot0");
     teapot->addTag("solid");
-    teapot->newMesh("Teapot");
+    teapot->newMesh("Teapot", "material0");
     teapot->loadScript("Scripts/Teapot.lua");
 	teapot->init();
     teapot->setScale(glm::vec3(1.0f, 1.0f, 1.0f));
@@ -49,13 +51,14 @@ void FeatureScene::init() {
     teapots.push_back(teapot);
     root->addSubNode(teapot);
 
-    /*plane = new SunObject("plane", "Resources/Graphics/Models/Plane.dae", "solid", true);
+    //plane = new SunObject("plane", "Resources/Graphics/Models/Plane.dae", "solid", true);
+    plane = new SunObject("plane");
+    plane->addTag("solid");
+    plane->newMesh("Plane.001", "material0");
 	plane->init();
-    //plane->setScale(glm::vec3(1.0f, 1.0f, 1.0f));
 	plane->setScale(glm::vec3(10.0f, 1.0f, 10.0f));
 	plane->setPosition(glm::vec3(0.0f, -7.0f, 0.0f));
-	plane->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f));
-	root->addSubNode(plane);*/
+	root->addSubNode(plane);
 
 	dir = new SunDirectionalLight(glm::vec3(1.0f, 0.75f, 0.75f), glm::vec3(4.0f, -4.0f, 2.0f));
 	dir->setCountUniform("directionalLightCount");
@@ -121,6 +124,8 @@ void FeatureScene::cycle() {
     if (keyboard->pollKey(GLFW_KEY_I) == true && idown == false) {
         //SunObject *teapot = new SunObject("teapot" + std::to_string(teapots.size()), "Resources/Graphics/Models/Plane.dae", "solid", false);
         SunObject *teapot = new SunObject("teapot" + std::to_string(teapots.size()));
+        teapot->addTag("solid");
+        teapot->newMesh("Teapot", "material0");
         if (teapots.size() > 0)
             teapot->setPosition(teapots[teapots.size() - 1]->getPosition() + glm::vec3(7.0f, 0.0f, 0.0f));
         teapot->setScale(glm::vec3(1.0f, 1.0f, 1.0f));

@@ -71,13 +71,14 @@ public:
      */
     virtual void uniform(SunAction action);
 
-    /// Adds a mesh with a pointer to the mesh resource associated with the name.
+    /// Adds a mesh with a pointer to the mesh resource associated with the resources.
     /**
      * This method creates a new mesh and adds it to the vector of meshes. It
-     * associates the mesh with the mesh resource specified in the parameters.
-     * @param resource The name of the mesh resource
+     * associates the mesh with the resources specified in the parameters.
+     * @param mesh The name of the mesh resource
+     * @param material The name of the material resource
      */
-    void newMesh(std::string resource);
+    void newMesh(std::string mesh, std::string material);
 
     /// Sets the scripting enabled boolean
     void setScriptingEnabled(bool s) { scriptingEnabled = s; }
