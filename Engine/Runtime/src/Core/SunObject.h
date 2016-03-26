@@ -82,23 +82,25 @@ public:
     /**
      * This method creates a new mesh and adds it to the vector of meshes. It
      * associates the mesh with the resources specified in the parameters.
-     * @param mesh The name of the mesh resource
+     * @param name The name of the new mesh
+     * @param mesh The identifier of the mesh resource
      * @param material The name of the material resource
      */
-    void newMesh(std::string mesh, std::string material);
+    void newMesh(std::string name, std::string mesh, std::string material);
 
     /// Adds a mesh with pointers to the resources and some initial values
     /**
      * This method creates a new mesh and adds it to the vector of meshes. It
      * associates the mesh with the resources specified in the parameters. It
      * also initializes the mesh with the position, rotation, and scale values.
-     * @param mesh The name of the mesh resource
+     * @param name The name of the new mesh
+     * @param mesh The identifier of the mesh resource
      * @param material The name of the material resource
      * @param _position The position vector
      * @param _rotation The rotation vector
      * @param _scale The scale vector
      */
-    void newMesh(std::string mesh, std::string material, glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale);
+    void newMesh(std::string name, std::string mesh, std::string material, glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale);
 
     /// Sets the scripting enabled boolean
     void setScriptingEnabled(bool s) { scriptingEnabled = s; }
@@ -130,8 +132,8 @@ private:
     /// Scale vector
     glm::vec3 scale;
 
-    /// The vector of meshes
-    std::vector<SunMesh> meshes;
+    /// The map of meshes
+    std::map<std::string, SunMesh> meshes;
 
     /// The physics objects
     SunPhysicsObject physicsObject;

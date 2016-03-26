@@ -24,6 +24,9 @@ class SunMaterialResource;
 class SunMesh {
     friend SunObject;
 public:
+    /// Constructor with no arguments
+    SunMesh();
+    
     /// Constructs the mesh with a pointer to the owning object, mesh resource, and material resource
     SunMesh(SunObject *_object, SunMeshResource *_mesh, SunMaterialResource *_material);
 

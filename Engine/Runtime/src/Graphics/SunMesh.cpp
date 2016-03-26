@@ -10,6 +10,10 @@
 
 #include <glm/gtc/type_ptr.hpp>
 
+SunMesh::SunMesh() {
+    
+}
+
 SunMesh::SunMesh(SunObject *_object, SunMeshResource *_mesh, SunMaterialResource *_material) : object(_object), mesh(_mesh), material(_material), scale(glm::vec3(1.0f, 1.0f, 1.0f)) {
 
 }
