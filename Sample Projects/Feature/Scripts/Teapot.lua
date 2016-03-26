@@ -26,9 +26,9 @@ function update(delta)
     rotation = object.rotation.toTable()
     rotation.y = rotation.y + (delta * rotationConstant)
     object.rotation.assignTable(rotation)
-    --[[color = object.color.toTable()
+    color = object.mesh0.material.color.toTable()
     color.x = math.abs(math.sin(2 * time))
     color.y = math.abs(math.sin(3 * time + 1))
     color.z = math.abs(math.sin(4 * time + 2))
-    object.color.assignTable(color)]]--
+    object.mesh0.material.color.assignTable(color)
 end

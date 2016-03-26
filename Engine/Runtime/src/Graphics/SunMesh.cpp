@@ -10,7 +10,11 @@
 
 #include <glm/gtc/type_ptr.hpp>
 
-SunMesh::SunMesh(SunObject *_object, SunMeshResource *_mesh, SunMaterialResource *_material) : object(_object), mesh(_mesh), material(_material) {
+SunMesh::SunMesh(SunObject *_object, SunMeshResource *_mesh, SunMaterialResource *_material) : object(_object), mesh(_mesh), material(_material), scale(glm::vec3(1.0f, 1.0f, 1.0f)) {
+
+}
+
+SunMesh::SunMesh(SunObject *_object, SunMeshResource *_mesh, SunMaterialResource *_material, glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale) : object(_object), mesh(_mesh), material(_material), position(_position), rotation(_rotation), scale(_scale) {
 
 }
 
@@ -21,9 +25,9 @@ void SunMesh::render(SunShader *shader) {
     GLfloat shininess = material->getShininess();
     glUniform1f(shader->getUniformLocation("material.shininess"), shininess);
 
-    glm::vec3 _position = object->getPosition();
-    glm::vec3 _rotation = object->getRotation();
-    glm::vec3 _scale = object->getScale();
+    glm::vec3 _position = object->getPosition() + position;
+    glm::vec3 _rotation = object->getRotation() + rotation;
+    glm::vec3 _scale = object->getScale() * scale;
 
     // Calculate the model matrix
     glm::mat4 modelMatrix;

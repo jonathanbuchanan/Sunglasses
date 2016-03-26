@@ -33,6 +33,14 @@ void SunObject::loadScript(std::string _script) {
     script.registerObjectAsType(script["object"]["position"], "vec3", &position);
     script.registerObjectAsType(script["object"]["scale"], "vec3", &scale);
     //script.registerObjectAsType(script["object"]["color"], "vec3", &material.color);
+    //script.registerType<SunMesh>("mesh", "position")
+    for (size_t i = 0; i < meshes.size(); i++) {
+        const char *mesh = ("mesh" + std::to_string(i)).c_str();
+        script.registerObject(script["object"][mesh], &meshes[i]);
+        script.registerObjectAsType(script["object"][mesh]["position"], "vec3", &meshes[i].position);
+        script.registerObject(script["object"][mesh]["material"], meshes[i].material);
+        script.registerObjectAsType(script["object"][mesh]["material"]["color"], "vec3", &meshes[i].material->diffuse);
+    }
     ((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->registerWithScript(&script);
 
     script.registerObject("keyboard_manager", (SunKeyboardManager *)getService("keyboard_manager"), "pollKey", &SunKeyboardManager::keyDown);
@@ -80,4 +88,11 @@ void SunObject::newMesh(std::string mesh, std::string material) {
 
     SunMaterialResource *_material = (SunMaterialResource *)((SunResourceService *)getService("resource_service"))->getResourceManager("materials")->getResource(material);
     meshes.push_back(SunMesh(this, _mesh, _material));
+}
+
+void SunObject::newMesh(std::string mesh, std::string material, glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale) {
+    SunMeshResource *_mesh = (SunMeshResource *)((SunResourceService *)getService("resource_service"))->getResourceManager("meshes")->getResource(mesh);
+
+    SunMaterialResource *_material = (SunMaterialResource *)((SunResourceService *)getService("resource_service"))->getResourceManager("materials")->getResource(material);
+    meshes.push_back(SunMesh(this, _mesh, _material, _position, _rotation, _scale));
 }

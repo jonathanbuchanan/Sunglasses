@@ -3,6 +3,8 @@
 
 #include "../../Extern/SunResource.h"
 
+class SunObject;
+
 #include <glm/glm.hpp>
 
 #include <memory>
@@ -15,6 +17,7 @@ class aiMaterial;
 
 /// A SunResource subclass representing loaded material data
 class SunMaterialResource : public SunResource {
+    friend SunObject;
 public:
     /// Constructs the material from an aiMaterial.
     /**

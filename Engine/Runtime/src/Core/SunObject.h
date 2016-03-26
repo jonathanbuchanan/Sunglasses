@@ -36,6 +36,13 @@ public:
     SunObject(std::string _name);
 
     /// Loads a script
+    /**
+     * This member function loads a lua script and executes it. This should be called
+     * after loading all of the values, so everything is included properly. Each mesh
+     * is registered as a subtable of object, in the fashion meshx, where x is the index
+     * of a mesh in the vector of meshes
+     * @param _script The path of the script
+     */
     void loadScript(std::string _script);
 
     /// Initializes the object.
@@ -71,7 +78,7 @@ public:
      */
     virtual void uniform(SunAction action);
 
-    /// Adds a mesh with a pointer to the mesh resource associated with the resources.
+    /// Adds a mesh with pointers to the resources
     /**
      * This method creates a new mesh and adds it to the vector of meshes. It
      * associates the mesh with the resources specified in the parameters.
@@ -79,6 +86,19 @@ public:
      * @param material The name of the material resource
      */
     void newMesh(std::string mesh, std::string material);
+
+    /// Adds a mesh with pointers to the resources and some initial values
+    /**
+     * This method creates a new mesh and adds it to the vector of meshes. It
+     * associates the mesh with the resources specified in the parameters. It
+     * also initializes the mesh with the position, rotation, and scale values.
+     * @param mesh The name of the mesh resource
+     * @param material The name of the material resource
+     * @param _position The position vector
+     * @param _rotation The rotation vector
+     * @param _scale The scale vector
+     */
+    void newMesh(std::string mesh, std::string material, glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale);
 
     /// Sets the scripting enabled boolean
     void setScriptingEnabled(bool s) { scriptingEnabled = s; }

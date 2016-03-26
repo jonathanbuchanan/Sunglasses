@@ -13,6 +13,8 @@ class SunObject;
 class SunMeshResource;
 class SunMaterialResource;
 
+#include <glm/glm.hpp>
+
 /// A class that represents a 3D object to be rendered
 /**
  * The SunMesh class contains possible pointers to mesh resources (mesh data),
@@ -20,9 +22,13 @@ class SunMaterialResource;
  * and renders them every frame when the 'render' action is received.
  */
 class SunMesh {
+    friend SunObject;
 public:
-    /// Constructs the mesh with a pointer to the owining object, mesh resource, and material resource
+    /// Constructs the mesh with a pointer to the owning object, mesh resource, and material resource
     SunMesh(SunObject *_object, SunMeshResource *_mesh, SunMaterialResource *_material);
+
+    /// Constructs the mesh with a pointer to the owning object, mesh resource, material resource, and some values
+    SunMesh(SunObject *_object, SunMeshResource *_mesh, SunMaterialResource *_material, glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale);
 
     /// Renders the mesh
     /**
@@ -32,6 +38,15 @@ public:
      * @param shader A pointer to the shader to be used.
      */
     void render(SunShader *shader);
+
+    /// Sets the position of the mesh
+    void setPosition(glm::vec3 _position) { position = _position; }
+
+    /// Sets the rotation of the mesh
+    void setRotation(glm::vec3 _rotation) { rotation = _rotation; }
+
+    /// Sets the scale of the mesh
+    void setScale(glm::vec3 _scale) { scale = _scale; }
 private:
     /// The pointer to the object that owns it
     SunObject *object;
@@ -41,6 +56,15 @@ private:
 
     /// The pointer to the material resource
     SunMaterialResource *material;
+
+    /// The position of the mesh (relative to the object)
+    glm::vec3 position;
+
+    /// The rotation of the mesh (relative to the object)
+    glm::vec3 rotation;
+
+    /// The scale of the mesh (relative to the object)
+    glm::vec3 scale;
 };
 
 #endif

@@ -52,11 +52,9 @@ void FeatureScene::init() {
 
     plane = new SunObject("plane");
     plane->addTag("solid");
-    plane->newMesh("Plane.001", "material0");
+    plane->newMesh("Plane.001", "material0", glm::vec3(0, 0, 0), glm::vec3(180, 0, 0), glm::vec3(10, 1, 10));
 	plane->init();
-	plane->setScale(glm::vec3(10.0f, 1.0f, 10.0f));
 	plane->setPosition(glm::vec3(0.0f, -7.0f, 0.0f));
-    plane->setRotation(glm::vec3(180.0f, 0.0f, 0.0f));
 	root->addSubNode(plane);
 
 	dir = new SunDirectionalLight(glm::vec3(1.0f, 0.75f, 0.75f), glm::vec3(4.0f, -4.0f, 2.0f));
