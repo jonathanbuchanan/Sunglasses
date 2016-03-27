@@ -13,7 +13,7 @@
 
 #include <assimp/Importer.hpp>
 
-class aiScene;
+struct aiScene;
 
 /// An SunResource subclass for loading 3D model files
 /**

@@ -9,7 +9,7 @@
 
 #include <memory>
 
-class aiMesh;
+struct aiMesh;
 
 /// A SunResource subclass representing loaded mesh data
 /**

@@ -18,7 +18,7 @@ class SunTextureResource;
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
-class aiMaterial;
+struct aiMaterial;
 
 /// A SunResource subclass representing loaded material data
 class SunMaterialResource : public SunResource {
