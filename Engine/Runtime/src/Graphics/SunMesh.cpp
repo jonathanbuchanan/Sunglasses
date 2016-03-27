@@ -11,7 +11,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 SunMesh::SunMesh() {
-    
+
 }
 
 SunMesh::SunMesh(SunObject *_object, SunMeshResource *_mesh, SunMaterialResource *_material) : object(_object), mesh(_mesh), material(_material), scale(glm::vec3(1.0f, 1.0f, 1.0f)) {
@@ -23,11 +23,12 @@ SunMesh::SunMesh(SunObject *_object, SunMeshResource *_mesh, SunMaterialResource
 }
 
 void SunMesh::render(SunShader *shader) {
-    glm::vec3 diffuse = material->getDiffuse();
+    material->pass(shader, "material");
+    /*glm::vec3 diffuse = material->getDiffuse();
     glUniform3f(shader->getUniformLocation("material.diffuse"), diffuse.r, diffuse.g, diffuse.b);
 
     GLfloat shininess = material->getShininess();
-    glUniform1f(shader->getUniformLocation("material.shininess"), shininess);
+    glUniform1f(shader->getUniformLocation("material.shininess"), shininess);*/
 
     glm::vec3 _position = object->getPosition() + position;
     glm::vec3 _rotation = object->getRotation() + rotation;

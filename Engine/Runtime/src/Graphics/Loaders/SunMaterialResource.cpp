@@ -1,10 +1,20 @@
+// Copyright 2016 Jonathan Buchanan.
+// This file is part of Sunglasses, which is licensed under the MIT License.
+// See LICENSE.md for details.
 #include "SunMaterialResource.h"
+
+#include "SunTextureResource.h"
+#include "../SunShader.h"
 
 SunMaterialResource::SunMaterialResource(aiMaterial *_material) : material(_material) {
 
 }
 
 SunMaterialResource::SunMaterialResource(glm::vec3 color, float _shininess) : material(nullptr), diffuse(color), specular(color), ambient(color), shininess(_shininess) {
+
+}
+
+SunMaterialResource::SunMaterialResource(SunTextureResource *texture, float _shininess) : diffuseTextured(true), diffuseTexture(texture), shininess(_shininess) {
 
 }
 
@@ -47,4 +57,16 @@ void SunMaterialResource::init() {
             // Failure
         }
     }
+}
+
+void SunMaterialResource::pass(SunShader *shader, std::string structName) {
+    if (!diffuseTextured)
+        glUniform3f(shader->getUniformLocation(structName + ".diffuse"), diffuse.r, diffuse.g, diffuse.b);
+    else {
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, diffuseTexture->getTexture());
+        glUniform1i(shader->getUniformLocation(structName + ".diffuse"), 0);
+    }
+
+    glUniform1f(shader->getUniformLocation(structName + ".shininess"), shininess);
 }

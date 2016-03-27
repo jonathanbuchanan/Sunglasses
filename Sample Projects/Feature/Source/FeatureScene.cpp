@@ -28,6 +28,7 @@ void FeatureScene::init() {
     ((SunResourceService *)getService("resource_service"))->addResourceManager("models", new SunResourceManager());
     ((SunResourceService *)getService("resource_service"))->addResourceManager("meshes", new SunResourceManager());
     ((SunResourceService *)getService("resource_service"))->addResourceManager("materials", new SunResourceManager());
+    ((SunResourceService *)getService("resource_service"))->addResourceManager("textures", new SunResourceManager());
 
     std::map<std::string, SunResource *> meshMap;
 
@@ -39,9 +40,13 @@ void FeatureScene::init() {
     ((SunResourceService *)getService("resource_service"))->getResourceManager("meshes")->addResources(meshMap);
     meshMap.clear();
 
+    ((SunResourceService *)getService("resource_service"))->getResourceManager("textures")->addResource("grass", new SunTextureResource("Resources/Graphics/Textures/grass.png"));
+
+    SunTextureResource *grassTexture = (SunTextureResource *)((SunResourceService *)getService("resource_service"))->getResourceManager("textures")->getResource("grass");
+
     ((SunResourceService *)getService("resource_service"))->getResourceManager("materials")->addResource("teapotmaterial", new SunMaterialResource(glm::vec3(1.0f, 1.0f, 1.0f), 1024.0f));
 
-    ((SunResourceService *)getService("resource_service"))->getResourceManager("materials")->addResource("planematerial", new SunMaterialResource(glm::vec3(0.0f, 1.0f, 1.0f), 32.0f));
+    ((SunResourceService *)getService("resource_service"))->getResourceManager("materials")->addResource("planematerial", new SunMaterialResource(grassTexture, 4.0f));
 
     SunObject *teapot = new SunObject("teapot0");
     teapot->addTag("solid");
@@ -53,13 +58,13 @@ void FeatureScene::init() {
     root->addSubNode(teapot);
 
     plane = new SunObject("plane");
-    plane->addTag("solid");
+    plane->addTag("textured");
     plane->newMesh("plane", "Plane.001", "planematerial", glm::vec3(0, 0, 0), glm::vec3(180, 0, 0), glm::vec3(10, 1, 10));
 	plane->init();
 	plane->setPosition(glm::vec3(0.0f, -7.0f, 0.0f));
 	root->addSubNode(plane);
 
-	dir = new SunDirectionalLight(glm::vec3(1.0f, 0.75f, 0.75f), glm::vec3(4.0f, -4.0f, 2.0f));
+	dir = new SunDirectionalLight(glm::vec3(0.5f, 0.5f, 0.5f), glm::vec3(4.0f, -4.0f, 2.0f));
 	dir->setCountUniform("directionalLightCount");
 	dir->setArrayUniform("directionalLights");
 	dir->addTag("light");

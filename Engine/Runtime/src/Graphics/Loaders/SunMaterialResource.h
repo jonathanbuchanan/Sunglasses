@@ -1,9 +1,14 @@
+// Copyright 2016 Jonathan Buchanan.
+// This file is part of Sunglasses, which is licensed under the MIT License.
+// See LICENSE.md for details.
 #ifndef SUNMATERIALRESOURCE_H
 #define SUNMATERIALRESOURCE_H
 
 #include "../../Extern/SunResource.h"
 
 class SunObject;
+class SunShader;
+class SunTextureResource;
 
 #include <glm/glm.hpp>
 
@@ -35,6 +40,16 @@ public:
      */
     SunMaterialResource(glm::vec3 color, float _shininess);
 
+    /// Constructs the material from a single texture and shininess.
+    /**
+     * This constructor builds the material resource from a single texture, assigning the diffuse,
+     * specular, and ambient textures with the same pointer and the shininess value with a
+     * float.
+     * @param texture The pointer to the texture resource
+     * @param _shininess The shininess value
+     */
+    SunMaterialResource(SunTextureResource *texture, float _shininess);
+
     /// Initializes the material
     /**
      * In the case of the material being generated from an aiMaterial, this
@@ -43,6 +58,14 @@ public:
      * the values already are loaded.
      */
     void init();
+
+    /// Passes the material as a uniform for a shader in a struct.
+    /**
+     * This member function passes the material as a struct in a shader.
+     * @param shader The pointer to the shader
+     * @param structName The name of the struct in the shader
+     */
+    void pass(SunShader *shader, std::string structName);
 
     /// Gets the diffuse color
     glm::vec3 getDiffuse() { return diffuse; }
@@ -59,8 +82,14 @@ private:
     /// The aiMaterial pointer
     std::unique_ptr<aiMaterial> material;
 
+    /// A boolean that states whether the material has diffuse set as a solid color or a texture
+    bool diffuseTextured;
+
     /// The diffuse color of the material
     glm::vec3 diffuse;
+
+    /// The diffuse texture of the material
+    SunTextureResource *diffuseTexture;
 
     /// The specular color of the material
     glm::vec3 specular;
