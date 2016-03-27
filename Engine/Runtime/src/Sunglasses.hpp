@@ -10,4 +10,5 @@
 #include "Logic/Logic.hpp"
 #include "Output/Output.hpp"
 #include "Physics/Physics.hpp"
+#include "Extern/Extern.hpp"
 #include "Scripting/Scripting.hpp"

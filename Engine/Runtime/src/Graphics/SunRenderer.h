@@ -2,12 +2,11 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 
-#ifndef OpenGL_Test_3_Renderer_h
-#define OpenGL_Test_3_Renderer_h
+#ifndef SUNRENDERER_H
+#define SUNRENDERER_H
 
 #include <iostream>
 
-#include "SunTextRenderer.h"
 #include "SunRenderingNode.h"
 #include "SunTexturedQuad.h"
 #include "SunPrimitives.h"

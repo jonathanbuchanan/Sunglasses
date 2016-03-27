@@ -5,97 +5,69 @@
 #ifndef SUNMESH_H
 #define SUNMESH_H
 
-#include <vector>
-
-#include <GL/glew.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/quaternion.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <glm/gtx/quaternion.hpp>
-#include <glm/gtx/string_cast.hpp>
-
-#include "SunPrimitives.h"
 #include "SunShader.h"
+#include "../Core/SunBase.h"
 
-// SunObjectMaterial Declaration
-struct SunObjectMaterial {
-    SunObjectMaterial() {
+class SunObject;
 
-    }
-    SunObjectMaterial(glm::vec3 _color, GLfloat _shininess) {
-        color = _color;
-        shininess = _shininess;
-    }
-    glm::vec3 color;
-    GLfloat shininess;
-};
+class SunMeshResource;
+class SunMaterialResource;
 
-// SunMeshRenderType Declaration
-enum SunMeshRenderType {
-    SunMeshRenderTypeSolid,
-    SunMeshRenderTypeTextured,
-    SunMeshRenderTypeAll
-};
+#include <glm/glm.hpp>
 
+/// A class that represents a 3D object to be rendered
+/**
+ * The SunMesh class contains possible pointers to mesh resources (mesh data),
+ * material resources, and texture resources. A SunObject contains a vector of these
+ * and renders them every frame when the 'render' action is received.
+ */
 class SunMesh {
+    friend SunObject;
 public:
-    SunMesh() { }
+    /// Constructor with no arguments
+    SunMesh();
 
-    SunMesh(std::vector<SunVertex> _vertices, std::vector<GLuint> _indices, std::vector<SunTexture> _textures, std::vector<SunBone> _bones, std::vector<SunAnimation> _animations);
+    /// Constructs the mesh with a pointer to the owning object, mesh resource, and material resource
+    SunMesh(SunObject *_object, SunMeshResource *_mesh, SunMaterialResource *_material);
 
-    void setUpGL();
-    void calculateBindPoseAndInverseBindPose();
-    void calculateBoneGlobalTransforms(GLfloat _currentTick);
-    void passGlobalTransformUniforms(SunShader _shader);
-    void render(SunShader _shader, GLfloat _deltaTime, glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale, SunObjectMaterial _material, SunMeshRenderType _renderType);
+    /// Constructs the mesh with a pointer to the owning object, mesh resource, material resource, and some values
+    SunMesh(SunObject *_object, SunMeshResource *_mesh, SunMaterialResource *_material, glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale);
 
-    inline std::vector<SunVertex> & getVertices() { return vertices; }
-    inline SunVertex & getVertexAtIndex(int i) { return vertices[i]; }
-    inline void addVertexToVertices(SunVertex vertex) { vertices.push_back(vertex); }
+    /// Renders the mesh
+    /**
+     * This method renders the mesh. The position and rotation vectors are added to
+     * are added to the position and rotation of the owner (SunObject) to obtain
+     * the global values.
+     * @param shader A pointer to the shader to be used.
+     */
+    void render(SunShader *shader);
 
-    inline std::vector<GLuint> & getIndices() { return indices; }
-    inline GLuint & getIndexAtIndex(int i) { return indices[i]; }
-    inline void addIndexToIndices(GLuint index) { indices.push_back(index); }
+    /// Sets the position of the mesh
+    void setPosition(glm::vec3 _position) { position = _position; }
 
-    inline std::vector<SunTexture> & getTextures() { return textures; }
-    inline SunTexture & getTextureAtIndex(int i) { return textures[i]; }
-    inline void addTextureToTextures(SunTexture texture) { textures.push_back(texture); }
+    /// Sets the rotation of the mesh
+    void setRotation(glm::vec3 _rotation) { rotation = _rotation; }
 
-    inline std::vector<SunBone> & getBones() { return bones; }
-    inline SunBone & getBoneAtIndex(int i) { return bones[i]; }
-    inline void addBoneToBones(SunBone bone) { bones.push_back(bone); }
-
-    inline std::vector<SunAnimation> & getAnimations() { return animations; }
-    inline SunAnimation & getAnimationAtIndex(int i) { return animations[i]; }
-    inline void addAnimationToAnimations(SunAnimation animation) { animations.push_back(animation); }
-
-    inline glm::mat4 & getGlobalInverseTransform() { return globalInverseTransform; }
-    inline void setGlobalInverseTransform(glm::mat4 _transform) { globalInverseTransform = _transform; }
-
-    inline GLuint & getVBO() { return VBO; }
-    inline void setVBO(GLuint _VBO) { VBO = _VBO; }
-
-    inline GLuint & getVAO() { return VAO; }
-    inline void setVAO(GLuint _VAO) { VAO = _VAO; }
-
-    inline GLuint & getEBO() { return EBO; }
-    inline void setEBO(GLuint _EBO) { EBO = _EBO; }
+    /// Sets the scale of the mesh
+    void setScale(glm::vec3 _scale) { scale = _scale; }
 private:
-    // Vertices, indices, and textures
-    std::vector<SunVertex> vertices;
-    std::vector<GLuint> indices;
-    std::vector<SunTexture> textures;
-    std::vector<SunBone> bones;
-    std::vector<SunAnimation> animations;
+    /// The pointer to the object that owns it
+    SunObject *object;
 
-    // Global Inverse Transform
-    glm::mat4 globalInverseTransform;
+    /// The pointer to the mesh resource that will be used for data
+    SunMeshResource *mesh;
 
-    // VBO, EBO, and VAO
-    GLuint VBO;
-    GLuint EBO;
-    GLuint VAO;
+    /// The pointer to the material resource
+    SunMaterialResource *material;
+
+    /// The position of the mesh (relative to the object)
+    glm::vec3 position;
+
+    /// The rotation of the mesh (relative to the object)
+    glm::vec3 rotation;
+
+    /// The scale of the mesh (relative to the object)
+    glm::vec3 scale;
 };
 
 #endif

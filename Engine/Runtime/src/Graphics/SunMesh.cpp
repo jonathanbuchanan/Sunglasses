@@ -3,22 +3,84 @@
 // See LICENSE.md for details.
 #include "SunMesh.h"
 
-SunMesh::SunMesh(std::vector<SunVertex> _vertices, std::vector<GLuint> _indices, std::vector<SunTexture> _textures, std::vector<SunBone> _bones, std::vector<SunAnimation> _animations) {
-    vertices = _vertices;
-    indices = _indices;
-    textures = _textures;
-    bones = _bones;
-    animations = _animations;
+#include "../Core/SunObject.h"
 
-    calculateBindPoseAndInverseBindPose();
+#include "Loaders/SunMeshResource.h"
+#include "Loaders/SunMaterialResource.h"
 
-    // Set up the OpenGL stuff
-    setUpGL();
+#include <glm/gtc/type_ptr.hpp>
+
+SunMesh::SunMesh() {
+
 }
 
-void SunMesh::setUpGL() {
+SunMesh::SunMesh(SunObject *_object, SunMeshResource *_mesh, SunMaterialResource *_material) : object(_object), mesh(_mesh), material(_material), scale(glm::vec3(1.0f, 1.0f, 1.0f)) {
+
+}
+
+SunMesh::SunMesh(SunObject *_object, SunMeshResource *_mesh, SunMaterialResource *_material, glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale) : object(_object), mesh(_mesh), material(_material), position(_position), rotation(_rotation), scale(_scale) {
+
+}
+
+void SunMesh::render(SunShader *shader) {
+    material->pass(shader, "material");
+    /*glm::vec3 diffuse = material->getDiffuse();
+    glUniform3f(shader->getUniformLocation("material.diffuse"), diffuse.r, diffuse.g, diffuse.b);
+
+    GLfloat shininess = material->getShininess();
+    glUniform1f(shader->getUniformLocation("material.shininess"), shininess);*/
+
+    glm::vec3 _position = object->getPosition() + position;
+    glm::vec3 _rotation = object->getRotation() + rotation;
+    glm::vec3 _scale = object->getScale() * scale;
+
+    // Calculate the model matrix
+    glm::mat4 modelMatrix;
+    modelMatrix = glm::translate(modelMatrix, _position);
+    modelMatrix = glm::rotate(modelMatrix, glm::radians(_rotation.x), glm::vec3(1.0, 0.0, 0.0));
+    modelMatrix = glm::rotate(modelMatrix, glm::radians(_rotation.y), glm::vec3(0.0, 1.0, 0.0));
+    modelMatrix = glm::rotate(modelMatrix, glm::radians(_rotation.z), glm::vec3(0.0, 0.0, 1.0));
+    modelMatrix = glm::scale(modelMatrix, _scale);
+
+    // Pass the model matrix uniform
+    glUniformMatrix4fv(shader->getUniformLocation("model"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
+
+    // Calculate the normal matrix
+    glm::mat3 normalMatrix = glm::mat3(glm::transpose(glm::inverse(modelMatrix)));
+
+    // Pass the normal matrix
+    glUniformMatrix3fv(shader->getUniformLocation("normalMatrix"), 1, GL_FALSE, glm::value_ptr(normalMatrix));
+
+    // Bind the VAO
+    glBindVertexArray(mesh->getVAO());
+
+    // Draw the triangles
+    glDrawElements(GL_TRIANGLES, mesh->getIndicesSize(), GL_UNSIGNED_INT, 0);
+
+    // Unbind the VAO
+    glBindVertexArray(0);
+}
+
+/*SunMesh::SunMesh(std::vector<SunVertex> _vertices, std::vector<GLuint> _indices, std::vector<SunTexture> _textures, std::vector<SunBone> _bones, std::vector<SunAnimation> _animations) {
+    //vertices = _vertices;
+    indices = _indices;
+    //textures = _textures;
+    //bones = _bones;
+    //animations = _animations;
+
+    //calculateBindPoseAndInverseBindPose();
+
+    // Set up the OpenGL stuff
+    //setUpGL();
+}
+
+void SunMesh::init() {
+
+}
+
+void SunMesh::setUpGL() {*/
     // Generate the VAO
-    glGenVertexArrays(1, &VAO);
+    /*glGenVertexArrays(1, &VAO);
 
     // Generate the VBO and EBO
     glGenBuffers(1, &VBO);
@@ -59,8 +121,8 @@ void SunMesh::setUpGL() {
     glVertexAttribPointer(5, 4, GL_FLOAT, GL_FALSE, sizeof (SunVertex), (GLvoid *) offsetof(SunVertex, boneWeights));
 
     // Unbind the VBO and EBO
-    glBindVertexArray(0);
-}
+    glBindVertexArray(0);*/
+/*}
 
 void SunMesh::calculateBindPoseAndInverseBindPose() {
     for (size_t i = 0; i < bones.size(); i++) {
@@ -151,10 +213,11 @@ void SunMesh::render(SunShader _shader, GLfloat _deltaTime, glm::vec3 _position,
         glUniformMatrix3fv(_shader.getUniformLocation("normalMatrix"), 1, GL_FALSE, glm::value_ptr(normalMatrix));
 
         // Bind the VAO
-        glBindVertexArray(VAO);
+        SunResource *mesh = ((SunResourceService *)getService("resource_service"))->getResourceManager("meshes")->getResource("Teapot");
+        glBindVertexArray(((SunMeshResource *)mesh)->getVAO());
 
         // Draw the triangles
-        glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, ((SunMeshResource *)mesh)->getIndicesSize(), GL_UNSIGNED_INT, 0);
 
         // Unbind the VAO
         glBindVertexArray(0);
@@ -181,12 +244,17 @@ void SunMesh::render(SunShader _shader, GLfloat _deltaTime, glm::vec3 _position,
         glUniformMatrix3fv(_shader.getUniformLocation("normalMatrix"), 1, GL_FALSE, glm::value_ptr(normalMatrix));
 
         // Bind the VAO
-        glBindVertexArray(VAO);
+        //glBindVertexArray(VAO);
+        SunResource *mesh = ((SunResourceService *)getService("resource_service"))->getResourceManager("meshes")->getResource("Teapot");
+
+
+
+        glBindVertexArray(((SunMeshResource *)mesh)->getVAO());
 
         // Draw the triangles
-        glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, ((SunMeshResource *)mesh)->getIndicesSize(), GL_UNSIGNED_INT, 0);
 
         // Unbind the VAO
         glBindVertexArray(0);
     }
-}
+}*/

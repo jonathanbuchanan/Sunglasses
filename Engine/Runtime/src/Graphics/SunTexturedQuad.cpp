@@ -3,7 +3,18 @@
 // See LICENSE.md for details.
 #include "SunTexturedQuad.h"
 
+SunTexturedQuad::SunTexturedQuad() {
+    
+}
+
 void SunTexturedQuad::setUpGL() {
+    vertices = {
+        SunVertex(glm::vec3(1.0, 1.0, 0.0), glm::vec2(1.0, 1.0)),
+        SunVertex(glm::vec3(1.0, -1.0, 0.0), glm::vec2(1.0, 0.0)),
+        SunVertex(glm::vec3(-1.0, -1.0, 0.0), glm::vec2(0.0, 0.0)),
+        SunVertex(glm::vec3(-1.0, 1.0, 0.0), glm::vec2(0.0, 1.0))
+    };
+
     // Generate the VAO
     glGenVertexArrays(1, &VAO);
 

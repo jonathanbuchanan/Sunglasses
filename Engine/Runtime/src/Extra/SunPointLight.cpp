@@ -3,10 +3,9 @@
 // See LICENSE.md for details.
 #include "SunPointLight.h"
 
-
-#include <iostream>
 #include "../Graphics/SunWindowManager.h"
 
+#include <glm/gtc/type_ptr.hpp>
 
 int SunPointLight::lastId = 0;
 

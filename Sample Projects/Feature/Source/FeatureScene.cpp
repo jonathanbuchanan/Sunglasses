@@ -10,14 +10,16 @@ FeatureScene::FeatureScene() {
 void FeatureScene::init() {
     this->setName("Scene");
 
-    root = new SunObject();
+
+	root = new SunNode();
     root->setName("root");
     root->init();
     root->setIgnoreTags(true);
 
-    camera = new SunCamera();
-    camera->init();
-    root->addSubNode(camera);
+    camera = new SunCamera(45.0f, glm::vec3(-5.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+	camera->init();
+	root->addSubNode(camera);
+
     ((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->registerGlobal("doCameraInput", true);
 
     renderer = new FeatureRenderer();
@@ -25,30 +27,55 @@ void FeatureScene::init() {
     renderer->setWindow(window);
     renderer->init();
 
-    SunObject *teapot = new SunObject("teapot0", "Resources/Graphics/Models/Teapot.dae", "solid", false);
+    ((SunResourceService *)getService("resource_service"))->addResourceManager("models", new SunResourceManager());
+    ((SunResourceService *)getService("resource_service"))->addResourceManager("meshes", new SunResourceManager());
+    ((SunResourceService *)getService("resource_service"))->addResourceManager("materials", new SunResourceManager());
+    ((SunResourceService *)getService("resource_service"))->addResourceManager("textures", new SunResourceManager());
+
+    std::map<std::string, SunResource *> meshMap;
+
+    ((SunResourceService *)getService("resource_service"))->getResourceManager("models")->addResource("teapot", new SunModelResource("Resources/Graphics/Models/Teapot.dae", &meshMap));
+    ((SunResourceService *)getService("resource_service"))->getResourceManager("meshes")->addResources(meshMap);
+    meshMap.clear();
+
+    ((SunResourceService *)getService("resource_service"))->getResourceManager("models")->addResource("plane", new SunModelResource("Resources/Graphics/Models/Plane.dae", &meshMap));
+    ((SunResourceService *)getService("resource_service"))->getResourceManager("meshes")->addResources(meshMap);
+    meshMap.clear();
+
+    ((SunResourceService *)getService("resource_service"))->getResourceManager("textures")->addResource("grass", new SunTextureResource("Resources/Graphics/Textures/grass.png"));
+
+    SunTextureResource *grassTexture = (SunTextureResource *)((SunResourceService *)getService("resource_service"))->getResourceManager("textures")->getResource("grass");
+
+    ((SunResourceService *)getService("resource_service"))->getResourceManager("materials")->addResource("teapotmaterial", new SunMaterialResource(glm::vec3(1.0f, 1.0f, 1.0f), 1024.0f));
+
+    ((SunResourceService *)getService("resource_service"))->getResourceManager("materials")->addResource("planematerial", new SunMaterialResource(grassTexture, 4.0f));
+
+    SunObject *teapot = new SunObject("teapot0");
+    teapot->addTag("solid");
+    teapot->newMesh("teapot", "Teapot", "teapotmaterial");
     teapot->loadScript("Scripts/Teapot.lua");
     teapot->init();
     teapot->setScale(glm::vec3(1.0f, 1.0f, 1.0f));
-    teapot->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f));
+
     teapots.push_back(teapot);
     root->addSubNode(teapot);
 
-    plane = new SunObject("plane", "Resources/Graphics/Models/Plane.dae", "solid", true);
-    plane->init();
-    plane->setScale(glm::vec3(10.0f, 1.0f, 10.0f));
-    plane->setPosition(glm::vec3(0.0f, -5.0f, 0.0f));
-    plane->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f));
-    root->addSubNode(plane);
+    plane = new SunObject("plane");
+    plane->addTag("textured");
+    plane->newMesh("plane", "Plane.001", "planematerial", glm::vec3(0, 0, 0), glm::vec3(180, 0, 0), glm::vec3(10, 1, 10));
+	plane->init();
+	plane->setPosition(glm::vec3(0.0f, -7.0f, 0.0f));
+	root->addSubNode(plane);
 
-    dir = new SunDirectionalLight(glm::vec3(1.0f, 0.75f, 0.75f), glm::vec3(4.0f, -4.0f, 2.0f));
-    dir->setCountUniform("directionalLightCount");
-    dir->setArrayUniform("directionalLights");
-    dir->addTag("light");
-    dir->addTag("pointLight");
-    root->addSubNode(dir);
-    ((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setLight(dir);
-    ((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setResolution(glm::vec2(4096.0f, 4096.0f));
-    ((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setSize(glm::vec2(50.0f, 50.0f));
+	dir = new SunDirectionalLight(glm::vec3(0.5f, 0.5f, 0.5f), glm::vec3(4.0f, -4.0f, 2.0f));
+	dir->setCountUniform("directionalLightCount");
+	dir->setArrayUniform("directionalLights");
+	dir->addTag("light");
+	root->addSubNode(dir);
+	((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setLight(dir);
+	((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setResolution(glm::vec2(4096.0f, 4096.0f));
+	((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setSize(glm::vec2(50.0f, 50.0f));
+
     ((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->init();
 
     textRenderer = new SunTextRenderer();
@@ -103,13 +130,14 @@ void FeatureScene::cycle() {
     static bool odown = false;
     SunKeyboardManager *keyboard = ((SunKeyboardManager *)getService("keyboard_manager"));
     if (keyboard->pollKey(GLFW_KEY_I) == true && idown == false) {
-        SunObject *teapot = new SunObject("teapot" + std::to_string(teapots.size()), "Resources/Graphics/Models/Teapot.dae", "solid", false);
+        SunObject *teapot = new SunObject("teapot" + std::to_string(teapots.size()));
+        teapot->addTag("solid");
+        teapot->newMesh("teapot", "Teapot", "teapotmaterial");
         if (teapots.size() > 0)
             teapot->setPosition(teapots[teapots.size() - 1]->getPosition() + glm::vec3(7.0f, 0.0f, 0.0f));
         teapot->setScale(glm::vec3(1.0f, 1.0f, 1.0f));
         teapot->loadScript("Scripts/Teapot.lua");
         teapot->init();
-        teapot->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f));
         root->addSubNode(teapot);
         teapots.push_back(teapot);
         idown = true;

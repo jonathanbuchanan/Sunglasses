@@ -3,9 +3,9 @@
 // See LICENSE.md for details.
 #include "SunDirectionalShadowMapRenderingNode.h"
 
-
 #include "../Graphics/SunWindowManager.h"
 
+#include <glm/gtc/type_ptr.hpp>
 
 SunShader SunDirectionalShadowMapRenderingNode::shader = {};
 bool SunDirectionalShadowMapRenderingNode::shaderInitialized = false;

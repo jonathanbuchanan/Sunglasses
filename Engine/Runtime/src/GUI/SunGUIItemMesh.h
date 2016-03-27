@@ -9,7 +9,7 @@
 
 #include <GL/glew.h>
 #include "../Graphics/SunShader.h"
-#include "../Graphics/SunTextRenderer.h"
+#include "SunTextRenderer.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>

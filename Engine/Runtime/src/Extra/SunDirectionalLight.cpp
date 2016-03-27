@@ -3,6 +3,8 @@
 // See LICENSE.md for details.
 #include "SunDirectionalLight.h"
 
+#include <glm/gtc/type_ptr.hpp>
+
 int SunDirectionalLight::lastId = 0;
 
 SunDirectionalLight::SunDirectionalLight() {
