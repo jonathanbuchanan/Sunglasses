@@ -32,7 +32,7 @@ install:
     - wget https://github.com/assimp/assimp/archive/v3.2.zip
     - unzip -qq v3.2.zip -d assimp
     - cd assimp/assimp-3.2
-    - cmake . -G "Unix Makefiles" -DASSIMP_BUILD_TESTS=false
+    - cmake . -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=/usr -DASSIMP_BUILD_TESTS=false
     - sudo make install
     - cd ../..
 
