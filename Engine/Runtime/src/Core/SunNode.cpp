@@ -48,65 +48,6 @@ void SunNode::addSubNode(SunNode *_subNode) {
     }
 }
 
-void SunNode::findNode(std::string _path, SunNode &_node) {
-    /*vector<string> levels = splitString(_path, *"/");
-
-    GLboolean done = false;
-
-    if (level + 1 == levels.size() && levels[level] == getName()) {
-        _node = *this;
-        done = true;
-    }
-
-    if (!done) {
-        if (levels[level] == getName() || level == 0) {
-            for (int i = 0; i < subNodes.size(); i++) {
-                subNodes[i]->findNode(_path, _node);
-            }
-        }
-    }*/
-}
-
-void SunNode::findNode(std::string _path, SunNode *&_node) {
-    /*vector<string> levels = splitString(_path, *"/");
-
-    GLboolean done = false;
-
-    if (level + 1 == levels.size() && levels[level] == getName()) {
-        _node = this;
-        done = true;
-    }
-
-    if (!done) {
-        if (levels[level] == getName() || level == 0) {
-            for (int i = 0; i < subNodes.size(); i++) {
-                subNodes[i]->findNode(_path, _node);
-            }
-        }
-    }*/
-}
-
-void SunNode::findNodeWithName(std::string _name, SunNode &_node) {
-    for (size_t i = 0; i < subNodes.size(); i++) {
-        if (subNodes[i]->getName() == _name) {
-            _node = *subNodes[i];
-            break;
-        } else {
-            subNodes[i]->findNodeWithName(_name, _node);
-        }
-    }
-}
-
-void SunNode::findPointerNodeWithName(std::string _name, SunNode *&_node) {
-    if (getName() == _name) {
-        _node = this;
-    } else {
-        for (size_t i = 0; i < subNodes.size(); i++) {
-            subNodes[i]->findPointerNodeWithName(_name, _node);
-        }
-    }
-}
-
 void SunNode::recursiveDeleteSubnode(const SunNode *node) {
     for (size_t i = 0; i < subNodes.size(); i++) {
         if (subNodes[i] == node)

@@ -87,18 +87,13 @@ public:
      */
     virtual void addSubNode(SunNode *_subNode);
 
-    /// OLD
-    void findNode(std::string _path, SunNode &_node);
-
-    /// OLD
-    void findNode(std::string _path, SunNode *&_node);
-
-    /// OLD
-    void findNodeWithName(std::string _name, SunNode &_node);
-
-    /// OLD
-    virtual void findPointerNodeWithName(std::string _name, SunNode *&_node);
-
+    /// Deletes a node from the list of children and makes every other child do this.
+    /**
+     * This member function is designed to remove a node from a tree. The node that
+     * receives this will search its subnodes for the node and delete any that match,
+     * then it will call this function on all other sub nodes.
+     * @param node The node to be deleted
+     */
     virtual void recursiveDeleteSubnode(const SunNode *node);
 
     /// Gets the vector of subnodes.
