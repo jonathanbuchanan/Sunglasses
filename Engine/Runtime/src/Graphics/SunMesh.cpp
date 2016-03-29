@@ -24,18 +24,13 @@ SunMesh::SunMesh(SunObject *_object, SunMeshResource *_mesh, SunMaterialResource
 
 void SunMesh::render(SunShader *shader) {
     material->pass(shader, "material");
-    /*glm::vec3 diffuse = material->getDiffuse();
-    glUniform3f(shader->getUniformLocation("material.diffuse"), diffuse.r, diffuse.g, diffuse.b);
-
-    GLfloat shininess = material->getShininess();
-    glUniform1f(shader->getUniformLocation("material.shininess"), shininess);*/
 
     glm::vec3 _position = object->getPosition() + position;
     glm::vec3 _rotation = object->getRotation() + rotation;
     glm::vec3 _scale = object->getScale() * scale;
 
     // Calculate the model matrix
-    glm::mat4 modelMatrix;
+    glm::mat4 modelMatrix = glm::mat4();
     modelMatrix = glm::translate(modelMatrix, _position);
     modelMatrix = glm::rotate(modelMatrix, glm::radians(_rotation.x), glm::vec3(1.0, 0.0, 0.0));
     modelMatrix = glm::rotate(modelMatrix, glm::radians(_rotation.y), glm::vec3(0.0, 1.0, 0.0));

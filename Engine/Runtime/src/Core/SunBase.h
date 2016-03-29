@@ -6,6 +6,7 @@
 
 #include <string>
 #include <map>
+#include <memory>
 
 #include "SunAction.h"
 #include "SunService.h"
@@ -70,17 +71,17 @@ public:
     void setName(std::string n) { name = n; }
 
     /// Gets the service (SunService pointer) for the key (string).
-    SunService * getService(std::string s) { return services[s]; }
+    SunService * getService(std::string s) { return services[s].get(); }
 
     /// Adds a service (first parameter).
     /**
      * This function adds a service (first parameter) to the service map. The key
      * in the map is automatically determined by the name of the service.
      */
-    void addService(SunService *s) { services[s->getName()] = s; }
+    void addService(SunService *s) { services[s->getName()] = std::unique_ptr<SunService>(s); }
 
     /// A map containing services that correspond to names (strings)
-    static std::map<std::string, SunService *> services;
+    static std::map<std::string, std::unique_ptr<SunService>> services;
 private:
     /// A string containing the name of the object
     std::string name;

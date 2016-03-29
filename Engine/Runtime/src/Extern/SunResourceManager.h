@@ -40,7 +40,7 @@ public:
      * @retval 0 The function executed successfully
      * @retval -1 The function executed with some errors (some items may have been in the map already)
      */
-    int addResources(const std::map<std::string, SunResource *> &_resources);
+    int addResources(std::map<std::string, SunResource *> &_resources);
 
     /// Gets a pointer to the associated resource
     /**

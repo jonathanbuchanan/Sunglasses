@@ -54,7 +54,7 @@ private:
     GLuint EBO;
 
     /// The aiMesh pointer
-    std::unique_ptr<aiMesh> mesh;
+    aiMesh *mesh;
 };
 
 #endif

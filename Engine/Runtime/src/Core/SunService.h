@@ -36,6 +36,13 @@ public:
      */
     SunService();
 
+    /// The virtual destructor
+    /**
+     * This is the virtual destructor, and should be implemented by all services
+     * because they are handled as a list of pointers to SunService.
+     */
+    virtual ~SunService();
+
     /// The constructor for the name member (string)
     /**
      * This constructor takes the single parameter (string) and initializes the name

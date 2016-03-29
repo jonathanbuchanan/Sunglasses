@@ -77,6 +77,7 @@ extern std::string getBashColorSetter(BashColor color);
 class SunLogger : public SunService {
 public:
     SunLogger();
+    ~SunLogger();
 
     void update();
 
@@ -101,11 +102,6 @@ public:
     void logSuccess(std::string message);
 
     void log(std::string message);
-
-    inline void setDefaultColors(std::vector<BashColor> d) { defaultColors = d; }
-
-private:
-    std::vector<BashColor> defaultColors;
 };
 
 #endif

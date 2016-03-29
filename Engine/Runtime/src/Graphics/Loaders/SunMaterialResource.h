@@ -83,7 +83,7 @@ private:
     std::unique_ptr<aiMaterial> material;
 
     /// A boolean that states whether the material has diffuse set as a solid color or a texture
-    bool diffuseTextured;
+    bool diffuseTextured = false;
 
     /// The diffuse color of the material
     glm::vec3 diffuse;

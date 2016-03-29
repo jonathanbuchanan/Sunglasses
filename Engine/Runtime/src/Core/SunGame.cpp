@@ -24,7 +24,7 @@ void SunGame::run() {
 }
 
 void SunGame::updateServices() {
-    for (auto iterator : services) {
+    for (auto &iterator : services) {
         iterator.second->update();
     }
 }

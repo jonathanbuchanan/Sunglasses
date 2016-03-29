@@ -61,13 +61,13 @@ private:
     SunMaterialResource *material;
 
     /// The position of the mesh (relative to the object)
-    glm::vec3 position;
+    glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
 
     /// The rotation of the mesh (relative to the object)
-    glm::vec3 rotation;
+    glm::vec3 rotation = glm::vec3(0.0f, 0.0f, 0.0f);
 
     /// The scale of the mesh (relative to the object)
-    glm::vec3 scale;
+    glm::vec3 scale = glm::vec3(1.0f, 1.0f, 1.0f);
 };
 
 #endif

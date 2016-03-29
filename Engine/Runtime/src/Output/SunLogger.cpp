@@ -57,7 +57,11 @@ std::string getBashColorSetter(BashColor color) {
 }
 
 SunLogger::SunLogger() {
-    defaultColors = {BashColorForegroundBlue, BashColorBright};
+
+}
+
+SunLogger::~SunLogger() {
+
 }
 
 void SunLogger::update() {
@@ -156,7 +160,8 @@ void SunLogger::logSuccess(std::string message) {
 }
 
 void SunLogger::log(std::string message) {
-    std::cout << getBashColorSetter(defaultColors);
+    std::cout << getBashColorSetter(BashColorForegroundBlue);
+    std::cout << getBashColorSetter(BashColorBright);
     std::cout << message;
     reset();
     std::cout << std::endl;

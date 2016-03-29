@@ -159,9 +159,10 @@ namespace _SunPrivateScripting {
             std::function<void(Member)> setter = [object, var](Member x) -> void {
                 object->*var = x;
             };
-            char *prefix = (char *)malloc(5); // set_ (4) + NULL (1)
+            /*char *prefix = (char *)malloc(5); // set_ (4) + NULL (1)
             strcpy(prefix, "set_");
-            strcat(prefix, functionName);
+            strcat(prefix, functionName);*/
+            const char *prefix = ("set_" + std::string(functionName)).c_str();
             functions.push_back(std::unique_ptr<_SunPrivateScripting::_SunLuaCFunction_Base>(new SunLuaObjectFunction<void, Member>(state, prefix, setter)));
         }
 

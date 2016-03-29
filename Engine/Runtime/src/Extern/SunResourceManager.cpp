@@ -17,7 +17,7 @@ int SunResourceManager::addResource(std::string name, SunResource *resource) {
     return 0;
 }
 
-int SunResourceManager::addResources(const std::map<std::string, SunResource *> &_resources) {
+int SunResourceManager::addResources(std::map<std::string, SunResource *> &_resources) {
     bool perfect = true;
     for (auto &iterator : _resources) {
         if (resources.find(iterator.first) != resources.end()) {

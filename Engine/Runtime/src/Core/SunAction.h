@@ -110,7 +110,7 @@ private:
     SunActionParameterMap parameters;
 
     /// A boolean that determines whether this action should be recursive when performed on SunNode
-    bool recursive;
+    bool recursive = false;
 };
 
 typedef std::function<void(SunAction)> SunActionFunction;
