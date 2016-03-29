@@ -10,13 +10,12 @@ FeatureScene::FeatureScene() {
 void FeatureScene::init() {
     this->setName("Scene");
 
-
 	root = new SunNode();
     root->setName("root");
     root->init();
     root->setIgnoreTags(true);
 
-    camera = new SunCamera(45.0f, glm::vec3(-5.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+    camera = std::shared_ptr<SunCamera>(new SunCamera(45.0f, glm::vec3(-5.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f)));
 	camera->init();
 	root->addSubNode(camera);
 
@@ -50,7 +49,7 @@ void FeatureScene::init() {
 
     ((SunResourceService *)getService("resource_service"))->getResourceManager("materials")->addResource("planematerial", new SunMaterialResource(grassTexture, 4.0f));
 
-    SunObject *teapot = new SunObject("teapot0");
+    std::shared_ptr<SunObject>teapot = std::shared_ptr<SunObject>(new SunObject("teapot0"));
     teapot->addTag("solid");
     teapot->newMesh("teapot", "Teapot", "teapotmaterial");
     teapot->loadScript("Scripts/Teapot.lua");
@@ -60,28 +59,28 @@ void FeatureScene::init() {
     teapots.push_back(teapot);
     root->addSubNode(teapot);
 
-    plane = new SunObject("plane");
+    plane = std::shared_ptr<SunObject>(new SunObject("plane"));
     plane->addTag("textured");
     plane->newMesh("plane", "Plane.001", "planematerial", glm::vec3(0, 0, 0), glm::vec3(180, 0, 0), glm::vec3(10, 1, 10));
 	plane->init();
 	plane->setPosition(glm::vec3(0.0f, -7.0f, 0.0f));
 	root->addSubNode(plane);
 
-	dir = new SunDirectionalLight(glm::vec3(0.5f, 0.5f, 0.5f), glm::vec3(4.0f, -4.0f, 2.0f));
+	dir = std::shared_ptr<SunDirectionalLight>(new SunDirectionalLight(glm::vec3(0.5f, 0.5f, 0.5f), glm::vec3(4.0f, -4.0f, 2.0f)));
 	dir->setCountUniform("directionalLightCount");
 	dir->setArrayUniform("directionalLights");
 	dir->addTag("light");
 	root->addSubNode(dir);
-	((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setLight(dir);
-	((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setResolution(glm::vec2(4096.0f, 4096.0f));
-	((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setSize(glm::vec2(50.0f, 50.0f));
+	(std::static_pointer_cast<SunDirectionalShadowMapRenderingNode>(renderer->getRenderingNodeForString("shadowMap0")))->setLight(dir.get());
+	(std::static_pointer_cast<SunDirectionalShadowMapRenderingNode>(renderer->getRenderingNodeForString("shadowMap0")))->setResolution(glm::vec2(4096.0f, 4096.0f));
+	(std::static_pointer_cast<SunDirectionalShadowMapRenderingNode>(renderer->getRenderingNodeForString("shadowMap0")))->setSize(glm::vec2(50.0f, 50.0f));
 
-    ((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->init();
+    (std::static_pointer_cast<SunDirectionalShadowMapRenderingNode>(renderer->getRenderingNodeForString("shadowMap0")))->init();
 
     textRenderer = new SunTextRenderer();
     textRenderer->init();
     textRenderer->loadFont("Resources/Graphics/Fonts/arial.ttf", "Arial");
-    menu = new SunGUIMenu();
+    menu = std::shared_ptr<SunGUIMenu>(new SunGUIMenu());
     menu->loadScript("Scripts/Menu0.lua");
     menu->init();
     guiSystem.init();
@@ -91,14 +90,14 @@ void FeatureScene::init() {
     guiRenderer->setGUIRoot(&guiSystem);
     guiRenderer->setTextRenderer(textRenderer);
 
-    ((SunKeyboardManager *)getService("keyboard_manager"))->subscribe(menu, GLFW_KEY_ESCAPE, SunButtonEventDownSingle);
+    ((SunKeyboardManager *)getService("keyboard_manager"))->subscribe(menu.get(), GLFW_KEY_ESCAPE, SunButtonEventDownSingle);
 
-    item = new SunGUIItem();
+    item = std::shared_ptr<SunGUIItem>(new SunGUIItem());
     item->init();
-    item->setScript(menu);
+    item->setScript(menu.get());
     menu->addSubNode(item);
 
-    ((SunMouseButtonManager *)getService("mouse_button_manager"))->subscribe(item, GLFW_MOUSE_BUTTON_LEFT, SunButtonEventDownSingle);
+    ((SunMouseButtonManager *)getService("mouse_button_manager"))->subscribe(item.get(), GLFW_MOUSE_BUTTON_LEFT, SunButtonEventDownSingle);
 
     item->addMouseActionForTrigger(GLFW_MOUSE_BUTTON_LEFT, "exitPressed");
 
@@ -108,12 +107,12 @@ void FeatureScene::init() {
     item->setPosition(glm::vec2(-0.5f, -0.1f));
     item->setColor(glm::vec3(1.0f, 1.0f, 1.0f));
 
-    back = new SunGUIItem();
+    back = std::shared_ptr<SunGUIItem>(new SunGUIItem());
     back->init();
-    back->setScript(menu);
+    back->setScript(menu.get());
     menu->addSubNode(back);
 
-    ((SunMouseButtonManager *)getService("mouse_button_manager"))->subscribe(back, GLFW_MOUSE_BUTTON_LEFT, SunButtonEventDownSingle);
+    ((SunMouseButtonManager *)getService("mouse_button_manager"))->subscribe(back.get(), GLFW_MOUSE_BUTTON_LEFT, SunButtonEventDownSingle);
 
     back->addMouseActionForTrigger(GLFW_MOUSE_BUTTON_LEFT, "hide");
 
@@ -139,16 +138,16 @@ void FeatureScene::cycle() {
         teapot->loadScript("Scripts/Teapot.lua");
         teapot->init();
         root->addSubNode(teapot);
-        teapots.push_back(teapot);
+        //teapots.push_back(teapot);
         idown = true;
     }
     if (keyboard->pollKey(GLFW_KEY_I) == false)
         idown = false;
     if (keyboard->pollKey(GLFW_KEY_O) == true && odown == false) {
-        ((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->removeObject(teapots[teapots.size() - 1]);
-        root->recursiveDeleteSubnode(teapots[teapots.size() - 1]);
-        delete teapots[teapots.size() - 1];
-        teapots.pop_back();
+        //((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->removeObject(teapots[teapots.size() - 1]);
+        //root->recursiveDeleteSubnode(teapots[teapots.size() - 1]);
+        //delete teapots[teapots.size() - 1];
+        //teapots.pop_back();
         odown = true;
     }
     if (keyboard->pollKey(GLFW_KEY_O) == false)

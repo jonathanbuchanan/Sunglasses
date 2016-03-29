@@ -32,8 +32,6 @@ void SunObject::loadScript(std::string _script) {
     script.registerObjectAsType(script["object"]["rotation"], "vec3", &rotation);
     script.registerObjectAsType(script["object"]["position"], "vec3", &position);
     script.registerObjectAsType(script["object"]["scale"], "vec3", &scale);
-    //script.registerObjectAsType(script["object"]["color"], "vec3", &material.color);
-    //script.registerType<SunMesh>("mesh", "position")
     for (auto &mesh : meshes) {
         const char *name = mesh.first.c_str();
         script.registerObject(script["object"][name], &mesh.second);
@@ -41,7 +39,7 @@ void SunObject::loadScript(std::string _script) {
         script.registerObject(script["object"][name]["material"], mesh.second.material);
         script.registerObjectAsType(script["object"][name]["material"]["color"], "vec3", &mesh.second.material->diffuse);
     }
-    ((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->registerWithScript(&script);
+    ((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->registerWithScript(script);
 
     script.registerObject("keyboard_manager", (SunKeyboardManager *)getService("keyboard_manager"), "pollKey", &SunKeyboardManager::keyDown);
 }

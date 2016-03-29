@@ -23,7 +23,7 @@ void FeatureRenderer::init() {
     };
 
     // GBuffer
-    SunRenderingNode *gbuffer = new SunRenderingNode("gbuffer", SunRenderingNodeTypeRoot, gbufferInputs, gbufferOutputs, scene->getRoot());
+    std::shared_ptr<SunRenderingNode> gbuffer = std::shared_ptr<SunRenderingNode>(new SunRenderingNode("gbuffer", SunRenderingNodeTypeRoot, gbufferInputs, gbufferOutputs, scene->getRoot()));
     gbuffer->setShaders(gbufferShaders);
     gbuffer->init();
     addRenderingNodeForString(gbuffer, "gbuffer");
@@ -32,7 +32,7 @@ void FeatureRenderer::init() {
     rootRenderNode = gbuffer;
 
     // Shadow Map 0
-    SunDirectionalShadowMapRenderingNode *shadowMap0 = new SunDirectionalShadowMapRenderingNode(scene->getRoot());
+    std::shared_ptr<SunDirectionalShadowMapRenderingNode> shadowMap0 = std::shared_ptr<SunDirectionalShadowMapRenderingNode>(new SunDirectionalShadowMapRenderingNode(scene->getRoot()));
     gbuffer->addSubNode(shadowMap0);
     addRenderingNodeForString(shadowMap0, "shadowMap0");
 
@@ -53,7 +53,7 @@ void FeatureRenderer::init() {
         {"quad", SunShader("../../Engine/Shaders/Old/Variable Pipeline/Quad.vert", "../../Engine/Shaders/Old/Variable Pipeline/Quad.frag", "../../Engine/Shaders/Old/DeferredQuad.pre")},
     };
     // Final
-    SunRenderingNode *finalNode = new SunRenderingNode("final", SunRenderingNodeTypeEnd, finalInputs, finalOutputs, scene->getRoot());
+    std::shared_ptr<SunRenderingNode> finalNode = std::shared_ptr<SunRenderingNode>(new SunRenderingNode("final", SunRenderingNodeTypeEnd, finalInputs, finalOutputs, scene->getRoot()));
     finalNode->setShaders(finalShaders);
     finalNode->init();
     shadowMap0->addSubNode(finalNode);

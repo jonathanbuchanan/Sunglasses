@@ -36,23 +36,31 @@ bool SunNode::tagPresent(std::string t) {
 
 void SunNode::sendActionToAllSubNodes(SunAction action) {
     for (size_t i = 0; i < subNodes.size(); ++i)
-        sendAction(action, subNodes[i]);
+        sendAction(action, subNodes[i].get());
 }
 
 void SunNode::addSubNode(SunNode *_subNode) {
-    // Add the Sub-Node
-    if (find(subNodes.begin(), subNodes.end(), _subNode) == subNodes.end()) {
-        subNodes.push_back(_subNode);
+    if (find(subNodes.begin(), subNodes.end(), std::shared_ptr<SunNode>(_subNode)) == subNodes.end()) {
+        subNodes.push_back(std::shared_ptr<SunNode>(_subNode));
         _subNode->parents.push_back(this);
         _subNode->level = level + 1;
     }
 }
 
-void SunNode::recursiveDeleteSubnode(const SunNode *node) {
+void SunNode::addSubNode(const std::shared_ptr<SunNode> &_subNode) {
+    if (find(subNodes.begin(), subNodes.end(), _subNode) == subNodes.end()) {
+        subNodes.push_back(std::shared_ptr<SunNode>(_subNode));
+        _subNode->parents.push_back(this);
+        _subNode->level = level + 1;
+    }
+}
+
+void SunNode::recursiveDeleteSubnode(SunNode *_node) {
+    std::shared_ptr<SunNode> node = std::shared_ptr<SunNode>(_node);
     for (size_t i = 0; i < subNodes.size(); i++) {
         if (subNodes[i] == node)
             subNodes.erase(subNodes.begin() + i);
         else
-            subNodes[i]->recursiveDeleteSubnode(node);
+            subNodes[i]->recursiveDeleteSubnode(_node);
     }
 }

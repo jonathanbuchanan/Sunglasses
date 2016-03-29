@@ -7,11 +7,13 @@
 
 #include "SunBase.h"
 #include "SunService.h"
+
 #include <vector>
 #include <string>
 #include <map>
 #include <functional>
 #include <algorithm>
+#include <memory>
 
 /// A node class derived from SunBase
 /**
@@ -84,24 +86,30 @@ public:
      * This member function adds the SunNode pointer (in the parameters) to the end
      * of the vector of subnodes. This subnode will receive recursive actions from the
      * parent node.
+     * @param _subNode The node to add as a sub node
      */
     virtual void addSubNode(SunNode *_subNode);
+
+    /// Appends a SunNode pointer to the subnode vector.
+    /**
+     * This member function adds the SunNode pointer (in the parameters) to the end
+     * of the vector of subnodes. This subnode will receive recursive actions from the
+     * parent node.
+     * @param _subNode The node to add as a sub node
+     */
+    virtual void addSubNode(const std::shared_ptr<SunNode> &_subNode);
 
     /// Deletes a node from the list of children and makes every other child do this.
     /**
      * This member function is designed to remove a node from a tree. The node that
      * receives this will search its subnodes for the node and delete any that match,
      * then it will call this function on all other sub nodes.
-     * @param node The node to be deleted
+     * @param _node The node to be deleted
      */
-    virtual void recursiveDeleteSubnode(const SunNode *node);
+    virtual void recursiveDeleteSubnode(SunNode *_node);
 
-    /// Gets the vector of subnodes.
-    std::vector<SunNode *> getSubNodes() { return subNodes; }
     /// Gets the size of the vector of subnodes (int).
     int getSubNodesSize() { return subNodes.size(); }
-    /// Gets the subnode (SunNode pointer) at the specified index (int).
-    SunNode * getSubNodeAtIndex(int i) { return subNodes[i]; }
 
     /// Gets the level member (int).
     int getLevel() { return level; }
@@ -112,18 +120,14 @@ public:
     /// Sets the ignore tags member (bool).
     void setIgnoreTags(bool i) { ignoreTags = i; }
 
-    /// Gets the vector of parents.
-    std::vector<SunNode *> & getParents() { return parents; }
     /// Gets the size of the vector of parents (int).
     int getParentsSize() { return parents.size(); }
-    /// Gets the parent (SunNode pointer) at the specified index (int).
-    SunNode * getParentAtIndex(int i) { return parents[i]; }
-private:
+protected:
     /// The number of parents ready (useful when performing a recursive action with multiple parents)
     int parentsReady;
 
     /// A vector containing pointers to the node's subnodes
-    std::vector<SunNode *> subNodes;
+    std::vector<std::shared_ptr<SunNode>> subNodes;
 
     /// A vector containing pointers to the node's parents
     std::vector<SunNode *> parents;

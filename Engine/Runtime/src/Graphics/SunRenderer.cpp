@@ -8,7 +8,7 @@ void SunRenderer::render() {
     SunAction renderAction("render");
     renderAction.setRecursive(true);
 
-    sendAction(renderAction, rootRenderNode);
+    sendAction(renderAction, rootRenderNode.get());
 }
 
 void SunRenderer::swapBuffers() {

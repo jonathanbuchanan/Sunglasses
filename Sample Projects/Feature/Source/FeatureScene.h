@@ -19,15 +19,16 @@ public:
 private:
     // GUI
     SunGUISystem guiSystem = SunGUISystem();
-    SunGUIMenu *menu;
-    SunGUIItem *item;
-    SunGUIItem *back;
+    std::shared_ptr<SunGUIMenu> menu;
+    std::shared_ptr<SunGUIItem> item;
+    std::shared_ptr<SunGUIItem> back;
 
     // Objects
-    SunObject *plane;
+    std::shared_ptr<SunObject> plane;
     SunPointLight *light;
-    SunDirectionalLight *dir;
-    std::vector<SunObject *> teapots;
+    std::shared_ptr<SunDirectionalLight> dir;
+    std::vector<std::shared_ptr<SunObject>> teapots;
+    std::shared_ptr<SunCamera> camera;
 
     GLFWwindow *window;
 };

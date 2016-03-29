@@ -44,7 +44,12 @@ public:
      */
     int removeObject(SunObject *object);
 
-    void registerWithScript(SunScript *script);
+    /// Registers the logic environment inside of a script.
+    /**
+     * This method registers the logic environment within the provided script.
+     * @param script The script that will be used
+     */
+    void registerWithScript(SunScript &script);
 
     void registerGlobal(std::string key, _SunPrivateScripting::SunLuaPrimitive value);
 

@@ -64,8 +64,6 @@ protected:
     /// A pointer to the text renderer
     SunTextRenderer *textRenderer;
 
-    /// The scene's camera
-    SunCamera *camera;
     /// OLD
     SunSoundListener listener;
 
