@@ -15,7 +15,7 @@ SunWindowManager::SunWindowManager(glm::vec2 _size, std::string _title, glm::vec
 }
 
 void SunWindowManager::update() {
-    
+
 }
 
 void SunWindowManager::initialize() {
@@ -39,7 +39,6 @@ void SunWindowManager::initialize() {
         //std::cout << "Failed to initialize GLEW" << std::endl;
     }
 
-    // Set the viewport size (NEEDS CLEAN UP)
     glViewport(0, 0, size.x, size.y);
 
     // Enable depth testing

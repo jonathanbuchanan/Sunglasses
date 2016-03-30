@@ -73,8 +73,7 @@ glm::mat4 SunCamera::projectionMatrix(GLfloat _aspectRatio) {
     // Create the projection matrix
     glm::mat4 matrix;
 
-    // Check the type of projection
-    matrix = glm::perspective(FOV, _aspectRatio, 0.01f, 100.0f);
+    matrix = glm::perspective(glm::radians(FOV), _aspectRatio, 0.01f, 100.0f);
 
     return matrix;
 }
@@ -87,7 +86,10 @@ void SunCamera::passPerFrameUniforms(SunShader *_shader) {
     glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, glm::value_ptr(viewMatrix()));
 
     GLint projectionMatrixLocation = _shader->getUniformLocation("projection");
-    glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(projectionMatrix(800.0f / 600.0f)));
+
+    glm::vec2 size = ((SunWindowManager *)getService("window_manager"))->getSize();
+
+    glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(projectionMatrix(size.x / size.y)));
     GLint FOVlocation = _shader->getUniformLocation("camera.FOV");
     GLint nearPlaneLocation = _shader->getUniformLocation("camera.nearPlane");
     GLint farPlaneLocation = _shader->getUniformLocation("camera.farPlane");

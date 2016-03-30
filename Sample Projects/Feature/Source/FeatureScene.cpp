@@ -15,7 +15,7 @@ void FeatureScene::init() {
     root->init();
 	root->setIgnoreTags(true);
 
-    camera = new SunCamera();
+    camera = new SunCamera(45.0f);
 	camera->init();
 	root->addSubNode(camera);
     ((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->registerGlobal("doCameraInput", true);
