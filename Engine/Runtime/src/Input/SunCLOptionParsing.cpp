@@ -15,9 +15,9 @@ void SunCLSwitchOption::process() {
 
 
 
-void parseOptions(const std::vector<SunCLOption *> &options, int argc, char **argv) {
+void parseOptions(const std::vector<SunCLOption *> &options, std::string help, std::string version, int argc, char **argv) {
     try {
-        TCLAP::CmdLine commandLine("HELP TEXT", ' ', "Alpha v0.0.1");
+        TCLAP::CmdLine commandLine(help, ' ', version);
 
         //TCLAP::ValueArg<std::string> nameArg("n","name","Name to print",true,"homer","string");
         for (size_t i = 0; i < options.size(); ++i)

@@ -10,7 +10,7 @@ before_install:
     - sudo apt-get update -qq
 install:
     # Install dependencies from apt
-    - sudo apt-get install -qq libfreetype6-dev libsoil-dev libglew-dev libassimp-dev libsfml-dev xorg-dev libgl1-mesa-dev
+    - sudo apt-get install -qq libfreetype6-dev libsoil-dev libglew-dev libassimp-dev libsfml-dev xorg-dev libgl1-mesa-dev libtclap-dev
 
     # Install glfw (Trusty doesn't have glfw3)
     - wget https://github.com/glfw/glfw/archive/3.1.2.zip

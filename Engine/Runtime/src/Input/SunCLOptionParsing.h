@@ -119,7 +119,12 @@ private:
 /**
  * This function takes in argc and argv from main and parses the given options
  * using the TCLAP library.
+ * @param options The vector of options to be parsed
+ * @param help The help message
+ * @param version The version string
+ * @param argc The argument count (given in main)
+ * @param argv The argument vector (given in main)
  */
-extern void parseOptions(const std::vector<SunCLOption *> &options, int argc, char **argv);
+extern void parseOptions(const std::vector<SunCLOption *> &options, std::string help, std::string version, int argc, char **argv);
 
 #endif

@@ -62,7 +62,7 @@ void SunGame::init(int argc, char **argv, std::string title, glm::vec4 color) {
         &nameOpt
     };
 
-    parseOptions(options, argc, argv);
+    parseOptions(options, "HELP MESSAGE", "alpha v0.0.1",  argc, argv);
 
     std::cout << x << std::endl;
     std::cout << name << std::endl;
