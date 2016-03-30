@@ -14,6 +14,7 @@
 #include <GLFW/glfw3.h>
 
 #include "SunBase.h"
+#include "../Input/SunCLOptionParsing.h"
 
 class SunScene;
 
@@ -69,16 +70,41 @@ public:
      * mouse button manager, and logger). By default, this creates a window with
      * no title and a clear color of (0, 0, 0, 0).
      */
-    void init();
+    virtual void init();
+
+    /// Initializes the services and the game using command line options.
+    /**
+     * Initializes the services (window manager, cursor manager, keyboard manager,
+     * mouse button manager, and logger). By default, this creates a window with
+     * no title and a clear color of (0, 0, 0, 0). It interprets arguments from the command
+     * line, such as width, height, etc. If you want to use this, pass the
+     * parameters from main() when creating the SunGame.
+     * @param argc The argument count.
+     * @param argv The array of arguments.
+     */
+    virtual void init(int argc, char **argv);
 
     /// Initializes the services (window manager, cursor manager, keyboard manager, mouse button manager, and logger) with the parameters.
     /**
      * Initializes the services (window manager, cursor manager, keyboard manager,
-     * mouse button manager, and logger). The first parameter (string) determines
-     * the title of the window, and the second parameter (vec4) determines the
-     * clear color of the window.
+     * mouse button manager, and logger).
+     * @param title The title of the window.
+     * @param color The background color of the window.
      */
-    void init(std::string title, glm::vec4 color);
+	virtual void init(std::string title, glm::vec4 color);
+
+    /// Initializes the services with the parameters and the game using command line options.
+    /**
+     * Initializes the services (window manager, cursor manager, keyboard manager,
+     * mouse button manager, and logger). It interprets arguments from the command
+     * line, such as width, height, etc. If you want to use this, pass the
+     * parameters from main() when creating the SunGame.
+     * @param argc The argument count.
+     * @param argv The array of arguments.
+     * @param title The title of the window.
+     * @param color The background color of the window.
+     */
+    virtual void init(int argc, char **argv, std::string title, glm::vec4 color);
 protected:
     /// A pointer to the scene, which contains the scene graph
     SunScene *scene;

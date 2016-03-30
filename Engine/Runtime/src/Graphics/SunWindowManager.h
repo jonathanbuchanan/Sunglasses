@@ -28,17 +28,17 @@ public:
 
     void calculateDelta();
 
-    inline GLFWwindow * getWindow() { return window; }
+    GLFWwindow * getWindow() { return window; }
 
-    inline glm::vec2 getSize() { return size; }
-    inline void setSize(glm::vec2 s) { size = s; }
+	glm::vec2 getSize() { return size; }
+	void setSize(glm::vec2 s) { size = s; }
 
-    inline std::string getTitle() { return title; }
-    inline void setTitle(std::string t) { title = t; }
+	std::string getTitle() { return title; }
+	void setTitle(std::string t) { title = t; }
 
-    inline void setClearColor(glm::vec4 c) { clearColor = c; }
+	void setClearColor(glm::vec4 c) { clearColor = c; }
 
-    inline double getDelta() { return delta; }
+	double getDelta() { return delta; }
 private:
     GLFWwindow *window;
 

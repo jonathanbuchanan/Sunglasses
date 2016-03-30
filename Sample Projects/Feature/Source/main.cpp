@@ -4,9 +4,9 @@
 #include "FeatureGame.h"
 #include <Sunglasses/Sunglasses.hpp>
 
-int main() {
+int main(int argc, char **argp) {
     FeatureGame game = FeatureGame();
-    game.init();
+    game.init(argc, argp);
 
     game.run();
 

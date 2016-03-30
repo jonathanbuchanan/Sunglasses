@@ -5,7 +5,7 @@
 import os
 import fileinput
 
-bannedDirectories = ["CMakeFiles", "googlemock", "googletest", ".git"]
+bannedDirectories = ["CMakeFiles", "gmock", "gtest", ".git"]
 allowedEndings = [".h", ".hpp", ".cpp", ".m", ".s", ".v", ".f", ".g", ".vert", ".frag", ".geom", ".pre"]
 
 copyright = '// Copyright 2016 Jonathan Buchanan.\n// This file is part of Sunglasses, which is licensed under the MIT License.\n// See LICENSE.md for details.\n'
