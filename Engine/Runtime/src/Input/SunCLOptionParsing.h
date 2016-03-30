@@ -8,108 +8,118 @@
 #include <functional>
 #include <vector>
 
-/// A struct representing a command line option
+#include <tclap/CmdLine.h>
+
+/// An abstract struct that represents a command line option
 /**
- * This struct represents a command line option. It contains a short name ('-x'),
- * a long name ('-\-name'), a description (for '-h/-\-help'), and a function called
- * when the option is present.
+ * This abstract struct represents an option/argument on the command line. Subclasses
+ * must implement the add and
  */
 struct SunCLOption {
-    /// The default constructor
-    SunCLOption();
-
+    /// Adds the option to a command line object.
     /**
-     * @param _shortName The short name of the new option.
-     * @param _longName The long name of the new option.
-     * @param _description The description of the new option.
-     * @param _function The function of the new option.
+     * This member function adds the option to the command line object. This
+     * has to be implemented for each subclass because it is a pure virtual
+     * function. This is called automatically by the parseOptions function.
+     * @param commandLine A reference to the command line object
      */
-    SunCLOption(std::string _shortName, std::string _longName, std::string _description, std::function<void(int, char **, int)> _function);
+    virtual void add(TCLAP::CmdLine &commandLine) = 0;
 
-    /// The short name of the option ('-x')
+    /// Processes the value of the option after parsing.
     /**
-     * This member is the short name of the option. It can be invoked as '-x', where
-     * 'x' is the short name. Short names must be prefixed with '-'.
-     * Short names of different options can be combined, such
-     * as '-xy' if you have two options with short names 'x' and 'y'.
-     * @warning When combining short names, any option with a parameter must be at the end
-     * of the string of short names ('-yx' is not valid if 'y' has a parameter).
+     * This member function processes the option after parsing is done. This is
+     * pure virtual, so it must be implemented in each subclass. This is called
+     * automatically on every option after parsing in the parseOptions function.
      */
-    std::string shortName;
-
-    /// The long name of the option ('-\-name')
-    /**
-     * This member is the long name of the option. It can be invoked is '--name', where
-     * 'name' is the long name. Unlike short names, long names are prefixed with '-\-'.
-     * You cannot combine long names. To specify an argument, append an equals sign and the
-     * desired argument ('-\-somebool=yes') or separate it by a space ('-\-somebool yes').
-     */
-    std::string longName;
-
-    /// The description of the option
-    /**
-     * This member is the description of the option. This is only displayed when '-h'
-     * or '--help' is invoked.
-     */
-    std::string description;
-
-    /// The function of the option
-    /**
-     * This member is the function that is invoked when the option is used. The first
-     * parameter for the function is argc (int), the second parameter is argv (char **),
-     * and the third parameter is the option's index within argv (int).
-     */
-    std::function<void(int, char **, int)> function;
+    virtual void process() = 0;
 };
 
-/// A namespace for internal use for parsing command line options
-namespace _SunPrivateCLOptionParsing {
-    /// Determines whether a string is a long option
-    /**
-     * This function tells whether a string forms a long option. It must be of the form
-     * '-\-x' to be true.
-     * @param option The string to be tested
-     * @return A boolean indicating whether the string was a long option
-     */
-    extern bool isLongOption(char *option);
 
-    /// Determines whether a string is a short option
+
+/// A subclass of SunCLOption that represents a switch option
+/**
+ * This subclass of SunCLOption represents a switch option. It adds itself
+ * using the TCLAP::SwitchArg, and has a reference to a boolean where it
+ * will store its value.
+ */
+struct SunCLSwitchOption : public SunCLOption {
+public:
+    /// Constructs the switch option.
     /**
-     * This function tells whether a string forms a short option. It must be of the
-     * form '-x' to be true.
-     * @param option The string to be tested
-     * @return A boolean indicating whether the string was a short option
+     * @param shortOption The short name for the switch
+     * @param longOption The long name for the switch
+     * @param description The description for the switch (used in help)
+     * @param defaultValue The default value of the switch (normally false)
+     * @param _value A pointer to the boolean that should be assigned with the value of the option
      */
-    extern bool isShortOption(char *option);
+    SunCLSwitchOption(std::string shortOption, std::string longOption, std::string description, bool defaultValue, bool *_value);
+
+    /// Adds the switch option to the command line object.
+    /**
+     * @param commandLine A reference to the command line object
+     */
+    virtual void add(TCLAP::CmdLine &commandLine);
+
+    /// Assigns the value of the option to the boolean.
+    virtual void process();
+private:
+    /// The TCLAP argument attached to the command line
+    TCLAP::SwitchArg arg;
+
+    /// The reference to the boolean that it should be stored in
+    bool *value;
 };
 
-/// Generates a help option
-/**
- * This function generates a help option for use in parsing arguments.
- * @param options The vector of options (defined in SunGame)
- * @return An option that generates the help message
- */
-extern SunCLOption generateHelpOption(const std::vector<SunCLOption> &options);
 
-/// Gets the option's argument
+
+/// A subclass of SunCLOption that represents a value option
 /**
- * Use this when writing the function for an option to get the argument if it
- * has one.
- * @param argc The argument count (given in main())
- * @param argv The argument array (given in main())
- * @param options The vector of options (defined in SunGame)
- * @return A char * that is the option's argument
+ * This subclass of SunCLOption represents a value option. It adds itself
+ * using the TCLAP::ValueArg, and has a reference to an object of its type
+ * where it will store its value.
  */
-extern char * getArgument(int argc, char **argv, int index);
+template<typename T>
+struct SunCLValueOption : public SunCLOption {
+public:
+    /// Constructs the value option.
+    /**
+     * @param shortOption The short name for the option
+     * @param longOption The long name for the option
+     * @param description The description for the option (used in help)
+     * @param typeDescription The description for the type of the option (used in help)
+     * @param defaultValue The default value of the option
+     * @param required Whether the option is required
+     * @param _value A pointer to the object that should b assigned with the value of the option
+     */
+    SunCLValueOption(std::string shortOption, std::string longOption, std::string description, std::string typeDescription, T defaultValue, bool required, T *_value) : arg(shortOption, longOption, description, required, defaultValue, typeDescription), value(_value) { }
+
+    /// Adds the value option to the command line object.
+    /**
+     * @param commandLine A reference to the command line object
+     */
+    virtual void add(TCLAP::CmdLine &commandLine) {
+        commandLine.add(arg);
+    }
+
+    /// Assigns the value of the option to the associated object.
+    virtual void process() {
+        (*value) = arg.getValue();
+    }
+private:
+    /// The TCLAP argument attached to the command line
+    TCLAP::ValueArg<T> arg;
+
+    /// The reference to the object that it should be stored in
+    T *value;
+};
+
+
 
 /// Parses command line options.
 /**
- * @param argc The argument count (given in main())
- * @param argv The argument array (given in main())
- * @param options The vector of options (defined in SunGame)
- * @retval 0    Parsing executed successfully
- * @retval -1   Parsing did not execute successfully
+ * This function takes in argc and argv from main and parses the given options
+ * using the TCLAP library.
  */
-extern int parseOptions(int argc, char **argv, const std::vector<SunCLOption> &options);
+extern void parseOptions(const std::vector<SunCLOption *> &options, int argc, char **argv);
 
 #endif

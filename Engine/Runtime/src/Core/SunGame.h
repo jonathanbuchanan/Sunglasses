@@ -111,9 +111,6 @@ protected:
 
     /// A pointer to the GLFW window
     GLFWwindow *window;
-
-    /// A vector of command line options
-    std::vector<SunCLOption> options;
 };
 
 #endif

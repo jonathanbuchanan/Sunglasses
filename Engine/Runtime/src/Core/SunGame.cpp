@@ -52,11 +52,20 @@ void SunGame::init(std::string title, glm::vec4 color) {
 }
 
 void SunGame::init(int argc, char **argv, std::string title, glm::vec4 color) {
-    options = {
-        SunCLOption()
+    // Parse the command line options
+    bool x = false;
+    std::string name;
+    SunCLSwitchOption switchOpt("s", "switch", "Test", false, &x);
+    SunCLValueOption<std::string> nameOpt("n", "name", "Your name", "a string", "Jonathan", false, &name);
+    std::vector<SunCLOption *> options = {
+        &switchOpt,
+        &nameOpt
     };
-    options.push_back(generateHelpOption(options));
-    parseOptions(argc, argv, options);
+
+    parseOptions(options, argc, argv);
+
+    std::cout << x << std::endl;
+    std::cout << name << std::endl;
 
     // Initialize the Window Manager
 	SunWindowManager *windowManager = new SunWindowManager(glm::vec2(800.0f, 600.0f), title, color);

@@ -7,9 +7,7 @@
 #include <functional>
 
 #include "SunShader.h"
-#include "../Core/SunObject.h"
 #include "SunTexturedQuad.h"
-#include "../Core/SunGame.h"
 
 class SunWindowManager;
 
