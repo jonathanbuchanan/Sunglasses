@@ -48,10 +48,9 @@ public:
      * name (string). Since, all SunBase actions must have the same signature
      * (void(SunAction)), they are stored in the map as std::function.
      */
-    template<typename Ret, typename Class, typename Param>
-    void addAction(std::string action, Ret (Class::*f)(Param)) {
-        std::function<void(SunAction)> bound = std::bind(f, static_cast<Class *>(this), std::placeholders::_1);
-        actions[action] = bound;
+    template<typename Class>
+    void addAction(std::string action, void (Class::*f)(SunAction)) {
+        actions.emplace(action, std::bind(f, static_cast<Class *>(this), std::placeholders::_1));
     }
 
     /// Processes a SunAction.

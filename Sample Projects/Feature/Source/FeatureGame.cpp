@@ -17,4 +17,5 @@ void FeatureGame::loop() {
 
 void FeatureGame::cleanUp() {
     SunGame::cleanUp();
+    delete scene;
 }

@@ -49,13 +49,13 @@ public:
     virtual void cycle();
 
     /// Gets the root member (SunObject pointer).
-    SunNode * getRoot() { return root; }
+    SunNode * getRoot() { return root.get(); }
 
     /// Sets the window member (GLFWwindow pointer).
     void setWindow(GLFWwindow *_window) { window = _window; }
 protected:
     /// A pointer to the root object in the scene graph
-    SunNode *root;
+    std::unique_ptr<SunNode> root;
 
     /// A pointer to the scene renderer
     SunRenderer *renderer;
