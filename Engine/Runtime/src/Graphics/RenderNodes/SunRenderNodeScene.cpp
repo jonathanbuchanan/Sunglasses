@@ -6,42 +6,81 @@
 #include "../SunWindowManager.h"
 #include "../SunPrimitives.h"
 
-SunRenderNodeScene::SunRenderNodeScene() {
+SunSimpleRenderNodeTexture::SunSimpleRenderNodeTexture(std::string _name, GLuint _internalFormat, GLenum _format, GLenum _type) : name(_name), internalFormat(_internalFormat), format(_format), type(_type) { }
+
+
+
+SunRenderNodeScene::SunRenderNodeScene(SunBase *_target, std::vector<SunSimpleRenderNodeTexture> _textures) : target(_target), textures(_textures) {
 
 }
 
-SunRenderNodeScene::SunRenderNodeScene(SunNode *_root) : root(_root) {
-
-}
 
 void SunRenderNodeScene::init() {
     SunRenderNode::init();
 
-    glGenFramebuffers(1, &fbo); // Generate the framebuffer
-    glBindFramebuffer(GL_FRAMEBUFFER, fbo); // Bind the framebuffer
-    glBindTexture(GL_TEXTURE_2D, 0); // Unbind any leftover textures
+    if (drawToScreen == false) {
+        glGenFramebuffers(1, &fbo); // Generate the framebuffer
+        glBindFramebuffer(GL_FRAMEBUFFER, fbo); // Bind the framebuffer
 
-    glGenRenderbuffers(1, &rbo); // Generate the renderbuffer
-    glBindRenderbuffer(GL_RENDERBUFFER, rbo); // Bind the renderbuffer
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, size.x, size.y); // Generate the renderbuffer storage
-    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, rbo); // Attach the renderbuffer to the framebuffer as a depth attachment
+        GLuint attachments[textures.size()];
 
-    glBindFramebuffer(GL_FRAMEBUFFER, 0); // Unbind the framebuffer
+        for (size_t i = 0; i < textures.size(); ++i) {
+            glGenTextures(1, &textures[i].texture);
+            glBindTexture(GL_TEXTURE_2D, textures[i].texture);
+            glTexImage2D(GL_TEXTURE_2D, 0, textures[i].internalFormat, size.x, size.y, 0, textures[i].format, textures[i].type, NULL);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+            glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, GL_TEXTURE_2D, textures[i].texture, 0);
+            attachments[i] = GL_COLOR_ATTACHMENT0 + i;
+        }
+
+        glDrawBuffers(textures.size(), attachments);
+
+        glGenRenderbuffers(1, &rbo); // Generate the renderbuffer
+        glBindRenderbuffer(GL_RENDERBUFFER, rbo); // Bind the renderbuffers
+        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, size.x, size.y); // Generate the renderbuffer storage
+        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, rbo); // Attach the renderbuffer to the framebuffer as a depth attachment
+        glBindRenderbuffer(GL_RENDERBUFFER, 0);
+
+        glBindFramebuffer(GL_FRAMEBUFFER, 0); // Unbind the framebuffer
+    } else {
+        fbo = 0; // Set the framebuffer to the screen-buffer
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    }
 }
 
 void SunRenderNodeScene::render(SunAction action) {
-    float delta = ((SunWindowManager *)getService("window_manager"))->getDelta();
-    //glBindFramebuffer(GL_FRAMEBUFFER, fbo); // Bind the framebuffer
-    glBindFramebuffer(GL_FRAMEBUFFER, 0); // TEMPORARY
+    glBindFramebuffer(GL_FRAMEBUFFER, fbo); // Bind the framebuffer
+    glViewport(0, 0, size.x, size.y);
     clear();
     for (size_t i = 0; i < shaders.size(); ++i) { // Iterate through shaders
-        shaders[i].second.use(shaders[i].first, delta, root); // Render with each shader
+        shaders[i].second.use();
+
+        for (int i = 0; i < getParentsSize(); ++i)
+            ((SunRenderNode *)getParentAtIndex(i))->bindOutputs(&shaders[i].second);
+
+        SunAction uniform("uniform");
+    	uniform.addParameter("shader", &shaders[i].second);
+    	uniform.setRecursive(true);
+    	sendAction(uniform, target);
+
+        SunAction render("render");
+        render.setRecursive(true);
+        render.addParameter("shader", &shaders[i].second);
+        render.addParameter("tag", &shaders[i].first);
+        sendAction(render, target);
     }
     glBindFramebuffer(GL_FRAMEBUFFER, 0); // Unbind the framebuffer
 }
 
-void SunRenderNodeScene::bindOutputs() {
-
+void SunRenderNodeScene::bindOutputs(SunShader *shader) {
+    for (size_t i = 0; i < textures.size(); ++i) {
+        glActiveTexture(GL_TEXTURE0 + i);
+        glBindTexture(GL_TEXTURE_2D, textures[i].texture);
+        glUniform1i(shader->getUniformLocation(textures[i].name), i);
+    }
 }
 
 void SunRenderNodeScene::addShader(std::string tag, SunShader shader) {
@@ -52,8 +91,8 @@ void SunRenderNodeScene::setShaders(std::vector<std::pair<std::string, SunShader
     shaders = _shaders;
 }
 
-void SunRenderNodeScene::setRoot(SunNode *_root) {
-    root = _root;
+void SunRenderNodeScene::setTarget(SunBase *_target) {
+    target = _target;
 }
 
 void SunRenderNodeScene::setSize(glm::vec2 _size) {

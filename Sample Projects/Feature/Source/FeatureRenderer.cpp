@@ -4,12 +4,30 @@
 #include "FeatureRenderer.h"
 
 void FeatureRenderer::init() {
-    SunRenderNodeScene *root = new SunRenderNodeScene(scene->getRoot());
-    root->setSize(glm::vec2(1600.0f, 800.0f));
+    std::vector<SunSimpleRenderNodeTexture> rootTextures = {
+        SunSimpleRenderNodeTexture("position", GL_RGB16F, GL_RGB, GL_FLOAT),
+        SunSimpleRenderNodeTexture("normal", GL_RGB16F, GL_RGB, GL_FLOAT),
+        SunSimpleRenderNodeTexture("_color", GL_RGB, GL_RGB, GL_UNSIGNED_BYTE)
+    };
+    SunRenderNodeScene *root = new SunRenderNodeScene(scene->getRoot(), rootTextures);
+    root->setSize(glm::vec2(800.0f, 600.0f));
     root->addShader("textured", SunShader("../../Engine/Shaders/Old/Variable Pipeline/Scene.vert", "../../Engine/Shaders/Old/Variable Pipeline/Scene.frag", "../../Engine/Shaders/Old/TexturedScene.pre"));
     root->addShader("solid", SunShader("../../Engine/Shaders/Old/Variable Pipeline/Scene.vert", "../../Engine/Shaders/Old/Variable Pipeline/Scene.frag", "../../Engine/Shaders/Old/SolidScene.pre"));
     root->init();
     rootRenderNode = root;
+
+    std::vector<SunSimpleRenderNodeTexture> finalTextures = {
+
+    };
+    SunTexturedQuad *quad = new SunTexturedQuad();
+    quad->init();
+    SunRenderNodeScene *final = new SunRenderNodeScene(quad, finalTextures);
+    final->setSize(glm::vec2(800.0f, 600.0f));
+    final->setDrawToScreen(true);
+    final->addShader("quad", SunShader("../../Engine/Shaders/Old/Variable Pipeline/Quad.vert", "../../Engine/Shaders/Old/Variable Pipeline/Quad.frag", "../../Engine/Shaders/Old/DeferredQuad.pre"));
+    final->init();
+    root->addSubNode(final);
+
     /*// GBuffer Inputs
     vector<SunRenderingNodeInput> gbufferInputs = {};
 

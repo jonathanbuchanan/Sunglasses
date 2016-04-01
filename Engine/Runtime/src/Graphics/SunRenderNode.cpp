@@ -10,12 +10,7 @@ SunRenderNode::SunRenderNode() {
 }
 
 void SunRenderNode::init() {
-    addAction("render", &SunRenderNode::_render);
-}
-
-void SunRenderNode::_render(SunAction action) {
-    render(action);
-    bindOutputs();
+    addAction("render", &SunRenderNode::render);
 }
 
 

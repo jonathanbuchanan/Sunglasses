@@ -11,6 +11,38 @@
 #include <utility>
 #include <glm/glm.hpp>
 
+class SunRenderNodeScene;
+
+/// A structure that represents a texture belonging to a render node
+struct SunSimpleRenderNodeTexture {
+friend SunRenderNodeScene;
+public:
+    /// Constructor for the render node texture
+    /**
+     * @param _name The name of the texture
+     * @param _internalFormat The internal format of the texture
+     * @param _format The format of the texture
+     * @param _type The type of the texture
+     */
+    SunSimpleRenderNodeTexture(std::string _name, GLuint _internalFormat, GLenum _format, GLenum _type);
+
+private:
+    /// The texture
+    GLuint texture;
+
+    /// The name of the texture
+    std::string name;
+
+    /// The internal format of the texture
+    GLuint internalFormat;
+
+    /// The format of the texture
+    GLenum format;
+
+    /// The type of the texture
+    GLenum type;
+};
+
 /// A SunRenderNode subclass that renders a 3D scene
 /**
  * SunRenderNodeScene is a subclass of SunRenderNode that renders a 3D scene.
@@ -20,14 +52,12 @@
  */
 class SunRenderNodeScene : public SunRenderNode {
 public:
-    /// The default constructor
-    SunRenderNodeScene();
-
-    /// The constructor for root
+    /// A constructor
     /**
-     * @param _root The pointer to the scene's root node
+     * @param _target The pointer to the render target
+     * @param _textures The vector of textures
      */
-    SunRenderNodeScene(SunNode *_root);
+    SunRenderNodeScene(SunBase *_target, std::vector<SunSimpleRenderNodeTexture> _textures);
 
     /// Initializes the render node
     /**
@@ -49,8 +79,9 @@ public:
     /**
      * This member function binds the outputs (textures) for the next render node
      * to work with.
+     * @param shader The shader to bind the outputs to
      */
-    virtual void bindOutputs();
+    virtual void bindOutputs(SunShader *shader);
 
     /// Adds a shader for the given tag.
     void addShader(std::string tag, SunShader shader);
@@ -58,8 +89,11 @@ public:
     /// Sets the vector of shaders.
     void setShaders(std::vector<std::pair<std::string, SunShader>> _shaders);
 
-    /// Sets the root node pointer.
-    void setRoot(SunNode *_root);
+    /// Sets the target pointer.
+    void setTarget(SunBase *_target);
+
+    /// Sets the drawToScreen boolean.
+    void setDrawToScreen(bool _d) { drawToScreen = _d; }
 
     /// Sets the size vec2.
     void setSize(glm::vec2 _size);
@@ -72,14 +106,25 @@ private:
      */
     std::vector<std::pair<std::string, SunShader>> shaders;
 
-    /// A pointer to the root node of the scene
-    SunNode *root;
+    /// A pointer to the target to render
+    SunBase *target;
+
+    /// A boolean that determines whether the render node draws to the screen
+    bool drawToScreen = false;
 
     /// The framebuffer object
     GLuint fbo;
 
     /// The renderbuffer object
     GLuint rbo;
+
+    /// The vector of textures
+    /**
+     * @warning The textures will be attached in the order that they are in this
+     * vector. A texture that should attached with GL_COLOR_ATTACHMENT0 should be first
+     * in the vector.
+     */
+    std::vector<SunSimpleRenderNodeTexture> textures;
 
     /// The size of the buffer in pixels
     glm::vec2 size;

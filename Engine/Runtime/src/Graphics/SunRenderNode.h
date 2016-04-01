@@ -10,6 +10,7 @@
 
 
 #include "../Core/SunNode.h"
+#include "SunShader.h"
 
 
 /// An abstract class for defining rendering behavior.
@@ -33,7 +34,8 @@ public:
     /// This function performs the rendering.
     /**
      * This function is used to perform rendering. You must override this to
-     * subclass SunRenderNode.
+     * subclass SunRenderNode. When subclassing, you must also call bindOutputs, on
+     * all the parent nodes.
      */
     virtual void render(SunAction action) = 0;
 
@@ -41,16 +43,9 @@ public:
     /**
      * This function is used to prepare the output of the current node for the
      * next one's job. You must overrid this to subclass SunRenderNode.
+     * @param shader The shader to bind the outputs to
      */
-    virtual void bindOutputs() = 0;
-private:
-    /// The private function that is called when the 'render' action is passed
-    /**
-     * This member function is the actual function that gets called when the render
-     * node receives the 'render' action. This automatically calls render() and
-     * bindOutputs() for you.
-     */
-    void _render(SunAction action);
+    virtual void bindOutputs(SunShader *shader) = 0;
 };
 
 /*#include "SunShader.h"

@@ -17,13 +17,15 @@
 
 typedef map<string, pair<GLuint, GLuint>>::iterator SunTextureMapIterator;
 
-class SunTexturedQuad {
+class SunTexturedQuad : public SunBase {
 public:
     SunTexturedQuad() { }
 
-    void setUpGL();
-    void render(map<string, pair<GLuint, GLuint>> _textures, SunShader _shader);
-    void renderWithUsedShader(map<string, pair<GLuint, GLuint>> _textures, SunShader _shader);
+    void init();
+
+    void render(SunAction action);
+    /*void render(map<string, pair<GLuint, GLuint>> _textures, SunShader _shader);
+    void renderWithUsedShader(map<string, pair<GLuint, GLuint>> _textures, SunShader _shader);*/
 private:
     // Vertices, indices, and textures
     vector<SunVertex> vertices = {

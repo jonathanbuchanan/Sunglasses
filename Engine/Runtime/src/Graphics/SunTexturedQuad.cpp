@@ -3,7 +3,9 @@
 // See LICENSE.md for details.
 #include "SunTexturedQuad.h"
 
-void SunTexturedQuad::setUpGL() {
+void SunTexturedQuad::init() {
+    addAction("render", &SunTexturedQuad::render);
+
     // Generate the VAO
     glGenVertexArrays(1, &VAO);
 
@@ -18,26 +20,34 @@ void SunTexturedQuad::setUpGL() {
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
     // Initialize and write the data for the VBO
-    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof (SunVertex), &vertices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(SunVertex), &vertices[0], GL_STATIC_DRAW);
 
     // Bind the EBO
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 
     // Initialize and write the data for the EBO
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof (GLuint), &indices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(GLuint), &indices[0], GL_STATIC_DRAW);
 
     // Initialize and set the vertex attributes
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof (SunVertex), (GLvoid *) 0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(SunVertex), (GLvoid *) 0);
 
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof (SunVertex), (GLvoid *) offsetof(SunVertex, textureCoordinates));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(SunVertex), (GLvoid *) offsetof(SunVertex, textureCoordinates));
 
     // Unbind the VBO and EBO
-    glBindVertexArray(0); 
+    glBindVertexArray(0);
 }
 
-void SunTexturedQuad::render(map<string, pair<GLuint, GLuint>> _textures, SunShader _shader) {
+void SunTexturedQuad::render(SunAction action) {
+    glBindVertexArray(VAO);
+
+    glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+
+    glBindVertexArray(0);
+}
+
+/*void SunTexturedQuad::render(map<string, pair<GLuint, GLuint>> _textures, SunShader _shader) {
     _shader.use();
 
     int iteratorIndex = 0;
@@ -68,11 +78,11 @@ void SunTexturedQuad::renderWithUsedShader(map<string, pair<GLuint, GLuint>> _te
         glActiveTexture(GL_TEXTURE0 + iteratorIndex);
         glBindTexture(iterator->second.second, iterator->second.first);
         glUniform1i(_shader.getUniformLocation(iterator->first), iteratorIndex);
-        
+
         iteratorIndex++;
     }
     glActiveTexture(GL_TEXTURE0);
-    
+
     // Bind the VAO
     glBindVertexArray(VAO);
 
@@ -81,5 +91,4 @@ void SunTexturedQuad::renderWithUsedShader(map<string, pair<GLuint, GLuint>> _te
 
     // Unbind the VAO
     glBindVertexArray(0);
-}
-
+}*/
