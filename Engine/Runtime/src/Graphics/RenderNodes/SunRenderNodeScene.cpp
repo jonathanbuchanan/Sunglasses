@@ -6,14 +6,13 @@
 #include "../SunWindowManager.h"
 #include "../SunPrimitives.h"
 
-SunSimpleRenderNodeTexture::SunSimpleRenderNodeTexture(std::string _name, GLuint _internalFormat, GLenum _format, GLenum _type) : name(_name), internalFormat(_internalFormat), format(_format), type(_type) { }
+SunRenderNodeSceneTexture::SunRenderNodeSceneTexture(std::string _name, GLuint _internalFormat, GLenum _format, GLenum _type) : name(_name), internalFormat(_internalFormat), format(_format), type(_type) { }
 
 
 
-SunRenderNodeScene::SunRenderNodeScene(SunBase *_target, std::vector<SunSimpleRenderNodeTexture> _textures) : target(_target), textures(_textures) {
+SunRenderNodeScene::SunRenderNodeScene(SunBase *_target, std::vector<SunRenderNodeSceneTexture> _textures) : target(_target), textures(_textures) {
 
 }
-
 
 void SunRenderNodeScene::init() {
     SunRenderNode::init();

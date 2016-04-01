@@ -4,10 +4,10 @@
 #include "FeatureRenderer.h"
 
 void FeatureRenderer::init() {
-    std::vector<SunSimpleRenderNodeTexture> rootTextures = {
-        SunSimpleRenderNodeTexture("position", GL_RGB16F, GL_RGB, GL_FLOAT),
-        SunSimpleRenderNodeTexture("normal", GL_RGB16F, GL_RGB, GL_FLOAT),
-        SunSimpleRenderNodeTexture("_color", GL_RGB, GL_RGB, GL_UNSIGNED_BYTE)
+    std::vector<SunRenderNodeSceneTexture> rootTextures = {
+        SunRenderNodeSceneTexture("position", GL_RGB16F, GL_RGB, GL_FLOAT),
+        SunRenderNodeSceneTexture("normal", GL_RGB16F, GL_RGB, GL_FLOAT),
+        SunRenderNodeSceneTexture("_color", GL_RGB, GL_RGB, GL_UNSIGNED_BYTE)
     };
     SunRenderNodeScene *root = new SunRenderNodeScene(scene->getRoot(), rootTextures);
     root->setSize(glm::vec2(800.0f, 600.0f));
@@ -16,7 +16,7 @@ void FeatureRenderer::init() {
     root->init();
     rootRenderNode = root;
 
-    std::vector<SunSimpleRenderNodeTexture> finalTextures = {
+    std::vector<SunRenderNodeSceneTexture> finalTextures = {
 
     };
     SunTexturedQuad *quad = new SunTexturedQuad();

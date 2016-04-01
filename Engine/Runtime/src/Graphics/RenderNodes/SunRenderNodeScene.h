@@ -14,7 +14,7 @@
 class SunRenderNodeScene;
 
 /// A structure that represents a texture belonging to a render node
-struct SunSimpleRenderNodeTexture {
+struct SunRenderNodeSceneTexture {
 friend SunRenderNodeScene;
 public:
     /// Constructor for the render node texture
@@ -24,7 +24,7 @@ public:
      * @param _format The format of the texture
      * @param _type The type of the texture
      */
-    SunSimpleRenderNodeTexture(std::string _name, GLuint _internalFormat, GLenum _format, GLenum _type);
+    SunRenderNodeSceneTexture(std::string _name, GLuint _internalFormat, GLenum _format, GLenum _type);
 
 private:
     /// The texture
@@ -43,12 +43,13 @@ private:
     GLenum type;
 };
 
-/// A SunRenderNode subclass that renders a 3D scene
+/// A SunRenderNode subclass that renders a scene
 /**
- * SunRenderNodeScene is a subclass of SunRenderNode that renders a 3D scene.
+ * SunRenderNodeScene is a subclass of SunRenderNode that renders a scene.
  * It will always write to a framebuffer, but you can use it in combination with
- * the SunRenderNodeEnd render node to draw to the screen.
- *
+ * the SunRenderNodeEnd render node to draw to the screen. This class is usable
+ * in most situations, such as forward shading, deferred shading, SSAO, etc.
+ * different types of render nodes should be used for techniques like shadow mapping.
  */
 class SunRenderNodeScene : public SunRenderNode {
 public:
@@ -57,7 +58,7 @@ public:
      * @param _target The pointer to the render target
      * @param _textures The vector of textures
      */
-    SunRenderNodeScene(SunBase *_target, std::vector<SunSimpleRenderNodeTexture> _textures);
+    SunRenderNodeScene(SunBase *_target, std::vector<SunRenderNodeSceneTexture> _textures);
 
     /// Initializes the render node
     /**
@@ -124,7 +125,7 @@ private:
      * vector. A texture that should attached with GL_COLOR_ATTACHMENT0 should be first
      * in the vector.
      */
-    std::vector<SunSimpleRenderNodeTexture> textures;
+    std::vector<SunRenderNodeSceneTexture> textures;
 
     /// The size of the buffer in pixels
     glm::vec2 size;
