@@ -126,6 +126,14 @@ public:
     /// Gets the parent (SunNode pointer) at the specified index (int).
     SunNode * getParentAtIndex(int i) { return parents[i]; }
 private:
+    /// Processes the action with control of recursion.
+    /**
+     * This method is the same as the public processAction, except it gives you
+     * control over recursion (overrides the SunAction property). This is used
+     * when processing a recursive action.
+     */
+    virtual void processAction(SunAction action, bool recursive);
+
     /// The number of parents ready (useful when performing a recursive action with multiple parents)
     int parentsReady;
 

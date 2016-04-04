@@ -42,10 +42,11 @@ public:
     /// This function binds the outputs for the next node.
     /**
      * This function is used to prepare the output of the current node for the
-     * next one's job. You must overrid this to subclass SunRenderNode.
-     * @param shader The shader to bind the outputs to
+     * next one's job. You must overrid this to subclass SunRenderNode. The
+     * action should have a parameter named 'shader' that should be a pointer
+     * to the shader to bind to.
      */
-    virtual void bindOutputs(SunShader *shader) = 0;
+    virtual void bindOutputs(SunAction action) = 0;
 };
 
 #endif

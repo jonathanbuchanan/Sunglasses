@@ -36,7 +36,10 @@ bool SunNode::tagPresent(std::string t) {
 
 void SunNode::sendActionToAllSubNodes(SunAction action) {
     for (size_t i = 0; i < subNodes.size(); ++i)
-        sendAction(action, subNodes[i]);
+        subNodes[i]->processAction(action, false);
+    if (action.getRecursive())
+        for (size_t i = 0; i < subNodes.size(); ++i)
+            subNodes[i]->sendActionToAllSubNodes(action);
 }
 
 void SunNode::addSubNode(SunNode *_subNode) {
@@ -114,4 +117,14 @@ void SunNode::recursiveDeleteSubnode(const SunNode *node) {
         else
             subNodes[i]->recursiveDeleteSubnode(node);
     }
+}
+
+void SunNode::processAction(SunAction action, bool recursive) {
+    if (action.parameterExists("tag") && ignoreTags == false) {
+		if (tagPresent(action.getParameter<std::string>("tag")))
+			SunBase::processAction(action);
+	} else
+		SunBase::processAction(action);
+	if (action.getRecursive() == true && recursive == true)
+		sendActionToAllSubNodes(action);
 }

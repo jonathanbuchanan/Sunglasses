@@ -57,8 +57,11 @@ void SunRenderNodeScene::render(SunAction action) {
     for (size_t i = 0; i < shaders.size(); ++i) { // Iterate through shaders
         shaders[i].second.use();
 
+        SunAction bind = SunAction("bindOutputs");
+        bind.addParameter("shader", &shaders[i].second);
+
         for (int i = 0; i < getParentsSize(); ++i)
-            ((SunRenderNode *)getParentAtIndex(i))->bindOutputs(&shaders[i].second);
+            sendAction(bind, getParentAtIndex(i));
 
         SunAction uniform("uniform");
     	uniform.addParameter("shader", &shaders[i].second);
@@ -74,7 +77,8 @@ void SunRenderNodeScene::render(SunAction action) {
     glBindFramebuffer(GL_FRAMEBUFFER, 0); // Unbind the framebuffer
 }
 
-void SunRenderNodeScene::bindOutputs(SunShader *shader) {
+void SunRenderNodeScene::bindOutputs(SunAction action) {
+    SunShader *shader = action.getParameterPointer<SunShader>("shader");
     for (size_t i = 0; i < textures.size(); ++i) {
         glActiveTexture(GL_TEXTURE0 + i);
         glBindTexture(GL_TEXTURE_2D, textures[i].texture);

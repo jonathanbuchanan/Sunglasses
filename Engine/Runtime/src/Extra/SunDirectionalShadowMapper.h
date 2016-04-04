@@ -1,8 +1,8 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#ifndef SunDirectionalShadowMapRenderingNode_h
-#define SunDirectionalShadowMapRenderingNode_h
+#ifndef SUNDIRECTIONALSHADOWMAPPER_H
+#define SUNDIRECTIONALSHADOWMAPPER_H
 
 /*#include "../Graphics/SunRenderNode.h"
 
@@ -10,7 +10,7 @@
 
 class SunWindowManager;
 
-class SunDirectionalShadowMapRenderingNode : public SunNode {
+class SunDirectionalShadowMapper : public SunRenderNode {
 public:
 	SunDirectionalShadowMapRenderingNode();
 	SunDirectionalShadowMapRenderingNode(glm::vec2 _size);

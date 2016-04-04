@@ -80,9 +80,9 @@ public:
     /**
      * This member function binds the outputs (textures) for the next render node
      * to work with.
-     * @param shader The shader to bind the outputs to
+     * @warning The 'shader' parameter must contain a pointer to the shader to bind to
      */
-    virtual void bindOutputs(SunShader *shader);
+    virtual void bindOutputs(SunAction action);
 
     /// Adds a shader for the given tag.
     void addShader(std::string tag, SunShader shader);

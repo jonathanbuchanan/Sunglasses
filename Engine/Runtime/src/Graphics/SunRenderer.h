@@ -2,8 +2,8 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 
-#ifndef OpenGL_Test_3_Renderer_h
-#define OpenGL_Test_3_Renderer_h
+#ifndef SUNRENDERER_H
+#define SUNRENDERER_H
 
 #include <iostream>
 
@@ -23,23 +23,13 @@ public:
     void swapBuffers();
 	virtual void init();
 
-	inline void setSceneNode(SunScene *s) { scene = s; }
-
-    inline SunRenderNode * getRootRenderNode() { return rootRenderNode; }
-    inline void setRootRenderNode(SunRenderNode *_root) { rootRenderNode = _root; }
-
-	inline SunNode * getRenderingNodeForString(std::string string) { return renderingNodeMap[string]; }
-	inline void addRenderingNodeForString(SunNode *node, std::string string) { renderingNodeMap[string] = node; }
-
-	inline void setWindow(GLFWwindow *w) { window = w; }
+	void setSceneNode(SunScene *s) { scene = s; }
 protected:
 	// Scene Objects
 	SunScene *scene;
-    SunRenderNode *rootRenderNode;
+    SunNode *root;
 
 	std::map<std::string, SunNode *> renderingNodeMap;
-private:
-	GLFWwindow *window;
 };
 
 #endif

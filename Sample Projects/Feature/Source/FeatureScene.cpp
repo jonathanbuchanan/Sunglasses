@@ -22,7 +22,6 @@ void FeatureScene::init() {
 
 	renderer = new FeatureRenderer();
     renderer->setSceneNode(this);
-	renderer->setWindow(window);
     renderer->init();
 
     SunObject *teapot = new SunObject("teapot0", "Resources/Graphics/Models/Teapot.dae", "solid", false);
