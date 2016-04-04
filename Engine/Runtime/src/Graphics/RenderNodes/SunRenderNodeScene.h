@@ -60,6 +60,14 @@ public:
      */
     SunRenderNodeScene(SunBase *_target, std::vector<SunRenderNodeSceneTexture> _textures);
 
+    /// A constructor
+    /**
+     * @param _target The pointer to the render target
+     * @param _uniformTarget The pointer to the uniform target
+     * @param _textures The vector of textures
+     */
+    SunRenderNodeScene(SunBase *_target, SunBase *_uniformTarget, std::vector<SunRenderNodeSceneTexture> _textures);
+
     /// Initializes the render node
     /**
      * This member function initializes the render node by creating the framebuffer
@@ -93,6 +101,9 @@ public:
     /// Sets the target pointer.
     void setTarget(SunBase *_target);
 
+    /// Sets the uniform target
+    void setUniformTarget(SunBase *_uniformTarget);
+
     /// Sets the drawToScreen boolean.
     void setDrawToScreen(bool _d) { drawToScreen = _d; }
 
@@ -109,6 +120,9 @@ private:
 
     /// A pointer to the target to render
     SunBase *target;
+
+    /// A pointer to the target for passing uniforms
+    SunBase *uniformTarget;
 
     /// A boolean that determines whether the render node draws to the screen
     bool drawToScreen = false;

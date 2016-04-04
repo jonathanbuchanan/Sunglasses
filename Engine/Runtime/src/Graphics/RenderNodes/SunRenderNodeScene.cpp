@@ -10,9 +10,14 @@ SunRenderNodeSceneTexture::SunRenderNodeSceneTexture(std::string _name, GLuint _
 
 
 
-SunRenderNodeScene::SunRenderNodeScene(SunBase *_target, std::vector<SunRenderNodeSceneTexture> _textures) : target(_target), textures(_textures) {
+SunRenderNodeScene::SunRenderNodeScene(SunBase *_target, std::vector<SunRenderNodeSceneTexture> _textures) : target(_target), uniformTarget(_target), textures(_textures) {
 
 }
+
+SunRenderNodeScene::SunRenderNodeScene(SunBase *_target, SunBase *_uniformTarget, std::vector<SunRenderNodeSceneTexture> _textures) : target(_target), uniformTarget(_uniformTarget), textures(_textures) {
+
+}
+
 
 void SunRenderNodeScene::init() {
     SunRenderNode::init();
@@ -64,9 +69,9 @@ void SunRenderNodeScene::render(SunAction action) {
             sendAction(bind, getParentAtIndex(i));
 
         SunAction uniform("uniform");
-    	uniform.addParameter("shader", &shaders[i].second);
-    	uniform.setRecursive(true);
-    	sendAction(uniform, target);
+        uniform.addParameter("shader", &shaders[i].second);
+        uniform.setRecursive(true);
+        sendAction(uniform, uniformTarget);
 
         SunAction render("render");
         render.setRecursive(true);
@@ -96,6 +101,10 @@ void SunRenderNodeScene::setShaders(std::vector<std::pair<std::string, SunShader
 
 void SunRenderNodeScene::setTarget(SunBase *_target) {
     target = _target;
+}
+
+void SunRenderNodeScene::setUniformTarget(SunBase *_uniformTarget) {
+    uniformTarget = _uniformTarget;
 }
 
 void SunRenderNodeScene::setSize(glm::vec2 _size) {

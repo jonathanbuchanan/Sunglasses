@@ -3,7 +3,34 @@
 // See LICENSE.md for details.
 #include "SunDirectionalLight.h"
 
-int SunDirectionalLight::lastId = 0;
+#include "../Graphics/SunShader.h"
+
+SunDirectionalLight::SunDirectionalLight() {
+
+}
+
+SunDirectionalLight::SunDirectionalLight(glm::vec3 _color, glm::vec3 _direction) : color(_color), direction(_direction) {
+
+}
+
+void SunDirectionalLight::init() {
+    addAction("update", &SunDirectionalLight::update);
+    addAction("uniform", &SunDirectionalLight::uniform);
+}
+
+void SunDirectionalLight::update(SunAction action) {
+
+}
+
+void SunDirectionalLight::uniform(SunAction action) {
+    SunShader *shader = action.getParameterPointer<SunShader>("shader");
+    int id = 0;
+    glUniform3f(shader->getUniformLocation("directionalLights[" + std::to_string(id) + "].color"), color.r, color.g, color.b);
+
+    glUniform3f(shader->getUniformLocation("directionalLights[" + std::to_string(id) + "].direction"), direction.x, direction.y, direction.z);
+}
+
+/*int SunDirectionalLight::lastId = 0;
 
 SunDirectionalLight::SunDirectionalLight() {
     init();
@@ -38,7 +65,7 @@ void SunDirectionalLight::uniform(SunAction action) {
 	if (action.parameterExists("usedTextureUnits"))
 		usedTextureUnits = action.getParameter<int>("usedTextureUnits");*/
 
-    glUniform3f(_shader->getUniformLocation(arrayUniform + "[" + std::to_string(id) + "].color"), color.r, color.g, color.b);
+    /*glUniform3f(_shader->getUniformLocation(arrayUniform + "[" + std::to_string(id) + "].color"), color.r, color.g, color.b);
 
     glUniform3f(_shader->getUniformLocation(arrayUniform + "[" + std::to_string(id) + "].direction"), direction.x, direction.y, direction.z);
 
@@ -75,4 +102,4 @@ void SunDirectionalLight::initializeShadowMap() {
 	glDrawBuffer(GL_NONE);
 	glReadBuffer(GL_NONE);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-}
+}*/

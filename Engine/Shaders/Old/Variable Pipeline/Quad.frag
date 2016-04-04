@@ -307,7 +307,7 @@ void main() {
 	}
 
 	// Lighting: Directional Lights
-	for (int i = 0; i < directionalLightCount; i++) {
+	for (int i = 0; i < 1; i++) {
 		lighting += (1.0 - isShadowed(shadowMap, _position, normal, directionalLights[i].direction)) * _color_ * calculateLighting(directionalLights[i], _position, normal);
 	}
 
