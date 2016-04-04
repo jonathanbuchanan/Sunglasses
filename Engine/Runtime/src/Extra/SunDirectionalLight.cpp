@@ -24,10 +24,12 @@ void SunDirectionalLight::update(SunAction action) {
 
 void SunDirectionalLight::uniform(SunAction action) {
     SunShader *shader = action.getParameterPointer<SunShader>("shader");
-    int id = 0;
+    int id = shader->getNextArrayIndex("directionalLights");
     glUniform3f(shader->getUniformLocation("directionalLights[" + std::to_string(id) + "].color"), color.r, color.g, color.b);
 
     glUniform3f(shader->getUniformLocation("directionalLights[" + std::to_string(id) + "].direction"), direction.x, direction.y, direction.z);
+
+    glUniform1i(shader->getUniformLocation("directionalLightCount"), shader->getArraySize("directionalLights"));
 }
 
 /*int SunDirectionalLight::lastId = 0;

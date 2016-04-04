@@ -233,6 +233,9 @@ void SunShader::uniforms(SunNode *root) {
 }
 
 void SunShader::use() {
+    for (auto &iterator : arrays)
+        iterator.second = 0;
+
     glUseProgram(this->program);
 }
 
@@ -258,4 +261,15 @@ void SunShader::send(std::string tag, float delta, SunNode *root) {
 		render.addParameter("tag", &tag);
 	render.setRecursive(true);
 	sendAction(render, root);
+}
+
+int SunShader::getNextArrayIndex(std::string array) {
+    if (arrays.find(array) == arrays.end())
+        arrays[array] = 0;
+    arrays[array] += 1;
+    return arrays[array] - 1;
+}
+
+int SunShader::getArraySize(std::string array) {
+    return arrays[array];
 }

@@ -18,11 +18,6 @@ void FeatureRenderer::init() {
     gbuffer->init();
     root->addSubNode(gbuffer);
 
-    /*SunShadowMapper *shadows = new SunShadowMapper(scene->getRoot());
-    shadows->addShader("directional_shadows", SunShader("../../Engine/Shaders/Old/ShadowMapVertex.vert", "../../Engine/Shaders/Old/ShadowMapFragment.frag"));
-    shadows->init();
-    root->addSubNode(shadows);*/
-
     std::vector<SunRenderNodeSceneTexture> finalTextures = {
 
     };

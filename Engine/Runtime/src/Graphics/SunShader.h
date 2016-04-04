@@ -2,14 +2,15 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 
-#ifndef OpenGL_Test_3_SunShader_h
-#define OpenGL_Test_3_SunShader_h
+#ifndef SUNSHADER_H
+#define SUNSHADER_H
 
 #include <string>
 #include <fstream>
 #include <sstream>
 #include <iostream>
 #include <vector>
+#include <map>
 
 using namespace std;
 
@@ -46,10 +47,30 @@ public:
 	void use(std::string tag, float delta, SunNode *root);
 	void send(std::string tag, float delta, SunNode *root);
 
-    inline GLuint getProgram() { return program; }
-    inline void setProgram(GLuint _program) { program = _program; }
-    inline GLuint getUniformLocation(string uniform) { return glGetUniformLocation(program, uniform.c_str()); }
+    /// Returns the next index of an array in the shader.
+    /**
+     * This function is useful when populating an array in the shader. The object
+     * maintains a map of array names and sizes. This method returns the next index
+     * for the array. If the array is not in the map already, it adds the array
+     * to the map ands sets its value to 0. Every array is cleared during the use()
+     * method.
+     * @param array The name of the array
+     */
+    int getNextArrayIndex(std::string array);
+
+    /// Returns the size of an array in the shader.
+    /**
+     * This method is useful when populating an array in the shader.
+     * @see getNextArrayIndex()
+     * @param array The name of the array
+     */
+    int getArraySize(std::string array);
+
+    GLuint getProgram() { return program; }
+    GLuint getUniformLocation(string uniform) { return glGetUniformLocation(program, uniform.c_str()); }
 private:
+    std::map<std::string, int> arrays;
+
     GLuint program;
 };
 

@@ -307,8 +307,9 @@ void main() {
 	}
 
 	// Lighting: Directional Lights
-	for (int i = 0; i < 1; i++) {
-		lighting += (1.0 - isShadowed(shadowMap, _position, normal, directionalLights[i].direction)) * _color_ * calculateLighting(directionalLights[i], _position, normal);
+	for (int i = 0; i < directionalLightCount; i++) {
+		/*lighting += (1.0 - isShadowed(shadowMap, _position, normal, directionalLights[i].direction)) * _color_ * calculateLighting(directionalLights[i], _position, normal);*/
+        lighting += _color_ * calculateLighting(directionalLights[i], _position, normal);
 	}
 
 	result = vec4(lighting, 1.0f);
