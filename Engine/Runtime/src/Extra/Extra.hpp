@@ -5,4 +5,5 @@
 #include "SunDirectionalShadowMapper.h"
 #include "SunPointLight.h"
 #include "SunPointShadowMapRenderingNode.h"
-#include "SunShadowMapper.h"
+#include "SunShadowDirectionalLight.h"
+#include "SunShadowMapRenderNode.h"

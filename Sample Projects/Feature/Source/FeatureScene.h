@@ -26,7 +26,7 @@ private:
 	// Objects
 	SunObject *plane;
 	SunPointLight *light;
-	SunDirectionalLight *dir;
+	SunShadowDirectionalLight *dir;
     std::vector<SunObject *> teapots;
 
     GLFWwindow *window;

@@ -18,6 +18,11 @@ void FeatureRenderer::init() {
     gbuffer->init();
     root->addSubNode(gbuffer);
 
+    SunShadowMapRenderNode *shadows = new SunShadowMapRenderNode(scene->getRoot());
+    shadows->addShader("shadow_directional_light", SunShader("../../Engine/Shaders/Old/ShadowMapVertex.vert", "../../Engine/Shaders/Old/ShadowMapFragment.frag"));
+    shadows->init();
+    root->addSubNode(shadows);
+
     std::vector<SunRenderNodeSceneTexture> finalTextures = {
 
     };
@@ -29,7 +34,7 @@ void FeatureRenderer::init() {
     final->addShader("quad", SunShader("../../Engine/Shaders/Old/Variable Pipeline/Quad.vert", "../../Engine/Shaders/Old/Variable Pipeline/Quad.frag", "../../Engine/Shaders/Old/DeferredQuad.pre"));
     final->init();
     gbuffer->addSubNode(final);
-    //shadows->addSubNode(final);
+    shadows->addSubNode(final);
 
     /*// GBuffer Inputs
     vector<SunRenderingNodeInput> gbufferInputs = {};

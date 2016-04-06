@@ -21,7 +21,7 @@ function update(delta)
         rotationConstant = 3
     end
     position = object.position.toTable()
-    position.y = (4 * math.sin(4 * time)) + 1
+    --position.y = (4 * math.sin(4 * time)) + 1
     object.position.assignTable(position)
     rotation = object.rotation.toTable()
     rotation.y = rotation.y + (delta * rotationConstant)

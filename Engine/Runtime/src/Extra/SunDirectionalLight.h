@@ -43,7 +43,7 @@ public:
 
     /// Sets the direction of the directional light.
     void setDirection(glm::vec3 _direction) { direction = _direction; }
-private:
+protected:
     /// The color of the directional light
     glm::vec3 color;
 

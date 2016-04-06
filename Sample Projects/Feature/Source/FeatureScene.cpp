@@ -39,10 +39,19 @@ void FeatureScene::init() {
 	plane->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f));
 	root->addSubNode(plane);
 
-	dir = new SunDirectionalLight(glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(4.0f, -4.0f, 2.0f));
-	dir->addTag("light");
+	dir = new SunShadowDirectionalLight(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(4.0f, -4.0f, 2.0f));
+    dir->setResolution(glm::ivec2(4096.0f, 4096.0f));
+    dir->setTarget(root);
+	dir->addTag("shadow_directional_light");
     dir->init();
 	root->addSubNode(dir);
+
+    SunShadowDirectionalLight *dire = new SunShadowDirectionalLight(glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(-4.0f, -4.0f, 2.0f));
+    dire->setResolution(glm::ivec2(4096.0f, 4096.0f));
+    dire->setTarget(root);
+	dire->addTag("shadow_directional_light");
+    dire->init();
+	root->addSubNode(dire);
 	/*((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setLight(dir);
 	((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setResolution(glm::vec2(4096.0f, 4096.0f));
 	((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setSize(glm::vec2(50.0f, 50.0f));

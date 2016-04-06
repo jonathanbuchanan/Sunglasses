@@ -3,6 +3,8 @@
 // See LICENSE.md for details.
 #include "SunNode.h"
 
+#include <iostream>
+
 SunNode::SunNode() {
     parentsReady = 0;
     level = 0;
@@ -21,13 +23,25 @@ void SunNode::init() {
 }
 
 void SunNode::processAction(SunAction action) {
-	if (action.parameterExists("tag") && ignoreTags == false) {
-		if (tagPresent(action.getParameter<std::string>("tag")))
-			SunBase::processAction(action);
-	} else
-		SunBase::processAction(action);
-	if (action.getRecursive() == true)
-		sendActionToAllSubNodes(action);
+    if (action.parameterExists("exclude")) {
+        if (action.getParameterPointer<SunNode>("exclude") != this) {
+            if (action.parameterExists("tag") && ignoreTags == false) {
+                if (tagPresent(action.getParameter<std::string>("tag")))
+                    SunBase::processAction(action);
+            } else
+                SunBase::processAction(action);
+            if (action.getRecursive() == true)
+                sendActionToAllSubNodes(action);
+        }
+    } else {
+        if (action.parameterExists("tag") && ignoreTags == false) {
+            if (tagPresent(action.getParameter<std::string>("tag")))
+                SunBase::processAction(action);
+        } else
+            SunBase::processAction(action);
+        if (action.getRecursive() == true)
+            sendActionToAllSubNodes(action);
+    }
 }
 
 bool SunNode::tagPresent(std::string t) {
@@ -120,11 +134,24 @@ void SunNode::recursiveDeleteSubnode(const SunNode *node) {
 }
 
 void SunNode::processAction(SunAction action, bool recursive) {
-    if (action.parameterExists("tag") && ignoreTags == false) {
-		if (tagPresent(action.getParameter<std::string>("tag")))
-			SunBase::processAction(action);
-	} else
-		SunBase::processAction(action);
-	if (action.getRecursive() == true && recursive == true)
-		sendActionToAllSubNodes(action);
+    if (action.parameterExists("exclude")) {
+        if (action.getParameterPointer<SunNode>("exclude") != this) {
+            if (action.parameterExists("tag") && ignoreTags == false) {
+                if (tagPresent(action.getParameter<std::string>("tag")))
+                    SunBase::processAction(action);
+            } else
+                SunBase::processAction(action);
+            if (action.getRecursive() == true && recursive == true)
+                sendActionToAllSubNodes(action);
+        }
+    } else {
+        if (action.parameterExists("tag") && ignoreTags == false) {
+            if (tagPresent(action.getParameter<std::string>("tag")))
+                SunBase::processAction(action);
+        } else
+            SunBase::processAction(action);
+        if (action.getRecursive() == true && recursive == true)
+            sendActionToAllSubNodes(action);
+    }
+
 }
