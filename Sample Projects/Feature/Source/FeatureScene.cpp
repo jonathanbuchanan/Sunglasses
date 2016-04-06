@@ -52,11 +52,7 @@ void FeatureScene::init() {
 	dire->addTag("shadow_directional_light");
     dire->init();
 	root->addSubNode(dire);
-	/*((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setLight(dir);
-	((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setResolution(glm::vec2(4096.0f, 4096.0f));
-	((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->setSize(glm::vec2(50.0f, 50.0f));
-    ((SunDirectionalShadowMapRenderingNode *)(renderer->getRenderingNodeForString("shadowMap0")))->init();*/
-
+    
 	textRenderer = new SunTextRenderer();
     textRenderer->init();
     textRenderer->loadFont("Resources/Graphics/Fonts/arial.ttf", "Arial");
