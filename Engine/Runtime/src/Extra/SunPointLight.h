@@ -5,64 +5,49 @@
 #ifndef SUNPOINTLIGHTOBJECT_H
 #define SUNPOINTLIGHTOBJECT_H
 
-#include "../Core/SunObject.h"
-#include <vector>
-using namespace std;
+#include "../Core/SunNode.h"
 
-#include <GL/glew.h>
 #include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include "../Core/SunGame.h"
+#include <GL/glew.h>
 
-class SunWindowManager;
-
-class SunPointLight : public SunObject {
+/// A node intended to be used as a point light in the scene graph
+/**
+ * This subclass of SunNode is intended to be used as a point light. A
+ * point light has a color and position, and its light attenuates, meaning that
+ * the light gets less intense as you go farther away.
+ */
+class SunPointLight : public SunNode {
 public:
+    /// A constructor
     SunPointLight();
+
+    /// A constructor
+    /**
+     * @param _color The color of the new point light
+     * @param _position The position of the new point light
+     */
     SunPointLight(glm::vec3 _color, glm::vec3 _position);
-    SunPointLight(string _name);
 
+    /// Initializes the point light.
     virtual void init();
-    void uniform(SunAction action);
-    void passPOVUniforms(SunShader _shader);
-	void shadowMap(SunAction action);
-	void initializeShadowMap();
 
-    inline glm::vec3 & getColor() { return color; }
-    inline void setColor(glm::vec3 _color) { color = _color; }
+    /// Updates the point light.
+    virtual void update(SunAction action);
 
-    inline GLboolean & getAttenuate() { return attenuate; }
-    inline void setAttenuate(GLboolean _attenuate) { attenuate = _attenuate; }
+    /// Passes the uniforms to a shader (color and position).
+    virtual void uniform(SunAction action);
 
-	inline void setCountUniform(std::string c) { countUniform = c; }
-	inline void setArrayUniform(std::string a) { arrayUniform = a; }
+    /// Sets the color of the point light.
+    void setColor(glm::vec3 _color) { color = _color; }
 
-	inline GLboolean & getShadows() { return shadows; }
-	inline void setShadows(GLboolean _s) { shadows = _s; }
-
-	inline glm::vec2 & getShadowMapSize() { return shadowMapSize; }
-	inline void setShadowMapSize(glm::vec2 _s) { shadowMapSize = _s; }
+    /// Sets the position of the point light.
+    void setPosition(glm::vec3 _position) { position = _position; }
 private:
-    // Color
+    /// The color of the point light
     glm::vec3 color;
 
-    // Attenuation
-    GLboolean attenuate;
-
-	// Shaders
-	int id;
-	std::string countUniform;
-	std::string arrayUniform;
-
-	static int lastId;
-
-	// Shadow Maps
-	GLboolean shadows = false;
-	glm::vec2 shadowMapSize = glm::vec2(1024.0f, 1024.0f);
-	GLuint shadowMapFramebuffer;
-	GLuint shadowMapTexture;
-	vector<glm::mat4> lightTransforms;
-	//vector<SunShaderUniformObject> _lightTransforms;
+    /// The position of the point light
+    glm::vec3 position;
 };
 
 #endif

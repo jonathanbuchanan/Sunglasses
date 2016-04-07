@@ -52,7 +52,12 @@ void FeatureScene::init() {
 	dire->addTag("shadow_directional_light");
     dire->init();
 	root->addSubNode(dire);
-    
+
+    SunPointLight *point = new SunPointLight(glm::vec3(5.0f, 0.0f, 0.0f), glm::vec3(2.5f, 5.0f, 0.0f));
+    point->addTag("point_light");
+    point->init();
+    root->addSubNode(point);
+
 	textRenderer = new SunTextRenderer();
     textRenderer->init();
     textRenderer->loadFont("Resources/Graphics/Fonts/arial.ttf", "Arial");

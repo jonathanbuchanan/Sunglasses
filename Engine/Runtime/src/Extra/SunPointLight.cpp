@@ -3,12 +3,42 @@
 // See LICENSE.md for details.
 #include "SunPointLight.h"
 
+#include "../Graphics/SunShader.h"
 
-#include <iostream>
-#include "../Graphics/SunWindowManager.h"
+SunPointLight::SunPointLight() {
 
+}
 
-int SunPointLight::lastId = 0;
+SunPointLight::SunPointLight(glm::vec3 _color, glm::vec3 _position) : color(_color), position(_position) {
+
+}
+
+void SunPointLight::init() {
+    addAction("update", &SunPointLight::update);
+    addAction("uniform", &SunPointLight::uniform);
+}
+
+void SunPointLight::update(SunAction action) {
+
+}
+
+void SunPointLight::uniform(SunAction action) {
+    SunShader *shader = action.getParameterPointer<SunShader>("shader");
+    int id = shader->getNextArrayIndex("pointLights");
+
+    // Set the uniforms for the point light's color
+    glUniform3f(shader->getUniformLocation("pointLights[" + std::to_string(id) + "].color"), color.r, color.g, color.b);
+
+    // Set the uniform for the point light's position
+    glUniform3f(shader->getUniformLocation("pointLights[" + std::to_string(id) + "].position"), position.x, position.y, position.z);
+
+    // Set the uniforms for the point light's constant, linear, and quadratic terms
+    glUniform1i(shader->getUniformLocation("pointLights[" + std::to_string(id) + "].attenuate"), true);
+
+    glUniform1i(shader->getUniformLocation("pointLightCount"), shader->getArraySize("pointLights"));
+}
+
+/*int SunPointLight::lastId = 0;
 
 SunPointLight::SunPointLight() {
     init();
@@ -43,7 +73,7 @@ void SunPointLight::uniform(SunAction action) {
 	if (action.parameterExists("usedTextureUnits"))
 		usedTextureUnits = action.getParameter<int>("usedTextureUnits");*/
 
-	if (shadows) {
+	//if (shadows) {
 		// Set the uniforms for the point light's color
     	/*glUniform3f(_shader.getUniformLocation("shadowPointLights[" + std::to_string(pointLightID) + "].color"), color.r, color.g, color.b);
 
@@ -57,7 +87,7 @@ void SunPointLight::uniform(SunAction action) {
 		glBindTexture(GL_TEXTURE_CUBE_MAP, shadowMapTexture);
 		glUniform1i(_shader.getUniformLocation("shadowPointLights[" + to_string(pointLightID) + "].shadowMap"), 1 + usedTextureUnits + pointLightID);
 		glActiveTexture(GL_TEXTURE0);*/
-	} else {
+	/*} else {
 		// Set the uniforms for the point light's color
     	glUniform3f(_shader->getUniformLocation(arrayUniform + "[" + std::to_string(id) + "].color"), color.r, color.g, color.b);
 
@@ -149,7 +179,7 @@ void SunPointLight::initializeShadowMap() {
     	uniform.setValue(&lightTransforms[i]);
 
     	_lightTransforms.push_back(uniform);*/
-    }
+    //}
 
     /*SunShaderUniformObject positionUniform;
 
@@ -158,4 +188,4 @@ void SunPointLight::initializeShadowMap() {
     positionUniform.setValue(&this->getPosition());
 
     _lightTransforms.push_back(positionUniform);*/
-}
+//}

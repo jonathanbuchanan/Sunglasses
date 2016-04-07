@@ -7,9 +7,8 @@
 
 #include "../Core/SunNode.h"
 
-#include <GL/glew.h>
 #include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+#include <GL/glew.h>
 
 /// A node intended to be used as a directional light in the scene graph
 /**
