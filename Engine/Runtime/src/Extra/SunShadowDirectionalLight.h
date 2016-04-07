@@ -6,6 +6,7 @@
 
 #include "SunDirectionalLight.h"
 
+/// A directional light that renders shadow maps
 class SunShadowDirectionalLight : public SunDirectionalLight {
 public:
     /// A constructor

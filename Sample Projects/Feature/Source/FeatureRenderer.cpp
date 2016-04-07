@@ -20,6 +20,7 @@ void FeatureRenderer::init() {
 
     SunShadowMapRenderNode *shadows = new SunShadowMapRenderNode(scene->getRoot());
     shadows->addShader("shadow_directional_light", SunShader("../../Engine/Shaders/Old/ShadowMapVertex.vert", "../../Engine/Shaders/Old/ShadowMapFragment.frag"));
+    shadows->addShader("shadow_point_light", SunShader("../../Engine/Shaders/Old/Variable Pipeline/Scene.vert", "../../Engine/Shaders/Old/Variable Pipeline/Scene.geom", "../../Engine/Shaders/Old/Variable Pipeline/Scene.frag", "../../Engine/Shaders/Old/PointShadowMap.pre"));
     shadows->init();
     root->addSubNode(shadows);
 

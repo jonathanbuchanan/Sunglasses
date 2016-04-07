@@ -3,6 +3,6 @@
 // See LICENSE.md for details.
 #include "SunDirectionalLight.h"
 #include "SunPointLight.h"
-#include "SunPointShadowMapRenderingNode.h"
 #include "SunShadowDirectionalLight.h"
 #include "SunShadowMapRenderNode.h"
+#include "SunShadowPointLight.h"

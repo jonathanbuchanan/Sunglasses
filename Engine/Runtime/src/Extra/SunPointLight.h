@@ -42,7 +42,7 @@ public:
 
     /// Sets the position of the point light.
     void setPosition(glm::vec3 _position) { position = _position; }
-private:
+protected:
     /// The color of the point light
     glm::vec3 color;
 

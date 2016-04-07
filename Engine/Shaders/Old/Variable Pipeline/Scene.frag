@@ -75,7 +75,7 @@ void main() {
         color = vec4(material.diffuse, 1.0);
     #endif
     #endif
-    
+
     #ifdef OUTPUT_POSITION
         position.xyz = _input.position;
     #endif
@@ -83,11 +83,11 @@ void main() {
     #ifdef OUTPUT_DEPTH_SS
         position.w = linearDepth(gl_FragCoord.z, camera);
     #endif
-    
+
     #ifdef OUTPUT_NORMAL
         normal = _input.normal;
     #endif
-    
+
     #ifdef OUTPUT_DEPTH
         float farPlane = 100.0f;
         float lightDistance = length(_input_geo.position.xyz - lightPosition);
