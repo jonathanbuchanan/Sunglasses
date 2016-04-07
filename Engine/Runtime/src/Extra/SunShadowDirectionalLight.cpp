@@ -49,13 +49,9 @@ void SunShadowDirectionalLight::shadowMap(SunAction action) {
 
     clear();
 
-    glm::vec2 size = glm::vec2(10.0f, 10.0f);
-    GLfloat nearPlane = 0.01f;
-    GLfloat farPlane = 100.0f;
-
     // Create the light-space matrix
 	glm::mat4 projection = glm::ortho(-size.x, size.x, -size.y, size.y, nearPlane, farPlane);
-	glm::mat4 view = glm::lookAt(-direction, glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	glm::mat4 view = glm::lookAt(center + (distance * glm::normalize(-direction)), center, glm::vec3(0.0f, 1.0f, 0.0f));
 	glm::mat4 lightMatrix = projection * view;
 
 	glUniformMatrix4fv(shader->getUniformLocation("lightMatrix"), 1, GL_FALSE, glm::value_ptr(lightMatrix));
@@ -85,12 +81,8 @@ void SunShadowDirectionalLight::uniform(SunAction action) {
 
     glUniform1i(shader->getUniformLocation("shadowDirectionalLightCount"), shader->getArraySize("shadowDirectionalLights"));
 
-    glm::vec2 size = glm::vec2(10.0f, 10.0f);
-    GLfloat nearPlane = 0.01f;
-    GLfloat farPlane = 100.0f;
-
     glm::mat4 projection = glm::ortho(-size.x, size.x, -size.y, size.y, nearPlane, farPlane);
-	glm::mat4 view = glm::lookAt(-direction, glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	glm::mat4 view = glm::lookAt(center + (distance * glm::normalize(-direction)), center, glm::vec3(0.0f, 1.0f, 0.0f));
 	glm::mat4 lightMatrix = projection * view;
 
 	glUniformMatrix4fv(shader->getUniformLocation("shadowDirectionalLights[" + std::to_string(id) + "].lightMatrix"), 1, GL_FALSE, glm::value_ptr(lightMatrix));

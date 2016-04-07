@@ -39,26 +39,27 @@ void FeatureScene::init() {
 	plane->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f));
 	root->addSubNode(plane);
 
-	/*dir = new SunShadowDirectionalLight(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(4.0f, -4.0f, 2.0f));
+	dir = new SunShadowDirectionalLight(glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.2f, -1.0f, 0.4f));
     dir->setResolution(glm::ivec2(4096, 4096));
+    dir->setDistance(10.0f);
     dir->setTarget(root);
 	dir->addTag("shadow_directional_light");
     dir->init();
 	root->addSubNode(dir);
 
-    SunShadowDirectionalLight *dire = new SunShadowDirectionalLight(glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(-4.0f, -4.0f, 2.0f));
+    /*SunShadowDirectionalLight *dire = new SunShadowDirectionalLight(glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(-4.0f, -4.0f, 2.0f));
     dire->setResolution(glm::ivec2(4096, 4096));
     dire->setTarget(root);
 	dire->addTag("shadow_directional_light");
     dire->init();
 	root->addSubNode(dire);*/
 
-    SunShadowPointLight *point = new SunShadowPointLight(glm::vec3(0.0f, 5.0f, 0.0f), glm::vec3(0.0f, 7.0f, 0.0f));
+    /*SunShadowPointLight *point = new SunShadowPointLight(glm::vec3(0.0f, 5.0f, 0.0f), glm::vec3(0.0f, 7.0f, 0.0f));
     point->setResolution(1024);
     point->setTarget(root);
     point->addTag("shadow_point_light");
     point->init();
-    root->addSubNode(point);
+    root->addSubNode(point);*/
 
 	textRenderer = new SunTextRenderer();
     textRenderer->init();
