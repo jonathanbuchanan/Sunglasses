@@ -54,9 +54,7 @@ void SunShadowPointLight::shadowMap(SunAction action) {
 
     clear();
 
-    GLfloat nearPlane = 0.01f;
-    GLfloat farPlane = 100.0f;
-    glm::mat4 projection = glm::perspective(90.0f, 1.0f, nearPlane, farPlane); // FOV = 90 degrees, aspect ration = resolution / resolution = 1
+    glm::mat4 projection = glm::perspective(90.0f, 1.0f, nearPlane, farPlane); // FOV = 90 degrees, aspect ratio = resolution / resolution = 1
 
     glm::mat4 transforms[6];
     transforms[0] = projection * glm::lookAt(position, position + glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f));
@@ -68,7 +66,8 @@ void SunShadowPointLight::shadowMap(SunAction action) {
 
     for (int i = 0; i < 6; ++i)
         glUniformMatrix4fv(shader->getUniformLocation("shadowMatrices[" + std::to_string(i) + "]"), 1, GL_FALSE, glm::value_ptr(transforms[i]));
-    glUniform3fv(shader->getUniformLocation("lightPosition"), 1, &position[0]);
+    glUniform3f(shader->getUniformLocation("lightPosition"), position.x, position.y, position.z);
+    glUniform1f(shader->getUniformLocation("farPlane"), farPlane);
 
     SunAction render("render");
     render.setRecursive(true);
@@ -92,9 +91,12 @@ void SunShadowPointLight::uniform(SunAction action) {
 
     glUniform1i(shader->getUniformLocation("shadowPointLights[" + std::to_string(id) + "].attenuate"), true);
 
-    glActiveTexture(GL_TEXTURE10 + id);
+    glUniform1f(shader->getUniformLocation("shadowPointLights[" + std::to_string(id) + "].farPlane"), farPlane);
+
+    int textureUnit = shader->getNextTextureUnit();
+    glActiveTexture(GL_TEXTURE0 + textureUnit);
     glBindTexture(GL_TEXTURE_CUBE_MAP, texture);
-    glUniform1i(shader->getUniformLocation("shadowPointLights[" + to_string(id) + "].shadowMap"), 10 + id);
+    glUniform1i(shader->getUniformLocation("shadowPointLights[" + to_string(id) + "].shadowMap"), textureUnit);
 
     glUniform1i(shader->getUniformLocation("shadowPointLightCount"), shader->getArraySize("shadowPointLights"));
 }

@@ -36,6 +36,12 @@ public:
 
     /// Sets the resolution of the shadow map
     void setResolution(GLint _resolution) { resolution = _resolution; }
+
+    /// Sets the near plane
+    void setNearPlane(GLfloat _nearPlane) { nearPlane = _nearPlane; }
+
+    /// Sets the far plane
+    void setFarPlane(GLfloat _farPlane) { farPlane = _farPlane; }
 private:
     /// The framebuffer object
     GLuint fbo;
@@ -48,6 +54,12 @@ private:
 
     /// The resolution of the shadow map (length of the cubemap edges)
     GLint resolution;
+
+    /// The near plane of the shadow map projection matrix
+    GLfloat nearPlane = 0.01f;
+
+    /// The far plane of the shadow map projection matrix
+    GLfloat farPlane = 100.0f;
 };
 
 #endif

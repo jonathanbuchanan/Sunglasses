@@ -55,6 +55,9 @@ struct ShadowPointLight {
 	// Attenuation
 	bool attenuate;
 
+    // Far Plane
+    float farPlane;
+
 	// Shadow Map
 	samplerCube shadowMap;
 };
@@ -113,10 +116,10 @@ float isShadowed(sampler2D shadow, vec3 position, vec3 normal, vec3 direction, m
 	return currentDepth - bias > closestDepth ? 1.0 : 0.0;
 }
 
-float isShadowed(samplerCube cubemap, vec3 lightPosition, vec3 position) {
+float isShadowed(samplerCube cubemap, vec3 lightPosition, vec3 position, float farPlane) {
     vec3 fragmentToLight = position - lightPosition;
     float closestDepth = texture(cubemap, fragmentToLight).r;
-    closestDepth *= 100.0f;
+    closestDepth *= farPlane;
     float currentDepth = length(fragmentToLight);
     float bias = 0.05f;
     float shadow = currentDepth - bias > closestDepth ? 1.0 : 0.0;
@@ -159,7 +162,7 @@ vec3 calculateLighting(PointLight _pointLight, vec3 _position, vec3 _normal) {
 }
 
 vec3 calculateLighting(ShadowPointLight _pointLight, vec3 _position, vec3 _normal) {
-	if (isShadowed(_pointLight.shadowMap, _pointLight.position, _position) == 0.0) {
+	if (isShadowed(_pointLight.shadowMap, _pointLight.position, _position, _pointLight.farPlane) == 0.0) {
 		// Calculate Attenuation
 
   		float attenuation = 1.0f;

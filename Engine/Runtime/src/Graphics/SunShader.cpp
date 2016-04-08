@@ -235,6 +235,7 @@ void SunShader::uniforms(SunNode *root) {
 void SunShader::use() {
     for (auto &iterator : arrays)
         iterator.second = 0;
+    usedTextureUnits = 0;
 
     glUseProgram(this->program);
 }
@@ -268,6 +269,10 @@ int SunShader::getNextArrayIndex(std::string array) {
         arrays[array] = 0;
     arrays[array] += 1;
     return arrays[array] - 1;
+}
+
+int SunShader::getNextTextureUnit() {
+    return usedTextureUnits++;
 }
 
 int SunShader::getArraySize(std::string array) {

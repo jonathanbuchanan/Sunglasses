@@ -39,7 +39,7 @@ void FeatureScene::init() {
 	plane->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f));
 	root->addSubNode(plane);
 
-	dir = new SunShadowDirectionalLight(glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.2f, -1.0f, 0.4f));
+	dir = new SunShadowDirectionalLight(glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.2f, -1.0f, 0.4f));
     dir->setResolution(glm::ivec2(4096, 4096));
     dir->setDistance(10.0f);
     dir->setTarget(root);
@@ -54,12 +54,12 @@ void FeatureScene::init() {
     dire->init();
 	root->addSubNode(dire);*/
 
-    /*SunShadowPointLight *point = new SunShadowPointLight(glm::vec3(0.0f, 5.0f, 0.0f), glm::vec3(0.0f, 7.0f, 0.0f));
-    point->setResolution(1024);
+    SunShadowPointLight *point = new SunShadowPointLight(glm::vec3(0.0f, 5.0f, 0.0f), glm::vec3(0.0f, 7.0f, 3.0f));
+    point->setResolution(2048);
     point->setTarget(root);
     point->addTag("shadow_point_light");
     point->init();
-    root->addSubNode(point);*/
+    root->addSubNode(point);
 
 	textRenderer = new SunTextRenderer();
     textRenderer->init();

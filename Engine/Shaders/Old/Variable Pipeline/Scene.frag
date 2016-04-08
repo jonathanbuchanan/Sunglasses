@@ -34,6 +34,7 @@ in geometry_fragment {
 
 #ifdef POINT_SHADOW_MAP
 uniform vec3 lightPosition;
+uniform float farPlane;
 #endif
 
 #ifdef RENDER_TEXTURED
@@ -89,7 +90,6 @@ void main() {
     #endif
 
     #ifdef OUTPUT_DEPTH
-        float farPlane = 100.0f;
         float lightDistance = length(_input_geo.position.xyz - lightPosition);
         lightDistance = lightDistance / farPlane;
         gl_FragDepth = lightDistance;

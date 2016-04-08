@@ -58,6 +58,14 @@ public:
      */
     int getNextArrayIndex(std::string array);
 
+    /// Returns the next texture unit.
+    /**
+     * This method returns the next available texture unit for use in glActiveTexture().
+     * It also increments the usedTextureUnits member.
+     * @return The next available texture unit
+     */
+    int getNextTextureUnit();
+
     /// Returns the size of an array in the shader.
     /**
      * This method is useful when populating an array in the shader.
@@ -69,8 +77,19 @@ public:
     GLuint getProgram() { return program; }
     GLuint getUniformLocation(string uniform) { return glGetUniformLocation(program, uniform.c_str()); }
 private:
+    /// The map of arrays
     std::map<std::string, int> arrays;
 
+    /// The number of used texture units
+    /**
+     * This member is used to get the next available texture unit during rendering.
+     * Use getNextTextureUnit() to get the next texture unit. Pass the returned value
+     * plus GL_TEXTURE0
+     * to glActiveTexture(). This value is reset when use() is called.
+     */
+    int usedTextureUnits = 0;
+
+    /// The program in the OpenGL context
     GLuint program;
 };
 

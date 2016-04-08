@@ -24,8 +24,6 @@ public:
     void init();
 
     void render(SunAction action);
-    /*void render(map<string, pair<GLuint, GLuint>> _textures, SunShader _shader);
-    void renderWithUsedShader(map<string, pair<GLuint, GLuint>> _textures, SunShader _shader);*/
 private:
     // Vertices, indices, and textures
     vector<SunVertex> vertices = {

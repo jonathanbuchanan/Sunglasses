@@ -75,9 +75,10 @@ void SunShadowDirectionalLight::uniform(SunAction action) {
 
     glUniform3f(shader->getUniformLocation("shadowDirectionalLights[" + std::to_string(id) + "].direction"), direction.x, direction.y, direction.z);
 
-    glActiveTexture(GL_TEXTURE14 + id);
+    int textureUnit = shader->getNextTextureUnit();
+    glActiveTexture(GL_TEXTURE0 + textureUnit);
     glBindTexture(GL_TEXTURE_2D, texture);
-    glUniform1i(shader->getUniformLocation("shadowDirectionalLights[" + std::to_string(id) + "].shadowMap"), 14 + id);
+    glUniform1i(shader->getUniformLocation("shadowDirectionalLights[" + std::to_string(id) + "].shadowMap"), textureUnit);
 
     glUniform1i(shader->getUniformLocation("shadowDirectionalLightCount"), shader->getArraySize("shadowDirectionalLights"));
 
