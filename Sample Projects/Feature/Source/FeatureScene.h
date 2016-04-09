@@ -19,13 +19,14 @@ public:
 private:
     // GUI
     SunGUISystem guiSystem = SunGUISystem();
+
     std::weak_ptr<SunGUIMenu> menu;
     std::weak_ptr<SunGUIItem> item;
     std::weak_ptr<SunGUIItem> back;
 
     // Objects
     std::weak_ptr<SunObject> plane;
-    std::weak_ptr<SunDirectionalLight> dir;
+    std::weak_ptr<SunShadowDirectionalLight> dir;
     std::vector<std::weak_ptr<SunObject>> teapots;
     std::weak_ptr<SunCamera> camera;
 

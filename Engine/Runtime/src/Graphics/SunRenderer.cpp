@@ -8,7 +8,7 @@ void SunRenderer::render() {
     SunAction renderAction("render");
     renderAction.setRecursive(true);
 
-    sendAction(renderAction, rootRenderNode.get());
+    sendAction(renderAction, root);
 }
 
 void SunRenderer::swapBuffers() {
@@ -16,4 +16,6 @@ void SunRenderer::swapBuffers() {
     ((SunWindowManager *)getService("window_manager"))->swapBuffers();
 }
 
-void SunRenderer::init() { }
+void SunRenderer::init() {
+    root = new SunNode();
+}

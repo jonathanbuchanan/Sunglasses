@@ -122,7 +122,18 @@ public:
 
     /// Gets the size of the vector of parents (int).
     int getParentsSize() { return parents.size(); }
+
+    /// Gets the parent (SunNode pointer) at the specified index (int).
+    SunNode * getParentAtIndex(int i) { return parents[i]; }
 protected:
+    /// Processes the action with control of recursion.
+    /**
+     * This method is the same as the public processAction, except it gives you
+     * control over recursion (overrides the SunAction property). This is used
+     * when processing a recursive action.
+     */
+    virtual void processAction(SunAction action, bool recursive);
+
     /// The number of parents ready (useful when performing a recursive action with multiple parents)
     int parentsReady;
 

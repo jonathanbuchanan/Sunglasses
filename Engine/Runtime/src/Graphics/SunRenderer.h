@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-#include "SunRenderingNode.h"
+#include "SunRenderNode.h"
 #include "SunTexturedQuad.h"
 #include "SunPrimitives.h"
 #include "SunCamera.h"
@@ -22,23 +22,13 @@ public:
     void swapBuffers();
     virtual void init();
 
-    void setSceneNode(SunScene *s) { scene = s; }
-
-    std::shared_ptr<SunNode> getRootRenderNode() { return rootRenderNode; }
-    void setRootRenderNode(std::shared_ptr<SunNode> _root) { rootRenderNode = _root; }
-
-    std::shared_ptr<SunNode> getRenderingNodeForString(std::string string) { return renderingNodeMap[string]; }
-    void addRenderingNodeForString(std::shared_ptr<SunNode> node, std::string string) { renderingNodeMap[string] = node; }
-
-    void setWindow(GLFWwindow *w) { window = w; }
+	void setSceneNode(SunScene *s) { scene = s; }
 protected:
-    // Scene Objects
-    SunScene *scene;
-    std::shared_ptr<SunNode> rootRenderNode;
+	// Scene Objects
+	SunScene *scene;
+    SunNode *root;
 
-    std::map<std::string, std::shared_ptr<SunNode>> renderingNodeMap;
-private:
-    GLFWwindow *window;
+	std::map<std::string, SunNode *> renderingNodeMap;
 };
 
 #endif

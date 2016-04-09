@@ -10,6 +10,7 @@
 #include <sstream>
 #include <iostream>
 #include <vector>
+#include <map>
 
 #include <GL/glew.h>
 
@@ -44,10 +45,49 @@ public:
     void use(std::string tag, float delta, SunNode *root);
     void send(std::string tag, float delta, SunNode *root);
 
-    inline GLuint getProgram() { return program; }
-    inline void setProgram(GLuint _program) { program = _program; }
-    inline GLuint getUniformLocation(std::string uniform) { return glGetUniformLocation(program, uniform.c_str()); }
+    /// Returns the next index of an array in the shader.
+    /**
+     * This function is useful when populating an array in the shader. The object
+     * maintains a map of array names and sizes. This method returns the next index
+     * for the array. If the array is not in the map already, it adds the array
+     * to the map ands sets its value to 0. Every array is cleared during the use()
+     * method.
+     * @param array The name of the array
+     */
+    int getNextArrayIndex(std::string array);
+
+    /// Returns the next texture unit.
+    /**
+     * This method returns the next available texture unit for use in glActiveTexture().
+     * It also increments the usedTextureUnits member.
+     * @return The next available texture unit
+     */
+    int getNextTextureUnit();
+
+    /// Returns the size of an array in the shader.
+    /**
+     * This method is useful when populating an array in the shader.
+     * @see getNextArrayIndex()
+     * @param array The name of the array
+     */
+    int getArraySize(std::string array);
+
+    GLuint getProgram() { return program; }
+    GLuint getUniformLocation(std::string uniform) { return glGetUniformLocation(program, uniform.c_str()); }
 private:
+    /// The map of arrays
+    std::map<std::string, int> arrays;
+
+    /// The number of used texture units
+    /**
+     * This member is used to get the next available texture unit during rendering.
+     * Use getNextTextureUnit() to get the next texture unit. Pass the returned value
+     * plus GL_TEXTURE0
+     * to glActiveTexture(). This value is reset when use() is called.
+     */
+    int usedTextureUnits = 0;
+
+    /// The program in the OpenGL context
     GLuint program;
 };
 

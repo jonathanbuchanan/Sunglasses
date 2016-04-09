@@ -4,8 +4,41 @@
 #include "FeatureRenderer.h"
 
 void FeatureRenderer::init() {
-    // GBuffer Inputs
-    std::vector<SunRenderingNodeInput> gbufferInputs = {};
+    SunRenderer::init();
+
+    std::vector<SunRenderNodeSceneTexture> rootTextures = {
+        SunRenderNodeSceneTexture("position", GL_RGB16F, GL_RGB, GL_FLOAT),
+        SunRenderNodeSceneTexture("normal", GL_RGB16F, GL_RGB, GL_FLOAT),
+        SunRenderNodeSceneTexture("_color", GL_RGB, GL_RGB, GL_UNSIGNED_BYTE)
+    };
+    std::shared_ptr<SunRenderNodeScene> gbuffer = std::shared_ptr<SunRenderNodeScene>(new SunRenderNodeScene(scene->getRoot(), rootTextures));
+    gbuffer->setSize(glm::vec2(800.0f, 600.0f));
+    gbuffer->addShader("textured", SunShader("../../Engine/Shaders/Old/Variable Pipeline/Scene.vert", "../../Engine/Shaders/Old/Variable Pipeline/Scene.frag", "../../Engine/Shaders/Old/TexturedScene.pre"));
+    gbuffer->addShader("solid", SunShader("../../Engine/Shaders/Old/Variable Pipeline/Scene.vert", "../../Engine/Shaders/Old/Variable Pipeline/Scene.frag", "../../Engine/Shaders/Old/SolidScene.pre"));
+    gbuffer->init();
+    root->addSubNode(gbuffer);
+
+    std::shared_ptr<SunShadowMapRenderNode> shadows = std::shared_ptr<SunShadowMapRenderNode>(new SunShadowMapRenderNode(scene->getRoot()));
+    shadows->addShader("shadow_directional_light", SunShader("../../Engine/Shaders/Old/ShadowMapVertex.vert", "../../Engine/Shaders/Old/ShadowMapFragment.frag"));
+    shadows->addShader("shadow_point_light", SunShader("../../Engine/Shaders/Old/Variable Pipeline/Scene.vert", "../../Engine/Shaders/Old/Variable Pipeline/Scene.geom", "../../Engine/Shaders/Old/Variable Pipeline/Scene.frag", "../../Engine/Shaders/Old/PointShadowMap.pre"));
+    shadows->init();
+    root->addSubNode(shadows);
+
+    std::vector<SunRenderNodeSceneTexture> finalTextures = {
+
+    };
+    SunTexturedQuad *quad = new SunTexturedQuad();
+    quad->init();
+    std::shared_ptr<SunRenderNodeScene> final = std::shared_ptr<SunRenderNodeScene>(new SunRenderNodeScene(quad, scene->getRoot(), finalTextures));
+    final->setSize(glm::vec2(800.0f, 600.0f));
+    final->setDrawToScreen(true);
+    final->addShader("quad", SunShader("../../Engine/Shaders/Old/Variable Pipeline/Quad.vert", "../../Engine/Shaders/Old/Variable Pipeline/Quad.frag", "../../Engine/Shaders/Old/DeferredQuad.pre"));
+    final->init();
+    gbuffer->addSubNode(final);
+    shadows->addSubNode(final);
+
+    /*// GBuffer Inputs
+    vector<SunRenderingNodeInput> gbufferInputs = {};
 
     // GBuffer Outputs
     std::vector<SunRenderingNodeOutput> gbufferOutputs;
@@ -57,5 +90,5 @@ void FeatureRenderer::init() {
     finalNode->setShaders(finalShaders);
     finalNode->init();
     shadowMap0->addSubNode(finalNode);
-    addRenderingNodeForString(finalNode, "final");
+	addRenderingNodeForString(finalNode, "final");*/
 }

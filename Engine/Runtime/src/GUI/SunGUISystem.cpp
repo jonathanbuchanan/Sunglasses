@@ -10,7 +10,6 @@ void SunGUISystem::init() {
 void SunGUISystem::render(SunAction action) {
     glEnable(GL_BLEND);
 
-    // Loop through the sub-objects and force them to render
     sendActionToAllSubNodes(action);
 
     glDisable(GL_BLEND);
