@@ -25,17 +25,28 @@ enum SunShaderSourceType {
 
 extern std::string getShaderCodeFromFile(std::string filepath);
 extern GLuint compileShaderFromString(std::string shaderString, GLint shaderType);
-extern GLuint compileShaderFromStrings(std::vector<std::string> shaderStrings, GLint shaderType);
 
 class SunShader : public SunBase {
 public:
-    SunShader() { }
+    /// Constructor
+    SunShader();
+
+    /// Constructs the shader from a list of sources
+    /**
+     * This constructor loads the shader from the list of shaders. Each element
+     * in the sources vector is a pair. The first part of the pair is the path
+     * to the shader source, and the second part of the pair is an enum identifying
+     * the type of shader (vertex, fragment, geometry, etc.).
+     * @param sources The vector of sources
+     */
+    SunShader(std::vector<std::pair<std::string, SunShaderSourceType>> sources);
+    /*SunShader() { }
 
     SunShader(std::string vertexPath, std::string fragmentPath);
     SunShader(std::string vertexPath, std::string fragmentPath, std::string preprocessorPath);
     SunShader(std::string vertexPath, std::string geometryPath, std::string fragmentPath, std::string preprocessorPath);
     SunShader(std::vector<std::string> sources, std::vector<SunShaderSourceType> sourceTypes, std::string preprocessorPath);
-    SunShader(std::string vertexPath, std::string geometryPath, std::string fragmentPath, int a);
+    SunShader(std::string vertexPath, std::string geometryPath, std::string fragmentPath, int a);*/
 
     void init();
 

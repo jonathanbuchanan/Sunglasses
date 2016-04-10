@@ -28,26 +28,40 @@ GLuint compileShaderFromString(std::string shaderString, GLint shaderType) {
     return shader;
 }
 
-GLuint compileShaderFromStrings(std::vector<std::string> shaderStrings, GLint shaderType) {
-    const GLchar *sources[shaderStrings.size()];
-    for (size_t i = 0; i < shaderStrings.size(); i++) {
-        sources[i] = shaderStrings[i].c_str();
-    }
-    GLuint shader;
-    GLint success;
-    GLchar infoLog[512];
-    shader = glCreateShader(shaderType);
-    glShaderSource(shader, shaderStrings.size(), sources, NULL);
-    glCompileShader(shader);
-    glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
-    if (!success) {
-        glGetShaderInfoLog(shader, 512, NULL, infoLog);
-    }
-    return shader;
+SunShader::SunShader() {
 
 }
 
-SunShader::SunShader(std::string vertexPath, std::string fragmentPath) {
+SunShader::SunShader(std::vector<std::pair<std::string, SunShaderSourceType>> sources) {
+    size_t components = sources.size();
+
+    std::vector<std::string> code;
+    for (size_t i = 0; i < components; ++i) {
+        code.push_back(getShaderCodeFromFile(sources[i].first));
+    }
+
+    std::vector<GLuint> shaders;
+    for (size_t i = 0; i < components; ++i) {
+        SunShaderSourceType type = sources[i].second;
+        shaders.push_back(compileShaderFromString(code[i], type));
+    }
+
+    GLint success;
+    GLchar infoLog[512];
+    program = glCreateProgram();
+    for (size_t i = 0; i < components; i++)
+        glAttachShader(this->program, shaders[i]);
+    glLinkProgram(this->program);
+    glGetProgramiv(this->program, GL_LINK_STATUS, &success);
+    if (!success) {
+        glGetProgramInfoLog(this->program, 2048, NULL, infoLog);
+        std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
+    }
+    for (size_t i = 0; i < components; ++i)
+        glDeleteShader(shaders[i]);
+}
+
+/*SunShader::SunShader(std::string vertexPath, std::string fragmentPath) {
     ((SunLogger *)getService("logger"))->log("Attempting to load shader from " + vertexPath + " and " + fragmentPath);
     std::string vertexCode = getShaderCodeFromFile(vertexPath);
     std::string fragmentCode = getShaderCodeFromFile(fragmentPath);
@@ -219,7 +233,7 @@ SunShader::SunShader(std::string vertexPath, std::string geometryPath, std::stri
     glDeleteShader(vertex);
     glDeleteShader(geometry);
     glDeleteShader(fragment);
-}
+}*/
 
 void SunShader::init() {
 

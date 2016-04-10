@@ -4,6 +4,11 @@
 #include "SunGUIItemMesh.h"
 
 void SunGUIItemMesh::setUpGL() {
+    shader = SunShader({
+        {"../../Engine/Shaders/Old/2DQuad.vert", SunShaderSourceTypeVertex},
+        {"../../Engine/Shaders/Old/2DQuad.frag", SunShaderSourceTypeFragment}
+    });
+
     glGenVertexArrays(1, &VAO);
 
     // Generate the VBO and EBO

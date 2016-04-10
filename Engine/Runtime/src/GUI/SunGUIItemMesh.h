@@ -64,7 +64,7 @@ private:
     std::vector<GLuint> textures;
 
     // Shader
-    SunShader shader = SunShader("../../Engine/Shaders/Old/2DQuad.vert", "../../Engine/Shaders/Old/2DQuad.frag");
+    SunShader shader;
 
     // VBO, EBO, and VAO
     GLuint VBO;
