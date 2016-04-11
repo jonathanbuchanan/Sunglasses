@@ -22,13 +22,13 @@ public:
     void swapBuffers();
     virtual void init();
 
-	void setSceneNode(SunScene *s) { scene = s; }
+    void setSceneNode(SunScene *s) { scene = s; }
 protected:
-	// Scene Objects
-	SunScene *scene;
+    // Scene Objects
+    SunScene *scene;
     SunNode *root;
 
-	std::map<std::string, SunNode *> renderingNodeMap;
+    std::map<std::string, SunNode *> renderingNodeMap;
 };
 
 #endif

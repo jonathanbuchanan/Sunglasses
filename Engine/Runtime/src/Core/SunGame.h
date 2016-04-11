@@ -91,7 +91,7 @@ public:
      * @param title The title of the window.
      * @param color The background color of the window.
      */
-	virtual void init(std::string title, glm::vec4 color);
+    virtual void init(std::string title, glm::vec4 color);
 
     /// Initializes the services with the parameters and the game using command line options.
     /**

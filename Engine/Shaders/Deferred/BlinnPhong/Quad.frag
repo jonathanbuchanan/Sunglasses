@@ -28,39 +28,39 @@ struct PointLight {
 };
 
 struct ShadowPointLight {
-	// Color
-	vec3 color;
+    // Color
+    vec3 color;
 
-	// Position
-	vec3 position;
+    // Position
+    vec3 position;
 
-	// Attenuation
-	bool attenuate;
+    // Attenuation
+    bool attenuate;
 
     // Far Plane
     float farPlane;
 
-	// Shadow Map
-	samplerCube shadowMap;
+    // Shadow Map
+    samplerCube shadowMap;
 };
 
 struct DirectionalLight {
-	// Color
-	vec3 color;
+    // Color
+    vec3 color;
 
-	// Direction
-	vec3 direction;
+    // Direction
+    vec3 direction;
 };
 
 struct ShadowDirectionalLight {
-	// Color
-	vec3 color;
+    // Color
+    vec3 color;
 
-	// Direction
-	vec3 direction;
+    // Direction
+    vec3 direction;
 
-	// Shadow Map
-	sampler2D shadowMap;
+    // Shadow Map
+    sampler2D shadowMap;
 
     // Light-Space Matrix
     mat4 lightMatrix;
@@ -79,15 +79,15 @@ uniform int shadowDirectionalLightCount;
 uniform ShadowDirectionalLight shadowDirectionalLights[4];
 
 float isShadowed(sampler2D shadow, vec3 position, vec3 normal, vec3 direction, mat4 matrix) {
-	vec4 fragPosLightSpace = matrix * vec4(position, 1.0f);
-	vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
-	projCoords = projCoords * 0.5 + 0.5;
-	float closestDepth = texture(shadow, projCoords.xy).r;
-	float currentDepth = projCoords.z;
+    vec4 fragPosLightSpace = matrix * vec4(position, 1.0f);
+    vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
+    projCoords = projCoords * 0.5 + 0.5;
+    float closestDepth = texture(shadow, projCoords.xy).r;
+    float currentDepth = projCoords.z;
     /*float bias = 0.005f * tan(acos(clamp(dot(normal, direction), 0.0f, 1.0f)));
     bias = clamp(bias, 0.0f, 0.01f);*/
     float bias = max(0.05 * (1.0 - dot(normal, -direction)), 0.005);
-	return currentDepth - bias > closestDepth ? 1.0 : 0.0;
+    return currentDepth - bias > closestDepth ? 1.0 : 0.0;
 }
 
 float isShadowed(samplerCube cubemap, vec3 lightPosition, vec3 position, float farPlane) {
@@ -135,45 +135,45 @@ vec3 calculateLighting(PointLight _pointLight, vec3 _position, vec3 _normal) {
 }
 
 vec3 calculateLighting(ShadowPointLight _pointLight, vec3 _position, vec3 _normal) {
-	if (isShadowed(_pointLight.shadowMap, _pointLight.position, _position, _pointLight.farPlane) == 0.0) {
-		// Calculate Attenuation
+    if (isShadowed(_pointLight.shadowMap, _pointLight.position, _position, _pointLight.farPlane) == 0.0) {
+        // Calculate Attenuation
 
-  		float attenuation = 1.0f;
-  		if (_pointLight.attenuate == true) {
-  	    	float distance = length(_pointLight.position - _position);
-  	    	//attenuation = 1.0f / (constant + linear * distance + quadratic * (distance * distance));
-   		}
+          float attenuation = 1.0f;
+          if (_pointLight.attenuate == true) {
+              float distance = length(_pointLight.position - _position);
+              //attenuation = 1.0f / (constant + linear * distance + quadratic * (distance * distance));
+           }
 
-    	// Diffuse Lighting
-
-
-   		// Calculate the direction of the light to the fragment
-    	vec3 lightDirection = normalize(_pointLight.position - _position);
-
-    	// Calculate the dot product of the normal and the light direction, then choose 0 if lower than 0
-    	float diffuse = max(dot(_normal, lightDirection), 0.0);
-
-    	// Specular Lighting
+        // Diffuse Lighting
 
 
-    	// Calculate the direction of the view to the fragment
-    	vec3 viewDirection = normalize(viewPosition - _position);
+           // Calculate the direction of the light to the fragment
+        vec3 lightDirection = normalize(_pointLight.position - _position);
 
-    	// Calculate the halfway vector
-    	vec3 halfway = normalize(lightDirection + viewDirection);
+        // Calculate the dot product of the normal and the light direction, then choose 0 if lower than 0
+        float diffuse = max(dot(_normal, lightDirection), 0.0);
 
-    	// Calculate the dot product of the normal and the halfway vector, then choose 0 if lower than 0, then raise to the shininess exponent
-    	float specular = pow(max(dot(_normal, halfway), 0.0), 128);
+        // Specular Lighting
 
-    	// Return the diffuse value + the specular value
-    	return _pointLight.color * (diffuse + specular) * attenuation;
-	} else {
-		return vec3(0.0f, 0.0f, 0.0f);
-	}
+
+        // Calculate the direction of the view to the fragment
+        vec3 viewDirection = normalize(viewPosition - _position);
+
+        // Calculate the halfway vector
+        vec3 halfway = normalize(lightDirection + viewDirection);
+
+        // Calculate the dot product of the normal and the halfway vector, then choose 0 if lower than 0, then raise to the shininess exponent
+        float specular = pow(max(dot(_normal, halfway), 0.0), 128);
+
+        // Return the diffuse value + the specular value
+        return _pointLight.color * (diffuse + specular) * attenuation;
+    } else {
+        return vec3(0.0f, 0.0f, 0.0f);
+    }
 }
 
 vec3 calculateLighting(DirectionalLight _directionalLight, vec3 _position, vec3 _normal) {
-	// Diffuse Lighting
+    // Diffuse Lighting
 
     // Calculate the direction of the light to the fragment
     vec3 lightDirection = normalize(-_directionalLight.direction);
@@ -198,7 +198,7 @@ vec3 calculateLighting(DirectionalLight _directionalLight, vec3 _position, vec3 
 }
 
 vec3 calculateLighting(ShadowDirectionalLight _directionalLight, vec3 _position, vec3 _normal) {
-	// Diffuse Lighting
+    // Diffuse Lighting
 
 
     // Calculate the direction of the light to the fragment
@@ -244,16 +244,16 @@ void main() {
         lighting += _color_ * calculateLighting(pointLights[i], _position, normal);
     }
 
-	// Lighting: Shadowed Point Lights
-	for (int i = 0; i < shadowPointLightCount; i++) {
-		lighting += _color_ * calculateLighting(shadowPointLights[i], _position, normal);
-	}
+    // Lighting: Shadowed Point Lights
+    for (int i = 0; i < shadowPointLightCount; i++) {
+        lighting += _color_ * calculateLighting(shadowPointLights[i], _position, normal);
+    }
 
-	// Lighting: Directional Lights
-	for (int i = 0; i < directionalLightCount; i++) {
-		/*lighting += (1.0 - isShadowed(shadowMap, _position, normal, directionalLights[i].direction)) * _color_ * calculateLighting(directionalLights[i], _position, normal);*/
+    // Lighting: Directional Lights
+    for (int i = 0; i < directionalLightCount; i++) {
+        /*lighting += (1.0 - isShadowed(shadowMap, _position, normal, directionalLights[i].direction)) * _color_ * calculateLighting(directionalLights[i], _position, normal);*/
         lighting += _color_ * calculateLighting(directionalLights[i], _position, normal);
-	}
+    }
 
     // Lighting: Shadow Directional Lights
     for (int i = 0; i < shadowDirectionalLightCount; ++i) {

@@ -27,17 +27,17 @@ void SunShadowDirectionalLight::init() {
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, resolution.x, resolution.y, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, texture, 0);
-	glDrawBuffer(GL_NONE);
-	glReadBuffer(GL_NONE);
+    glDrawBuffer(GL_NONE);
+    glReadBuffer(GL_NONE);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	glBindTexture(GL_TEXTURE_2D, 0);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void SunShadowDirectionalLight::shadowMap(SunAction action) {
@@ -50,11 +50,11 @@ void SunShadowDirectionalLight::shadowMap(SunAction action) {
     clear();
 
     // Create the light-space matrix
-	glm::mat4 projection = glm::ortho(-size.x, size.x, -size.y, size.y, nearPlane, farPlane);
-	glm::mat4 view = glm::lookAt(center + (distance * glm::normalize(-direction)), center, glm::vec3(0.0f, 1.0f, 0.0f));
-	glm::mat4 lightMatrix = projection * view;
+    glm::mat4 projection = glm::ortho(-size.x, size.x, -size.y, size.y, nearPlane, farPlane);
+    glm::mat4 view = glm::lookAt(center + (distance * glm::normalize(-direction)), center, glm::vec3(0.0f, 1.0f, 0.0f));
+    glm::mat4 lightMatrix = projection * view;
 
-	glUniformMatrix4fv(shader->getUniformLocation("lightMatrix"), 1, GL_FALSE, glm::value_ptr(lightMatrix));
+    glUniformMatrix4fv(shader->getUniformLocation("lightMatrix"), 1, GL_FALSE, glm::value_ptr(lightMatrix));
 
     SunAction render("render");
     render.setRecursive(true);
@@ -83,8 +83,8 @@ void SunShadowDirectionalLight::uniform(SunAction action) {
     glUniform1i(shader->getUniformLocation("shadowDirectionalLightCount"), shader->getArraySize("shadowDirectionalLights"));
 
     glm::mat4 projection = glm::ortho(-size.x, size.x, -size.y, size.y, nearPlane, farPlane);
-	glm::mat4 view = glm::lookAt(center + (distance * glm::normalize(-direction)), center, glm::vec3(0.0f, 1.0f, 0.0f));
-	glm::mat4 lightMatrix = projection * view;
+    glm::mat4 view = glm::lookAt(center + (distance * glm::normalize(-direction)), center, glm::vec3(0.0f, 1.0f, 0.0f));
+    glm::mat4 lightMatrix = projection * view;
 
-	glUniformMatrix4fv(shader->getUniformLocation("shadowDirectionalLights[" + std::to_string(id) + "].lightMatrix"), 1, GL_FALSE, glm::value_ptr(lightMatrix));
+    glUniformMatrix4fv(shader->getUniformLocation("shadowDirectionalLights[" + std::to_string(id) + "].lightMatrix"), 1, GL_FALSE, glm::value_ptr(lightMatrix));
 }

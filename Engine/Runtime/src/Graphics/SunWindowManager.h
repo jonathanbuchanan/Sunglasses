@@ -30,15 +30,15 @@ public:
 
     GLFWwindow * getWindow() { return window; }
 
-	glm::vec2 getSize() { return size; }
-	void setSize(glm::vec2 s) { size = s; }
+    glm::vec2 getSize() { return size; }
+    void setSize(glm::vec2 s) { size = s; }
 
-	std::string getTitle() { return title; }
-	void setTitle(std::string t) { title = t; }
+    std::string getTitle() { return title; }
+    void setTitle(std::string t) { title = t; }
 
-	void setClearColor(glm::vec4 c) { clearColor = c; }
+    void setClearColor(glm::vec4 c) { clearColor = c; }
 
-	double getDelta() { return delta; }
+    double getDelta() { return delta; }
 private:
     GLFWwindow *window;
 

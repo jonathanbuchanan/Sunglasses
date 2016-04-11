@@ -63,7 +63,7 @@ void SunObject::update(SunAction action) {
 }
 
 void SunObject::render(SunAction action) {
-	SunShader *shader = action.getParameterPointer<SunShader>("shader");
+    SunShader *shader = action.getParameterPointer<SunShader>("shader");
     for (auto &mesh : meshes)
         mesh.second.render(shader);
 }

@@ -34,7 +34,7 @@ void SunGame::cleanUp() { /* THIS MUST BE IMPLEMENTED!!! */
 }
 
 void SunGame::init() {
-	init(0, NULL, "", glm::vec4(0.0f, 0.0f, 0.0f, 0.0f));
+    init(0, NULL, "", glm::vec4(0.0f, 0.0f, 0.0f, 0.0f));
 }
 
 
@@ -60,30 +60,30 @@ void SunGame::init(int argc, char **argv, std::string title, glm::vec4 color) {
     parseOptions(options, "HELP MESSAGE", "alpha v0.0.1",  argc, argv);
 
     // Initialize the Window Manager
-	SunWindowManager *windowManager = new SunWindowManager(glm::vec2(width, height), title, color);
-	windowManager->setName("window_manager");
-	addService(windowManager);
-	window = windowManager->getWindow();
+    SunWindowManager *windowManager = new SunWindowManager(glm::vec2(width, height), title, color);
+    windowManager->setName("window_manager");
+    addService(windowManager);
+    window = windowManager->getWindow();
 
-	// Initialize the Keyboard Manager
-	SunKeyboardManager *keyboard = new SunKeyboardManager(window);
-	keyboard->setName("keyboard_manager");
-	addService(keyboard);
+    // Initialize the Keyboard Manager
+    SunKeyboardManager *keyboard = new SunKeyboardManager(window);
+    keyboard->setName("keyboard_manager");
+    addService(keyboard);
 
-	// Initialize the Cursor Manager
-	SunCursorManager *cursor = new SunCursorManager(window, true);
-	cursor->setName("cursor_manager");
-	addService(cursor);
+    // Initialize the Cursor Manager
+    SunCursorManager *cursor = new SunCursorManager(window, true);
+    cursor->setName("cursor_manager");
+    addService(cursor);
 
-	// Initialize the Mouse Button Manager
-	SunMouseButtonManager *mouseButton = new SunMouseButtonManager(window);
-	mouseButton->setName("mouse_button_manager");
-	addService(mouseButton);
+    // Initialize the Mouse Button Manager
+    SunMouseButtonManager *mouseButton = new SunMouseButtonManager(window);
+    mouseButton->setName("mouse_button_manager");
+    addService(mouseButton);
 
-	// Initialize the Logger
-	SunLogger *logger = new SunLogger();
-	logger->setName("logger");
-	addService(logger);
+    // Initialize the Logger
+    SunLogger *logger = new SunLogger();
+    logger->setName("logger");
+    addService(logger);
 
     // Initialize the Global Logic Environment
     SunGlobalLogicEnvironment *globalEnvironment = new SunGlobalLogicEnvironment();

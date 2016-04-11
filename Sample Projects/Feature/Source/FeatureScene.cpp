@@ -10,14 +10,14 @@ FeatureScene::FeatureScene() {
 void FeatureScene::init() {
     this->setName("Scene");
 
-	root = std::unique_ptr<SunNode>(new SunNode());
+    root = std::unique_ptr<SunNode>(new SunNode());
     root->setName("root");
     root->init();
     root->setIgnoreTags(true);
 
     std::shared_ptr<SunCamera> _camera = std::shared_ptr<SunCamera>(new SunCamera(45.0f, glm::vec3(-5.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f)));
-	_camera->init();
-	root->addSubNode(_camera);
+    _camera->init();
+    root->addSubNode(_camera);
     camera = _camera;
 
     ((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->registerGlobal("doCameraInput", true);
@@ -62,17 +62,17 @@ void FeatureScene::init() {
     std::shared_ptr<SunObject> _plane = std::shared_ptr<SunObject>(new SunObject("plane"));
     _plane->addTag("textured");
     _plane->newMesh("plane", "Plane.001", "planematerial", glm::vec3(0, 0, 0), glm::vec3(180, 0, 0), glm::vec3(10, 1, 10));
-	_plane->init();
-	_plane->setPosition(glm::vec3(0.0f, -7.0f, 0.0f));
-	root->addSubNode(_plane);
+    _plane->init();
+    _plane->setPosition(glm::vec3(0.0f, -7.0f, 0.0f));
+    root->addSubNode(_plane);
 
-	std::shared_ptr<SunShadowDirectionalLight> _dir = std::shared_ptr<SunShadowDirectionalLight>(new SunShadowDirectionalLight(glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.2f, -1.0f, 0.4f)));
+    std::shared_ptr<SunShadowDirectionalLight> _dir = std::shared_ptr<SunShadowDirectionalLight>(new SunShadowDirectionalLight(glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.2f, -1.0f, 0.4f)));
     _dir->setResolution(glm::ivec2(4096, 4096));
     _dir->setDistance(10.0f);
     _dir->setTarget(root.get());
-	_dir->addTag("shadow_directional_light");
+    _dir->addTag("shadow_directional_light");
     _dir->init();
-	root->addSubNode(_dir);
+    root->addSubNode(_dir);
     dir = _dir;
 
     /*std::shared_ptr<SunShadowPointLight> point = std::shared_ptr<SunShadowPointLight>(new SunShadowPointLight(glm::vec3(0.0f, 5.0f, 0.0f), glm::vec3(0.0f, 7.0f, 3.0f)));
