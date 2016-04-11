@@ -27,6 +27,7 @@ private:
     // Objects
     std::weak_ptr<SunObject> plane;
     std::weak_ptr<SunShadowDirectionalLight> dir;
+    std::weak_ptr<SunShadowPointLight> pt;
     std::vector<std::weak_ptr<SunObject>> teapots;
     std::weak_ptr<SunCamera> camera;
 

@@ -40,13 +40,6 @@ public:
      * @param sources The vector of sources
      */
     SunShader(std::vector<std::pair<std::string, SunShaderSourceType>> sources);
-    /*SunShader() { }
-
-    SunShader(std::string vertexPath, std::string fragmentPath);
-    SunShader(std::string vertexPath, std::string fragmentPath, std::string preprocessorPath);
-    SunShader(std::string vertexPath, std::string geometryPath, std::string fragmentPath, std::string preprocessorPath);
-    SunShader(std::vector<std::string> sources, std::vector<SunShaderSourceType> sourceTypes, std::string preprocessorPath);
-    SunShader(std::string vertexPath, std::string geometryPath, std::string fragmentPath, int a);*/
 
     void init();
 

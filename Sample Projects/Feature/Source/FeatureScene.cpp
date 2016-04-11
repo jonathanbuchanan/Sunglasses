@@ -31,51 +31,11 @@ void FeatureScene::init() {
     ((SunResourceService *)getService("resource_service"))->addResourceManager("materials", new SunResourceManager());
     ((SunResourceService *)getService("resource_service"))->addResourceManager("textures", new SunResourceManager());
 
-//<<<<<<< HEAD
     std::map<std::string, SunResource *> meshMap;
 
     ((SunResourceService *)getService("resource_service"))->getResourceManager("models")->addResource("teapot", new SunModelResource("Resources/Graphics/Models/Teapot.dae", &meshMap));
     ((SunResourceService *)getService("resource_service"))->getResourceManager("meshes")->addResources(meshMap);
     meshMap.clear();
-//=======
-    /*plane = new SunObject("plane", "Resources/Graphics/Models/Plane.dae", "solid", true);
-	plane->init();
-	plane->setScale(glm::vec3(10.0f, 1.0f, 10.0f));
-	plane->setPosition(glm::vec3(0.0f, -5.0f, 0.0f));
-	plane->setMaterial(SunObjectMaterial(glm::vec3(1.0f, 1.0f, 1.0f), 256.0f));
-	root->addSubNode(plane);*/
-
-	/*dir = new SunShadowDirectionalLight(glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.2f, -1.0f, 0.4f));
-    dir->setResolution(glm::ivec2(4096, 4096));
-    dir->setDistance(10.0f);
-    dir->setTarget(root);
-	dir->addTag("shadow_directional_light");
-    dir->init();
-	root->addSubNode(dir);*/
-
-    /*SunShadowDirectionalLight *dire = new SunShadowDirectionalLight(glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(-4.0f, -4.0f, 2.0f));
-    dire->setResolution(glm::ivec2(4096, 4096));
-    dire->setTarget(root);
-	dire->addTag("shadow_directional_light");
-    dire->init();
-	root->addSubNode(dire);*/
-
-    /*SunShadowPointLight *point = new SunShadowPointLight(glm::vec3(0.0f, 5.0f, 0.0f), glm::vec3(0.0f, 7.0f, 3.0f));
-    point->setResolution(2048);
-    point->setTarget(root);
-    point->addTag("shadow_point_light");
-    point->init();
-    root->addSubNode(point);
-
-	textRenderer = new SunTextRenderer();
-    textRenderer->init();
-    textRenderer->loadFont("Resources/Graphics/Fonts/arial.ttf", "Arial");
-    menu = new SunGUIMenu();
-    menu->loadScript("Scripts/Menu0.lua");
-	menu->init();
-	guiSystem.init();
-    guiSystem.addSubNode(menu);
->>>>>>> rendernode*/
 
     ((SunResourceService *)getService("resource_service"))->getResourceManager("models")->addResource("plane", new SunModelResource("Resources/Graphics/Models/Plane.dae", &meshMap));
     ((SunResourceService *)getService("resource_service"))->getResourceManager("meshes")->addResources(meshMap);
@@ -114,13 +74,14 @@ void FeatureScene::init() {
     _dir->init();
 	root->addSubNode(_dir);
     dir = _dir;
-	/*(std::static_pointer_cast<SunDirectionalShadowMapRenderingNode>(renderer->getRenderingNodeForString("shadowMap0")))->setLight(dir.get());
-	(std::static_pointer_cast<SunDirectionalShadowMapRenderingNode>(renderer->getRenderingNodeForString("shadowMap0")))->setResolution(glm::vec2(4096.0f, 4096.0f));
-	(std::static_pointer_cast<SunDirectionalShadowMapRenderingNode>(renderer->getRenderingNodeForString("shadowMap0")))->setSize(glm::vec2(50.0f, 50.0f));
 
-    (std::static_pointer_cast<SunDirectionalShadowMapRenderingNode>(renderer->getRenderingNodeForString("shadowMap0")))->init();
-
-    dir = _dir;*/
+    /*std::shared_ptr<SunShadowPointLight> point = std::shared_ptr<SunShadowPointLight>(new SunShadowPointLight(glm::vec3(0.0f, 5.0f, 0.0f), glm::vec3(0.0f, 7.0f, 3.0f)));
+    point->setResolution(2048);
+    point->setTarget(root.get());
+    point->addTag("shadow_point_light");
+    point->init();
+    root->addSubNode(point);
+    pt = point;*/
 
     textRenderer = new SunTextRenderer();
     textRenderer->init();

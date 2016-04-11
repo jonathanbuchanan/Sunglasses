@@ -223,53 +223,6 @@ vec3 calculateLighting(ShadowDirectionalLight _directionalLight, vec3 _position,
     return _directionalLight.color * (diffuse + specular);
 }
 
-float calculateDiffuse(PointLight _pointLight, vec3 _position, vec3 _normal) {
-    // Calculate Attenuation
-
-    float attenuation = 1.0f;
-    if (_pointLight.attenuate == true) {
-        float distance = length(_pointLight.position - _position);
-        //attenuation = 1.0f / (constant + linear * distance + quadratic * (distance * distance));
-    }
-
-    // Diffuse Lighting
-
-
-    // Calculate the direction of the light to the fragment
-    vec3 lightDirection = normalize(_pointLight.position - _position);
-
-    // Calculate the dot product of the normal and the light direction, then choose 0 if lower than 0
-    float diffuse = max(dot(_normal, lightDirection), 0.0);
-
-    return diffuse * attenuation;
-}
-
-float calculateSpecular(PointLight _pointLight, vec3 _position, vec3 _normal) {
-    // Calculate Attenuation
-
-    float attenuation = 1.0f;
-    if (_pointLight.attenuate == true) {
-        float distance = length(_pointLight.position - _position);
-        //attenuation = 1.0f / (constant + linear * distance + quadratic * (distance * distance));
-    }
-
-    // Specular Lighting
-
-    // Calculate the direction of the view to the fragment
-    vec3 viewDirection = normalize(viewPosition - _position);
-
-    // Calculate the direction of the light to the fragment
-    vec3 lightDirection = normalize(_pointLight.position - _position);
-
-    // Calculate the halfway vector
-    vec3 halfway = normalize(lightDirection + viewDirection);
-
-    // Calculate the dot product of the normal and the halfway vector, then choose 0 if lower than 0, then raise to the shininess exponent
-    float specular = pow(max(dot(_normal, halfway), 0.0), 128);
-
-    return specular * attenuation;
-}
-
 void main() {
     vec4 result;
 

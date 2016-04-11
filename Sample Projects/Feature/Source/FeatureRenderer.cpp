@@ -15,27 +15,27 @@ void FeatureRenderer::init() {
     gbuffer->setSize(glm::vec2(800.0f, 600.0f));
     gbuffer->addShader("textured", SunShader({
         {"../../Engine/Shaders/Deferred/Scene.vert", SunShaderSourceTypeVertex},
-        {"../../Engine/Shaders/Deferred/Solid/Scene.frag", SunShaderSourceTypeFragment}
+        {"../../Engine/Shaders/Deferred/Textured/Scene.frag", SunShaderSourceTypeFragment}
     }));
     gbuffer->addShader("solid", SunShader({
         {"../../Engine/Shaders/Deferred/Scene.vert", SunShaderSourceTypeVertex},
-        {"../../Engine/Shaders/Deferred/Textured/Scene.frag", SunShaderSourceTypeFragment}
+        {"../../Engine/Shaders/Deferred/Solid/Scene.frag", SunShaderSourceTypeFragment}
     }));
     gbuffer->init();
     root->addSubNode(gbuffer);
 
-    /*std::shared_ptr<SunShadowMapRenderNode> shadows = std::shared_ptr<SunShadowMapRenderNode>(new SunShadowMapRenderNode(scene->getRoot()));
+    std::shared_ptr<SunShadowMapRenderNode> shadows = std::shared_ptr<SunShadowMapRenderNode>(new SunShadowMapRenderNode(scene->getRoot()));
     shadows->addShader("shadow_directional_light", SunShader({
-        {"../../Engine/Shaders/Old/ShadowMapVertex.vert", SunShaderSourceTypeVertex},
-        {"../../Engine/Shaders/Old/ShadowMapVertex.frag", SunShaderSourceTypeFragment}
+        {"../../Engine/Shaders/Shadow Map/Directional/Scene.vert", SunShaderSourceTypeVertex},
+        {"../../Engine/Shaders/Shadow Map/Directional/Scene.frag", SunShaderSourceTypeFragment}
     }));
     shadows->addShader("shadow_point_light", SunShader({
-        {"../../Engine/Shaders/Old/Variable Pipeline/Scene.vert", SunShaderSourceTypeVertex},
-        {"../../Engine/Shaders/Old/Variable Pipeline/Scene.geom", SunShaderSourceTypeGeometry},
-        {"../../Engine/Shaders/Old/Variable Pipeline/Scene.frag", SunShaderSourceTypeFragment}
+        {"../../Engine/Shaders/Shadow Map/Point/Scene.vert", SunShaderSourceTypeVertex},
+        {"../../Engine/Shaders/Shadow Map/Point/Scene.geom", SunShaderSourceTypeGeometry},
+        {"../../Engine/Shaders/Shadow Map/Point/Scene.frag", SunShaderSourceTypeFragment}
     }));
     shadows->init();
-    root->addSubNode(shadows);*/
+    root->addSubNode(shadows);
 
     std::vector<SunRenderNodeSceneTexture> finalTextures = {
 
@@ -51,5 +51,5 @@ void FeatureRenderer::init() {
     }));
     final->init();
     gbuffer->addSubNode(final);
-    //shadows->addSubNode(final);
+    shadows->addSubNode(final);
 }
