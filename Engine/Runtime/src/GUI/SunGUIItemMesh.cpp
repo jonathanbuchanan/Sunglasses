@@ -5,8 +5,8 @@
 
 void SunGUIItemMesh::setUpGL() {
     shader = SunShader({
-        {"../../Engine/Shaders/Old/2DQuad.vert", SunShaderSourceTypeVertex},
-        {"../../Engine/Shaders/Old/2DQuad.frag", SunShaderSourceTypeFragment}
+        {"../../Engine/Shaders/GUI/Quad.vert", SunShaderSourceTypeVertex},
+        {"../../Engine/Shaders/GUI/Quad.frag", SunShaderSourceTypeFragment}
     });
 
     glGenVertexArrays(1, &VAO);

@@ -8,8 +8,8 @@
 
 void SunTextRenderer::init() {
     shader = SunShader({
-        {"../../Engine/Shaders/Old/Text.vert", SunShaderSourceTypeVertex},
-        {"../../Engine/Shaders/Old/Text.frag", SunShaderSourceTypeFragment}
+        {"../../Engine/Shaders/Text/Text.vert", SunShaderSourceTypeVertex},
+        {"../../Engine/Shaders/Text/Text.frag", SunShaderSourceTypeFragment}
     });
 
     projection = glm::ortho(0.0f, 800.0f, 0.0f, 600.0f);
