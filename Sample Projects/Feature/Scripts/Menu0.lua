@@ -12,6 +12,7 @@ end
 function show()
     menu.set_visible(true)
     globalenvironment.setBoolean("doCameraInput", false)
+    plane.rotation.set_x(20.0);
     cursor_manager.enableCursor()
 end
 

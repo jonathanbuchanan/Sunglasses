@@ -44,6 +44,13 @@ void SunObject::loadScript(std::string _script) {
     script.registerObject("keyboard_manager", (SunKeyboardManager *)getService("keyboard_manager"), "pollKey", &SunKeyboardManager::keyDown);
 }
 
+void SunObject::registerInScript(SunScript *script, _SunPrivateScripting::SunLuaValue value) {
+    script->registerObject(value, this);
+    script->registerObjectAsType(value["rotation"], "vec3", &rotation);
+    script->registerObjectAsType(value["position"], "vec3", &position);
+    script->registerObjectAsType(value["scale"], "vec3", &scale);
+}
+
 void SunObject::init() {
     addAction("update", &SunObject::update);
     addAction("render", &SunObject::render);

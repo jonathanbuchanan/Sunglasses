@@ -23,11 +23,12 @@ void SunGlobalLogicEnvironment::update() {
 void SunGlobalLogicEnvironment::registerObject(SunObject *object) {
     objects.push_back(object);
     for (size_t i = 0; i < scripts.size(); ++i) {
+        object->registerInScript(scripts[i], (*scripts[i])["a"]);
         SunScript *script = scripts[i];
-        script->registerObject(script->getVariable("globalenvironment")[object->getName().c_str()], object);
+        /*script->registerObject(script->getVariable("globalenvironment")[object->getName().c_str()], object);
         script->registerObjectAsType(script->getVariable("globalenvironment")[object->getName().c_str()]["rotation"], "vec3", &object->rotation);
         script->registerObjectAsType(script->getVariable("globalenvironment")[object->getName().c_str()]["position"], "vec3", &object->position);
-        script->registerObjectAsType(script->getVariable("globalenvironment")[object->getName().c_str()]["scale"], "vec3", &object->scale);
+        script->registerObjectAsType(script->getVariable("globalenvironment")[object->getName().c_str()]["scale"], "vec3", &object->scale);*/
         // FIX ME
         //script->registerObjectAsType(script->getVariable("globalenvironment")[object->getName().c_str()]["color"], "vec3", &object->material.color);
     }
@@ -51,6 +52,10 @@ void SunGlobalLogicEnvironment::registerWithScript(SunScript &script) {
     script.registerType<glm::vec3>("vec3", "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
     script.registerObject("globalenvironment", this, "globalExists", &SunGlobalLogicEnvironment::globalExists, "setInteger", &SunGlobalLogicEnvironment::setInteger, "setBoolean", &SunGlobalLogicEnvironment::setBoolean, "setNumber", &SunGlobalLogicEnvironment::setNumber, "setString", &SunGlobalLogicEnvironment::setString, "getInteger", &SunGlobalLogicEnvironment::getInteger, "getBoolean", &SunGlobalLogicEnvironment::getBoolean, "getNumber", &SunGlobalLogicEnvironment::getNumber, "getString", &SunGlobalLogicEnvironment::getString);
     std::vector<std::string> registered;
+    //script[i]
+    for (size_t i = 0; i < objects.size(); ++i) {
+        objects[i]->registerInScript(&script, script[objects[i]->getName()]);
+    }
     scripts.push_back(&script);
 }
 

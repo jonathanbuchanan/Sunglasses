@@ -45,6 +45,14 @@ public:
      */
     void loadScript(std::string _script);
 
+    /// Registers the object within a script.
+    /**
+     * This method registers the object within a script.
+     * @param script A pointer to the script to register in
+     * @param value The value where the object should be registered
+     */
+    void registerInScript(SunScript *script, _SunPrivateScripting::SunLuaValue value);
+
     /// Initializes the object.
     /**
      * This member function initializes the object by adding the update, render
