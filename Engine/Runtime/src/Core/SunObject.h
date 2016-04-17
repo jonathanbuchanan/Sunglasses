@@ -12,7 +12,7 @@
 #include "../Graphics/SunMesh.h"
 #include "../Scripting/SunScript.h"
 
-class SunGlobalLogicEnvironment;
+class SunGlobalScriptingEnvironment;
 
 /// A SunNode intended to be used in the scene graph as a game object
 /**
@@ -21,7 +21,7 @@ class SunGlobalLogicEnvironment;
  * (coming), and AI (coming).
  */
 class SunObject : public SunNode {
-    friend SunGlobalLogicEnvironment;
+    friend SunGlobalScriptingEnvironment;
 public:
     /// Default Constructor
     /**

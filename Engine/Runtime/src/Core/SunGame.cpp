@@ -86,7 +86,7 @@ void SunGame::init(int argc, char **argv, std::string title, glm::vec4 color) {
     addService(logger);
 
     // Initialize the Global Logic Environment
-    SunGlobalLogicEnvironment *globalEnvironment = new SunGlobalLogicEnvironment();
+    SunGlobalScriptingEnvironment *globalEnvironment = new SunGlobalScriptingEnvironment();
     globalEnvironment->setName("global_logic_environment");
     addService(globalEnvironment);
 

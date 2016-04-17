@@ -1,26 +1,24 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include "SunGlobalLogicEnvironment.h"
-
+#include "SunGlobalScriptingEnvironment.h"
 
 #include "../Scripting/SunScript.h"
 #include "../Core/SunObject.h"
 
-
-SunGlobalLogicEnvironment::SunGlobalLogicEnvironment() {
+SunGlobalScriptingEnvironment::SunGlobalScriptingEnvironment() {
     initialize();
 }
 
-void SunGlobalLogicEnvironment::initialize() {
+void SunGlobalScriptingEnvironment::initialize() {
 
 }
 
-void SunGlobalLogicEnvironment::update() {
+void SunGlobalScriptingEnvironment::update() {
 
 }
 
-void SunGlobalLogicEnvironment::registerObject(SunObject *object) {
+void SunGlobalScriptingEnvironment::registerObject(SunObject *object) {
     objects.push_back(object);
     for (size_t i = 0; i < scripts.size(); ++i) {
         object->registerInScript(scripts[i], (*scripts[i])["a"]);
@@ -34,7 +32,7 @@ void SunGlobalLogicEnvironment::registerObject(SunObject *object) {
     }
 }
 
-int SunGlobalLogicEnvironment::removeObject(SunObject *object) {
+int SunGlobalScriptingEnvironment::removeObject(SunObject *object) {
     if (std::find(objects.begin(), objects.end(), object) == objects.end())
         return -1;
     else {
@@ -48,9 +46,9 @@ int SunGlobalLogicEnvironment::removeObject(SunObject *object) {
     return 0;
 }
 
-void SunGlobalLogicEnvironment::registerWithScript(SunScript &script) {
+void SunGlobalScriptingEnvironment::registerWithScript(SunScript &script) {
     script.registerType<glm::vec3>("vec3", "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
-    script.registerObject("globalenvironment", this, "globalExists", &SunGlobalLogicEnvironment::globalExists, "setInteger", &SunGlobalLogicEnvironment::setInteger, "setBoolean", &SunGlobalLogicEnvironment::setBoolean, "setNumber", &SunGlobalLogicEnvironment::setNumber, "setString", &SunGlobalLogicEnvironment::setString, "getInteger", &SunGlobalLogicEnvironment::getInteger, "getBoolean", &SunGlobalLogicEnvironment::getBoolean, "getNumber", &SunGlobalLogicEnvironment::getNumber, "getString", &SunGlobalLogicEnvironment::getString);
+    script.registerObject("globalenvironment", this, "globalExists", &SunGlobalScriptingEnvironment::globalExists, "setInteger", &SunGlobalScriptingEnvironment::setInteger, "setBoolean", &SunGlobalScriptingEnvironment::setBoolean, "setNumber", &SunGlobalScriptingEnvironment::setNumber, "setString", &SunGlobalScriptingEnvironment::setString, "getInteger", &SunGlobalScriptingEnvironment::getInteger, "getBoolean", &SunGlobalScriptingEnvironment::getBoolean, "getNumber", &SunGlobalScriptingEnvironment::getNumber, "getString", &SunGlobalScriptingEnvironment::getString);
     std::vector<std::string> registered;
     //script[i]
     for (size_t i = 0; i < objects.size(); ++i) {
@@ -59,45 +57,45 @@ void SunGlobalLogicEnvironment::registerWithScript(SunScript &script) {
     scripts.push_back(&script);
 }
 
-void SunGlobalLogicEnvironment::registerGlobal(std::string key, _SunPrivateScripting::SunLuaPrimitive value) {
+void SunGlobalScriptingEnvironment::registerGlobal(std::string key, _SunPrivateScripting::SunLuaPrimitive value) {
     globals[key] = value;
 }
 
-bool SunGlobalLogicEnvironment::globalExists(const char *key) {
+bool SunGlobalScriptingEnvironment::globalExists(const char *key) {
     if (globals.find(std::string(key)) != globals.end())
         return true;
     else
         return false;
 }
 
-void SunGlobalLogicEnvironment::setInteger(const char *key, int value) {
+void SunGlobalScriptingEnvironment::setInteger(const char *key, int value) {
     globals[key] = value;
 }
 
-void SunGlobalLogicEnvironment::setBoolean(const char *key, bool value) {
+void SunGlobalScriptingEnvironment::setBoolean(const char *key, bool value) {
     globals[key] = value;
 }
 
-void SunGlobalLogicEnvironment::setNumber(const char *key, double value) {
+void SunGlobalScriptingEnvironment::setNumber(const char *key, double value) {
     globals[key] = value;
 }
 
-void SunGlobalLogicEnvironment::setString(const char *key, const char *value) {
+void SunGlobalScriptingEnvironment::setString(const char *key, const char *value) {
     globals[key] = value;
 }
 
-int SunGlobalLogicEnvironment::getInteger(const char *key) {
+int SunGlobalScriptingEnvironment::getInteger(const char *key) {
     return globals[key];
 }
 
-bool SunGlobalLogicEnvironment::getBoolean(const char *key) {
+bool SunGlobalScriptingEnvironment::getBoolean(const char *key) {
     return globals[key];
 }
 
-double SunGlobalLogicEnvironment::getNumber(const char *key) {
+double SunGlobalScriptingEnvironment::getNumber(const char *key) {
     return globals[key];
 }
 
-const char * SunGlobalLogicEnvironment::getString(const char *key) {
+const char * SunGlobalScriptingEnvironment::getString(const char *key) {
     return globals[std::string(key)];
 }

@@ -2,7 +2,7 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include "SunGUIMenu.h"
-#include "../Logic/SunGlobalLogicEnvironment.h"
+#include "../Scripting/SunGlobalScriptingEnvironment.h"
 #include "../Graphics/SunWindowManager.h"
 
 SunGUIMenu::SunGUIMenu() {
@@ -16,7 +16,7 @@ void SunGUIMenu::init() {
 
 void SunGUIMenu::loadScript(std::string _script) {
     script.loadFile(_script);
-    ((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->registerWithScript(script);
+    ((SunGlobalScriptingEnvironment *)getService("global_logic_environment"))->registerWithScript(script);
     script.registerObject("cursor_manager", ((SunCursorManager *)getService("cursor_manager")), "enableCursor", &SunCursorManager::enableCursor, "disableCursor", &SunCursorManager::disableCursor);
     script.registerObject("window_manager", ((SunWindowManager *)getService("window_manager")), "setWindowShouldClose", &SunWindowManager::setWindowShouldClose);
     script.registerObject("menu", this, "visible", &SunGUIMenu::visible);

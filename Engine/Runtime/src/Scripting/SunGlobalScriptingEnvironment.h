@@ -1,8 +1,8 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#ifndef SUNGLOBALLOGICENVIRONMENT_H
-#define SUNGLOBALLOGICENVIRONMENT_H
+#ifndef SUNGLOBALSCRIPTINGENVIRONMENT_H
+#define SUNGLOBALSCRIPTINGENVIRONMENT_H
 
 #include "../Core/SunService.h"
 #include "../Scripting/SunLuaValue.h"
@@ -18,10 +18,10 @@ namespace _SunPrivateScripting {
     struct SunLuaPrimitive;
 }
 
-class SunGlobalLogicEnvironment : public SunService {
+class SunGlobalScriptingEnvironment : public SunService {
 public:
 
-    SunGlobalLogicEnvironment();
+    SunGlobalScriptingEnvironment();
 
     void initialize();
     void update();
@@ -70,5 +70,4 @@ private:
     std::vector<SunObject *> objects;
     std::vector<SunScript *> scripts;
 };
-
 #endif

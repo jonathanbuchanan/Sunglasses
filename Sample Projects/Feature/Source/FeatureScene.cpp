@@ -20,7 +20,7 @@ void FeatureScene::init() {
     root->addSubNode(_camera);
     camera = _camera;
 
-    ((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->registerGlobal("doCameraInput", true);
+    ((SunGlobalScriptingEnvironment *)getService("global_logic_environment"))->registerGlobal("doCameraInput", true);
 
     renderer = new FeatureRenderer();
     renderer->setSceneNode(this);

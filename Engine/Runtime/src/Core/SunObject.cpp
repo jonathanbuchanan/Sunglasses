@@ -6,7 +6,7 @@
 #include "../Graphics/SunWindowManager.h"
 #include "../Graphics/Loaders/SunMaterialResource.h"
 #include "../Input/SunKeyboardManager.h"
-#include "../Logic/SunGlobalLogicEnvironment.h"
+#include "../Scripting/SunGlobalScriptingEnvironment.h"
 #include "../Extern/SunResourceService.h"
 
 SunObject::SunObject() : physicsEnabled(false) {
@@ -39,7 +39,7 @@ void SunObject::loadScript(std::string _script) {
         script.registerObject(script["object"][name]["material"], mesh.second.material);
         script.registerObjectAsType(script["object"][name]["material"]["color"], "vec3", &mesh.second.material->diffuse);
     }
-    ((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->registerWithScript(script);
+    ((SunGlobalScriptingEnvironment *)getService("global_logic_environment"))->registerWithScript(script);
 
     script.registerObject("keyboard_manager", (SunKeyboardManager *)getService("keyboard_manager"), "pollKey", &SunKeyboardManager::keyDown);
 }
@@ -66,7 +66,7 @@ void SunObject::init() {
     addAction("playSound", &SunObject::playSound);
     addAction("uniform", &SunObject::uniform);
     addAction("registerInScript", &SunObject::registerInScript);
-    ((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->registerObject(this);
+    ((SunGlobalScriptingEnvironment *)getService("global_logic_environment"))->registerObject(this);
     if (scriptingEnabled == true)
         script["init"]();
 }
