@@ -130,6 +130,10 @@ void FeatureScene::init() {
     _back->setSize(glm::vec2(1.0f, 0.2f));
     _back->setPosition(glm::vec2(-0.5f, -0.4f));
     _back->setColor(glm::vec3(1.0f, 1.0f, 1.0f));
+
+    SunAction registerAction("registerInScript");
+    registerAction.setRecursive(true);
+
 }
 
 void FeatureScene::cycle() {

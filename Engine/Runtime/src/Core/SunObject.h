@@ -53,6 +53,14 @@ public:
      */
     void registerInScript(SunScript *script, _SunPrivateScripting::SunLuaValue value);
 
+    /// Registers the object within a script.
+    /**
+     * This method registers the object within a script. This action is intended
+     * to be used recursively typically on the scene graph after adding a new scripted
+     * node.
+     */
+    void registerInScript(SunAction action);
+
     /// Initializes the object.
     /**
      * This member function initializes the object by adding the update, render

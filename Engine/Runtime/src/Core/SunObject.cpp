@@ -51,11 +51,21 @@ void SunObject::registerInScript(SunScript *script, _SunPrivateScripting::SunLua
     script->registerObjectAsType(value["scale"], "vec3", &scale);
 }
 
+void SunObject::registerInScript(SunAction action) {
+    SunScript *script = action.getParameterPointer<SunScript>("script");
+    _SunPrivateScripting::SunLuaValue value = action.getParameter<_SunPrivateScripting::SunLuaValue>("value");
+    script->registerObject(value, this);
+    script->registerObjectAsType(value["rotation"], "vec3", &rotation);
+    script->registerObjectAsType(value["position"], "vec3", &position);
+    script->registerObjectAsType(value["scale"], "vec3", &scale);
+}
+
 void SunObject::init() {
     addAction("update", &SunObject::update);
     addAction("render", &SunObject::render);
     addAction("playSound", &SunObject::playSound);
     addAction("uniform", &SunObject::uniform);
+    addAction("registerInScript", &SunObject::registerInScript);
     ((SunGlobalLogicEnvironment *)getService("global_logic_environment"))->registerObject(this);
     if (scriptingEnabled == true)
         script["init"]();
