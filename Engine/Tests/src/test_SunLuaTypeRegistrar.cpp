@@ -9,6 +9,11 @@ struct TestClass {
     std::string z;
 };
 template<> const std::string SunLuaTypeRegistrar<TestClass>::typeName = "TestClass";
+template<> const std::vector<SunScripting::SunLuaTypeDataMemberBase<TestClass> *> SunLuaTypeRegistrar<TestClass>::dataMembers = {
+    new SunLuaTypeDataMember<int, TestClass>("x", &TestClass::x),
+    new SunLuaTypeDataMember<float, TestClass>("y", &TestClass::y),
+    new SunLuaTypeDataMember<std::string, TestClass>("z", &TestClass::z)
+};
 
 struct SunLuaTypeRegistrarTest : ::testing::Test {
     lua_State *L;
