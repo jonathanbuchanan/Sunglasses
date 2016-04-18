@@ -8,5 +8,6 @@
 #include "SunLuaRawCFunction.h"
 #include "SunLuaState.h"
 #include "SunLuaType.h"
+#include "SunLuaTypeRegistrar.h"
 #include "SunLuaValue.h"
 #include "SunScript.h"
