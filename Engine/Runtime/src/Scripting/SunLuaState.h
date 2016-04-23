@@ -4,11 +4,11 @@
 #ifndef SUNLUASTATE_H
 #define SUNLUASTATE_H
 
+#include "SunLuaPrimitives.h"
+
 #include <string>
 #include <map>
 #include <algorithm>
-#include <typeinfo>
-#include <typeindex>
 
 #include <lua.hpp>
 
@@ -21,27 +21,7 @@ enum SunLuaBasicType {
 };
 
 namespace _SunPrivateScripting {
-    template<typename T>
-    T get(lua_State *l, int index);
-
-    template<> int get(lua_State *l, int index);
-    template<> double get(lua_State *l, int index);
-    template<> float get(lua_State *l, int index);
-    template<> bool get(lua_State *l, int index);
-    template<> const char * get(lua_State *l, int index);
-
-
-
-    template<typename T>
-    void push(lua_State *l, T value);
-
-    template<> void push(lua_State *l, int value);
-    template<> void push(lua_State *l, double value);
-    template<> void push(lua_State *l, float value);
-    template<> void push(lua_State *l, bool value);
-    template<> void push(lua_State *l, const char *value);
-    template<> void push(lua_State *l, char *value);
-
+    
 
     class SunLuaState {
     public:
@@ -54,17 +34,9 @@ namespace _SunPrivateScripting {
 
         void run(const char *code);
 
-        template<typename T> SunLuaBasicType getType() {
-            if (typeMap.find(std::type_index(typeid(T))) != typeMap.end())
-                return typeMap[std::type_index(typeid(T))];
-            else
-                return SunLuaNone;
-        }
-        template<typename T> SunLuaBasicType getType(T x) { return getType<T>(); }
-
         template<typename T>
         void push(T value) {
-            _SunPrivateScripting::push(state, value);
+            SunScripting::pushToStack(state, value);
         }
 
         // Lua Functions
@@ -123,18 +95,7 @@ namespace _SunPrivateScripting {
         void callFunction(int argCount, int retCount);
 
     private:
-        lua_State *state;
-
-        std::map<std::type_index, SunLuaBasicType> typeMap = {
-            {std::type_index(typeid(int)), SunLuaTypeInteger},
-
-            {std::type_index(typeid(float)), SunLuaTypeNumber},
-            {std::type_index(typeid(double)), SunLuaTypeNumber},
-
-            {std::type_index(typeid(bool)), SunLuaTypeBoolean},
-
-            {std::type_index(typeid(const char *)), SunLuaTypeString}
-        };
+        lua_State *state; 
     };
 }
 

@@ -131,7 +131,7 @@ TEST_F(SunScriptTest, CFunctions) {
         strcat(result, b);
         return result;
     };
-    std::function<char *(const char *, const char *)> _cat = cat;
+    std::function<const char *(const char *, const char *)> _cat = cat;
     script.registerFunction("cat", _cat);
     std::string x = (std::string)script["cat"]("1 + 2", " = 3");
     EXPECT_EQ(x, "1 + 2 = 3");

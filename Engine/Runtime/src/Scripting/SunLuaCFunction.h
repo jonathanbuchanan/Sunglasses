@@ -61,7 +61,7 @@ namespace _SunPrivateScripting {
 
         void run(lua_State *state) {
             S result = execute(getArguments(state), typename _SunPrivateScripting::gens<sizeof...(T)>::type());
-            _SunPrivateScripting::push(state, result);
+            SunScripting::pushToStack(state, result);
         }
 
         void registerAsFunction(SunLuaState *state, SunLuaValue value) {
@@ -103,7 +103,7 @@ namespace _SunPrivateScripting {
 
         template<int... N>
         std::tuple<T...> getArguments(lua_State *l, _SunPrivateScripting::seq<N...>) {
-            return std::make_tuple(_SunPrivateScripting::get<T>(l, N + 1)...);
+            return std::make_tuple(SunScripting::getFromStack<T>(l, N + 1)...);
         }
 
         std::tuple<T...> getArguments(lua_State *l) {
@@ -172,7 +172,7 @@ namespace _SunPrivateScripting {
 
         template<int... N>
         std::tuple<T...> getArguments(lua_State *l, _SunPrivateScripting::seq<N...>) {
-            return std::make_tuple(_SunPrivateScripting::get<T>(l, N + 1)...);
+            return std::make_tuple(SunScripting::getFromStack<T>(l, N + 1)...);
         }
 
 

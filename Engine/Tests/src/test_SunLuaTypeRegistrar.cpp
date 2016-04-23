@@ -1,3 +1,6 @@
+// Copyright 2016 Jonathan Buchanan.
+// This file is part of Sunglasses, which is licensed under the MIT License.
+// See LICENSE.md for details.
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
@@ -35,7 +38,7 @@ struct SunLuaTypeRegistrarTest : ::testing::Test {
         luaL_dostring(L, "foo = TestClass({x = 10, y = 20.5, z = \"Hello, World!\"})");
     }
 
-    virtual void TearDown() {
+    virtual ~SunLuaTypeRegistrarTest() {
         lua_close(L);
     }
 };

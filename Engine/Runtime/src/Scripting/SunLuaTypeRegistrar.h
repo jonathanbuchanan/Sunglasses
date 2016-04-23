@@ -39,7 +39,7 @@ struct SunLuaTypeMemberFunction : public SunScripting::SunLuaTypeDataMemberBase<
         T *object = (T *)lua_touserdata(state, lua_upvalueindex(2));
         SunLuaTypeMemberFunction<T, S, R...> *function = (SunLuaTypeMemberFunction<T, S, R...> *)lua_touserdata(state, lua_upvalueindex(1));
         S result = function->execute(object, function->getArguments(state), typename _SunPrivateScripting::gens<sizeof...(R)>::type());
-        _SunPrivateScripting::push(state, result);
+        SunScripting::pushToStack(state, result);
         return 1;
     }
 
@@ -61,7 +61,7 @@ private:
 
     template<int... N>
     std::tuple<R...> getArguments(lua_State *l, _SunPrivateScripting::seq<N...>) {
-        return std::make_tuple(_SunPrivateScripting::get<T>(l, N + 1)...);
+        return std::make_tuple(SunScripting::getFromStack<T>(l, N + 1)...);
     }
 
 
@@ -101,7 +101,7 @@ private:
 
     template<int... N>
     std::tuple<R...> getArguments(lua_State *l, _SunPrivateScripting::seq<N...>) {
-        return std::make_tuple(_SunPrivateScripting::get<R>(l, N + 1)...);
+        return std::make_tuple(SunScripting::getFromStack<R>(l, N + 1)...);
     }
 
 

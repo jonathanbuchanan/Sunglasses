@@ -105,7 +105,7 @@ namespace _SunPrivateScripting {
         template<typename Member>
         void luaTableAdd(lua_State *l, S *object, const char *name, Member S::*var) {
             lua_pushstring(l, name);
-            push(l, object->*var);
+            SunScripting::pushToStack(l, object->*var);
             lua_settable(l, -3);
         }
 
@@ -118,7 +118,7 @@ namespace _SunPrivateScripting {
         void luaTableGet(lua_State *l, S *object, const char *name, Member S::*var) {
             lua_pushstring(l, name);
             lua_gettable(l, -2);
-            object->*var = get<Member>(l, -1);
+            object->*var = SunScripting::getFromStack<Member>(l, -1);
             lua_pop(l, 1);
         }
 
