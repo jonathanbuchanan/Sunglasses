@@ -7,12 +7,22 @@ struct TestClass {
     int x;
     float y;
     std::string z;
+
+    void increment(int amount) {
+        x += amount;
+    }
+
+    int doubleX() {
+        return x * 2;
+    }
 };
 template<> const std::string SunLuaTypeRegistrar<TestClass>::typeName = "TestClass";
 template<> const std::vector<SunScripting::SunLuaTypeDataMemberBase<TestClass> *> SunLuaTypeRegistrar<TestClass>::dataMembers = {
     new SunLuaTypeDataMember<int, TestClass>("x", &TestClass::x),
     new SunLuaTypeDataMember<float, TestClass>("y", &TestClass::y),
-    new SunLuaTypeDataMember<std::string, TestClass>("z", &TestClass::z)
+    new SunLuaTypeDataMember<std::string, TestClass>("z", &TestClass::z),
+    new SunLuaTypeMemberFunction<TestClass, void, int>("increment", &TestClass::increment),
+    new SunLuaTypeMemberFunction<TestClass, int>("doubleX", &TestClass::doubleX)
 };
 
 struct SunLuaTypeRegistrarTest : ::testing::Test {
@@ -22,6 +32,7 @@ struct SunLuaTypeRegistrarTest : ::testing::Test {
         L = luaL_newstate();
         luaL_openlibs(L);
         SunLuaTypeRegistrar<TestClass>::registerInState(L);
+        luaL_dostring(L, "foo = TestClass({x = 10, y = 20.5, z = \"Hello, World!\"})");
     }
 
     virtual void TearDown() {
@@ -30,8 +41,6 @@ struct SunLuaTypeRegistrarTest : ::testing::Test {
 };
 
 TEST_F(SunLuaTypeRegistrarTest, Constructor) {
-    luaL_dostring(L, "foo = TestClass({x = 10, y = 20.5, z = \"Hello, World!\"})");
-
     lua_getglobal(L, "foo");
 
     lua_pushstring(L, "x");
@@ -50,4 +59,14 @@ TEST_F(SunLuaTypeRegistrarTest, Constructor) {
     lua_pop(L, 1);
 
     lua_pop(L, 1);
+}
+
+TEST_F(SunLuaTypeRegistrarTest, Methods) {
+    luaL_dostring(L, "foo.increment(5)");
+
+    luaL_dostring(L, "x = foo.doubleX()");
+    lua_getglobal(L, "x");
+    int x = lua_tointeger(L, -1);
+    lua_pop(L, 1);
+    EXPECT_EQ(x, 30);
 }

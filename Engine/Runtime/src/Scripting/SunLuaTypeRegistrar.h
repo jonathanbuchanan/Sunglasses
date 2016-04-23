@@ -4,8 +4,10 @@
 #ifndef SUNLUATYPEREGISTRAR_H
 #define SUNLUATYPEREGISTRAR_H
 
+#include "SunLuaCFunction.h"
 #include <string>
 #include <vector>
+#include <iostream>
 #include <lua.hpp>
 
 namespace SunScripting {
@@ -29,6 +31,86 @@ namespace SunScripting {
     };
 }
 
+template<typename T, typename S, typename... R> // T is the class type, S is the return type, R... are the parameters
+struct SunLuaTypeMemberFunction : public SunScripting::SunLuaTypeDataMemberBase<T> {
+    SunLuaTypeMemberFunction(std::string _name, S (T::* _function)(R...)) : SunScripting::SunLuaTypeDataMemberBase<T>(_name), function(_function) { }
+    
+    static int run(lua_State *state) {
+        T *object = (T *)lua_touserdata(state, lua_upvalueindex(2));
+        SunLuaTypeMemberFunction<T, S, R...> *function = (SunLuaTypeMemberFunction<T, S, R...> *)lua_touserdata(state, lua_upvalueindex(1));
+        S result = function->execute(object, function->getArguments(state), typename _SunPrivateScripting::gens<sizeof...(R)>::type());
+        _SunPrivateScripting::push(state, result);
+        return 1;
+    }
+
+    virtual void assignFromStack(lua_State *state, T *object) {
+
+    }
+
+    virtual void pushToStack(lua_State *state, T *object) {
+        lua_pushlightuserdata(state, (void *)this);
+        lua_pushlightuserdata(state, (void *)object);
+        lua_pushcclosure(state, run, 2);
+    }
+
+private:
+    template<int... N>
+    S execute(T *object, std::tuple<R...> tuple, _SunPrivateScripting::seq<N...>) {
+        (S)(object->*function)(std::get<N>(tuple)...);
+    }
+
+    template<int... N>
+    std::tuple<R...> getArguments(lua_State *l, _SunPrivateScripting::seq<N...>) {
+        return std::make_tuple(_SunPrivateScripting::get<T>(l, N + 1)...);
+    }
+
+
+    std::tuple<R...> getArguments(lua_State *l) {
+        return getArguments(l, typename _SunPrivateScripting::gens<sizeof...(R)>::type());
+    }
+
+    S (T::* function)(R...);
+};
+
+template<typename T, typename... R> // T is the class type, void is the return type, R... are the parameters
+struct SunLuaTypeMemberFunction<T, void, R...> : public SunScripting::SunLuaTypeDataMemberBase<T> {
+    SunLuaTypeMemberFunction(std::string _name, void (T::* _function)(R...)) : SunScripting::SunLuaTypeDataMemberBase<T>(_name), function(_function) { }
+    
+    static int run(lua_State *state) {
+        T *object = (T *)lua_touserdata(state, lua_upvalueindex(2));
+        SunLuaTypeMemberFunction<T, void, R...> *function = (SunLuaTypeMemberFunction<T, void, R...> *)lua_touserdata(state, lua_upvalueindex(1));
+        function->execute(object, function->getArguments(state), typename _SunPrivateScripting::gens<sizeof...(R)>::type());
+        return 0;
+    }
+
+    virtual void assignFromStack(lua_State *state, T *object) {
+
+    }
+
+    virtual void pushToStack(lua_State *state, T *object) {
+        lua_pushlightuserdata(state, (void *)this);
+        lua_pushlightuserdata(state, (void *)object);
+        lua_pushcclosure(state, run, 2);
+    }
+
+private:
+    template<int... N>
+    void execute(T *object, std::tuple<R...> tuple, _SunPrivateScripting::seq<N...>) {
+        (object->*function)(std::get<N>(tuple)...);
+    }
+
+    template<int... N>
+    std::tuple<R...> getArguments(lua_State *l, _SunPrivateScripting::seq<N...>) {
+        return std::make_tuple(_SunPrivateScripting::get<R>(l, N + 1)...);
+    }
+
+
+    std::tuple<R...> getArguments(lua_State *l) {
+        return getArguments(l, typename _SunPrivateScripting::gens<sizeof...(R)>::type());
+    }
+    void (T::* function)(R...);
+};
+
 /**
  * This struct is used as a container for a data member of class.
  */
@@ -43,15 +125,13 @@ struct SunLuaTypeDataMember : public SunScripting::SunLuaTypeDataMemberBase<S> {
     }
 
     /// Pushes the value to the top of the lua stack
-    virtual void pushToStack(lua_State *stat, S *object) {
+    virtual void pushToStack(lua_State *state, S *object) {
         // This must be called if it is not int, float, or string because of specialization
     }
 
     /// The pointer to the data member
     T S::* data;
 };
-
-#include <iostream>
 
 template<typename T>
 struct SunLuaTypeDataMember<int, T> : public SunScripting::SunLuaTypeDataMemberBase<T> {
