@@ -154,6 +154,33 @@ public:
         lua_setglobal(state, typeName.c_str());
     }
 
+    /// Registers an existing object in C++ within a Lua state
+    /**
+     * @param state The Lua state to register the object in
+     * @param name The name of the object
+     * @param object A pointer to the object
+     */
+    static void registerObject(lua_State *state, std::string name, T *object) {
+        lua_newtable(state);
+
+        // Set the table's object pointer
+        lua_pushlightuserdata(state, (void *)object);
+        lua_setfield(state, -2, "__object");
+
+        // Set the table's metatable
+        lua_newtable(state);
+
+        lua_pushcfunction(state, &SunLuaTypeRegistrar<T>::index);
+        lua_setfield(state, -2, "__index");
+
+        lua_pushcfunction(state, &SunLuaTypeRegistrar<T>::newindex);
+        lua_setfield(state, -2, "__newindex");
+
+        lua_setmetatable(state, -2);
+
+        lua_setglobal(state, name.c_str());
+    }
+
     static int constructor(lua_State *state) {
         T *object = new T();
         
@@ -210,6 +237,8 @@ private:
         const char *key = SunScripting::getFromStack<const char *>(state, 2);
 
         dataMembers.at(std::string(key))->assignFromStack(state, object, 3);
+
+        return 0;
     }
 
     /// The name of the type - this must be set for each type that is used

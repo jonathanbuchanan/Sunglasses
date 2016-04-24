@@ -31,15 +31,24 @@ template<> const std::string SunLuaTypeRegistrar<TestClass>::memberTableName = "
 
 struct SunLuaTypeRegistrarTest : ::testing::Test {
     lua_State *L;
+    TestClass *obj;
 
     SunLuaTypeRegistrarTest() {
         L = luaL_newstate();
         luaL_openlibs(L);
         SunLuaTypeRegistrar<TestClass>::registerInState(L);
         luaL_dostring(L, "foo = TestClass({x = 10, y = 20.5, z = \"Hello, World!\"})");
+
+        obj = new TestClass();
+        obj->x = 10;
+        obj->y = 1.23;
+        obj->z = "TESTING";
+
+        SunLuaTypeRegistrar<TestClass>::registerObject(L, "obj", obj);
     }
 
     virtual ~SunLuaTypeRegistrarTest() {
+        delete obj;
         lua_close(L);
     }
 };
@@ -99,5 +108,29 @@ TEST_F(SunLuaTypeRegistrarTest, WriteMembers) {
     lua_pushstring(L, "z");
     lua_gettable(L, -2);
     EXPECT_STREQ("This is a test", (const char *)lua_tostring(L, -1));
+    lua_pop(L, 1);
+}
+
+TEST_F(SunLuaTypeRegistrarTest, RegisterObjects) {
+    lua_getglobal(L, "obj");
+
+    lua_getfield(L, -1, "x");
+    EXPECT_EQ(10, (int)lua_tonumber(L, -1));
+    lua_pop(L, 1);
+
+    lua_getfield(L, -1, "y");
+    EXPECT_FLOAT_EQ(1.23, (double)lua_tonumber(L, -1));
+    lua_pop(L, 1);
+
+    lua_getfield(L, -1, "z");
+    EXPECT_STREQ("TESTING", (const char *)lua_tostring(L, -1));
+    lua_pop(L, 1);
+
+    luaL_dostring(L, "obj.increment(111)");
+
+    lua_getfield(L, -1, "x");
+    EXPECT_EQ(121, (int)lua_tonumber(L, -1));
+    lua_pop(L, 1);
+
     lua_pop(L, 1);
 }
