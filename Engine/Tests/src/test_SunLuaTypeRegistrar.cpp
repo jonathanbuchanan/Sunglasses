@@ -20,13 +20,14 @@ struct TestClass {
     }
 };
 template<> const std::string SunLuaTypeRegistrar<TestClass>::typeName = "TestClass";
-template<> const std::vector<SunScripting::SunLuaTypeDataMemberBase<TestClass> *> SunLuaTypeRegistrar<TestClass>::dataMembers = {
-    new SunLuaTypeDataMember<int, TestClass>("x", &TestClass::x),
-    new SunLuaTypeDataMember<float, TestClass>("y", &TestClass::y),
-    new SunLuaTypeDataMember<std::string, TestClass>("z", &TestClass::z),
-    new SunLuaTypeMemberFunction<TestClass, void, int>("increment", &TestClass::increment),
-    new SunLuaTypeMemberFunction<TestClass, int>("doubleX", &TestClass::doubleX)
+template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<TestClass> *> SunLuaTypeRegistrar<TestClass>::dataMembers = {
+    {"x", new SunLuaTypeDataMember<int, TestClass>("x", &TestClass::x)},
+    {"y", new SunLuaTypeDataMember<float, TestClass>("y", &TestClass::y)},
+    {"z", new SunLuaTypeDataMember<std::string, TestClass>("z", &TestClass::z)},
+    {"increment", new SunLuaTypeMemberFunction<TestClass, void, int>("increment", &TestClass::increment)},
+    {"doubleX", new SunLuaTypeMemberFunction<TestClass, int>("doubleX", &TestClass::doubleX)}
 };
+template<> const std::string SunLuaTypeRegistrar<TestClass>::memberTableName = "__members";
 
 struct SunLuaTypeRegistrarTest : ::testing::Test {
     lua_State *L;
@@ -43,7 +44,7 @@ struct SunLuaTypeRegistrarTest : ::testing::Test {
     }
 };
 
-TEST_F(SunLuaTypeRegistrarTest, Constructor) {
+TEST_F(SunLuaTypeRegistrarTest, AccessMembers) {
     lua_getglobal(L, "foo");
 
     lua_pushstring(L, "x");
@@ -61,15 +62,42 @@ TEST_F(SunLuaTypeRegistrarTest, Constructor) {
     EXPECT_STREQ("Hello, World!", (const char *)lua_tostring(L, -1));
     lua_pop(L, 1);
 
-    lua_pop(L, 1);
-}
-
-TEST_F(SunLuaTypeRegistrarTest, Methods) {
     luaL_dostring(L, "foo.increment(5)");
+    lua_pushstring(L, "x");
+    lua_gettable(L, -2);
+    EXPECT_EQ(15, (int)lua_tonumber(L, -1));
+    lua_pop(L, 1);
 
     luaL_dostring(L, "x = foo.doubleX()");
     lua_getglobal(L, "x");
     int x = lua_tointeger(L, -1);
     lua_pop(L, 1);
     EXPECT_EQ(x, 30);
+
+    lua_pop(L, 1);
+}
+
+TEST_F(SunLuaTypeRegistrarTest, WriteMembers) {
+    lua_getglobal(L, "foo");
+
+    luaL_dostring(L, "foo.x = 220");
+    
+    lua_pushstring(L, "x");
+    lua_gettable(L, -2);
+    EXPECT_EQ(220, (int)lua_tonumber(L, -1));
+    lua_pop(L, 1);
+
+    luaL_dostring(L, "foo.y = 3.1415");
+    
+    lua_pushstring(L, "y");
+    lua_gettable(L, -2);
+    EXPECT_FLOAT_EQ(3.1415, (double)lua_tonumber(L, -1));
+    lua_pop(L, 1);
+
+    luaL_dostring(L, "foo.z = \"This is a test\"");
+
+    lua_pushstring(L, "z");
+    lua_gettable(L, -2);
+    EXPECT_STREQ("This is a test", (const char *)lua_tostring(L, -1));
+    lua_pop(L, 1);
 }

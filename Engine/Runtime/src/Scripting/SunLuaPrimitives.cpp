@@ -24,6 +24,9 @@ namespace SunScripting {
         return lua_tostring(l, index);
     }
 
+    template<> std::string getFromStack(lua_State *l, int index) {
+        return std::string(lua_tostring(l, index));
+    }
 
     template<> void pushToStack(lua_State *l, int value) {
         lua_pushinteger(l, value);
@@ -43,5 +46,9 @@ namespace SunScripting {
 
     template<> void pushToStack(lua_State *l, const char *value) {
         lua_pushstring(l, value);
+    }
+
+    template<> void pushToStack(lua_State *l, std::string value) {
+        lua_pushstring(l, value.c_str());
     }
 }

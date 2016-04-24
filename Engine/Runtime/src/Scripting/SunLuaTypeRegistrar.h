@@ -7,6 +7,7 @@
 #include "SunLuaCFunction.h"
 #include <string>
 #include <vector>
+#include <map>
 #include <iostream>
 #include <lua.hpp>
 
@@ -21,7 +22,7 @@ namespace SunScripting {
         SunLuaTypeDataMemberBase(std::string _name) : name(_name) { }
 
         /// Assigns the value from the top of the lua stack
-        virtual void assignFromStack(lua_State *state, T *object) = 0;
+        virtual void assignFromStack(lua_State *state, T *object, int index) = 0;
 
         /// Pushes the value to the top of the lua stack
         virtual void pushToStack(lua_State *state, T *object) = 0; 
@@ -43,7 +44,7 @@ struct SunLuaTypeMemberFunction : public SunScripting::SunLuaTypeDataMemberBase<
         return 1;
     }
 
-    virtual void assignFromStack(lua_State *state, T *object) {
+    virtual void assignFromStack(lua_State *state, T *object, int index) {
 
     }
 
@@ -83,7 +84,7 @@ struct SunLuaTypeMemberFunction<T, void, R...> : public SunScripting::SunLuaType
         return 0;
     }
 
-    virtual void assignFromStack(lua_State *state, T *object) {
+    virtual void assignFromStack(lua_State *state, T *object, int index) {
 
     }
 
@@ -120,63 +121,21 @@ struct SunLuaTypeDataMember : public SunScripting::SunLuaTypeDataMemberBase<S> {
     SunLuaTypeDataMember(std::string _name, T S::* _data) : SunScripting::SunLuaTypeDataMemberBase<S>(_name), data(_data) { }
 
     /// Assigns the value from the top of the lua stack
-    virtual void assignFromStack(lua_State *state, S *object) {
+    virtual void assignFromStack(lua_State *state, S *object, int index) {
         // This must be called if it is not int, float, or string because of specialization
+        object->*data = SunScripting::getFromStack<T>(state, index);
     }
 
     /// Pushes the value to the top of the lua stack
     virtual void pushToStack(lua_State *state, S *object) {
         // This must be called if it is not int, float, or string because of specialization
+        SunScripting::pushToStack(state, object->*data);
     }
 
     /// The pointer to the data member
     T S::* data;
 };
 
-template<typename T>
-struct SunLuaTypeDataMember<int, T> : public SunScripting::SunLuaTypeDataMemberBase<T> {
-    SunLuaTypeDataMember(std::string _name, int T::* _data) : SunScripting::SunLuaTypeDataMemberBase<T>(_name), data(_data) { }
-
-    virtual void assignFromStack(lua_State *state, T *object) {
-        object->*data = lua_tointeger(state, -1);
-    }
-
-    virtual void pushToStack(lua_State *state, T *object) {
-        lua_pushinteger(state, object->*data);
-    }
-
-    int T::* data;
-};
-
-template<typename T>
-struct SunLuaTypeDataMember<float, T> : public SunScripting::SunLuaTypeDataMemberBase<T> {
-    SunLuaTypeDataMember(std::string _name, float T::* _data) : SunScripting::SunLuaTypeDataMemberBase<T>(_name), data(_data) { }
-
-    virtual void assignFromStack(lua_State *state, T *object) {
-        object->*data = lua_tonumber(state, -1);
-    }
-
-    virtual void pushToStack(lua_State *state, T *object) {
-        lua_pushnumber(state, object->*data);
-    }
-
-    float T::* data;
-};
-
-template<typename T>
-struct SunLuaTypeDataMember<std::string, T> : public SunScripting::SunLuaTypeDataMemberBase<T> {
-    SunLuaTypeDataMember(std::string _name, std::string T::* _data) : SunScripting::SunLuaTypeDataMemberBase<T>(_name), data(_data) { }
-
-    virtual void assignFromStack(lua_State *state, T *object) {
-        object->*data = std::string(lua_tostring(state, -1));
-    }
-
-    virtual void pushToStack(lua_State *state, T *object) {
-        lua_pushstring(state, (object->*data).c_str());
-    }
-
-    std::string T::* data;
-};
 /**
  * This class is used as a container for the data used in registering a type in
  * a Lua script.
@@ -198,30 +157,72 @@ public:
     static int constructor(lua_State *state) {
         T *object = new T();
         
-        for (size_t i = 0; i < dataMembers.size(); ++i) {
-            lua_pushstring(state, dataMembers[i]->name.c_str());
+        for (auto &iterator : dataMembers) {
+            lua_pushstring(state, iterator.first.c_str());
             lua_gettable(state, -2);
             if (!lua_isnil(state, -1)) { // Value exists
-                dataMembers[i]->assignFromStack(state, object);
+                iterator.second->assignFromStack(state, object, -1);
             }
             lua_pop(state, 1);
         }
 
         lua_newtable(state);
 
-        for (size_t i = 0; i < dataMembers.size(); ++i) {
-            lua_pushstring(state, dataMembers[i]->name.c_str());
-            dataMembers[i]->pushToStack(state, object);
-            lua_settable(state, -3);
-        }
+        // Set the table's object pointer
+        lua_pushlightuserdata(state, (void *)object);
+        lua_setfield(state, -2, "__object");
+
+        // Set the table's metatable
+        lua_newtable(state);
+
+        lua_pushcfunction(state, &SunLuaTypeRegistrar<T>::index);
+        lua_setfield(state, -2, "__index");
+
+        lua_pushcfunction(state, &SunLuaTypeRegistrar<T>::newindex);
+        lua_setfield(state, -2, "__newindex");
+
+        lua_setmetatable(state, -2);
         return 1;
     }
 private:
+    /// The '__index' metamethod for the object
+    static int index(lua_State *state) {
+        lua_pushstring(state, "__object");
+        lua_gettable(state, 1);
+
+        T *object = (T *)lua_touserdata(state, -1);
+        lua_pop(state, 1);
+
+        const char *key = SunScripting::getFromStack<const char *>(state, 2);
+        dataMembers.at(std::string(key))->pushToStack(state, object);
+        return 1;
+    }
+
+    /// The '__newindex' metamethod for the object
+    static int newindex(lua_State *state) {
+        // IMPLEMENT CHECK FOR FUNCTIONS HERE
+        lua_pushstring(state, "__object");
+        lua_gettable(state, 1);
+
+        T *object = (T *)lua_touserdata(state, -1);
+        lua_pop(state, 1);
+
+        const char *key = SunScripting::getFromStack<const char *>(state, 2);
+
+        dataMembers.at(std::string(key))->assignFromStack(state, object, 3);
+    }
+
     /// The name of the type - this must be set for each type that is used
     const static std::string typeName;
 
     /// The vector of data members - this must be set for each type that is used
-    const static std::vector<SunScripting::SunLuaTypeDataMemberBase<T> *> dataMembers;
+    const static std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<T> *> dataMembers;
+
+    /// The name of the subtable containing the data members
+    /**
+     * @warning Override this if you are registering a member named '__dataMembers'
+     */
+    const static std::string memberTableName;
 };
 
 #endif

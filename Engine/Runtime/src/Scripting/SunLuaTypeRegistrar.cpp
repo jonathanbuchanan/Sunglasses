@@ -3,3 +3,5 @@
 // See LICENSE.md for details.
 #include "SunLuaTypeRegistrar.h"
 
+template<typename T>
+const std::string SunLuaTypeRegistrar<T>::memberTableName = "__dataMembers";
