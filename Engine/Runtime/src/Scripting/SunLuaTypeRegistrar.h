@@ -122,14 +122,41 @@ struct SunLuaTypeDataMember : public SunScripting::SunLuaTypeDataMemberBase<S> {
 
     /// Assigns the value from the top of the lua stack
     virtual void assignFromStack(lua_State *state, S *object, int index) {
-        // This must be called if it is not int, float, or string because of specialization
         object->*data = SunScripting::getFromStack<T>(state, index);
     }
 
     /// Pushes the value to the top of the lua stack
     virtual void pushToStack(lua_State *state, S *object) {
-        // This must be called if it is not int, float, or string because of specialization
         SunScripting::pushToStack(state, object->*data);
+    }
+
+    /// The pointer to the data member
+    T S::* data;
+};
+
+template<typename T>
+class SunLuaTypeRegistrar;
+
+/**
+ * This struct is used as a container for a data member of a class that
+ * is not a primitive.
+ */
+template<typename T, typename S> // T is the type of the data member, S is the class type
+struct SunLuaComplexDataMember : public SunScripting::SunLuaTypeDataMemberBase<S> {
+    /// Constructs the object with a pointer to the data member.
+    SunLuaComplexDataMember(std::string _name, T S::* _data) : SunScripting::SunLuaTypeDataMemberBase<S>(_name), data(_data) { }
+
+    /// Assigns the value from the top of the lua stack
+    virtual void assignFromStack(lua_State *state, S *object, int index) {
+        lua_getfield(state, index, "__object");
+        T *member = (T *)lua_touserdata(state, -1);
+        object->*data = *member;
+        lua_pop(state, 1);
+    }
+
+    /// Pushes the value to the top of the lua stack
+    virtual void pushToStack(lua_State *state, S *object) {
+        SunLuaTypeRegistrar<T>::registerObject(state, &(object->*data));
     }
 
     /// The pointer to the data member
@@ -154,13 +181,13 @@ public:
         lua_setglobal(state, typeName.c_str());
     }
 
-    /// Registers an existing object in C++ within a Lua state
+    /// Registers an existing object in C++ within a Lua state and pushes it to the top of the stack
     /**
      * @param state The Lua state to register the object in
      * @param name The name of the object
      * @param object A pointer to the object
      */
-    static void registerObject(lua_State *state, std::string name, T *object) {
+    static void registerObject(lua_State *state, T *object) {
         lua_newtable(state);
 
         // Set the table's object pointer
@@ -176,9 +203,7 @@ public:
         lua_pushcfunction(state, &SunLuaTypeRegistrar<T>::newindex);
         lua_setfield(state, -2, "__newindex");
 
-        lua_setmetatable(state, -2);
-
-        lua_setglobal(state, name.c_str());
+        lua_setmetatable(state, -2); 
     }
 
     static int constructor(lua_State *state) {

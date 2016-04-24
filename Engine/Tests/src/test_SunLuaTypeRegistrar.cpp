@@ -10,6 +10,7 @@ struct TestClass {
     int x;
     float y;
     std::string z;
+    glm::vec2 vec;
 
     void increment(int amount) {
         x += amount;
@@ -24,6 +25,7 @@ template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<Te
     {"x", new SunLuaTypeDataMember<int, TestClass>("x", &TestClass::x)},
     {"y", new SunLuaTypeDataMember<float, TestClass>("y", &TestClass::y)},
     {"z", new SunLuaTypeDataMember<std::string, TestClass>("z", &TestClass::z)},
+    {"vec", new SunLuaComplexDataMember<glm::vec2, TestClass>("vec", &TestClass::vec)},
     {"increment", new SunLuaTypeMemberFunction<TestClass, void, int>("increment", &TestClass::increment)},
     {"doubleX", new SunLuaTypeMemberFunction<TestClass, int>("doubleX", &TestClass::doubleX)}
 };
@@ -37,14 +39,18 @@ struct SunLuaTypeRegistrarTest : ::testing::Test {
         L = luaL_newstate();
         luaL_openlibs(L);
         SunLuaTypeRegistrar<TestClass>::registerInState(L);
-        luaL_dostring(L, "foo = TestClass({x = 10, y = 20.5, z = \"Hello, World!\"})");
-
+        SunLuaTypeRegistrar<glm::vec2>::registerInState(L);
+        luaL_dostring(L, "foo = TestClass({x = 10, y = 20.5, z = \"Hello, World!\", vec = Vec2({x = 11.5, y = 2.33})})");
+        
         obj = new TestClass();
         obj->x = 10;
         obj->y = 1.23;
         obj->z = "TESTING";
+        obj->vec.x = 9.8;
+        obj->vec.y = 0.10101;
 
-        SunLuaTypeRegistrar<TestClass>::registerObject(L, "obj", obj);
+        SunLuaTypeRegistrar<TestClass>::registerObject(L, obj);
+        lua_setglobal(L, "obj");
     }
 
     virtual ~SunLuaTypeRegistrarTest() {
@@ -69,6 +75,21 @@ TEST_F(SunLuaTypeRegistrarTest, AccessMembers) {
     lua_pushstring(L, "z");
     lua_gettable(L, -2);
     EXPECT_STREQ("Hello, World!", (const char *)lua_tostring(L, -1));
+    lua_pop(L, 1);
+
+    lua_pushstring(L, "vec");
+    lua_gettable(L, -2);
+
+    lua_pushstring(L, "x");
+    lua_gettable(L, -2);
+    EXPECT_FLOAT_EQ(11.5, (double)lua_tonumber(L, -1));
+    lua_pop(L, 1);
+
+    lua_pushstring(L, "y");
+    lua_gettable(L, -2);
+    EXPECT_FLOAT_EQ(2.33, (double)lua_tonumber(L, -1));
+    lua_pop(L, 1);
+
     lua_pop(L, 1);
 
     luaL_dostring(L, "foo.increment(5)");
@@ -109,6 +130,24 @@ TEST_F(SunLuaTypeRegistrarTest, WriteMembers) {
     lua_gettable(L, -2);
     EXPECT_STREQ("This is a test", (const char *)lua_tostring(L, -1));
     lua_pop(L, 1);
+
+    luaL_dostring(L, "foo.vec.x = -123.444");
+    luaL_dostring(L, "foo.vec.y = 33.5566");
+
+    lua_pushstring(L, "vec");
+    lua_gettable(L, -2);
+
+    lua_pushstring(L, "x");
+    lua_gettable(L, -2);
+    EXPECT_FLOAT_EQ(-123.444, (double)lua_tonumber(L, -1));
+    lua_pop(L, 1);
+
+    lua_pushstring(L, "y");
+    lua_gettable(L, -2);
+    EXPECT_FLOAT_EQ(33.5566, (double)lua_tonumber(L, -1));
+    lua_pop(L, 1);
+
+    lua_pop(L, 2);
 }
 
 TEST_F(SunLuaTypeRegistrarTest, RegisterObjects) {
@@ -132,5 +171,20 @@ TEST_F(SunLuaTypeRegistrarTest, RegisterObjects) {
     EXPECT_EQ(121, (int)lua_tonumber(L, -1));
     lua_pop(L, 1);
 
+    lua_pushstring(L, "vec");
+    lua_gettable(L, -2);
+
+    lua_pushstring(L, "x");
+    lua_gettable(L, -2);
+    EXPECT_FLOAT_EQ(9.8, (double)lua_tonumber(L, -1));
+    lua_pop(L, 1);
+
+    lua_pushstring(L, "y");
+    lua_gettable(L, -2);
+    EXPECT_FLOAT_EQ(0.10101, (double)lua_tonumber(L, -1));
+    lua_pop(L, 1);
+
+    lua_pop(L, 1);
+    
     lua_pop(L, 1);
 }
