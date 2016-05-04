@@ -5,6 +5,11 @@
 #include "../Scripting/SunGlobalScriptingEnvironment.h"
 #include "../Graphics/SunWindowManager.h"
 
+template<> const std::string SunLuaTypeRegistrar<SunGUIMenu>::typeName = "Menu";
+template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<SunGUIMenu> *> SunLuaTypeRegistrar<SunGUIMenu>::dataMembers = {
+    {"visible", new SunLuaTypeDataMember<bool, SunGUIMenu>("visible", &SunGUIMenu::visible)}
+};
+
 SunGUIMenu::SunGUIMenu() {
 
 }
@@ -17,9 +22,11 @@ void SunGUIMenu::init() {
 void SunGUIMenu::loadScript(std::string _script) {
     script.loadFile(_script);
     ((SunGlobalScriptingEnvironment *)getService("global_logic_environment"))->registerWithScript(script);
-    script.registerObject("cursor_manager", ((SunCursorManager *)getService("cursor_manager")), "enableCursor", &SunCursorManager::enableCursor, "disableCursor", &SunCursorManager::disableCursor);
-    script.registerObject("window_manager", ((SunWindowManager *)getService("window_manager")), "setWindowShouldClose", &SunWindowManager::setWindowShouldClose);
-    script.registerObject("menu", this, "visible", &SunGUIMenu::visible);
+    //script.registerObject("cursor_manager", ((SunCursorManager *)getService("cursor_manager")), "enableCursor", &SunCursorManager::enableCursor, "disableCursor", &SunCursorManager::disableCursor);
+    //script.registerObject("window_manager", ((SunWindowManager *)getService("window_manager")), "setWindowShouldClose", &SunWindowManager::setWindowShouldClose);
+    //script.registerObject("menu", this, "visible", &SunGUIMenu::visible);
+    script.registerType<SunGUIMenu>();
+    script.registerObject(this, "menu");
 }
 
 void SunGUIMenu::render(SunAction action) {

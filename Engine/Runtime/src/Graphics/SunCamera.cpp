@@ -6,6 +6,15 @@
 #include "../Scripting/SunGlobalScriptingEnvironment.h"
 #include "SunShader.h"
 
+template<> const std::string SunLuaTypeRegistrar<SunCamera>::typeName = "Camera";
+template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<SunCamera> *> SunLuaTypeRegistrar<SunCamera>::dataMembers = {
+    {"yaw", new SunLuaTypeDataMember<float, SunCamera>("yaw", &SunCamera::yaw)},
+    {"pitch", new SunLuaTypeDataMember<float, SunCamera>("pitch", &SunCamera::pitch)},
+    {"position", new SunLuaComplexDataMember<glm::vec3, SunCamera>("position", &SunCamera::position)},
+    {"direction", new SunLuaComplexDataMember<glm::vec3, SunCamera>("direction", &SunCamera::direction)},
+    {"up", new SunLuaComplexDataMember<glm::vec3, SunCamera>("up", &SunCamera::cameraUp)}
+};
+
 SunCamera::SunCamera() {
 
 }
@@ -30,15 +39,11 @@ SunCamera::SunCamera(GLfloat _FOV, glm::vec3 _position, glm::vec3 _direction) {
 
 void SunCamera::init() {
     script.loadFile("../../Engine/Scripts/SunCamera.lua");
-
-    script.registerObject("camera", this, "yaw", &SunCamera::yaw, "pitch", &SunCamera::pitch, "FOV", &SunCamera::FOV);
-    script.registerType<glm::vec3>("vec3", "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
-    script.registerObjectAsType(script["camera"]["position"], "vec3", &position);
-    script.registerObjectAsType(script["camera"]["direction"], "vec3", &direction);
-    script.registerObjectAsType(script["camera"]["up"], "vec3", &cameraUp);
-
-    script.registerObject("window_manager", (SunWindowManager *)getService("window_manager"), "getDelta", &SunWindowManager::getDelta);
-    script.registerObject("keyboard_manager", (SunKeyboardManager *)getService("keyboard_manager"), "pollKey", &SunKeyboardManager::keyDown);
+    script.registerType<glm::vec3>();
+    
+    script.registerObject(this, "camera");
+    //script.registerObject("window_manager", (SunWindowManager *)getService("window_manager"), "getDelta", &SunWindowManager::getDelta);
+    ((SunKeyboardManager *)getService("keyboard_manager"))->registerWithScript(&script);
     ((SunGlobalScriptingEnvironment *)getService("global_logic_environment"))->registerWithScript(script);
 
     setIgnoreTags(true);

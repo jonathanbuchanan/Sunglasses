@@ -20,15 +20,9 @@ function update(delta)
     if keyboard_manager.pollKey(keys.x) == true then
         rotationConstant = 3
     end
-    position = object.position.toTable()
-    --position.y = (4 * math.sin(4 * time)) + 1
-    object.position.assignTable(position)
-    rotation = object.rotation.toTable()
-    rotation.y = rotation.y + (delta * rotationConstant)
-    object.rotation.assignTable(rotation)
-    color = object.teapot.material.color.toTable()
-    color.x = math.abs(math.sin(2 * time))
-    color.y = math.abs(math.sin(3 * time + 1))
-    color.z = math.abs(math.sin(4 * time + 2))
-    object.teapot.material.color.assignTable(color)
+    object.position.y = (4 * math.sin(4 * time)) + 1
+    object.rotation.y = object.rotation.y + (delta * rotationConstant)
+    --object.color.x = math.abs(math.sin(2 * time))
+    --object.color.y = math.abs(math.sin(3 * time + 1))
+    --object.color.z = math.abs(math.sin(4 * time + 2))
 end

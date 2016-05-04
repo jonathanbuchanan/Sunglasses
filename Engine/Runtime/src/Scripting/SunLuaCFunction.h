@@ -12,7 +12,6 @@
 
 #include <lua.hpp>
 
-#include "SunLuaState.h"
 #include "SunLuaValue.h"
 
 namespace _SunPrivateScripting {
@@ -48,13 +47,13 @@ namespace _SunPrivateScripting {
     template<typename S, typename... T>
     class SunLuaCFunction : public _SunPrivateScripting::_SunLuaCFunction_Base {
     public:
-        SunLuaCFunction(SunLuaState *state, std::string _name, std::function<S(T...)> _function) {
+        SunLuaCFunction(lua_State *state, std::string _name, std::function<S(T...)> _function) {
             name = _name;
             function = _function;
             registerAsFunction(state);
         }
 
-        SunLuaCFunction(SunLuaState *state, SunLuaValue value, std::function<S(T...)> _function) {
+        SunLuaCFunction(lua_State *state, SunLuaValue value, std::function<S(T...)> _function) {
             function = _function;
             registerAsFunction(state, value);
         }
@@ -64,32 +63,32 @@ namespace _SunPrivateScripting {
             SunScripting::pushToStack(state, result);
         }
 
-        void registerAsFunction(SunLuaState *state, SunLuaValue value) {
+        void registerAsFunction(lua_State *state, SunLuaValue value) {
             std::vector<_SunPrivateScripting::SunLuaPrimitive> tables = value.getTables();
             if (tables.size() >= 2) {
-                state->getGlobal((const char *)tables[0]);
+                lua_getglobal(state, (const char *)tables[0]);
                 for (int i = 1; i < tables.size() - 1; i++) {
                     tables[i].push(state);
-                    state->getTable(-2);
+                    lua_gettable(state, -2);
                 }
             }
             if (tables.size() < 2) {
-                state->pushLightUserdata((void *)static_cast<_SunPrivateScripting::_SunLuaCFunction_Base *>(this));
-                state->pushCClosure(&_SunPrivateScripting::callFunction, 1);
-                state->setGlobal((const char *)tables[0]);
+                lua_pushlightuserdata(state, (void *)static_cast<_SunPrivateScripting::_SunLuaCFunction_Base *>(this));
+                lua_pushcclosure(state, &_SunPrivateScripting::callFunction, 1);
+                lua_setglobal(state, (const char *)tables[0]);
             } else {
-                state->pushString((const char *)tables[tables.size() - 1]); // Push name of function
-                state->pushLightUserdata((void *)static_cast<_SunPrivateScripting::_SunLuaCFunction_Base *>(this)); // Upvalue pointer to this
-                state->pushCClosure(&_SunPrivateScripting::callFunction, 1); // Push C Closure
-                state->setTable(-3);
+                lua_pushstring(state, (const char *)tables[tables.size() - 1]); // Push name of function
+                lua_pushlightuserdata(state, (void *)static_cast<_SunPrivateScripting::_SunLuaCFunction_Base *>(this)); // Upvalue pointer to this
+                lua_pushcclosure(state, &_SunPrivateScripting::callFunction, 1); // Push C Closure
+                lua_settable(state, -3);
             }
-            state->pop(tables.size());
+            lua_pop(state, tables.size());
         }
 
-        void registerAsFunction(SunLuaState *state) {
-            state->pushLightUserdata((void *)static_cast<_SunPrivateScripting::_SunLuaCFunction_Base *>(this));
-            state->pushCClosure(&_SunPrivateScripting::callFunction, 1);
-            state->setGlobal(name.c_str());
+        void registerAsFunction(lua_State *state) {
+            lua_pushlightuserdata(state, (void *)this);
+            lua_pushcclosure(state, &_SunPrivateScripting::callFunction, 1);
+            lua_setglobal(state, name.c_str());
         }
 
         void setName(std::string n) { name = n; }
@@ -116,73 +115,21 @@ namespace _SunPrivateScripting {
 
 
     // Partial Specialization of SunLuaCFunction for void returns
-    template<typename... T>
+    /*template<typename... T>
     class SunLuaCFunction<void, T...> : public _SunPrivateScripting::_SunLuaCFunction_Base {
-    public:
-        SunLuaCFunction(std::string _name, std::function<void(T...)> _function) {
-            name = _name;
-            function = _function;
-        }
-
-        SunLuaCFunction(SunLuaState *state, SunLuaValue value, std::function<void(T...)> _function) {
-            function = _function;
-            registerAsFunction(state, value);
-        }
-
-        void run(lua_State *state) {
-            execute(getArguments(state), typename _SunPrivateScripting::gens<sizeof...(T)>::type());
-        }
-
-        void registerAsFunction(SunLuaState *state, SunLuaValue value) {
-            std::vector<_SunPrivateScripting::SunLuaPrimitive> tables = value.getTables();
-            if (tables.size() >= 2) {
-                state->getGlobal((const char *)tables[0]);
-                for (int i = 1; i < tables.size() - 1; i++) {
-                    tables[i].push(state);
-                    state->getTable(-2);
-                }
-            }
-            if (tables.size() < 2) {
-                state->pushLightUserdata((void *)static_cast<_SunPrivateScripting::_SunLuaCFunction_Base *>(this));
-                state->pushCClosure(&_SunPrivateScripting::callFunction, 1);
-                state->setGlobal((const char *)tables[0]);
-            } else {
-                state->pushString((const char *)tables[tables.size() - 1]); // Push name of function
-                state->pushLightUserdata((void *)static_cast<_SunPrivateScripting::_SunLuaCFunction_Base *>(this)); // Upvalue pointer to this
-                state->pushCClosure(&_SunPrivateScripting::callFunction, 1); // Push C Closure
-                state->setTable(-3);
-            }
-            state->pop(tables.size());
-        }
-
-        void registerAsFunction(SunLuaState *state) {
-            state->pushLightUserdata((void *)static_cast<_SunPrivateScripting::_SunLuaCFunction_Base *>(this));
-            state->pushCClosure(&_SunPrivateScripting::callFunction, 1);
-            state->setGlobal(name.c_str());
-        }
-
-        void setName(std::string n) { name = n; }
-        template<typename Return, typename... Args>
-        void setFunction(std::function<Return(Args...)> f) { function = f; }
     private:
         template<int... N>
         void execute(std::tuple<T...> tuple, _SunPrivateScripting::seq<N...>) {
             function(std::get<N>(tuple)...);
         }
 
-        template<int... N>
-        std::tuple<T...> getArguments(lua_State *l, _SunPrivateScripting::seq<N...>) {
-            return std::make_tuple(SunScripting::getFromStack<T>(l, N + 1)...);
-        }
-
-
-        std::tuple<T...> getArguments(lua_State *l) {
-            return getArguments(l, typename _SunPrivateScripting::gens<sizeof...(T)>::type());
-        }
-
-        std::string name;
         std::function<void(T...)> function;
-    };
+    };*/
+    /*template<typename... T, int... N>
+
+    void SunLuaCFunction<void, T...>::execute(std::tuple<T...> tuple, _SunPrivateScripting::seq<N...>) {
+        function(std::get<N>(tuple)...);
+    }*/
 }
 
 #endif

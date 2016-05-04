@@ -21,6 +21,7 @@ class SunShader;
 #include <GLFW/glfw3.h>
 
 class SunCamera : public SunNode {
+friend SunLuaTypeRegistrar<SunCamera>;
 public:
     SunCamera();
     SunCamera(GLfloat _FOV);

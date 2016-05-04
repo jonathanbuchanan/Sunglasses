@@ -4,15 +4,15 @@ require("GLFWKeys")
 require("vec3")
 
 function hide()
-    menu.set_visible(false)
+    menu.visible = false
     globalenvironment.setBoolean("doCameraInput", true)
     cursor_manager.disableCursor()
 end
 
 function show()
-    menu.set_visible(true)
+    menu.visible = true
     globalenvironment.setBoolean("doCameraInput", false)
-    plane.rotation.set_x(20.0);
+    --plane.rotation.set_x(20.0);
     cursor_manager.enableCursor()
 end
 
@@ -33,9 +33,9 @@ end
 
 
 function escapePressed()
-    if menu.visible() == true then
+    if menu.visible == true then
         hide()
-    elseif menu.visible() == false then
+    elseif menu.visible == false then
         show()
     end
 end

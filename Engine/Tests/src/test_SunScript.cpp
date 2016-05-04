@@ -151,69 +151,7 @@ TEST_F(SunScriptTest, CFunctions) {
     EXPECT_EQ(z, 6);
 
     // Test Void Function
-    script.registerFunction(script["functions"]["sum"], &sum);
-    script["functions"]["sum"](5, 7);
-    EXPECT_EQ(zaz, 12);
-}
-
-TEST_F(SunScriptTest, Objects) {
-    struct TestClass {
-        glm::vec2 vector = glm::vec2(1.5f, -0.777f);
-        int x;
-        TestClass(int _x) { x = _x; }
-
-        void add(int a) {
-            x = x + a;
-        }
-
-        void multiply(int a) {
-            x = x * a;
-        }
-    };
-
-    TestClass test(6);
-    script.registerObject(script["test"], &test, "add", &TestClass::add, "multiply", &TestClass::multiply, "x", &TestClass::x);
-    script.registerObject(script["test"]["vector"], &test.vector, "x", &glm::vec2::x, "y", &glm::vec2::y);
-    EXPECT_EQ((int)script["test"]["x"](), 6);
-    EXPECT_EQ(test.x, 6);
-
-    script("test.add(4)");
-    EXPECT_EQ((int)script["test"]["x"](), 10);
-    EXPECT_EQ(test.x, 10);
-
-    EXPECT_DOUBLE_EQ((double)script["test"]["vector"]["x"](), 1.5);
-
-    test.multiply(3);
-    EXPECT_EQ((int)script["test"]["x"](), 30);
-    EXPECT_EQ(test.x, 30);
-
-    script("test.set_x(-6)");
-    EXPECT_EQ(test.x, -6);
-}
-
-TEST_F(SunScriptTest, Types) {
-    script.registerType<glm::vec3>("vec3", "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
-    glm::vec3 testvec = glm::vec3(0.1, 2.3, 45.67);
-    script.registerObjectAsType("testvec", "vec3", &testvec);
-    double y = script["testvec"]["y"]();
-    EXPECT_FLOAT_EQ(y, 2.3);
-
-    script["vectors"].newTable();
-
-    script.registerType<glm::vec2>("vec2", "x", &glm::vec2::x, "y", &glm::vec2::y);
-    glm::vec2 testvec2 = glm::vec2(123.4, 567.809);
-    script.registerObjectAsType(script["vectors"]["testvec2"], "vec2", &testvec2);
-    EXPECT_FLOAT_EQ((double)script["vectors"]["testvec2"]["x"](), 123.4);
-
-
-    script("vectable = testvec.toTable()");
-
-    double x = script["vectable"]["x"];
-    EXPECT_FLOAT_EQ(x, 0.1);
-
-    script("vectable.z = 24");
-    script("testvec.assignTable(vectable)");
-
-    double z = script["testvec"]["z"]();
-    EXPECT_FLOAT_EQ(z, 24);
-}
+    //script.registerFunction(script["functions"]["sum"], &sum);
+    //script["functions"]["sum"](5, 7);
+    //EXPECT_EQ(zaz, 12);
+} 

@@ -9,6 +9,13 @@
 #include "../Scripting/SunGlobalScriptingEnvironment.h"
 #include "../Extern/SunResourceService.h"
 
+template<> const std::string SunLuaTypeRegistrar<SunObject>::typeName = "Object";
+template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<SunObject> *> SunLuaTypeRegistrar<SunObject>::dataMembers = {
+    {"rotation", new SunLuaComplexDataMember<glm::vec3, SunObject>("rotation", &SunObject::rotation)},
+    {"position", new SunLuaComplexDataMember<glm::vec3, SunObject>("position", &SunObject::position)},
+    {"scale", new SunLuaComplexDataMember<glm::vec3, SunObject>("scale", &SunObject::scale)}
+};
+
 SunObject::SunObject() : physicsEnabled(false) {
     position = glm::vec3(0.0f, 0.0f, 0.0f);
     rotation = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -27,37 +34,36 @@ void SunObject::loadScript(std::string _script) {
     scriptingEnabled = true;
     script.loadFile(_script);
     // Register the object
-    script.registerObject("object", this);
-    script.registerType<glm::vec3>("vec3", "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
-    script.registerObjectAsType(script["object"]["rotation"], "vec3", &rotation);
-    script.registerObjectAsType(script["object"]["position"], "vec3", &position);
-    script.registerObjectAsType(script["object"]["scale"], "vec3", &scale);
-    for (auto &mesh : meshes) {
+    script.registerType<glm::vec3>();
+    script.registerType<SunObject>();
+    script.registerObject(this, "object");
+    /*for (auto &mesh : meshes) {
         const char *name = mesh.first.c_str();
         script.registerObject(script["object"][name], &mesh.second);
         script.registerObjectAsType(script["object"][name]["position"], "vec3", &mesh.second.position);
         script.registerObject(script["object"][name]["material"], mesh.second.material);
         script.registerObjectAsType(script["object"][name]["material"]["color"], "vec3", &mesh.second.material->diffuse);
-    }
+    }*/
+    ((SunKeyboardManager *)getService("keyboard_manager"))->registerWithScript(&script);
     ((SunGlobalScriptingEnvironment *)getService("global_logic_environment"))->registerWithScript(script);
 
-    script.registerObject("keyboard_manager", (SunKeyboardManager *)getService("keyboard_manager"), "pollKey", &SunKeyboardManager::keyDown);
+    //script.registerObject("keyboard_manager", (SunKeyboardManager *)getService("keyboard_manager"), "pollKey", &SunKeyboardManager::keyDown);
 }
 
 void SunObject::registerInScript(SunScript *script, _SunPrivateScripting::SunLuaValue value) {
-    script->registerObject(value, this);
+    /*script->registerObject(value, this);
     script->registerObjectAsType(value["rotation"], "vec3", &rotation);
     script->registerObjectAsType(value["position"], "vec3", &position);
-    script->registerObjectAsType(value["scale"], "vec3", &scale);
+    script->registerObjectAsType(value["scale"], "vec3", &scale);*/
 }
 
 void SunObject::registerInScript(SunAction action) {
-    SunScript *script = action.getParameterPointer<SunScript>("script");
+    /*SunScript *script = action.getParameterPointer<SunScript>("script");
     _SunPrivateScripting::SunLuaValue value = action.getParameter<_SunPrivateScripting::SunLuaValue>("value");
     script->registerObject(value, this);
     script->registerObjectAsType(value["rotation"], "vec3", &rotation);
     script->registerObjectAsType(value["position"], "vec3", &position);
-    script->registerObjectAsType(value["scale"], "vec3", &scale);
+    script->registerObjectAsType(value["scale"], "vec3", &scale);*/
 }
 
 void SunObject::init() {

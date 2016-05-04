@@ -57,12 +57,12 @@ struct SunLuaTypeMemberFunction : public SunScripting::SunLuaTypeDataMemberBase<
 private:
     template<int... N>
     S execute(T *object, std::tuple<R...> tuple, _SunPrivateScripting::seq<N...>) {
-        (S)(object->*function)(std::get<N>(tuple)...);
+        return (S)(object->*function)(std::get<N>(tuple)...);
     }
 
     template<int... N>
     std::tuple<R...> getArguments(lua_State *l, _SunPrivateScripting::seq<N...>) {
-        return std::make_tuple(SunScripting::getFromStack<T>(l, N + 1)...);
+        return std::make_tuple(SunScripting::getFromStack<R>(l, N + 1)...);
     }
 
 

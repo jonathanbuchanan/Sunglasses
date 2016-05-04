@@ -6,7 +6,6 @@
 
 #include "../Core/SunService.h"
 #include "../Scripting/SunLuaValue.h"
-#include "../Scripting/SunLuaType.h"
 #include <map>
 #include <string>
 #include <memory>
@@ -50,6 +49,8 @@ public:
      * @param script The script that will be used
      */
     void registerWithScript(SunScript &script);
+
+    /// Registers all the services into a script.
 
     void registerGlobal(std::string key, _SunPrivateScripting::SunLuaPrimitive value);
 

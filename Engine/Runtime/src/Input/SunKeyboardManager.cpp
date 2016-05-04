@@ -2,6 +2,12 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include "SunKeyboardManager.h"
+#include "../Scripting/SunScript.h"
+
+template<> const std::string SunLuaTypeRegistrar<SunKeyboardManager>::typeName = "KeyboardManager";
+template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<SunKeyboardManager> *> SunLuaTypeRegistrar<SunKeyboardManager>::dataMembers = {
+    {"pollKey", new SunLuaTypeMemberFunction<SunKeyboardManager, bool, int>("pollKey", &SunKeyboardManager::keyDown)}
+};
 
 SunKeyboardManager::SunKeyboardManager() {
 
@@ -58,6 +64,11 @@ void SunKeyboardManager::update() {
                 break;
         }
     }
+}
+
+void SunKeyboardManager::registerWithScript(SunScript *script) {
+    script->registerType<SunKeyboardManager>();
+    script->registerObject(this, "keyboard_manager");
 }
 
 void SunKeyboardManager::subscribe(SunBase *subscriber, int key, SunButtonEvent event) {

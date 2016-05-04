@@ -14,6 +14,8 @@
 
 class SunGlobalScriptingEnvironment;
 
+#include "../Scripting/SunLuaTypeRegistrar.h"
+
 /// A SunNode intended to be used in the scene graph as a game object
 /**
  * SunObject is a SunNode subclass that is intended to be used as an object in the
@@ -22,6 +24,7 @@ class SunGlobalScriptingEnvironment;
  */
 class SunObject : public SunNode {
     friend SunGlobalScriptingEnvironment;
+    friend SunLuaTypeRegistrar<SunObject>;
 public:
     /// Default Constructor
     /**

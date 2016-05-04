@@ -4,7 +4,8 @@
 #include "SunScript.h"
 
 SunScript::SunScript() {
-    state = new _SunPrivateScripting::SunLuaState();
+    state = luaL_newstate();
+    luaL_openlibs(state);
 }
 
 SunScript::~SunScript() {
@@ -12,11 +13,11 @@ SunScript::~SunScript() {
 }
 
 void SunScript::close() {
-    state->close();
+    lua_close(state);
 }
 
 void SunScript::loadFile(std::string file) {
-    state->loadFile(file.c_str());
+    luaL_dofile(state, file.c_str());
 }
 
 _SunPrivateScripting::SunLuaValue SunScript::getVariable(std::string var) {
@@ -28,13 +29,9 @@ _SunPrivateScripting::SunLuaValue SunScript::operator[](std::string var) {
 }
 
 void SunScript::run(std::string code) {
-    state->run(code.c_str());
+    luaL_dostring(state, code.c_str());
 }
 
 void SunScript::operator()(std::string code) {
     run(code);
-}
-
-void SunScript::_addObject(std::shared_ptr<_SunPrivateScripting::_SunLuaObject_Base> object) {
-    objects.push_back(object);
-}
+} 

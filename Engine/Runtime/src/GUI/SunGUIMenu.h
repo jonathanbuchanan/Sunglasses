@@ -12,8 +12,8 @@
 #include "../Scripting/SunScript.h"
 
 class SunGUIMenu : public SunNode {
+friend SunLuaTypeRegistrar<SunGUIMenu>;
 public:
-
     SunGUIMenu();
 
     virtual void init();

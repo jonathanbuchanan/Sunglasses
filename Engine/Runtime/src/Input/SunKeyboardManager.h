@@ -6,6 +6,7 @@
 
 #include "../Core/SunBase.h"
 #include "../Core/SunService.h"
+class SunScript;
 #include <GLFW/glfw3.h>
 #include <vector>
 #include <array>
@@ -13,12 +14,17 @@
 
 class SunKeyboardManager : public SunService {
 public:
-
     SunKeyboardManager();
     SunKeyboardManager(GLFWwindow *_window);
 
     void initialize(GLFWwindow *_window);
     void update();
+    
+    /// Registers the service in a script
+    /**
+     * @param script A pointer to the script
+     */
+    void registerWithScript(SunScript *script);
 
     void subscribe(SunBase *subscriber, int key, SunButtonEvent event);
 

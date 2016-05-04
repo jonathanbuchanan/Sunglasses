@@ -4,7 +4,7 @@
 #ifndef SUNLUAVALUE_H
 #define SUNLUAVALUE_H
 
-#include "SunLuaState.h"
+#include "SunLuaPrimitives.h"
 
 #include <lua.hpp>
 #include <string>
@@ -37,19 +37,19 @@ namespace _SunPrivateScripting {
             return s;
         }
 
-        void push(SunLuaState *state) {
+        void push(lua_State *state) {
             switch (type) {
                 case Integer:
-                    state->pushInteger(i);
+                    lua_pushinteger(state, i);
                     break;
                 case Number:
-                    state->pushNumber(n);
+                    lua_pushnumber(state, n);
                     break;
                 case Boolean:
-                    state->pushBoolean(b);
+                    lua_pushboolean(state, b);
                     break;
                 case String:
-                    state->pushString(s);
+                    lua_pushstring(state, s);
                     break;
             }
         }
@@ -71,9 +71,9 @@ namespace _SunPrivateScripting {
 
     class SunLuaValue {
     public:
-        SunLuaValue(SunLuaState *s, const char *_var) : tables(), index(-1), isFunctionReturn(false), state(s) { tables.push_back(_SunPrivateScripting::SunLuaPrimitive(_var)); }
-        SunLuaValue(SunLuaState *s, bool _isFunctionReturn, int _index);
-        SunLuaValue(SunLuaState *s, std::vector<_SunPrivateScripting::SunLuaPrimitive> _tables, _SunPrivateScripting::SunLuaPrimitive _next) :  tables(_tables), index(-1), isFunctionReturn(false), state(s) { tables.push_back(_next); }
+        SunLuaValue(lua_State *s, const char *_var) : tables(), index(-1), isFunctionReturn(false), state(s) { tables.push_back(_SunPrivateScripting::SunLuaPrimitive(_var)); }
+        SunLuaValue(lua_State *s, bool _isFunctionReturn, int _index);
+        SunLuaValue(lua_State *s, std::vector<_SunPrivateScripting::SunLuaPrimitive> _tables, _SunPrivateScripting::SunLuaPrimitive _next) :  tables(_tables), index(-1), isFunctionReturn(false), state(s) { tables.push_back(_next); }
 
         void newTable();
 
@@ -97,13 +97,13 @@ namespace _SunPrivateScripting {
             getGlobal();
             passLuaFunctionArguments(args...);
             const int count = sizeof...(T);
-            state->callFunction(count, LUA_MULTRET);
+            lua_call(state, count, LUA_MULTRET);
             return SunLuaValue(state, true, -1);
         }
 
         SunLuaValue operator()() {
             getGlobal();
-            state->callFunction(0, LUA_MULTRET);
+            lua_call(state, 0, LUA_MULTRET);
             return SunLuaValue(state, true, -1);
         }
 
@@ -121,24 +121,24 @@ namespace _SunPrivateScripting {
 
         template<typename S, typename... T>
         void assignResult(S &h, T&... t) {
-            int index = -state->getTop();
+            int index = -lua_gettop(state);
             h = SunLuaValue(state, true, index);
             assignResult(t...);
         }
         template<typename T>
         void assignResult(T &t) {
-            int index = -state->getTop();
+            int index = -lua_gettop(state);
             t = SunLuaValue(state, true, index);
         }
 
         template<typename S, typename... T>
         void passLuaFunctionArguments(S h, T... t) {
-            state->push(h);
+            SunScripting::pushToStack(state, h);
             passLuaFunctionArguments(t...);
         }
         template<typename T>
         void passLuaFunctionArguments(T t) {
-            state->push(t);
+            SunScripting::pushToStack(state, t);
         }
 
         void setUpGetTable();
@@ -150,7 +150,7 @@ namespace _SunPrivateScripting {
         std::vector<_SunPrivateScripting::SunLuaPrimitive> tables;
         int index;
         bool isFunctionReturn;
-        SunLuaState *state;
+        lua_State *state;
     };
 }
 

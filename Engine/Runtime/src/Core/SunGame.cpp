@@ -50,13 +50,16 @@ void SunGame::init(int argc, char **argv, std::string title, glm::vec4 color) {
     // Parse the command line options
     int width;
     int height;
+    bool showCursor;
     SunCLValueOption<int> widthOpt("", "width", "The width of the window", "an integer value", 800, false, &width);
     SunCLValueOption<int> heightOpt("", "height", "The height of the window", "an integer value", 600, false, &height);
+    SunCLSwitchOption cursorOpt("c", "cursor", "Show the cursor", false, &showCursor);
     std::vector<SunCLOption *> options = {
         &widthOpt,
-        &heightOpt
+        &heightOpt,
+        &cursorOpt
     };
-
+    
     parseOptions(options, "HELP MESSAGE", "alpha v0.0.1",  argc, argv);
 
     // Initialize the Window Manager
@@ -71,7 +74,7 @@ void SunGame::init(int argc, char **argv, std::string title, glm::vec4 color) {
     addService(keyboard);
 
     // Initialize the Cursor Manager
-    SunCursorManager *cursor = new SunCursorManager(window, true);
+    SunCursorManager *cursor = new SunCursorManager(window, !showCursor);
     cursor->setName("cursor_manager");
     addService(cursor);
 

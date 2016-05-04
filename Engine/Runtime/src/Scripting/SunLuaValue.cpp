@@ -4,7 +4,7 @@
 #include "SunLuaValue.h"
 
 namespace _SunPrivateScripting {
-    SunLuaValue::SunLuaValue(SunLuaState *s, bool _isFunctionReturn, int _index) {
+    SunLuaValue::SunLuaValue(lua_State *s, bool _isFunctionReturn, int _index) {
         state = s;
         isFunctionReturn = _isFunctionReturn;
         index = _index;
@@ -13,39 +13,39 @@ namespace _SunPrivateScripting {
     void SunLuaValue::newTable() {
         if (tables.size() > 1) {
             setUpSetTable();
-            state->pushString((const char *)tables[tables.size() - 1]);
+            lua_pushstring(state, (const char *)tables[tables.size() - 1]);
         }
-        state->newTable();
+        lua_newtable(state);
         if (tables.size() < 2)
-            state->setGlobal((const char *)tables[tables.size() - 1]);
+            lua_setglobal(state, (const char *)tables[tables.size() - 1]);
         else
-            state->setTable(-3);
+            lua_settable(state, -3);
     }
 
     SunLuaValue::operator int() {
         getGlobal();
-        int x = state->getInteger(index);
+        int x = lua_tointeger(state, index);
         cleanGet();
         return x;
     }
 
     SunLuaValue::operator double() {
         getGlobal();
-        double x = state->getNumber(index);
+        double x = lua_tonumber(state, index);
         cleanGet();
         return x;
     }
 
     SunLuaValue::operator bool() {
         getGlobal();
-        bool x = state->getBoolean(index);
+        bool x = lua_toboolean(state, index);
         cleanGet();
         return x;
     }
 
     SunLuaValue::operator std::string() {
         getGlobal();
-        std::string x = std::string(state->getString(index));
+        std::string x = std::string(lua_tostring(state, index));
         cleanGet();
         return x;
     }
@@ -60,65 +60,65 @@ namespace _SunPrivateScripting {
 
     void SunLuaValue::operator=(const int &x) {
         if (tables.size() < 2) {
-            state->pushInteger(x);
-            state->setGlobal((const char *)tables[tables.size() - 1]);
+            lua_pushinteger(state, x);
+            lua_setglobal(state, (const char *)tables[tables.size() - 1]);
         } else {
             setUpSetTable();
             tables[tables.size() - 1].push(state);
-            state->pushInteger(x);
-            state->setTable(-3);
+            lua_pushinteger(state, x);
+            lua_settable(state, -3);
             cleanUpSetTable();
         }
     }
 
     void SunLuaValue::operator=(const double &x) {
         if (tables.size() < 2) {
-            state->pushNumber(x);
-            state->setGlobal((const char *)tables[tables.size() - 1]);
+            lua_pushnumber(state, x);
+            lua_setglobal(state, (const char *)tables[tables.size() - 1]);
         } else {
             setUpSetTable();
             tables[tables.size() - 1].push(state);
-            state->pushNumber(x);
-            state->setTable(-3);
+            lua_pushnumber(state, x);
+            lua_settable(state, -3);
             cleanUpSetTable();
         }
     }
 
     void SunLuaValue::operator=(const bool &x) {
         if (tables.size() < 2) {
-            state->pushBoolean(x);
-            state->setGlobal((const char *)tables[tables.size() - 1]);
+            lua_pushboolean(state, x);
+            lua_setglobal(state, (const char *)tables[tables.size() - 1]);
         } else {
             setUpSetTable();
             tables[tables.size() - 1].push(state);
-            state->pushBoolean(x);
-            state->setTable(-3);
+            lua_pushboolean(state, x);
+            lua_settable(state, -3);
             cleanUpSetTable();
         }
     }
 
     void SunLuaValue::operator=(const char *x) {
         if (tables.size() < 2) {
-            state->pushString(x);
-            state->setGlobal((const char *)tables[tables.size() - 1]);
+            lua_pushstring(state, x);
+            lua_setglobal(state, (const char *)tables[tables.size() - 1]);
         } else {
             setUpSetTable();
             tables[tables.size() - 1].push(state);
-            state->pushString(x);
-            state->setTable(-3);
+            lua_pushstring(state, x);
+            lua_settable(state, -3);
             cleanUpSetTable();
         }
     }
 
     void SunLuaValue::setNil() {
         if (tables.size() < 2) {
-            state->pushNil();
-            state->setGlobal((const char *)tables[tables.size() - 1]);
+            lua_pushnil(state);
+            lua_setglobal(state, (const char *)tables[tables.size() - 1]);
         } else {
             setUpSetTable();
             tables[tables.size() - 1].push(state);
-            state->pushNil();
-            state->setTable(-3);
+            lua_pushnil(state);
+            lua_settable(state, -3);
             cleanUpSetTable();
         }
     }
@@ -127,43 +127,43 @@ namespace _SunPrivateScripting {
         if (isFunctionReturn)
             return;
         if (tables.size() < 2)
-            state->getGlobal((const char *)tables[tables.size() - 1]);
+            lua_getglobal(state, (const char *)tables[tables.size() - 1]);
         else
             setUpGetTable();
     }
 
     void SunLuaValue::cleanGet() {
         if (tables.size() < 2)
-            state->remove(index);
+            lua_remove(state, index);
         else
             cleanUpGetTable();
     }
 
     void SunLuaValue::setUpGetTable() {
         // Global Table
-        state->getGlobal((const char *)tables[0]);
+        lua_getglobal(state, (const char *)tables[0]);
         tables[1].push(state);
-        state->getTable(-2);
+        lua_gettable(state, -2);
         for (size_t i = 1; i < tables.size() - 1; i++) {
             tables[i + 1].push(state);
-            state->getTable(-2);
+            lua_gettable(state, -2);
         }
     }
 
     void SunLuaValue::cleanUpGetTable() {
-        state->pop(tables.size());
+        lua_pop(state, tables.size());
     }
 
     void SunLuaValue::setUpSetTable() {
         // Global Table
-        state->getGlobal((const char *)tables[0]);
+        lua_getglobal(state, (const char *)tables[0]);
         for (size_t i = 1; i < tables.size() - 1; i++) {
             tables[i].push(state);
-            state->getTable(-2);
+            lua_gettable(state, -2);
         }
     }
 
     void SunLuaValue::cleanUpSetTable() {
-        state->pop(tables.size());
+        lua_pop(state, tables.size());
     }
 }
