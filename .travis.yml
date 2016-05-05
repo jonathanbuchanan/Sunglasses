@@ -51,18 +51,10 @@ install:
     - sudo make install
     - cd ..
 script:
-    # Build Sunglasses (The Library)
-    - cd Engine/Runtime/
     - cmake . -G "Unix Makefiles"
+    - make -j4
+    - make test -j4
     - sudo make install
-    - cd ../../
-
-    # Build the Tests
-    - cd Engine/Tests/
-    - cmake . -G "Unix Makefiles"
-    - make
-    - ./Test-Sunglasses
-    - cd ../..
 
     # Build Feature
     - cd Sample\ Projects/Feature

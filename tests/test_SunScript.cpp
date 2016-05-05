@@ -9,8 +9,8 @@
 struct SunScriptTest : ::testing::Test {
     SunScript script;
     SunScriptTest() {
-        script.loadFile("src/test_SunScript_0.lua");
-        script.loadFile("src/test_SunScript_1.lua");
+        script.loadFile("test_SunScript_0.lua");
+        script.loadFile("test_SunScript_1.lua");
     }
 
     virtual void TearDown() {

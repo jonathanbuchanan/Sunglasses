@@ -39,6 +39,10 @@ Makefile
 cmake_install.cmake
 install_manifest.txt
 
+# Ctest
+CTestTestfile.cmake
+Testing
+
 # Docs
 docs-html
 docs-latex
