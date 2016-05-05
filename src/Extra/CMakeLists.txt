@@ -3,6 +3,7 @@ add_sources(
     SunLuaTypeDefinitions.cpp
     SunPointLight.cpp
     SunShadowDirectionalLight.cpp
+    SunShadowMapRenderNode.cpp
     SunShadowPointLight.cpp
 )
 
