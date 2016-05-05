@@ -38,7 +38,7 @@ bool SunGUIItem::pointInItem(glm::vec2 _point) {
 }
 
 bool SunGUIItem::cursorInItem() {
-    glm::vec2 point = ((SunCursorManager *)getService("cursor_manager"))->getCursorPositionNDC();
+    glm::vec2 point = services->get<SunCursorManager>()->getCursorPositionNDC();
     point.y = -point.y;
     return pointInItem(point);
 }

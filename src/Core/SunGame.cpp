@@ -14,7 +14,7 @@ SunGame::SunGame() {
 void SunGame::run() {
     while (!glfwWindowShouldClose(window)) {
         updateServices();
-        ((SunWindowManager *)getService("window_manager"))->calculateDelta();
+        services->get<SunWindowManager>()->calculateDelta();
 
         // Run the loop function (user defined logic goes here)
         loop();
@@ -24,7 +24,7 @@ void SunGame::run() {
 }
 
 void SunGame::updateServices() {
-    for (auto &iterator : services) {
+    for (auto &iterator : services->getServices()) {
         iterator.second->update();
     }
 }
@@ -62,39 +62,42 @@ void SunGame::init(int argc, char **argv, std::string title, glm::vec4 color) {
     
     parseOptions(options, "HELP MESSAGE", "alpha v0.0.1",  argc, argv);
 
+    // Initialize the service manager
+    services = new SunServiceManager();
+
     // Initialize the Window Manager
     SunWindowManager *windowManager = new SunWindowManager(glm::vec2(width, height), title, color);
     windowManager->setName("window_manager");
-    addService(windowManager);
+    services->add(windowManager);
     window = windowManager->getWindow();
 
     // Initialize the Keyboard Manager
     SunKeyboardManager *keyboard = new SunKeyboardManager(window);
     keyboard->setName("keyboard_manager");
-    addService(keyboard);
+    services->add(keyboard);
 
     // Initialize the Cursor Manager
     SunCursorManager *cursor = new SunCursorManager(window, !showCursor);
     cursor->setName("cursor_manager");
-    addService(cursor);
+    services->add(cursor);
 
     // Initialize the Mouse Button Manager
     SunMouseButtonManager *mouseButton = new SunMouseButtonManager(window);
     mouseButton->setName("mouse_button_manager");
-    addService(mouseButton);
+    services->add(mouseButton);
 
     // Initialize the Logger
     SunLogger *logger = new SunLogger();
     logger->setName("logger");
-    addService(logger);
+    services->add(logger);
 
     // Initialize the Global Logic Environment
     SunGlobalScriptingEnvironment *globalEnvironment = new SunGlobalScriptingEnvironment();
     globalEnvironment->setName("global_logic_environment");
-    addService(globalEnvironment);
+    services->add(globalEnvironment);
 
     // Initialize the Resource Management Service
     SunResourceService *resourceService = new SunResourceService();
     resourceService->setName("resource_service");
-    addService(resourceService);
+    services->add(resourceService);
 }

@@ -20,34 +20,35 @@ void FeatureScene::init() {
     root->addSubNode(_camera);
     camera = _camera;
 
-    ((SunGlobalScriptingEnvironment *)getService("global_logic_environment"))->registerGlobal("doCameraInput", true);
+    services->get<SunGlobalScriptingEnvironment>()->registerGlobal("doCameraInput", true);
 
     renderer = new FeatureRenderer();
     renderer->setSceneNode(this);
     renderer->init();
 
-    ((SunResourceService *)getService("resource_service"))->addResourceManager("models", new SunResourceManager());
-    ((SunResourceService *)getService("resource_service"))->addResourceManager("meshes", new SunResourceManager());
-    ((SunResourceService *)getService("resource_service"))->addResourceManager("materials", new SunResourceManager());
-    ((SunResourceService *)getService("resource_service"))->addResourceManager("textures", new SunResourceManager());
+    SunResourceService *resource = services->get<SunResourceService>();
+    resource->addResourceManager("models", new SunResourceManager());
+    resource->addResourceManager("meshes", new SunResourceManager());
+    resource->addResourceManager("materials", new SunResourceManager());
+    resource->addResourceManager("textures", new SunResourceManager());
 
     std::map<std::string, SunResource *> meshMap;
 
-    ((SunResourceService *)getService("resource_service"))->getResourceManager("models")->addResource("teapot", new SunModelResource("Resources/Graphics/Models/Teapot.dae", &meshMap));
-    ((SunResourceService *)getService("resource_service"))->getResourceManager("meshes")->addResources(meshMap);
+    resource->getResourceManager("models")->addResource("teapot", new SunModelResource("Resources/Graphics/Models/Teapot.dae", &meshMap));
+    resource->getResourceManager("meshes")->addResources(meshMap);
     meshMap.clear();
 
-    ((SunResourceService *)getService("resource_service"))->getResourceManager("models")->addResource("plane", new SunModelResource("Resources/Graphics/Models/Plane.dae", &meshMap));
-    ((SunResourceService *)getService("resource_service"))->getResourceManager("meshes")->addResources(meshMap);
+    resource->getResourceManager("models")->addResource("plane", new SunModelResource("Resources/Graphics/Models/Plane.dae", &meshMap));
+    resource->getResourceManager("meshes")->addResources(meshMap);
     meshMap.clear();
 
-    ((SunResourceService *)getService("resource_service"))->getResourceManager("textures")->addResource("grass", new SunTextureResource("Resources/Graphics/Textures/grass.png"));
+    resource->getResourceManager("textures")->addResource("grass", new SunTextureResource("Resources/Graphics/Textures/grass.png"));
 
-    SunTextureResource *grassTexture = (SunTextureResource *)((SunResourceService *)getService("resource_service"))->getResourceManager("textures")->getResource("grass");
+    SunTextureResource *grassTexture = (SunTextureResource *)resource->getResourceManager("textures")->getResource("grass");
 
-    ((SunResourceService *)getService("resource_service"))->getResourceManager("materials")->addResource("teapotmaterial", new SunMaterialResource(glm::vec3(1.0f, 1.0f, 1.0f), 1024.0f));
+    resource->getResourceManager("materials")->addResource("teapotmaterial", new SunMaterialResource(glm::vec3(1.0f, 1.0f, 1.0f), 1024.0f));
 
-    ((SunResourceService *)getService("resource_service"))->getResourceManager("materials")->addResource("planematerial", new SunMaterialResource(grassTexture, 4.0f));
+    resource->getResourceManager("materials")->addResource("planematerial", new SunMaterialResource(grassTexture, 4.0f));
 
     std::shared_ptr<SunObject> teapot = std::shared_ptr<SunObject>(new SunObject("teapot0"));
     teapot->addTag("solid");
@@ -97,7 +98,7 @@ void FeatureScene::init() {
     guiRenderer->setGUIRoot(&guiSystem);
     guiRenderer->setTextRenderer(textRenderer);
 
-    ((SunKeyboardManager *)getService("keyboard_manager"))->subscribe(_menu.get(), GLFW_KEY_ESCAPE, SunButtonEventDownSingle);
+    services->get<SunKeyboardManager>()->subscribe(_menu.get(), GLFW_KEY_ESCAPE, SunButtonEventDownSingle);
 
     std::shared_ptr<SunGUIItem> _item = std::shared_ptr<SunGUIItem>(new SunGUIItem());
     _item->init();
@@ -105,7 +106,7 @@ void FeatureScene::init() {
     _menu->addSubNode(_item);
     item = _item;
 
-    ((SunMouseButtonManager *)getService("mouse_button_manager"))->subscribe(_item.get(), GLFW_MOUSE_BUTTON_LEFT, SunButtonEventDownSingle);
+    services->get<SunMouseButtonManager>()->subscribe(_item.get(), GLFW_MOUSE_BUTTON_LEFT, SunButtonEventDownSingle);
 
     _item->addMouseActionForTrigger(GLFW_MOUSE_BUTTON_LEFT, "exitPressed");
 
@@ -121,7 +122,7 @@ void FeatureScene::init() {
     _menu->addSubNode(_back);
     back = _back;
 
-    ((SunMouseButtonManager *)getService("mouse_button_manager"))->subscribe(_back.get(), GLFW_MOUSE_BUTTON_LEFT, SunButtonEventDownSingle);
+    services->get<SunMouseButtonManager>()->subscribe(_back.get(), GLFW_MOUSE_BUTTON_LEFT, SunButtonEventDownSingle);
 
     _back->addMouseActionForTrigger(GLFW_MOUSE_BUTTON_LEFT, "hide");
 
@@ -132,15 +133,14 @@ void FeatureScene::init() {
     _back->setColor(glm::vec3(1.0f, 1.0f, 1.0f));
 
     SunAction registerAction("registerInScript");
-    registerAction.setRecursive(true);
-
+    registerAction.setRecursive(true); 
 }
 
 void FeatureScene::cycle() {
     SunScene::cycle();
     static bool idown = false;
     static bool odown = false;
-    SunKeyboardManager *keyboard = ((SunKeyboardManager *)getService("keyboard_manager"));
+    SunKeyboardManager *keyboard = services->get<SunKeyboardManager>();
     if (keyboard->pollKey(GLFW_KEY_I) == true && idown == false) {
         SunObject *teapot = new SunObject("teapot" + std::to_string(teapots.size()));
         teapot->addTag("solid");

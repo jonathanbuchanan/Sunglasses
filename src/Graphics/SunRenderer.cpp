@@ -13,7 +13,7 @@ void SunRenderer::render() {
 
 void SunRenderer::swapBuffers() {
     // Swap the buffers
-    ((SunWindowManager *)getService("window_manager"))->swapBuffers();
+    services->get<SunWindowManager>()->swapBuffers();
 }
 
 void SunRenderer::init() {

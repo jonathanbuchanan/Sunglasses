@@ -21,7 +21,7 @@ void SunGUIMenu::init() {
 
 void SunGUIMenu::loadScript(std::string _script) {
     script.loadFile(_script);
-    ((SunGlobalScriptingEnvironment *)getService("global_logic_environment"))->registerWithScript(script);
+    services->get<SunGlobalScriptingEnvironment>()->registerWithScript(script);
     //script.registerObject("cursor_manager", ((SunCursorManager *)getService("cursor_manager")), "enableCursor", &SunCursorManager::enableCursor, "disableCursor", &SunCursorManager::disableCursor);
     //script.registerObject("window_manager", ((SunWindowManager *)getService("window_manager")), "setWindowShouldClose", &SunWindowManager::setWindowShouldClose);
     //script.registerObject("menu", this, "visible", &SunGUIMenu::visible);

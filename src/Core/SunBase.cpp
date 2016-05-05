@@ -3,7 +3,7 @@
 // See LICENSE.md for details.
 #include "SunBase.h"
 
-std::map<std::string, std::unique_ptr<SunService>> SunBase::services;
+SunServiceManager *SunBase::services = new SunServiceManager();
 
 SunBase::SunBase() { }
 

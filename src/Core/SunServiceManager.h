@@ -18,17 +18,21 @@ class SunServiceManager {
 public:
     /// Accesses a service from the type given in the template parameter.
     template<typename T>
-    std::unique_ptr<SunService> & get() {
-        return services[std::type_index(typeid(T))];
+    T * get() {
+        return (T *)(services[std::type_index(typeid(T))]).get();
     }
 
-    /// Assigns a service from the pointer passed.
+    /// Adds a service from the pointer passed.
     /**
-     * @param service A pointer to the service to assign
+     * @param service A pointer to the service to add
      */
     template<typename T>
-    void assign(T *service) {
+    void add(T *service) {
         services[std::type_index(typeid(T))] = std::unique_ptr<SunService>(service);
+    }
+
+    std::map<std::type_index, std::unique_ptr<SunService>> & getServices() {
+        return services;
     }
 private:
     /// The map of services

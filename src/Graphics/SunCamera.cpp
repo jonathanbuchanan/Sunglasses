@@ -45,8 +45,8 @@ void SunCamera::init() {
     
     script.registerObject(this, "camera");
     //script.registerObject("window_manager", (SunWindowManager *)getService("window_manager"), "getDelta", &SunWindowManager::getDelta);
-    ((SunKeyboardManager *)getService("keyboard_manager"))->registerWithScript(&script);
-    ((SunGlobalScriptingEnvironment *)getService("global_logic_environment"))->registerWithScript(script);
+    services->get<SunKeyboardManager>()->registerWithScript(&script);
+    services->get<SunGlobalScriptingEnvironment>()->registerWithScript(script);
 
     setIgnoreTags(true);
     addAction("update", &SunCamera::update);
@@ -58,9 +58,9 @@ void SunCamera::uniform(SunAction action) {
 }
 
 void SunCamera::update(SunAction action) {
-    double delta = ((SunWindowManager *)getService("window_manager"))->getDelta();
+    double delta = services->get<SunWindowManager>()->getDelta();
 
-    glm::vec2 mouse = ((SunCursorManager *)getService("cursor_manager"))->getCursorPosition();
+    glm::vec2 mouse = services->get<SunCursorManager>()->getCursorPosition();
 
     script["update"](delta, mouse.x, mouse.y);
 }
@@ -93,7 +93,7 @@ void SunCamera::passPerFrameUniforms(SunShader *_shader) {
 
     GLint projectionMatrixLocation = _shader->getUniformLocation("projection");
 
-    glm::vec2 size = ((SunWindowManager *)getService("window_manager"))->getSize();
+    glm::vec2 size = services->get<SunWindowManager>()->getSize();
 
     glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(projectionMatrix(size.x / size.y)));
     GLint FOVlocation = _shader->getUniformLocation("camera.FOV");

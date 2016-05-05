@@ -14,7 +14,7 @@ void SunTextRenderer::init() {
 
     projection = glm::ortho(0.0f, 800.0f, 0.0f, 600.0f);
 
-    ((SunResourceService *)getService("resource_service"))->addResourceManager("fonts", new SunResourceManager());
+    services->get<SunResourceService>()->addResourceManager("fonts", new SunResourceManager());
 
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
@@ -30,7 +30,7 @@ void SunTextRenderer::init() {
 void SunTextRenderer::loadFont(std::string _file, std::string _name) {
     // Load the font
     SunResource *font = new SunFontResource("Resources/Graphics/Fonts/arial.ttf");
-    ((SunResourceService *)getService("resource_service"))->getResourceManager("fonts")->addResource("Arial", font);
+    services->get<SunResourceService>()->getResourceManager("fonts")->addResource("Arial", font);
 }
 
 void SunTextRenderer::renderText(std::string text, std::string _fontName, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color) {
@@ -40,7 +40,7 @@ void SunTextRenderer::renderText(std::string text, std::string _fontName, GLfloa
     glActiveTexture(GL_TEXTURE0);
     glBindVertexArray(VAO);
 
-    SunFontResource *font = (SunFontResource *)((SunResourceService *)getService("resource_service"))->getResourceManager("fonts")->getResource("Arial");
+    SunFontResource *font = (SunFontResource *)services->get<SunResourceService>()->getResourceManager("fonts")->getResource("Arial");
 
     std::string::const_iterator c;
     for (c = text.begin(); c != text.end(); c++) {
