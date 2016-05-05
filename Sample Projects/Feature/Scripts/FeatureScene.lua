@@ -1,5 +1,5 @@
 require("math")
-package.path = package.path .. ";../../Engine/Scripts/?.lua"
+package.path = package.path .. ";../../Scripts/?.lua"
 require("GLFWKeys")
 require("vec3")
 

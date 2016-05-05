@@ -38,7 +38,9 @@ SunCamera::SunCamera(GLfloat _FOV, glm::vec3 _position, glm::vec3 _direction) {
 }
 
 void SunCamera::init() {
-    script.loadFile("../../Engine/Scripts/SunCamera.lua");
+    script = SunScript();
+
+    script.loadFile("../../Scripts/SunCamera.lua");
     script.registerType<glm::vec3>();
     
     script.registerObject(this, "camera");

@@ -30,20 +30,9 @@ include_directories("/usr/include/freetype2")
 
 set(CMAKE_CXX_FLAGS "-std=c++11 -g -Wall -Wextra")
 
-set(CMAKE_INSTALL_PREFIX /usr)
-
-install(TARGETS sunglasses LIBRARY DESTINATION lib)
+install(TARGETS sunglasses LIBRARY DESTINATION /usr/lib)
 
 install(DIRECTORY
-    #[[Audio/
-    Core/
-    Extern/
-    Graphics/
-    GUI/
-    Input/
-    Output/
-    Physics/
-    Scripting/]]
     ./
 DESTINATION include/Sunglasses FILES_MATCHING
 PATTERN "CMakeFiles" EXCLUDE
