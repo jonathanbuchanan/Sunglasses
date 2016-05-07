@@ -22,6 +22,11 @@ public:
         return (T *)(services[std::type_index(typeid(T))]).get();
     }
 
+    template<typename T>
+    T * get(std::type_index index) {
+        return (T *)(services[index]).get();
+    }
+
     /// Adds a service from the pointer passed.
     /**
      * @param service A pointer to the service to add

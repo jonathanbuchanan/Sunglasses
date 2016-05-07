@@ -2,6 +2,13 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include "SunCursorManager.h"
+#include "../Scripting/SunScript.h"
+
+template<> const std::string SunLuaTypeRegistrar<SunCursorManager>::typeName = "CursorManager";
+template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<SunCursorManager> *> SunLuaTypeRegistrar<SunCursorManager>::dataMembers = {
+    {"enableCursor", new SunLuaTypeMemberFunction<SunCursorManager, void>("enableCursor", &SunCursorManager::enableCursor)},
+    {"disableCursor", new SunLuaTypeMemberFunction<SunCursorManager, void>("disableCursor", &SunCursorManager::disableCursor)}
+};
 
 SunCursorManager::SunCursorManager() {
 

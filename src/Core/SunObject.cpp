@@ -44,11 +44,7 @@ void SunObject::loadScript(std::string _script) {
         script.registerObject(script["object"][name]["material"], mesh.second.material);
         script.registerObjectAsType(script["object"][name]["material"]["color"], "vec3", &mesh.second.material->diffuse);
     }*/
-    /*((SunKeyboardManager *)getService("keyboard_manager"))->registerWithScript(&script);*/
-    services->get<SunKeyboardManager>()->registerWithScript(&script);
-    services->get<SunGlobalScriptingEnvironment>()->registerWithScript(script);
-
-    //script.registerObject("keyboard_manager", (SunKeyboardManager *)getService("keyboard_manager"), "pollKey", &SunKeyboardManager::keyDown);
+    services->get<SunGlobalScriptingEnvironment>()->registerScript(this, script); 
 }
 
 void SunObject::registerInScript(SunScript *script, _SunPrivateScripting::SunLuaValue value) {

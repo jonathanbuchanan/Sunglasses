@@ -44,9 +44,7 @@ void SunCamera::init() {
     script.registerType<glm::vec3>();
     
     script.registerObject(this, "camera");
-    //script.registerObject("window_manager", (SunWindowManager *)getService("window_manager"), "getDelta", &SunWindowManager::getDelta);
-    services->get<SunKeyboardManager>()->registerWithScript(&script);
-    services->get<SunGlobalScriptingEnvironment>()->registerWithScript(script);
+    services->get<SunGlobalScriptingEnvironment>()->registerScript(this, script);
 
     setIgnoreTags(true);
     addAction("update", &SunCamera::update);

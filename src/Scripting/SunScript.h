@@ -124,6 +124,25 @@ public:
         SunLuaTypeRegistrar<T>::registerInState(state);
     }
 
+    /// Registers a set of C++ types
+    /**
+     * @see SunLuaTypeRegistrar
+     */
+    template<typename T, typename S, typename... R>
+    void registerTypes() {
+        registerType<T>();
+        registerTypes<S, R...>();
+    }
+
+    /// Registers a set of C++ types
+    /**
+     * @see SunLuaTypeRegistrar
+     */
+    template<typename T>
+    void registerTypes() {
+        registerType<T>();
+    }
+
     /// Registers a C++ object
     /**
      * @see SunLuaTypeRegistrar

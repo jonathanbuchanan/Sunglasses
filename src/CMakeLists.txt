@@ -28,7 +28,7 @@ add_library(sunglasses SHARED ${SRCS})
 
 include_directories("/usr/include/freetype2")
 
-set(CMAKE_CXX_FLAGS "-std=c++11 -g -Wall -Wextra")
+set(CMAKE_CXX_FLAGS "-std=c++14 -g -Wall -Wextra")
 
 install(TARGETS sunglasses LIBRARY DESTINATION /usr/lib)
 

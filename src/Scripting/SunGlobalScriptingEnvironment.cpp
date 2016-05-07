@@ -6,6 +6,17 @@
 #include "../Scripting/SunScript.h"
 #include "../Core/SunObject.h"
 
+#include "../Core/SunServiceManager.h"
+
+#include "../Input/SunCursorManager.h"
+#include "../Input/SunKeyboardManager.h"
+#include "../Input/SunMouseButtonManager.h"
+
+#include "../Graphics/SunWindowManager.h"
+
+#include <map>
+#include <string>
+
 template<> const std::string SunLuaTypeRegistrar<SunGlobalScriptingEnvironment>::typeName = "SunGlobalScriptingEnvironment";
 template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<SunGlobalScriptingEnvironment> *> SunLuaTypeRegistrar<SunGlobalScriptingEnvironment>::dataMembers = {
     {"globalExists", new SunLuaTypeMemberFunction<SunGlobalScriptingEnvironment, bool, const char *>("globalExists", &SunGlobalScriptingEnvironment::globalExists)},
@@ -59,15 +70,8 @@ int SunGlobalScriptingEnvironment::removeObject(SunObject *object) {
     return 0;
 }
 
-void SunGlobalScriptingEnvironment::registerWithScript(SunScript &script) {
-    script.registerType<glm::vec3>();
-    script.registerType<SunGlobalScriptingEnvironment>();
-    script.registerObject(this, "globalenvironment");
-    std::vector<std::string> registered;
-    for (size_t i = 0; i < objects.size(); ++i) {
-        objects[i]->registerInScript(&script, script[objects[i]->getName()]);
-    }
-    scripts.push_back(&script);
+void SunGlobalScriptingEnvironment::registerServices(SunServiceManager *services, SunScript &script) {
+    iterateTypes<SunCursorManager, SunKeyboardManager, SunMouseButtonManager, SunWindowManager>(services, script);
 }
 
 void SunGlobalScriptingEnvironment::registerGlobal(std::string key, _SunPrivateScripting::SunLuaPrimitive value) {

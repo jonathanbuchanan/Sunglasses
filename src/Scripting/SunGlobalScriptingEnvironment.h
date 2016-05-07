@@ -5,17 +5,35 @@
 #define SUNGLOBALSCRIPTINGENVIRONMENT_H
 
 #include "../Core/SunService.h"
-#include "../Scripting/SunLuaValue.h"
+#include "../Core/SunServiceManager.h"
+#include "../Scripting/SunScript.h"
+#include <glm/glm.hpp>
 #include <map>
 #include <string>
 #include <memory>
 #include <algorithm>
 
 class SunObject;
-class SunScript;
 namespace _SunPrivateScripting {
     struct SunLuaPrimitive;
 }
+
+template<typename T>
+using SunServiceNamePair = std::string;
+
+class SunCursorManager;
+class SunKeyboardManager;
+class SunMouseButtonManager;
+class SunWindowManager;
+
+/// A variable template for the name of services in lua
+template<typename T>
+const std::string luaServiceName;
+
+template<> const std::string luaServiceName<SunCursorManager> = "cursor_manager";
+template<> const std::string luaServiceName<SunKeyboardManager> = "keyboard_manager";
+template<> const std::string luaServiceName<SunMouseButtonManager> = "mouse_button_manager";
+template<> const std::string luaServiceName<SunWindowManager> = "window_manager";
 
 class SunGlobalScriptingEnvironment : public SunService {
 public:
@@ -46,12 +64,22 @@ public:
     /// Registers the logic environment inside of a script.
     /**
      * This method registers the logic environment within the provided script.
+     * This also registers all of the services into a script. Commonly used
+     * types are registered as well.
      * @param script The script that will be used
      */
-    void registerWithScript(SunScript &script);
+    template<typename T>
+    void registerScript(T *object, SunScript &script) {
+        //script.registerTypes<glm::vec2, glm::vec3, glm::vec4>();
+
+        script.registerObject(this, "globalenvironment");
+
+        registerServices(object->services, script);
+    }
 
     /// Registers all the services into a script.
-
+    void registerServices(SunServiceManager *services, SunScript &script);
+    
     void registerGlobal(std::string key, _SunPrivateScripting::SunLuaPrimitive value);
 
     bool globalExists(const char *key);
@@ -65,8 +93,23 @@ public:
     bool getBoolean(const char *key);
     double getNumber(const char *key);
     const char * getString(const char *key);
-
 private:
+    template<typename T, typename S, typename... R>
+    void iterateTypes(SunServiceManager *services, SunScript &script) {
+        registerService<T>(services, script);
+        iterateTypes<S, R...>(services, script);
+    }
+
+    template<typename T>
+    void iterateTypes(SunServiceManager *services, SunScript &script) {
+        registerService<T>(services, script);
+    }
+
+    template<typename T>
+    void registerService(SunServiceManager *services, SunScript &script) {
+        T *service = services->get<T>();
+        script.registerObject(service, luaServiceName<T>);
+    }
     std::map<std::string, _SunPrivateScripting::SunLuaPrimitive> globals;
     std::vector<SunObject *> objects;
     std::vector<SunScript *> scripts;

@@ -2,6 +2,12 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include "SunMouseButtonManager.h"
+#include "../Scripting/SunScript.h"
+
+template<> const std::string SunLuaTypeRegistrar<SunMouseButtonManager>::typeName = "MouseButtonManager";
+template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<SunMouseButtonManager> *> SunLuaTypeRegistrar<SunMouseButtonManager>::dataMembers = {
+    //{"pollKey", new SunLuaTypeMemberFunction<SunKeyboardManager, bool, int>("pollKey", &SunKeyboardManager::keyDown)}
+};
 
 SunMouseButtonManager::SunMouseButtonManager() {
 
