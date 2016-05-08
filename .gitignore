@@ -30,6 +30,7 @@
 # Executables
 Feature-Executable
 Test-Sunglasses
+Voxel-Executable
 
 # Cmake
 CMakeCache.txt
