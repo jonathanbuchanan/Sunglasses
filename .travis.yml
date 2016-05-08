@@ -8,6 +8,15 @@ dist: trusty
 before_install:
     - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
     - sudo apt-get update -qq
+addons:
+    apt:
+        sources:
+            - llvm-toolchain-precise
+            - ubuntu-toolchain-r-test
+        packages:
+            - clang-3.7
+            - g++-5
+            - gcc-5
 install:
     # Install dependencies from apt
     - sudo apt-get install -qq libfreetype6-dev libsoil-dev libglew-dev libsfml-dev xorg-dev libgl1-mesa-dev libtclap-dev gcc-6
