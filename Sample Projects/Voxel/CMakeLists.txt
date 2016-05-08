@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 2.8)
 find_package(PkgConfig REQUIRED)
 pkg_search_module(GLFW REQUIRED glfw3)
 
-add_executable(Voxel-Executable src/main.cpp)
+add_executable(Voxel-Executable src/main.cpp src/Game.cpp src/MenuScene.cpp)
 
 include_directories(/usr/include/freetype2)
 
