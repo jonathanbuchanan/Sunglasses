@@ -9,6 +9,8 @@ int main(int argc, char **argv) {
     Game game = Game();
     game.init(argc, argv);
 
+    game.showGameScene();
+
     game.run();
 
     game.cleanUp();
