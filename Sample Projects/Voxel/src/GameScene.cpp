@@ -7,6 +7,11 @@
 
 void GameScene::init() {
     root = std::unique_ptr<World>(new World());
+    root->init();
+
+    std::shared_ptr<SunCamera> camera = std::shared_ptr<SunCamera>(new SunCamera(45.0f, glm::vec3(-5.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f)));
+    camera->init();
+    root->addSubNode(camera);
 
     renderer = new GameRenderer();
     renderer->setSceneNode(this);
@@ -14,7 +19,7 @@ void GameScene::init() {
 
     textRenderer = new SunTextRenderer();
     textRenderer->init();
-    //textRenderer->loadFont("Resources/Graphics/Fonts/arial.ttf", "Arial");
+    //textRenderer->loadFont("res/Graphics/Fonts/arial.ttf", "Arial");
 
     guiSystem.init();
 

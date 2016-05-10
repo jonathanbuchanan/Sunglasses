@@ -100,4 +100,9 @@ void SunGame::init(int argc, char **argv, std::string title, glm::vec4 color) {
     SunResourceService *resourceService = new SunResourceService();
     resourceService->setName("resource_service");
     services->add(resourceService);
+
+    resourceService->addResourceManager("models", new SunResourceManager());
+    resourceService->addResourceManager("meshes", new SunResourceManager());
+    resourceService->addResourceManager("materials", new SunResourceManager());
+    resourceService->addResourceManager("textures", new SunResourceManager());
 }

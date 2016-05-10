@@ -6,11 +6,15 @@
 
 #include <Sunglasses/Sunglasses.hpp>
 
+#include "Chunk.h"
+
 class World : public SunNode {
 public:
+    void init();
 
+    void update(SunAction action);
 private:
-
+    std::vector<Chunk> chunks;
 };
 
 #endif

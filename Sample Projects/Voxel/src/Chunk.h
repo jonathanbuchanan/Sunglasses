@@ -1,18 +1,20 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#ifndef GAMESCENE_H
-#define GAMESCENE_H
+#ifndef CHUNK_H
+#define CHUNK_H
 
 #include <Sunglasses/Sunglasses.hpp>
 
-#include "World.h"
-
-class GameScene : public SunScene {
+class Chunk : public SunNode {
 public:
     void init();
+
+    void update(SunAction action);
+
+    void render(SunAction action);
 private:
-    SunGUISystem guiSystem = SunGUISystem();
+
 };
 
 #endif
