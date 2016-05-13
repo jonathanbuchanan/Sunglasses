@@ -37,6 +37,12 @@ public:
 
     /// Gets the number of indices
     int getIndicesSize() { return indices.size(); }
+
+    /// Gets the vertex vector
+    std::vector<SunVertex> getVertices() { return vertices; }
+
+    /// Gets the indices vector
+    std::vector<GLuint> getIndices() { return indices; }
 private:
     /// The vector containing the vertex data
     std::vector<SunVertex> vertices;
