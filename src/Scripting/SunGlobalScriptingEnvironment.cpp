@@ -70,7 +70,7 @@ int SunGlobalScriptingEnvironment::removeObject(SunObject *object) {
     return 0;
 }
 
-void SunGlobalScriptingEnvironment::registerServices(SunServiceManager *services, SunScript &script) {
+void SunGlobalScriptingEnvironment::registerServices(SunServiceManager &services, SunScript &script) {
     iterateTypes<SunCursorManager, SunKeyboardManager, SunMouseButtonManager, SunWindowManager>(services, script);
 }
 

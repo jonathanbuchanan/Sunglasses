@@ -78,7 +78,7 @@ public:
     }
 
     /// Registers all the services into a script.
-    void registerServices(SunServiceManager *services, SunScript &script);
+    void registerServices(SunServiceManager &services, SunScript &script);
     
     void registerGlobal(std::string key, _SunPrivateScripting::SunLuaPrimitive value);
 
@@ -95,19 +95,19 @@ public:
     const char * getString(const char *key);
 private:
     template<typename T, typename S, typename... R>
-    void iterateTypes(SunServiceManager *services, SunScript &script) {
+    void iterateTypes(SunServiceManager &services, SunScript &script) {
         registerService<T>(services, script);
         iterateTypes<S, R...>(services, script);
     }
 
     template<typename T>
-    void iterateTypes(SunServiceManager *services, SunScript &script) {
+    void iterateTypes(SunServiceManager &services, SunScript &script) {
         registerService<T>(services, script);
     }
 
     template<typename T>
-    void registerService(SunServiceManager *services, SunScript &script) {
-        T *service = services->get<T>();
+    void registerService(SunServiceManager &services, SunScript &script) {
+        T *service = services.get<T>();
         script.registerObject(service, luaServiceName<T>);
     }
     std::map<std::string, _SunPrivateScripting::SunLuaPrimitive> globals;

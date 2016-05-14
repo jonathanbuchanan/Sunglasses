@@ -31,7 +31,7 @@ void Chunk::update(SunAction action) {
 void Chunk::render(SunAction action) {
     SunShader *shader = action.getParameterPointer<SunShader>("shader");
 
-    SunMaterialResource *material = ((SunMaterialResource *)services->get<SunResourceService>()->getResourceManager("materials")->getResource("grass"));
+    SunMaterialResource *material = ((SunMaterialResource *)services.get<SunResourceService>()->getResourceManager("materials")->getResource("grass"));
     material->pass(shader, "material");
 
     /*glm::vec3 _position = position;
@@ -68,8 +68,8 @@ void Chunk::render(SunAction action) {
 }
 
 void Chunk::generateMesh() {
-    std::vector<SunVertex> cubeVertices = ((SunMeshResource *)services->get<SunResourceService>()->getResourceManager("meshes")->getResource("Cube"))->getVertices();
-    std::vector<GLuint> cubeIndices = ((SunMeshResource *)services->get<SunResourceService>()->getResourceManager("meshes")->getResource("Cube"))->getIndices();
+    std::vector<SunVertex> cubeVertices = ((SunMeshResource *)services.get<SunResourceService>()->getResourceManager("meshes")->getResource("Cube"))->getVertices();
+    std::vector<GLuint> cubeIndices = ((SunMeshResource *)services.get<SunResourceService>()->getResourceManager("meshes")->getResource("Cube"))->getIndices();
 
     glGenVertexArrays(1, &VAO);
 
@@ -89,7 +89,7 @@ void Chunk::generateMesh() {
                     }
                     for (int i = 0; i < cubeVertices.size(); ++i) {
                         SunVertex vertex = cubeVertices[i];
-                        vertex.position += glm::vec3(x * 2, y * 2, z * 2);
+                        vertex.position += glm::vec3(x, y, z);
                         vertices.push_back(vertex);
                     }
                     vertices.insert(vertices.end(), cubeVertices.begin(), cubeVertices.end());

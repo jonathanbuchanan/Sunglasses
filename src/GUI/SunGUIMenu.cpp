@@ -21,7 +21,7 @@ void SunGUIMenu::init() {
 
 void SunGUIMenu::loadScript(std::string _script) {
     script.loadFile(_script);
-    services->get<SunGlobalScriptingEnvironment>()->registerScript(this, script);
+    services.get<SunGlobalScriptingEnvironment>()->registerScript(this, script);
     //script.registerObject("menu", this, "visible", &SunGUIMenu::visible);
     script.registerType<SunGUIMenu>();
     script.registerObject(this, "menu");

@@ -9,7 +9,7 @@ SunScript::SunScript() {
 }
 
 SunScript::~SunScript() {
-
+    lua_close(state);
 }
 
 void SunScript::close() {

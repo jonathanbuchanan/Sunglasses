@@ -20,13 +20,13 @@ void FeatureScene::init() {
     root->addSubNode(_camera);
     camera = _camera;
 
-    services->get<SunGlobalScriptingEnvironment>()->registerGlobal("doCameraInput", true);
+    services.get<SunGlobalScriptingEnvironment>()->registerGlobal("doCameraInput", true);
 
     renderer = new FeatureRenderer();
     renderer->setSceneNode(this);
     renderer->init();
 
-    SunResourceService *resource = services->get<SunResourceService>();
+    SunResourceService *resource = services.get<SunResourceService>();
     resource->addResourceManager("models", new SunResourceManager());
     resource->addResourceManager("meshes", new SunResourceManager());
     resource->addResourceManager("materials", new SunResourceManager());
@@ -98,7 +98,7 @@ void FeatureScene::init() {
     guiRenderer->setGUIRoot(&guiSystem);
     guiRenderer->setTextRenderer(textRenderer);
 
-    services->get<SunKeyboardManager>()->subscribe(_menu.get(), GLFW_KEY_ESCAPE, SunButtonEventDownSingle);
+    services.get<SunKeyboardManager>()->subscribe(_menu.get(), GLFW_KEY_ESCAPE, SunButtonEventDownSingle);
 
     std::shared_ptr<SunGUIItem> _item = std::shared_ptr<SunGUIItem>(new SunGUIItem());
     _item->init();
@@ -106,7 +106,7 @@ void FeatureScene::init() {
     _menu->addSubNode(_item);
     item = _item;
 
-    services->get<SunMouseButtonManager>()->subscribe(_item.get(), GLFW_MOUSE_BUTTON_LEFT, SunButtonEventDownSingle);
+    services.get<SunMouseButtonManager>()->subscribe(_item.get(), GLFW_MOUSE_BUTTON_LEFT, SunButtonEventDownSingle);
 
     _item->addMouseActionForTrigger(GLFW_MOUSE_BUTTON_LEFT, "exitPressed");
 
@@ -122,7 +122,7 @@ void FeatureScene::init() {
     _menu->addSubNode(_back);
     back = _back;
 
-    services->get<SunMouseButtonManager>()->subscribe(_back.get(), GLFW_MOUSE_BUTTON_LEFT, SunButtonEventDownSingle);
+    services.get<SunMouseButtonManager>()->subscribe(_back.get(), GLFW_MOUSE_BUTTON_LEFT, SunButtonEventDownSingle);
 
     _back->addMouseActionForTrigger(GLFW_MOUSE_BUTTON_LEFT, "hide");
 
@@ -140,7 +140,7 @@ void FeatureScene::cycle() {
     SunScene::cycle();
     static bool idown = false;
     static bool odown = false;
-    SunKeyboardManager *keyboard = services->get<SunKeyboardManager>();
+    SunKeyboardManager *keyboard = services.get<SunKeyboardManager>();
     if (keyboard->pollKey(GLFW_KEY_I) == true && idown == false) {
         SunObject *teapot = new SunObject("teapot" + std::to_string(teapots.size()));
         teapot->addTag("solid");

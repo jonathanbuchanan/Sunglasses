@@ -3,7 +3,7 @@
 // See LICENSE.md for details.
 #include "SunBase.h"
 
-SunServiceManager *SunBase::services = new SunServiceManager();
+SunServiceManager SunBase::services = SunServiceManager();
 
 SunBase::SunBase() { }
 

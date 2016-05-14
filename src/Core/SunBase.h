@@ -70,7 +70,7 @@ public:
     void setName(std::string n) { name = n; }
 
     /// A map containing services that correspond to names (strings)
-    static SunServiceManager *services;
+    static SunServiceManager services;
 private:
     /// A string containing the name of the object
     std::string name;

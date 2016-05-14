@@ -44,7 +44,7 @@ void SunObject::loadScript(std::string _script) {
         script.registerObject(script["object"][name]["material"], mesh.second.material);
         script.registerObjectAsType(script["object"][name]["material"]["color"], "vec3", &mesh.second.material->diffuse);
     }*/
-    services->get<SunGlobalScriptingEnvironment>()->registerScript(this, script); 
+    services.get<SunGlobalScriptingEnvironment>()->registerScript(this, script); 
 }
 
 void SunObject::registerInScript(SunScript *script, _SunPrivateScripting::SunLuaValue value) {
@@ -69,13 +69,13 @@ void SunObject::init() {
     addAction("playSound", &SunObject::playSound);
     addAction("uniform", &SunObject::uniform);
     addAction("registerInScript", &SunObject::registerInScript);
-    services->get<SunGlobalScriptingEnvironment>()->registerObject(this);
+    services.get<SunGlobalScriptingEnvironment>()->registerObject(this);
     if (scriptingEnabled == true)
         script["init"]();
 }
 
 void SunObject::update(SunAction action) {
-    float delta = services->get<SunWindowManager>()->getDelta();
+    float delta = services.get<SunWindowManager>()->getDelta();
     if (scriptingEnabled == true)
         script["update"](delta);
     if (physicsEnabled == true)
@@ -100,15 +100,15 @@ void SunObject::uniform(SunAction action) {
 }
 
 void SunObject::newMesh(std::string name, std::string mesh, std::string material) {
-    SunMeshResource *_mesh = (SunMeshResource *)services->get<SunResourceService>()->getResourceManager("meshes")->getResource(mesh);
+    SunMeshResource *_mesh = (SunMeshResource *)services.get<SunResourceService>()->getResourceManager("meshes")->getResource(mesh);
 
-    SunMaterialResource *_material = (SunMaterialResource *)services->get<SunResourceService>()->getResourceManager("materials")->getResource(material);
+    SunMaterialResource *_material = (SunMaterialResource *)services.get<SunResourceService>()->getResourceManager("materials")->getResource(material);
     meshes[name] = SunMesh(this, _mesh, _material);
 }
 
 void SunObject::newMesh(std::string name, std::string mesh, std::string material, glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale) {
-    SunMeshResource *_mesh = (SunMeshResource *)services->get<SunResourceService>()->getResourceManager("meshes")->getResource(mesh);
+    SunMeshResource *_mesh = (SunMeshResource *)services.get<SunResourceService>()->getResourceManager("meshes")->getResource(mesh);
 
-    SunMaterialResource *_material = (SunMaterialResource *)services->get<SunResourceService>()->getResourceManager("materials")->getResource(material);
+    SunMaterialResource *_material = (SunMaterialResource *)services.get<SunResourceService>()->getResourceManager("materials")->getResource(material);
     meshes[name] = SunMesh(this, _mesh, _material, _position, _rotation, _scale);
 }
