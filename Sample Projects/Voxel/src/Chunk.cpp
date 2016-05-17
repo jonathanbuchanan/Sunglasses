@@ -34,18 +34,10 @@ void Chunk::render(SunAction action) {
     SunMaterialResource *material = ((SunMaterialResource *)services.get<SunResourceService>()->getResourceManager("materials")->getResource("grass"));
     material->pass(shader, "material");
 
-    /*glm::vec3 _position = position;
-    glm::vec3 _rotation = rotation;
-    glm::vec3 _scale = scale;*/
-
     // Calculate the model matrix
     glm::mat4 modelMatrix = glm::mat4();
-    /*modelMatrix = glm::translate(modelMatrix, _position);
-    modelMatrix = glm::rotate(modelMatrix, glm::radians(_rotation.x), glm::vec3(1.0, 0.0, 0.0));
-    modelMatrix = glm::rotate(modelMatrix, glm::radians(_rotation.y), glm::vec3(0.0, 1.0, 0.0));
-    modelMatrix = glm::rotate(modelMatrix, glm::radians(_rotation.z), glm::vec3(0.0, 0.0, 1.0));
-    modelMatrix = glm::scale(modelMatrix, _scale);*/
-
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(position.x, 0, position.y) * 16.0f);
+    
     // Pass the model matrix uniform
     glUniformMatrix4fv(shader->getUniformLocation("model"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
 
@@ -59,10 +51,8 @@ void Chunk::render(SunAction action) {
     glBindVertexArray(VAO);
 
     // Draw the triangles
-    //glDrawElements(GL_TRIANGLES, mesh->getIndicesSize(), GL_UNSIGNED_INT, 0);
-    //glDrawArrays(GL_TRIANGLES, 0, vertices.size());
-
     glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+
     // Unbind the VAO
     glBindVertexArray(0);
 }

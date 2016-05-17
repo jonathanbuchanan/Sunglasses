@@ -15,6 +15,8 @@ public:
     void update(SunAction action);
 
     void render(SunAction action);
+
+    void setPosition(glm::ivec2 p) { position = p; }
 private:
     /// Generates a mesh from the blocks that it contains
     void generateMesh();
@@ -27,6 +29,8 @@ private:
     std::vector<GLuint> indices;
 
     Block *blocks[16][128][16];
+
+    glm::ivec2 position; // Position is in chunk coordinates, not block coordinates (CC(X, Y) -> WC(X, 0, Y) (e.g. CC(1, 1) == BC(16, 16))
 };
 
 #endif
