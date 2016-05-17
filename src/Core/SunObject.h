@@ -8,7 +8,6 @@
 #include <vector>
 
 #include "../Physics/SunPhysicsObject.h"
-#include "../Audio/SunSoundObject.h"
 #include "../Graphics/SunMesh.h"
 #include "../Scripting/SunScript.h"
 
@@ -86,9 +85,6 @@ public:
      */
     virtual void render(SunAction action);
 
-    /// OLD.
-    virtual void playSound(SunAction action);
-
     /// Passes the objects uniforms.
     /**
      * This member function passes the objects uniforms in OpenGL. As of right now,
@@ -159,8 +155,6 @@ private:
     /// Enables physics
     bool physicsEnabled;
 
-    /// The sound object
-    SunSoundObject sound;
 
     // Scripting
     SunScript script;

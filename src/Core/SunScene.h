@@ -11,9 +11,6 @@
 #include "../GUI/SunGUISystem.h"
 #include "../GUI/SunGUIRenderer.h"
 #include "../Graphics/SunCamera.h"
-#include "../Audio/SunSoundListener.h"
-#include "../Audio/SunSoundBufferStorage.h"
-#include "../Audio/SunMusicObject.h"
 #include "SunObject.h"
 
 class SunRenderer;
@@ -64,19 +61,8 @@ protected:
     /// A pointer to the text renderer
     SunTextRenderer *textRenderer;
 
-    /// OLD
-    SunSoundListener listener;
-
     /// The physics simulator
     SunPhysicsSimulator physicsSimulator;
-
-    /// OLD
-    SunSoundBufferStorage storage;
-
-    /// OLD
-    SunMusicObject *music;
-    /// OLD
-    bool autoplay;
 
     /// A pointer to the window (GLFWwindow)
     GLFWwindow *window;

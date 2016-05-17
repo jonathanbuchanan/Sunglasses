@@ -66,7 +66,6 @@ void SunObject::registerInScript(SunAction action) {
 void SunObject::init() {
     addAction("update", &SunObject::update);
     addAction("render", &SunObject::render);
-    addAction("playSound", &SunObject::playSound);
     addAction("uniform", &SunObject::uniform);
     addAction("registerInScript", &SunObject::registerInScript);
     services.get<SunGlobalScriptingEnvironment>()->registerObject(this);
@@ -86,13 +85,6 @@ void SunObject::render(SunAction action) {
     SunShader *shader = action.getParameterPointer<SunShader>("shader");
     for (auto &mesh : meshes)
         mesh.second.render(shader);
-}
-
-void SunObject::playSound(SunAction action) {
-    SunAction soundAction("playSound");
-    soundAction.addParameter("position", &position);
-
-    sendAction(soundAction, &sound);
 }
 
 void SunObject::uniform(SunAction action) {
