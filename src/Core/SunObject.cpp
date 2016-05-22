@@ -104,3 +104,14 @@ void SunObject::newMesh(std::string name, std::string mesh, std::string material
     SunMaterialResource *_material = (SunMaterialResource *)services.get<SunResourceService>()->getResourceManager("materials")->getResource(material);
     meshes[name] = SunMesh(this, _mesh, _material, _position, _rotation, _scale);
 }
+
+void SunObject::newAudioSource(std::string name, std::string buffer,
+        glm::vec3 position, float pitch, float gain) {
+    SunAudioBufferResource *_buffer = (SunAudioBufferResource *)services.get<SunResourceService>()->getResourceManager("sounds")->getResource(buffer);
+
+    audioSources.emplace(std::make_pair(name, SunAudioSource(_buffer, position, pitch, gain)));
+}
+
+void SunObject::playAudioSource(std::string name) {
+    audioSources.at(name).play();
+}

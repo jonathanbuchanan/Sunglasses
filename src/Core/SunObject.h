@@ -10,6 +10,7 @@
 #include "../Physics/SunPhysicsObject.h"
 #include "../Graphics/SunMesh.h"
 #include "../Scripting/SunScript.h"
+#include "../Audio/SunAudioSource.h"
 
 class SunGlobalScriptingEnvironment;
 
@@ -117,6 +118,15 @@ public:
      */
     void newMesh(std::string name, std::string mesh, std::string material, glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale);
 
+    /// Adds an audio source
+    void newAudioSource(std::string name, std::string buffer,
+        glm::vec3 position = glm::vec3(0.0f),
+        float pitch = 1.0f,
+        float gain = 1.0f);
+
+    /// Plays an audio source
+    void playAudioSource(std::string name);
+
     /// Sets the scripting enabled boolean
     void setScriptingEnabled(bool s) { scriptingEnabled = s; }
 
@@ -149,6 +159,9 @@ private:
 
     /// The map of meshes
     std::map<std::string, SunMesh> meshes;
+
+    /// The map of audio sources
+    std::map<std::string, SunAudioSource> audioSources;
 
     /// The physics objects
     SunPhysicsObject physicsObject;

@@ -26,12 +26,8 @@ void World::init() {
     SunTextureResource *grassTexture = (SunTextureResource *)resource->getResourceManager("textures")->getResource("grass");
     resource->getResourceManager("materials")->addResource("grass", new SunMaterialResource(grassTexture, 4.0f));
 
-    resource->getResourceManager("sounds")->addResource("testo", new SunAudioBufferResource("/home/jonathan/fluidsynth.wav"));
+    resource->getResourceManager("sounds")->addResource("sound", new SunAudioBufferResource("/home/jonathan/fluidsynth.wav"));
 
-    SunAudioSource source = SunAudioSource((SunAudioBufferResource *)resource->getResourceManager("sounds")->getResource("testo"));
-    source.init();
-    source.play();
-   
     std::shared_ptr<Chunk> chunk = std::make_shared<Chunk>();
     chunk->init();
     addSubNode(chunk);
