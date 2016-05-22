@@ -17,6 +17,9 @@ public:
 
     /// Initializes the audio device manager
     void initialize();
+
+    /// Updates the audio device manager
+    virtual void update();
 private:
     /// The audio device
     ALCdevice *device;

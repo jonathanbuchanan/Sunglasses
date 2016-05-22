@@ -3,8 +3,10 @@
 // See LICENSE.md for details.
 #include "SunAudioDeviceManager.h"
 
-SunAudioDeviceManager::SunAudioDeviceManager() {
+#include <AL/alut.h>
 
+SunAudioDeviceManager::SunAudioDeviceManager() {
+    initialize();
 }
 
 void SunAudioDeviceManager::initialize() {
@@ -12,4 +14,10 @@ void SunAudioDeviceManager::initialize() {
 
     context = alcCreateContext(device, NULL);
     alcMakeContextCurrent(context);
+
+    alutInit(0, NULL);
+}
+
+void SunAudioDeviceManager::update() {
+
 }

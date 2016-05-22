@@ -62,6 +62,10 @@ void SunGame::init(int argc, char **argv, std::string title, glm::vec4 color) {
     
     parseOptions(options, "HELP MESSAGE", "alpha v0.0.1",  argc, argv);
 
+    // Initialize the Audio Device Manager
+    SunAudioDeviceManager *audioManager = new SunAudioDeviceManager();
+    services.add(audioManager);
+
     // Initialize the Window Manager
     SunWindowManager *windowManager = new SunWindowManager(glm::vec2(width, height), title, color);
     windowManager->setName("window_manager");
@@ -102,4 +106,5 @@ void SunGame::init(int argc, char **argv, std::string title, glm::vec4 color) {
     resourceService->addResourceManager("meshes", new SunResourceManager());
     resourceService->addResourceManager("materials", new SunResourceManager());
     resourceService->addResourceManager("textures", new SunResourceManager());
+    resourceService->addResourceManager("sounds", new SunResourceManager());
 }
