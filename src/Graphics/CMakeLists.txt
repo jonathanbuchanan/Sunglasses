@@ -10,6 +10,7 @@ add_sources(
     SunWindowManager.cpp
 )
 
+add_subdirectory(Animation)
 add_subdirectory(Loaders)
 add_subdirectory(RenderNodes)
 
