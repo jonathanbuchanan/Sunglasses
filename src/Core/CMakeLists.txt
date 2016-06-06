@@ -1,6 +1,7 @@
 add_sources(
     SunAction.cpp
     SunBase.cpp
+    SunEntity.cpp
     SunGame.cpp
     SunNode.cpp
     SunObject.cpp
