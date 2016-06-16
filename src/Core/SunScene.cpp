@@ -18,6 +18,5 @@ void SunScene::cycle() {
     update.setRecursive(true);
     sendAction(update, root.get());
     renderer->render();
-    guiRenderer->render();
     renderer->swapBuffers();
 }

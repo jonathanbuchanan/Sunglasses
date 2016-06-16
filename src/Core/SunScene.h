@@ -7,9 +7,6 @@
 
 #include "SunBase.h"
 #include "../Physics/SunPhysicsSimulator.h"
-#include "../GUI/SunTextRenderer.h"
-#include "../GUI/SunGUISystem.h"
-#include "../GUI/SunGUIRenderer.h"
 #include "../Graphics/SunCamera.h"
 #include "SunObject.h"
 
@@ -56,10 +53,6 @@ protected:
 
     /// A pointer to the scene renderer
     SunRenderer *renderer;
-    /// A pointer to the GUI renderer
-    SunGUIRenderer *guiRenderer;
-    /// A pointer to the text renderer
-    SunTextRenderer *textRenderer;
 
     /// The physics simulator
     SunPhysicsSimulator physicsSimulator;

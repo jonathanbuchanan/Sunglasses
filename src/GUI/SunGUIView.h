@@ -1,4 +1,9 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include "SunGUIView.h" 
+#ifndef SUNGUIVIEW_H
+#define SUNGUIVIEW_H
+
+
+
+#endif
