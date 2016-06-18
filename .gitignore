@@ -30,6 +30,7 @@
 # Executables
 Feature-Executable
 Test-Sunglasses
+GUI-Executable
 Voxel-Executable
 
 # Cmake

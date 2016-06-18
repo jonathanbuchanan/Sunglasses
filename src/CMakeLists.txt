@@ -26,7 +26,8 @@ add_subdirectory(Scripting)
 
 add_library(sunglasses SHARED ${SRCS})
 
-include_directories("/usr/include/freetype2")
+include_directories("/usr/include/freetype2"
+                    "./")
 
 set(CMAKE_CXX_FLAGS "-std=c++14 -g -Wall -Wextra")
 

@@ -15,8 +15,7 @@
 
 #include "SunBase.h"
 #include "../Input/SunCLOptionParsing.h"
-
-class SunScene;
+#include "../GUI/SunGUIWindow.h"
 
 class SunScene;
 
@@ -27,10 +26,10 @@ class SunScene;
  * the game. During this loop it sends an update signal to each service. It also
  * quits when it finds glfwWindowShouldClose is true.
  */
-class SunGame : public SunBase {
+class SunGame {
 public:
-    /// This is the default constructor which does nothing
-    SunGame();
+    /// This is the default constructor
+    SunGame(int argc, char **argv, std::string title);
 
     /// Contains the game loop
     /**
@@ -49,68 +48,17 @@ public:
      */
     virtual void loop() = 0;
 
-    /// Updates the registered services.
-    /**
-     * This function is called by the game loop every time that it runs. It iterates
-     * through the map of services and updates each one.
-     */
-    void updateServices();
-
-    /// Cleans up the game after termination
-    /**
-     * This function should be called by main() after the run function is over.
-     * It cleans up all of the memory that relates to the game and then closes
-     * the application.
-     */
-    void cleanUp();
-
-    /// Initializes the services (window manager, cursor manager, keyboard manager, mouse button manager, and logger).
-    /**
-     * Initializes the services (window manager, cursor manager, keyboard manager,
-     * mouse button manager, and logger). By default, this creates a window with
-     * no title and a clear color of (0, 0, 0, 0).
-     */
-    virtual void init();
-
-    /// Initializes the services and the game using command line options.
-    /**
-     * Initializes the services (window manager, cursor manager, keyboard manager,
-     * mouse button manager, and logger). By default, this creates a window with
-     * no title and a clear color of (0, 0, 0, 0). It interprets arguments from the command
-     * line, such as width, height, etc. If you want to use this, pass the
-     * parameters from main() when creating the SunGame.
-     * @param argc The argument count.
-     * @param argv The array of arguments.
-     */
-    virtual void init(int argc, char **argv);
-
-    /// Initializes the services (window manager, cursor manager, keyboard manager, mouse button manager, and logger) with the parameters.
-    /**
-     * Initializes the services (window manager, cursor manager, keyboard manager,
-     * mouse button manager, and logger).
-     * @param title The title of the window.
-     * @param color The background color of the window.
-     */
-    virtual void init(std::string title, glm::vec4 color);
-
-    /// Initializes the services with the parameters and the game using command line options.
-    /**
-     * Initializes the services (window manager, cursor manager, keyboard manager,
-     * mouse button manager, and logger). It interprets arguments from the command
-     * line, such as width, height, etc. If you want to use this, pass the
-     * parameters from main() when creating the SunGame.
-     * @param argc The argument count.
-     * @param argv The array of arguments.
-     * @param title The title of the window.
-     * @param color The background color of the window.
-     */
-    virtual void init(int argc, char **argv, std::string title, glm::vec4 color);
+    /// Stops the game
+    void stop();
 protected:
     /// A pointer to the scene, which contains the scene graph
     SunScene *scene;
 
-    /// A pointer to the GLFW window
-    GLFWwindow *window;
+    /// The window
+    SunGUIWindow window;
+private:
+    /// A boolean that controls the stopping of the game
+    bool endGame = false;
 };
 
 #endif

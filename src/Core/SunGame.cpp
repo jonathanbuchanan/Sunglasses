@@ -7,33 +7,37 @@
 
 #include "SunScene.h"
 
-SunGame::SunGame() {
+SunGame::SunGame(int argc, char **argv, std::string title) : window(640, 480, title) {
 
 }
 
 void SunGame::run() {
-    while (!glfwWindowShouldClose(window)) {
-        updateServices();
-        services.get<SunWindowManager>()->calculateDelta();
+    while (!endGame) {
+        //updateServices();
+        //services.get<SunWindowManager>()->calculateDelta();
 
         // Run the loop function (user defined logic goes here)
         loop();
 
-        scene->cycle();
+        //scene->cycle();
     }
 }
 
-void SunGame::updateServices() {
-    for (auto &iterator : services.getServices()) {
+//void SunGame::updateServices() {
+    /*for (auto &iterator : services.getServices()) {
         iterator.second->update();
-    }
+    }*/
+//}
+
+//void SunGame::cleanUp() { /* THIS MUST BE IMPLEMENTED!!! */
+//    glfwTerminate();
+//}
+
+void SunGame::stop() {
+    endGame = true;
 }
 
-void SunGame::cleanUp() { /* THIS MUST BE IMPLEMENTED!!! */
-    glfwTerminate();
-}
-
-void SunGame::init() {
+/*void SunGame::init() {
     init(0, NULL, "", glm::vec4(0.0f, 0.0f, 0.0f, 0.0f));
 }
 
@@ -107,4 +111,4 @@ void SunGame::init(int argc, char **argv, std::string title, glm::vec4 color) {
     resourceService->addResourceManager("materials", new SunResourceManager());
     resourceService->addResourceManager("textures", new SunResourceManager());
     resourceService->addResourceManager("sounds", new SunResourceManager());
-}
+}*/
