@@ -57,4 +57,4 @@ include_directories(
 target_link_libraries(Test-Sunglasses sunglasses freetype SOIL GLEW libGL.so assimp openal alut ${GLFW_LIBRARIES} X11 Xxf86vm pthread dl Xrandr Xinerama Xi Xcursor lua ${GTEST_LIBRARY} ${GMOCK_LIBRARY} pthread)
 add_dependencies(Test-Sunglasses gtest)
 add_dependencies(Test-Sunglasses gmock)
-set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -Wextra -Wpedantic -g")
+set(CMAKE_CXX_FLAGS "-std=c++14 -Wall -Wextra -Wpedantic -g")

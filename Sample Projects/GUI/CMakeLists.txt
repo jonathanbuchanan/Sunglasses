@@ -7,7 +7,8 @@ pkg_search_module(GLFW REQUIRED glfw3)
 
 add_executable(GUI-Executable
     src/main.cpp
-    src/GUIGame.cpp)
+    src/GUIGame.cpp
+    src/GUIMainMenu.cpp)
 
 include_directories(/usr/include/freetype2)
 

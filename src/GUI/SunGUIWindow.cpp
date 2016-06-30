@@ -3,8 +3,10 @@
 // See LICENSE.md for details.
 #include "SunGUIWindow.h"
 
-SunGUIWindow::SunGUIWindow(int _width, int _height, std::string _title)
-    : width(_width), height(_height), title(_title) {
+#include "SunGUIView.h"
+
+SunGUIWindow::SunGUIWindow(int _width, int _height, std::string _title, SunGUIView *view)
+    : width(_width), height(_height), title(_title), contentView(view) { 
     // Initialize GLFW
     if (!glfwInit()) {
         // TODO: ERROR!
@@ -20,4 +22,13 @@ SunGUIWindow::SunGUIWindow(int _width, int _height, std::string _title)
 
 SunGUIWindow::~SunGUIWindow() {
     glfwTerminate();
+}
+
+void SunGUIWindow::draw() {
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    if (contentView)
+        contentView->draw(*this);
+
+    glfwSwapBuffers(window);
 }

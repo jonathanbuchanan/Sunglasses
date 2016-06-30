@@ -1,20 +1,16 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#ifndef GUIGAME_H
-#define GUIGAME_H
+#ifndef GUIMAINMENU_H
+#define GUIMAINMENU_H
 
 #include <Sunglasses/Sunglasses.hpp>
 
-#include "GUIMainMenu.h"
-
-class GUIGame : public SunGame {
+class GUIMainMenu : public SunGUIViewController {
 public:
-    GUIGame(int argc, char **argv);
 
-    void loop();
 private:
-    GUIMainMenu mainMenu;
+
 };
 
 #endif

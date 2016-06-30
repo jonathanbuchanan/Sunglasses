@@ -13,6 +13,10 @@ SunGame::SunGame(int argc, char **argv, std::string title) : window(640, 480, ti
 
 void SunGame::run() {
     while (!endGame) {
+        // Draw the window
+        window.draw();
+
+
         //updateServices();
         //services.get<SunWindowManager>()->calculateDelta();
 
@@ -29,28 +33,11 @@ void SunGame::run() {
     }*/
 //}
 
-//void SunGame::cleanUp() { /* THIS MUST BE IMPLEMENTED!!! */
-//    glfwTerminate();
-//}
-
 void SunGame::stop() {
     endGame = true;
 }
 
-/*void SunGame::init() {
-    init(0, NULL, "", glm::vec4(0.0f, 0.0f, 0.0f, 0.0f));
-}
-
-
-void SunGame::init(int argc, char **argv) {
-    init(argc, argv, "", glm::vec4(0.0f, 0.0f, 0.0f, 0.0f));
-}
-
-void SunGame::init(std::string title, glm::vec4 color) {
-    init(0, NULL, title, color);
-}
-
-void SunGame::init(int argc, char **argv, std::string title, glm::vec4 color) {
+/*void SunGame::init(int argc, char **argv, std::string title, glm::vec4 color) {
     // Parse the command line options
     int width;
     int height;
