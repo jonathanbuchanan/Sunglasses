@@ -18,16 +18,5 @@ SunGUIView::SunGUIView(glm::ivec2 _position,
 
 
 void SunGUIView::draw(SunGUIWindow &window) {
-    SunGUIPath<4> rectangle = SunGUIPath<4>(
-        SunGUIPathLine(glm::ivec2(0, 0), glm::ivec2(0, 0)),
-        SunGUIPathLine(glm::ivec2(0, 0), glm::ivec2(0, 0)),
-        SunGUIPathLine(glm::ivec2(0, 0), glm::ivec2(0, 0)),
-        SunGUIPathLine(glm::ivec2(0, 0), glm::ivec2(0, 0))
-    );
-    //drawRectangle(positionNDC, sizeNDC, backgroundColor);
-    /*auto path = newPath(
-        SunGUIPathMoveTo(glm::ivec2(0, 0)),
-        SunGUIPathMoveTo(glm::ivec2(256, 256))
-    );*/
-    //path.tessellate();
+    
 }
