@@ -4,8 +4,6 @@
 #include "SunGUIView.h"
 
 #include "SunGUIWindow.h"
-
-//#include "SunGUIRendering.h"
 #include "SunGUIPath.h"
 
 SunGUIView::SunGUIView(glm::ivec2 _position,
@@ -18,5 +16,8 @@ SunGUIView::SunGUIView(glm::ivec2 _position,
 
 
 void SunGUIView::draw(SunGUIWindow &window) {
-    
+    SunGUIPathOperator::PointAt point(glm::ivec2(500, 500));
+    SunGUIPath path(
+        point
+    );
 }
