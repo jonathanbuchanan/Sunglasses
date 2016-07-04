@@ -5,12 +5,12 @@
 #ifndef SUNPHYSICSOBJECT_H
 #define    SUNPHYSICSOBJECT_H
 
-#include "SunPhysicsForce.h"
-#include "SunPhysicsCollider.h"
-#include "SunPhysicsColliderAABB.h"
-#include "SunPhysicsColliderSphere.h"
-#include "SunPhysicsColliderPlane.h"
-#include "SunPhysicsColliderMesh.h"
+#include <sunglasses/Physics/SunPhysicsForce.h>
+#include <sunglasses/Physics/SunPhysicsCollider.h>
+#include <sunglasses/Physics/SunPhysicsColliderAABB.h>
+#include <sunglasses/Physics/SunPhysicsColliderSphere.h>
+#include <sunglasses/Physics/SunPhysicsColliderPlane.h>
+#include <sunglasses/Physics/SunPhysicsColliderMesh.h>
 
 #include <vector>
 

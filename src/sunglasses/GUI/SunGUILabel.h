@@ -4,7 +4,7 @@
 #ifndef SUNGUILABEL_H
 #define SUNGUILABEL_H
 
-#include "SunGUIView.h"
+#include <sunglasses/GUI/SunGUIView.h>
 
 #include <string>
 

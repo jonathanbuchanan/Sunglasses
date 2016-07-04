@@ -11,7 +11,7 @@
 #ifndef SUNPHYSICSCOLLIDERSPHERE_H
 #define    SUNPHYSICSCOLLIDERSPHERE_H
 
-#include "SunPhysicsCollider.h"
+#include <sunglasses/Physics/SunPhysicsCollider.h>
 
 class SunPhysicsColliderSphere : public SunPhysicsCollider {
 public:

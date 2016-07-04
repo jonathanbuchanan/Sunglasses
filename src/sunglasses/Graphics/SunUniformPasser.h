@@ -4,8 +4,8 @@
 #ifndef SUNUNIFORMPASSER_H
 #define SUNUNIFORMPASSER_H
 
-#include "../Core/SunBase.h"
-#include "SunShader.h"
+#include <sunglasses/Core/SunBase.h>
+#include <sunglasses/Graphics/SunShader.h>
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include <string>

@@ -5,8 +5,8 @@
 #ifndef SUNMESH_H
 #define SUNMESH_H
 
-#include "SunShader.h"
-#include "../Core/SunBase.h"
+#include <sunglasses/Graphics/SunShader.h>
+#include <sunglasses/Core/SunBase.h>
 
 class SunObject;
 

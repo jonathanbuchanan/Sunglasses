@@ -1,7 +1,7 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include "./SunPrimitives.h"
+#include <sunglasses/Graphics/SunPrimitives.h>
 
 bool operator==(const SunVertex &v1, const SunVertex &v2) {
     return v1.position == v2.position;

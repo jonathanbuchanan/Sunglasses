@@ -12,8 +12,8 @@
 #include <glm/gtx/quaternion.hpp>
 #include <glm/gtx/string_cast.hpp>
 
-#include "SunPrimitives.h"
-#include "SunShader.h"
+#include <sunglasses/Graphics/SunPrimitives.h>
+#include <sunglasses/Graphics/SunShader.h>
 
 class SunTexturedQuad : public SunBase {
 public:

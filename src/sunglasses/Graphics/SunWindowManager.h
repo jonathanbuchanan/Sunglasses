@@ -4,8 +4,8 @@
 #ifndef SUNWINDOWMANAGER_H
 #define SUNWINDOWMANAGER_H
 
-#include "../Core/SunBase.h"
-#include "../Core/SunService.h"
+#include <sunglasses/Core/SunBase.h>
+#include <sunglasses/Core/SunService.h>
 #define GLEW_STATIC
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>

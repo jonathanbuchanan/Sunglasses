@@ -1,12 +1,12 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include "SunMesh.h"
+#include <sunglasses/Graphics/SunMesh.h>
 
-#include "../Core/SunObject.h"
+#include <sunglasses/Core/SunObject.h>
 
-#include "Loaders/SunMeshResource.h"
-#include "Loaders/SunMaterialResource.h"
+#include <sunglasses/Graphics/Loaders/SunMeshResource.h>
+#include <sunglasses/Graphics/Loaders/SunMaterialResource.h>
 
 #include <glm/gtc/type_ptr.hpp>
 

@@ -11,7 +11,7 @@
 #ifndef SUNPHYSICSCOLLIDERPLANE_H
 #define    SUNPHYSICSCOLLIDERPLANE_H
 
-#include "SunPhysicsCollider.h"
+#include <sunglasses/Physics/SunPhysicsCollider.h>
 #include <glm/glm.hpp>
 
 class SunPhysicsColliderPlane : public SunPhysicsCollider {

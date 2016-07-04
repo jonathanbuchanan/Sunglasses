@@ -9,8 +9,8 @@
 #include <functional>
 
 
-#include "../Core/SunNode.h"
-#include "SunShader.h"
+#include <sunglasses/Core/SunNode.h>
+#include <sunglasses/Graphics/SunShader.h>
 
 
 /// An abstract class for defining rendering behavior.

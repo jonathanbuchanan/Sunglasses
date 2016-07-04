@@ -12,7 +12,7 @@
 
 #include <lua.hpp>
 
-#include "SunLuaValue.h"
+#include <sunglasses/Scripting/SunLuaValue.h>
 
 namespace _SunPrivateScripting {
     class _SunLuaCFunction_Base {

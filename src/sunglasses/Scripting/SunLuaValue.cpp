@@ -1,7 +1,7 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include "SunLuaValue.h"
+#include <sunglasses/Scripting/SunLuaValue.h>
 
 namespace _SunPrivateScripting {
     SunLuaValue::SunLuaValue(lua_State *s, bool _isFunctionReturn, int _index) {

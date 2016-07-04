@@ -4,7 +4,7 @@
 #ifndef SUNAUDIOLISTENER_H
 #define SUNAUDIOLISTENER_H
 
-#include "../Core/SunNode.h"
+#include <sunglasses/Core/SunNode.h>
 
 #include <glm/glm.hpp>
 

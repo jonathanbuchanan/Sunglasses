@@ -4,7 +4,7 @@
 #ifndef SUNLUATYPEREGISTRAR_H
 #define SUNLUATYPEREGISTRAR_H
 
-#include "SunLuaCFunction.h"
+#include <sunglasses/Scripting/SunLuaCFunction.h>
 #include <string>
 #include <vector>
 #include <map>

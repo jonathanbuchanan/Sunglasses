@@ -8,8 +8,8 @@
 #include <map>
 #include <memory>
 
-#include "SunAction.h"
-#include "SunServiceManager.h"
+#include <sunglasses/Core/SunAction.h>
+#include <sunglasses/Core/SunServiceManager.h>
 
 /// An object with a name, a map of actions, and a map of services.
 /**

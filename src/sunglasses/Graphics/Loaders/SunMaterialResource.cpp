@@ -1,10 +1,10 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include "SunMaterialResource.h"
+#include <sunglasses/Graphics/Loaders/SunMaterialResource.h>
 
-#include "SunTextureResource.h"
-#include "../SunShader.h"
+#include <sunglasses/Graphics/Loaders/SunTextureResource.h>
+#include <sunglasses/Graphics/SunShader.h>
 
 SunMaterialResource::SunMaterialResource(aiMaterial *_material) : material(_material) {
 

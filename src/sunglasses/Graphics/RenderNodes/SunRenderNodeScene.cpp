@@ -1,10 +1,10 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include "SunRenderNodeScene.h"
+#include <sunglasses/Graphics/RenderNodes/SunRenderNodeScene.h>
 
-#include "../SunWindowManager.h"
-#include "../SunPrimitives.h"
+#include <sunglasses/Graphics/SunWindowManager.h>
+#include <sunglasses/Graphics/SunPrimitives.h>
 
 SunRenderNodeSceneTexture::SunRenderNodeSceneTexture(std::string _name, GLuint _internalFormat, GLenum _format, GLenum _type) : name(_name), internalFormat(_internalFormat), format(_format), type(_type) { }
 

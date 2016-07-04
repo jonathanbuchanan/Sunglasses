@@ -4,7 +4,7 @@
 #ifndef SUNLUARAWCFUNCTION_H
 #define SUNLUARAWCFUNCTION_H
 
-#include "SunLuaCFunction.h"
+#include <sunglasses/Scripting/SunLuaCFunction.h>
 
 namespace _SunPrivateScripting {
 

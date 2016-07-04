@@ -10,9 +10,9 @@
 #include <iostream>
 #include <lua.hpp>
 
-#include "SunLuaValue.h"
-#include "SunLuaCFunction.h"
-#include "SunLuaTypeRegistrar.h"
+#include <sunglasses/Scripting/SunLuaValue.h>
+#include <sunglasses/Scripting/SunLuaCFunction.h>
+#include <sunglasses/Scripting/SunLuaTypeRegistrar.h>
 
 /// A container for a lua script that interacts with the engine
 /**

@@ -11,12 +11,12 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "../Core/SunNode.h"
-#include "SunWindowManager.h"
+#include <sunglasses/Core/SunNode.h>
+#include <sunglasses/Graphics/SunWindowManager.h>
 class SunShader;
-#include "../Input/SunKeyboardManager.h"
-#include "../Input/SunCursorManager.h"
-#include "../Scripting/SunScript.h"
+#include <sunglasses/Input/SunKeyboardManager.h>
+#include <sunglasses/Input/SunCursorManager.h>
+#include <sunglasses/Scripting/SunScript.h>
 
 #include <GLFW/glfw3.h>
 

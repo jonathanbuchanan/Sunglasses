@@ -4,9 +4,9 @@
 #ifndef SUNGLOBALSCRIPTINGENVIRONMENT_H
 #define SUNGLOBALSCRIPTINGENVIRONMENT_H
 
-#include "../Core/SunService.h"
-#include "../Core/SunServiceManager.h"
-#include "../Scripting/SunScript.h"
+#include <sunglasses/Core/SunService.h>
+#include <sunglasses/Core/SunServiceManager.h>
+#include <sunglasses/Scripting/SunScript.h>
 #include <glm/glm.hpp>
 #include <map>
 #include <string>

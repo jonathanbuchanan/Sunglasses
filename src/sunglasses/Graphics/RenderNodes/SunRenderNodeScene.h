@@ -4,8 +4,8 @@
 #ifndef SUNRENDERNODESCENE_H
 #define SUNRENDERNODESCENE_H
 
-#include "../SunRenderNode.h"
-#include "../SunShader.h"
+#include <sunglasses/Graphics/SunRenderNode.h>
+#include <sunglasses/Graphics/SunShader.h>
 
 #include <vector>
 #include <utility>

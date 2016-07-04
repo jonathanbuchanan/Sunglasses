@@ -4,7 +4,7 @@
 #ifndef SUNMODELRESOURCE_H
 #define SUNMODELRESOURCE_H
 
-#include "../../Extern/SunResource.h"
+#include <sunglasses/Extern/SunResource.h>
 
 #include <vector>
 #include <string>

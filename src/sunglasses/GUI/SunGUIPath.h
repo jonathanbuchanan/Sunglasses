@@ -10,7 +10,7 @@
 
 #include <glm/glm.hpp>
 
-#include "SunGUIRendering.h"
+#include <sunglasses/GUI/SunGUIRendering.h>
 
 /// The interface for a path operator
 class ISunGUIPathOperator {

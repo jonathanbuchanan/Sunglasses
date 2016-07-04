@@ -5,8 +5,8 @@
 #ifndef SUNPHYSICSCOLLIDERMESH_H
 #define    SUNPHYSICSCOLLIDERMESH_H
 
-#include "SunPhysicsCollider.h"
-#include "../Graphics/SunPrimitives.h"
+#include <sunglasses/Physics/SunPhysicsCollider.h>
+#include <sunglasses/Graphics/SunPrimitives.h>
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>

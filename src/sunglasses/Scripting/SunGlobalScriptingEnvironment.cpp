@@ -1,18 +1,18 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include "SunGlobalScriptingEnvironment.h"
+#include <sunglasses/Scripting/SunGlobalScriptingEnvironment.h>
 
-#include "../Scripting/SunScript.h"
-#include "../Core/SunObject.h"
+#include <sunglasses/Scripting/SunScript.h>
+#include <sunglasses/Core/SunObject.h>
 
-#include "../Core/SunServiceManager.h"
+#include <sunglasses/Core/SunServiceManager.h>
 
-#include "../Input/SunCursorManager.h"
-#include "../Input/SunKeyboardManager.h"
-#include "../Input/SunMouseButtonManager.h"
+#include <sunglasses/Input/SunCursorManager.h>
+#include <sunglasses/Input/SunKeyboardManager.h>
+#include <sunglasses/Input/SunMouseButtonManager.h>
 
-#include "../Graphics/SunWindowManager.h"
+#include <sunglasses/Graphics/SunWindowManager.h>
 
 #include <map>
 #include <string>

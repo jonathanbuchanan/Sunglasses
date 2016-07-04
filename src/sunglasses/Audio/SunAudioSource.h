@@ -6,7 +6,7 @@
 
 #include <glm/glm.hpp>
 
-#include "SunAudioBufferResource.h"
+#include <sunglasses/Audio/SunAudioBufferResource.h>
 
 #include <AL/al.h>
 #include <AL/alc.h>

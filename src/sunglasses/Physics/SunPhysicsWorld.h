@@ -5,8 +5,8 @@
 #ifndef SUNPHYSICSWORLD_H
 #define    SUNPHYSICSWORLD_H
 
-#include "SunPhysicsForce.h"
-#include "SunPhysicsObject.h"
+#include <sunglasses/Physics/SunPhysicsForce.h>
+#include <sunglasses/Physics/SunPhysicsObject.h>
 
 #include <vector>
 

@@ -1,7 +1,7 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include "SunGUIPath.h"
+#include <sunglasses/GUI/SunGUIPath.h>
 
 namespace SunGUIPathOperator {
     PointAt::PointAt(glm::ivec2 point) : location(point) {

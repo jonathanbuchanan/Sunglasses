@@ -8,8 +8,8 @@
 #include <vector>
 #include <tuple>
 
-#include "SunPhysicsWorld.h"
-#include "SunPhysicsObject.h"
+#include <sunglasses/Physics/SunPhysicsWorld.h>
+#include <sunglasses/Physics/SunPhysicsObject.h>
 
 typedef std::tuple<SunPhysicsObject *, SunPhysicsCollider *, SunPhysicsObject *, SunPhysicsCollider *, SunPhysicsCollisionData> SunPhysicsCollisionTuple;
 

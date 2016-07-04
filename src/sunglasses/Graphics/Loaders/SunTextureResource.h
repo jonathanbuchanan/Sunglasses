@@ -4,7 +4,7 @@
 #ifndef SUNTEXTURERESOURCE_H
 #define SUNTEXTURERESOURCE_H
 
-#include "../../Extern/SunResource.h"
+#include <sunglasses/Extern/SunResource.h>
 
 #include <string>
 

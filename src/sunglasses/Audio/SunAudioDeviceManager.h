@@ -4,7 +4,7 @@
 #ifndef SUNAUDIODEVICEMANAGER_H
 #define SUNAUDIODEVICEMANAGER_H
 
-#include "../Core/SunService.h"
+#include <sunglasses/Core/SunService.h>
 
 #include <AL/al.h>
 #include <AL/alc.h>

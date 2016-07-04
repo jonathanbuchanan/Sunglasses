@@ -4,8 +4,8 @@
 #ifndef SUNMESHRESOURCE_H
 #define SUNMESHRESOURCE_H
 
-#include "../SunPrimitives.h"
-#include "../../Extern/SunResource.h"
+#include <sunglasses/Graphics/SunPrimitives.h>
+#include <sunglasses/Extern/SunResource.h>
 
 #include <memory>
 

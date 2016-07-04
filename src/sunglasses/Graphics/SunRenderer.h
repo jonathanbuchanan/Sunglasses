@@ -7,10 +7,10 @@
 
 #include <iostream>
 
-#include "SunRenderNode.h"
-#include "SunTexturedQuad.h"
-#include "SunPrimitives.h"
-#include "SunCamera.h"
+#include <sunglasses/Graphics/SunRenderNode.h>
+#include <sunglasses/Graphics/SunTexturedQuad.h>
+#include <sunglasses/Graphics/SunPrimitives.h>
+#include <sunglasses/Graphics/SunCamera.h>
 
 class SunScene;
 

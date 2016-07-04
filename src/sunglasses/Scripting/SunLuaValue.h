@@ -4,7 +4,7 @@
 #ifndef SUNLUAVALUE_H
 #define SUNLUAVALUE_H
 
-#include "SunLuaPrimitives.h"
+#include <sunglasses/Scripting/SunLuaPrimitives.h>
 
 #include <lua.hpp>
 #include <string>

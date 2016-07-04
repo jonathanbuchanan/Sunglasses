@@ -1,10 +1,10 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include "SunCamera.h"
+#include <sunglasses/Graphics/SunCamera.h>
 
-#include "../Scripting/SunGlobalScriptingEnvironment.h"
-#include "SunShader.h"
+#include <sunglasses/Scripting/SunGlobalScriptingEnvironment.h>
+#include <sunglasses/Graphics/SunShader.h>
 
 template<> const std::string SunLuaTypeRegistrar<SunCamera>::typeName = "Camera";
 template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<SunCamera> *> SunLuaTypeRegistrar<SunCamera>::dataMembers = {

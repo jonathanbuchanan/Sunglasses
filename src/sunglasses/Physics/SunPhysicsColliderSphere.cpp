@@ -1,11 +1,11 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include "SunPhysicsColliderSphere.h"
-#include "SunPhysicsColliderAABB.h"
-#include "SunPhysicsColliderPlane.h"
-#include "SunPhysicsColliderMesh.h"
-#include "GJKAlgorithm.h"
+#include <sunglasses/Physics/SunPhysicsColliderSphere.h>
+#include <sunglasses/Physics/SunPhysicsColliderAABB.h>
+#include <sunglasses/Physics/SunPhysicsColliderPlane.h>
+#include <sunglasses/Physics/SunPhysicsColliderMesh.h>
+#include <sunglasses/Physics/GJKAlgorithm.h>
 #include <glm/gtx/string_cast.hpp>
 #include <iostream>
 

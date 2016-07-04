@@ -1,7 +1,7 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include "SunAudioSource.h"
+#include <sunglasses/Audio/SunAudioSource.h>
 
 SunAudioSource::SunAudioSource(SunAudioBufferResource *_buffer,
         glm::vec3 _position,

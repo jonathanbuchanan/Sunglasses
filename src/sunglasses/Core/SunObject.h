@@ -7,14 +7,14 @@
 
 #include <vector>
 
-#include "../Physics/SunPhysicsObject.h"
-#include "../Graphics/SunMesh.h"
-#include "../Scripting/SunScript.h"
-#include "../Audio/SunAudioSource.h"
+#include <sunglasses/Physics/SunPhysicsObject.h>
+#include <sunglasses/Graphics/SunMesh.h>
+#include <sunglasses/Scripting/SunScript.h>
+#include <sunglasses/Audio/SunAudioSource.h>
 
 class SunGlobalScriptingEnvironment;
 
-#include "../Scripting/SunLuaTypeRegistrar.h"
+#include <sunglasses/Scripting/SunLuaTypeRegistrar.h>
 
 /// A SunNode intended to be used in the scene graph as a game object
 /**

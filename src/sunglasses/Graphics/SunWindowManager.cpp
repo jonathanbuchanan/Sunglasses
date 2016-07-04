@@ -1,8 +1,8 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include "SunWindowManager.h"
-#include "../Scripting/SunScript.h"
+#include <sunglasses/Graphics/SunWindowManager.h>
+#include <sunglasses/Scripting/SunScript.h>
 
 template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<SunWindowManager> *> SunLuaTypeRegistrar<SunWindowManager>::dataMembers = {
     {"setWindowShouldClose", new SunLuaTypeMemberFunction<SunWindowManager, void>("setWindowShouldClose", &SunWindowManager::setWindowShouldClose)}

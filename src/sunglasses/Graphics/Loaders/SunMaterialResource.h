@@ -4,7 +4,7 @@
 #ifndef SUNMATERIALRESOURCE_H
 #define SUNMATERIALRESOURCE_H
 
-#include "../../Extern/SunResource.h"
+#include <sunglasses/Extern/SunResource.h>
 
 class SunObject;
 class SunShader;

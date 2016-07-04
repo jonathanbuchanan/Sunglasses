@@ -14,8 +14,8 @@
 
 #include <GL/glew.h>
 
-#include "../Core/SunNode.h"
-#include "../Output/SunLogger.h"
+#include <sunglasses/Core/SunNode.h>
+#include <sunglasses/Output/SunLogger.h>
 
 enum SunShaderSourceType {
     SunShaderSourceTypeVertex = GL_VERTEX_SHADER,

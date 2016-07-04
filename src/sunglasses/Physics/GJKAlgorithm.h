@@ -11,10 +11,10 @@
 #ifndef GJKALGORITHM_H
 #define    GJKALGORITHM_H
 
-#include "SunPhysicsColliderMesh.h"
-#include "SunPhysicsColliderSphere.h"
-#include "SunPhysicsColliderAABB.h"
-#include "SunPhysicsColliderPlane.h"
+#include <sunglasses/Physics/SunPhysicsColliderMesh.h>
+#include <sunglasses/Physics/SunPhysicsColliderSphere.h>
+#include <sunglasses/Physics/SunPhysicsColliderAABB.h>
+#include <sunglasses/Physics/SunPhysicsColliderPlane.h>
 
 extern glm::vec3 getFarthestPointAlongAxis(SunPhysicsColliderMesh *mesh, glm::vec3 axis);
 extern glm::vec3 getFarthestPointAlongAxis(SunPhysicsColliderSphere *sphere, glm::vec3 axis);
