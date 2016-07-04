@@ -8,7 +8,7 @@
 
 #include <glm/glm.hpp>
 
-#include <GL/gl.h>
+#include <GL/glew.h>
 
 /// An object that contains vertex data that can be filled
 class SunGUIFill {

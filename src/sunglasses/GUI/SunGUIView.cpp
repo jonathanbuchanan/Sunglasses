@@ -3,8 +3,8 @@
 // See LICENSE.md for details.
 #include "SunGUIView.h"
 
-#include "SunGUIWindow.h"
 #include "SunGUIPath.h"
+#include "SunGUIWindow.h"
 
 SunGUIView::SunGUIView(glm::ivec2 _position,
         glm::ivec2 _size,

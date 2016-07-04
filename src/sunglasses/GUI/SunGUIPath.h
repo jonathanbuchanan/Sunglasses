@@ -34,9 +34,9 @@ public:
     }
 
     /// Returns a fillable object
-    SunGUIFill fill() {
-        return SunGUIFill();
-    }
+    //SunGUIFill fill() {
+        //return SunGUIFill();
+    //}
 private:
     /// The set of operators
     std::vector<std::reference_wrapper<const ISunGUIPathOperator>> operators;
