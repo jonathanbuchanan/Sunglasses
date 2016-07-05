@@ -4,7 +4,7 @@
 #ifndef GAMERENDERER_H
 #define GAMERENDERER_H
 
-#include <Sunglasses/Sunglasses.hpp>
+#include <sunglasses/Sunglasses.hpp>
 
 class GameRenderer : public SunRenderer {
 public:

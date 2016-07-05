@@ -4,7 +4,7 @@
 #ifndef MENUSCENE_H
 #define MENUSCENE_H
 
-#include <Sunglasses/Sunglasses.hpp>
+#include <sunglasses/Sunglasses.hpp>
 
 class MenuScene : public SunScene {
 public:

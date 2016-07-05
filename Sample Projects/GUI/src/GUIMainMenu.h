@@ -4,7 +4,7 @@
 #ifndef GUIMAINMENU_H
 #define GUIMAINMENU_H
 
-#include <Sunglasses/Sunglasses.hpp>
+#include <sunglasses/Sunglasses.hpp>
 
 class GUIMainMenu : public SunGUIViewController {
 public:

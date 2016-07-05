@@ -4,7 +4,7 @@
 #ifndef BLOCK_H
 #define BLOCK_H
 
-#include <Sunglasses/Sunglasses.hpp>
+#include <sunglasses/Sunglasses.hpp>
 
 class Block {
 public:

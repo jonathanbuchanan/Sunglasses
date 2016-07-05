@@ -4,7 +4,7 @@
 #ifndef GAMESCENE_H
 #define GAMESCENE_H
 
-#include <Sunglasses/Sunglasses.hpp>
+#include <sunglasses/Sunglasses.hpp>
 
 #include "World.h"
 

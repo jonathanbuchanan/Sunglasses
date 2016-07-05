@@ -4,7 +4,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-#include <Sunglasses.hpp>
+#include <sunglasses/Sunglasses.hpp>
 
 struct SunScriptTest : ::testing::Test {
     SunScript script;

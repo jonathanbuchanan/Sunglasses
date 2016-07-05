@@ -4,7 +4,7 @@
 #ifndef GUIGAME_H
 #define GUIGAME_H
 
-#include <Sunglasses/Sunglasses.hpp>
+#include <sunglasses/Sunglasses.hpp>
 
 #include "GUIMainMenu.h"
 

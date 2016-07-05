@@ -4,7 +4,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <Sunglasses/Sunglasses.hpp>
+#include <sunglasses/Sunglasses.hpp>
 
 #include "MenuScene.h"
 

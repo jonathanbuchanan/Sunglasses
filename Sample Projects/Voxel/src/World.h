@@ -4,7 +4,7 @@
 #ifndef WORLD_H
 #define WORLD_H
 
-#include <Sunglasses/Sunglasses.hpp>
+#include <sunglasses/Sunglasses.hpp>
 
 #include "Chunk.h"
 

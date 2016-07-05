@@ -4,7 +4,7 @@
 #ifndef FEATURERENDERER_H
 #define FEATURERENDERER_H
 
-#include <Sunglasses/Sunglasses.hpp>
+#include <sunglasses/Sunglasses.hpp>
 
 class FeatureRenderer : public SunRenderer {
 public:
