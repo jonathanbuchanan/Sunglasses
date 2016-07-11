@@ -15,7 +15,6 @@
 
 #include "SunBase.h"
 #include "../Input/SunCLOptionParsing.h"
-#include "../GUI/SunGUIWindow.h"
 
 class SunScene;
 
@@ -54,11 +53,11 @@ protected:
     /// A pointer to the scene, which contains the scene graph
     SunScene *scene;
 
-    /// The window
-    SunGUIWindow window;
 private:
     /// A boolean that controls the stopping of the game
     bool endGame = false;
+
+    // TODO: Use better design!
 };
 
 #endif

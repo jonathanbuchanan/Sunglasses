@@ -3,7 +3,40 @@
 // See LICENSE.md for details.
 #include <sunglasses/GUI/SunGUIRendering.h>
 
-SunGUIFill::SunGUIFill(const std::vector<glm::ivec2> &vertices) {
+#include <string>
+
+const std::string fill_vertex = R"(
+#version 330 core
+
+layout (location = 0) in vec2 vertex;
+// TexCoords
+
+uniform model;
+uniform projection;
+
+void main() {
+    gl_Position = projection * model * vec4(vertex, 0.0f, 1.0f);
+}
+)";
+
+const std::string fill_fragment = R"(
+#version 330
+
+out vec4 color;
+
+uniform vec3 fill;
+
+void main() {
+    color = vec4(fill, 1.0f);
+}
+)";
+
+SunGUIShaderContainer::SunGUIShaderContainer(SunGUIWindow &window) :
+    fill(fill_vertex, fill_fragment) {
+
+}
+
+SunGUIFillPath::SunGUIFillPath(const std::vector<glm::ivec2> &vertices) {
     // Copy the data (TODO: Generate Texture Coordinates)
     std::vector<glm::ivec2> data = vertices;
 

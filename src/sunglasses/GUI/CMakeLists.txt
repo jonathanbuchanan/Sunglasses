@@ -1,4 +1,5 @@
 add_sources(
+    SunGUI.cpp
     SunGUILabel.cpp
     SunGUIPath.cpp
     SunGUIRendering.cpp

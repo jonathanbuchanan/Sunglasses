@@ -2,15 +2,6 @@ cmake_minimum_required(VERSION 3.2)
 
 project("Sunglasses")
 
-# Generate the include tree
-file(COPY ./
-    DESTINATION ./include/sunglasses
-    FILES_MATCHING
-    PATTERN "CMakeFiles" EXCLUDE
-    PATTERN "include" EXCLUDE
-    PATTERN "*.h"
-    PATTERN "*.hpp")
-
 macro(add_sources)
     foreach(SRC ${ARGN})
         set(CAT_SRC "${CMAKE_CURRENT_SOURCE_DIR}/${SRC}")
@@ -36,7 +27,7 @@ add_subdirectory(Scripting)
 add_library(sunglasses SHARED ${SRCS})
 
 include_directories("/usr/include/freetype2"
-    ./include/sunglasses)
+    ../)
 
 set(CMAKE_CXX_FLAGS "-std=c++14 -g -Wall -Wextra")
 

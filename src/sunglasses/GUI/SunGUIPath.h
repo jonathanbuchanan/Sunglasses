@@ -4,9 +4,8 @@
 #ifndef SUNGUIPATH_H
 #define SUNGUIPATH_H
 
-#include <functional>
 #include <vector>
-#include <iostream>
+#include <memory>
 
 #include <glm/glm.hpp>
 
@@ -16,7 +15,7 @@
 class ISunGUIPathOperator {
 public:
     /// The method used to add geometry to the path
-    virtual void addGeometry(std::vector<glm::ivec2> &points) = 0;
+    virtual void addGeometry(std::vector<glm::ivec2> &points) const = 0;
 };
 
 /// A path in the GUI system.
@@ -27,43 +26,37 @@ public:
 class SunGUIPath {
 public:
     /// Constructs the path with a set of operators
-    template<typename... T>
-    SunGUIPath(const T &... _operators) :
-        operators{std::ref((const ISunGUIPathOperator &)(_operators))...} {
-
-    }
+    SunGUIPath(const std::vector<std::shared_ptr<const ISunGUIPathOperator>> &&_operators);
 
     /// Returns a fillable object
-    //SunGUIFill fill() {
-        //return SunGUIFill();
-    //}
+    SunGUIFillPath fill();
 private:
     /// The set of operators
-    std::vector<std::reference_wrapper<const ISunGUIPathOperator>> operators;
+    std::vector<std::shared_ptr<const ISunGUIPathOperator>> operators;
 };
 
 namespace SunGUIPathOperator {
     /// Generates a single point at the specified coordinates.
-    class PointAt : ISunGUIPathOperator {
+    class PointAt : public ISunGUIPathOperator {
     public:
         /// Constructs the operator with the location of the point
         PointAt(glm::ivec2 point);
 
         /// Adds a single point to the path's vertices
-        virtual void addGeometry(std::vector<glm::ivec2> &points);
+        virtual void addGeometry(std::vector<glm::ivec2> &points) const;
     private:
         /// The location of the point
         glm::ivec2 location;
     };
 
     /// Generates a line from the last used point to the specified point.
-    class LineTo {
+    class LineTo : public ISunGUIPathOperator {
     public:
         /// Constructs the operater with the second endpoint
         LineTo(glm::ivec2 point);
 
         /// Adds the endpoint to the path's vertices
-        virtual void addGeometry(std::vector<glm::ivec2> &points);
+        virtual void addGeometry(std::vector<glm::ivec2> &points) const;
     private:
         /// The location of the second endpoint
         glm::ivec2 endpoint;
@@ -74,13 +67,13 @@ namespace SunGUIPathOperator {
      * @warn This will not be connected to the previous point,
      * even if the first endpoint coincides with it.
      */
-    class Line {
+    class Line : public ISunGUIPathOperator {
     public:
         /// Constructs the operater with the two endpoints
         Line(glm::ivec2 _a, glm::ivec2 _b);
 
         /// Adds the two endpoints to the path's vertices
-        virtual void addGeometry(std::vector<glm::ivec2> &points);
+        virtual void addGeometry(std::vector<glm::ivec2> &points) const;
     private:
         /// The two endpoints of the line
         glm::ivec2 a, b;
@@ -102,5 +95,8 @@ namespace SunGUIPathOperator {
 
     };
 }
+
+/// Creates a rectangle
+extern SunGUIPath rectangle(glm::ivec2 origin, glm::ivec2 size);
 
 #endif

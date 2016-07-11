@@ -4,6 +4,8 @@
 #ifndef SUNGUIWINDOW_H
 #define SUNGUIWINDOW_H
 
+#include <sunglasses/GUI/SunGUIView.h>
+
 #include <string>
 
 #include <glm/glm.hpp>
@@ -18,9 +20,9 @@ public:
     /// The constructor, creating the window
     /**
      * This constructor initializes GLFW, creates the window,
-     * sizes it, names it, 
+     * sizes it, names it,
      */
-    SunGUIWindow(int _width, int _height, std::string _title, SunGUIView *view = nullptr);
+    SunGUIWindow(int _width, int _height, std::string _title);
 
     /// The destructor
     ~SunGUIWindow();
@@ -31,6 +33,17 @@ public:
      * responsible for configuring all of the drawing.
      */
     void draw();
+
+    /// Returns the size of the window
+    glm::ivec2 size() { return glm::ivec2(width, height); }
+
+    /// Creates a projection matrix
+    /**
+     * The projection matrix converts points in pixel-space to points in
+     * normalized device coordinate space. The origin is in the bottom left
+     * corner.
+     */
+    glm::mat4 projection();
 private:
     /// The width of the window
     int width;
@@ -43,9 +56,6 @@ private:
 
     /// The GLFW window
     GLFWwindow *window;
-
-    /// A pointer to the content view
-    SunGUIView *contentView;
 };
 
 #endif

@@ -4,7 +4,10 @@
 #ifndef SUNGUIVIEWCONTROLLER_H
 #define SUNGUIVIEWCONTROLLER_H
 
-class SunGUIView;
+#include <sunglasses/GUI/SunGUIView.h>
+
+class SunGUI;
+class SunGUIWindow;
 
 /// Manages a view.
 /**
@@ -13,10 +16,13 @@ class SunGUIView;
  * @see SunGUIView
  */
 class SunGUIViewController {
+friend SunGUI;
 public:
-    
-private:
-
+    /// Constructs a view controller from the dimensions of the window
+    SunGUIViewController(SunGUIWindow &window);
+protected:
+    /// The view managed by the controller
+    SunGUIView view;
 };
 
 #endif

@@ -10,14 +10,34 @@
 
 #include <GL/glew.h>
 
+#include <sunglasses/Graphics/SunShader.h>
+
+class SunGUIWindow;
+
+/// A container used to store shaders for drawing the GUI
+struct SunGUIShaderContainer {
+    /// Initializes the shaders
+    /**
+     * @param window The window containing the OpenGL context (has no purpose
+     * but to ensure that the context exists)
+     */
+    SunGUIShaderContainer(SunGUIWindow &window);
+
+    /// The fill shader
+    SunShader fill;
+};
+
 /// An object that contains vertex data that can be filled
-class SunGUIFill {
+class SunGUIFillPath {
 public:
     /// Constructs an object from a set of vertices
-    SunGUIFill(const std::vector<glm::ivec2> &vertices);
+    SunGUIFillPath(const std::vector<glm::ivec2> &vertices);
 private:
     /// The VBO and VAO
     GLuint VBO, VAO;
+
+    /// The fill shader
+    static const SunShader shader;
 };
 
 #endif

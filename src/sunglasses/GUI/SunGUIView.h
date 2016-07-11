@@ -6,6 +6,8 @@
 
 #include <glm/glm.hpp>
 
+#include <sunglasses/GUI/SunGUIPath.h>
+
 class SunGUIWindow;
 
 /// A view in the GUI toolkit
@@ -40,11 +42,14 @@ private:
     /// The background color of the view
     glm::vec4 backgroundColor;
 
+    /// The background (a fillable rectangle)
+    SunGUIFillPath background;
+
     /// The visibility of the view
     /**
      * The object is displayed when visible, but hidden when not.
      */
-    bool visible; 
+    bool visible;
 };
 
 #endif

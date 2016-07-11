@@ -3,12 +3,24 @@
 // See LICENSE.md for details.
 #include <sunglasses/GUI/SunGUIPath.h>
 
+SunGUIFillPath SunGUIPath::fill() {
+    std::vector<glm::ivec2> vertices = {};
+    for (auto &operation : operators)
+        operation->addGeometry(vertices);
+    return SunGUIFillPath(vertices);
+}
+
+SunGUIPath::SunGUIPath(const std::vector<std::shared_ptr<const ISunGUIPathOperator>> &&_operators) :
+    operators(_operators) {
+
+}
+
 namespace SunGUIPathOperator {
     PointAt::PointAt(glm::ivec2 point) : location(point) {
 
     }
 
-    void PointAt::addGeometry(std::vector<glm::ivec2> &points) {
+    void PointAt::addGeometry(std::vector<glm::ivec2> &points) const {
         points.push_back(location);
     }
 
@@ -16,7 +28,7 @@ namespace SunGUIPathOperator {
 
     }
 
-    void LineTo::addGeometry(std::vector<glm::ivec2> &points) {
+    void LineTo::addGeometry(std::vector<glm::ivec2> &points) const {
         points.push_back(endpoint);
     }
 
@@ -24,8 +36,18 @@ namespace SunGUIPathOperator {
 
     }
 
-    void Line::addGeometry(std::vector<glm::ivec2> &points) {
+    void Line::addGeometry(std::vector<glm::ivec2> &points) const {
         points.push_back(a);
         points.push_back(b);
     }
 };
+
+SunGUIPath rectangle(glm::ivec2 origin, glm::ivec2 size) {
+    return SunGUIPath(std::vector<std::shared_ptr<const ISunGUIPathOperator>>{
+        std::make_shared<SunGUIPathOperator::PointAt>(origin),
+        std::make_shared<SunGUIPathOperator::PointAt>(origin + size.x),
+        std::make_shared<SunGUIPathOperator::PointAt>(origin + size),
+        std::make_shared<SunGUIPathOperator::PointAt>(origin + size.y)
+    });
+}
+

@@ -28,8 +28,8 @@ extern GLuint compileShaderFromString(std::string shaderString, GLint shaderType
 
 class SunShader : public SunBase {
 public:
-    /// Constructor
-    SunShader();
+    /// Constructs the shader from a vertex and fragment shader
+    SunShader(const std::string &vertex, const std::string &fragment);
 
     /// Constructs the shader from a list of sources
     /**

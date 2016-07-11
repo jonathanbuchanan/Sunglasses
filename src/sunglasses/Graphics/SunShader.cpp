@@ -28,8 +28,19 @@ GLuint compileShaderFromString(std::string shaderString, GLint shaderType) {
     return shader;
 }
 
-SunShader::SunShader() {
+SunShader::SunShader(const std::string &vertex, const std::string &fragment) {
+    GLuint vertexShader = compileShaderFromString(vertex, GL_VERTEX_SHADER);
+    GLuint fragmentShader = compileShaderFromString(fragment, GL_FRAGMENT_SHADER);
 
+    program = glCreateProgram();
+
+    glAttachShader(program, vertexShader);
+    glAttachShader(program, fragmentShader);
+
+    glLinkProgram(program);
+
+    glDeleteShader(vertexShader);
+    glDeleteShader(fragmentShader);
 }
 
 SunShader::SunShader(std::vector<std::pair<std::string, SunShaderSourceType>> sources) {

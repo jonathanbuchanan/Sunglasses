@@ -9,15 +9,12 @@
 SunGUIView::SunGUIView(glm::ivec2 _position,
         glm::ivec2 _size,
         glm::vec4 color,
-        bool _visible) : position(_position), backgroundColor(color),
-        size(_size), visible(_visible) {
+        bool _visible) : position(_position), size(_size), backgroundColor(color),
+        background(rectangle(position, size).fill()), visible(_visible) {
 
 }
 
 
 void SunGUIView::draw(SunGUIWindow &window) {
-    SunGUIPathOperator::PointAt point(glm::ivec2(500, 500));
-    SunGUIPath path(
-        point
-    );
+    
 }

@@ -8,7 +8,7 @@
 
 class GUIMainMenu : public SunGUIViewController {
 public:
-
+    using SunGUIViewController::SunGUIViewController;
 private:
 
 };

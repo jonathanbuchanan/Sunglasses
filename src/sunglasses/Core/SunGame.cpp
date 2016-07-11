@@ -7,14 +7,14 @@
 
 #include "SunScene.h"
 
-SunGame::SunGame(int argc, char **argv, std::string title) : window(640, 480, title) {
+SunGame::SunGame(int argc, char **argv, std::string title) {
 
 }
 
 void SunGame::run() {
     while (!endGame) {
         // Draw the window
-        window.draw();
+        //window.draw();
 
 
         //updateServices();
