@@ -42,7 +42,8 @@ void SunGUIRect::draw(SunShader &shader, glm::mat4 projectionMatrix, glm::vec4 c
     glUniformMatrix4fv(shader.getUniformLocation("model"), 1, GL_FALSE, glm::value_ptr(model));
 
     // Pass the color
-    glUniform4fv(shader.getUniformLocation("fillColor"), 1, glm::value_ptr(color));
+    //glUniform4fv(shader.getUniformLocation("fillColor"), 1, glm::value_ptr(color));
+    shader["fillColor"] = color;
 
     glBindVertexArray(VAO);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

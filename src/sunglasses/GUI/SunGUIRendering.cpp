@@ -48,5 +48,5 @@ SunGUIRenderer::SunGUIRenderer(SunGUIWindow &_window) :
 void SunGUIRenderer::render(const SunGUIRect &rect) {
     fillShader.use();
     // TODO: Add color
-    rect.draw(fillShader, window.projection(), glm::vec4(1.0f));
+    rect.draw(fillShader, window.projection(), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 }
