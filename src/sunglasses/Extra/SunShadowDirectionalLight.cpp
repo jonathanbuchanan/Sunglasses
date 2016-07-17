@@ -54,7 +54,7 @@ void SunShadowDirectionalLight::shadowMap(SunAction action) {
     glm::mat4 view = glm::lookAt(center + (distance * glm::normalize(-direction)), center, glm::vec3(0.0f, 1.0f, 0.0f));
     glm::mat4 lightMatrix = projection * view;
 
-    glUniformMatrix4fv(shader->getUniformLocation("lightMatrix"), 1, GL_FALSE, glm::value_ptr(lightMatrix));
+    (*shader)["lightMatrix"] = lightMatrix;
 
     SunAction render("render");
     render.setRecursive(true);
@@ -71,20 +71,20 @@ void SunShadowDirectionalLight::update(SunAction action) {
 void SunShadowDirectionalLight::uniform(SunAction action) {
     SunShader *shader = action.getParameterPointer<SunShader>("shader");
     int id = shader->getNextArrayIndex("shadowDirectionalLights");
-    glUniform3f(shader->getUniformLocation("shadowDirectionalLights[" + std::to_string(id) + "].color"), color.r, color.g, color.b);
+    (*shader)["shadowDirectionlLights[" + std::to_string(id) + "].color"] = color;
 
-    glUniform3f(shader->getUniformLocation("shadowDirectionalLights[" + std::to_string(id) + "].direction"), direction.x, direction.y, direction.z);
+    (*shader)["shadowDirectionalLights[" + std::to_string(id) + "].direction"] = direction;
 
     int textureUnit = shader->getNextTextureUnit();
     glActiveTexture(GL_TEXTURE0 + textureUnit);
     glBindTexture(GL_TEXTURE_2D, texture);
-    glUniform1i(shader->getUniformLocation("shadowDirectionalLights[" + std::to_string(id) + "].shadowMap"), textureUnit);
+    (*shader)["shadowDirectionalLights[" + std::to_string(id) + "].shadowMap"] = textureUnit;
 
-    glUniform1i(shader->getUniformLocation("shadowDirectionalLightCount"), shader->getArraySize("shadowDirectionalLights"));
+    (*shader)["shadowDirectionalLightCount"] = shader->getArraySize("shadowDirectionalLights");
 
     glm::mat4 projection = glm::ortho(-size.x, size.x, -size.y, size.y, nearPlane, farPlane);
     glm::mat4 view = glm::lookAt(center + (distance * glm::normalize(-direction)), center, glm::vec3(0.0f, 1.0f, 0.0f));
     glm::mat4 lightMatrix = projection * view;
 
-    glUniformMatrix4fv(shader->getUniformLocation("shadowDirectionalLights[" + std::to_string(id) + "].lightMatrix"), 1, GL_FALSE, glm::value_ptr(lightMatrix));
+    (*shader)["shadowDirectionalLights[" + std::to_string(id) + "].lightMatrix"] = lightMatrix;
 }

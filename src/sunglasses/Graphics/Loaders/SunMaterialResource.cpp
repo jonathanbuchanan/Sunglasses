@@ -61,12 +61,12 @@ void SunMaterialResource::init() {
 
 void SunMaterialResource::pass(SunShader *shader, std::string structName) {
     if (!diffuseTextured)
-        glUniform3f(shader->getUniformLocation(structName + ".diffuse"), diffuse.r, diffuse.g, diffuse.b);
+        (*shader)[structName + ".diffuse"] = diffuse;
     else {
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, diffuseTexture->getTexture());
-        glUniform1i(shader->getUniformLocation(structName + ".diffuse"), 0);
+        (*shader)[structName + ".diffuse"] = 0;
     }
 
-    glUniform1f(shader->getUniformLocation(structName + ".shininess"), shininess);
+    (*shader)[structName + ".shininess"] = shininess;
 }

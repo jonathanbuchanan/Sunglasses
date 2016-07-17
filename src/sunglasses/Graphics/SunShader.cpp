@@ -146,6 +146,10 @@ void SunShader::SunShaderUniform::operator=(GLfloat value) {
     glUniform1f(index, value);
 }
 
+void SunShader::SunShaderUniform::operator=(GLdouble value) {
+    glUniform1f(index, (GLfloat)value);
+}
+
 void SunShader::SunShaderUniform::operator=(glm::vec2 value) {
     glUniform2f(index, value.x, value.y);
 }
@@ -161,6 +165,10 @@ void SunShader::SunShaderUniform::operator=(glm::vec4 value) {
 
 void SunShader::SunShaderUniform::operator=(GLint value) {
     glUniform1i(index, value);
+}
+
+void SunShader::SunShaderUniform::operator=(GLboolean value) {
+    glUniform1i(index, (GLint)value);
 }
 
 void SunShader::SunShaderUniform::operator=(glm::ivec2 value) {

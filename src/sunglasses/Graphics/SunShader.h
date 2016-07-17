@@ -86,7 +86,6 @@ public:
     int getArraySize(std::string array);
 
     GLuint getProgram() { return program; }
-    GLuint getUniformLocation(std::string uniform) { return glGetUniformLocation(program, uniform.c_str()); }
 private:
     /// A struct used to represent a uniform
     class SunShaderUniform {
@@ -96,6 +95,9 @@ private:
 
         /// Assigns a float
         void operator=(GLfloat value);
+
+        /// Assigns a double
+        void operator=(GLdouble value);
 
         /// Assigns a vec2
         void operator=(glm::vec2 value);
@@ -109,6 +111,9 @@ private:
 
         /// Assigns an integer
         void operator=(GLint value);
+
+        /// Assigns a boolean
+        void operator=(GLboolean value);
 
         /// Assigns an ivec2
         void operator=(glm::ivec2 value);

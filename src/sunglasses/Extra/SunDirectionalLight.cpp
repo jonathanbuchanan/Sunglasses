@@ -26,9 +26,9 @@ void SunDirectionalLight::update(SunAction action) {
 void SunDirectionalLight::uniform(SunAction action) {
     SunShader *shader = action.getParameterPointer<SunShader>("shader");
     int id = shader->getNextArrayIndex("directionalLights");
-    glUniform3f(shader->getUniformLocation("directionalLights[" + std::to_string(id) + "].color"), color.r, color.g, color.b);
+    (*shader)["directionalLights[" + std::to_string(id) + "].color"] = color;
 
-    glUniform3f(shader->getUniformLocation("directionalLights[" + std::to_string(id) + "].direction"), direction.x, direction.y, direction.z);
+    (*shader)["directionalLights[" + std::to_string(id) + "].color"] = direction;
 
-    glUniform1i(shader->getUniformLocation("directionalLightCount"), shader->getArraySize("directionalLights"));
+    (*shader)["directionalLights[" + std::to_string(id) + "].color"] = shader->getArraySize("directionalLights");
 }

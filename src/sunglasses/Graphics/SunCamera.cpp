@@ -78,22 +78,16 @@ glm::mat4 SunCamera::projectionMatrix(GLfloat _aspectRatio) {
 }
 
 void SunCamera::passPerFrameUniforms(SunShader *_shader) {
-    glUniform3f(_shader->getUniformLocation("viewPosition"), position.x, position.y, position.z);
-
-    // Pass the view and projection matrices to the shader
-    GLint viewMatrixLocation = _shader->getUniformLocation("view");
-    glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, glm::value_ptr(viewMatrix()));
-
-    GLint projectionMatrixLocation = _shader->getUniformLocation("projection");
-
     glm::vec2 size = services.get<SunWindowManager>()->getSize();
 
-    glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(projectionMatrix(size.x / size.y)));
-    GLint FOVlocation = _shader->getUniformLocation("camera.FOV");
-    GLint nearPlaneLocation = _shader->getUniformLocation("camera.nearPlane");
-    GLint farPlaneLocation = _shader->getUniformLocation("camera.farPlane");
+    (*_shader)["viewPosition"] = position;
 
-    glUniform1f(FOVlocation, FOV);
-    glUniform1f(nearPlaneLocation, 0.01f);
-    glUniform1f(farPlaneLocation, 100.0f);
+    // Pass the view and projection matrices to the shader
+    (*_shader)["view"] = viewMatrix();
+
+    (*_shader)["projection"] = projectionMatrix(size.x / size.y);
+
+    (*_shader)["camera.FOV"] = FOV;
+    (*_shader)["camera.nearPlane"] = 0.01f;
+    (*_shader)["camera.farPlane"] = 100.0f;
 }

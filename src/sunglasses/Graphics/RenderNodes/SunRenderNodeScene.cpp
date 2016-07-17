@@ -88,7 +88,7 @@ void SunRenderNodeScene::bindOutputs(SunAction action) {
         int textureUnit = shader->getNextTextureUnit();
         glActiveTexture(GL_TEXTURE0 + textureUnit);
         glBindTexture(GL_TEXTURE_2D, textures[i].texture);
-        glUniform1i(shader->getUniformLocation(textures[i].name), textureUnit);
+        (*shader)[textures[i].name] = textureUnit;
     }
 }
 

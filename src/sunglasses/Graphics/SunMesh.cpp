@@ -38,13 +38,13 @@ void SunMesh::render(SunShader *shader) {
     modelMatrix = glm::scale(modelMatrix, _scale);
 
     // Pass the model matrix uniform
-    glUniformMatrix4fv(shader->getUniformLocation("model"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
+    (*shader)["model"] = modelMatrix;
 
     // Calculate the normal matrix
     glm::mat3 normalMatrix = glm::mat3(glm::transpose(glm::inverse(modelMatrix)));
 
     // Pass the normal matrix
-    glUniformMatrix3fv(shader->getUniformLocation("normalMatrix"), 1, GL_FALSE, glm::value_ptr(normalMatrix));
+    (*shader)["normalMatrix"] = normalMatrix;
 
     // Bind the VAO
     glBindVertexArray(mesh->getVAO());

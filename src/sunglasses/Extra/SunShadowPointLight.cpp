@@ -65,9 +65,9 @@ void SunShadowPointLight::shadowMap(SunAction action) {
     transforms[5] = projection * glm::lookAt(position, position + glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, -1.0f, 0.0f));
 
     for (int i = 0; i < 6; ++i)
-        glUniformMatrix4fv(shader->getUniformLocation("shadowMatrices[" + std::to_string(i) + "]"), 1, GL_FALSE, glm::value_ptr(transforms[i]));
-    glUniform3f(shader->getUniformLocation("lightPosition"), position.x, position.y, position.z);
-    glUniform1f(shader->getUniformLocation("farPlane"), farPlane);
+        (*shader)["shadowMatrices[" + std::to_string(i) + "]"] = transforms[i];
+    (*shader)["lightPosition"] = position;
+    (*shader)["farPlane"] = farPlane;
 
     SunAction render("render");
     render.setRecursive(true);
@@ -85,18 +85,18 @@ void SunShadowPointLight::uniform(SunAction action) {
     SunShader *shader = action.getParameterPointer<SunShader>("shader");
     int id = shader->getNextArrayIndex("shadowPointLights");
 
-    glUniform3f(shader->getUniformLocation("shadowPointLights[" + std::to_string(id) + "].color"), color.r, color.g, color.b);
+    (*shader)["shadowPointLights[" + std::to_string(id) + "].color"] = color;
 
-    glUniform3f(shader->getUniformLocation("shadowPointLights[" + std::to_string(id) + "].position"), position.x, position.y, position.z);
+    (*shader)["shadowPointLights[" + std::to_string(id) + "].position"] = position;
 
-    glUniform1i(shader->getUniformLocation("shadowPointLights[" + std::to_string(id) + "].attenuate"), true);
+    (*shader)["shadowPointLights[" + std::to_string(id) + "].attenuate"] = true;
 
-    glUniform1f(shader->getUniformLocation("shadowPointLights[" + std::to_string(id) + "].farPlane"), farPlane);
+    (*shader)["shadowPointLights[" + std::to_string(id) + "].farPlane"] = farPlane;
 
     int textureUnit = shader->getNextTextureUnit();
     glActiveTexture(GL_TEXTURE0 + textureUnit);
     glBindTexture(GL_TEXTURE_CUBE_MAP, texture);
-    glUniform1i(shader->getUniformLocation("shadowPointLights[" + std::to_string(id) + "].shadowMap"), textureUnit);
+    (*shader)["shadowPointLights[" + std::to_string(id) + "].shadowMap"] = textureUnit;
 
-    glUniform1i(shader->getUniformLocation("shadowPointLightCount"), shader->getArraySize("shadowPointLights"));
+    (*shader)["shadowPointLightCount"] = shader->getArraySize("shadowPointLights");
 }

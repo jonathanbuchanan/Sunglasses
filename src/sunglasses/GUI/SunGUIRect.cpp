@@ -31,7 +31,7 @@ SunGUIRect::SunGUIRect(glm::ivec2 _origin, glm::ivec2 _size) :
 
 void SunGUIRect::draw(SunShader &shader, glm::mat4 projectionMatrix, glm::vec4 color) const {
     // Pass the projection matrix
-    glUniformMatrix4fv(shader.getUniformLocation("projection"), 1, GL_FALSE, glm::value_ptr(projectionMatrix));
+    shader["projection"] = projectionMatrix;
 
     // Generate a model matrix
     glm::mat4 model;
@@ -39,10 +39,9 @@ void SunGUIRect::draw(SunShader &shader, glm::mat4 projectionMatrix, glm::vec4 c
     model = glm::translate(model, glm::vec3(origin, 0.0f));
     model = glm::scale(model, glm::vec3(size, 1.0f));
 
-    glUniformMatrix4fv(shader.getUniformLocation("model"), 1, GL_FALSE, glm::value_ptr(model));
+    shader["model"] = model;
 
     // Pass the color
-    //glUniform4fv(shader.getUniformLocation("fillColor"), 1, glm::value_ptr(color));
     shader["fillColor"] = color;
 
     glBindVertexArray(VAO);

@@ -26,11 +26,11 @@ void SunPointLight::uniform(SunAction action) {
     SunShader *shader = action.getParameterPointer<SunShader>("shader");
     int id = shader->getNextArrayIndex("pointLights");
 
-    glUniform3f(shader->getUniformLocation("pointLights[" + std::to_string(id) + "].color"), color.r, color.g, color.b);
+    (*shader)["pointLights[" + std::to_string(id) + "].color"] = color;
 
-    glUniform3f(shader->getUniformLocation("pointLights[" + std::to_string(id) + "].position"), position.x, position.y, position.z);
+    (*shader)["pointLights[" + std::to_string(id) + "].position"] = position;
 
-    glUniform1i(shader->getUniformLocation("pointLights[" + std::to_string(id) + "].attenuate"), true);
+    (*shader)["pointLights[" + std::to_string(id) + "].attenuate"] = true;
 
-    glUniform1i(shader->getUniformLocation("pointLightCount"), shader->getArraySize("pointLights"));
+    (*shader)["pointLightCount"] = shader->getArraySize("pointLights");
 }
