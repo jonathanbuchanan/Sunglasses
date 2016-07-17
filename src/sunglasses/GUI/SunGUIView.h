@@ -6,9 +6,9 @@
 
 #include <glm/glm.hpp>
 
-#include <sunglasses/GUI/SunGUIPath.h>
+#include <sunglasses/GUI/SunGUIRect.h>
 
-class SunGUIWindow;
+class SunGUIRenderer;
 
 /// A view in the GUI toolkit
 class SunGUIView {
@@ -25,7 +25,7 @@ public:
      * Custom drawing functionality should be provided by overriding
      * this method.
      */
-    virtual void draw(SunGUIWindow &window);
+    virtual void draw(SunGUIRenderer &renderer);
 
     bool isVisible() const { return visible; }
     void show() { visible = true; }
@@ -42,8 +42,8 @@ private:
     /// The background color of the view
     glm::vec4 backgroundColor;
 
-    /// The background (a fillable rectangle)
-    SunGUIFillPath background;
+    /// The background (a rectangle)
+    SunGUIRect background;
 
     /// The visibility of the view
     /**

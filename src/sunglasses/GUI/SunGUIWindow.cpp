@@ -40,6 +40,15 @@ SunGUIWindow::~SunGUIWindow() {
     glfwTerminate();
 }
 
+void SunGUIWindow::clear() {
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+}
+
+void SunGUIWindow::swapBuffers() {
+    glfwSwapBuffers(window);
+}
+
 glm::mat4 SunGUIWindow::projection() {
     return glm::ortho(0.0f, (float)width, (float)0, (float)height, -1.0f, 0.0f);
 }

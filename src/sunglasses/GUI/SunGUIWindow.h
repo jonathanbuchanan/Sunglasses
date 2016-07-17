@@ -27,13 +27,12 @@ public:
     /// The destructor
     ~SunGUIWindow();
 
-    /// Draws the window
-    /**
-     * This method draws the content view. It also is
-     * responsible for configuring all of the drawing.
-     */
-    void draw();
+    /// Clears the window
+    void clear();
 
+    /// Swaps the window's buffers
+    void swapBuffers();
+    
     /// Returns the size of the window
     glm::ivec2 size() { return glm::ivec2(width, height); }
 

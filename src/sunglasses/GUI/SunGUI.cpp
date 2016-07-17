@@ -7,11 +7,22 @@
 #include <sunglasses/GUI/SunGUIViewController.h>
 
 SunGUI::SunGUI(SunGUIView *view, SunGUIWindow &_window) :
-    window(_window), contentView(view) {
+    window(_window), renderer(window), contentView(view) {
 
 }
 
 SunGUI::SunGUI(SunGUIViewController &viewController, SunGUIWindow &_window) :
-    window(_window), contentView(&viewController.view) {
+    window(_window), renderer(window), contentView(&viewController.view) {
 
+}
+
+void SunGUI::draw() {
+    // Clear the window
+    window.clear();
+
+    // Draw the GUI
+    contentView->draw(renderer);
+
+    // Swap the window's buffers
+    window.swapBuffers();
 }

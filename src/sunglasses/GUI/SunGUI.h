@@ -5,6 +5,7 @@
 #define SUNGUI_H
 
 #include <sunglasses/GUI/SunGUIWindow.h>
+#include <sunglasses/GUI/SunGUIRendering.h>
 
 class SunGUIView;
 class SunGUIViewController;
@@ -17,9 +18,15 @@ public:
 
     /// Constructs the GUI with a content view from a view controller
     SunGUI(SunGUIViewController &viewController, SunGUIWindow &_window);
+
+    /// Draws the GUI and swaps the window's buffers
+    void draw();
 private:
     /// The window
     SunGUIWindow &window;
+
+    /// The renderer
+    SunGUIRenderer renderer;
 
     /// The main view
     SunGUIView *contentView;

@@ -3,54 +3,50 @@
 // See LICENSE.md for details.
 #include <sunglasses/GUI/SunGUIRendering.h>
 
+#include <sunglasses/GUI/SunGUIWindow.h>
+
 #include <string>
+
+#include <glm/gtx/string_cast.hpp>
 
 const std::string fill_vertex = R"(
 #version 330 core
 
-layout (location = 0) in vec2 vertex;
+layout (location = 0) in ivec2 vertex;
 // TexCoords
 
-uniform model;
-uniform projection;
+uniform mat4 model;
+uniform mat4 projection;
 
 void main() {
     gl_Position = projection * model * vec4(vertex, 0.0f, 1.0f);
 }
 )";
 
+GLuint __indices[] = {
+    0, 1, 2,
+    1, 2, 3
+};
+
 const std::string fill_fragment = R"(
-#version 330
+#version 330 core
 
 out vec4 color;
 
-uniform vec3 fill;
+uniform vec4 fillColor;
 
 void main() {
-    color = vec4(fill, 1.0f);
+    color = fillColor;
 }
 )";
 
-SunGUIShaderContainer::SunGUIShaderContainer(SunGUIWindow &window) :
-    fill(fill_vertex, fill_fragment) {
+SunGUIRenderer::SunGUIRenderer(SunGUIWindow &_window) :
+    window(_window), fillShader(fill_vertex, fill_fragment) {
 
 }
 
-SunGUIFillPath::SunGUIFillPath(const std::vector<glm::ivec2> &vertices) {
-    // Copy the data (TODO: Generate Texture Coordinates)
-    std::vector<glm::ivec2> data = vertices;
-
-    // Generate the VBO and VAO
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
-
-    // Write the vertex data
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(glm::ivec2) * data.size(), &data[0], GL_STATIC_DRAW);
-
-    glBindVertexArray(VAO);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 2, GL_INT, GL_FALSE, sizeof(glm::ivec2), (GLvoid *)0);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindVertexArray(0);
+void SunGUIRenderer::render(const SunGUIRect &rect) {
+    fillShader.use();
+    // TODO: Add color
+    rect.draw(fillShader, window.projection(), glm::vec4(1.0f));
 }
