@@ -74,6 +74,12 @@ SunShader::SunShader(std::vector<std::pair<std::string, SunShaderSourceType>> so
         glDeleteShader(shaders[i]);
 }
 
+SunShader::~SunShader() {
+    glDeleteProgram(program);
+
+    std::cout << "~SunShader()" << std::endl;
+}
+
 SunShader::SunShaderUniform SunShader::operator[](std::string uniform) {
     return SunShaderUniform(program, glGetUniformLocation(program, uniform.c_str()));
 }

@@ -44,6 +44,9 @@ public:
      */
     SunShader(std::vector<std::pair<std::string, SunShaderSourceType>> sources);
 
+    /// Destructs the shader by destroying the program
+    ~SunShader();
+
     /// Accesses the uniform at the given name
     /**
      * @warning The shader must be currently active to use this method correctly
