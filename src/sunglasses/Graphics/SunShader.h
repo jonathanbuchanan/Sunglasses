@@ -87,8 +87,6 @@ public:
      * @param array The name of the array
      */
     int getArraySize(std::string array);
-
-    GLuint getProgram() { return program; }
 private:
     /// A struct used to represent a uniform
     class SunShaderUniform {

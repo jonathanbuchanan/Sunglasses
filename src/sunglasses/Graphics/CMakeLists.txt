@@ -6,7 +6,6 @@ add_sources(
     SunRenderNode.cpp
     SunShader.cpp
     SunTexturedQuad.cpp
-    SunUniformPasser.cpp
     SunWindowManager.cpp
 )
 

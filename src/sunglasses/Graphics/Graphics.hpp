@@ -12,5 +12,4 @@
 #include <sunglasses/Graphics/SunRenderNode.h>
 #include <sunglasses/Graphics/SunShader.h>
 #include <sunglasses/Graphics/SunTexturedQuad.h>
-#include <sunglasses/Graphics/SunUniformPasser.h>
 #include <sunglasses/Graphics/SunWindowManager.h>
