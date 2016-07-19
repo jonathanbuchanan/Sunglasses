@@ -1,8 +1,8 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#ifndef SUNGUIRENDERING_H
-#define SUNGUIRENDERING_H
+#ifndef SUNGUIRENDERER_H
+#define SUNGUIRENDERER_H
 
 #include <vector>
 

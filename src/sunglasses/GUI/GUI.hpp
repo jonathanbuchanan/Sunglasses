@@ -4,7 +4,7 @@
 #include <sunglasses/GUI/SunGUI.h>
 #include <sunglasses/GUI/SunGUILabel.h>
 #include <sunglasses/GUI/SunGUIRect.h>
-#include <sunglasses/GUI/SunGUIRendering.h>
+#include <sunglasses/GUI/SunGUIRenderer.h>
 #include <sunglasses/GUI/SunGUIView.h>
 #include <sunglasses/GUI/SunGUIViewController.h>
 #include <sunglasses/GUI/SunGUIWindow.h>
