@@ -13,6 +13,13 @@
 class SunGUIViewController;
 class SunGUIRenderer;
 
+/// The state of a control
+enum class SunGUIControlState {
+    Normal,
+    Highlighted,
+    Selected
+};
+
 /// A view in the GUI toolkit
 class SunGUIView {
 friend SunGUIViewController;
@@ -46,6 +53,9 @@ protected:
 
     /// The visibility of the view
     bool visible;
+
+    /// The state of the control
+    SunGUIControlState state;
 private:
     /// The vector of sub-views
     std::vector<SunGUIView *> subviews;

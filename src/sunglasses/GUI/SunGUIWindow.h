@@ -33,6 +33,9 @@ public:
     /// Swaps the window's buffers
     void swapBuffers();
     
+    /// Returns the position of the cursor in window
+    glm::ivec2 cursorPosition();
+
     /// Returns the size of the window
     glm::ivec2 size() { return glm::ivec2(width, height); }
 

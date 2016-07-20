@@ -49,6 +49,13 @@ void SunGUIWindow::swapBuffers() {
     glfwSwapBuffers(window);
 }
 
+glm::ivec2 SunGUIWindow::cursorPosition() {
+    glm::dvec2 position;
+    glfwGetCursorPos(window, &position.x, &position.y);
+
+    return glm::ivec2(position);
+}
+
 glm::mat4 SunGUIWindow::projection() {
-    return glm::ortho(0.0f, (float)width, (float)0, (float)height, -1.0f, 0.0f);
+    return glm::ortho(0.0f, (float)width, (float)height, 0.0f, -1.0f, 0.0f);
 }
