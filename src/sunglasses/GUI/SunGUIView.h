@@ -17,6 +17,7 @@ class SunGUIRenderer;
 class SunGUIView {
 friend SunGUIViewController;
 public:
+    /// Constructs the view
     SunGUIView(glm::ivec2 _position,
         glm::ivec2 _size,
         glm::vec4 color,
@@ -33,16 +34,7 @@ public:
 
     /// Adds a subview
     void addSubview(SunGUIView *subview);
-
-    bool isVisible() const { return visible; }
-    void show() { visible = true; }
-    void hide() { visible = false; }
-
-    void setBackgroundColor(glm::vec4 b) { backgroundColor = b; }
-private:
-    /// The vector of sub-views
-    std::vector<SunGUIView *> subviews;
-
+protected:
     /// The position of the view (In pixels, not NDC)
     glm::ivec2 position;
 
@@ -52,14 +44,14 @@ private:
     /// The background color of the view
     glm::vec4 backgroundColor;
 
+    /// The visibility of the view
+    bool visible;
+private:
+    /// The vector of sub-views
+    std::vector<SunGUIView *> subviews;
+
     /// The background (a rectangle)
     SunGUIRect background;
-
-    /// The visibility of the view
-    /**
-     * The object is displayed when visible, but hidden when not.
-     */
-    bool visible;
 };
 
 #endif

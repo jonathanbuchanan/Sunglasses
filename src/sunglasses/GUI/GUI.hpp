@@ -2,6 +2,7 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include <sunglasses/GUI/SunGUI.h>
+#include <sunglasses/GUI/SunGUIButton.h>
 #include <sunglasses/GUI/SunGUILabel.h>
 #include <sunglasses/GUI/SunGUIRect.h>
 #include <sunglasses/GUI/SunGUIRenderer.h>
