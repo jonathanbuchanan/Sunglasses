@@ -5,7 +5,8 @@
 
 #include <sunglasses/GUI/SunGUIWindow.h>
 
-SunGUIViewController::SunGUIViewController(SunGUIWindow &window) :
-    view(glm::ivec2(0, 0), glm::ivec2(window.size()), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), true) {
+SunGUIViewController::SunGUIViewController(SunGUIWindow &window,
+    glm::vec4 viewColor) :
+    view(glm::ivec2(0, 0), glm::ivec2(window.size()), viewColor, true) {
 
 }

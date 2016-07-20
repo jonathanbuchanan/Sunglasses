@@ -3,7 +3,7 @@
 // See LICENSE.md for details.
 #include <sunglasses/GUI/SunGUIView.h>
 
-#include <sunglasses/GUI/SunGUIRendering.h>
+#include <sunglasses/GUI/SunGUIRenderer.h>
 #include <sunglasses/GUI/SunGUIWindow.h>
 
 SunGUIView::SunGUIView(glm::ivec2 _position,
@@ -16,5 +16,11 @@ SunGUIView::SunGUIView(glm::ivec2 _position,
 
 
 void SunGUIView::draw(SunGUIRenderer &renderer) {
-    renderer.render(background);    
+    renderer.drawRect(background, backgroundColor);
+    for (auto &view : subviews)
+        view->draw(renderer);
+}
+
+void SunGUIView::addSubview(SunGUIView *subview) {
+    subviews.push_back(subview);
 }

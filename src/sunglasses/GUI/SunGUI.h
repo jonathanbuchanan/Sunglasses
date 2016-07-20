@@ -5,7 +5,7 @@
 #define SUNGUI_H
 
 #include <sunglasses/GUI/SunGUIWindow.h>
-#include <sunglasses/GUI/SunGUIRendering.h>
+#include <sunglasses/GUI/SunGUIRenderer.h>
 
 class SunGUIView;
 class SunGUIViewController;

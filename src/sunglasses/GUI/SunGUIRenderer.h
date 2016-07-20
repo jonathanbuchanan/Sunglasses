@@ -19,14 +19,10 @@ class SunGUIWindow;
 class SunGUIRenderer {
 public:
     /// Initializes the shaders
-    /**
-     * @param window The window containing the OpenGL context (has no purpose
-     * but to ensure that the context exists)
-     */
     SunGUIRenderer(SunGUIWindow &_window);
 
-    /// Renders a filled path
-    void render(const SunGUIRect &rect);
+    /// Renders a rectangle
+    void drawRect(const SunGUIRect &rect, glm::vec4 color);
 private:
     /// The window
     SunGUIWindow &window;

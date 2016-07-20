@@ -52,7 +52,7 @@ add_test(all Test-Sunglasses)
 add_executable(Test-Sunglasses ${SOURCES})
 include_directories(
     /usr/include/freetype2
-    ../src/sunglasses/include/
+    ../src/
 )
 target_link_libraries(Test-Sunglasses sunglasses freetype SOIL GLEW libGL.so assimp openal alut ${GLFW_LIBRARIES} X11 Xxf86vm pthread dl Xrandr Xinerama Xi Xcursor lua ${GTEST_LIBRARY} ${GMOCK_LIBRARY} pthread)
 add_dependencies(Test-Sunglasses gtest)

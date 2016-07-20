@@ -8,10 +8,14 @@
 
 #include <sunglasses/GUI/SunGUIRect.h>
 
+#include <vector>
+
+class SunGUIViewController;
 class SunGUIRenderer;
 
 /// A view in the GUI toolkit
 class SunGUIView {
+friend SunGUIViewController;
 public:
     SunGUIView(glm::ivec2 _position,
         glm::ivec2 _size,
@@ -27,12 +31,18 @@ public:
      */
     virtual void draw(SunGUIRenderer &renderer);
 
+    /// Adds a subview
+    void addSubview(SunGUIView *subview);
+
     bool isVisible() const { return visible; }
     void show() { visible = true; }
     void hide() { visible = false; }
 
     void setBackgroundColor(glm::vec4 b) { backgroundColor = b; }
 private:
+    /// The vector of sub-views
+    std::vector<SunGUIView *> subviews;
+
     /// The position of the view (In pixels, not NDC)
     glm::ivec2 position;
 

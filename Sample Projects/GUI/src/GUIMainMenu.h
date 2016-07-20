@@ -8,9 +8,9 @@
 
 class GUIMainMenu : public SunGUIViewController {
 public:
-    using SunGUIViewController::SunGUIViewController;
+    GUIMainMenu(SunGUIWindow &window);
 private:
-
+    SunGUIView v;
 };
 
 #endif
