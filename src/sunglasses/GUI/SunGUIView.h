@@ -49,9 +49,6 @@ protected:
 private:
     /// The vector of sub-views
     std::vector<SunGUIView *> subviews;
-
-    /// The background (a rectangle)
-    SunGUIRect background;
 };
 
 #endif

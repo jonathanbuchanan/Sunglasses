@@ -6,5 +6,5 @@
 GUIMainMenu::GUIMainMenu(SunGUIWindow &window) :
     SunGUIViewController(window, glm::vec4(1.0f, 0.0f, 0.0f, 1.0f)),
     v(glm::ivec2(5, 5), glm::ivec2(100, 100), glm::vec4(1.0f)) {
-    view.addSubview(v);
+    view.addSubview(&v);
 }
