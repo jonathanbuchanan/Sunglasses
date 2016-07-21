@@ -19,6 +19,9 @@ public:
     /// Constructs the GUI with a content view from a view controller
     SunGUI(SunGUIViewController &viewController, SunGUIWindow &_window);
 
+    /// Updates the GUI elements
+    void update();
+
     /// Draws the GUI and swaps the window's buffers
     void draw();
 private:

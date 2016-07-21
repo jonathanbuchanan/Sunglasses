@@ -4,7 +4,7 @@
 #ifndef SUNGUIWINDOW_H
 #define SUNGUIWINDOW_H
 
-#include <sunglasses/GUI/SunGUIView.h>
+#include <GL/glew.h>
 
 #include <string>
 
@@ -13,6 +13,32 @@
 #include <GLFW/glfw3.h>
 
 class SunGUIView;
+
+enum struct SunGUIWindowButtonState {
+    Released,
+    Pressed
+};
+
+/// Input information for updating the GUI
+struct SunGUIUpdateInfo {
+    /// Constructs the update info
+    SunGUIUpdateInfo(glm::ivec2 _cursor,
+        SunGUIWindowButtonState _leftMouseButton,
+        SunGUIWindowButtonState _rightMouseButton,
+        SunGUIWindowButtonState _middleMouseButton);
+
+    /// The position of the cursor
+    glm::ivec2 cursor;
+
+    /// The state of the left mouse button
+    SunGUIWindowButtonState leftMouseButton;
+
+    /// The state of the right mouse button
+    SunGUIWindowButtonState rightMouseButton;
+
+    /// The state of the middle mouse button
+    SunGUIWindowButtonState middleMouseButton;
+};
 
 /// The window displaying the GUI
 class SunGUIWindow {
@@ -33,9 +59,8 @@ public:
     /// Swaps the window's buffers
     void swapBuffers();
     
-    /// Returns the position of the cursor in window
-    glm::ivec2 cursorPosition();
-
+    /// Returns the current update info
+    SunGUIUpdateInfo updateInfo();
     /// Returns the size of the window
     glm::ivec2 size() { return glm::ivec2(width, height); }
 
@@ -47,6 +72,18 @@ public:
      */
     glm::mat4 projection();
 private:
+    /// Gets the cursor position in integer coordinates
+    glm::ivec2 cursor();
+
+    /// Gets the state of the left mouse button
+    SunGUIWindowButtonState leftMouseButton();
+
+    /// Gets the state of the right mouse button
+    SunGUIWindowButtonState rightMouseButton();
+
+    /// Gets the state of the middle mouse button
+    SunGUIWindowButtonState middleMouseButton();
+
     /// The width of the window
     int width;
 

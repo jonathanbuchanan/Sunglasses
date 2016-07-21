@@ -13,6 +13,7 @@ int main(int argc, char **argv) {
     SunGUI gui = SunGUI(mainMenu, window);
 
     while (true) {
+        gui.update();
         gui.draw();
     }
 

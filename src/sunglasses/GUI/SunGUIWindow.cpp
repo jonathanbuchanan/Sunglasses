@@ -5,6 +5,13 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
+SunGUIUpdateInfo::SunGUIUpdateInfo(glm::ivec2 _cursor,
+    SunGUIWindowButtonState _leftMouseButton,
+    SunGUIWindowButtonState _rightMouseButton,
+    SunGUIWindowButtonState _middleMouseButton) : cursor(_cursor),
+        leftMouseButton(_leftMouseButton), rightMouseButton(_rightMouseButton),
+        middleMouseButton(_middleMouseButton) { }
+
 SunGUIWindow::SunGUIWindow(int _width, int _height, std::string _title)
     : width(_width), height(_height), title(_title) {
     // Initialize GLFW
@@ -20,6 +27,8 @@ SunGUIWindow::SunGUIWindow(int _width, int _height, std::string _title)
         // TODO: ERROR!
     }
     glfwMakeContextCurrent(window);
+
+    glfwSetInputMode(window, GLFW_STICKY_MOUSE_BUTTONS, 1);
 
 
 
@@ -49,13 +58,46 @@ void SunGUIWindow::swapBuffers() {
     glfwSwapBuffers(window);
 }
 
-glm::ivec2 SunGUIWindow::cursorPosition() {
-    glm::dvec2 position;
-    glfwGetCursorPos(window, &position.x, &position.y);
-
-    return glm::ivec2(position);
+SunGUIUpdateInfo SunGUIWindow::updateInfo() {
+    glfwPollEvents();
+    return SunGUIUpdateInfo(
+        cursor(),
+        leftMouseButton(),
+        rightMouseButton(),
+        middleMouseButton()
+    );
 }
 
 glm::mat4 SunGUIWindow::projection() {
     return glm::ortho(0.0f, (float)width, (float)height, 0.0f, -1.0f, 0.0f);
+}
+
+glm::ivec2 SunGUIWindow::cursor() {
+    glm::dvec2 cursor;
+    glfwGetCursorPos(window, &cursor.x, &cursor.y);
+    return (glm::ivec2)cursor;
+}
+
+SunGUIWindowButtonState SunGUIWindow::leftMouseButton() {
+    int state = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
+    if (state == GLFW_PRESS)
+        return SunGUIWindowButtonState::Pressed;
+    else if (state == GLFW_RELEASE)
+        return SunGUIWindowButtonState::Released;
+}
+
+SunGUIWindowButtonState SunGUIWindow::rightMouseButton() {
+    int state = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT);
+    if (state == GLFW_PRESS)
+        return SunGUIWindowButtonState::Pressed;
+    else if (state == GLFW_RELEASE)
+        return SunGUIWindowButtonState::Released;
+}
+
+SunGUIWindowButtonState SunGUIWindow::middleMouseButton() {
+    int state = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_MIDDLE);
+    if (state == GLFW_PRESS)
+        return SunGUIWindowButtonState::Pressed;
+    else if (state == GLFW_RELEASE)
+        return SunGUIWindowButtonState::Released;
 }

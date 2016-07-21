@@ -5,7 +5,24 @@
 
 SunGUIButton::SunGUIButton(glm::ivec2 origin, glm::ivec2 size,
     glm::vec4 _color, glm::vec4 _highlightedColor, glm::vec4 _selectedColor) :
-    color(_color), highlightedColor(_highlightedColor), selectedColor(_selectedColor),
-    SunGUIView(origin, size, color) {
+    SunGUIView(origin, size, _color),
+    color(_color), highlightedColor(_highlightedColor), selectedColor(_selectedColor) {
 
+}
+
+void SunGUIButton::update(SunGUIUpdateInfo info) {
+    SunGUIView::update(info);
+    
+    /// Change the color of the view based on the state
+    switch (state) {
+        case SunGUIControlState::Normal:
+            backgroundColor = color;
+            break;
+        case SunGUIControlState::Highlighted:
+            backgroundColor = highlightedColor;
+            break;
+        case SunGUIControlState::Selected:
+            backgroundColor = selectedColor;
+            break;
+    }
 }

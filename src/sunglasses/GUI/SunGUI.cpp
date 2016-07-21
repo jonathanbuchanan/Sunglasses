@@ -16,6 +16,11 @@ SunGUI::SunGUI(SunGUIViewController &viewController, SunGUIWindow &_window) :
 
 }
 
+void SunGUI::update() {
+    // Update the GUI
+    contentView->update(window.updateInfo());
+}
+
 void SunGUI::draw() {
     // Clear the window
     window.clear();

@@ -11,6 +11,7 @@ public:
     GUIMainMenu(SunGUIWindow &window);
 private:
     SunGUIView v;
+    SunGUIButton button;
 };
 
 #endif

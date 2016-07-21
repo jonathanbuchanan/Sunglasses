@@ -6,7 +6,7 @@
 
 #include <glm/glm.hpp>
 
-#include <sunglasses/GUI/SunGUIRect.h>
+#include <sunglasses/GUI/SunGUIWindow.h>
 
 #include <vector>
 
@@ -29,6 +29,9 @@ public:
         glm::ivec2 _size,
         glm::vec4 color,
         bool _visible = true);
+
+    /// Updates the view from the position of the cursor
+    virtual void update(SunGUIUpdateInfo info);
 
     /// Draws the view
     /**

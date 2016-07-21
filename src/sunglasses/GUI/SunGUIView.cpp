@@ -14,6 +14,22 @@ SunGUIView::SunGUIView(glm::ivec2 _position,
 
 }
 
+void SunGUIView::update(SunGUIUpdateInfo info) {
+    glm::ivec2 cursor = info.cursor;
+    if ((position.x <= cursor.x && cursor.x <= position.x + size.x) &&
+        (position.y <= cursor.y && cursor.y <= position.y + size.y)) {
+        if (info.leftMouseButton == SunGUIWindowButtonState::Pressed)
+            state = SunGUIControlState::Selected;
+        else
+            state = SunGUIControlState::Highlighted;
+    } else {
+        state = SunGUIControlState::Normal;
+    }
+
+    // Update all the subviews
+    for (auto &view : subviews)
+        view->update(info);
+}
 
 void SunGUIView::draw(SunGUIRenderer &renderer) {
     renderer.drawRect(position, size, backgroundColor);

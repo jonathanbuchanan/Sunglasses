@@ -12,6 +12,9 @@ public:
     /// Constructs a button with its various colors
     SunGUIButton(glm::ivec2 origin, glm::ivec2 size,
         glm::vec4 _color, glm::vec4 _highlightedColor, glm::vec4 _selectedColor);
+
+    /// Updates the button
+    virtual void update(SunGUIUpdateInfo info);
 private:
     /// The color of the button
     glm::vec4 color;
