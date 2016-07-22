@@ -46,18 +46,18 @@ public:
 
     /// Adds a subview
     void addSubview(SunGUIView *subview);
-protected:
-    /// Updates the view
-    virtual void update(glm::ivec2 parentPosition, SunGUIUpdateInfo info);
-
-    /// Draws the view
-    virtual void draw(glm::ivec2 parentPosition, SunGUIRenderer &renderer);
 
     /// The position of the view (In pixels, not NDC)
     glm::ivec2 position;
 
     /// The size of the view (In pixels, not NDC)
     glm::ivec2 size;
+protected:
+    /// Updates the view
+    virtual void update(glm::ivec2 parentPosition, SunGUIUpdateInfo info);
+
+    /// Draws the view
+    virtual void draw(glm::ivec2 parentPosition, SunGUIRenderer &renderer);
 
     /// The background color of the view
     glm::vec4 backgroundColor;

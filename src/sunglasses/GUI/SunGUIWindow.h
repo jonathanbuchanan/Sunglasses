@@ -48,7 +48,7 @@ public:
      * This constructor initializes GLFW, creates the window,
      * sizes it, names it,
      */
-    SunGUIWindow(int _width, int _height, std::string _title);
+    SunGUIWindow(int _width, int _height, std::string _title, bool resizeable = true);
 
     /// The destructor
     ~SunGUIWindow();

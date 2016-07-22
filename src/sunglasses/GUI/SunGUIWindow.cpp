@@ -12,14 +12,14 @@ SunGUIUpdateInfo::SunGUIUpdateInfo(glm::ivec2 _cursor,
         leftMouseButton(_leftMouseButton), rightMouseButton(_rightMouseButton),
         middleMouseButton(_middleMouseButton) { }
 
-SunGUIWindow::SunGUIWindow(int _width, int _height, std::string _title)
+SunGUIWindow::SunGUIWindow(int _width, int _height, std::string _title, bool resizeable)
     : width(_width), height(_height), title(_title) {
     // Initialize GLFW
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+    glfwWindowHint(GLFW_RESIZABLE, resizeable);
 
     // Create the window
     window = glfwCreateWindow(width, height, title.c_str(), NULL, NULL);
