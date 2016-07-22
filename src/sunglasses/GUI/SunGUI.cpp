@@ -18,7 +18,7 @@ SunGUI::SunGUI(SunGUIViewController &viewController, SunGUIWindow &_window) :
 
 void SunGUI::update() {
     // Update the GUI
-    contentView->update(window.updateInfo());
+    contentView->update(glm::ivec2(0), window.updateInfo());
 }
 
 void SunGUI::draw() {
@@ -26,7 +26,7 @@ void SunGUI::draw() {
     window.clear();
 
     // Draw the GUI
-    contentView->draw(renderer);
+    contentView->draw(glm::ivec2(0), renderer);
 
     // Swap the window's buffers
     window.swapBuffers();

@@ -10,8 +10,8 @@ SunGUIButton::SunGUIButton(glm::ivec2 origin, glm::ivec2 size,
 
 }
 
-void SunGUIButton::update(SunGUIUpdateInfo info) {
-    SunGUIView::update(info);
+void SunGUIButton::update(glm::ivec2 parentPosition, SunGUIUpdateInfo info) {
+    SunGUIView::update(parentPosition, info);
     
     /// Change the color of the view based on the state
     switch (state) {

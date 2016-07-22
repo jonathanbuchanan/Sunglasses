@@ -14,10 +14,11 @@ SunGUIView::SunGUIView(glm::ivec2 _position,
 
 }
 
-void SunGUIView::update(SunGUIUpdateInfo info) {
+void SunGUIView::update(glm::ivec2 parentPosition, SunGUIUpdateInfo info) {     
+    glm::ivec2 absolute = parentPosition + position;
     glm::ivec2 cursor = info.cursor;
-    if ((position.x <= cursor.x && cursor.x <= position.x + size.x) &&
-        (position.y <= cursor.y && cursor.y <= position.y + size.y)) {
+    if ((absolute.x <= cursor.x && cursor.x <= absolute.x + size.x) &&
+        (absolute.y <= cursor.y && cursor.y <= absolute.y + size.y)) {
         if (info.leftMouseButton == SunGUIWindowButtonState::Pressed)
             state = SunGUIControlState::Selected;
         else
@@ -28,13 +29,14 @@ void SunGUIView::update(SunGUIUpdateInfo info) {
 
     // Update all the subviews
     for (auto &view : subviews)
-        view->update(info);
+        view->update(absolute, info);
 }
 
-void SunGUIView::draw(SunGUIRenderer &renderer) {
-    renderer.drawRect(position, size, backgroundColor);
+void SunGUIView::draw(glm::ivec2 parentPosition, SunGUIRenderer &renderer) {
+    glm::ivec2 absolute = parentPosition + position;
+    renderer.drawRect(absolute, size, backgroundColor);
     for (auto &view : subviews)
-        view->draw(renderer);
+        view->draw(absolute, renderer);
 }
 
 void SunGUIView::addSubview(SunGUIView *subview) {

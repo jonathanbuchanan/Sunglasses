@@ -14,7 +14,7 @@ public:
         glm::vec4 _color, glm::vec4 _highlightedColor, glm::vec4 _selectedColor);
 
     /// Updates the button
-    virtual void update(SunGUIUpdateInfo info);
+    virtual void update(glm::ivec2 parentPosition, SunGUIUpdateInfo info);
 private:
     /// The color of the button
     glm::vec4 color;

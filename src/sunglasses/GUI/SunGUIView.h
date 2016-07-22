@@ -31,7 +31,11 @@ public:
         bool _visible = true);
 
     /// Updates the view from the position of the cursor
-    virtual void update(SunGUIUpdateInfo info);
+    /**
+     * @param parentPosition The absolute position of the parent view
+     * @param info The info used to update the view
+     */
+    virtual void update(glm::ivec2 parentPosition, SunGUIUpdateInfo info);
 
     /// Draws the view
     /**
@@ -39,8 +43,10 @@ public:
      * the area covered by the view and draws all of the subviews.
      * Custom drawing functionality should be provided by overriding
      * this method.
+     * @param parentPosition The absolute position of the parent view
+     * @param renderer The object used to draw the view
      */
-    virtual void draw(SunGUIRenderer &renderer);
+    virtual void draw(glm::ivec2 parentPosition, SunGUIRenderer &renderer);
 
     /// Adds a subview
     void addSubview(SunGUIView *subview);
