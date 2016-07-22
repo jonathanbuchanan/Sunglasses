@@ -14,7 +14,17 @@ SunGUIView::SunGUIView(glm::ivec2 _position,
 
 }
 
-void SunGUIView::update(glm::ivec2 parentPosition, SunGUIUpdateInfo info) {     
+void SunGUIView::updateTree(glm::ivec2 parentPosition, SunGUIUpdateInfo info) {
+    this->update(parentPosition, info);
+
+    glm::ivec2 absolute = parentPosition + position;
+
+    // Update all the subviews
+    for (auto &view : subviews)
+        view->updateTree(absolute, info);
+}
+
+void SunGUIView::update(glm::ivec2 parentPosition, SunGUIUpdateInfo info) {
     glm::ivec2 absolute = parentPosition + position;
     glm::ivec2 cursor = info.cursor;
     if ((absolute.x <= cursor.x && cursor.x <= absolute.x + size.x) &&
@@ -26,17 +36,23 @@ void SunGUIView::update(glm::ivec2 parentPosition, SunGUIUpdateInfo info) {
     } else {
         state = SunGUIControlState::Normal;
     }
+}
 
-    // Update all the subviews
+void SunGUIView::drawTree(glm::ivec2 parentPosition, SunGUIRenderer &renderer) {
+    if (!visible)
+        return;
+
+    glm::ivec2 absolute = parentPosition + position;
+
+    this->draw(parentPosition, renderer);
+
     for (auto &view : subviews)
-        view->update(absolute, info);
+        view->drawTree(absolute, renderer);
 }
 
 void SunGUIView::draw(glm::ivec2 parentPosition, SunGUIRenderer &renderer) {
     glm::ivec2 absolute = parentPosition + position;
     renderer.drawRect(absolute, size, backgroundColor);
-    for (auto &view : subviews)
-        view->draw(absolute, renderer);
 }
 
 void SunGUIView::addSubview(SunGUIView *subview) {

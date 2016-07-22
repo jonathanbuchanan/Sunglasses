@@ -30,27 +30,29 @@ public:
         glm::vec4 color,
         bool _visible = true);
 
-    /// Updates the view from the position of the cursor
+    /// Updates all the sub-views and updates this view
     /**
      * @param parentPosition The absolute position of the parent view
      * @param info The info used to update the view
      */
-    virtual void update(glm::ivec2 parentPosition, SunGUIUpdateInfo info);
+    void updateTree(glm::ivec2 parentPosition, SunGUIUpdateInfo info);
 
-    /// Draws the view
+    /// Draws all the sub-views and draws this view
     /**
-     * For any SunGUIView, this only draws the background color in
-     * the area covered by the view and draws all of the subviews.
-     * Custom drawing functionality should be provided by overriding
-     * this method.
      * @param parentPosition The absolute position of the parent view
      * @param renderer The object used to draw the view
      */
-    virtual void draw(glm::ivec2 parentPosition, SunGUIRenderer &renderer);
+    virtual void drawTree(glm::ivec2 parentPosition, SunGUIRenderer &renderer);
 
     /// Adds a subview
     void addSubview(SunGUIView *subview);
 protected:
+    /// Updates the view
+    virtual void update(glm::ivec2 parentPosition, SunGUIUpdateInfo info);
+
+    /// Draws the view
+    virtual void draw(glm::ivec2 parentPosition, SunGUIRenderer &renderer);
+
     /// The position of the view (In pixels, not NDC)
     glm::ivec2 position;
 
