@@ -10,6 +10,8 @@
 
 #include <vector>
 
+#include <rhea/simplex_solver.hpp>
+
 class SunGUIViewController;
 class SunGUIRenderer;
 
@@ -70,6 +72,9 @@ protected:
 private:
     /// The vector of sub-views
     std::vector<SunGUIView *> subviews;
+
+    rhea::simplex_solver solver;
+    rhea::variable a;
 };
 
 #endif
