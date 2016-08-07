@@ -17,6 +17,12 @@ SunGUI::SunGUI(SunGUIViewController &viewController, SunGUIWindow &_window) :
 }
 
 void SunGUI::update() {
+    // Update the size of the viewport to match the framebuffer
+    window.updateViewport();
+
+    // Force the size of the content view to equal the window size
+    contentView->size = window.size();
+
     // Update the GUI
     contentView->updateTree(glm::ivec2(0), window.updateInfo());
 }

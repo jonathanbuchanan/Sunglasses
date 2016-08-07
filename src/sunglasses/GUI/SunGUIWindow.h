@@ -58,11 +58,15 @@ public:
 
     /// Swaps the window's buffers
     void swapBuffers();
-    
+
     /// Returns the current update info
     SunGUIUpdateInfo updateInfo();
+
     /// Returns the size of the window
-    glm::ivec2 size() { return glm::ivec2(width, height); }
+    glm::ivec2 size();
+
+    /// Updates the size of the viewport to match the framebuffer
+    void updateViewport();
 
     /// Creates a projection matrix
     /**

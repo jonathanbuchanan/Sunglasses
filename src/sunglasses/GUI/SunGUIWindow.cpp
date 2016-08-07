@@ -37,12 +37,9 @@ SunGUIWindow::SunGUIWindow(int _width, int _height, std::string _title, bool res
     if (glewInit() != GLEW_OK) {
         // TODO: ERROR!
     }
-
-    // Set the viewport
-    int framebufferWidth, framebufferHeight;
-    glfwGetFramebufferSize(window, &framebufferWidth, &framebufferHeight);
-
-    glViewport(0, 0, framebufferWidth, framebufferHeight);
+    
+    // Update the viewport
+    updateViewport();
 }
 
 SunGUIWindow::~SunGUIWindow() {
@@ -68,8 +65,23 @@ SunGUIUpdateInfo SunGUIWindow::updateInfo() {
     );
 }
 
+glm::ivec2 SunGUIWindow::size() {
+    glm::ivec2 size;
+    glfwGetWindowSize(window, &size.x, &size.y);
+    return size;
+}
+
+void SunGUIWindow::updateViewport() {
+    // Set the viewport
+    int framebufferWidth, framebufferHeight;
+    glfwGetFramebufferSize(window, &framebufferWidth, &framebufferHeight);
+
+    glViewport(0, 0, framebufferWidth, framebufferHeight);
+}
+
 glm::mat4 SunGUIWindow::projection() {
-    return glm::ortho(0.0f, (float)width, (float)height, 0.0f, -1.0f, 0.0f);
+    glm::ivec2 windowSize = size();
+    return glm::ortho(0.0f, (float)windowSize.x, (float)windowSize.y, 0.0f, -1.0f, 0.0f);
 }
 
 glm::ivec2 SunGUIWindow::cursor() {
