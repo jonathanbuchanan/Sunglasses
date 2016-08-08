@@ -40,7 +40,6 @@ CMakeScripts
 Makefile
 cmake_install.cmake
 install_manifest.txt
-include
 
 # Ctest
 CTestTestfile.cmake

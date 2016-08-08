@@ -1,8 +1,8 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include "SunCursorManager.h"
-#include "../Scripting/SunScript.h"
+#include <sunglasses/Input/SunCursorManager.h>
+#include <sunglasses/Scripting/SunScript.h>
 
 template<> const std::string SunLuaTypeRegistrar<SunCursorManager>::typeName = "CursorManager";
 template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<SunCursorManager> *> SunLuaTypeRegistrar<SunCursorManager>::dataMembers = {

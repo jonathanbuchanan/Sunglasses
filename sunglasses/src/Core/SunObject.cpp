@@ -1,13 +1,13 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include "SunObject.h"
+#include <sunglasses/Core/SunObject.h>
 
-#include "../Graphics/SunWindowManager.h"
-#include "../Graphics/Loaders/SunMaterialResource.h"
-#include "../Input/SunKeyboardManager.h"
-#include "../Scripting/SunGlobalScriptingEnvironment.h"
-#include "../Extern/SunResourceService.h"
+#include <sunglasses/Graphics/SunWindowManager.h>
+#include <sunglasses/Graphics/Loaders/SunMaterialResource.h>
+#include <sunglasses/Input/SunKeyboardManager.h>
+#include <sunglasses/Scripting/SunGlobalScriptingEnvironment.h>
+#include <sunglasses/Extern/SunResourceService.h>
 
 template<> const std::string SunLuaTypeRegistrar<SunObject>::typeName = "Object";
 template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<SunObject> *> SunLuaTypeRegistrar<SunObject>::dataMembers = {

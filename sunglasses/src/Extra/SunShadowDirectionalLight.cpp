@@ -1,10 +1,10 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include "SunShadowDirectionalLight.h"
+#include <sunglasses/Extra/SunShadowDirectionalLight.h>
 
-#include "../Graphics/SunPrimitives.h"
-#include "../Graphics/SunShader.h"
+#include <sunglasses/Graphics/SunPrimitives.h>
+#include <sunglasses/Graphics/SunShader.h>
 
 #include <glm/gtc/type_ptr.hpp>
 

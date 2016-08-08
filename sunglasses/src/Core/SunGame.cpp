@@ -1,11 +1,11 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include "SunGame.h"
+#include <sunglasses/Core/SunGame.h>
 
-#include "../Services.hpp"
+#include <sunglasses/Services.hpp>
 
-#include "SunScene.h"
+#include <sunglasses/Core/SunScene.h>
 
 SunGame::SunGame(int argc, char **argv, std::string title) {
 
