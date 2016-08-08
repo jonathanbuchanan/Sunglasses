@@ -19,7 +19,7 @@ class SunGUIViewController {
 friend SunGUI;
 public:
     /// Constructs a view controller from the dimensions of the window
-    SunGUIViewController(SunGUIWindow &window, glm::vec4 viewColor = glm::vec4(1.0f));
+    SunGUIViewController(SunGUIWindow &window, const SunGUIDrawable &drawable = SunGUIDrawableSolidColor(glm::vec4(1.0f)));
 protected:
     /// The view managed by the controller
     SunGUIView view;

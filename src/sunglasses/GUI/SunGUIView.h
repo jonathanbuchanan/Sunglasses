@@ -7,8 +7,10 @@
 #include <glm/glm.hpp>
 
 #include <sunglasses/GUI/SunGUIWindow.h>
+#include <sunglasses/GUI/SunGUIDrawable.h>
 
 #include <vector>
+#include <memory>
 
 class SunGUIViewController;
 class SunGUIRenderer;
@@ -27,7 +29,7 @@ public:
     /// Constructs the view
     SunGUIView(glm::ivec2 _position,
         glm::ivec2 _size,
-        glm::vec4 color,
+        const SunGUIDrawable &_drawable,
         bool _visible = true);
 
     /// Updates all the sub-views and updates this view
@@ -59,8 +61,8 @@ protected:
     /// Draws the view
     virtual void draw(glm::ivec2 parentPosition, SunGUIRenderer &renderer);
 
-    /// The background color of the view
-    glm::vec4 backgroundColor;
+    /// The drawable (a solid color, image, etc.)
+    std::unique_ptr<SunGUIDrawable> drawable;
 
     /// The visibility of the view
     bool visible;

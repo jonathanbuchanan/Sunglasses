@@ -3,6 +3,7 @@
 // See LICENSE.md for details.
 #include <sunglasses/GUI/SunGUI.h>
 #include <sunglasses/GUI/SunGUIButton.h>
+#include <sunglasses/GUI/SunGUIDrawable.h>
 #include <sunglasses/GUI/SunGUIConstraint.h>
 #include <sunglasses/GUI/SunGUILabel.h>
 #include <sunglasses/GUI/SunGUIRenderer.h>

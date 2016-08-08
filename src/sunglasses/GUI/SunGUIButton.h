@@ -10,12 +10,12 @@
 class SunGUIButton : public SunGUIView {
 public:
     /// Constructs a button with its various colors
-    SunGUIButton(glm::ivec2 origin, glm::ivec2 size,
-        glm::vec4 _color, glm::vec4 _highlightedColor, glm::vec4 _selectedColor);
+    SunGUIButton(glm::ivec2 origin, glm::ivec2 size, const SunGUIDrawable &drawable/*,
+        glm::vec4 _color, glm::vec4 _highlightedColor, glm::vec4 _selectedColor*/);
 protected:
     /// Updates the button
     virtual void update(glm::ivec2 parentPosition, SunGUIUpdateInfo info);
-private:
+/*private:
     /// The color of the button
     glm::vec4 color;
 
@@ -23,7 +23,7 @@ private:
     glm::vec4 highlightedColor;
 
     /// The selected (clicked on) color of the button
-    glm::vec4 selectedColor;
+    glm::vec4 selectedColor;*/
 };
 
 #endif

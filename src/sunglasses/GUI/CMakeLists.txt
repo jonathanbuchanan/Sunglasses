@@ -1,6 +1,7 @@
 add_sources(
     SunGUI.cpp
     SunGUIButton.cpp
+    SunGUIDrawable.cpp
     SunGUILabel.cpp
     SunGUIRenderer.cpp
     SunGUIView.cpp

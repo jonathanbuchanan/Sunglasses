@@ -8,8 +8,8 @@
 
 SunGUIView::SunGUIView(glm::ivec2 _position,
         glm::ivec2 _size,
-        glm::vec4 color,
-        bool _visible) : position(_position), size(_size), backgroundColor(color),
+        const SunGUIDrawable &_drawable,
+        bool _visible) : position(_position), size(_size), drawable(_drawable.copy()),
         visible(_visible), state(SunGUIControlState::Normal) {
 
 }
@@ -52,7 +52,7 @@ void SunGUIView::drawTree(glm::ivec2 parentPosition, SunGUIRenderer &renderer) {
 
 void SunGUIView::draw(glm::ivec2 parentPosition, SunGUIRenderer &renderer) {
     glm::ivec2 absolute = parentPosition + (glm::ivec2)position;
-    renderer.drawRect(absolute, size, backgroundColor);
+    renderer.drawRect(absolute, size, drawable.get());
 }
 
 void SunGUIView::addSubview(SunGUIView *subview) {

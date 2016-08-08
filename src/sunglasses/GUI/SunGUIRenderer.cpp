@@ -45,7 +45,7 @@ SunGUIRenderer::SunGUIRenderer(SunGUIWindow &_window) :
 
 }
 
-void SunGUIRenderer::drawRect(glm::ivec2 origin, glm::ivec2 size, glm::vec4 color) {
+void SunGUIRenderer::drawRect(glm::ivec2 origin, glm::ivec2 size, SunGUIDrawable *drawable) {
     fillShader.use();
 
     // Pass the projection matrix
@@ -59,8 +59,8 @@ void SunGUIRenderer::drawRect(glm::ivec2 origin, glm::ivec2 size, glm::vec4 colo
 
     fillShader["model"] = model;
 
-    // Pass the color
-    fillShader["fillColor"] = color;
+    // Pass the uniforms of the drawable
+    drawable->uniforms(fillShader);
 
     glBindVertexArray(rectangle.VAO);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

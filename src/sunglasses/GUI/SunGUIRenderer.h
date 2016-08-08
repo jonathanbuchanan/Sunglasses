@@ -11,7 +11,7 @@
 #include <GL/glew.h>
 
 #include <sunglasses/Graphics/SunShader.h>
-#include <sunglasses/GUI/SunGUIRect.h>
+#include <sunglasses/GUI/SunGUIDrawable.h>
 
 class SunGUIWindow;
 
@@ -22,7 +22,7 @@ public:
     SunGUIRenderer(SunGUIWindow &_window);
 
     /// Renders a rectangle
-    void drawRect(glm::ivec2 origin, glm::ivec2 size, glm::vec4 color);
+    void drawRect(glm::ivec2 origin, glm::ivec2 size, SunGUIDrawable *drawable);
 private:
     /// The window
     SunGUIWindow &window;
