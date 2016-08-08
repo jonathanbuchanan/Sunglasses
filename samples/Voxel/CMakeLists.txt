@@ -9,7 +9,7 @@ add_executable(Voxel-Executable src/main.cpp src/Game.cpp src/MenuScene.cpp src/
     src/World.cpp src/GameRenderer.cpp src/Chunk.cpp src/Block.cpp)
 
 include_directories(/usr/include/freetype2
-    ../../src/sunglasses/include/)
+    "../../sunglasses/include/")
 
 target_link_libraries(Voxel-Executable sunglasses freetype SOIL GLEW libGL.so assimp openal alut ${GLFW_LIBRARIES} X11 Xxf86vm pthread dl Xrandr Xinerama Xi Xcursor lua)
 set(CMAKE_CXX_FLAGS "-std=c++14 -g")
