@@ -10,6 +10,8 @@
 #include <glm/glm.hpp>
 #include <GL/glew.h>
 
+namespace sunglasses {
+
 /// A node intended to be used as a point light in the scene graph
 /**
  * This subclass of SunNode is intended to be used as a point light. A
@@ -49,5 +51,7 @@ protected:
     /// The position of the point light
     glm::vec3 position;
 };
+
+} // namespace
 
 #endif

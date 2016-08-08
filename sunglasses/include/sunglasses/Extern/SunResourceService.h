@@ -11,6 +11,8 @@
 #include <string>
 #include <memory>
 
+namespace sunglasses {
+
 /// This service provides access to a set of resource managers
 /**
  * This subclass of SunService is designed to give access to an map of
@@ -66,5 +68,7 @@ private:
     /// The map of resource managers (strings are keys)
     std::map<std::string, std::unique_ptr<SunResourceManager>> resourceManagers;
 };
+
+} // namespace
 
 #endif

@@ -6,6 +6,8 @@
 #include <sunglasses/GUI/SunGUIView.h>
 #include <sunglasses/GUI/SunGUIViewController.h>
 
+namespace sunglasses {
+
 SunGUI::SunGUI(SunGUIView *view, SunGUIWindow &_window) :
     window(_window), renderer(window), contentView(view) {
 
@@ -37,3 +39,5 @@ void SunGUI::draw() {
     // Swap the window's buffers
     window.swapBuffers();
 }
+
+} // namespace

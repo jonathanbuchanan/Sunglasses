@@ -9,6 +9,8 @@
 #include <sunglasses/Scripting/SunGlobalScriptingEnvironment.h>
 #include <sunglasses/Extern/SunResourceService.h>
 
+namespace sunglasses {
+
 template<> const std::string SunLuaTypeRegistrar<SunObject>::typeName = "Object";
 template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<SunObject> *> SunLuaTypeRegistrar<SunObject>::dataMembers = {
     {"rotation", new SunLuaComplexDataMember<glm::vec3, SunObject>("rotation", &SunObject::rotation)},
@@ -115,3 +117,5 @@ void SunObject::newAudioSource(std::string name, std::string buffer,
 void SunObject::playAudioSource(std::string name) {
     audioSources.at(name).play();
 }
+
+} // sunglasses

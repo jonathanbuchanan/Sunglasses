@@ -10,6 +10,8 @@
 
 #include <tclap/CmdLine.h>
 
+namespace sunglasses {
+
 /// An abstract struct that represents a command line option
 /**
  * This abstract struct represents an option/argument on the command line. Subclasses
@@ -126,5 +128,7 @@ private:
  * @param argv The argument vector (given in main)
  */
 extern void parseOptions(const std::vector<SunCLOption *> &options, std::string help, std::string version, int argc, char **argv);
+
+} // namespace
 
 #endif

@@ -8,6 +8,8 @@
 
 #include <glm/gtc/type_ptr.hpp>
 
+namespace sunglasses {
+
 SunShadowDirectionalLight::SunShadowDirectionalLight() {
 
 }
@@ -88,3 +90,5 @@ void SunShadowDirectionalLight::uniform(SunAction action) {
 
     (*shader)["shadowDirectionalLights[" + std::to_string(id) + "].lightMatrix"] = lightMatrix;
 }
+
+} // namespace

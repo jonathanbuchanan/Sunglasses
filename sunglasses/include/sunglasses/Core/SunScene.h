@@ -10,6 +10,8 @@
 #include "../Graphics/SunCamera.h"
 #include "SunObject.h"
 
+namespace sunglasses {
+
 class SunRenderer;
 
 /// An abstract class that is responsible for game objects, rendering, etc.
@@ -60,5 +62,7 @@ protected:
     /// A pointer to the window (GLFWwindow)
     GLFWwindow *window;
 };
+
+} // namespace
 
 #endif

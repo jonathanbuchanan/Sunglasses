@@ -3,6 +3,8 @@
 // See LICENSE.md for details.
 #include <sunglasses/Core/SunService.h>
 
+namespace sunglasses {
+
 SunService::SunService() {
 
 }
@@ -18,3 +20,5 @@ SunService::SunService(std::string _name) : name(_name) {
 void SunService::update() {
 
 }
+
+} // namespace

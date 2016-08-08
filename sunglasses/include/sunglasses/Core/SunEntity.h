@@ -2,6 +2,8 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 
+namespace sunglasses {
+
 /// An entity in the game engine that can be composed of several components
 /**
  * This class represents an entity that can be composed of several components.
@@ -18,3 +20,5 @@ public:
 private:
 
 };
+
+} // namespace

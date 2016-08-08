@@ -4,6 +4,8 @@
 #include <sunglasses/Output/SunLogger.h>
 #include <iostream>
 
+namespace sunglasses {
+
 std::map<BashColor, std::string> ColorMap = {
     {BashColorReset,             BASH_COLOR_RESET},
     {BashColorBright,            BASH_COLOR_BRIGHT},
@@ -166,3 +168,5 @@ void SunLogger::log(std::string message) {
     reset();
     std::cout << std::endl;
 }
+
+} // namespace

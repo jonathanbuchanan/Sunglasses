@@ -11,6 +11,8 @@
 #include <sunglasses/Core/SunAction.h>
 #include <sunglasses/Core/SunServiceManager.h>
 
+namespace sunglasses {
+
 /// An object with a name, a map of actions, and a map of services.
 /**
  * SunBase is an abstract class that has a name, a map of actions, and a static map of
@@ -85,5 +87,7 @@ private:
  * processAction is virtual, it will call a subclasses redefinition if it exists.
  */
 extern void sendAction(SunAction action, SunBase *base);
+
+} // namespace
 
 #endif

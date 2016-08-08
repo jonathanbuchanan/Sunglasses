@@ -4,6 +4,8 @@
 #include <sunglasses/Input/SunKeyboardManager.h>
 #include <sunglasses/Scripting/SunScript.h>
 
+namespace sunglasses {
+
 template<> const std::string SunLuaTypeRegistrar<SunKeyboardManager>::typeName = "KeyboardManager";
 template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<SunKeyboardManager> *> SunLuaTypeRegistrar<SunKeyboardManager>::dataMembers = {
     {"pollKey", new SunLuaTypeMemberFunction<SunKeyboardManager, bool, int>("pollKey", &SunKeyboardManager::keyDown)}
@@ -93,3 +95,5 @@ bool SunKeyboardManager::keyDown(int key) {
         return false;
     return false;
 }
+
+} // namespace

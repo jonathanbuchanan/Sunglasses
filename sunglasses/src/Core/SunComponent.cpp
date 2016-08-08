@@ -2,3 +2,7 @@
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include <sunglasses/Core/SunComponent.h>
+
+namespace sunglasses {
+
+} // namespace

@@ -6,10 +6,6 @@
 
 #include <sunglasses/Extern/SunResource.h>
 
-class SunObject;
-class SunShader;
-class SunTextureResource;
-
 #include <glm/glm.hpp>
 
 #include <memory>
@@ -19,6 +15,12 @@ class SunTextureResource;
 #include <assimp/postprocess.h>
 
 struct aiMaterial;
+
+namespace sunglasses {
+
+class SunObject;
+class SunShader;
+class SunTextureResource;
 
 /// A SunResource subclass representing loaded material data
 class SunMaterialResource : public SunResource {
@@ -104,5 +106,7 @@ private:
      */
     double shininess;
 };
+
+} // namespace
 
 #endif

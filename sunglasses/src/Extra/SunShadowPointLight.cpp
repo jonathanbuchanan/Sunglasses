@@ -8,6 +8,8 @@
 
 #include <glm/gtc/type_ptr.hpp>
 
+namespace sunglasses {
+
 SunShadowPointLight::SunShadowPointLight() {
 
 }
@@ -100,3 +102,5 @@ void SunShadowPointLight::uniform(SunAction action) {
 
     (*shader)["shadowPointLightCount"] = shader->getArraySize("shadowPointLights");
 }
+
+} // namespace

@@ -5,6 +5,8 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
+namespace sunglasses {
+
 SunGUIUpdateInfo::SunGUIUpdateInfo(glm::ivec2 _cursor,
     SunGUIWindowButtonState _leftMouseButton,
     SunGUIWindowButtonState _rightMouseButton,
@@ -113,3 +115,5 @@ SunGUIWindowButtonState SunGUIWindow::middleMouseButton() {
     else if (state == GLFW_RELEASE)
         return SunGUIWindowButtonState::Released;
 }
+
+} // namespace

@@ -10,6 +10,8 @@
 
 #include <GL/glew.h>
 
+namespace sunglasses {
+
 class SunTextureResource : public SunResource {
 public:
     /// Constructs the texture resource with a path to the texture.
@@ -31,5 +33,7 @@ private:
     /// The OpenGL texture object
     GLuint texture;
 };
+
+} // namespace
 
 #endif

@@ -5,6 +5,8 @@
 
 #include <AL/alut.h>
 
+namespace sunglasses {
+
 SunAudioDeviceManager::SunAudioDeviceManager() {
     initialize();
 }
@@ -21,3 +23,5 @@ void SunAudioDeviceManager::initialize() {
 void SunAudioDeviceManager::update() {
 
 }
+
+} // namespace

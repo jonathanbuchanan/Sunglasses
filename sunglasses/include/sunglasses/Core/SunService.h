@@ -6,6 +6,8 @@
 
 #include <string>
 
+namespace sunglasses {
+
 enum SunButtonState {
     SunButtonStateNone = -1,
     SunButtonStateUp = 0,
@@ -65,5 +67,7 @@ private:
     /// A string that is used to identify the service.
     std::string name;
 };
+
+} // namespace
 
 #endif

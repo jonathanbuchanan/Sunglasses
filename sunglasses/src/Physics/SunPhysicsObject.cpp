@@ -5,6 +5,8 @@
 #include <glm/gtx/string_cast.hpp>
 #include <iostream>
 
+namespace sunglasses {
+
 SunPhysicsObject::SunPhysicsObject() {
 
 }
@@ -20,3 +22,5 @@ void SunPhysicsObject::updatePositionForForcesAndDelta(std::vector<SunPhysicsFor
             colliders[i]->moveTo(position);
     }
 }
+
+} // namespace

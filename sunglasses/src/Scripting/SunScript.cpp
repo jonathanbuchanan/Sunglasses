@@ -3,6 +3,8 @@
 // See LICENSE.md for details.
 #include <sunglasses/Scripting/SunScript.h>
 
+namespace sunglasses {
+
 SunScript::SunScript() {
     state = luaL_newstate();
     luaL_openlibs(state);
@@ -35,3 +37,5 @@ void SunScript::run(std::string code) {
 void SunScript::operator()(std::string code) {
     run(code);
 } 
+
+} // namespace

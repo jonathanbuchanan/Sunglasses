@@ -23,6 +23,8 @@
 extern std::uniform_real_distribution<GLfloat> randomFloats;
 extern std::default_random_engine generator;
 
+namespace sunglasses {
+
 // SunVertex Declaration
 struct SunVertex {
     // Position, normal, and texture coordinates
@@ -186,5 +188,7 @@ struct SunFramebuffer {
 typedef std::map<std::string, SunFramebufferTextureObject>::iterator SunFramebufferTextureObjectIterator;
 
 extern void clear();
+
+} // namespace
 
 #endif

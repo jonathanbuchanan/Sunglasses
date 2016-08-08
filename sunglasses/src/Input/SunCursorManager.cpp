@@ -4,6 +4,8 @@
 #include <sunglasses/Input/SunCursorManager.h>
 #include <sunglasses/Scripting/SunScript.h>
 
+namespace sunglasses {
+
 template<> const std::string SunLuaTypeRegistrar<SunCursorManager>::typeName = "CursorManager";
 template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<SunCursorManager> *> SunLuaTypeRegistrar<SunCursorManager>::dataMembers = {
     {"enableCursor", new SunLuaTypeMemberFunction<SunCursorManager, void>("enableCursor", &SunCursorManager::enableCursor)},
@@ -76,3 +78,5 @@ glm::vec2 SunCursorManager::getCursorPositionNDC() {
 void SunCursorManager::subscribe(SunBase *subscriber) {
     subscribers.push_back(subscriber);
 }
+
+} // namespace

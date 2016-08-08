@@ -4,6 +4,8 @@
 #include <sunglasses/Graphics/SunWindowManager.h>
 #include <sunglasses/Scripting/SunScript.h>
 
+namespace sunglasses {
+
 template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<SunWindowManager> *> SunLuaTypeRegistrar<SunWindowManager>::dataMembers = {
     {"setWindowShouldClose", new SunLuaTypeMemberFunction<SunWindowManager, void>("setWindowShouldClose", &SunWindowManager::setWindowShouldClose)}
 };
@@ -76,3 +78,5 @@ void SunWindowManager::calculateDelta() {
     delta = currentFrame - lastFrame;
     lastFrame = currentFrame;
 }
+
+} // namespace

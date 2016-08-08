@@ -12,6 +12,8 @@
 
 #include <GLFW/glfw3.h>
 
+namespace sunglasses {
+
 class SunGUIView;
 
 enum struct SunGUIWindowButtonState {
@@ -100,5 +102,7 @@ private:
     /// The GLFW window
     GLFWwindow *window;
 };
+
+} // namespace
 
 #endif

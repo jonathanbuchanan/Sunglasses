@@ -5,7 +5,11 @@
 
 #include <sunglasses/GUI/SunGUIWindow.h>
 
+namespace sunglasses {
+
 SunGUIViewController::SunGUIViewController(SunGUIWindow &window, const SunGUIDrawable &drawable) :
     view(glm::ivec2(0, 0), glm::ivec2(window.size()), drawable, true) {
 
 }
+
+} // namespace

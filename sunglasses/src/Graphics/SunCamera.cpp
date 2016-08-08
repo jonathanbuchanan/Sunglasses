@@ -6,6 +6,8 @@
 #include <sunglasses/Scripting/SunGlobalScriptingEnvironment.h>
 #include <sunglasses/Graphics/SunShader.h>
 
+namespace sunglasses {
+
 template<> const std::string SunLuaTypeRegistrar<SunCamera>::typeName = "Camera";
 template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<SunCamera> *> SunLuaTypeRegistrar<SunCamera>::dataMembers = {
     {"yaw", new SunLuaTypeDataMember<float, SunCamera>("yaw", &SunCamera::yaw)},
@@ -91,3 +93,5 @@ void SunCamera::passPerFrameUniforms(SunShader *_shader) {
     (*_shader)["camera.nearPlane"] = 0.01f;
     (*_shader)["camera.farPlane"] = 100.0f;
 }
+
+} // namespace

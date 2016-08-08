@@ -13,6 +13,8 @@
 #include <tuple>
 #include <iostream>
 
+namespace sunglasses {
+
 namespace _SunPrivateScripting {
     struct SunLuaPrimitive {
         SunLuaPrimitive() { }
@@ -153,5 +155,7 @@ namespace _SunPrivateScripting {
         lua_State *state;
     };
 }
+
+} // namespace
 
 #endif

@@ -14,6 +14,8 @@
 #include <string>
 #include <iostream>
 
+namespace sunglasses {
+
 SunPhysicsColliderAABB::SunPhysicsColliderAABB() {
     setType(SunPhysicsColliderTypeAABB);
 }
@@ -99,3 +101,5 @@ SunPhysicsCollisionData SunPhysicsColliderAABB::collideWith(SunPhysicsCollider *
     }
     return SunPhysicsCollisionData(false, 0);
 }
+
+} // namespace

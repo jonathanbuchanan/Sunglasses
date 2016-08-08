@@ -6,6 +6,8 @@
 #include <sunglasses/Graphics/SunWindowManager.h>
 #include <sunglasses/Graphics/SunPrimitives.h>
 
+namespace sunglasses {
+
 SunRenderNodeSceneTexture::SunRenderNodeSceneTexture(std::string _name, GLuint _internalFormat, GLenum _format, GLenum _type) : name(_name), internalFormat(_internalFormat), format(_format), type(_type) { }
 
 
@@ -111,3 +113,5 @@ void SunRenderNodeScene::setUniformTarget(SunBase *_uniformTarget) {
 void SunRenderNodeScene::setSize(glm::vec2 _size) {
     size = _size;
 }
+
+} // namespace

@@ -7,6 +7,8 @@
 #include <lua.hpp>
 #include <string>
 
+namespace sunglasses {
+
 namespace SunScripting {
     /// Gets an element from the Lua stack
     /**
@@ -42,5 +44,7 @@ namespace SunScripting {
     template<> void pushToStack(lua_State *l, const char *value);
     template<> void pushToStack(lua_State *l, std::string value);
 }
+
+} // namespace
 
 #endif

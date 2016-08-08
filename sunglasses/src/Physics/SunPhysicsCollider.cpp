@@ -3,6 +3,8 @@
 // See LICENSE.md for details.
 #include <sunglasses/Physics/SunPhysicsCollider.h>
 
+namespace sunglasses {
+
 SunPhysicsCollider::SunPhysicsCollider() {
     
 }
@@ -10,3 +12,5 @@ SunPhysicsCollider::SunPhysicsCollider() {
 SunPhysicsCollisionData SunPhysicsCollider::collideWith(SunPhysicsCollider *other) {
     return SunPhysicsCollisionData();
 }
+
+} // namespace

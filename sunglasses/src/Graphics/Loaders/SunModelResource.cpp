@@ -10,6 +10,8 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
+namespace sunglasses {
+
 SunModelResource::SunModelResource(std::string _path) : path(_path), meshMap(nullptr), materialMap(nullptr) {
 
 }
@@ -63,3 +65,5 @@ void SunModelResource::init() {
         }
     }
 }
+
+} // namespace

@@ -12,6 +12,8 @@
 #include <vector>
 #include <memory>
 
+namespace sunglasses {
+
 class SunGUIViewController;
 class SunGUIRenderer;
 
@@ -73,5 +75,7 @@ private:
     /// The vector of sub-views
     std::vector<SunGUIView *> subviews;
 };
+
+} // namespace
 
 #endif

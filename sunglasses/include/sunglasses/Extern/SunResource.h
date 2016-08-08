@@ -4,6 +4,8 @@
 #ifndef SUNRESOURCE_H
 #define SUNRESOURCE_H
 
+namespace sunglasses {
+
 /// An abstract class used to store resources
 /**
  * This is an abstract class that is meant to be subclassed and implement
@@ -28,5 +30,7 @@ public:
 private:
 
 };
+
+} // namespace
 
 #endif

@@ -3,6 +3,8 @@
 // See LICENSE.md for details.
 #include <sunglasses/Graphics/SunTexturedQuad.h>
 
+namespace sunglasses {
+
 void SunTexturedQuad::init() {
     addAction("render", &SunTexturedQuad::render);
 
@@ -46,3 +48,5 @@ void SunTexturedQuad::render(SunAction action) {
 
     glBindVertexArray(0);
 }
+
+} // namespace

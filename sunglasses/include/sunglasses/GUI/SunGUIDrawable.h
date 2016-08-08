@@ -1,10 +1,12 @@
 #ifndef SUNGUIDRAWABLE_H
 #define SUNGUIDRAWABLE_H
 
-class SunShader;
-
 #include <glm/glm.hpp>
 #include <GL/glew.h>
+
+namespace sunglasses {
+
+class SunShader;
 
 /// A rectangle that is a component of every view
 class SunGUIDrawable {
@@ -39,5 +41,7 @@ private:
     /// The OpenGL texture
     GLuint texture;
 };
+
+} // namespace
 
 #endif

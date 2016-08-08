@@ -3,13 +3,15 @@
 // See LICENSE.md for details.
 
 #ifndef SUNPHYSICSCOLLIDERMESH_H
-#define    SUNPHYSICSCOLLIDERMESH_H
+#define SUNPHYSICSCOLLIDERMESH_H
 
 #include <sunglasses/Physics/SunPhysicsCollider.h>
 #include <sunglasses/Graphics/SunPrimitives.h>
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
+
+namespace sunglasses {
 
 class SunPhysicsColliderMesh : public SunPhysicsCollider {
 public:
@@ -28,5 +30,7 @@ private:
     std::vector<SunVertex> vertices;
 
 };
+
+} // namespace
 
 #endif

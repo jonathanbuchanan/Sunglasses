@@ -1,20 +1,16 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-/*
- * File:   GJKAlgorithm.h
- * Author: jonathan
- *
- * Created on August 28, 2015, 6:27 PM
- */
 
 #ifndef GJKALGORITHM_H
-#define    GJKALGORITHM_H
+#define GJKALGORITHM_H
 
 #include <sunglasses/Physics/SunPhysicsColliderMesh.h>
 #include <sunglasses/Physics/SunPhysicsColliderSphere.h>
 #include <sunglasses/Physics/SunPhysicsColliderAABB.h>
 #include <sunglasses/Physics/SunPhysicsColliderPlane.h>
+
+namespace sunglasses {
 
 extern glm::vec3 getFarthestPointAlongAxis(SunPhysicsColliderMesh *mesh, glm::vec3 axis);
 extern glm::vec3 getFarthestPointAlongAxis(SunPhysicsColliderSphere *sphere, glm::vec3 axis);
@@ -31,5 +27,7 @@ extern bool processTriangle(Simplex &simplex, glm::vec3 &direction);
 extern bool processTetrahedron(Simplex &simplex, glm::vec3 &direction);
 
 extern bool processSimplex(Simplex &simplex, glm::vec3 &direction);
+
+} // namespace
 
 #endif

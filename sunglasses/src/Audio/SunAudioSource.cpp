@@ -3,6 +3,8 @@
 // See LICENSE.md for details.
 #include <sunglasses/Audio/SunAudioSource.h>
 
+namespace sunglasses {
+
 SunAudioSource::SunAudioSource(SunAudioBufferResource *_buffer,
         glm::vec3 _position,
         float _pitch,
@@ -20,3 +22,5 @@ void SunAudioSource::init() {
 void SunAudioSource::play() {
     alSourcePlay(source);
 }
+
+} // namespace

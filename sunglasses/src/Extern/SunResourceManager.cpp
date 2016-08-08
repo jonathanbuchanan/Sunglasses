@@ -3,6 +3,8 @@
 // See LICENSE.md for details.
 #include <sunglasses/Extern/SunResourceManager.h>
 
+namespace sunglasses {
+
 SunResourceManager::SunResourceManager() {
 
 }
@@ -51,3 +53,5 @@ int SunResourceManager::removeResource(std::string name) {
     resources.erase(name);
     return 0;
 }
+
+} // namespace

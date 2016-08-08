@@ -5,6 +5,8 @@
 
 #include <glm/glm.hpp>
 
+namespace sunglasses {
+
 // glm::vec2
 template<> const std::string SunLuaTypeRegistrar<glm::vec2>::typeName = "Vec2";
 template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<glm::vec2> *> SunLuaTypeRegistrar<glm::vec2>::dataMembers = {
@@ -34,3 +36,5 @@ template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<gl
 // glm::mat3
 
 // glm::mat4 
+
+} // namespace

@@ -11,6 +11,8 @@
 #include <AL/al.h>
 #include <AL/alc.h>
 
+namespace sunglasses {
+
 /// A node that represents an audio listener
 class SunAudioListener : public SunNode {
 public:
@@ -22,5 +24,7 @@ public:
 private:
     glm::vec3 position;
 };
+
+} // namespace
 
 #endif

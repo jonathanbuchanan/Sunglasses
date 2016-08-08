@@ -6,6 +6,8 @@
 #include <sunglasses/GUI/SunGUIRenderer.h>
 #include <sunglasses/GUI/SunGUIWindow.h>
 
+namespace sunglasses {
+
 SunGUIView::SunGUIView(glm::ivec2 _position,
         glm::ivec2 _size,
         const SunGUIDrawable &_drawable,
@@ -58,3 +60,5 @@ void SunGUIView::draw(glm::ivec2 parentPosition, SunGUIRenderer &renderer) {
 void SunGUIView::addSubview(SunGUIView *subview) {
     subviews.push_back(subview);
 }
+
+} // namespace

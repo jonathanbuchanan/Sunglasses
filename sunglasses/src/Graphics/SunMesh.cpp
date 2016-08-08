@@ -10,6 +10,8 @@
 
 #include <glm/gtc/type_ptr.hpp>
 
+namespace sunglasses {
+
 SunMesh::SunMesh() {
 
 }
@@ -55,3 +57,5 @@ void SunMesh::render(SunShader *shader) {
     // Unbind the VAO
     glBindVertexArray(0);
 }
+
+} // sunglasses

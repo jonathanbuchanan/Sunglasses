@@ -9,6 +9,8 @@
 
 #include <glm/gtx/simd_vec4.hpp>
 
+namespace sunglasses {
+
 SunPhysicsColliderPlane::SunPhysicsColliderPlane() {
     setType(SunPhysicsColliderTypePlane);
 }
@@ -58,3 +60,5 @@ SunPhysicsCollisionData SunPhysicsColliderPlane::collideWith(SunPhysicsCollider 
     }
     return SunPhysicsCollisionData(false, 0);
 }
+
+} // namespace

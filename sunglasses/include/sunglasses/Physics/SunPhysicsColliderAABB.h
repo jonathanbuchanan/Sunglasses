@@ -1,17 +1,13 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-/*
- * File:   SunPhysicsColliderAABB.h
- * Author: jonathan
- *
- * Created on August 18, 2015, 10:13 AM
- */
 
 #ifndef SUNPHYSICSCOLLIDERAABB_H
-#define    SUNPHYSICSCOLLIDERAABB_H
+#define SUNPHYSICSCOLLIDERAABB_H
 
 #include <sunglasses/Physics/SunPhysicsCollider.h>
+
+namespace sunglasses {
 
 class SunPhysicsColliderAABB : public SunPhysicsCollider {
 public:
@@ -51,5 +47,7 @@ private:
     glm::vec3 firstPoint;
     glm::vec3 secondPoint;
 };
+
+} // namespace
 
 #endif

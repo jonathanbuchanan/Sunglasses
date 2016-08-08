@@ -1,18 +1,14 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-/*
- * File:   SunPhysicsColliderPlane.h
- * Author: jonathan
- *
- * Created on August 19, 2015, 12:56 PM
- */
 
 #ifndef SUNPHYSICSCOLLIDERPLANE_H
-#define    SUNPHYSICSCOLLIDERPLANE_H
+#define SUNPHYSICSCOLLIDERPLANE_H
 
 #include <sunglasses/Physics/SunPhysicsCollider.h>
 #include <glm/glm.hpp>
+
+namespace sunglasses {
 
 class SunPhysicsColliderPlane : public SunPhysicsCollider {
 public:
@@ -39,5 +35,7 @@ private:
     float distance;
     bool reflective;
 };
+
+} // namespace
 
 #endif

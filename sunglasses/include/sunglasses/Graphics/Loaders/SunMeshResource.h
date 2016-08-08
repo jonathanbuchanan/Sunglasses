@@ -11,6 +11,8 @@
 
 struct aiMesh;
 
+namespace sunglasses {
+
 /// A SunResource subclass representing loaded mesh data
 /**
  * This class contains loaded mesh data, but no code for actually rendering. To
@@ -62,5 +64,7 @@ private:
     /// The aiMesh pointer
     aiMesh *mesh;
 };
+
+} // namespace
 
 #endif

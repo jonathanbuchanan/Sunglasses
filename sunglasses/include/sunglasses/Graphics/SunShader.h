@@ -19,6 +19,8 @@
 #include <sunglasses/Core/SunNode.h>
 #include <sunglasses/Output/SunLogger.h>
 
+namespace sunglasses {
+
 enum SunShaderSourceType {
     SunShaderSourceTypeVertex = GL_VERTEX_SHADER,
     SunShaderSourceTypeFragment = GL_FRAGMENT_SHADER,
@@ -189,5 +191,7 @@ private:
     /// The program in the OpenGL context
     GLuint program;
 };
+
+} // namespace
 
 #endif

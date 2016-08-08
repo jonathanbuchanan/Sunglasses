@@ -9,6 +9,8 @@
 #include <glm/gtx/string_cast.hpp>
 #include <iostream>
 
+namespace sunglasses {
+
 SunPhysicsColliderSphere::SunPhysicsColliderSphere() {
     setType(SunPhysicsColliderTypeSphere);
 }
@@ -89,3 +91,5 @@ SunPhysicsCollisionData SunPhysicsColliderSphere::collideWith(SunPhysicsCollider
     }
     return SunPhysicsCollisionData(false, 0);
 }
+
+} // namespace

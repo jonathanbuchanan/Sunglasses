@@ -6,6 +6,8 @@
 
 #include "../Graphics/SunRenderNode.h"
 
+namespace sunglasses {
+
 class SunShadowMapRenderNode : public SunRenderNode {
 public:
     /// A constructor
@@ -41,5 +43,7 @@ private:
      */
     std::vector<std::pair<std::string, SunShader>> shaders;
 };
+
+} // namespace
 
 #endif

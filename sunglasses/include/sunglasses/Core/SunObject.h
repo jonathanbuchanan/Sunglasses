@@ -12,6 +12,8 @@
 #include <sunglasses/Scripting/SunScript.h>
 #include <sunglasses/Audio/SunAudioSource.h>
 
+namespace sunglasses {
+
 class SunGlobalScriptingEnvironment;
 
 #include <sunglasses/Scripting/SunLuaTypeRegistrar.h>
@@ -173,5 +175,7 @@ private:
     SunScript script;
     bool scriptingEnabled = false;
 };
+
+} // namespace
 
 #endif

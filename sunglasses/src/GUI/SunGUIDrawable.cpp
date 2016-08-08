@@ -2,6 +2,8 @@
 
 #include <sunglasses/Graphics/SunShader.h>
 
+namespace sunglasses {
+
 SunGUIDrawableSolidColor::SunGUIDrawableSolidColor(glm::vec4 _color) : color(_color) {
 
 }
@@ -13,3 +15,5 @@ SunGUIDrawable * SunGUIDrawableSolidColor::copy() const {
 void SunGUIDrawableSolidColor::uniforms(SunShader &shader) {
     shader["fillColor"] = color;    
 }
+
+} // namespace

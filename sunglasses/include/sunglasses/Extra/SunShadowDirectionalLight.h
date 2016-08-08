@@ -6,6 +6,8 @@
 
 #include "SunDirectionalLight.h"
 
+namespace sunglasses {
+
 /// A directional light that renders shadow maps
 class SunShadowDirectionalLight : public SunDirectionalLight {
 public:
@@ -91,5 +93,7 @@ private:
      */
     GLfloat distance = 10.0f;
 };
+
+} // namespace
 
 #endif

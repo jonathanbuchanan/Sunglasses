@@ -15,6 +15,8 @@
 #include <sunglasses/Graphics/SunPrimitives.h>
 #include <sunglasses/Graphics/SunShader.h>
 
+namespace sunglasses {
+
 class SunTexturedQuad : public SunBase {
 public:
     SunTexturedQuad() { }
@@ -40,5 +42,7 @@ private:
     GLuint EBO;
     GLuint VAO;
 };
+
+} // namespace
 
 #endif

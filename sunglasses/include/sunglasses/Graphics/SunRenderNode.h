@@ -8,10 +8,10 @@
 #include <map>
 #include <functional>
 
-
 #include <sunglasses/Core/SunNode.h>
 #include <sunglasses/Graphics/SunShader.h>
 
+namespace sunglasses {
 
 /// An abstract class for defining rendering behavior.
 /**
@@ -48,5 +48,7 @@ public:
      */
     virtual void bindOutputs(SunAction action) = 0;
 };
+
+} // namespace
 
 #endif

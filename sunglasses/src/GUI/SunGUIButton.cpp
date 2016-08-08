@@ -3,6 +3,8 @@
 // See LICENSE.md for details.
 #include <sunglasses/GUI/SunGUIButton.h>
 
+namespace sunglasses {
+
 SunGUIButton::SunGUIButton(glm::ivec2 origin, glm::ivec2 size, const SunGUIDrawable &drawable/*,
     glm::vec4 _color, glm::vec4 _highlightedColor, glm::vec4 _selectedColor*/) :
     SunGUIView(origin, size, drawable)/*,
@@ -26,3 +28,5 @@ void SunGUIButton::update(glm::ivec2 parentPosition, SunGUIUpdateInfo info) {
             break;
     }*/
 }
+
+} // namespace

@@ -14,6 +14,8 @@
 #include <sunglasses/Scripting/SunLuaCFunction.h>
 #include <sunglasses/Scripting/SunLuaTypeRegistrar.h>
 
+namespace sunglasses {
+
 /// A container for a lua script that interacts with the engine
 /**
  * SunScript is the engine's way of using a Lua script to interact with the it.
@@ -165,5 +167,7 @@ private:
     /// The map of registered types.
     //std::map<std::string, std::shared_ptr<_SunPrivateScripting::_SunLuaType_Base>> types;
 };
+
+} // namespace
 
 #endif

@@ -15,6 +15,8 @@
 #include <algorithm>
 #include <memory>
 
+namespace sunglasses {
+
 /// A node class derived from SunBase
 /**
  * SunNode is a class derived from SunBase. A single node can have multiple
@@ -162,5 +164,7 @@ protected:
      */
     bool ignoreTags = false;
 };
+
+} // namespace
 
 #endif

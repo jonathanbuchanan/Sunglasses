@@ -13,6 +13,8 @@
 #include <sunglasses/Graphics/SunShader.h>
 #include <sunglasses/GUI/SunGUIDrawable.h>
 
+namespace sunglasses {
+
 class SunGUIWindow;
 
 /// A container used to store shaders for drawing the GUI
@@ -53,5 +55,7 @@ private:
         GLuint VBO, EBO, VAO;
     } rectangle;
 };
+
+} // namespace
 
 #endif

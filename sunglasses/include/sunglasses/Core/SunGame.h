@@ -16,6 +16,8 @@
 #include "SunBase.h"
 #include "../Input/SunCLOptionParsing.h"
 
+namespace sunglasses {
+
 class SunScene;
 
 /// An abstract class which controls the scene
@@ -47,6 +49,7 @@ public:
      */
     virtual void loop() = 0;
 
+
     /// Stops the game
     void stop();
 protected:
@@ -59,5 +62,7 @@ private:
 
     // TODO: Use better design!
 };
+
+} // namespace
 
 #endif

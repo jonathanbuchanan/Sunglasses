@@ -10,6 +10,8 @@
 #include <string>
 #include <memory>
 
+namespace sunglasses {
+
 /// This object provides dynamic access to a set of resources
 /**
  * This object is designed to give access to a map of resources. It only loads
@@ -73,5 +75,7 @@ private:
     std::map<std::string, std::unique_ptr<SunResource>> resources;
 
 };
+
+} // namespace
 
 #endif

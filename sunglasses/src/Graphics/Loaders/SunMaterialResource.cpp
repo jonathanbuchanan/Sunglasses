@@ -6,6 +6,8 @@
 #include <sunglasses/Graphics/Loaders/SunTextureResource.h>
 #include <sunglasses/Graphics/SunShader.h>
 
+namespace sunglasses {
+
 SunMaterialResource::SunMaterialResource(aiMaterial *_material) : material(_material) {
 
 }
@@ -70,3 +72,5 @@ void SunMaterialResource::pass(SunShader *shader, std::string structName) {
 
     (*shader)[structName + ".shininess"] = shininess;
 }
+
+} // namespace

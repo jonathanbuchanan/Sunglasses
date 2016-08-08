@@ -9,6 +9,8 @@
 #include <AL/al.h>
 #include <AL/alc.h>
 
+namespace sunglasses {
+
 /// A service that manages the audio context and playing music.
 class SunAudioDeviceManager : public SunService {
 public:
@@ -27,5 +29,7 @@ private:
     /// The audio context
     ALCcontext *context;
 };
+
+} // namespace
 
 #endif

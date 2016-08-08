@@ -3,4 +3,8 @@
 // See LICENSE.md for details.
 #include <sunglasses/Extern/SunResource.h>
 
+namespace sunglasses {
+
 SunResource::~SunResource() { }
+
+} // namespace

@@ -4,6 +4,8 @@
 #include <sunglasses/Physics/SunPhysicsForce.h>
 #include <iostream>
 
+namespace sunglasses {
+
 SunPhysicsForce::SunPhysicsForce() {
 
 }
@@ -20,3 +22,5 @@ glm::vec3 SunPhysicsForce::getDirectionWithForceForMass(float mass) {
     else
         return direction;
 }
+
+} // namespace

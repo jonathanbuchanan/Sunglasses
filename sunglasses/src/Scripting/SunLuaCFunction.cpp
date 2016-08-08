@@ -3,6 +3,8 @@
 // See LICENSE.md for details.
 #include <sunglasses/Scripting/SunLuaCFunction.h>
 
+namespace sunglasses {
+
 namespace _SunPrivateScripting {
     int callFunction(lua_State *state) {
         _SunLuaCFunction_Base *base = (_SunLuaCFunction_Base *)lua_touserdata(state, lua_upvalueindex(1));
@@ -10,3 +12,5 @@ namespace _SunPrivateScripting {
         return 1;
     }
 }
+
+} // namespace

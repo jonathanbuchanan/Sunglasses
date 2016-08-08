@@ -5,6 +5,8 @@
 
 #include <sunglasses/Graphics/SunShader.h>
 
+namespace sunglasses {
+
 SunDirectionalLight::SunDirectionalLight() {
 
 }
@@ -32,3 +34,5 @@ void SunDirectionalLight::uniform(SunAction action) {
 
     (*shader)["directionalLights[" + std::to_string(id) + "].color"] = shader->getArraySize("directionalLights");
 }
+
+} // namespace

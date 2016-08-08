@@ -3,6 +3,8 @@
 // See LICENSE.md for details.
 #include <sunglasses/Extra/SunShadowMapRenderNode.h>
 
+namespace sunglasses {
+
 SunShadowMapRenderNode::SunShadowMapRenderNode(SunBase *_target) : target(_target) {
 
 }
@@ -31,3 +33,5 @@ void SunShadowMapRenderNode::addShader(std::string tag, SunShader shader) {
 void SunShadowMapRenderNode::setShaders(std::vector<std::pair<std::string, SunShader>> _shaders) {
     shaders = _shaders;
 }
+
+} // namespace

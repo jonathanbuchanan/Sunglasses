@@ -3,6 +3,10 @@
 // See LICENSE.md for details.
 #include <sunglasses/Physics/SunPhysicsWorld.h>
 
+namespace sunglasses {
+
 SunPhysicsWorld::SunPhysicsWorld() {
     
 }
+
+} // namespace

@@ -4,6 +4,8 @@
 #include <sunglasses/Graphics/SunRenderer.h>
 #include <sunglasses/Core/SunScene.h>
 
+namespace sunglasses {
+
 void SunRenderer::render() {
     SunAction renderAction("render");
     renderAction.setRecursive(true);
@@ -19,3 +21,5 @@ void SunRenderer::swapBuffers() {
 void SunRenderer::init() {
     root = new SunNode();
 }
+
+} // namespace

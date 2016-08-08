@@ -11,6 +11,8 @@
 #include <iostream>
 #include <lua.hpp>
 
+namespace sunglasses {
+
 namespace SunScripting {
     /**
      * This struct is the abstract base for SunLuaTypeDataMember.
@@ -278,5 +280,7 @@ private:
      */
     const static std::string memberTableName;
 };
+
+} // namespace
 
 #endif

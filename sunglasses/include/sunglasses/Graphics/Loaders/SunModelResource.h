@@ -15,6 +15,8 @@
 
 struct aiScene;
 
+namespace sunglasses {
+
 /// An SunResource subclass for loading 3D model files
 /**
  * This subclass of SunResource is made to contain 3D model data. It has code to load
@@ -54,5 +56,7 @@ private:
     /// The pointer to the scene
     const aiScene *scene;
 };
+
+} // namespace
 
 #endif

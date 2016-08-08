@@ -6,11 +6,14 @@
 
 #include "../Core/SunBase.h"
 #include "../Core/SunService.h"
-class SunScript;
 #include <GLFW/glfw3.h>
 #include <vector>
 #include <array>
 #include <iostream>
+
+namespace sunglasses {
+
+class SunScript;
 
 class SunKeyboardManager : public SunService {
 public:
@@ -36,5 +39,7 @@ private:
     std::vector<std::tuple<SunBase *, int, SunButtonEvent>> subscribers;
     std::array<int, 512> keys;
 };
+
+} // namespace
 
 #endif

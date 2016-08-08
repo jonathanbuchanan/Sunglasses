@@ -3,6 +3,8 @@
 // See LICENSE.md for details.
 #include <sunglasses/Core/SunBase.h>
 
+namespace sunglasses {
+
 SunServiceManager SunBase::services = SunServiceManager();
 
 SunBase::SunBase() { }
@@ -19,3 +21,5 @@ void SunBase::processAction(SunAction action) {
 void sendAction(SunAction action, SunBase *base) {
     base->processAction(action);
 }
+
+} // namespace

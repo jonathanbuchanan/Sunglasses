@@ -7,6 +7,8 @@
 
 #include <sunglasses/Core/SunScene.h>
 
+namespace sunglasses {
+
 SunGame::SunGame(int argc, char **argv, std::string title) {
 
 }
@@ -99,3 +101,5 @@ void SunGame::stop() {
     resourceService->addResourceManager("textures", new SunResourceManager());
     resourceService->addResourceManager("sounds", new SunResourceManager());
 }*/
+
+} // namespace

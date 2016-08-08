@@ -14,6 +14,8 @@
 
 #include <sunglasses/Scripting/SunLuaValue.h>
 
+namespace sunglasses {
+
 namespace _SunPrivateScripting {
     class _SunLuaCFunction_Base {
     public:
@@ -131,5 +133,7 @@ namespace _SunPrivateScripting {
         function(std::get<N>(tuple)...);
     }*/
 }
+
+} // namespace
 
 #endif

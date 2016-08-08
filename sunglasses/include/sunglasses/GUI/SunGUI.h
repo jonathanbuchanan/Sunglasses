@@ -7,6 +7,8 @@
 #include <sunglasses/GUI/SunGUIWindow.h>
 #include <sunglasses/GUI/SunGUIRenderer.h>
 
+namespace sunglasses {
+
 class SunGUIView;
 class SunGUIViewController;
 
@@ -34,5 +36,7 @@ private:
     /// The main view
     SunGUIView *contentView;
 };
+
+} // namespace
 
 #endif

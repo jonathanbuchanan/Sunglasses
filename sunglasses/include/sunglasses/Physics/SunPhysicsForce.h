@@ -1,17 +1,13 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-/* 
- * File:   SunPhysicsForce.h
- * Author: jonathan
- *
- * Created on August 15, 2015, 9:52 PM
- */
 
 #ifndef SUNPHYSICSFORCE_H
-#define    SUNPHYSICSFORCE_H
+#define SUNPHYSICSFORCE_H
 
 #include <glm/glm.hpp>
+
+namespace sunglasses {
 
 class SunPhysicsForce {
 public:
@@ -31,5 +27,6 @@ private:
     bool scalesWithMass = false;
 };
 
-#endif
+} // namespace
 
+#endif

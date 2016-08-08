@@ -5,6 +5,8 @@
 
 #include <glm/gtc/type_ptr.hpp>
 
+namespace sunglasses {
+
 std::string getShaderCodeFromFile(std::string filepath) {
     std::ifstream file(filepath);
     std::stringstream sourceStream;
@@ -243,3 +245,5 @@ void SunShader::SunShaderUniform::operator=(glm::mat3x4 value) {
 void SunShader::SunShaderUniform::operator=(glm::mat4x3 value) {
     glUniformMatrix4x3fv(index, 1, GL_FALSE, glm::value_ptr(value));
 }
+
+} // namespace

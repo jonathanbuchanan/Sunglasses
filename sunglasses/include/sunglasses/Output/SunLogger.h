@@ -11,6 +11,8 @@
 #include "../Core/SunNode.h"
 #include "../Core/SunService.h"
 
+namespace sunglasses {
+
 const std::string BASH_COLOR_PREFIX             = "\033[";
 const std::string BASH_COLOR_SEPARATOR          =     ";";
 const std::string BASH_COLOR_SUFFIX             =     "m";
@@ -103,5 +105,7 @@ public:
 
     void log(std::string message);
 };
+
+} // namespace
 
 #endif

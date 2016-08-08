@@ -3,6 +3,8 @@
 // See LICENSE.md for details.
 #include <sunglasses/Scripting/SunLuaPrimitives.h>
 
+namespace sunglasses {
+
 namespace SunScripting {
     template<> int getFromStack(lua_State *l, int index) {
         return lua_tointeger(l, index);
@@ -52,3 +54,5 @@ namespace SunScripting {
         lua_pushstring(l, value.c_str());
     }
 }
+
+} // namespace

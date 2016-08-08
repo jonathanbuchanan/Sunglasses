@@ -13,6 +13,8 @@
 #include <vector>
 #include <string>
 
+namespace sunglasses {
+
 class SunWindowManager : public SunService {
 public:
     SunWindowManager();
@@ -50,5 +52,7 @@ private:
     double lastFrame;
     double delta;
 };
+
+} // namespace
 
 #endif

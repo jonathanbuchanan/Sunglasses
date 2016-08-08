@@ -5,6 +5,8 @@
 
 #include <iostream>
 
+namespace sunglasses {
+
 SunNode::SunNode() {
     parentsReady = 0;
     level = 0;
@@ -104,3 +106,5 @@ void SunNode::processAction(SunAction action, bool recursive) {
     }
 
 }
+
+} // sunglasses

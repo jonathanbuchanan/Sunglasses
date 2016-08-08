@@ -11,6 +11,8 @@
 
 #include <string>
 
+namespace sunglasses {
+
 /// A SunResource subclass containing loaded audio data
 class SunAudioBufferResource : public SunResource {
 public:
@@ -29,5 +31,7 @@ private:
     /// The path to the audio file
     std::string path;
 };
+
+} // namespace
 
 #endif

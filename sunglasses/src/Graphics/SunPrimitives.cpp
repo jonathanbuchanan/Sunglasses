@@ -3,6 +3,8 @@
 // See LICENSE.md for details.
 #include <sunglasses/Graphics/SunPrimitives.h>
 
+namespace sunglasses {
+
 bool operator==(const SunVertex &v1, const SunVertex &v2) {
     return v1.position == v2.position;
 }
@@ -13,3 +15,5 @@ std::default_random_engine generator;
 void clear() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
+
+} // namespace

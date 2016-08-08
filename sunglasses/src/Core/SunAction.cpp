@@ -3,6 +3,8 @@
 // See LICENSE.md for details.
 #include <sunglasses/Core/SunAction.h>
 
+namespace sunglasses {
+
 SunAction::SunAction() {
     recursive = false;
 }
@@ -18,3 +20,5 @@ SunAction::SunAction(std::string a, SunActionParameterMap p) : action(a), parame
 SunAction::SunAction(std::string a, SunActionParameterMap p, bool r) : action(a), parameters(p), recursive(r) {
     SunAction();
 }
+
+} // namespace

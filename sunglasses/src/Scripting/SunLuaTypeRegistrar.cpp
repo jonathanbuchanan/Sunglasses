@@ -3,5 +3,9 @@
 // See LICENSE.md for details.
 #include <sunglasses/Scripting/SunLuaTypeRegistrar.h>
 
+namespace sunglasses {
+
 template<typename T>
 const std::string SunLuaTypeRegistrar<T>::memberTableName = "__dataMembers";
+
+} // namespace

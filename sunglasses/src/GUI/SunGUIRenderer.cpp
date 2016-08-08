@@ -9,6 +9,8 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
+namespace sunglasses {
+
 const std::string fill_vertex = R"(
 #version 330 core
 
@@ -93,3 +95,5 @@ SunGUIRenderer::Rectangle::Rectangle() {
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
+
+} // namespace

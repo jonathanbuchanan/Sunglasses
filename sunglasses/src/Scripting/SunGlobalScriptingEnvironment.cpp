@@ -17,6 +17,8 @@
 #include <map>
 #include <string>
 
+namespace sunglasses {
+
 template<> const std::string SunLuaTypeRegistrar<SunGlobalScriptingEnvironment>::typeName = "SunGlobalScriptingEnvironment";
 template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<SunGlobalScriptingEnvironment> *> SunLuaTypeRegistrar<SunGlobalScriptingEnvironment>::dataMembers = {
     {"globalExists", new SunLuaTypeMemberFunction<SunGlobalScriptingEnvironment, bool, const char *>("globalExists", &SunGlobalScriptingEnvironment::globalExists)},
@@ -115,4 +117,6 @@ double SunGlobalScriptingEnvironment::getNumber(const char *key) {
 
 const char * SunGlobalScriptingEnvironment::getString(const char *key) {
     return globals[std::string(key)];
+}
+
 }

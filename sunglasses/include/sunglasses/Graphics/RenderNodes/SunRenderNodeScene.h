@@ -11,6 +11,8 @@
 #include <utility>
 #include <glm/glm.hpp>
 
+namespace sunglasses {
+
 class SunRenderNodeScene;
 
 /// A structure that represents a texture belonging to a render node
@@ -145,5 +147,6 @@ private:
     glm::vec2 size;
 };
 
+} // namespace
 
 #endif

@@ -8,12 +8,14 @@
 #include <sunglasses/Graphics/SunShader.h>
 #include <sunglasses/Core/SunBase.h>
 
+#include <glm/glm.hpp>
+
+namespace sunglasses {
+
 class SunObject;
 
 class SunMeshResource;
 class SunMaterialResource;
-
-#include <glm/glm.hpp>
 
 /// A class that represents a 3D object to be rendered
 /**
@@ -69,5 +71,7 @@ private:
     /// The scale of the mesh (relative to the object)
     glm::vec3 scale = glm::vec3(1.0f, 1.0f, 1.0f);
 };
+
+} // namespace
 
 #endif

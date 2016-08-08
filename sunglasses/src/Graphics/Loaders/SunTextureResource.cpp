@@ -5,6 +5,8 @@
 
 #include <SOIL/SOIL.h>
 
+namespace sunglasses {
+
 SunTextureResource::SunTextureResource(std::string _file) : file(_file) {
 
 }
@@ -21,3 +23,5 @@ void SunTextureResource::init() {
     SOIL_free_image_data(image);
     glBindTexture(GL_TEXTURE_2D, 0);
 }
+
+} // namespace

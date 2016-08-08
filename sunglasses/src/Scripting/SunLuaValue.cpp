@@ -3,6 +3,8 @@
 // See LICENSE.md for details.
 #include <sunglasses/Scripting/SunLuaValue.h>
 
+namespace sunglasses {
+
 namespace _SunPrivateScripting {
     SunLuaValue::SunLuaValue(lua_State *s, bool _isFunctionReturn, int _index) {
         state = s;
@@ -167,3 +169,5 @@ namespace _SunPrivateScripting {
         lua_pop(state, tables.size());
     }
 }
+
+} // namespace

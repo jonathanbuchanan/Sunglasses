@@ -10,6 +10,8 @@
 #include <glm/glm.hpp>
 #include <vector>
 
+namespace sunglasses {
+
 class SunCursorManager : public SunService {
 public:
 
@@ -35,5 +37,7 @@ public:
 private:
     std::vector<SunBase *> subscribers;
 };
+
+} // namespace
 
 #endif

@@ -13,12 +13,15 @@
 
 #include <sunglasses/Core/SunNode.h>
 #include <sunglasses/Graphics/SunWindowManager.h>
-class SunShader;
 #include <sunglasses/Input/SunKeyboardManager.h>
 #include <sunglasses/Input/SunCursorManager.h>
 #include <sunglasses/Scripting/SunScript.h>
 
 #include <GLFW/glfw3.h>
+
+namespace sunglasses {
+
+class SunShader;
 
 class SunCamera : public SunNode {
 friend SunLuaTypeRegistrar<SunCamera>;
@@ -72,5 +75,7 @@ private:
     // FOV (in degrees)
     GLfloat FOV = 45.0f;
 };
+
+} // namespace
 
 #endif

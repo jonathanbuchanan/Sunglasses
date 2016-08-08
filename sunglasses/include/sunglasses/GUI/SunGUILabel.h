@@ -8,6 +8,8 @@
 
 #include <string>
 
+namespace sunglasses {
+
 /// A label in the GUI toolkit
 class SunGUILabel : public SunGUIView {
 public:
@@ -17,5 +19,7 @@ private:
     /// The text of the label
     std::string text;
 };
+
+} // namespace
 
 #endif

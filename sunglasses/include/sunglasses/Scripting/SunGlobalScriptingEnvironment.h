@@ -13,6 +13,8 @@
 #include <memory>
 #include <algorithm>
 
+namespace sunglasses {
+
 class SunObject;
 namespace _SunPrivateScripting {
     struct SunLuaPrimitive;
@@ -114,4 +116,7 @@ private:
     std::vector<SunObject *> objects;
     std::vector<SunScript *> scripts;
 };
+
+} // namespace
+
 #endif

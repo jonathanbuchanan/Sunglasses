@@ -8,6 +8,8 @@
 #include <string>
 #include <map>
 
+namespace sunglasses {
+
 class SunBase;
 
 typedef void * SunActionParameter;
@@ -114,5 +116,7 @@ private:
 };
 
 typedef std::function<void(SunAction)> SunActionFunction;
+
+} // namespace
 
 #endif

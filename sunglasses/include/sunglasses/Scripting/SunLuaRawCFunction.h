@@ -6,6 +6,8 @@
 
 #include <sunglasses/Scripting/SunLuaCFunction.h>
 
+namespace sunglasses {
+
 namespace _SunPrivateScripting {
 
     class SunLuaRawCFunction : public _SunLuaCFunction_Base {
@@ -33,5 +35,7 @@ namespace _SunPrivateScripting {
         std::function<void(lua_State *)> function;
     };
 }
+
+} // namespace
 
 #endif

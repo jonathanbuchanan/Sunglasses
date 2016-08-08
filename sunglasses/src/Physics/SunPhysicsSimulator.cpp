@@ -4,6 +4,8 @@
 #include <sunglasses/Physics/SunPhysicsSimulator.h>
 #include <iostream>
 
+namespace sunglasses {
+
 void SunPhysicsSimulator::cycle(float delta) {
     integrate(delta);
     std::vector<SunPhysicsCollisionTuple> collisions = detectCollisions(delta);
@@ -106,3 +108,5 @@ void SunPhysicsSimulator::respondToCollisions(std::vector<SunPhysicsCollisionTup
         }
     }
 }
+
+} // sunglasses

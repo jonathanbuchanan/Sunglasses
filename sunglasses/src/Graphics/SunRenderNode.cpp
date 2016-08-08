@@ -4,6 +4,7 @@
 #include <sunglasses/Graphics/SunRenderNode.h>
 #include <iostream>
 
+namespace sunglasses {
 
 SunRenderNode::SunRenderNode() {
 
@@ -13,3 +14,5 @@ void SunRenderNode::init() {
     addAction("render", &SunRenderNode::render);
     addAction("bindOutputs", &SunRenderNode::bindOutputs);
 }
+
+} // namespace

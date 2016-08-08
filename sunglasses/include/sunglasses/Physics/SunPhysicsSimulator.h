@@ -3,13 +3,15 @@
 // See LICENSE.md for details.
 
 #ifndef SUNPHYSICSSIMULATOR_H
-#define    SUNPHYSICSSIMULATOR_H
+#define SUNPHYSICSSIMULATOR_H
 
 #include <vector>
 #include <tuple>
 
 #include <sunglasses/Physics/SunPhysicsWorld.h>
 #include <sunglasses/Physics/SunPhysicsObject.h>
+
+namespace sunglasses {
 
 typedef std::tuple<SunPhysicsObject *, SunPhysicsCollider *, SunPhysicsObject *, SunPhysicsCollider *, SunPhysicsCollisionData> SunPhysicsCollisionTuple;
 
@@ -31,5 +33,7 @@ public:
 private:
     SunPhysicsWorld world;
 };
+
+} // namespace
 
 #endif

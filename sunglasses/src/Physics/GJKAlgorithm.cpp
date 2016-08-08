@@ -4,6 +4,8 @@
 #include <sunglasses/Physics/GJKAlgorithm.h>
 #include <iostream>
 
+namespace sunglasses {
+
 glm::vec3 getFarthestPointAlongAxis(SunPhysicsColliderMesh *mesh, glm::vec3 axis) {
     glm::vec3 farthestPoint = mesh->getPositionAtIndex(0);
     float farthestDistance = glm::dot(mesh->getPositionAtIndex(0), axis);
@@ -203,3 +205,5 @@ bool processSimplex(Simplex &simplex, glm::vec3 &direction) {
         return processTetrahedron(simplex, direction);
     return false;
 }
+
+} // namespace

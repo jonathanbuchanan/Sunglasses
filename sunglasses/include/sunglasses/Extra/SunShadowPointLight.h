@@ -6,6 +6,8 @@
 
 #include "SunPointLight.h"
 
+namespace sunglasses {
+
 /// A point light that renders shadow maps
 class SunShadowPointLight : public SunPointLight {
 public:
@@ -61,5 +63,7 @@ private:
     /// The far plane of the shadow map projection matrix
     GLfloat farPlane = 100.0f;
 };
+
+} // namespace
 
 #endif

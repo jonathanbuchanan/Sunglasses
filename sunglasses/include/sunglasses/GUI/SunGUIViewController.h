@@ -6,6 +6,8 @@
 
 #include <sunglasses/GUI/SunGUIView.h>
 
+namespace sunglasses {
+
 class SunGUI;
 class SunGUIWindow;
 
@@ -24,5 +26,7 @@ protected:
     /// The view managed by the controller
     SunGUIView view;
 };
+
+} // namespace
 
 #endif

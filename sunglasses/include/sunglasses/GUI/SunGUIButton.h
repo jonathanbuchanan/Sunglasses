@@ -6,6 +6,8 @@
 
 #include <sunglasses/GUI/SunGUIView.h>
 
+namespace sunglasses {
+
 /// A button in the GUI
 class SunGUIButton : public SunGUIView {
 public:
@@ -25,5 +27,7 @@ protected:
     /// The selected (clicked on) color of the button
     glm::vec4 selectedColor;*/
 };
+
+} // namespace
 
 #endif

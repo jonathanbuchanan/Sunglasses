@@ -5,6 +5,8 @@
 
 #include <sunglasses/Graphics/SunRenderer.h>
 
+namespace sunglasses {
+
 SunScene::SunScene() {
 
 }
@@ -20,3 +22,5 @@ void SunScene::cycle() {
     renderer->render();
     renderer->swapBuffers();
 }
+
+} // namespace

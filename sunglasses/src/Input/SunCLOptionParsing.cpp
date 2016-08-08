@@ -3,6 +3,8 @@
 // See LICENSE.md for details.
 #include <sunglasses/Input/SunCLOptionParsing.h>
 
+namespace sunglasses {
+
 SunCLSwitchOption::SunCLSwitchOption(std::string shortOption, std::string longOption, std::string description, bool defaultValue, bool *_value) : arg(shortOption, longOption, description, defaultValue), value(_value) { }
 
 void SunCLSwitchOption::add(TCLAP::CmdLine &commandLine) {
@@ -31,3 +33,5 @@ void parseOptions(const std::vector<SunCLOption *> &options, std::string help, s
             options[i]->process();
     } catch (TCLAP::ArgException &e) { }
 }
+
+} // namespace

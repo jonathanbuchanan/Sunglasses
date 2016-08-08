@@ -5,6 +5,8 @@
 
 #include <sunglasses/Graphics/SunShader.h>
 
+namespace sunglasses {
+
 SunPointLight::SunPointLight() {
 
 }
@@ -34,3 +36,5 @@ void SunPointLight::uniform(SunAction action) {
 
     (*shader)["pointLightCount"] = shader->getArraySize("pointLights");
 }
+
+} // namespace

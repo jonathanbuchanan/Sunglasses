@@ -12,6 +12,8 @@
 #include <sunglasses/Graphics/SunPrimitives.h>
 #include <sunglasses/Graphics/SunCamera.h>
 
+namespace sunglasses {
+
 class SunScene;
 
 class SunRenderer : public SunBase {
@@ -30,5 +32,7 @@ protected:
 
     std::map<std::string, SunNode *> renderingNodeMap;
 };
+
+} // namespace
 
 #endif

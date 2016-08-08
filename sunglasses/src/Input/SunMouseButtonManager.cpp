@@ -4,6 +4,8 @@
 #include <sunglasses/Input/SunMouseButtonManager.h>
 #include <sunglasses/Scripting/SunScript.h>
 
+namespace sunglasses {
+
 template<> const std::string SunLuaTypeRegistrar<SunMouseButtonManager>::typeName = "MouseButtonManager";
 template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<SunMouseButtonManager> *> SunLuaTypeRegistrar<SunMouseButtonManager>::dataMembers = {
     //{"pollKey", new SunLuaTypeMemberFunction<SunKeyboardManager, bool, int>("pollKey", &SunKeyboardManager::keyDown)}
@@ -79,3 +81,5 @@ SunButtonState SunMouseButtonManager::pollButton(int button) {
         return SunButtonStateUp;
     return SunButtonStateNone;
 }
+
+} // namespace

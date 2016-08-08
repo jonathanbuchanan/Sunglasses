@@ -9,6 +9,8 @@
 #include <iostream>
 #include <algorithm>
 
+namespace sunglasses {
+
 SunPhysicsColliderMesh::SunPhysicsColliderMesh() {
     setType(SunPhysicsColliderTypeMesh);
 }
@@ -132,3 +134,5 @@ SunPhysicsCollisionData SunPhysicsColliderMesh::collideWith(SunPhysicsCollider *
     }
     return SunPhysicsCollisionData(false, 0);
 }
+
+} // namespace

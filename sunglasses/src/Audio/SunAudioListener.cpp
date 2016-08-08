@@ -3,6 +3,8 @@
 // See LICENSE.md for details.
 #include <sunglasses/Audio/SunAudioListener.h>
 
+namespace sunglasses {
+
 SunAudioListener::SunAudioListener(glm::vec3 _position) :
     position(_position) {
 
@@ -18,3 +20,5 @@ void SunAudioListener::update(SunAction action) {
     alListener3f(AL_POSITION, position.x, position.y, position.z);
     alListener3f(AL_VELOCITY, velocity.x, velocity.y, velocity.z);
 }
+
+} // namespace

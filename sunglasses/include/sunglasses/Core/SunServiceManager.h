@@ -3,11 +3,14 @@
 // See LICENSE.md for details.
 #ifndef SUNSERVICEMANAGER_H
 #define SUNSERVICEMANAGER_H
+
 #include <map>
 #include <typeindex>
 #include <memory>
 
 #include "SunService.h"
+
+namespace sunglasses {
 
 /// A class that manages a map of services with types as keys
 /**
@@ -43,5 +46,7 @@ private:
     /// The map of services
     std::map<std::type_index, std::unique_ptr<SunService>> services;
 };
+
+} // namespace
 
 #endif

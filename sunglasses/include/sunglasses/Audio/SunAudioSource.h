@@ -11,6 +11,8 @@
 #include <AL/al.h>
 #include <AL/alc.h>
 
+namespace sunglasses {
+
 /// A class that represents a source of sound in 3D space
 class SunAudioSource {
 public:
@@ -42,5 +44,7 @@ private:
     /// The audio source
     ALuint source;
 };
+
+} // namespace
 
 #endif

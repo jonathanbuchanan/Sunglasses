@@ -9,6 +9,8 @@
 #include <GLFW/glfw3.h>
 #include <vector>
 
+namespace sunglasses {
+
 class SunMouseButtonManager : public SunService {
 public:
 
@@ -27,5 +29,7 @@ private:
     std::vector<std::tuple<SunBase *, int, SunButtonEvent>> subscribers;
     std::array<int, 8> buttons;
 };
+
+} // namespace
 
 #endif

@@ -1,17 +1,13 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-/* 
- * File:   SunPhysicsCollider.h
- * Author: jonathan
- *
- * Created on August 6, 2015, 11:37 AM
- */
 
 #ifndef SUNPHYSICSCOLLIDER_H
-#define    SUNPHYSICSCOLLIDER_H
+#define SUNPHYSICSCOLLIDER_H
 
 #include <glm/glm.hpp>
+
+namespace sunglasses {
 
 enum SunPhysicsColliderType {
     SunPhysicsColliderTypeAABB,
@@ -66,5 +62,6 @@ private:
     SunPhysicsColliderType type;
 };
 
-#endif
+} // namespace
 
+#endif

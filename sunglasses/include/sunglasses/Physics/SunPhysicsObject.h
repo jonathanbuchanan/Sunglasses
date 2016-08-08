@@ -3,7 +3,7 @@
 // See LICENSE.md for details.
 
 #ifndef SUNPHYSICSOBJECT_H
-#define    SUNPHYSICSOBJECT_H
+#define SUNPHYSICSOBJECT_H
 
 #include <sunglasses/Physics/SunPhysicsForce.h>
 #include <sunglasses/Physics/SunPhysicsCollider.h>
@@ -13,6 +13,8 @@
 #include <sunglasses/Physics/SunPhysicsColliderMesh.h>
 
 #include <vector>
+
+namespace sunglasses {
 
 class SunPhysicsObject {
 public:
@@ -73,5 +75,7 @@ private:
     // Do Self Collision
     bool selfCollision;
 };
+
+} // namespace
 
 #endif

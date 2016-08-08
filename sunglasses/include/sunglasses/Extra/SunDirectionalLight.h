@@ -10,6 +10,8 @@
 #include <glm/glm.hpp>
 #include <GL/glew.h>
 
+namespace sunglasses {
+
 /// A node intended to be used as a directional light in the scene graph
 /**
  * This subclass of SunNode is intended to be used as a directional light. A
@@ -49,5 +51,7 @@ protected:
     /// The direction of the directional light
     glm::vec3 direction;
 };
+
+} // namespace
 
 #endif

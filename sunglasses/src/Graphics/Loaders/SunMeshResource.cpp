@@ -7,6 +7,8 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
+namespace sunglasses {
+
 SunMeshResource::SunMeshResource(aiMesh *_mesh) : mesh(_mesh) {
 
 }
@@ -99,3 +101,5 @@ void SunMeshResource::init() {
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 }
+
+} // namespace

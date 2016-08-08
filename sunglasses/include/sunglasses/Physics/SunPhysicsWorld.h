@@ -3,12 +3,14 @@
 // See LICENSE.md for details.
 
 #ifndef SUNPHYSICSWORLD_H
-#define    SUNPHYSICSWORLD_H
+#define SUNPHYSICSWORLD_H
 
 #include <sunglasses/Physics/SunPhysicsForce.h>
 #include <sunglasses/Physics/SunPhysicsObject.h>
 
 #include <vector>
+
+namespace sunglasses {
 
 class SunPhysicsWorld {
 public:
@@ -24,5 +26,7 @@ private:
     SunPhysicsForce gravity;
     std::vector<SunPhysicsObject *> objects;
 };
+
+} // namespace
 
 #endif
