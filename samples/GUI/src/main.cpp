@@ -5,12 +5,14 @@
 
 #include "GUIMainMenu.h"
 
+using namespace sunglasses;
+
 int main(int argc, char **argv) {
-    SunGUIWindow window = SunGUIWindow(640, 480, "GUI Demo");
+    GUI::Window window = GUI::Window(640, 480, "GUI Demo");
 
     GUIMainMenu mainMenu(window);
 
-    SunGUI gui = SunGUI(mainMenu, window);
+    GUI::System gui = GUI::System(mainMenu, window);
 
     while (true) {
         gui.update();

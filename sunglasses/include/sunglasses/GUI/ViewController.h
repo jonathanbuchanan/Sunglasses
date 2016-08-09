@@ -9,7 +9,7 @@
 namespace sunglasses {
 namespace GUI {
 
-class GUI;
+class System;
 class Window;
 
 /// Manages a view.
@@ -19,7 +19,7 @@ class Window;
  * @see View
  */
 class ViewController {
-friend GUI;
+friend System;
 public:
     /// Constructs a view controller from the dimensions of the window
     ViewController(Window &window, const Drawable &drawable = DrawableSolidColor(glm::vec4(1.0f)));

@@ -6,12 +6,15 @@
 
 #include <sunglasses/Sunglasses.hpp>
 
-class GUIMainMenu : public SunGUIViewController {
+using namespace sunglasses;
+using namespace sunglasses::GUI;
+
+class GUIMainMenu : public ViewController {
 public:
-    GUIMainMenu(SunGUIWindow &window);
+    GUIMainMenu(Window &window);
 private:
-    SunGUIView v;
-    SunGUIButton button;
+    View v;
+    Button button;
 };
 
 #endif

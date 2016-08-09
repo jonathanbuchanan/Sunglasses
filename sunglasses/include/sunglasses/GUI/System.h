@@ -1,8 +1,8 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#ifndef GUI_H
-#define GUI_H
+#ifndef SYSTEM_H
+#define SYSTEM_H
 
 #include <sunglasses/GUI/Window.h>
 #include <sunglasses/GUI/Renderer.h>
@@ -14,13 +14,13 @@ class View;
 class ViewController;
 
 /// A GUI containing a window and a content view
-class GUI {
+class System {
 public:
     /// Constructs the GUI with a content view
-    GUI(View *view, Window &_window);
+    System(View *view, Window &_window);
 
     /// Constructs the GUI with a content view from a view controller
-    GUI(ViewController &viewController, Window &_window);
+    System(ViewController &viewController, Window &_window);
 
     /// Updates the GUI elements
     void update();
