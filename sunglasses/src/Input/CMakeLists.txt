@@ -1,8 +1,8 @@
 add_sources(
-    SunCLOptionParsing.cpp
-    SunCursorManager.cpp
-    SunKeyboardManager.cpp
-    SunMouseButtonManager.cpp
+    CLOptionParsing.cpp
+    CursorManager.cpp
+    KeyboardManager.cpp
+    MouseButtonManager.cpp
 )
 
 add_sources_to_parent()

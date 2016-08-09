@@ -1,7 +1,7 @@
 add_sources(
-    SunResource.cpp
-    SunResourceManager.cpp
-    SunResourceService.cpp
+    Resource.cpp
+    ResourceManager.cpp
+    ResourceService.cpp
 )
 
 add_sources_to_parent()

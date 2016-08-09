@@ -1,12 +1,12 @@
 add_sources(
-    SunCamera.cpp
-    SunMesh.cpp
-    SunPrimitives.cpp
-    SunRenderer.cpp
-    SunRenderNode.cpp
-    SunShader.cpp
-    SunTexturedQuad.cpp
-    SunWindowManager.cpp
+    Camera.cpp
+    Mesh.cpp
+    Primitives.cpp
+    Renderer.cpp
+    RenderNode.cpp
+    Shader.cpp
+    TexturedQuad.cpp
+    WindowManager.cpp
 )
 
 add_subdirectory(Loaders)

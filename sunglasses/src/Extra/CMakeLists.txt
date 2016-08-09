@@ -1,10 +1,10 @@
 add_sources(
-    SunDirectionalLight.cpp
-    SunLuaTypeDefinitions.cpp
-    SunPointLight.cpp
-    SunShadowDirectionalLight.cpp
-    SunShadowMapRenderNode.cpp
-    SunShadowPointLight.cpp
+    DirectionalLight.cpp
+    LuaTypeDefinitions.cpp
+    PointLight.cpp
+    ShadowDirectionalLight.cpp
+    ShadowMapRenderNode.cpp
+    ShadowPointLight.cpp
 )
 
 add_sources_to_parent()

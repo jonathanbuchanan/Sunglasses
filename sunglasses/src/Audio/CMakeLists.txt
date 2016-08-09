@@ -1,8 +1,8 @@
 add_sources(
-    SunAudioBufferResource.cpp
-    SunAudioDeviceManager.cpp
-    SunAudioListener.cpp
-    SunAudioSource.cpp
+    AudioBufferResource.cpp
+    AudioDeviceManager.cpp
+    AudioListener.cpp
+    AudioSource.cpp
 )
 
 add_sources_to_parent() 

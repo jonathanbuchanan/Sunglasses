@@ -1,12 +1,12 @@
 add_sources(
-    SunGUI.cpp
-    SunGUIButton.cpp
-    SunGUIDrawable.cpp
-    SunGUILabel.cpp
-    SunGUIRenderer.cpp
-    SunGUIView.cpp
-    SunGUIViewController.cpp
-    SunGUIWindow.cpp
+    GUI.cpp
+    GUIButton.cpp
+    GUIDrawable.cpp
+    GUILabel.cpp
+    GUIRenderer.cpp
+    GUIView.cpp
+    GUIViewController.cpp
+    GUIWindow.cpp
 ) 
 
 add_sources_to_parent()

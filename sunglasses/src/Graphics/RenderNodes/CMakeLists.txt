@@ -1,5 +1,5 @@
 add_sources(
-    SunRenderNodeScene.cpp
+    RenderNodeScene.cpp
 )
 
 add_sources_to_parent()

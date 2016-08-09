@@ -1,14 +1,14 @@
 add_sources(
-    SunAction.cpp
-    SunBase.cpp
-    SunComponent.cpp
-    SunEntity.cpp
-    SunGame.cpp
-    SunNode.cpp
-    SunObject.cpp
-    SunScene.cpp
-    SunService.cpp
-    SunServiceManager.cpp
+    Action.cpp
+    Base.cpp
+    Component.cpp
+    Entity.cpp
+    Game.cpp
+    Node.cpp
+    Object.cpp
+    Scene.cpp
+    Service.cpp
+    ServiceManager.cpp
 )
 
 add_sources_to_parent() 
