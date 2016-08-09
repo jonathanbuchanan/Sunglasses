@@ -1,11 +1,11 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Audio/SunAudioSource.h>
+#include <sunglasses/Audio/AudioSource.h>
 
 namespace sunglasses {
 
-SunAudioSource::SunAudioSource(SunAudioBufferResource *_buffer,
+AudioSource::AudioSource(AudioBufferResource *_buffer,
         glm::vec3 _position,
         float _pitch,
         float _gain) :
@@ -13,13 +13,13 @@ SunAudioSource::SunAudioSource(SunAudioBufferResource *_buffer,
 
 }
 
-void SunAudioSource::init() {
+void AudioSource::init() {
     alGenSources(1, &source);
 
     alSourcei(source, AL_BUFFER, buffer->getBuffer());
 }
 
-void SunAudioSource::play() {
+void AudioSource::play() {
     alSourcePlay(source);
 }
 

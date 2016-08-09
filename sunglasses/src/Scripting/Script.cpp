@@ -1,40 +1,40 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Scripting/SunScript.h>
+#include <sunglasses/Scripting/Script.h>
 
 namespace sunglasses {
 
-SunScript::SunScript() {
+Script::Script() {
     state = luaL_newstate();
     luaL_openlibs(state);
 }
 
-SunScript::~SunScript() {
+Script::~Script() {
     lua_close(state);
 }
 
-void SunScript::close() {
+void Script::close() {
     lua_close(state);
 }
 
-void SunScript::loadFile(std::string file) {
+void Script::loadFile(std::string file) {
     luaL_dofile(state, file.c_str());
 }
 
-_SunPrivateScripting::SunLuaValue SunScript::getVariable(std::string var) {
-    return _SunPrivateScripting::SunLuaValue(state, var.c_str());
+_PrivateScripting::LuaValue Script::getVariable(std::string var) {
+    return _PrivateScripting::LuaValue(state, var.c_str());
 }
 
-_SunPrivateScripting::SunLuaValue SunScript::operator[](std::string var) {
-    return _SunPrivateScripting::SunLuaValue(state, var.c_str());
+_PrivateScripting::LuaValue Script::operator[](std::string var) {
+    return _PrivateScripting::LuaValue(state, var.c_str());
 }
 
-void SunScript::run(std::string code) {
+void Script::run(std::string code) {
     luaL_dostring(state, code.c_str());
 }
 
-void SunScript::operator()(std::string code) {
+void Script::operator()(std::string code) {
     run(code);
 } 
 

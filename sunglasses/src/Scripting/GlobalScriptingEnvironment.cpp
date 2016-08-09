@@ -1,54 +1,54 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Scripting/SunGlobalScriptingEnvironment.h>
+#include <sunglasses/Scripting/GlobalScriptingEnvironment.h>
 
-#include <sunglasses/Scripting/SunScript.h>
-#include <sunglasses/Core/SunObject.h>
+#include <sunglasses/Scripting/Script.h>
+#include <sunglasses/Core/Object.h>
 
-#include <sunglasses/Core/SunServiceManager.h>
+#include <sunglasses/Core/ServiceManager.h>
 
-#include <sunglasses/Input/SunCursorManager.h>
-#include <sunglasses/Input/SunKeyboardManager.h>
-#include <sunglasses/Input/SunMouseButtonManager.h>
+#include <sunglasses/Input/CursorManager.h>
+#include <sunglasses/Input/KeyboardManager.h>
+#include <sunglasses/Input/MouseButtonManager.h>
 
-#include <sunglasses/Graphics/SunWindowManager.h>
+#include <sunglasses/Graphics/WindowManager.h>
 
 #include <map>
 #include <string>
 
 namespace sunglasses {
 
-template<> const std::string SunLuaTypeRegistrar<SunGlobalScriptingEnvironment>::typeName = "SunGlobalScriptingEnvironment";
-template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<SunGlobalScriptingEnvironment> *> SunLuaTypeRegistrar<SunGlobalScriptingEnvironment>::dataMembers = {
-    {"globalExists", new SunLuaTypeMemberFunction<SunGlobalScriptingEnvironment, bool, const char *>("globalExists", &SunGlobalScriptingEnvironment::globalExists)},
-    {"setInteger", new SunLuaTypeMemberFunction<SunGlobalScriptingEnvironment, void, const char *, int>("setInteger", &SunGlobalScriptingEnvironment::setInteger)},
-    {"setBoolean", new SunLuaTypeMemberFunction<SunGlobalScriptingEnvironment, void, const char *, bool>("setBoolean", &SunGlobalScriptingEnvironment::setBoolean)},
-    {"setNumber", new SunLuaTypeMemberFunction<SunGlobalScriptingEnvironment, void, const char *, double>("setNumber", &SunGlobalScriptingEnvironment::setNumber)},
-    {"setString", new SunLuaTypeMemberFunction<SunGlobalScriptingEnvironment, void, const char *, const char *>("setString", &SunGlobalScriptingEnvironment::setString)},
-    {"getInteger", new SunLuaTypeMemberFunction<SunGlobalScriptingEnvironment, int, const char *>("getInteger", &SunGlobalScriptingEnvironment::getInteger)},
-    {"getBoolean", new SunLuaTypeMemberFunction<SunGlobalScriptingEnvironment, bool, const char *>("getBoolean", &SunGlobalScriptingEnvironment::getBoolean)},
-    {"getNumber", new SunLuaTypeMemberFunction<SunGlobalScriptingEnvironment, double, const char *>("getNumber", &SunGlobalScriptingEnvironment::getNumber)},
-    {"getString", new SunLuaTypeMemberFunction<SunGlobalScriptingEnvironment, const char *, const char *>("getString", &SunGlobalScriptingEnvironment::getString)}
+template<> const std::string LuaTypeRegistrar<GlobalScriptingEnvironment>::typeName = "GlobalScriptingEnvironment";
+template<> const std::map<std::string, Scripting::LuaTypeDataMemberBase<GlobalScriptingEnvironment> *> LuaTypeRegistrar<GlobalScriptingEnvironment>::dataMembers = {
+    {"globalExists", new LuaTypeMemberFunction<GlobalScriptingEnvironment, bool, const char *>("globalExists", &GlobalScriptingEnvironment::globalExists)},
+    {"setInteger", new LuaTypeMemberFunction<GlobalScriptingEnvironment, void, const char *, int>("setInteger", &GlobalScriptingEnvironment::setInteger)},
+    {"setBoolean", new LuaTypeMemberFunction<GlobalScriptingEnvironment, void, const char *, bool>("setBoolean", &GlobalScriptingEnvironment::setBoolean)},
+    {"setNumber", new LuaTypeMemberFunction<GlobalScriptingEnvironment, void, const char *, double>("setNumber", &GlobalScriptingEnvironment::setNumber)},
+    {"setString", new LuaTypeMemberFunction<GlobalScriptingEnvironment, void, const char *, const char *>("setString", &GlobalScriptingEnvironment::setString)},
+    {"getInteger", new LuaTypeMemberFunction<GlobalScriptingEnvironment, int, const char *>("getInteger", &GlobalScriptingEnvironment::getInteger)},
+    {"getBoolean", new LuaTypeMemberFunction<GlobalScriptingEnvironment, bool, const char *>("getBoolean", &GlobalScriptingEnvironment::getBoolean)},
+    {"getNumber", new LuaTypeMemberFunction<GlobalScriptingEnvironment, double, const char *>("getNumber", &GlobalScriptingEnvironment::getNumber)},
+    {"getString", new LuaTypeMemberFunction<GlobalScriptingEnvironment, const char *, const char *>("getString", &GlobalScriptingEnvironment::getString)}
 };
 
-SunGlobalScriptingEnvironment::SunGlobalScriptingEnvironment() {
+GlobalScriptingEnvironment::GlobalScriptingEnvironment() {
     initialize();
 }
 
-void SunGlobalScriptingEnvironment::initialize() {
+void GlobalScriptingEnvironment::initialize() {
 
 }
 
-void SunGlobalScriptingEnvironment::update() {
+void GlobalScriptingEnvironment::update() {
 
 }
 
-void SunGlobalScriptingEnvironment::registerObject(SunObject *object) {
+void GlobalScriptingEnvironment::registerObject(Object *object) {
     objects.push_back(object);
     for (size_t i = 0; i < scripts.size(); ++i) {
         object->registerInScript(scripts[i], (*scripts[i])["a"]);
-        //SunScript *script = scripts[i];
+        //Script *script = scripts[i];
         /*script->registerObject(script->getVariable("globalenvironment")[object->getName().c_str()], object);
         script->registerObjectAsType(script->getVariable("globalenvironment")[object->getName().c_str()]["rotation"], "vec3", &object->rotation);
         script->registerObjectAsType(script->getVariable("globalenvironment")[object->getName().c_str()]["position"], "vec3", &object->position);
@@ -58,7 +58,7 @@ void SunGlobalScriptingEnvironment::registerObject(SunObject *object) {
     }
 }
 
-int SunGlobalScriptingEnvironment::removeObject(SunObject *object) {
+int GlobalScriptingEnvironment::removeObject(Object *object) {
     if (std::find(objects.begin(), objects.end(), object) == objects.end())
         return -1;
     else {
@@ -66,56 +66,56 @@ int SunGlobalScriptingEnvironment::removeObject(SunObject *object) {
         scripts.erase(std::remove(scripts.begin(), scripts.end(), &object->script), scripts.end());
         objects.erase(std::remove(objects.begin(), objects.end(), object), objects.end());
         /*for (size_t i = 0; i < scripts.size(); ++i) {
-            SunScript *script = scripts[i];
+            Script *script = scripts[i];
         }*/
     }
     return 0;
 }
 
-void SunGlobalScriptingEnvironment::registerServices(SunServiceManager &services, SunScript &script) {
-    iterateTypes<SunCursorManager, SunKeyboardManager, SunMouseButtonManager, SunWindowManager>(services, script);
+void GlobalScriptingEnvironment::registerServices(ServiceManager &services, Script &script) {
+    iterateTypes<CursorManager, KeyboardManager, MouseButtonManager, WindowManager>(services, script);
 }
 
-void SunGlobalScriptingEnvironment::registerGlobal(std::string key, _SunPrivateScripting::SunLuaPrimitive value) {
+void GlobalScriptingEnvironment::registerGlobal(std::string key, _PrivateScripting::LuaPrimitive value) {
     globals[key] = value;
 }
 
-bool SunGlobalScriptingEnvironment::globalExists(const char *key) {
+bool GlobalScriptingEnvironment::globalExists(const char *key) {
     if (globals.find(std::string(key)) != globals.end())
         return true;
     else
         return false;
 }
 
-void SunGlobalScriptingEnvironment::setInteger(const char *key, int value) {
+void GlobalScriptingEnvironment::setInteger(const char *key, int value) {
     globals[key] = value;
 }
 
-void SunGlobalScriptingEnvironment::setBoolean(const char *key, bool value) {
+void GlobalScriptingEnvironment::setBoolean(const char *key, bool value) {
     globals[key] = value;
 }
 
-void SunGlobalScriptingEnvironment::setNumber(const char *key, double value) {
+void GlobalScriptingEnvironment::setNumber(const char *key, double value) {
     globals[key] = value;
 }
 
-void SunGlobalScriptingEnvironment::setString(const char *key, const char *value) {
+void GlobalScriptingEnvironment::setString(const char *key, const char *value) {
     globals[key] = value;
 }
 
-int SunGlobalScriptingEnvironment::getInteger(const char *key) {
+int GlobalScriptingEnvironment::getInteger(const char *key) {
     return globals[key];
 }
 
-bool SunGlobalScriptingEnvironment::getBoolean(const char *key) {
+bool GlobalScriptingEnvironment::getBoolean(const char *key) {
     return globals[key];
 }
 
-double SunGlobalScriptingEnvironment::getNumber(const char *key) {
+double GlobalScriptingEnvironment::getNumber(const char *key) {
     return globals[key];
 }
 
-const char * SunGlobalScriptingEnvironment::getString(const char *key) {
+const char * GlobalScriptingEnvironment::getString(const char *key) {
     return globals[std::string(key)];
 }
 

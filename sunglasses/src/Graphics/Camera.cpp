@@ -1,66 +1,66 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Graphics/SunCamera.h>
+#include <sunglasses/Graphics/Camera.h>
 
-#include <sunglasses/Scripting/SunGlobalScriptingEnvironment.h>
-#include <sunglasses/Graphics/SunShader.h>
+#include <sunglasses/Scripting/GlobalScriptingEnvironment.h>
+#include <sunglasses/Graphics/Shader.h>
 
 namespace sunglasses {
 
-template<> const std::string SunLuaTypeRegistrar<SunCamera>::typeName = "Camera";
-template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<SunCamera> *> SunLuaTypeRegistrar<SunCamera>::dataMembers = {
-    {"yaw", new SunLuaTypeDataMember<float, SunCamera>("yaw", &SunCamera::yaw)},
-    {"pitch", new SunLuaTypeDataMember<float, SunCamera>("pitch", &SunCamera::pitch)},
-    {"position", new SunLuaComplexDataMember<glm::vec3, SunCamera>("position", &SunCamera::position)},
-    {"direction", new SunLuaComplexDataMember<glm::vec3, SunCamera>("direction", &SunCamera::direction)},
-    {"up", new SunLuaComplexDataMember<glm::vec3, SunCamera>("up", &SunCamera::cameraUp)}
+template<> const std::string LuaTypeRegistrar<Camera>::typeName = "Camera";
+template<> const std::map<std::string, Scripting::LuaTypeDataMemberBase<Camera> *> LuaTypeRegistrar<Camera>::dataMembers = {
+    {"yaw", new LuaTypeDataMember<float, Camera>("yaw", &Camera::yaw)},
+    {"pitch", new LuaTypeDataMember<float, Camera>("pitch", &Camera::pitch)},
+    {"position", new LuaComplexDataMember<glm::vec3, Camera>("position", &Camera::position)},
+    {"direction", new LuaComplexDataMember<glm::vec3, Camera>("direction", &Camera::direction)},
+    {"up", new LuaComplexDataMember<glm::vec3, Camera>("up", &Camera::cameraUp)}
 };
 
-SunCamera::SunCamera() {
+Camera::Camera() {
 
 }
 
-SunCamera::SunCamera(GLfloat _FOV) {
+Camera::Camera(GLfloat _FOV) {
     FOV = _FOV;
 }
 
-SunCamera::SunCamera(GLfloat _FOV, glm::vec3 _position) {
+Camera::Camera(GLfloat _FOV, glm::vec3 _position) {
     FOV = _FOV;
     position = _position;
 }
 
-SunCamera::SunCamera(GLfloat _FOV, glm::vec3 _position, glm::vec3 _direction) {
+Camera::Camera(GLfloat _FOV, glm::vec3 _position, glm::vec3 _direction) {
     FOV = _FOV;
     position = _position;
     direction = _direction;
 }
 
-void SunCamera::init() {
-    script.loadFile("../../Scripts/SunCamera.lua");
+void Camera::init() {
+    script.loadFile("../../Scripts/Camera.lua");
     script.registerType<glm::vec3>();
     
     script.registerObject(this, "camera");
-    services.get<SunGlobalScriptingEnvironment>()->registerScript(this, script);
+    services.get<GlobalScriptingEnvironment>()->registerScript(this, script);
 
     setIgnoreTags(true);
-    addAction("update", &SunCamera::update);
-    addAction("uniform", &SunCamera::uniform);
+    addAction("update", &Camera::update);
+    addAction("uniform", &Camera::uniform);
 }
 
-void SunCamera::uniform(SunAction action) {
-    passPerFrameUniforms(action.getParameterPointer<SunShader>("shader"));
+void Camera::uniform(Action action) {
+    passPerFrameUniforms(action.getParameterPointer<Shader>("shader"));
 }
 
-void SunCamera::update(SunAction action) {
-    double delta = services.get<SunWindowManager>()->getDelta();
+void Camera::update(Action action) {
+    double delta = services.get<WindowManager>()->getDelta();
 
-    glm::vec2 mouse = services.get<SunCursorManager>()->getCursorPosition();
+    glm::vec2 mouse = services.get<CursorManager>()->getCursorPosition();
 
     script["update"](delta, mouse.x, mouse.y);
 }
 
-glm::mat4 SunCamera::viewMatrix() {
+glm::mat4 Camera::viewMatrix() {
     // Recalculate the camera's right and the camera's up
     cameraRight = glm::normalize(glm::cross(up, direction));
     cameraUp = glm::normalize(glm::cross(direction, cameraRight));
@@ -70,7 +70,7 @@ glm::mat4 SunCamera::viewMatrix() {
     return matrix;
 }
 
-glm::mat4 SunCamera::projectionMatrix(GLfloat _aspectRatio) {
+glm::mat4 Camera::projectionMatrix(GLfloat _aspectRatio) {
     // Create the projection matrix
     glm::mat4 matrix;
 
@@ -79,8 +79,8 @@ glm::mat4 SunCamera::projectionMatrix(GLfloat _aspectRatio) {
     return matrix;
 }
 
-void SunCamera::passPerFrameUniforms(SunShader *_shader) {
-    glm::vec2 size = services.get<SunWindowManager>()->getSize();
+void Camera::passPerFrameUniforms(Shader *_shader) {
+    glm::vec2 size = services.get<WindowManager>()->getSize();
 
     (*_shader)["viewPosition"] = position;
 

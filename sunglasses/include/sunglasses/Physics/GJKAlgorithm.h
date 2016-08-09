@@ -1,24 +1,24 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 
 #ifndef GJKALGORITHM_H
 #define GJKALGORITHM_H
 
-#include <sunglasses/Physics/SunPhysicsColliderMesh.h>
-#include <sunglasses/Physics/SunPhysicsColliderSphere.h>
-#include <sunglasses/Physics/SunPhysicsColliderAABB.h>
-#include <sunglasses/Physics/SunPhysicsColliderPlane.h>
+#include <sunglasses/Physics/PhysicsColliderMesh.h>
+#include <sunglasses/Physics/PhysicsColliderSphere.h>
+#include <sunglasses/Physics/PhysicsColliderAABB.h>
+#include <sunglasses/Physics/PhysicsColliderPlane.h>
 
 namespace sunglasses {
 
-extern glm::vec3 getFarthestPointAlongAxis(SunPhysicsColliderMesh *mesh, glm::vec3 axis);
-extern glm::vec3 getFarthestPointAlongAxis(SunPhysicsColliderSphere *sphere, glm::vec3 axis);
-extern glm::vec3 getFarthestPointAlongAxis(SunPhysicsColliderAABB *aabb, glm::vec3 axis);
+extern glm::vec3 getFarthestPointAlongAxis(PhysicsColliderMesh *mesh, glm::vec3 axis);
+extern glm::vec3 getFarthestPointAlongAxis(PhysicsColliderSphere *sphere, glm::vec3 axis);
+extern glm::vec3 getFarthestPointAlongAxis(PhysicsColliderAABB *aabb, glm::vec3 axis);
 
-extern glm::vec3 support(SunPhysicsColliderMesh *first, SunPhysicsColliderMesh *second, glm::vec3 axis, Simplex &simplex);
-extern glm::vec3 support(SunPhysicsColliderMesh *first, SunPhysicsColliderSphere *sphere, glm::vec3 axis, Simplex &simplex);
-extern glm::vec3 support(SunPhysicsColliderMesh *first, SunPhysicsColliderAABB *aabb, glm::vec3 axis, Simplex &simplex);
+extern glm::vec3 support(PhysicsColliderMesh *first, PhysicsColliderMesh *second, glm::vec3 axis, Simplex &simplex);
+extern glm::vec3 support(PhysicsColliderMesh *first, PhysicsColliderSphere *sphere, glm::vec3 axis, Simplex &simplex);
+extern glm::vec3 support(PhysicsColliderMesh *first, PhysicsColliderAABB *aabb, glm::vec3 axis, Simplex &simplex);
 
 extern glm::vec3 tripleCross(glm::vec3 a, glm::vec3 b, glm::vec3 c);
 

@@ -1,31 +1,31 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Input/SunKeyboardManager.h>
-#include <sunglasses/Scripting/SunScript.h>
+#include <sunglasses/Input/KeyboardManager.h>
+#include <sunglasses/Scripting/Script.h>
 
 namespace sunglasses {
 
-template<> const std::string SunLuaTypeRegistrar<SunKeyboardManager>::typeName = "KeyboardManager";
-template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<SunKeyboardManager> *> SunLuaTypeRegistrar<SunKeyboardManager>::dataMembers = {
-    {"pollKey", new SunLuaTypeMemberFunction<SunKeyboardManager, bool, int>("pollKey", &SunKeyboardManager::keyDown)}
+template<> const std::string LuaTypeRegistrar<KeyboardManager>::typeName = "KeyboardManager";
+template<> const std::map<std::string, Scripting::LuaTypeDataMemberBase<KeyboardManager> *> LuaTypeRegistrar<KeyboardManager>::dataMembers = {
+    {"pollKey", new LuaTypeMemberFunction<KeyboardManager, bool, int>("pollKey", &KeyboardManager::keyDown)}
 };
 
-SunKeyboardManager::SunKeyboardManager() {
+KeyboardManager::KeyboardManager() {
 
 }
 
-SunKeyboardManager::SunKeyboardManager(GLFWwindow *_window) {
+KeyboardManager::KeyboardManager(GLFWwindow *_window) {
     initialize(_window);
 }
 
-void SunKeyboardManager::initialize(GLFWwindow *_window) {
+void KeyboardManager::initialize(GLFWwindow *_window) {
     // Set the input mode to sticky keys
     glfwSetInputMode(_window, GLFW_STICKY_KEYS, 1);
     window = _window;
 }
 
-void SunKeyboardManager::update() {
+void KeyboardManager::update() {
     std::array<int, 512> old = keys;
 
     glfwPollEvents();
@@ -34,32 +34,32 @@ void SunKeyboardManager::update() {
     }
 
     for (size_t i = 0; i < subscribers.size(); i++) {
-        SunBase *subscriber = std::get<0>(subscribers[i]);
+        Base *subscriber = std::get<0>(subscribers[i]);
         int key = std::get<1>(subscribers[i]);
         int keyState = keys[key];
         int oldState = old[key];
-        SunButtonEvent event = std::get<2>(subscribers[i]);
+        ButtonEvent event = std::get<2>(subscribers[i]);
 
-        SunAction action("key");
+        Action action("key");
         action.addParameter("key", &key);
 
         switch (event) {
-            case SunButtonEventUpSingle:
+            case ButtonEventUpSingle:
                 if (keyState == GLFW_RELEASE && oldState == GLFW_PRESS) {
                     sendAction(action, subscriber);
                 }
                 break;
-            case SunButtonEventDownSingle:
+            case ButtonEventDownSingle:
                 if (keyState == GLFW_PRESS && oldState == GLFW_RELEASE) {
                     sendAction(action, subscriber);
                 }
                 break;
-            case SunButtonEventUpContinuous:
+            case ButtonEventUpContinuous:
                 if (keyState == GLFW_RELEASE) {
                     sendAction(action, subscriber);
                 }
                 break;
-            case SunButtonEventDownContinuous:
+            case ButtonEventDownContinuous:
                 if (keyState == GLFW_PRESS) {
                     sendAction(action, subscriber);
                 }
@@ -68,26 +68,26 @@ void SunKeyboardManager::update() {
     }
 }
 
-void SunKeyboardManager::registerWithScript(SunScript *script) {
-    script->registerType<SunKeyboardManager>();
+void KeyboardManager::registerWithScript(Script *script) {
+    script->registerType<KeyboardManager>();
     script->registerObject(this, "keyboard_manager");
 }
 
-void SunKeyboardManager::subscribe(SunBase *subscriber, int key, SunButtonEvent event) {
-    std::tuple<SunBase *, int, SunButtonEvent> tuple = std::make_tuple(subscriber, key, event);
+void KeyboardManager::subscribe(Base *subscriber, int key, ButtonEvent event) {
+    std::tuple<Base *, int, ButtonEvent> tuple = std::make_tuple(subscriber, key, event);
     subscribers.push_back(tuple);
 }
 
-SunButtonState SunKeyboardManager::pollKey(int key) {
+ButtonState KeyboardManager::pollKey(int key) {
     int state = glfwGetKey(window, key);
     if (state == GLFW_PRESS)
-        return SunButtonStateDown;
+        return ButtonStateDown;
     else if (state == GLFW_RELEASE)
-        return SunButtonStateUp;
-    return SunButtonStateNone;
+        return ButtonStateUp;
+    return ButtonStateNone;
 }
 
-bool SunKeyboardManager::keyDown(int key) {
+bool KeyboardManager::keyDown(int key) {
     int state = glfwGetKey(window, key);
     if (state == GLFW_PRESS)
         return true;

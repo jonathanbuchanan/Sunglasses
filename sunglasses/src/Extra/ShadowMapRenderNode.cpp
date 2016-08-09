@@ -1,19 +1,19 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Extra/SunShadowMapRenderNode.h>
+#include <sunglasses/Extra/ShadowMapRenderNode.h>
 
 namespace sunglasses {
 
-SunShadowMapRenderNode::SunShadowMapRenderNode(SunBase *_target) : target(_target) {
+ShadowMapRenderNode::ShadowMapRenderNode(Base *_target) : target(_target) {
 
 }
 
-void SunShadowMapRenderNode::render(SunAction action) {
+void ShadowMapRenderNode::render(Action action) {
     for (auto &iterator : shaders) {
         iterator.second.use();
 
-        SunAction shadowMap("shadowMap");
+        Action shadowMap("shadowMap");
         shadowMap.setRecursive(true);
         shadowMap.addParameter("tag", &iterator.first);
         shadowMap.addParameter("shader", &iterator.second);
@@ -22,15 +22,15 @@ void SunShadowMapRenderNode::render(SunAction action) {
     }
 }
 
-void SunShadowMapRenderNode::bindOutputs(SunAction action) {
+void ShadowMapRenderNode::bindOutputs(Action action) {
 
 }
 
-void SunShadowMapRenderNode::addShader(std::string tag, SunShader shader) {
+void ShadowMapRenderNode::addShader(std::string tag, Shader shader) {
     shaders.push_back(std::make_pair(tag, shader));
 }
 
-void SunShadowMapRenderNode::setShaders(std::vector<std::pair<std::string, SunShader>> _shaders) {
+void ShadowMapRenderNode::setShaders(std::vector<std::pair<std::string, Shader>> _shaders) {
     shaders = _shaders;
 }
 

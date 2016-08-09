@@ -1,11 +1,11 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Scripting/SunLuaPrimitives.h>
+#include <sunglasses/Scripting/LuaPrimitives.h>
 
 namespace sunglasses {
 
-namespace SunScripting {
+namespace Scripting {
     template<> int getFromStack(lua_State *l, int index) {
         return lua_tointeger(l, index);
     }

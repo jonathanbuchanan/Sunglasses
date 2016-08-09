@@ -1,11 +1,11 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Graphics/SunPrimitives.h>
+#include <sunglasses/Graphics/Primitives.h>
 
 namespace sunglasses {
 
-bool operator==(const SunVertex &v1, const SunVertex &v2) {
+bool operator==(const Vertex &v1, const Vertex &v2) {
     return v1.position == v2.position;
 }
 

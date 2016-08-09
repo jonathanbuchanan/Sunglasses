@@ -1,31 +1,31 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Input/SunMouseButtonManager.h>
-#include <sunglasses/Scripting/SunScript.h>
+#include <sunglasses/Input/MouseButtonManager.h>
+#include <sunglasses/Scripting/Script.h>
 
 namespace sunglasses {
 
-template<> const std::string SunLuaTypeRegistrar<SunMouseButtonManager>::typeName = "MouseButtonManager";
-template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<SunMouseButtonManager> *> SunLuaTypeRegistrar<SunMouseButtonManager>::dataMembers = {
-    //{"pollKey", new SunLuaTypeMemberFunction<SunKeyboardManager, bool, int>("pollKey", &SunKeyboardManager::keyDown)}
+template<> const std::string LuaTypeRegistrar<MouseButtonManager>::typeName = "MouseButtonManager";
+template<> const std::map<std::string, Scripting::LuaTypeDataMemberBase<MouseButtonManager> *> LuaTypeRegistrar<MouseButtonManager>::dataMembers = {
+    //{"pollKey", new LuaTypeMemberFunction<KeyboardManager, bool, int>("pollKey", &KeyboardManager::keyDown)}
 };
 
-SunMouseButtonManager::SunMouseButtonManager() {
+MouseButtonManager::MouseButtonManager() {
 
 }
 
-SunMouseButtonManager::SunMouseButtonManager(GLFWwindow *_window) {
+MouseButtonManager::MouseButtonManager(GLFWwindow *_window) {
     initialize(_window);
 }
 
-void SunMouseButtonManager::initialize(GLFWwindow *_window) {
+void MouseButtonManager::initialize(GLFWwindow *_window) {
     // Set the input mode to sticky
     window = _window;
     glfwSetInputMode(window, GLFW_STICKY_MOUSE_BUTTONS, 1);
 }
 
-void SunMouseButtonManager::update() {
+void MouseButtonManager::update() {
     std::array<int, 8> old = buttons;
 
     glfwPollEvents();
@@ -34,32 +34,32 @@ void SunMouseButtonManager::update() {
     }
 
     for (size_t i = 0; i < subscribers.size(); i++) {
-        SunBase *subscriber = std::get<0>(subscribers[i]);
+        Base *subscriber = std::get<0>(subscribers[i]);
         int button = std::get<1>(subscribers[i]);
         int buttonState = buttons[button];
         int oldState = old[button];
-        SunButtonEvent event = std::get<2>(subscribers[i]);
+        ButtonEvent event = std::get<2>(subscribers[i]);
 
-        SunAction action("button");
+        Action action("button");
         action.addParameter("button", &button);
 
         switch (event) {
-            case SunButtonEventUpSingle:
+            case ButtonEventUpSingle:
                 if (buttonState == GLFW_RELEASE && oldState == GLFW_PRESS) {
                     sendAction(action, subscriber);
                 }
                 break;
-            case SunButtonEventDownSingle:
+            case ButtonEventDownSingle:
                 if (buttonState == GLFW_PRESS && oldState == GLFW_RELEASE) {
                     sendAction(action, subscriber);
                 }
                 break;
-            case SunButtonEventUpContinuous:
+            case ButtonEventUpContinuous:
                 if (buttonState == GLFW_RELEASE) {
                     sendAction(action, subscriber);
                 }
                 break;
-            case SunButtonEventDownContinuous:
+            case ButtonEventDownContinuous:
                 if (buttonState == GLFW_PRESS) {
                     sendAction(action, subscriber);
                 }
@@ -68,18 +68,18 @@ void SunMouseButtonManager::update() {
     }
 }
 
-void SunMouseButtonManager::subscribe(SunBase *subscriber, int button, SunButtonEvent event) {
-    std::tuple<SunBase *, int, SunButtonEvent> tuple = std::make_tuple(subscriber, button, event);
+void MouseButtonManager::subscribe(Base *subscriber, int button, ButtonEvent event) {
+    std::tuple<Base *, int, ButtonEvent> tuple = std::make_tuple(subscriber, button, event);
     subscribers.push_back(tuple);
 }
 
-SunButtonState SunMouseButtonManager::pollButton(int button) {
+ButtonState MouseButtonManager::pollButton(int button) {
     int state = glfwGetMouseButton(window, button);
     if (state == GLFW_PRESS)
-        return SunButtonStateDown;
+        return ButtonStateDown;
     else if (state == GLFW_RELEASE)
-        return SunButtonStateUp;
-    return SunButtonStateNone;
+        return ButtonStateUp;
+    return ButtonStateNone;
 }
 
 } // namespace

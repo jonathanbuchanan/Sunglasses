@@ -1,30 +1,30 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Graphics/Loaders/SunModelResource.h>
+#include <sunglasses/Graphics/Loaders/ModelResource.h>
 
-#include <sunglasses/Graphics/Loaders/SunMaterialResource.h>
-#include <sunglasses/Graphics/Loaders/SunMeshResource.h>
-#include <sunglasses/Graphics/Loaders/SunTextureResource.h>
+#include <sunglasses/Graphics/Loaders/MaterialResource.h>
+#include <sunglasses/Graphics/Loaders/MeshResource.h>
+#include <sunglasses/Graphics/Loaders/TextureResource.h>
 
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
 namespace sunglasses {
 
-SunModelResource::SunModelResource(std::string _path) : path(_path), meshMap(nullptr), materialMap(nullptr) {
+ModelResource::ModelResource(std::string _path) : path(_path), meshMap(nullptr), materialMap(nullptr) {
 
 }
 
-SunModelResource::SunModelResource(std::string _path, std::map<std::string, SunResource *> *_meshMap) : path(_path), meshMap(_meshMap), materialMap(nullptr) {
+ModelResource::ModelResource(std::string _path, std::map<std::string, Resource *> *_meshMap) : path(_path), meshMap(_meshMap), materialMap(nullptr) {
 
 }
 
-SunModelResource::SunModelResource(std::string _path, std::map<std::string, SunResource *> *_meshMap, std::map<std::string, SunResource *> *_materialMap) : path(_path), meshMap(_meshMap), materialMap(_materialMap) {
+ModelResource::ModelResource(std::string _path, std::map<std::string, Resource *> *_meshMap, std::map<std::string, Resource *> *_materialMap) : path(_path), meshMap(_meshMap), materialMap(_materialMap) {
 
 }
 
-void SunModelResource::init() {
+void ModelResource::init() {
     scene = importer.ReadFile(path.c_str(), aiProcess_Triangulate | aiProcess_FlipUVs);
 
     // Add meshes
@@ -38,10 +38,10 @@ void SunModelResource::init() {
             std::string name = std::string(mesh->mName.C_Str());
 
             // Create mesh resource
-            SunMeshResource *meshResource = new SunMeshResource(mesh);
+            MeshResource *meshResource = new MeshResource(mesh);
 
             // Add to the mesh map
-            meshMap->insert(std::pair<std::string, SunMeshResource *>(name, meshResource));
+            meshMap->insert(std::pair<std::string, MeshResource *>(name, meshResource));
         }
     }
 
@@ -58,10 +58,10 @@ void SunModelResource::init() {
             std::string name = std::string(_name.C_Str());
 
             // Create material resource
-            SunMaterialResource *materialResource = new SunMaterialResource(material);
+            MaterialResource *materialResource = new MaterialResource(material);
 
             // Add to the material map
-            materialMap->insert(std::pair<std::string, SunMaterialResource *>(name, materialResource));
+            materialMap->insert(std::pair<std::string, MaterialResource *>(name, materialResource));
         }
     }
 }

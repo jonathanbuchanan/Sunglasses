@@ -1,20 +1,20 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Audio/SunAudioListener.h>
+#include <sunglasses/Audio/AudioListener.h>
 
 namespace sunglasses {
 
-SunAudioListener::SunAudioListener(glm::vec3 _position) :
+AudioListener::AudioListener(glm::vec3 _position) :
     position(_position) {
 
 }
 
-void SunAudioListener::init() {
-    addAction("update", &SunAudioListener::update);
+void AudioListener::init() {
+    addAction("update", &AudioListener::update);
 }
 
-void SunAudioListener::update(SunAction action) {
+void AudioListener::update(Action action) {
     glm::vec3 velocity = glm::vec3(0.0f);
 
     alListener3f(AL_POSITION, position.x, position.y, position.z);

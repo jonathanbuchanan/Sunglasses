@@ -1,26 +1,26 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Graphics/Loaders/SunMaterialResource.h>
+#include <sunglasses/Graphics/Loaders/MaterialResource.h>
 
-#include <sunglasses/Graphics/Loaders/SunTextureResource.h>
-#include <sunglasses/Graphics/SunShader.h>
+#include <sunglasses/Graphics/Loaders/TextureResource.h>
+#include <sunglasses/Graphics/Shader.h>
 
 namespace sunglasses {
 
-SunMaterialResource::SunMaterialResource(aiMaterial *_material) : material(_material) {
+MaterialResource::MaterialResource(aiMaterial *_material) : material(_material) {
 
 }
 
-SunMaterialResource::SunMaterialResource(glm::vec3 color, float _shininess) : material(nullptr), diffuse(color), specular(color), ambient(color), shininess(_shininess) {
+MaterialResource::MaterialResource(glm::vec3 color, float _shininess) : material(nullptr), diffuse(color), specular(color), ambient(color), shininess(_shininess) {
 
 }
 
-SunMaterialResource::SunMaterialResource(SunTextureResource *texture, float _shininess) : diffuseTextured(true), diffuseTexture(texture), shininess(_shininess) {
+MaterialResource::MaterialResource(TextureResource *texture, float _shininess) : diffuseTextured(true), diffuseTexture(texture), shininess(_shininess) {
 
 }
 
-void SunMaterialResource::init() {
+void MaterialResource::init() {
     // Material was created from an aiMaterial
     if (material.get() != nullptr) {
         aiColor3D _diffuse;
@@ -61,7 +61,7 @@ void SunMaterialResource::init() {
     }
 }
 
-void SunMaterialResource::pass(SunShader *shader, std::string structName) {
+void MaterialResource::pass(Shader *shader, std::string structName) {
     if (!diffuseTextured)
         (*shader)[structName + ".diffuse"] = diffuse;
     else {

@@ -1,33 +1,33 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Physics/SunPhysicsSimulator.h>
+#include <sunglasses/Physics/PhysicsSimulator.h>
 #include <iostream>
 
 namespace sunglasses {
 
-void SunPhysicsSimulator::cycle(float delta) {
+void PhysicsSimulator::cycle(float delta) {
     integrate(delta);
-    std::vector<SunPhysicsCollisionTuple> collisions = detectCollisions(delta);
+    std::vector<PhysicsCollisionTuple> collisions = detectCollisions(delta);
     respondToCollisions(collisions, delta);
 }
 
-void SunPhysicsSimulator::integrate(float delta) {
-    std::vector<SunPhysicsForce> forces;
+void PhysicsSimulator::integrate(float delta) {
+    std::vector<PhysicsForce> forces;
     forces.push_back(world.getGravity());
     for (size_t i = 0; i < world.getObjects().size(); i++) {
         world.getObjectAtIndex(i)->updatePositionForForcesAndDelta(forces, delta);
     }
 }
 
-std::vector<SunPhysicsCollisionTuple> SunPhysicsSimulator::detectCollisions(float delta) {
-    std::vector<SunPhysicsCollisionTuple> collidingObjects;
+std::vector<PhysicsCollisionTuple> PhysicsSimulator::detectCollisions(float delta) {
+    std::vector<PhysicsCollisionTuple> collidingObjects;
     for (size_t i = 0; i < world.getObjects().size(); i++) {
         for (int j = 0; j < world.getObjectAtIndex(i)->getCollidersSize(); j++) {
             if (world.getObjectAtIndex(i)->getSelfCollision() == true) {
                 // Check for collisions against other colliders in the object
                 for (int k = j + 1; j < world.getObjectAtIndex(i)->getCollidersSize(); k++) {
-                    SunPhysicsCollisionData data = world.getObjectAtIndex(i)->getColliderAtIndex(j)->collideWith(world.getObjectAtIndex(i)->getColliderAtIndex(k));
+                    PhysicsCollisionData data = world.getObjectAtIndex(i)->getColliderAtIndex(j)->collideWith(world.getObjectAtIndex(i)->getColliderAtIndex(k));
                     if (data.collided == true) {
                         collidingObjects.push_back(std::make_tuple(world.getObjectAtIndex(i), world.getObjectAtIndex(i)->getColliderAtIndex(j), world.getObjectAtIndex(i), world.getObjectAtIndex(i)->getColliderAtIndex(k), data));
                     }
@@ -37,7 +37,7 @@ std::vector<SunPhysicsCollisionTuple> SunPhysicsSimulator::detectCollisions(floa
             // Check for collisions against other colliders in the scene
             for (size_t k = i + 1; k < world.getObjects().size(); k++) {
                 for (int l = 0; l < world.getObjectAtIndex(k)->getCollidersSize(); l++) {
-                    SunPhysicsCollisionData data = world.getObjectAtIndex(i)->getColliderAtIndex(j)->collideWith(world.getObjectAtIndex(k)->getColliderAtIndex(l));
+                    PhysicsCollisionData data = world.getObjectAtIndex(i)->getColliderAtIndex(j)->collideWith(world.getObjectAtIndex(k)->getColliderAtIndex(l));
                     if (data.collided == true) {
                         collidingObjects.push_back(std::make_tuple(world.getObjectAtIndex(i), world.getObjectAtIndex(i)->getColliderAtIndex(j), world.getObjectAtIndex(k), world.getObjectAtIndex(k)->getColliderAtIndex(l), data));
                     }
@@ -48,20 +48,20 @@ std::vector<SunPhysicsCollisionTuple> SunPhysicsSimulator::detectCollisions(floa
     return collidingObjects;
 }
 
-void SunPhysicsSimulator::respondToCollisions(std::vector<SunPhysicsCollisionTuple> collisions, float delta) {
+void PhysicsSimulator::respondToCollisions(std::vector<PhysicsCollisionTuple> collisions, float delta) {
     for (size_t i = 0; i < collisions.size(); i++) {
-        SunPhysicsObject *first = std::get<0>(collisions[i]);
-        SunPhysicsCollider *firstCollider = std::get<1>(collisions[i]);
-        SunPhysicsObject *second = std::get<2>(collisions[i]);
-        SunPhysicsCollider *secondCollider = std::get<3>(collisions[i]);
-        //SunPhysicsCollisionData data = std::get<4>(collisions[i]);
+        PhysicsObject *first = std::get<0>(collisions[i]);
+        PhysicsCollider *firstCollider = std::get<1>(collisions[i]);
+        PhysicsObject *second = std::get<2>(collisions[i]);
+        PhysicsCollider *secondCollider = std::get<3>(collisions[i]);
+        //PhysicsCollisionData data = std::get<4>(collisions[i]);
 
         // Perfectly Elastic Collision
         if (first->getElasticity() == 1 && second->getElasticity() == 1) {
             bool reflection = false;
-            if (firstCollider->getType() == SunPhysicsColliderTypePlane && ((SunPhysicsColliderPlane *)firstCollider)->getReflective() == true) {
+            if (firstCollider->getType() == PhysicsColliderTypePlane && ((PhysicsColliderPlane *)firstCollider)->getReflective() == true) {
                 reflection = true;
-                glm::vec3 normal = ((SunPhysicsColliderPlane *)firstCollider)->getNormal();
+                glm::vec3 normal = ((PhysicsColliderPlane *)firstCollider)->getNormal();
                 float magnitude = glm::length(second->getVelocity());
                 glm::vec3 initial = second->getVelocity();
 
@@ -69,9 +69,9 @@ void SunPhysicsSimulator::respondToCollisions(std::vector<SunPhysicsCollisionTup
                 second->setVelocity(glm::normalize(newVelocity) * magnitude);
             }
 
-            if (secondCollider->getType() == SunPhysicsColliderTypePlane && ((SunPhysicsColliderPlane *)secondCollider)->getReflective() == true) {
+            if (secondCollider->getType() == PhysicsColliderTypePlane && ((PhysicsColliderPlane *)secondCollider)->getReflective() == true) {
                 reflection = true;
-                glm::vec3 normal = ((SunPhysicsColliderPlane *)secondCollider)->getNormal();
+                glm::vec3 normal = ((PhysicsColliderPlane *)secondCollider)->getNormal();
                 float magnitude = glm::length(first->getVelocity());
                 glm::vec3 initial = first->getVelocity();
 

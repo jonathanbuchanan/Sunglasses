@@ -1,31 +1,31 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Extra/SunPointLight.h>
+#include <sunglasses/Extra/PointLight.h>
 
-#include <sunglasses/Graphics/SunShader.h>
+#include <sunglasses/Graphics/Shader.h>
 
 namespace sunglasses {
 
-SunPointLight::SunPointLight() {
+PointLight::PointLight() {
 
 }
 
-SunPointLight::SunPointLight(glm::vec3 _color, glm::vec3 _position) : color(_color), position(_position) {
+PointLight::PointLight(glm::vec3 _color, glm::vec3 _position) : color(_color), position(_position) {
 
 }
 
-void SunPointLight::init() {
-    addAction("update", &SunPointLight::update);
-    addAction("uniform", &SunPointLight::uniform);
+void PointLight::init() {
+    addAction("update", &PointLight::update);
+    addAction("uniform", &PointLight::uniform);
 }
 
-void SunPointLight::update(SunAction action) {
+void PointLight::update(Action action) {
 
 }
 
-void SunPointLight::uniform(SunAction action) {
-    SunShader *shader = action.getParameterPointer<SunShader>("shader");
+void PointLight::uniform(Action action) {
+    Shader *shader = action.getParameterPointer<Shader>("shader");
     int id = shader->getNextArrayIndex("pointLights");
 
     (*shader)["pointLights[" + std::to_string(id) + "].color"] = color;

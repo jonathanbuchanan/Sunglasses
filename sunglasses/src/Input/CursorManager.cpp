@@ -1,44 +1,44 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Input/SunCursorManager.h>
-#include <sunglasses/Scripting/SunScript.h>
+#include <sunglasses/Input/CursorManager.h>
+#include <sunglasses/Scripting/Script.h>
 
 namespace sunglasses {
 
-template<> const std::string SunLuaTypeRegistrar<SunCursorManager>::typeName = "CursorManager";
-template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<SunCursorManager> *> SunLuaTypeRegistrar<SunCursorManager>::dataMembers = {
-    {"enableCursor", new SunLuaTypeMemberFunction<SunCursorManager, void>("enableCursor", &SunCursorManager::enableCursor)},
-    {"disableCursor", new SunLuaTypeMemberFunction<SunCursorManager, void>("disableCursor", &SunCursorManager::disableCursor)}
+template<> const std::string LuaTypeRegistrar<CursorManager>::typeName = "CursorManager";
+template<> const std::map<std::string, Scripting::LuaTypeDataMemberBase<CursorManager> *> LuaTypeRegistrar<CursorManager>::dataMembers = {
+    {"enableCursor", new LuaTypeMemberFunction<CursorManager, void>("enableCursor", &CursorManager::enableCursor)},
+    {"disableCursor", new LuaTypeMemberFunction<CursorManager, void>("disableCursor", &CursorManager::disableCursor)}
 };
 
-SunCursorManager::SunCursorManager() {
+CursorManager::CursorManager() {
 
 }
 
-SunCursorManager::SunCursorManager(GLFWwindow *_window) {
+CursorManager::CursorManager(GLFWwindow *_window) {
     initialize(_window);
 }
 
-SunCursorManager::SunCursorManager(GLFWwindow *_window, bool disable) {
+CursorManager::CursorManager(GLFWwindow *_window, bool disable) {
     initialize(_window, disable);
 }
 
-void SunCursorManager::initialize(GLFWwindow *_window) {
+void CursorManager::initialize(GLFWwindow *_window) {
     window = _window;
 }
 
-void SunCursorManager::initialize(GLFWwindow *_window, bool disable) {
+void CursorManager::initialize(GLFWwindow *_window, bool disable) {
     window = _window;
     if (disable)
         disableCursor();
 }
 
-void SunCursorManager::update() {
+void CursorManager::update() {
     double x, y;
     glfwGetCursorPos(window, &x, &y);
 
-    SunAction action("cursor");
+    Action action("cursor");
 
     action.addParameter("x", &x);
     action.addParameter("y", &y);
@@ -47,25 +47,25 @@ void SunCursorManager::update() {
         sendAction(action, subscriber);
 }
 
-void SunCursorManager::enableCursor() {
+void CursorManager::enableCursor() {
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 }
 
-void SunCursorManager::disableCursor() {
+void CursorManager::disableCursor() {
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 }
 
-int SunCursorManager::getMode() {
+int CursorManager::getMode() {
     return glfwGetInputMode(window, GLFW_CURSOR);
 }
 
-glm::vec2 SunCursorManager::getCursorPosition() {
+glm::vec2 CursorManager::getCursorPosition() {
     double x, y;
     glfwGetCursorPos(window, &x, &y);
     return glm::vec2(x, y);
 }
 
-glm::vec2 SunCursorManager::getCursorPositionNDC() {
+glm::vec2 CursorManager::getCursorPositionNDC() {
     double x, y;
     glfwGetCursorPos(window, &x, &y);
 
@@ -75,7 +75,7 @@ glm::vec2 SunCursorManager::getCursorPositionNDC() {
     return glm::vec2((x - (width / 2)) / (width / 2), (y - (height / 2)) / (height / 2));
 }
 
-void SunCursorManager::subscribe(SunBase *subscriber) {
+void CursorManager::subscribe(Base *subscriber) {
     subscribers.push_back(subscriber);
 }
 

@@ -1,22 +1,22 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Core/SunScene.h>
+#include <sunglasses/Core/Scene.h>
 
-#include <sunglasses/Graphics/SunRenderer.h>
+#include <sunglasses/Graphics/Renderer.h>
 
 namespace sunglasses {
 
-SunScene::SunScene() {
+Scene::Scene() {
 
 }
 
-void SunScene::init() {
+void Scene::init() {
 
 }
 
-void SunScene::cycle() {
-    SunAction update("update");
+void Scene::cycle() {
+    Action update("update");
     update.setRecursive(true);
     sendAction(update, root.get());
     renderer->render();

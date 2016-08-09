@@ -1,56 +1,56 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Core/SunNode.h>
+#include <sunglasses/Core/Node.h>
 
 #include <iostream>
 
 namespace sunglasses {
 
-SunNode::SunNode() {
+Node::Node() {
     parentsReady = 0;
     level = 0;
 }
 
-SunNode::SunNode(std::string _tag) : tags({_tag}) {
-    SunNode();
+Node::Node(std::string _tag) : tags({_tag}) {
+    Node();
 }
 
-SunNode::SunNode(std::vector<std::string> _tags) : tags(_tags) {
-    SunNode();
+Node::Node(std::vector<std::string> _tags) : tags(_tags) {
+    Node();
 }
 
-void SunNode::init() {
+void Node::init() {
 
 }
 
-void SunNode::processAction(SunAction action) {
+void Node::processAction(Action action) {
     if (action.parameterExists("exclude")) {
-        if (action.getParameterPointer<SunNode>("exclude") != this) {
+        if (action.getParameterPointer<Node>("exclude") != this) {
             if (action.parameterExists("tag") && ignoreTags == false) {
                 if (tagPresent(action.getParameter<std::string>("tag")))
-                    SunBase::processAction(action);
+                    Base::processAction(action);
             } else
-                SunBase::processAction(action);
+                Base::processAction(action);
             if (action.getRecursive() == true)
                 sendActionToAllSubNodes(action);
         }
     } else {
         if (action.parameterExists("tag") && ignoreTags == false) {
             if (tagPresent(action.getParameter<std::string>("tag")))
-                SunBase::processAction(action);
+                Base::processAction(action);
         } else
-            SunBase::processAction(action);
+            Base::processAction(action);
         if (action.getRecursive() == true)
             sendActionToAllSubNodes(action);
     }
 }
 
-bool SunNode::tagPresent(std::string t) {
+bool Node::tagPresent(std::string t) {
     return (std::find(tags.begin(), tags.end(), t) != tags.end()) ? true : false;
 }
 
-void SunNode::sendActionToAllSubNodes(SunAction action) {
+void Node::sendActionToAllSubNodes(Action action) {
     for (size_t i = 0; i < subNodes.size(); ++i)
         subNodes[i]->processAction(action, false);
     if (action.getRecursive())
@@ -58,24 +58,24 @@ void SunNode::sendActionToAllSubNodes(SunAction action) {
             subNodes[i]->sendActionToAllSubNodes(action);
 }
 
-void SunNode::addSubNode(SunNode *_subNode) {
-    if (find(subNodes.begin(), subNodes.end(), std::shared_ptr<SunNode>(_subNode)) == subNodes.end()) {
-        subNodes.push_back(std::shared_ptr<SunNode>(_subNode));
+void Node::addSubNode(Node *_subNode) {
+    if (find(subNodes.begin(), subNodes.end(), std::shared_ptr<Node>(_subNode)) == subNodes.end()) {
+        subNodes.push_back(std::shared_ptr<Node>(_subNode));
         _subNode->parents.push_back(this);
         _subNode->level = level + 1;
     }
 }
 
-void SunNode::addSubNode(const std::shared_ptr<SunNode> &_subNode) {
+void Node::addSubNode(const std::shared_ptr<Node> &_subNode) {
     if (find(subNodes.begin(), subNodes.end(), _subNode) == subNodes.end()) {
-        subNodes.push_back(std::shared_ptr<SunNode>(_subNode));
+        subNodes.push_back(std::shared_ptr<Node>(_subNode));
         _subNode->parents.push_back(this);
         _subNode->level = level + 1;
     }
 }
 
-void SunNode::recursiveDeleteSubnode(SunNode *_node) {
-    std::shared_ptr<SunNode> node = std::shared_ptr<SunNode>(_node);
+void Node::recursiveDeleteSubnode(Node *_node) {
+    std::shared_ptr<Node> node = std::shared_ptr<Node>(_node);
     for (size_t i = 0; i < subNodes.size(); i++) {
         if (subNodes[i] == node)
             subNodes.erase(subNodes.begin() + i);
@@ -84,23 +84,23 @@ void SunNode::recursiveDeleteSubnode(SunNode *_node) {
     }
 }
 
-void SunNode::processAction(SunAction action, bool recursive) {
+void Node::processAction(Action action, bool recursive) {
     if (action.parameterExists("exclude")) {
-        if (action.getParameterPointer<SunNode>("exclude") != this) {
+        if (action.getParameterPointer<Node>("exclude") != this) {
             if (action.parameterExists("tag") && ignoreTags == false) {
                 if (tagPresent(action.getParameter<std::string>("tag")))
-                    SunBase::processAction(action);
+                    Base::processAction(action);
             } else
-                SunBase::processAction(action);
+                Base::processAction(action);
             if (action.getRecursive() == true && recursive == true)
                 sendActionToAllSubNodes(action);
         }
     } else {
         if (action.parameterExists("tag") && ignoreTags == false) {
             if (tagPresent(action.getParameter<std::string>("tag")))
-                SunBase::processAction(action);
+                Base::processAction(action);
         } else
-            SunBase::processAction(action);
+            Base::processAction(action);
         if (action.getRecursive() == true && recursive == true)
             sendActionToAllSubNodes(action);
     }

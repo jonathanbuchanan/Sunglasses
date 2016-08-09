@@ -1,39 +1,39 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Extern/SunResourceService.h>
+#include <sunglasses/Extern/ResourceService.h>
 
 namespace sunglasses {
 
-SunResourceService::SunResourceService() {
+ResourceService::ResourceService() {
 
 }
 
-void SunResourceService::update() {
+void ResourceService::update() {
 
 }
 
-SunResourceManager * SunResourceService::operator[](std::string name) {
+ResourceManager * ResourceService::operator[](std::string name) {
     if (resourceManagers.find(name) == resourceManagers.end())
         return nullptr; // Resource manager is not present, return -1
     return resourceManagers[name].get();
 }
 
-SunResourceManager * SunResourceService::getResourceManager(std::string name) {
+ResourceManager * ResourceService::getResourceManager(std::string name) {
     if (resourceManagers.find(name) == resourceManagers.end())
         return nullptr; // Resource manager is not present, return -1
     return resourceManagers[name].get();
 }
 
-int SunResourceService::addResourceManager(std::string name, SunResourceManager *manager) {
+int ResourceService::addResourceManager(std::string name, ResourceManager *manager) {
     if (resourceManagers.find(name) != resourceManagers.end())
         return -1; // Resource manager is already existant, return -1
     else
-        resourceManagers[name] = std::unique_ptr<SunResourceManager>(manager);
+        resourceManagers[name] = std::unique_ptr<ResourceManager>(manager);
     return 0;
 }
 
-int SunResourceService::removeResourceManager(std::string name) {
+int ResourceService::removeResourceManager(std::string name) {
     if (resourceManagers.find(name) == resourceManagers.end())
         return -1; // Resource manager is not present, return -1
     resourceManagers.erase(name);

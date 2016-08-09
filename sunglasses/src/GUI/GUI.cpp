@@ -1,24 +1,24 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/GUI/SunGUI.h>
+#include <sunglasses/GUI/GUI.h>
 
-#include <sunglasses/GUI/SunGUIView.h>
-#include <sunglasses/GUI/SunGUIViewController.h>
+#include <sunglasses/GUI/GUIView.h>
+#include <sunglasses/GUI/GUIViewController.h>
 
 namespace sunglasses {
 
-SunGUI::SunGUI(SunGUIView *view, SunGUIWindow &_window) :
+GUI::GUI(GUIView *view, GUIWindow &_window) :
     window(_window), renderer(window), contentView(view) {
 
 }
 
-SunGUI::SunGUI(SunGUIViewController &viewController, SunGUIWindow &_window) :
+GUI::GUI(GUIViewController &viewController, GUIWindow &_window) :
     window(_window), renderer(window), contentView(&viewController.view) {
 
 }
 
-void SunGUI::update() {
+void GUI::update() {
     // Update the size of the viewport to match the framebuffer
     window.updateViewport();
 
@@ -29,7 +29,7 @@ void SunGUI::update() {
     contentView->updateTree(glm::ivec2(0), window.updateInfo());
 }
 
-void SunGUI::draw() {
+void GUI::draw() {
     // Clear the window
     window.clear();
 

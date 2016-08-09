@@ -1,22 +1,22 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/GUI/SunGUIView.h>
+#include <sunglasses/GUI/GUIView.h>
 
-#include <sunglasses/GUI/SunGUIRenderer.h>
-#include <sunglasses/GUI/SunGUIWindow.h>
+#include <sunglasses/GUI/GUIRenderer.h>
+#include <sunglasses/GUI/GUIWindow.h>
 
 namespace sunglasses {
 
-SunGUIView::SunGUIView(glm::ivec2 _position,
+GUIView::GUIView(glm::ivec2 _position,
         glm::ivec2 _size,
-        const SunGUIDrawable &_drawable,
+        const GUIDrawable &_drawable,
         bool _visible) : position(_position), size(_size), drawable(_drawable.copy()),
-        visible(_visible), state(SunGUIControlState::Normal) {
+        visible(_visible), state(GUIControlState::Normal) {
 
 }
 
-void SunGUIView::updateTree(glm::ivec2 parentPosition, SunGUIUpdateInfo info) {
+void GUIView::updateTree(glm::ivec2 parentPosition, GUIUpdateInfo info) {
     this->update(parentPosition, info);
 
     glm::ivec2 absolute = parentPosition + (glm::ivec2)position;
@@ -26,21 +26,21 @@ void SunGUIView::updateTree(glm::ivec2 parentPosition, SunGUIUpdateInfo info) {
         view->updateTree(absolute, info);
 }
 
-void SunGUIView::update(glm::ivec2 parentPosition, SunGUIUpdateInfo info) {
+void GUIView::update(glm::ivec2 parentPosition, GUIUpdateInfo info) {
     glm::ivec2 absolute = parentPosition + (glm::ivec2)position;
     glm::ivec2 cursor = info.cursor;
     if ((absolute.x <= cursor.x && cursor.x <= absolute.x + size.x) &&
         (absolute.y <= cursor.y && cursor.y <= absolute.y + size.y)) {
-        if (info.leftMouseButton == SunGUIWindowButtonState::Pressed)
-            state = SunGUIControlState::Selected;
+        if (info.leftMouseButton == GUIWindowButtonState::Pressed)
+            state = GUIControlState::Selected;
         else
-            state = SunGUIControlState::Highlighted;
+            state = GUIControlState::Highlighted;
     } else {
-        state = SunGUIControlState::Normal;
+        state = GUIControlState::Normal;
     }
 }
 
-void SunGUIView::drawTree(glm::ivec2 parentPosition, SunGUIRenderer &renderer) {
+void GUIView::drawTree(glm::ivec2 parentPosition, GUIRenderer &renderer) {
     if (!visible)
         return;
 
@@ -52,12 +52,12 @@ void SunGUIView::drawTree(glm::ivec2 parentPosition, SunGUIRenderer &renderer) {
         view->drawTree(absolute, renderer);
 }
 
-void SunGUIView::draw(glm::ivec2 parentPosition, SunGUIRenderer &renderer) {
+void GUIView::draw(glm::ivec2 parentPosition, GUIRenderer &renderer) {
     glm::ivec2 absolute = parentPosition + (glm::ivec2)position;
     renderer.drawRect(absolute, size, drawable.get());
 }
 
-void SunGUIView::addSubview(SunGUIView *subview) {
+void GUIView::addSubview(GUIView *subview) {
     subviews.push_back(subview);
 }
 

@@ -1,20 +1,20 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/GUI/SunGUIWindow.h>
+#include <sunglasses/GUI/GUIWindow.h>
 
 #include <glm/gtc/matrix_transform.hpp>
 
 namespace sunglasses {
 
-SunGUIUpdateInfo::SunGUIUpdateInfo(glm::ivec2 _cursor,
-    SunGUIWindowButtonState _leftMouseButton,
-    SunGUIWindowButtonState _rightMouseButton,
-    SunGUIWindowButtonState _middleMouseButton) : cursor(_cursor),
+GUIUpdateInfo::GUIUpdateInfo(glm::ivec2 _cursor,
+    GUIWindowButtonState _leftMouseButton,
+    GUIWindowButtonState _rightMouseButton,
+    GUIWindowButtonState _middleMouseButton) : cursor(_cursor),
         leftMouseButton(_leftMouseButton), rightMouseButton(_rightMouseButton),
         middleMouseButton(_middleMouseButton) { }
 
-SunGUIWindow::SunGUIWindow(int _width, int _height, std::string _title, bool resizeable)
+GUIWindow::GUIWindow(int _width, int _height, std::string _title, bool resizeable)
     : width(_width), height(_height), title(_title) {
     // Initialize GLFW
     glfwInit();
@@ -44,22 +44,22 @@ SunGUIWindow::SunGUIWindow(int _width, int _height, std::string _title, bool res
     updateViewport();
 }
 
-SunGUIWindow::~SunGUIWindow() {
+GUIWindow::~GUIWindow() {
     glfwTerminate();
 }
 
-void SunGUIWindow::clear() {
+void GUIWindow::clear() {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void SunGUIWindow::swapBuffers() {
+void GUIWindow::swapBuffers() {
     glfwSwapBuffers(window);
 }
 
-SunGUIUpdateInfo SunGUIWindow::updateInfo() {
+GUIUpdateInfo GUIWindow::updateInfo() {
     glfwPollEvents();
-    return SunGUIUpdateInfo(
+    return GUIUpdateInfo(
         cursor(),
         leftMouseButton(),
         rightMouseButton(),
@@ -67,13 +67,13 @@ SunGUIUpdateInfo SunGUIWindow::updateInfo() {
     );
 }
 
-glm::ivec2 SunGUIWindow::size() {
+glm::ivec2 GUIWindow::size() {
     glm::ivec2 size;
     glfwGetWindowSize(window, &size.x, &size.y);
     return size;
 }
 
-void SunGUIWindow::updateViewport() {
+void GUIWindow::updateViewport() {
     // Set the viewport
     int framebufferWidth, framebufferHeight;
     glfwGetFramebufferSize(window, &framebufferWidth, &framebufferHeight);
@@ -81,39 +81,39 @@ void SunGUIWindow::updateViewport() {
     glViewport(0, 0, framebufferWidth, framebufferHeight);
 }
 
-glm::mat4 SunGUIWindow::projection() {
+glm::mat4 GUIWindow::projection() {
     glm::ivec2 windowSize = size();
     return glm::ortho(0.0f, (float)windowSize.x, (float)windowSize.y, 0.0f, -1.0f, 0.0f);
 }
 
-glm::ivec2 SunGUIWindow::cursor() {
+glm::ivec2 GUIWindow::cursor() {
     glm::dvec2 cursor;
     glfwGetCursorPos(window, &cursor.x, &cursor.y);
     return (glm::ivec2)cursor;
 }
 
-SunGUIWindowButtonState SunGUIWindow::leftMouseButton() {
+GUIWindowButtonState GUIWindow::leftMouseButton() {
     int state = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
     if (state == GLFW_PRESS)
-        return SunGUIWindowButtonState::Pressed;
+        return GUIWindowButtonState::Pressed;
     else if (state == GLFW_RELEASE)
-        return SunGUIWindowButtonState::Released;
+        return GUIWindowButtonState::Released;
 }
 
-SunGUIWindowButtonState SunGUIWindow::rightMouseButton() {
+GUIWindowButtonState GUIWindow::rightMouseButton() {
     int state = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT);
     if (state == GLFW_PRESS)
-        return SunGUIWindowButtonState::Pressed;
+        return GUIWindowButtonState::Pressed;
     else if (state == GLFW_RELEASE)
-        return SunGUIWindowButtonState::Released;
+        return GUIWindowButtonState::Released;
 }
 
-SunGUIWindowButtonState SunGUIWindow::middleMouseButton() {
+GUIWindowButtonState GUIWindow::middleMouseButton() {
     int state = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_MIDDLE);
     if (state == GLFW_PRESS)
-        return SunGUIWindowButtonState::Pressed;
+        return GUIWindowButtonState::Pressed;
     else if (state == GLFW_RELEASE)
-        return SunGUIWindowButtonState::Released;
+        return GUIWindowButtonState::Released;
 }
 
 } // namespace

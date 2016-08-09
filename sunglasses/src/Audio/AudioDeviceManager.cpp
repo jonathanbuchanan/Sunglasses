@@ -1,17 +1,17 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Audio/SunAudioDeviceManager.h>
+#include <sunglasses/Audio/AudioDeviceManager.h>
 
 #include <AL/alut.h>
 
 namespace sunglasses {
 
-SunAudioDeviceManager::SunAudioDeviceManager() {
+AudioDeviceManager::AudioDeviceManager() {
     initialize();
 }
 
-void SunAudioDeviceManager::initialize() {
+void AudioDeviceManager::initialize() {
     device = alcOpenDevice(NULL);
 
     context = alcCreateContext(device, NULL);
@@ -20,7 +20,7 @@ void SunAudioDeviceManager::initialize() {
     alutInit(0, NULL);
 }
 
-void SunAudioDeviceManager::update() {
+void AudioDeviceManager::update() {
 
 }
 

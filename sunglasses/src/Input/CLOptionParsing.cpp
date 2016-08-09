@@ -1,23 +1,23 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Input/SunCLOptionParsing.h>
+#include <sunglasses/Input/CLOptionParsing.h>
 
 namespace sunglasses {
 
-SunCLSwitchOption::SunCLSwitchOption(std::string shortOption, std::string longOption, std::string description, bool defaultValue, bool *_value) : arg(shortOption, longOption, description, defaultValue), value(_value) { }
+CLSwitchOption::CLSwitchOption(std::string shortOption, std::string longOption, std::string description, bool defaultValue, bool *_value) : arg(shortOption, longOption, description, defaultValue), value(_value) { }
 
-void SunCLSwitchOption::add(TCLAP::CmdLine &commandLine) {
+void CLSwitchOption::add(TCLAP::CmdLine &commandLine) {
     commandLine.add(arg);
 }
 
-void SunCLSwitchOption::process() {
+void CLSwitchOption::process() {
     (*value) = arg.getValue();
 }
 
 
 
-void parseOptions(const std::vector<SunCLOption *> &options, std::string help, std::string version, int argc, char **argv) {
+void parseOptions(const std::vector<CLOption *> &options, std::string help, std::string version, int argc, char **argv) {
     try {
         TCLAP::CmdLine commandLine(help, ' ', version);
 

@@ -1,17 +1,17 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Graphics/Loaders/SunTextureResource.h>
+#include <sunglasses/Graphics/Loaders/TextureResource.h>
 
 #include <SOIL/SOIL.h>
 
 namespace sunglasses {
 
-SunTextureResource::SunTextureResource(std::string _file) : file(_file) {
+TextureResource::TextureResource(std::string _file) : file(_file) {
 
 }
 
-void SunTextureResource::init() {
+void TextureResource::init() {
     int width, height;
     unsigned char *image = SOIL_load_image(file.c_str(), &width, &height, 0, SOIL_LOAD_RGB);
     glGenTextures(1, &texture);

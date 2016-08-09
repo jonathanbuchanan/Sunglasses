@@ -1,28 +1,28 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Graphics/RenderNodes/SunRenderNodeScene.h>
+#include <sunglasses/Graphics/RenderNodes/RenderNodeScene.h>
 
-#include <sunglasses/Graphics/SunWindowManager.h>
-#include <sunglasses/Graphics/SunPrimitives.h>
+#include <sunglasses/Graphics/WindowManager.h>
+#include <sunglasses/Graphics/Primitives.h>
 
 namespace sunglasses {
 
-SunRenderNodeSceneTexture::SunRenderNodeSceneTexture(std::string _name, GLuint _internalFormat, GLenum _format, GLenum _type) : name(_name), internalFormat(_internalFormat), format(_format), type(_type) { }
+RenderNodeSceneTexture::RenderNodeSceneTexture(std::string _name, GLuint _internalFormat, GLenum _format, GLenum _type) : name(_name), internalFormat(_internalFormat), format(_format), type(_type) { }
 
 
 
-SunRenderNodeScene::SunRenderNodeScene(SunBase *_target, std::vector<SunRenderNodeSceneTexture> _textures) : target(_target), uniformTarget(_target), textures(_textures) {
-
-}
-
-SunRenderNodeScene::SunRenderNodeScene(SunBase *_target, SunBase *_uniformTarget, std::vector<SunRenderNodeSceneTexture> _textures) : target(_target), uniformTarget(_uniformTarget), textures(_textures) {
+RenderNodeScene::RenderNodeScene(Base *_target, std::vector<RenderNodeSceneTexture> _textures) : target(_target), uniformTarget(_target), textures(_textures) {
 
 }
 
+RenderNodeScene::RenderNodeScene(Base *_target, Base *_uniformTarget, std::vector<RenderNodeSceneTexture> _textures) : target(_target), uniformTarget(_uniformTarget), textures(_textures) {
 
-void SunRenderNodeScene::init() {
-    SunRenderNode::init();
+}
+
+
+void RenderNodeScene::init() {
+    RenderNode::init();
 
     if (drawToScreen == false) {
         glGenFramebuffers(1, &fbo); // Generate the framebuffer
@@ -57,25 +57,25 @@ void SunRenderNodeScene::init() {
     }
 }
 
-void SunRenderNodeScene::render(SunAction action) {
+void RenderNodeScene::render(Action action) {
     glBindFramebuffer(GL_FRAMEBUFFER, fbo); // Bind the framebuffer
     glViewport(0, 0, size.x, size.y);
     clear();
     for (size_t i = 0; i < shaders.size(); ++i) { // Iterate through shaders
         shaders[i].second.use();
 
-        SunAction bind = SunAction("bindOutputs");
+        Action bind = Action("bindOutputs");
         bind.addParameter("shader", &shaders[i].second);
 
         for (int i = 0; i < getParentsSize(); ++i)
             sendAction(bind, getParentAtIndex(i));
 
-        SunAction uniform("uniform");
+        Action uniform("uniform");
         uniform.addParameter("shader", &shaders[i].second);
         uniform.setRecursive(true);
         sendAction(uniform, uniformTarget);
 
-        SunAction render("render");
+        Action render("render");
         render.setRecursive(true);
         render.addParameter("shader", &shaders[i].second);
         render.addParameter("tag", &shaders[i].first);
@@ -84,8 +84,8 @@ void SunRenderNodeScene::render(SunAction action) {
     glBindFramebuffer(GL_FRAMEBUFFER, 0); // Unbind the framebuffer
 }
 
-void SunRenderNodeScene::bindOutputs(SunAction action) {
-    SunShader *shader = action.getParameterPointer<SunShader>("shader");
+void RenderNodeScene::bindOutputs(Action action) {
+    Shader *shader = action.getParameterPointer<Shader>("shader");
     for (size_t i = 0; i < textures.size(); ++i) {
         int textureUnit = shader->getNextTextureUnit();
         glActiveTexture(GL_TEXTURE0 + textureUnit);
@@ -94,23 +94,23 @@ void SunRenderNodeScene::bindOutputs(SunAction action) {
     }
 }
 
-void SunRenderNodeScene::addShader(std::string tag, SunShader shader) {
+void RenderNodeScene::addShader(std::string tag, Shader shader) {
     shaders.push_back(std::make_pair(tag, shader));
 }
 
-void SunRenderNodeScene::setShaders(std::vector<std::pair<std::string, SunShader>> _shaders) {
+void RenderNodeScene::setShaders(std::vector<std::pair<std::string, Shader>> _shaders) {
     shaders = _shaders;
 }
 
-void SunRenderNodeScene::setTarget(SunBase *_target) {
+void RenderNodeScene::setTarget(Base *_target) {
     target = _target;
 }
 
-void SunRenderNodeScene::setUniformTarget(SunBase *_uniformTarget) {
+void RenderNodeScene::setUniformTarget(Base *_uniformTarget) {
     uniformTarget = _uniformTarget;
 }
 
-void SunRenderNodeScene::setSize(glm::vec2 _size) {
+void RenderNodeScene::setSize(glm::vec2 _size) {
     size = _size;
 }
 

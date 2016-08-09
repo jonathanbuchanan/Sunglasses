@@ -1,12 +1,12 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include <sunglasses/Physics/GJKAlgorithm.h>
 #include <iostream>
 
 namespace sunglasses {
 
-glm::vec3 getFarthestPointAlongAxis(SunPhysicsColliderMesh *mesh, glm::vec3 axis) {
+glm::vec3 getFarthestPointAlongAxis(PhysicsColliderMesh *mesh, glm::vec3 axis) {
     glm::vec3 farthestPoint = mesh->getPositionAtIndex(0);
     float farthestDistance = glm::dot(mesh->getPositionAtIndex(0), axis);
     for (int i = 0; i < mesh->getVertexCount(); i++) {
@@ -19,14 +19,14 @@ glm::vec3 getFarthestPointAlongAxis(SunPhysicsColliderMesh *mesh, glm::vec3 axis
     return farthestPoint;
 }
 
-glm::vec3 getFarthestPointAlongAxis(SunPhysicsColliderSphere *sphere, glm::vec3 axis) {
+glm::vec3 getFarthestPointAlongAxis(PhysicsColliderSphere *sphere, glm::vec3 axis) {
     glm::vec3 localPoint = glm::normalize(axis) * sphere->getRadius();
     glm::vec3 globalPoint = localPoint + sphere->getPosition();
 
     return globalPoint;
 }
 
-glm::vec3 getFarthestPointAlongAxis(SunPhysicsColliderAABB *aabb, glm::vec3 axis) {
+glm::vec3 getFarthestPointAlongAxis(PhysicsColliderAABB *aabb, glm::vec3 axis) {
     glm::vec3 AABBPoints[8] = {
         glm::vec3(aabb->getSecondPointX(), aabb->getSecondPointY(), aabb->getSecondPointZ()),
         glm::vec3(aabb->getFirstPointX(),  aabb->getSecondPointY(), aabb->getSecondPointZ()),
@@ -50,7 +50,7 @@ glm::vec3 getFarthestPointAlongAxis(SunPhysicsColliderAABB *aabb, glm::vec3 axis
     return farthestPoint;
 }
 
-glm::vec3 support(SunPhysicsColliderMesh *first, SunPhysicsColliderMesh *second, glm::vec3 axis, Simplex &simplex) {
+glm::vec3 support(PhysicsColliderMesh *first, PhysicsColliderMesh *second, glm::vec3 axis, Simplex &simplex) {
     glm::vec3 firstPoint = getFarthestPointAlongAxis(first, axis);
     glm::vec3 secondPoint = getFarthestPointAlongAxis(second, -axis);
 
@@ -59,7 +59,7 @@ glm::vec3 support(SunPhysicsColliderMesh *first, SunPhysicsColliderMesh *second,
     return result;
 }
 
-glm::vec3 support(SunPhysicsColliderMesh *first, SunPhysicsColliderSphere *sphere, glm::vec3 axis, Simplex &simplex) {
+glm::vec3 support(PhysicsColliderMesh *first, PhysicsColliderSphere *sphere, glm::vec3 axis, Simplex &simplex) {
     glm::vec3 firstPoint = getFarthestPointAlongAxis(first, axis);
     glm::vec3 secondPoint = getFarthestPointAlongAxis(sphere, -axis);
 
@@ -68,7 +68,7 @@ glm::vec3 support(SunPhysicsColliderMesh *first, SunPhysicsColliderSphere *spher
     return result;
 }
 
-glm::vec3 support(SunPhysicsColliderMesh *first, SunPhysicsColliderAABB *aabb, glm::vec3 axis, Simplex &simplex) {
+glm::vec3 support(PhysicsColliderMesh *first, PhysicsColliderAABB *aabb, glm::vec3 axis, Simplex &simplex) {
     glm::vec3 firstPoint = getFarthestPointAlongAxis(first, axis);
     glm::vec3 secondPoint = getFarthestPointAlongAxis(aabb, -axis);
 

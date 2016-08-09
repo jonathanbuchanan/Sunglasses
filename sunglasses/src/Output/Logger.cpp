@@ -1,7 +1,7 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Output/SunLogger.h>
+#include <sunglasses/Output/Logger.h>
 #include <iostream>
 
 namespace sunglasses {
@@ -58,94 +58,94 @@ std::string getBashColorSetter(BashColor color) {
     return colorString;
 }
 
-SunLogger::SunLogger() {
+Logger::Logger() {
 
 }
 
-SunLogger::~SunLogger() {
+Logger::~Logger() {
 
 }
 
-void SunLogger::update() {
+void Logger::update() {
 
 }
 
-void SunLogger::reset() {
+void Logger::reset() {
     std::cout << getBashColorSetter(BashColorReset);
 }
 
-void SunLogger::bright() {
+void Logger::bright() {
     std::cout << getBashColorSetter(BashColorBright);
 }
 
-void SunLogger::dim() {
+void Logger::dim() {
     std::cout << getBashColorSetter(BashColorDim);
 }
 
-void SunLogger::underscore() {
+void Logger::underscore() {
     std::cout << getBashColorSetter(BashColorUnderscore);
 }
 
-void SunLogger::blink() {
+void Logger::blink() {
     std::cout << getBashColorSetter(BashColorBlink);
 }
 
-void SunLogger::reverse() {
+void Logger::reverse() {
     std::cout << getBashColorSetter(BashColorReverse);
 }
 
-void SunLogger::hidden() {
+void Logger::hidden() {
     std::cout << getBashColorSetter(BashColorHidden);
 }
 
-void SunLogger::logBlack(std::string message) {
+void Logger::logBlack(std::string message) {
     std::cout << getBashColorSetter(BashColorForegroundBlack);
     std::cout << message;
 }
 
-void SunLogger::logRed(std::string message) {
+void Logger::logRed(std::string message) {
     std::cout << getBashColorSetter(BashColorForegroundRed);
     std::cout << message;
     reset();
 }
 
-void SunLogger::logGreen(std::string message) {
+void Logger::logGreen(std::string message) {
     std::cout << getBashColorSetter(BashColorForegroundGreen);
     std::cout << message;
     reset();
 }
 
-void SunLogger::logYellow(std::string message) {
+void Logger::logYellow(std::string message) {
     std::cout << getBashColorSetter(BashColorForegroundYellow);
     std::cout << message;
     reset();
 }
 
-void SunLogger::logBlue(std::string message) {
+void Logger::logBlue(std::string message) {
     std::cout << getBashColorSetter(BashColorForegroundBlue);
     std::cout << message;
     reset();
 }
 
-void SunLogger::logMagenta(std::string message) {
+void Logger::logMagenta(std::string message) {
     std::cout << getBashColorSetter(BashColorForegroundMagenta);
     std::cout << message;
     reset();
 }
 
-void SunLogger::logCyan(std::string message) {
+void Logger::logCyan(std::string message) {
     std::cout << getBashColorSetter(BashColorForegroundCyan);
     std::cout << message;
     reset();
 }
 
-void SunLogger::logWhite(std::string message) {
+void Logger::logWhite(std::string message) {
     std::cout << getBashColorSetter(BashColorForegroundWhite);
     std::cout << message;
     reset();
 }
 
-void SunLogger::logError(std::string message) {
+void Logger::logError(std::string message) {
     std::cout << getBashColorSetter(std::vector<BashColor>{BashColorForegroundRed, BashColorBright});
     std::cout << "ERROR: ";
     std::cout << message;
@@ -153,7 +153,7 @@ void SunLogger::logError(std::string message) {
     std::cout << std::endl;
 }
 
-void SunLogger::logSuccess(std::string message) {
+void Logger::logSuccess(std::string message) {
     std::cout << getBashColorSetter(std::vector<BashColor>{BashColorForegroundGreen, BashColorBright});
     std::cout << "SUCCESS: ";
     std::cout << message;
@@ -161,7 +161,7 @@ void SunLogger::logSuccess(std::string message) {
     std::cout << std::endl;
 }
 
-void SunLogger::log(std::string message) {
+void Logger::log(std::string message) {
     std::cout << getBashColorSetter(BashColorForegroundBlue);
     std::cout << getBashColorSetter(BashColorBright);
     std::cout << message;

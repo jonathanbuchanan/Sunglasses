@@ -1,18 +1,18 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Graphics/SunRenderNode.h>
+#include <sunglasses/Graphics/RenderNode.h>
 #include <iostream>
 
 namespace sunglasses {
 
-SunRenderNode::SunRenderNode() {
+RenderNode::RenderNode() {
 
 }
 
-void SunRenderNode::init() {
-    addAction("render", &SunRenderNode::render);
-    addAction("bindOutputs", &SunRenderNode::bindOutputs);
+void RenderNode::init() {
+    addAction("render", &RenderNode::render);
+    addAction("bindOutputs", &RenderNode::bindOutputs);
 }
 
 } // namespace

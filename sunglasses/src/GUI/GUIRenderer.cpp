@@ -1,9 +1,9 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/GUI/SunGUIRenderer.h>
+#include <sunglasses/GUI/GUIRenderer.h>
 
-#include <sunglasses/GUI/SunGUIWindow.h>
+#include <sunglasses/GUI/GUIWindow.h>
 
 #include <string>
 
@@ -42,12 +42,12 @@ void main() {
 }
 )";
 
-SunGUIRenderer::SunGUIRenderer(SunGUIWindow &_window) :
+GUIRenderer::GUIRenderer(GUIWindow &_window) :
     window(_window), fillShader(fill_vertex, fill_fragment) {
 
 }
 
-void SunGUIRenderer::drawRect(glm::ivec2 origin, glm::ivec2 size, SunGUIDrawable *drawable) {
+void GUIRenderer::drawRect(glm::ivec2 origin, glm::ivec2 size, GUIDrawable *drawable) {
     fillShader.use();
 
     // Pass the projection matrix
@@ -69,7 +69,7 @@ void SunGUIRenderer::drawRect(glm::ivec2 origin, glm::ivec2 size, SunGUIDrawable
     glBindVertexArray(0);
 }
 
-SunGUIRenderer::Rectangle::Rectangle() {
+GUIRenderer::Rectangle::Rectangle() {
     // Generate the VAO
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);

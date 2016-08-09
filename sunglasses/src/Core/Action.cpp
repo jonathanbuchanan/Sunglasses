@@ -1,24 +1,24 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Core/SunAction.h>
+#include <sunglasses/Core/Action.h>
 
 namespace sunglasses {
 
-SunAction::SunAction() {
+Action::Action() {
     recursive = false;
 }
 
-SunAction::SunAction(std::string a) : action(a) {
-    SunAction();
+Action::Action(std::string a) : action(a) {
+    Action();
 }
 
-SunAction::SunAction(std::string a, SunActionParameterMap p) : action(a), parameters(p) {
-    SunAction();
+Action::Action(std::string a, ActionParameterMap p) : action(a), parameters(p) {
+    Action();
 }
 
-SunAction::SunAction(std::string a, SunActionParameterMap p, bool r) : action(a), parameters(p), recursive(r) {
-    SunAction();
+Action::Action(std::string a, ActionParameterMap p, bool r) : action(a), parameters(p), recursive(r) {
+    Action();
 }
 
 } // namespace

@@ -1,10 +1,10 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Physics/SunPhysicsColliderAABB.h>
-#include <sunglasses/Physics/SunPhysicsColliderSphere.h>
-#include <sunglasses/Physics/SunPhysicsColliderPlane.h>
-#include <sunglasses/Physics/SunPhysicsColliderMesh.h>
+#include <sunglasses/Physics/PhysicsColliderAABB.h>
+#include <sunglasses/Physics/PhysicsColliderSphere.h>
+#include <sunglasses/Physics/PhysicsColliderPlane.h>
+#include <sunglasses/Physics/PhysicsColliderMesh.h>
 #include <sunglasses/Physics/GJKAlgorithm.h>
 
 #include <glm/gtx/simd_vec4.hpp>
@@ -16,29 +16,29 @@
 
 namespace sunglasses {
 
-SunPhysicsColliderAABB::SunPhysicsColliderAABB() {
-    setType(SunPhysicsColliderTypeAABB);
+PhysicsColliderAABB::PhysicsColliderAABB() {
+    setType(PhysicsColliderTypeAABB);
 }
 
-SunPhysicsCollisionData SunPhysicsColliderAABB::collideWith(SunPhysicsCollider *other) {
-    if (other->getType() == SunPhysicsColliderTypeAABB) {
-        SunPhysicsColliderAABB *_other = static_cast<SunPhysicsColliderAABB *>(other);
+PhysicsCollisionData PhysicsColliderAABB::collideWith(PhysicsCollider *other) {
+    if (other->getType() == PhysicsColliderTypeAABB) {
+        PhysicsColliderAABB *_other = static_cast<PhysicsColliderAABB *>(other);
         glm::vec3 first = this->getFirstPoint() - _other->getSecondPoint();
         glm::vec3 second = _other->getFirstPoint() - this->getSecondPoint();
         
         if (glm::length(first) < glm::length(second)) {
             if (_other->getSecondPoint().x < this->getFirstPoint().x || _other->getSecondPoint().y < this->getFirstPoint().y || _other->getSecondPoint().z < this->getFirstPoint().z)
-                return SunPhysicsCollisionData(false, 0);
+                return PhysicsCollisionData(false, 0);
             else
-                return SunPhysicsCollisionData(true, glm::length(first));
+                return PhysicsCollisionData(true, glm::length(first));
         } else {
             if (this->getSecondPoint().x < _other->getFirstPoint().x || this->getSecondPoint().y < _other->getFirstPoint().y || this->getSecondPoint().z < _other->getSecondPoint().z)
-                return SunPhysicsCollisionData(false, 0);
+                return PhysicsCollisionData(false, 0);
             else
-                return SunPhysicsCollisionData(true, glm::length(second));
+                return PhysicsCollisionData(true, glm::length(second));
         }
-    } else if (other->getType() == SunPhysicsColliderTypeSphere) {
-        SunPhysicsColliderSphere *_other = static_cast<SunPhysicsColliderSphere *>(other);
+    } else if (other->getType() == PhysicsColliderTypeSphere) {
+        PhysicsColliderSphere *_other = static_cast<PhysicsColliderSphere *>(other);
         
         glm::vec3 separatingAxis = _other->getPosition() - this->getPosition();
         float distance = glm::length(separatingAxis);
@@ -57,11 +57,11 @@ SunPhysicsCollisionData SunPhysicsColliderAABB::collideWith(SunPhysicsCollider *
         separatingAxis.z *= this->getDepth() / 2.0f;
 
         if (distance <= (_other->getRadius() + glm::length(separatingAxis)))
-            return SunPhysicsCollisionData(true, distance);
+            return PhysicsCollisionData(true, distance);
         else
-            return SunPhysicsCollisionData(false, distance);
-    } else if (other->getType() == SunPhysicsColliderTypePlane) {
-        SunPhysicsColliderPlane *_other = static_cast<SunPhysicsColliderPlane *>(other);
+            return PhysicsCollisionData(false, distance);
+    } else if (other->getType() == PhysicsColliderTypePlane) {
+        PhysicsColliderPlane *_other = static_cast<PhysicsColliderPlane *>(other);
         
         glm::vec3 absoluteNormal = glm::vec3(glm::abs(_other->getNormal().x), glm::abs(_other->getNormal().y), glm::abs(_other->getNormal().z));
         glm::vec3 extents = 0.5f * (this->getSecondPoint() - this->getFirstPoint());
@@ -69,11 +69,11 @@ SunPhysicsCollisionData SunPhysicsColliderAABB::collideWith(SunPhysicsCollider *
         float c = glm::dot(this->getPosition(), _other->getNormal());
         float e = glm::dot(extents, absoluteNormal);
         if (_other->getDistance() < c - e || _other->getDistance() > c + e)
-            return SunPhysicsCollisionData(false, c + e);
+            return PhysicsCollisionData(false, c + e);
         else
-            return SunPhysicsCollisionData(true, c + e);
-    } else if (other->getType() == SunPhysicsColliderTypeMesh) {
-        SunPhysicsColliderMesh *_other = static_cast<SunPhysicsColliderMesh *>(other);
+            return PhysicsCollisionData(true, c + e);
+    } else if (other->getType() == PhysicsColliderTypeMesh) {
+        PhysicsColliderMesh *_other = static_cast<PhysicsColliderMesh *>(other);
         
         Simplex simplex;
         
@@ -89,17 +89,17 @@ SunPhysicsCollisionData SunPhysicsColliderAABB::collideWith(SunPhysicsCollider *
             glm::vec3 point = support(_other, this, direction, simplex);
             
             if (glm::dot(point, direction) < 0) {
-                return SunPhysicsCollisionData(false, 0);
+                return PhysicsCollisionData(false, 0);
             } else {
                 simplex.add(point);
                 
                 if (processSimplex(simplex, direction) == true) {
-                    return SunPhysicsCollisionData(true, 0);
+                    return PhysicsCollisionData(true, 0);
                 }
             }
         }
     }
-    return SunPhysicsCollisionData(false, 0);
+    return PhysicsCollisionData(false, 0);
 }
 
 } // namespace

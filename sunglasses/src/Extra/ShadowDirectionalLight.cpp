@@ -1,27 +1,27 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Extra/SunShadowDirectionalLight.h>
+#include <sunglasses/Extra/ShadowDirectionalLight.h>
 
-#include <sunglasses/Graphics/SunPrimitives.h>
-#include <sunglasses/Graphics/SunShader.h>
+#include <sunglasses/Graphics/Primitives.h>
+#include <sunglasses/Graphics/Shader.h>
 
 #include <glm/gtc/type_ptr.hpp>
 
 namespace sunglasses {
 
-SunShadowDirectionalLight::SunShadowDirectionalLight() {
+ShadowDirectionalLight::ShadowDirectionalLight() {
 
 }
 
-SunShadowDirectionalLight::SunShadowDirectionalLight(glm::vec3 _color, glm::vec3 _direction) : SunDirectionalLight(_color, _direction) {
+ShadowDirectionalLight::ShadowDirectionalLight(glm::vec3 _color, glm::vec3 _direction) : DirectionalLight(_color, _direction) {
 
 }
 
-void SunShadowDirectionalLight::init() {
-    addAction("shadowMap", &SunShadowDirectionalLight::shadowMap);
-    addAction("update", &SunShadowDirectionalLight::update);
-    addAction("uniform", &SunShadowDirectionalLight::uniform);
+void ShadowDirectionalLight::init() {
+    addAction("shadowMap", &ShadowDirectionalLight::shadowMap);
+    addAction("update", &ShadowDirectionalLight::update);
+    addAction("uniform", &ShadowDirectionalLight::uniform);
 
     glGenFramebuffers(1, &fbo);
     glBindFramebuffer(GL_FRAMEBUFFER, fbo);
@@ -42,8 +42,8 @@ void SunShadowDirectionalLight::init() {
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-void SunShadowDirectionalLight::shadowMap(SunAction action) {
-    SunShader *shader = action.getParameterPointer<SunShader>("shader");
+void ShadowDirectionalLight::shadowMap(Action action) {
+    Shader *shader = action.getParameterPointer<Shader>("shader");
 
     glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
@@ -58,7 +58,7 @@ void SunShadowDirectionalLight::shadowMap(SunAction action) {
 
     (*shader)["lightMatrix"] = lightMatrix;
 
-    SunAction render("render");
+    Action render("render");
     render.setRecursive(true);
     render.addParameter("shader", shader);
     sendAction(render, target);
@@ -66,12 +66,12 @@ void SunShadowDirectionalLight::shadowMap(SunAction action) {
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void SunShadowDirectionalLight::update(SunAction action) {
+void ShadowDirectionalLight::update(Action action) {
 
 }
 
-void SunShadowDirectionalLight::uniform(SunAction action) {
-    SunShader *shader = action.getParameterPointer<SunShader>("shader");
+void ShadowDirectionalLight::uniform(Action action) {
+    Shader *shader = action.getParameterPointer<Shader>("shader");
     int id = shader->getNextArrayIndex("shadowDirectionalLights");
     (*shader)["shadowDirectionlLights[" + std::to_string(id) + "].color"] = color;
 

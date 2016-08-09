@@ -1,7 +1,7 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Graphics/SunShader.h>
+#include <sunglasses/Graphics/Shader.h>
 
 #include <glm/gtc/type_ptr.hpp>
 
@@ -32,7 +32,7 @@ GLuint compileShaderFromString(std::string shaderString, GLint shaderType) {
     return shader;
 }
 
-SunShader::SunShader(const std::string &vertex, const std::string &fragment) {
+Shader::Shader(const std::string &vertex, const std::string &fragment) {
     GLuint vertexShader = compileShaderFromString(vertex, GL_VERTEX_SHADER);
     GLuint fragmentShader = compileShaderFromString(fragment, GL_FRAGMENT_SHADER);
 
@@ -47,7 +47,7 @@ SunShader::SunShader(const std::string &vertex, const std::string &fragment) {
     glDeleteShader(fragmentShader);
 }
 
-SunShader::SunShader(std::vector<std::pair<std::string, SunShaderSourceType>> sources) {
+Shader::Shader(std::vector<std::pair<std::string, ShaderSourceType>> sources) {
     size_t components = sources.size();
 
     std::vector<std::string> code;
@@ -57,7 +57,7 @@ SunShader::SunShader(std::vector<std::pair<std::string, SunShaderSourceType>> so
 
     std::vector<GLuint> shaders;
     for (size_t i = 0; i < components; ++i) {
-        SunShaderSourceType type = sources[i].second;
+        ShaderSourceType type = sources[i].second;
         shaders.push_back(compileShaderFromString(code[i], type));
     }
 
@@ -76,28 +76,28 @@ SunShader::SunShader(std::vector<std::pair<std::string, SunShaderSourceType>> so
         glDeleteShader(shaders[i]);
 }
 
-SunShader::~SunShader() {
+Shader::~Shader() {
     glDeleteProgram(program);
 
-    std::cout << "~SunShader()" << std::endl;
+    std::cout << "~Shader()" << std::endl;
 }
 
-SunShader::SunShaderUniform SunShader::operator[](std::string uniform) {
-    return SunShaderUniform(program, glGetUniformLocation(program, uniform.c_str()));
+Shader::ShaderUniform Shader::operator[](std::string uniform) {
+    return ShaderUniform(program, glGetUniformLocation(program, uniform.c_str()));
 }
 
-void SunShader::init() {
+void Shader::init() {
 
 }
 
-void SunShader::uniforms(SunNode *root) {
-    SunAction uniform("uniform");
+void Shader::uniforms(Node *root) {
+    Action uniform("uniform");
     uniform.addParameter("shader", this);
     uniform.setRecursive(true);
     sendAction(uniform, root);
 }
 
-void SunShader::use() {
+void Shader::use() {
     for (auto &iterator : arrays)
         iterator.second = 0;
     usedTextureUnits = 0;
@@ -105,12 +105,12 @@ void SunShader::use() {
     glUseProgram(this->program);
 }
 
-void SunShader::use(std::string tag, float delta, SunNode *root) {
+void Shader::use(std::string tag, float delta, Node *root) {
     use();
 
     uniforms(root);
 
-    SunAction render("render");
+    Action render("render");
     render.addParameter("shader", this);
     if (tag.length() > 0)
         render.addParameter("tag", &tag);
@@ -118,10 +118,10 @@ void SunShader::use(std::string tag, float delta, SunNode *root) {
     sendAction(render, root);
 }
 
-void SunShader::send(std::string tag, float delta, SunNode *root) {
+void Shader::send(std::string tag, float delta, Node *root) {
     uniforms(root);
 
-    SunAction render("render");
+    Action render("render");
     render.addParameter("shader", this);
     if (tag.length() > 0)
         render.addParameter("tag", &tag);
@@ -129,120 +129,120 @@ void SunShader::send(std::string tag, float delta, SunNode *root) {
     sendAction(render, root);
 }
 
-int SunShader::getNextArrayIndex(std::string array) {
+int Shader::getNextArrayIndex(std::string array) {
     if (arrays.find(array) == arrays.end())
         arrays[array] = 0;
     arrays[array] += 1;
     return arrays[array] - 1;
 }
 
-int SunShader::getNextTextureUnit() {
+int Shader::getNextTextureUnit() {
     return usedTextureUnits++;
 }
 
-int SunShader::getArraySize(std::string array) {
+int Shader::getArraySize(std::string array) {
     return arrays[array];
 }
 
-SunShader::SunShaderUniform::SunShaderUniform(
+Shader::ShaderUniform::ShaderUniform(
     GLuint _program, GLuint _index) :
     program(_program), index(_index) {
 
 }
 
-void SunShader::SunShaderUniform::operator=(GLfloat value) {
+void Shader::ShaderUniform::operator=(GLfloat value) {
     glUniform1f(index, value);
 }
 
-void SunShader::SunShaderUniform::operator=(GLdouble value) {
+void Shader::ShaderUniform::operator=(GLdouble value) {
     glUniform1f(index, (GLfloat)value);
 }
 
-void SunShader::SunShaderUniform::operator=(glm::vec2 value) {
+void Shader::ShaderUniform::operator=(glm::vec2 value) {
     glUniform2f(index, value.x, value.y);
 }
 
-void SunShader::SunShaderUniform::operator=(glm::vec3 value) {
+void Shader::ShaderUniform::operator=(glm::vec3 value) {
     glUniform3f(index, value.x, value.y, value.z);
 }
 
-void SunShader::SunShaderUniform::operator=(glm::vec4 value) {
+void Shader::ShaderUniform::operator=(glm::vec4 value) {
     glUniform4f(index, value.x, value.y, value.z, value.w);
 }
 
 
-void SunShader::SunShaderUniform::operator=(GLint value) {
+void Shader::ShaderUniform::operator=(GLint value) {
     glUniform1i(index, value);
 }
 
-void SunShader::SunShaderUniform::operator=(GLboolean value) {
+void Shader::ShaderUniform::operator=(GLboolean value) {
     glUniform1i(index, (GLint)value);
 }
 
-void SunShader::SunShaderUniform::operator=(glm::ivec2 value) {
+void Shader::ShaderUniform::operator=(glm::ivec2 value) {
     glUniform2i(index, value.x, value.y);
 }
 
-void SunShader::SunShaderUniform::operator=(glm::ivec3 value) {
+void Shader::ShaderUniform::operator=(glm::ivec3 value) {
     glUniform3i(index, value.x, value.y, value.z);
 }
 
-void SunShader::SunShaderUniform::operator=(glm::ivec4 value) {
+void Shader::ShaderUniform::operator=(glm::ivec4 value) {
     glUniform4i(index, value.x, value.y, value.z, value.w);
 }
 
 
-void SunShader::SunShaderUniform::operator=(GLuint value) {
+void Shader::ShaderUniform::operator=(GLuint value) {
     glUniform1ui(index, value);
 }
 
-void SunShader::SunShaderUniform::operator=(glm::uvec2 value) {
+void Shader::ShaderUniform::operator=(glm::uvec2 value) {
     glUniform2ui(index, value.x, value.y);
 }
 
-void SunShader::SunShaderUniform::operator=(glm::uvec3 value) {
+void Shader::ShaderUniform::operator=(glm::uvec3 value) {
     glUniform3ui(index, value.x, value.y, value.z);
 }
 
-void SunShader::SunShaderUniform::operator=(glm::uvec4 value) {
+void Shader::ShaderUniform::operator=(glm::uvec4 value) {
     glUniform4ui(index, value.x, value.y, value.z, value.w);
 }
 
 
-void SunShader::SunShaderUniform::operator=(glm::mat2 value) {
+void Shader::ShaderUniform::operator=(glm::mat2 value) {
     glUniformMatrix2fv(index, 1, GL_FALSE, glm::value_ptr(value));
 }
 
-void SunShader::SunShaderUniform::operator=(glm::mat3 value) {
+void Shader::ShaderUniform::operator=(glm::mat3 value) {
     glUniformMatrix3fv(index, 1, GL_FALSE, glm::value_ptr(value));
 }
 
-void SunShader::SunShaderUniform::operator=(glm::mat4 value) {
+void Shader::ShaderUniform::operator=(glm::mat4 value) {
     glUniformMatrix4fv(index, 1, GL_FALSE, glm::value_ptr(value));
 }
 
 
-void SunShader::SunShaderUniform::operator=(glm::mat2x3 value) {
+void Shader::ShaderUniform::operator=(glm::mat2x3 value) {
     glUniformMatrix2x3fv(index, 1, GL_FALSE, glm::value_ptr(value));
 }
 
-void SunShader::SunShaderUniform::operator=(glm::mat3x2 value) {
+void Shader::ShaderUniform::operator=(glm::mat3x2 value) {
     glUniformMatrix3x2fv(index, 1, GL_FALSE, glm::value_ptr(value));
 }
 
-void SunShader::SunShaderUniform::operator=(glm::mat2x4 value) {
+void Shader::ShaderUniform::operator=(glm::mat2x4 value) {
     glUniformMatrix2x4fv(index, 1, GL_FALSE, glm::value_ptr(value));
 }
 
-void SunShader::SunShaderUniform::operator=(glm::mat4x2 value) {
+void Shader::ShaderUniform::operator=(glm::mat4x2 value) {
     glUniformMatrix4x2fv(index, 1, GL_FALSE, glm::value_ptr(value));
 }
 
-void SunShader::SunShaderUniform::operator=(glm::mat3x4 value) {
+void Shader::ShaderUniform::operator=(glm::mat3x4 value) {
     glUniformMatrix3x4fv(index, 1, GL_FALSE, glm::value_ptr(value));
 }
 
-void SunShader::SunShaderUniform::operator=(glm::mat4x3 value) {
+void Shader::ShaderUniform::operator=(glm::mat4x3 value) {
     glUniformMatrix4x3fv(index, 1, GL_FALSE, glm::value_ptr(value));
 }
 

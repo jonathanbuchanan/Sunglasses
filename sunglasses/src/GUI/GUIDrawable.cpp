@@ -1,18 +1,18 @@
-#include <sunglasses/GUI/SunGUIDrawable.h>
+#include <sunglasses/GUI/GUIDrawable.h>
 
-#include <sunglasses/Graphics/SunShader.h>
+#include <sunglasses/Graphics/Shader.h>
 
 namespace sunglasses {
 
-SunGUIDrawableSolidColor::SunGUIDrawableSolidColor(glm::vec4 _color) : color(_color) {
+GUIDrawableSolidColor::GUIDrawableSolidColor(glm::vec4 _color) : color(_color) {
 
 }
 
-SunGUIDrawable * SunGUIDrawableSolidColor::copy() const {
-    return new SunGUIDrawableSolidColor(*this);
+GUIDrawable * GUIDrawableSolidColor::copy() const {
+    return new GUIDrawableSolidColor(*this);
 }
 
-void SunGUIDrawableSolidColor::uniforms(SunShader &shader) {
+void GUIDrawableSolidColor::uniforms(Shader &shader) {
     shader["fillColor"] = color;    
 }
 

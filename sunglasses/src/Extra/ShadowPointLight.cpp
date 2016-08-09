@@ -1,27 +1,27 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Extra/SunShadowPointLight.h>
+#include <sunglasses/Extra/ShadowPointLight.h>
 
-#include <sunglasses/Graphics/SunPrimitives.h>
-#include <sunglasses/Graphics/SunShader.h>
+#include <sunglasses/Graphics/Primitives.h>
+#include <sunglasses/Graphics/Shader.h>
 
 #include <glm/gtc/type_ptr.hpp>
 
 namespace sunglasses {
 
-SunShadowPointLight::SunShadowPointLight() {
+ShadowPointLight::ShadowPointLight() {
 
 }
 
-SunShadowPointLight::SunShadowPointLight(glm::vec3 _color, glm::vec3 _position) : SunPointLight(_color, _position) {
+ShadowPointLight::ShadowPointLight(glm::vec3 _color, glm::vec3 _position) : PointLight(_color, _position) {
 
 }
 
-void SunShadowPointLight::init() {
-    addAction("shadowMap", &SunShadowPointLight::shadowMap);
-    addAction("action", &SunShadowPointLight::update);
-    addAction("uniform", &SunShadowPointLight::uniform);
+void ShadowPointLight::init() {
+    addAction("shadowMap", &ShadowPointLight::shadowMap);
+    addAction("action", &ShadowPointLight::update);
+    addAction("uniform", &ShadowPointLight::uniform);
 
     glGenFramebuffers(1, &fbo);
     glBindFramebuffer(GL_FRAMEBUFFER, fbo);
@@ -47,8 +47,8 @@ void SunShadowPointLight::init() {
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void SunShadowPointLight::shadowMap(SunAction action) {
-    SunShader *shader = action.getParameterPointer<SunShader>("shader");
+void ShadowPointLight::shadowMap(Action action) {
+    Shader *shader = action.getParameterPointer<Shader>("shader");
 
     glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
@@ -71,7 +71,7 @@ void SunShadowPointLight::shadowMap(SunAction action) {
     (*shader)["lightPosition"] = position;
     (*shader)["farPlane"] = farPlane;
 
-    SunAction render("render");
+    Action render("render");
     render.setRecursive(true);
     render.addParameter("shader", shader);
     sendAction(render, target);
@@ -79,12 +79,12 @@ void SunShadowPointLight::shadowMap(SunAction action) {
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void SunShadowPointLight::update(SunAction action) {
+void ShadowPointLight::update(Action action) {
 
 }
 
-void SunShadowPointLight::uniform(SunAction action) {
-    SunShader *shader = action.getParameterPointer<SunShader>("shader");
+void ShadowPointLight::uniform(Action action) {
+    Shader *shader = action.getParameterPointer<Shader>("shader");
     int id = shader->getNextArrayIndex("shadowPointLights");
 
     (*shader)["shadowPointLights[" + std::to_string(id) + "].color"] = color;

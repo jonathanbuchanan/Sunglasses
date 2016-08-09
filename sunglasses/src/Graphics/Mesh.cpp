@@ -1,30 +1,30 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Graphics/SunMesh.h>
+#include <sunglasses/Graphics/Mesh.h>
 
-#include <sunglasses/Core/SunObject.h>
+#include <sunglasses/Core/Object.h>
 
-#include <sunglasses/Graphics/Loaders/SunMeshResource.h>
-#include <sunglasses/Graphics/Loaders/SunMaterialResource.h>
+#include <sunglasses/Graphics/Loaders/MeshResource.h>
+#include <sunglasses/Graphics/Loaders/MaterialResource.h>
 
 #include <glm/gtc/type_ptr.hpp>
 
 namespace sunglasses {
 
-SunMesh::SunMesh() {
+Mesh::Mesh() {
 
 }
 
-SunMesh::SunMesh(SunObject *_object, SunMeshResource *_mesh, SunMaterialResource *_material) : object(_object), mesh(_mesh), material(_material), scale(glm::vec3(1.0f, 1.0f, 1.0f)) {
+Mesh::Mesh(Object *_object, MeshResource *_mesh, MaterialResource *_material) : object(_object), mesh(_mesh), material(_material), scale(glm::vec3(1.0f, 1.0f, 1.0f)) {
 
 }
 
-SunMesh::SunMesh(SunObject *_object, SunMeshResource *_mesh, SunMaterialResource *_material, glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale) : object(_object), mesh(_mesh), material(_material), position(_position), rotation(_rotation), scale(_scale) {
+Mesh::Mesh(Object *_object, MeshResource *_mesh, MaterialResource *_material, glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale) : object(_object), mesh(_mesh), material(_material), position(_position), rotation(_rotation), scale(_scale) {
 
 }
 
-void SunMesh::render(SunShader *shader) {
+void Mesh::render(Shader *shader) {
     material->pass(shader, "material");
 
     glm::vec3 _position = object->getPosition() + position;

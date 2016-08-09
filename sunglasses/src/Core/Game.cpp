@@ -1,26 +1,26 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Core/SunGame.h>
+#include <sunglasses/Core/Game.h>
 
 #include <sunglasses/Services.hpp>
 
-#include <sunglasses/Core/SunScene.h>
+#include <sunglasses/Core/Scene.h>
 
 namespace sunglasses {
 
-SunGame::SunGame(int argc, char **argv, std::string title) {
+Game::Game(int argc, char **argv, std::string title) {
 
 }
 
-void SunGame::run() {
+void Game::run() {
     while (!endGame) {
         // Draw the window
         //window.draw();
 
 
         //updateServices();
-        //services.get<SunWindowManager>()->calculateDelta();
+        //services.get<WindowManager>()->calculateDelta();
 
         // Run the loop function (user defined logic goes here)
         loop();
@@ -29,25 +29,25 @@ void SunGame::run() {
     }
 }
 
-//void SunGame::updateServices() {
+//void Game::updateServices() {
     /*for (auto &iterator : services.getServices()) {
         iterator.second->update();
     }*/
 //}
 
-void SunGame::stop() {
+void Game::stop() {
     endGame = true;
 }
 
-/*void SunGame::init(int argc, char **argv, std::string title, glm::vec4 color) {
+/*void Game::init(int argc, char **argv, std::string title, glm::vec4 color) {
     // Parse the command line options
     int width;
     int height;
     bool showCursor;
-    SunCLValueOption<int> widthOpt("", "width", "The width of the window", "an integer value", 800, false, &width);
-    SunCLValueOption<int> heightOpt("", "height", "The height of the window", "an integer value", 600, false, &height);
-    SunCLSwitchOption cursorOpt("c", "cursor", "Show the cursor", false, &showCursor);
-    std::vector<SunCLOption *> options = {
+    CLValueOption<int> widthOpt("", "width", "The width of the window", "an integer value", 800, false, &width);
+    CLValueOption<int> heightOpt("", "height", "The height of the window", "an integer value", 600, false, &height);
+    CLSwitchOption cursorOpt("c", "cursor", "Show the cursor", false, &showCursor);
+    std::vector<CLOption *> options = {
         &widthOpt,
         &heightOpt,
         &cursorOpt
@@ -56,50 +56,50 @@ void SunGame::stop() {
     parseOptions(options, "HELP MESSAGE", "alpha v0.0.1",  argc, argv);
 
     // Initialize the Audio Device Manager
-    SunAudioDeviceManager *audioManager = new SunAudioDeviceManager();
+    AudioDeviceManager *audioManager = new AudioDeviceManager();
     services.add(audioManager);
 
     // Initialize the Window Manager
-    SunWindowManager *windowManager = new SunWindowManager(glm::vec2(width, height), title, color);
+    WindowManager *windowManager = new WindowManager(glm::vec2(width, height), title, color);
     windowManager->setName("window_manager");
     services.add(windowManager);
     window = windowManager->getWindow();
 
     // Initialize the Keyboard Manager
-    SunKeyboardManager *keyboard = new SunKeyboardManager(window);
+    KeyboardManager *keyboard = new KeyboardManager(window);
     keyboard->setName("keyboard_manager");
     services.add(keyboard);
 
     // Initialize the Cursor Manager
-    SunCursorManager *cursor = new SunCursorManager(window, !showCursor);
+    CursorManager *cursor = new CursorManager(window, !showCursor);
     cursor->setName("cursor_manager");
     services.add(cursor);
 
     // Initialize the Mouse Button Manager
-    SunMouseButtonManager *mouseButton = new SunMouseButtonManager(window);
+    MouseButtonManager *mouseButton = new MouseButtonManager(window);
     mouseButton->setName("mouse_button_manager");
     services.add(mouseButton);
 
     // Initialize the Logger
-    SunLogger *logger = new SunLogger();
+    Logger *logger = new Logger();
     logger->setName("logger");
     services.add(logger);
 
     // Initialize the Global Logic Environment
-    SunGlobalScriptingEnvironment *globalEnvironment = new SunGlobalScriptingEnvironment();
+    GlobalScriptingEnvironment *globalEnvironment = new GlobalScriptingEnvironment();
     globalEnvironment->setName("global_logic_environment");
     services.add(globalEnvironment);
 
     // Initialize the Resource Management Service
-    SunResourceService *resourceService = new SunResourceService();
+    ResourceService *resourceService = new ResourceService();
     resourceService->setName("resource_service");
     services.add(resourceService);
 
-    resourceService->addResourceManager("models", new SunResourceManager());
-    resourceService->addResourceManager("meshes", new SunResourceManager());
-    resourceService->addResourceManager("materials", new SunResourceManager());
-    resourceService->addResourceManager("textures", new SunResourceManager());
-    resourceService->addResourceManager("sounds", new SunResourceManager());
+    resourceService->addResourceManager("models", new ResourceManager());
+    resourceService->addResourceManager("meshes", new ResourceManager());
+    resourceService->addResourceManager("materials", new ResourceManager());
+    resourceService->addResourceManager("textures", new ResourceManager());
+    resourceService->addResourceManager("sounds", new ResourceManager());
 }*/
 
 } // namespace

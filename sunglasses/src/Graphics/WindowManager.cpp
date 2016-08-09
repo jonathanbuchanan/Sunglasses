@@ -1,31 +1,31 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Graphics/SunWindowManager.h>
-#include <sunglasses/Scripting/SunScript.h>
+#include <sunglasses/Graphics/WindowManager.h>
+#include <sunglasses/Scripting/Script.h>
 
 namespace sunglasses {
 
-template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<SunWindowManager> *> SunLuaTypeRegistrar<SunWindowManager>::dataMembers = {
-    {"setWindowShouldClose", new SunLuaTypeMemberFunction<SunWindowManager, void>("setWindowShouldClose", &SunWindowManager::setWindowShouldClose)}
+template<> const std::map<std::string, Scripting::LuaTypeDataMemberBase<WindowManager> *> LuaTypeRegistrar<WindowManager>::dataMembers = {
+    {"setWindowShouldClose", new LuaTypeMemberFunction<WindowManager, void>("setWindowShouldClose", &WindowManager::setWindowShouldClose)}
 };
 
-SunWindowManager::SunWindowManager() {
+WindowManager::WindowManager() {
 
 }
 
-SunWindowManager::SunWindowManager(glm::vec2 _size, std::string _title, glm::vec4 _clearColor) {
+WindowManager::WindowManager(glm::vec2 _size, std::string _title, glm::vec4 _clearColor) {
     size = _size;
     title = _title;
     clearColor = _clearColor;
     initialize();
 }
 
-void SunWindowManager::update() {
+void WindowManager::update() {
 
 }
 
-void SunWindowManager::initialize() {
+void WindowManager::initialize() {
     // Initialize GLFW and give window hints
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -61,19 +61,19 @@ void SunWindowManager::initialize() {
     glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
 }
 
-void SunWindowManager::terminate() {
+void WindowManager::terminate() {
     glfwTerminate();
 }
 
-void SunWindowManager::swapBuffers() {
+void WindowManager::swapBuffers() {
     glfwSwapBuffers(window);
 }
 
-void SunWindowManager::setWindowShouldClose() {
+void WindowManager::setWindowShouldClose() {
     glfwSetWindowShouldClose(window, true);
 }
 
-void SunWindowManager::calculateDelta() {
+void WindowManager::calculateDelta() {
     double currentFrame = glfwGetTime();
     delta = currentFrame - lastFrame;
     lastFrame = currentFrame;

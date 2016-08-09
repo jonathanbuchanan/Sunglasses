@@ -1,32 +1,32 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Extra/SunDirectionalLight.h>
+#include <sunglasses/Extra/DirectionalLight.h>
 
-#include <sunglasses/Graphics/SunShader.h>
+#include <sunglasses/Graphics/Shader.h>
 
 namespace sunglasses {
 
-SunDirectionalLight::SunDirectionalLight() {
+DirectionalLight::DirectionalLight() {
 
 }
 
-SunDirectionalLight::SunDirectionalLight(glm::vec3 _color, glm::vec3 _direction) : color(_color), direction(_direction) {
+DirectionalLight::DirectionalLight(glm::vec3 _color, glm::vec3 _direction) : color(_color), direction(_direction) {
 
 }
 
-void SunDirectionalLight::init() {
-    addAction("update", &SunDirectionalLight::update);
-    addAction("uniform", &SunDirectionalLight::uniform);
+void DirectionalLight::init() {
+    addAction("update", &DirectionalLight::update);
+    addAction("uniform", &DirectionalLight::uniform);
 }
 
-void SunDirectionalLight::update(SunAction action) {
+void DirectionalLight::update(Action action) {
 
 }
 
 
-void SunDirectionalLight::uniform(SunAction action) {
-    SunShader *shader = action.getParameterPointer<SunShader>("shader");
+void DirectionalLight::uniform(Action action) {
+    Shader *shader = action.getParameterPointer<Shader>("shader");
     int id = shader->getNextArrayIndex("directionalLights");
     (*shader)["directionalLights[" + std::to_string(id) + "].color"] = color;
 

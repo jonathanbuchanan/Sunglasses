@@ -1,17 +1,17 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Physics/SunPhysicsObject.h>
+#include <sunglasses/Physics/PhysicsObject.h>
 #include <glm/gtx/string_cast.hpp>
 #include <iostream>
 
 namespace sunglasses {
 
-SunPhysicsObject::SunPhysicsObject() {
+PhysicsObject::PhysicsObject() {
 
 }
 
-void SunPhysicsObject::updatePositionForForcesAndDelta(std::vector<SunPhysicsForce> forces, float delta) {
+void PhysicsObject::updatePositionForForcesAndDelta(std::vector<PhysicsForce> forces, float delta) {
     if (!stationary) {
         glm::vec3 netDirection = glm::vec3(0, 0, 0);
         for (size_t i = 0; i < forces.size(); i++)

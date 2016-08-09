@@ -1,12 +1,12 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Graphics/SunTexturedQuad.h>
+#include <sunglasses/Graphics/TexturedQuad.h>
 
 namespace sunglasses {
 
-void SunTexturedQuad::init() {
-    addAction("render", &SunTexturedQuad::render);
+void TexturedQuad::init() {
+    addAction("render", &TexturedQuad::render);
 
     // Generate the VAO
     glGenVertexArrays(1, &VAO);
@@ -22,7 +22,7 @@ void SunTexturedQuad::init() {
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
     // Initialize and write the data for the VBO
-    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(SunVertex), &vertices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), &vertices[0], GL_STATIC_DRAW);
 
     // Bind the EBO
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
@@ -32,16 +32,16 @@ void SunTexturedQuad::init() {
 
     // Initialize and set the vertex attributes
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(SunVertex), (GLvoid *) 0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid *) 0);
 
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(SunVertex), (GLvoid *) offsetof(SunVertex, textureCoordinates));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid *) offsetof(Vertex, textureCoordinates));
 
     // Unbind the VBO and EBO
     glBindVertexArray(0);
 }
 
-void SunTexturedQuad::render(SunAction action) {
+void TexturedQuad::render(Action action) {
     glBindVertexArray(VAO);
 
     glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);

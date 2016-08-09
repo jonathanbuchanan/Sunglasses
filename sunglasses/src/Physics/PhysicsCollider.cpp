@@ -1,16 +1,16 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/Physics/SunPhysicsCollider.h>
+#include <sunglasses/Physics/PhysicsCollider.h>
 
 namespace sunglasses {
 
-SunPhysicsCollider::SunPhysicsCollider() {
+PhysicsCollider::PhysicsCollider() {
     
 }
 
-SunPhysicsCollisionData SunPhysicsCollider::collideWith(SunPhysicsCollider *other) {
-    return SunPhysicsCollisionData();
+PhysicsCollisionData PhysicsCollider::collideWith(PhysicsCollider *other) {
+    return PhysicsCollisionData();
 }
 
 } // namespace
