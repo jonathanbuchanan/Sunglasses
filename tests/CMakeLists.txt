@@ -38,13 +38,13 @@ project(Test-Sunglasses)
 
 set(SOURCES
     main.cpp
-    test_SunAction.cpp
-    test_SunBase.cpp
-    test_SunLuaPrimitives.cpp
-    test_SunLuaTypeRegistrar.cpp
-    test_SunResourceManager.cpp
-    test_SunResourceService.cpp
-    test_SunScript.cpp
+    test_Action.cpp
+    test_Base.cpp
+    test_LuaPrimitives.cpp
+    test_LuaTypeRegistrar.cpp
+    test_ResourceManager.cpp
+    test_ResourceService.cpp
+    test_Script.cpp
 )
 
 add_test(all Test-Sunglasses)
@@ -52,7 +52,7 @@ add_test(all Test-Sunglasses)
 add_executable(Test-Sunglasses ${SOURCES})
 include_directories(
     /usr/include/freetype2
-    ../src/
+    ../sunglasses/include/
 )
 target_link_libraries(Test-Sunglasses sunglasses freetype SOIL GLEW libGL.so assimp openal alut ${GLFW_LIBRARIES} X11 Xxf86vm pthread dl Xrandr Xinerama Xi Xcursor lua ${GTEST_LIBRARY} ${GMOCK_LIBRARY} pthread)
 add_dependencies(Test-Sunglasses gtest)

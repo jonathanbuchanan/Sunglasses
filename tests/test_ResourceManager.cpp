@@ -1,31 +1,33 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
 #include <sunglasses/Sunglasses.hpp>
 
-class MockSunResource : public SunResource {
+using namespace sunglasses;
+
+class MockResource : public Resource {
 public:
     MOCK_METHOD0(init, void());
 };
 
-struct SunResourceManagerTest : ::testing::Test {
-    SunResourceManager *manager;
-    MockSunResource *resource;
+struct ResourceManagerTest : ::testing::Test {
+    ResourceManager *manager;
+    MockResource *resource;
 
-    SunResourceManagerTest() {
-        manager = new SunResourceManager();
-        resource = new MockSunResource();
+    ResourceManagerTest() {
+        manager = new ResourceManager();
+        resource = new MockResource();
     }
 
-    ~SunResourceManagerTest() {
+    ~ResourceManagerTest() {
         delete manager;
     }
 };
 
-TEST_F(SunResourceManagerTest, Resources) {
+TEST_F(ResourceManagerTest, Resources) {
     EXPECT_CALL((*resource), init()).Times(1);
     EXPECT_EQ(manager->addResource("res0", resource), 0);
 

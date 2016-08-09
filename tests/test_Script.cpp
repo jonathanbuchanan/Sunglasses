@@ -1,16 +1,18 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
 #include <sunglasses/Sunglasses.hpp>
 
-struct SunScriptTest : ::testing::Test {
-    SunScript script;
-    SunScriptTest() {
-        script.loadFile("test_SunScript_0.lua");
-        script.loadFile("test_SunScript_1.lua");
+using namespace sunglasses;
+
+struct ScriptTest : ::testing::Test {
+    Script script;
+    ScriptTest() {
+        script.loadFile("test_Script_0.lua");
+        script.loadFile("test_Script_1.lua");
     }
 
     virtual void TearDown() {
@@ -18,7 +20,7 @@ struct SunScriptTest : ::testing::Test {
     }
 };
 
-TEST_F(SunScriptTest, LuaVariables) {
+TEST_F(ScriptTest, LuaVariables) {
     int x = script.getVariable("x");
     EXPECT_EQ(x, 2);
 
@@ -87,7 +89,7 @@ TEST_F(SunScriptTest, LuaVariables) {
     EXPECT_EQ((std::string)script["table"]["o"][4], "abc");
 }
 
-TEST_F(SunScriptTest, LuaFunctions) {
+TEST_F(ScriptTest, LuaFunctions) {
     int result = script["add"](1, 2);
     EXPECT_EQ(result, 3);
 
@@ -98,7 +100,7 @@ TEST_F(SunScriptTest, LuaFunctions) {
     EXPECT_EQ(multiply, 20);
 }
 
-TEST_F(SunScriptTest, RunLua) {
+TEST_F(ScriptTest, RunLua) {
     script.run("z = 5");
     EXPECT_EQ((int)script["z"], 5);
 
@@ -123,7 +125,7 @@ void sum(int a, int b) {
     zaz = a + b;
 }
 
-TEST_F(SunScriptTest, CFunctions) {
+TEST_F(ScriptTest, CFunctions) {
     // Test Lambda
     auto cat = [](const char *a, const char *b) -> char * {
         char *result = (char *)malloc(strlen(a) + strlen(b) + 1);

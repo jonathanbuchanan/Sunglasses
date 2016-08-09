@@ -3,7 +3,6 @@
 // See LICENSE.md for details.
 #include <gtest/gtest.h>
 
-int main(int argc, char **argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}
+#include <sunglasses/Sunglasses.hpp>
+
+using namespace sunglasses;

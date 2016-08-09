@@ -1,10 +1,12 @@
 // Copyright 2016 Jonathan Buchanan.
-// This file is part of Sunglasses, which is licensed under the MIT License.
+// This file is part of sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
 #include <sunglasses/Sunglasses.hpp>
+
+using namespace sunglasses;
 
 struct TestClass {
     int x;
@@ -20,26 +22,26 @@ struct TestClass {
         return x * 2;
     }
 };
-template<> const std::string SunLuaTypeRegistrar<TestClass>::typeName = "TestClass";
-template<> const std::map<std::string, SunScripting::SunLuaTypeDataMemberBase<TestClass> *> SunLuaTypeRegistrar<TestClass>::dataMembers = {
-    {"x", new SunLuaTypeDataMember<int, TestClass>("x", &TestClass::x)},
-    {"y", new SunLuaTypeDataMember<float, TestClass>("y", &TestClass::y)},
-    {"z", new SunLuaTypeDataMember<std::string, TestClass>("z", &TestClass::z)},
-    {"vec", new SunLuaComplexDataMember<glm::vec2, TestClass>("vec", &TestClass::vec)},
-    {"increment", new SunLuaTypeMemberFunction<TestClass, void, int>("increment", &TestClass::increment)},
-    {"doubleX", new SunLuaTypeMemberFunction<TestClass, int>("doubleX", &TestClass::doubleX)}
+template<> const std::string LuaTypeRegistrar<TestClass>::typeName = "TestClass";
+template<> const std::map<std::string, Scripting::LuaTypeDataMemberBase<TestClass> *> LuaTypeRegistrar<TestClass>::dataMembers = {
+    {"x", new LuaTypeDataMember<int, TestClass>("x", &TestClass::x)},
+    {"y", new LuaTypeDataMember<float, TestClass>("y", &TestClass::y)},
+    {"z", new LuaTypeDataMember<std::string, TestClass>("z", &TestClass::z)},
+    {"vec", new LuaComplexDataMember<glm::vec2, TestClass>("vec", &TestClass::vec)},
+    {"increment", new LuaTypeMemberFunction<TestClass, void, int>("increment", &TestClass::increment)},
+    {"doubleX", new LuaTypeMemberFunction<TestClass, int>("doubleX", &TestClass::doubleX)}
 };
-template<> const std::string SunLuaTypeRegistrar<TestClass>::memberTableName = "__members";
+template<> const std::string LuaTypeRegistrar<TestClass>::memberTableName = "__members";
 
-struct SunLuaTypeRegistrarTest : ::testing::Test {
+struct LuaTypeRegistrarTest : ::testing::Test {
     lua_State *L;
     TestClass *obj;
 
-    SunLuaTypeRegistrarTest() {
+    LuaTypeRegistrarTest() {
         L = luaL_newstate();
         luaL_openlibs(L);
-        SunLuaTypeRegistrar<TestClass>::registerInState(L);
-        SunLuaTypeRegistrar<glm::vec2>::registerInState(L);
+        LuaTypeRegistrar<TestClass>::registerInState(L);
+        LuaTypeRegistrar<glm::vec2>::registerInState(L);
         luaL_dostring(L, "foo = TestClass({x = 10, y = 20.5, z = \"Hello, World!\", vec = Vec2({x = 11.5, y = 2.33})})");
         
         obj = new TestClass();
@@ -49,17 +51,17 @@ struct SunLuaTypeRegistrarTest : ::testing::Test {
         obj->vec.x = 9.8;
         obj->vec.y = 0.10101;
 
-        SunLuaTypeRegistrar<TestClass>::registerObject(L, obj);
+        LuaTypeRegistrar<TestClass>::registerObject(L, obj);
         lua_setglobal(L, "obj");
     }
 
-    virtual ~SunLuaTypeRegistrarTest() {
+    virtual ~LuaTypeRegistrarTest() {
         delete obj;
         lua_close(L);
     }
 };
 
-TEST_F(SunLuaTypeRegistrarTest, AccessMembers) {
+TEST_F(LuaTypeRegistrarTest, AccessMembers) {
     lua_getglobal(L, "foo");
 
     lua_pushstring(L, "x");
@@ -107,7 +109,7 @@ TEST_F(SunLuaTypeRegistrarTest, AccessMembers) {
     lua_pop(L, 1);
 }
 
-TEST_F(SunLuaTypeRegistrarTest, WriteMembers) {
+TEST_F(LuaTypeRegistrarTest, WriteMembers) {
     lua_getglobal(L, "foo");
 
     luaL_dostring(L, "foo.x = 220");
@@ -150,7 +152,7 @@ TEST_F(SunLuaTypeRegistrarTest, WriteMembers) {
     lua_pop(L, 2);
 }
 
-TEST_F(SunLuaTypeRegistrarTest, RegisterObjects) {
+TEST_F(LuaTypeRegistrarTest, RegisterObjects) {
     lua_getglobal(L, "obj");
 
     lua_getfield(L, -1, "x");
