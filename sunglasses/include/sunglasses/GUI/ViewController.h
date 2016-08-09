@@ -1,30 +1,30 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#ifndef GUIVIEWCONTROLLER_H
-#define GUIVIEWCONTROLLER_H
+#ifndef VIEWCONTROLLER_H
+#define VIEWCONTROLLER_H
 
-#include <sunglasses/GUI/GUIView.h>
+#include <sunglasses/GUI/View.h>
 
 namespace sunglasses {
 
 class GUI;
-class GUIWindow;
+class Window;
 
 /// Manages a view.
 /**
- * This class manages an instance of GUIView. This view typically
+ * This class manages an instance of View. This view typically
  * takes up the entire window.
- * @see GUIView
+ * @see View
  */
-class GUIViewController {
+class ViewController {
 friend GUI;
 public:
     /// Constructs a view controller from the dimensions of the window
-    GUIViewController(GUIWindow &window, const GUIDrawable &drawable = GUIDrawableSolidColor(glm::vec4(1.0f)));
+    ViewController(Window &window, const Drawable &drawable = DrawableSolidColor(glm::vec4(1.0f)));
 protected:
     /// The view managed by the controller
-    GUIView view;
+    View view;
 };
 
 } // namespace

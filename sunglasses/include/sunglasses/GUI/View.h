@@ -1,37 +1,37 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#ifndef GUIVIEW_H
-#define GUIVIEW_H
+#ifndef VIEW_H
+#define VIEW_H
 
 #include <glm/glm.hpp>
 
-#include <sunglasses/GUI/GUIWindow.h>
-#include <sunglasses/GUI/GUIDrawable.h>
+#include <sunglasses/GUI/Window.h>
+#include <sunglasses/GUI/Drawable.h>
 
 #include <vector>
 #include <memory>
 
 namespace sunglasses {
 
-class GUIViewController;
-class GUIRenderer;
+class ViewController;
+class Renderer;
 
 /// The state of a control
-enum class GUIControlState {
+enum class ControlState {
     Normal,
     Highlighted,
     Selected
 };
 
 /// A view in the GUI toolkit
-class GUIView {
-friend GUIViewController;
+class View {
+friend ViewController;
 public:
     /// Constructs the view
-    GUIView(glm::ivec2 _position,
+    View(glm::ivec2 _position,
         glm::ivec2 _size,
-        const GUIDrawable &_drawable,
+        const Drawable &_drawable,
         bool _visible = true);
 
     /// Updates all the sub-views and updates this view
@@ -39,17 +39,17 @@ public:
      * @param parentPosition The absolute position of the parent view
      * @param info The info used to update the view
      */
-    void updateTree(glm::ivec2 parentPosition, GUIUpdateInfo info);
+    void updateTree(glm::ivec2 parentPosition, UpdateInfo info);
 
     /// Draws all the sub-views and draws this view
     /**
      * @param parentPosition The absolute position of the parent view
      * @param renderer The object used to draw the view
      */
-    virtual void drawTree(glm::ivec2 parentPosition, GUIRenderer &renderer);
+    virtual void drawTree(glm::ivec2 parentPosition, Renderer &renderer);
 
     /// Adds a subview
-    void addSubview(GUIView *subview);
+    void addSubview(View *subview);
 
     /// The position of the view (In pixels, not NDC)
     glm::ivec2 position;
@@ -58,22 +58,22 @@ public:
     glm::ivec2 size;
 protected:
     /// Updates the view
-    virtual void update(glm::ivec2 parentPosition, GUIUpdateInfo info);
+    virtual void update(glm::ivec2 parentPosition, UpdateInfo info);
 
     /// Draws the view
-    virtual void draw(glm::ivec2 parentPosition, GUIRenderer &renderer);
+    virtual void draw(glm::ivec2 parentPosition, Renderer &renderer);
 
     /// The drawable (a solid color, image, etc.)
-    std::unique_ptr<GUIDrawable> drawable;
+    std::unique_ptr<Drawable> drawable;
 
     /// The visibility of the view
     bool visible;
 
     /// The state of the control
-    GUIControlState state;
+    ControlState state;
 private:
     /// The vector of sub-views
-    std::vector<GUIView *> subviews;
+    std::vector<View *> subviews;
 };
 
 } // namespace

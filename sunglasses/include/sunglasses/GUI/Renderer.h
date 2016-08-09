@@ -1,8 +1,8 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#ifndef GUIRENDERER_H
-#define GUIRENDERER_H
+#ifndef RENDERER_H
+#define RENDERER_H
 
 #include <vector>
 
@@ -11,23 +11,23 @@
 #include <GL/glew.h>
 
 #include <sunglasses/Graphics/Shader.h>
-#include <sunglasses/GUI/GUIDrawable.h>
+#include <sunglasses/GUI/Drawable.h>
 
 namespace sunglasses {
 
-class GUIWindow;
+class Window;
 
 /// A container used to store shaders for drawing the GUI
-class GUIRenderer {
+class Renderer {
 public:
     /// Initializes the shaders
-    GUIRenderer(GUIWindow &_window);
+    Renderer(Window &_window);
 
     /// Renders a rectangle
-    void drawRect(glm::ivec2 origin, glm::ivec2 size, GUIDrawable *drawable);
+    void drawRect(glm::ivec2 origin, glm::ivec2 size, Drawable *drawable);
 private:
     /// The window
-    GUIWindow &window;
+    Window &window;
 
     /// The fill shader
     Shader fillShader;

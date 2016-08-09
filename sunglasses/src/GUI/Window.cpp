@@ -1,20 +1,20 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/GUI/GUIWindow.h>
+#include <sunglasses/GUI/Window.h>
 
 #include <glm/gtc/matrix_transform.hpp>
 
 namespace sunglasses {
 
-GUIUpdateInfo::GUIUpdateInfo(glm::ivec2 _cursor,
-    GUIWindowButtonState _leftMouseButton,
-    GUIWindowButtonState _rightMouseButton,
-    GUIWindowButtonState _middleMouseButton) : cursor(_cursor),
+UpdateInfo::UpdateInfo(glm::ivec2 _cursor,
+    WindowButtonState _leftMouseButton,
+    WindowButtonState _rightMouseButton,
+    WindowButtonState _middleMouseButton) : cursor(_cursor),
         leftMouseButton(_leftMouseButton), rightMouseButton(_rightMouseButton),
         middleMouseButton(_middleMouseButton) { }
 
-GUIWindow::GUIWindow(int _width, int _height, std::string _title, bool resizeable)
+Window::Window(int _width, int _height, std::string _title, bool resizeable)
     : width(_width), height(_height), title(_title) {
     // Initialize GLFW
     glfwInit();
@@ -44,22 +44,22 @@ GUIWindow::GUIWindow(int _width, int _height, std::string _title, bool resizeabl
     updateViewport();
 }
 
-GUIWindow::~GUIWindow() {
+Window::~Window() {
     glfwTerminate();
 }
 
-void GUIWindow::clear() {
+void Window::clear() {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void GUIWindow::swapBuffers() {
+void Window::swapBuffers() {
     glfwSwapBuffers(window);
 }
 
-GUIUpdateInfo GUIWindow::updateInfo() {
+UpdateInfo Window::updateInfo() {
     glfwPollEvents();
-    return GUIUpdateInfo(
+    return UpdateInfo(
         cursor(),
         leftMouseButton(),
         rightMouseButton(),
@@ -67,13 +67,13 @@ GUIUpdateInfo GUIWindow::updateInfo() {
     );
 }
 
-glm::ivec2 GUIWindow::size() {
+glm::ivec2 Window::size() {
     glm::ivec2 size;
     glfwGetWindowSize(window, &size.x, &size.y);
     return size;
 }
 
-void GUIWindow::updateViewport() {
+void Window::updateViewport() {
     // Set the viewport
     int framebufferWidth, framebufferHeight;
     glfwGetFramebufferSize(window, &framebufferWidth, &framebufferHeight);
@@ -81,39 +81,39 @@ void GUIWindow::updateViewport() {
     glViewport(0, 0, framebufferWidth, framebufferHeight);
 }
 
-glm::mat4 GUIWindow::projection() {
+glm::mat4 Window::projection() {
     glm::ivec2 windowSize = size();
     return glm::ortho(0.0f, (float)windowSize.x, (float)windowSize.y, 0.0f, -1.0f, 0.0f);
 }
 
-glm::ivec2 GUIWindow::cursor() {
+glm::ivec2 Window::cursor() {
     glm::dvec2 cursor;
     glfwGetCursorPos(window, &cursor.x, &cursor.y);
     return (glm::ivec2)cursor;
 }
 
-GUIWindowButtonState GUIWindow::leftMouseButton() {
+WindowButtonState Window::leftMouseButton() {
     int state = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
     if (state == GLFW_PRESS)
-        return GUIWindowButtonState::Pressed;
+        return WindowButtonState::Pressed;
     else if (state == GLFW_RELEASE)
-        return GUIWindowButtonState::Released;
+        return WindowButtonState::Released;
 }
 
-GUIWindowButtonState GUIWindow::rightMouseButton() {
+WindowButtonState Window::rightMouseButton() {
     int state = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT);
     if (state == GLFW_PRESS)
-        return GUIWindowButtonState::Pressed;
+        return WindowButtonState::Pressed;
     else if (state == GLFW_RELEASE)
-        return GUIWindowButtonState::Released;
+        return WindowButtonState::Released;
 }
 
-GUIWindowButtonState GUIWindow::middleMouseButton() {
+WindowButtonState Window::middleMouseButton() {
     int state = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_MIDDLE);
     if (state == GLFW_PRESS)
-        return GUIWindowButtonState::Pressed;
+        return WindowButtonState::Pressed;
     else if (state == GLFW_RELEASE)
-        return GUIWindowButtonState::Released;
+        return WindowButtonState::Released;
 }
 
 } // namespace

@@ -1,22 +1,22 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#ifndef GUIBUTTON_H
-#define GUIBUTTON_H
+#ifndef BUTTON_H
+#define BUTTON_H
 
-#include <sunglasses/GUI/GUIView.h>
+#include <sunglasses/GUI/View.h>
 
 namespace sunglasses {
 
 /// A button in the GUI
-class GUIButton : public GUIView {
+class Button : public View {
 public:
     /// Constructs a button with its various colors
-    GUIButton(glm::ivec2 origin, glm::ivec2 size, const GUIDrawable &drawable/*,
+    Button(glm::ivec2 origin, glm::ivec2 size, const Drawable &drawable/*,
         glm::vec4 _color, glm::vec4 _highlightedColor, glm::vec4 _selectedColor*/);
 protected:
     /// Updates the button
-    virtual void update(glm::ivec2 parentPosition, GUIUpdateInfo info);
+    virtual void update(glm::ivec2 parentPosition, UpdateInfo info);
 /*private:
     /// The color of the button
     glm::vec4 color;

@@ -1,17 +1,17 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#ifndef GUILABEL_H
-#define GUILABEL_H
+#ifndef LABEL_H
+#define LABEL_H
 
-#include <sunglasses/GUI/GUIView.h>
+#include <sunglasses/GUI/View.h>
 
 #include <string>
 
 namespace sunglasses {
 
 /// A label in the GUI toolkit
-class GUILabel : public GUIView {
+class Label : public View {
 public:
     std::string getText() const { return text; }
     void setText(std::string t) { text = t; }

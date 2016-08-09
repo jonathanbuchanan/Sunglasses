@@ -1,9 +1,9 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/GUI/GUIRenderer.h>
+#include <sunglasses/GUI/Renderer.h>
 
-#include <sunglasses/GUI/GUIWindow.h>
+#include <sunglasses/GUI/Window.h>
 
 #include <string>
 
@@ -42,12 +42,12 @@ void main() {
 }
 )";
 
-GUIRenderer::GUIRenderer(GUIWindow &_window) :
+Renderer::Renderer(Window &_window) :
     window(_window), fillShader(fill_vertex, fill_fragment) {
 
 }
 
-void GUIRenderer::drawRect(glm::ivec2 origin, glm::ivec2 size, GUIDrawable *drawable) {
+void Renderer::drawRect(glm::ivec2 origin, glm::ivec2 size, Drawable *drawable) {
     fillShader.use();
 
     // Pass the projection matrix
@@ -69,7 +69,7 @@ void GUIRenderer::drawRect(glm::ivec2 origin, glm::ivec2 size, GUIDrawable *draw
     glBindVertexArray(0);
 }
 
-GUIRenderer::Rectangle::Rectangle() {
+Renderer::Rectangle::Rectangle() {
     // Generate the VAO
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);

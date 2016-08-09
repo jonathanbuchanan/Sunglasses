@@ -4,22 +4,22 @@
 #ifndef GUI_H
 #define GUI_H
 
-#include <sunglasses/GUI/GUIWindow.h>
-#include <sunglasses/GUI/GUIRenderer.h>
+#include <sunglasses/GUI/Window.h>
+#include <sunglasses/GUI/Renderer.h>
 
 namespace sunglasses {
 
-class GUIView;
-class GUIViewController;
+class View;
+class ViewController;
 
 /// A GUI containing a window and a content view
 class GUI {
 public:
     /// Constructs the GUI with a content view
-    GUI(GUIView *view, GUIWindow &_window);
+    GUI(View *view, Window &_window);
 
     /// Constructs the GUI with a content view from a view controller
-    GUI(GUIViewController &viewController, GUIWindow &_window);
+    GUI(ViewController &viewController, Window &_window);
 
     /// Updates the GUI elements
     void update();
@@ -28,13 +28,13 @@ public:
     void draw();
 private:
     /// The window
-    GUIWindow &window;
+    Window &window;
 
     /// The renderer
-    GUIRenderer renderer;
+    Renderer renderer;
 
     /// The main view
-    GUIView *contentView;
+    View *contentView;
 };
 
 } // namespace

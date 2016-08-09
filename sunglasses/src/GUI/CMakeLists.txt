@@ -1,12 +1,12 @@
 add_sources(
     GUI.cpp
-    GUIButton.cpp
-    GUIDrawable.cpp
-    GUILabel.cpp
-    GUIRenderer.cpp
-    GUIView.cpp
-    GUIViewController.cpp
-    GUIWindow.cpp
+    Button.cpp
+    Drawable.cpp
+    Label.cpp
+    Renderer.cpp
+    View.cpp
+    ViewController.cpp
+    Window.cpp
 ) 
 
 add_sources_to_parent()

@@ -1,8 +1,8 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#ifndef GUIWINDOW_H
-#define GUIWINDOW_H
+#ifndef WINDOW_H
+#define WINDOW_H
 
 #include <GL/glew.h>
 
@@ -14,46 +14,46 @@
 
 namespace sunglasses {
 
-class GUIView;
+class View;
 
-enum struct GUIWindowButtonState {
+enum struct WindowButtonState {
     Released,
     Pressed
 };
 
 /// Input information for updating the GUI
-struct GUIUpdateInfo {
+struct UpdateInfo {
     /// Constructs the update info
-    GUIUpdateInfo(glm::ivec2 _cursor,
-        GUIWindowButtonState _leftMouseButton,
-        GUIWindowButtonState _rightMouseButton,
-        GUIWindowButtonState _middleMouseButton);
+    UpdateInfo(glm::ivec2 _cursor,
+        WindowButtonState _leftMouseButton,
+        WindowButtonState _rightMouseButton,
+        WindowButtonState _middleMouseButton);
 
     /// The position of the cursor
     glm::ivec2 cursor;
 
     /// The state of the left mouse button
-    GUIWindowButtonState leftMouseButton;
+    WindowButtonState leftMouseButton;
 
     /// The state of the right mouse button
-    GUIWindowButtonState rightMouseButton;
+    WindowButtonState rightMouseButton;
 
     /// The state of the middle mouse button
-    GUIWindowButtonState middleMouseButton;
+    WindowButtonState middleMouseButton;
 };
 
 /// The window displaying the GUI
-class GUIWindow {
+class Window {
 public:
     /// The constructor, creating the window
     /**
      * This constructor initializes GLFW, creates the window,
      * sizes it, names it,
      */
-    GUIWindow(int _width, int _height, std::string _title, bool resizeable = true);
+    Window(int _width, int _height, std::string _title, bool resizeable = true);
 
     /// The destructor
-    ~GUIWindow();
+    ~Window();
 
     /// Clears the window
     void clear();
@@ -62,7 +62,7 @@ public:
     void swapBuffers();
 
     /// Returns the current update info
-    GUIUpdateInfo updateInfo();
+    UpdateInfo updateInfo();
 
     /// Returns the size of the window
     glm::ivec2 size();
@@ -82,13 +82,13 @@ private:
     glm::ivec2 cursor();
 
     /// Gets the state of the left mouse button
-    GUIWindowButtonState leftMouseButton();
+    WindowButtonState leftMouseButton();
 
     /// Gets the state of the right mouse button
-    GUIWindowButtonState rightMouseButton();
+    WindowButtonState rightMouseButton();
 
     /// Gets the state of the middle mouse button
-    GUIWindowButtonState middleMouseButton();
+    WindowButtonState middleMouseButton();
 
     /// The width of the window
     int width;

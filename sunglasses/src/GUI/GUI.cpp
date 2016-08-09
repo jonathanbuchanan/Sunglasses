@@ -3,17 +3,17 @@
 // See LICENSE.md for details.
 #include <sunglasses/GUI/GUI.h>
 
-#include <sunglasses/GUI/GUIView.h>
-#include <sunglasses/GUI/GUIViewController.h>
+#include <sunglasses/GUI/View.h>
+#include <sunglasses/GUI/ViewController.h>
 
 namespace sunglasses {
 
-GUI::GUI(GUIView *view, GUIWindow &_window) :
+GUI::GUI(View *view, Window &_window) :
     window(_window), renderer(window), contentView(view) {
 
 }
 
-GUI::GUI(GUIViewController &viewController, GUIWindow &_window) :
+GUI::GUI(ViewController &viewController, Window &_window) :
     window(_window), renderer(window), contentView(&viewController.view) {
 
 }
