@@ -14,6 +14,7 @@
 #include <sunglasses/GUI/Drawable.h>
 
 namespace sunglasses {
+namespace GUI {
 
 class Window;
 
@@ -30,7 +31,7 @@ private:
     Window &window;
 
     /// The fill shader
-    Shader fillShader;
+    sunglasses::Shader fillShader;
 
     /// The rectangle data used to draw rectangles
     struct Rectangle {
@@ -56,6 +57,7 @@ private:
     } rectangle;
 };
 
+} // namespace
 } // namespace
 
 #endif

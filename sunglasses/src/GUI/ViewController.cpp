@@ -6,10 +6,12 @@
 #include <sunglasses/GUI/Window.h>
 
 namespace sunglasses {
+namespace GUI {
 
 ViewController::ViewController(Window &window, const Drawable &drawable) :
     view(glm::ivec2(0, 0), glm::ivec2(window.size()), drawable, true) {
 
 }
 
+} // namespace
 } // namespace

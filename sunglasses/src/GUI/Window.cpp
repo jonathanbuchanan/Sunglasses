@@ -6,6 +6,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 namespace sunglasses {
+namespace GUI {
 
 UpdateInfo::UpdateInfo(glm::ivec2 _cursor,
     WindowButtonState _leftMouseButton,
@@ -116,4 +117,5 @@ WindowButtonState Window::middleMouseButton() {
         return WindowButtonState::Released;
 }
 
+} // namespace
 } // namespace

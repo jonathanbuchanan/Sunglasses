@@ -9,6 +9,7 @@
 #include <string>
 
 namespace sunglasses {
+namespace GUI {
 
 /// A label in the GUI toolkit
 class Label : public View {
@@ -20,6 +21,7 @@ private:
     std::string text;
 };
 
+} // namespace
 } // namespace
 
 #endif

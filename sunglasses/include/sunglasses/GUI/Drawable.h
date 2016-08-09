@@ -8,6 +8,8 @@ namespace sunglasses {
 
 class Shader;
 
+namespace GUI {
+
 /// A rectangle that is a component of every view
 class Drawable {
 public:
@@ -15,7 +17,7 @@ public:
     virtual Drawable * copy() const = 0;
 
     /// Passes uniforms (like color or a texture) to the shader
-    virtual void uniforms(Shader &shader) = 0;
+    virtual void uniforms(sunglasses::Shader &shader) = 0;
 };
 
 /// A drawable of a single color
@@ -28,7 +30,7 @@ public:
     virtual Drawable * copy() const;
 
     /// Passes the color as a uniform
-    virtual void uniforms(Shader &shader);
+    virtual void uniforms(sunglasses::Shader &shader);
     /// The color of the drawable
     glm::vec4 color;
 };
@@ -42,6 +44,7 @@ private:
     GLuint texture;
 };
 
+} // namespace
 } // namespace
 
 #endif

@@ -7,6 +7,7 @@
 #include <sunglasses/GUI/View.h>
 
 namespace sunglasses {
+namespace GUI {
 
 /// A button in the GUI
 class Button : public View {
@@ -28,6 +29,7 @@ protected:
     glm::vec4 selectedColor;*/
 };
 
+} // namespace
 } // namespace
 
 #endif

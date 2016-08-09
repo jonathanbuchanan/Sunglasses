@@ -7,6 +7,7 @@
 #include <sunglasses/GUI/View.h>
 
 namespace sunglasses {
+namespace GUI {
 
 class GUI;
 class Window;
@@ -27,6 +28,7 @@ protected:
     View view;
 };
 
+} // namespace
 } // namespace
 
 #endif

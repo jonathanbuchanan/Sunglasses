@@ -7,6 +7,7 @@
 #include <sunglasses/GUI/Window.h>
 
 namespace sunglasses {
+namespace GUI {
 
 View::View(glm::ivec2 _position,
         glm::ivec2 _size,
@@ -61,4 +62,5 @@ void View::addSubview(View *subview) {
     subviews.push_back(subview);
 }
 
+} // namespace
 } // namespace

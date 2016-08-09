@@ -7,6 +7,7 @@
 #include <sunglasses/GUI/ViewController.h>
 
 namespace sunglasses {
+namespace GUI {
 
 GUI::GUI(View *view, Window &_window) :
     window(_window), renderer(window), contentView(view) {
@@ -40,4 +41,5 @@ void GUI::draw() {
     window.swapBuffers();
 }
 
+} // namespace
 } // namespace

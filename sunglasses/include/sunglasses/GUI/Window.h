@@ -13,6 +13,7 @@
 #include <GLFW/glfw3.h>
 
 namespace sunglasses {
+namespace GUI {
 
 class View;
 
@@ -103,6 +104,7 @@ private:
     GLFWwindow *window;
 };
 
+} // namespace
 } // namespace
 
 #endif

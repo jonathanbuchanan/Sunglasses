@@ -8,6 +8,7 @@
 #include <sunglasses/GUI/Renderer.h>
 
 namespace sunglasses {
+namespace GUI {
 
 class View;
 class ViewController;
@@ -37,6 +38,7 @@ private:
     View *contentView;
 };
 
+} // namespace
 } // namespace
 
 #endif

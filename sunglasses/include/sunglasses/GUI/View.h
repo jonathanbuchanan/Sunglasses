@@ -13,6 +13,7 @@
 #include <memory>
 
 namespace sunglasses {
+namespace GUI {
 
 class ViewController;
 class Renderer;
@@ -76,6 +77,7 @@ private:
     std::vector<View *> subviews;
 };
 
+} // namespace
 } // namespace
 
 #endif

@@ -4,5 +4,7 @@
 #include <sunglasses/GUI/Label.h>
 
 namespace sunglasses {
+namespace GUI {
 
+} // namespace
 } // namespace
