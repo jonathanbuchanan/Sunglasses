@@ -12,5 +12,9 @@ add_executable(GUI-Executable
 include_directories(/usr/include/freetype2
     "../../sunglasses/include")
 
+#find_library(SUNGLASSES_LIB
+#    sunglasses
+#    "../../sunglasses/")
+
 target_link_libraries(GUI-Executable sunglasses freetype SOIL GLEW GL assimp openal alut ${GLFW_LIBRARIES} X11 Xxf86vm pthread dl Xrandr Xinerama Xi Xcursor lua)
 set(CMAKE_CXX_FLAGS "-std=c++14 -g")

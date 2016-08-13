@@ -1,7 +1,6 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-
 #ifndef SHADER_H
 #define SHADER_H
 
@@ -11,6 +10,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <unordered_map>
 
 #include <GL/glew.h>
 
@@ -21,20 +21,66 @@
 
 namespace sunglasses {
 
+class Texture;
+
 enum ShaderSourceType {
     ShaderSourceTypeVertex = GL_VERTEX_SHADER,
     ShaderSourceTypeFragment = GL_FRAGMENT_SHADER,
     ShaderSourceTypeGeometry = GL_GEOMETRY_SHADER
 };
 
+// TODO: Remove these two functions
 extern std::string getShaderCodeFromFile(std::string filepath);
 extern GLuint compileShaderFromString(std::string shaderString, GLint shaderType);
 
+class Texture;
+
 class Shader : public Base {
+    friend Texture;
     class ShaderUniform;
+
+    /// A class that represents a texture unit
+    /**
+     * This class is used to control a single texture unit in OpenGL.
+     * It may be assigned a texture object using the assignment operator,
+     * setting the value of the uniform.
+     */
+    class TextureUnit {
+    public:
+        /// Constructs the texture unit with a unit number
+        TextureUnit(GLuint _unit);
+
+        /// Assigns a texture to the unit (and sets a uniform)
+        void operator=(Texture &texture);
+    private:
+        /// The texture uniform number
+        /**
+         * @warning Do not add GL_TEXTURE0 to this. This happens automatically.
+         */
+        GLuint unit;
+    };
+
+    /// A class that maps texture names to sampler uniforms in the shader
+    class TextureMapper {
+    public:
+        /// Constructs a texture mapper from a list of uniform names
+        /**
+         * This constructor builds the map by iterating through the list
+         * and creating a texture unit corresponding to the current
+         * index of the list while iterating.
+         */
+        TextureMapper(std::initializer_list<std::string> textureList);
+
+        /// Returns a texture unit object
+        TextureUnit operator[](std::string textureName);
+    private:
+        /// The map of texture units with names as keys
+        std::unordered_map<std::string, TextureUnit> textureUnits;
+    };
 public:
     /// Constructs the shader from a vertex and fragment shader
-    Shader(const std::string &vertex, const std::string &fragment);
+    Shader(const std::string &vertex, const std::string &fragment,
+        std::initializer_list<std::string> _textures = {});
 
     /// Constructs the shader from a list of sources
     /**
@@ -44,7 +90,8 @@ public:
      * the type of shader (vertex, fragment, geometry, etc.).
      * @param sources The vector of sources
      */
-    Shader(std::vector<std::pair<std::string, ShaderSourceType>> sources);
+    Shader(std::vector<std::pair<std::string, ShaderSourceType>> sources,
+        std::initializer_list<std::string> _textures = {});
 
     /// Destructs the shader by destroying the program
     ~Shader();
@@ -54,6 +101,17 @@ public:
      * @warning The shader must be currently active to use this method correctly
      */
     ShaderUniform operator[](std::string uniform);
+
+    /// The texture mapper
+    /**
+     * This object is used to assign textures to texture units. Each texture
+     * unit has a name corresponding to the name of the sampler uniform
+     * in the shader. Example:
+     * @code
+     * shader.textures["uniformName"] = texture;
+     * @endcode
+     */
+    TextureMapper textures;
 
     void init();
 

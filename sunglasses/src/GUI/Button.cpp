@@ -13,8 +13,8 @@ Button::Button(glm::ivec2 origin, glm::ivec2 size, const Drawable &drawable/*,
 
 }
 
-void Button::update(glm::ivec2 parentPosition, UpdateInfo info) {
-    View::update(parentPosition, info);
+//void Button::update(glm::ivec2 parentPosition, UpdateInfo info) {
+//    View::update(parentPosition, info);
     
     /// Change the color of the view based on the state
     /*switch (state) {
@@ -28,7 +28,7 @@ void Button::update(glm::ivec2 parentPosition, UpdateInfo info) {
             backgroundColor = selectedColor;
             break;
     }*/
-}
+//}
 
 } // namespace
 } // namespace

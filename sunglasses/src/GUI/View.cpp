@@ -18,7 +18,7 @@ View::View(glm::ivec2 _position,
 }
 
 void View::updateTree(glm::ivec2 parentPosition, UpdateInfo info) {
-    this->update(parentPosition, info);
+    update(/*parentPosition, info*/);
 
     glm::ivec2 absolute = parentPosition + (glm::ivec2)position;
 
@@ -27,8 +27,9 @@ void View::updateTree(glm::ivec2 parentPosition, UpdateInfo info) {
         view->updateTree(absolute, info);
 }
 
-void View::update(glm::ivec2 parentPosition, UpdateInfo info) {
-    glm::ivec2 absolute = parentPosition + (glm::ivec2)position;
+void View::update(/*glm::ivec2 parentPosition, UpdateInfo info*/) {
+    std::cout << "B" << std::endl;
+    /*glm::ivec2 absolute = parentPosition + (glm::ivec2)position;
     glm::ivec2 cursor = info.cursor;
     if ((absolute.x <= cursor.x && cursor.x <= absolute.x + size.x) &&
         (absolute.y <= cursor.y && cursor.y <= absolute.y + size.y)) {
@@ -38,7 +39,7 @@ void View::update(glm::ivec2 parentPosition, UpdateInfo info) {
             state = ControlState::Highlighted;
     } else {
         state = ControlState::Normal;
-    }
+    }*/
 }
 
 void View::drawTree(glm::ivec2 parentPosition, Renderer &renderer) {

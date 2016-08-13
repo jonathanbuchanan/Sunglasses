@@ -5,6 +5,7 @@ add_sources(
     Renderer.cpp
     RenderNode.cpp
     Shader.cpp
+    Texture.cpp
     TexturedQuad.cpp
     WindowManager.cpp
 )

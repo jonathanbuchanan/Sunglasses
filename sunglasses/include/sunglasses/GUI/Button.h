@@ -17,7 +17,7 @@ public:
         glm::vec4 _color, glm::vec4 _highlightedColor, glm::vec4 _selectedColor*/);
 protected:
     /// Updates the button
-    virtual void update(glm::ivec2 parentPosition, UpdateInfo info);
+//    virtual void update(glm::ivec2 parentPosition, UpdateInfo info);
 /*private:
     /// The color of the button
     glm::vec4 color;

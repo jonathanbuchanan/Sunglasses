@@ -5,7 +5,40 @@
 
 #include <glm/gtc/type_ptr.hpp>
 
+#include <sunglasses/Graphics/Texture.h>
+
 namespace sunglasses {
+
+Shader::TextureUnit::TextureUnit(GLuint _unit) : unit(_unit) {
+
+}
+
+void Shader::TextureUnit::operator=(Texture &texture) {
+    // Activate this texture unit
+    glActiveTexture(GL_TEXTURE0 + unit);
+
+    // Bind the texture
+    //glBindTexture(GL_TEXTURE_2D, texture.texture);
+
+    // Assign the uniform
+    glUniform1i(0, unit);
+
+    // Unbind the texture
+    glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+Shader::TextureMapper::TextureMapper(std::initializer_list<std::string> textureList) {
+    // Iterate through the list, make a new texture unit for each entry
+    GLuint unit = 0;
+    for (auto &string : textureList) {
+        textureUnits.emplace(string, unit);
+        ++unit;
+    }
+}
+
+Shader::TextureUnit Shader::TextureMapper::operator[](std::string textureName) {
+
+}
 
 std::string getShaderCodeFromFile(std::string filepath) {
     std::ifstream file(filepath);
@@ -32,7 +65,8 @@ GLuint compileShaderFromString(std::string shaderString, GLint shaderType) {
     return shader;
 }
 
-Shader::Shader(const std::string &vertex, const std::string &fragment) {
+Shader::Shader(const std::string &vertex, const std::string &fragment,
+        std::initializer_list<std::string> _textures) : textures(_textures) {
     GLuint vertexShader = compileShaderFromString(vertex, GL_VERTEX_SHADER);
     GLuint fragmentShader = compileShaderFromString(fragment, GL_FRAGMENT_SHADER);
 
@@ -47,7 +81,8 @@ Shader::Shader(const std::string &vertex, const std::string &fragment) {
     glDeleteShader(fragmentShader);
 }
 
-Shader::Shader(std::vector<std::pair<std::string, ShaderSourceType>> sources) {
+Shader::Shader(std::vector<std::pair<std::string, ShaderSourceType>> sources,
+        std::initializer_list<std::string> _textures) : textures(_textures) {
     size_t components = sources.size();
 
     std::vector<std::string> code;
@@ -245,5 +280,9 @@ void Shader::ShaderUniform::operator=(glm::mat3x4 value) {
 void Shader::ShaderUniform::operator=(glm::mat4x3 value) {
     glUniformMatrix4x3fv(index, 1, GL_FALSE, glm::value_ptr(value));
 }
+
+
+
+
 
 } // namespace
