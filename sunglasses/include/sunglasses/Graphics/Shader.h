@@ -33,10 +33,7 @@ enum ShaderSourceType {
 extern std::string getShaderCodeFromFile(std::string filepath);
 extern GLuint compileShaderFromString(std::string shaderString, GLint shaderType);
 
-class Texture;
-
-class Shader : public Base {
-    friend Texture;
+class Shader {
     class ShaderUniform;
 
     /// A class that represents a texture unit
@@ -112,8 +109,6 @@ public:
      * @endcode
      */
     TextureMapper textures;
-
-    void init();
 
     void uniforms(Node *root);
 
@@ -233,18 +228,6 @@ private:
         /// The index of the uniform within the program
         GLuint index;
     };
-
-    /// The map of arrays
-    std::map<std::string, int> arrays;
-
-    /// The number of used texture units
-    /**
-     * This member is used to get the next available texture unit during rendering.
-     * Use getNextTextureUnit() to get the next texture unit. Pass the returned value
-     * plus GL_TEXTURE0
-     * to glActiveTexture(). This value is reset when use() is called.
-     */
-    int usedTextureUnits = 0;
 
     /// The program in the OpenGL context
     GLuint program;

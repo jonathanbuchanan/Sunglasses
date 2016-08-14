@@ -59,7 +59,7 @@ public:
     glm::ivec2 size;
 protected:
     /// Updates the view
-    virtual void update(/*glm::ivec2 parentPosition, UpdateInfo info*/);
+    virtual void update(glm::ivec2 parentPosition, UpdateInfo info);
 
     /// Draws the view
     virtual void draw(glm::ivec2 parentPosition, Renderer &renderer);

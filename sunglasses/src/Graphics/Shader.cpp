@@ -113,16 +113,10 @@ Shader::Shader(std::vector<std::pair<std::string, ShaderSourceType>> sources,
 
 Shader::~Shader() {
     glDeleteProgram(program);
-
-    std::cout << "~Shader()" << std::endl;
 }
 
 Shader::ShaderUniform Shader::operator[](std::string uniform) {
     return ShaderUniform(program, glGetUniformLocation(program, uniform.c_str()));
-}
-
-void Shader::init() {
-
 }
 
 void Shader::uniforms(Node *root) {
@@ -133,9 +127,9 @@ void Shader::uniforms(Node *root) {
 }
 
 void Shader::use() {
-    for (auto &iterator : arrays)
+    /*for (auto &iterator : arrays)
         iterator.second = 0;
-    usedTextureUnits = 0;
+    usedTextureUnits = 0;*/
 
     glUseProgram(this->program);
 }
@@ -165,18 +159,18 @@ void Shader::send(std::string tag, float delta, Node *root) {
 }
 
 int Shader::getNextArrayIndex(std::string array) {
-    if (arrays.find(array) == arrays.end())
+    /*if (arrays.find(array) == arrays.end())
         arrays[array] = 0;
     arrays[array] += 1;
-    return arrays[array] - 1;
+    return arrays[array] - 1;*/
 }
 
 int Shader::getNextTextureUnit() {
-    return usedTextureUnits++;
+    //return usedTextureUnits++;
 }
 
 int Shader::getArraySize(std::string array) {
-    return arrays[array];
+    //return arrays[array];
 }
 
 Shader::ShaderUniform::ShaderUniform(
