@@ -18,7 +18,7 @@ void Shader::TextureUnit::operator=(Texture &texture) {
     glActiveTexture(GL_TEXTURE0 + unit);
 
     // Bind the texture
-    //glBindTexture(GL_TEXTURE_2D, texture.texture);
+    glBindTexture(GL_TEXTURE_2D, texture.texture);
 
     // Assign the uniform
     glUniform1i(0, unit);
