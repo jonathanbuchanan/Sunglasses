@@ -132,48 +132,6 @@ enum TextureType {
     TextureTypeNoiseHemisphere
 };
 
-// Texture Declaration
-struct Texture {
-    // ID, type, and path
-    GLuint id;
-    std::string name;
-    aiString path;
-    GLuint width;
-    GLuint height;
-    TextureType type;
-
-    Texture() {
-
-    }
-
-    Texture(GLuint _width, GLuint _height, TextureType _type) {
-        width = _width;
-        height = _height;
-        type = _type;
-
-        generate();
-    }
-
-    void generate() {
-        if (type == TextureTypeNoiseHemisphere) {
-            std::vector<glm::vec3> noise;
-            for (size_t i = 0; i < width * height; i++) {
-                glm::vec3 value = glm::vec3(randomFloats(generator) * 2.0 - 1.0, randomFloats(generator) * 2.0 - 1.0, 0.0);
-                noise.push_back(value);
-            }
-
-            glGenTextures(1, &id);
-            glBindTexture(GL_TEXTURE_2D, id);
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16F, width, height, 0, GL_RGB, GL_FLOAT, &noise[0]);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        }
-    }
-
-};
-
 typedef GLuint FramebufferObject;
 typedef GLuint FramebufferTextureObject;
 typedef GLuint FramebufferColorAttachmentObject;

@@ -4,11 +4,13 @@
 #include <glm/glm.hpp>
 #include <GL/glew.h>
 
+#include <sunglasses/Graphics/Texture.h>
+
 namespace sunglasses {
 
-class Shader;
-
 namespace GUI {
+
+class Renderer;
 
 /// A rectangle that is a component of every view
 class Drawable {
@@ -16,8 +18,8 @@ public:
     /// Creates a copy of the object and returns a pointer (for polymorphism purposes)
     virtual Drawable * copy() const = 0;
 
-    /// Passes uniforms (like color or a texture) to the shader
-    virtual void uniforms(sunglasses::Shader &shader) = 0;
+    /// Draws the drawable using the renderer passed to it
+    virtual void draw(glm::ivec2 position, glm::ivec2 size, Renderer &renderer) = 0;
 };
 
 /// A drawable of a single color
@@ -29,8 +31,9 @@ public:
     /// Creates a copy of the object and return a pointer
     virtual Drawable * copy() const;
 
-    /// Passes the color as a uniform
-    virtual void uniforms(sunglasses::Shader &shader);
+    /// Draws the rectangle with a solid color
+    virtual void draw(glm::ivec2 position, glm::ivec2 size, Renderer &renderer);
+private:
     /// The color of the drawable
     glm::vec4 color;
 };
@@ -38,10 +41,17 @@ public:
 /// A drawable of a single image
 class DrawableImage : public Drawable {
 public:
+    /// Constructs the drawable with a texture reference
+    DrawableImage(Texture &_texture);
 
+    /// Creates a copy of the object and returns a pointer
+    virtual Drawable * copy() const;
+
+    /// Draws the rectangle as an image
+    virtual void draw(glm::ivec2 position, glm::ivec2 size, Renderer &renderer);
 private:
-    /// The OpenGL texture
-    GLuint texture;
+    /// A reference to the texture
+    Texture &texture;
 };
 
 } // namespace

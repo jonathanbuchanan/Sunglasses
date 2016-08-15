@@ -48,7 +48,7 @@ Renderer::Renderer(Window &_window) :
 
 }
 
-void Renderer::drawRect(glm::ivec2 origin, glm::ivec2 size, Drawable *drawable) {
+void Renderer::draw(glm::ivec2 origin, glm::ivec2 size, glm::vec4 color) {
     fillShader.use();
 
     // Pass the projection matrix
@@ -63,7 +63,7 @@ void Renderer::drawRect(glm::ivec2 origin, glm::ivec2 size, Drawable *drawable) 
     fillShader["model"] = model;
 
     // Pass the uniforms of the drawable
-    drawable->uniforms(fillShader);
+    fillShader["fillColor"] = color;
 
     glBindVertexArray(rectangle.VAO);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

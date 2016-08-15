@@ -55,7 +55,7 @@ void View::drawTree(glm::ivec2 parentPosition, Renderer &renderer) {
 
 void View::draw(glm::ivec2 parentPosition, Renderer &renderer) {
     glm::ivec2 absolute = parentPosition + (glm::ivec2)position;
-    renderer.drawRect(absolute, size, drawable.get());
+    drawable->draw(absolute, size, renderer);
 }
 
 void View::addSubview(View *subview) {

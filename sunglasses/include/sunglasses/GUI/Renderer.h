@@ -24,8 +24,8 @@ public:
     /// Initializes the shaders
     Renderer(Window &_window);
 
-    /// Renders a rectangle
-    void drawRect(glm::ivec2 origin, glm::ivec2 size, Drawable *drawable);
+    /// Draws a rectangle with a solid color
+    void draw(glm::ivec2 position, glm::ivec2 size, glm::vec4 color);
 private:
     /// The window
     Window &window;
