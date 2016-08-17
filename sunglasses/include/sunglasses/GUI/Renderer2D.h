@@ -36,6 +36,9 @@ private:
 
     /// The fill shader
     sunglasses::Shader fillShader;
+    
+    /// The texture shader
+    sunglasses::Shader textureShader;
 
     /// The rectangle data used to draw rectangles
     struct Rectangle {

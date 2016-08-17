@@ -47,7 +47,7 @@ const std::string texture_vertex = R"(
 #version 330 core
 
 layout (location = 0) in vec2 vertex;
-layout (loaction = 1) in vec2 texCoords;
+layout (location = 1) in vec2 texCoords;
 
 uniform mat4 model;
 uniform mat4 projection;
@@ -57,7 +57,7 @@ out VertexOut {
 } vertexOut;
 
 void main() {
-    gl_position = projection * model * vec4(vertex, 0.0f, 1.0f);
+    gl_Position = projection * model * vec4(vertex, 0.0f, 1.0f);
     vertexOut.texCoords = texCoords;
 }
 )";
@@ -79,7 +79,8 @@ void main() {
 )";
 
 Renderer2D::Renderer2D(Window &_window) :
-    window(_window), fillShader(fill_vertex, fill_fragment) {
+    window(_window), fillShader(fill_vertex, fill_fragment),
+    textureShader(texture_vertex, texture_fragment, {"sampler"}) {
 
 }
 
@@ -106,7 +107,25 @@ void Renderer2D::draw(glm::ivec2 origin, glm::ivec2 size, glm::vec4 color) {
 }
 
 void Renderer2D::draw(glm::ivec2 origin, glm::ivec2 size, Texture &texture) {
-    
+    textureShader.use();
+
+    // Pass the projection matrix
+    textureShader["projection"] = window.projection();
+
+    // Generate a model matrix
+    glm::mat4 model;
+
+    model = glm::translate(model, glm::vec3(origin, 0.0f));
+    model = glm::scale(model, glm::vec3(size, 1.0f));
+
+    textureShader["model"] = model;
+
+    // Pass the uniforms of the drawable
+    textureShader.textures["sampler"] = texture;
+
+    glBindVertexArray(rectangle.VAO);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
 }
 
 Renderer2D::Rectangle::Rectangle() {

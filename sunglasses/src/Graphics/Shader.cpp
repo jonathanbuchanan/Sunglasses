@@ -9,7 +9,8 @@
 
 namespace sunglasses {
 
-Shader::TextureUnit::TextureUnit(GLuint _unit) : unit(_unit) {
+Shader::TextureUnit::TextureUnit(GLuint _unit, GLuint _program, std::string _name) :
+    unit(_unit), program(_program), name(_name) {
 
 }
 
@@ -21,23 +22,20 @@ void Shader::TextureUnit::operator=(Texture &texture) {
     glBindTexture(GL_TEXTURE_2D, texture.texture);
 
     // Assign the uniform
-    glUniform1i(0, unit);
-
-    // Unbind the texture
-    glBindTexture(GL_TEXTURE_2D, 0);
+    glUniform1i(glGetUniformLocation(program, name.c_str()), unit);
 }
 
-Shader::TextureMapper::TextureMapper(std::initializer_list<std::string> textureList) {
+Shader::TextureMapper::TextureMapper(GLuint program, std::initializer_list<std::string> textureList) {
     // Iterate through the list, make a new texture unit for each entry
     GLuint unit = 0;
     for (auto &string : textureList) {
-        textureUnits.emplace(string, unit);
+        textureUnits.emplace(string, TextureUnit{unit, program, string});
         ++unit;
     }
 }
 
 Shader::TextureUnit Shader::TextureMapper::operator[](std::string textureName) {
-
+    return textureUnits.at(textureName);
 }
 
 std::string getShaderCodeFromFile(std::string filepath) {
@@ -66,11 +64,10 @@ GLuint compileShaderFromString(std::string shaderString, GLint shaderType) {
 }
 
 Shader::Shader(const std::string &vertex, const std::string &fragment,
-        std::initializer_list<std::string> _textures) : textures(_textures) {
+        std::initializer_list<std::string> _textures) :
+            program(glCreateProgram()), textures(program, _textures) {
     GLuint vertexShader = compileShaderFromString(vertex, GL_VERTEX_SHADER);
     GLuint fragmentShader = compileShaderFromString(fragment, GL_FRAGMENT_SHADER);
-
-    program = glCreateProgram();
 
     glAttachShader(program, vertexShader);
     glAttachShader(program, fragmentShader);
@@ -82,7 +79,8 @@ Shader::Shader(const std::string &vertex, const std::string &fragment,
 }
 
 Shader::Shader(std::vector<std::pair<std::string, ShaderSourceType>> sources,
-        std::initializer_list<std::string> _textures) : textures(_textures) {
+        std::initializer_list<std::string> _textures) :
+            program(glCreateProgram()), textures(program, _textures) {
     size_t components = sources.size();
 
     std::vector<std::string> code;
@@ -98,7 +96,6 @@ Shader::Shader(std::vector<std::pair<std::string, ShaderSourceType>> sources,
 
     GLint success;
     GLchar infoLog[512];
-    program = glCreateProgram();
     for (size_t i = 0; i < components; i++)
         glAttachShader(this->program, shaders[i]);
     glLinkProgram(this->program);

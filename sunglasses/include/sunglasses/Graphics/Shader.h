@@ -45,7 +45,7 @@ class Shader {
     class TextureUnit {
     public:
         /// Constructs the texture unit with a unit number
-        TextureUnit(GLuint _unit);
+        TextureUnit(GLuint _unit, GLuint _program, std::string _name);
 
         /// Assigns a texture to the unit (and sets a uniform)
         void operator=(Texture &texture);
@@ -55,6 +55,15 @@ class Shader {
          * @warning Do not add GL_TEXTURE0 to this. This happens automatically.
          */
         GLuint unit;
+
+        /// The shader program
+        GLuint program;
+
+        /// The name of the texture
+        /**
+         * This is used to look up the uniform in the shader.
+         */
+        std::string name;
     };
 
     /// A class that maps texture names to sampler uniforms in the shader
@@ -66,7 +75,7 @@ class Shader {
          * and creating a texture unit corresponding to the current
          * index of the list while iterating.
          */
-        TextureMapper(std::initializer_list<std::string> textureList);
+        TextureMapper(GLuint program, std::initializer_list<std::string> textureList);
 
         /// Returns a texture unit object
         TextureUnit operator[](std::string textureName);
