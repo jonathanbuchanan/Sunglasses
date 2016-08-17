@@ -3,7 +3,7 @@ add_sources(
     Button.cpp
     Drawable.cpp
     Label.cpp
-    Renderer.cpp
+    Renderer2D.cpp
     View.cpp
     ViewController.cpp
     Window.cpp

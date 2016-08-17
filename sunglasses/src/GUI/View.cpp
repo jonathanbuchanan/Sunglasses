@@ -3,7 +3,7 @@
 // See LICENSE.md for details.
 #include <sunglasses/GUI/View.h>
 
-#include <sunglasses/GUI/Renderer.h>
+#include <sunglasses/GUI/Renderer2D.h>
 #include <sunglasses/GUI/Window.h>
 
 namespace sunglasses {
@@ -41,7 +41,7 @@ void View::update(glm::ivec2 parentPosition, UpdateInfo info) {
     }
 }
 
-void View::drawTree(glm::ivec2 parentPosition, Renderer &renderer) {
+void View::drawTree(glm::ivec2 parentPosition, Renderer2D &renderer) {
     if (!visible)
         return;
 
@@ -53,7 +53,7 @@ void View::drawTree(glm::ivec2 parentPosition, Renderer &renderer) {
         view->drawTree(absolute, renderer);
 }
 
-void View::draw(glm::ivec2 parentPosition, Renderer &renderer) {
+void View::draw(glm::ivec2 parentPosition, Renderer2D &renderer) {
     glm::ivec2 absolute = parentPosition + (glm::ivec2)position;
     drawable->draw(absolute, size, renderer);
 }

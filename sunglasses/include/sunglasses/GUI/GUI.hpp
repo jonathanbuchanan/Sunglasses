@@ -5,7 +5,7 @@
 #include <sunglasses/GUI/Button.h>
 #include <sunglasses/GUI/Drawable.h>
 #include <sunglasses/GUI/Label.h>
-#include <sunglasses/GUI/Renderer.h>
+#include <sunglasses/GUI/Renderer2D.h>
 #include <sunglasses/GUI/View.h>
 #include <sunglasses/GUI/ViewController.h>
 #include <sunglasses/GUI/Window.h>

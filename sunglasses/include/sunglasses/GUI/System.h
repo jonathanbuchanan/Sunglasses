@@ -5,7 +5,7 @@
 #define SYSTEM_H
 
 #include <sunglasses/GUI/Window.h>
-#include <sunglasses/GUI/Renderer.h>
+#include <sunglasses/GUI/Renderer2D.h>
 
 namespace sunglasses {
 namespace GUI {
@@ -32,7 +32,7 @@ private:
     Window &window;
 
     /// The renderer
-    Renderer renderer;
+    Renderer2D renderer;
 
     /// The main view
     View *contentView;

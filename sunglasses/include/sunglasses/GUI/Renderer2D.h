@@ -1,8 +1,8 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of glasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#ifndef RENDERER_H
-#define RENDERER_H
+#ifndef RENDERER2D_H
+#define RENDERER2D_H
 
 #include <vector>
 
@@ -10,6 +10,7 @@
 
 #include <GL/glew.h>
 
+#include <sunglasses/Graphics/Texture.h>
 #include <sunglasses/Graphics/Shader.h>
 #include <sunglasses/GUI/Drawable.h>
 
@@ -18,14 +19,17 @@ namespace GUI {
 
 class Window;
 
-/// A container used to store shaders for drawing the GUI
-class Renderer {
+/// A class used to store shaders for drawing the GUI
+class Renderer2D {
 public:
     /// Initializes the shaders
-    Renderer(Window &_window);
+    Renderer2D(Window &_window);
 
     /// Draws a rectangle with a solid color
     void draw(glm::ivec2 position, glm::ivec2 size, glm::vec4 color);
+
+    /// Draws a rectangle with a texture
+    void draw(glm::ivec2 position, glm::ivec2 size, Texture &texture);
 private:
     /// The window
     Window &window;
@@ -39,11 +43,11 @@ private:
         Rectangle();
 
         /// The vertex data
-        const GLint vertices[8] = {
-            0, 0,
-            0, 1,
-            1, 0,
-            1, 1
+        const GLfloat vertices[16] = {
+            0.0f, 0.0f, 0.0f, 0.0f,
+            0.0f, 1.0f, 0.0f, 1.0f,
+            1.0f, 0.0f, 1.0f, 0.0f,
+            1.0f, 1.0f, 1.0f, 1.0f
         };
 
         /// The index data

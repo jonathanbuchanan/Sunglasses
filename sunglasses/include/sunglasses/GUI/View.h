@@ -16,7 +16,7 @@ namespace sunglasses {
 namespace GUI {
 
 class ViewController;
-class Renderer;
+class Renderer2D;
 
 /// The state of a control
 enum class ControlState {
@@ -47,7 +47,7 @@ public:
      * @param parentPosition The absolute position of the parent view
      * @param renderer The object used to draw the view
      */
-    virtual void drawTree(glm::ivec2 parentPosition, Renderer &renderer);
+    virtual void drawTree(glm::ivec2 parentPosition, Renderer2D &renderer);
 
     /// Adds a subview
     void addSubview(View *subview);
@@ -62,7 +62,7 @@ protected:
     virtual void update(glm::ivec2 parentPosition, UpdateInfo info);
 
     /// Draws the view
-    virtual void draw(glm::ivec2 parentPosition, Renderer &renderer);
+    virtual void draw(glm::ivec2 parentPosition, Renderer2D &renderer);
 
     /// The drawable (a solid color, image, etc.)
     std::unique_ptr<Drawable> drawable;

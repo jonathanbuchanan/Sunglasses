@@ -4,15 +4,27 @@
 
 namespace sunglasses {
 
-Image::Image(std::string path) {
-    image = SOIL_load_image(path.c_str(), &size.x, &size.y, 0, SOIL_LOAD_RGB);
-}
+Image::Image(glm::ivec2 _size, const unsigned char *data) : size(_size), image(data) {
 
-Image::~Image() {
-    SOIL_free_image_data(image);
 }
 
 Texture::Texture(const Image &image) {
+    loadImage(image);
+}
+
+Texture::Texture(std::string path) {
+    glm::ivec2 size;
+    unsigned char *imageData = SOIL_load_image(path.c_str(), &size.x, &size.y, 0, SOIL_LOAD_RGB);
+    Image image(size, imageData);
+    loadImage(image);
+    SOIL_free_image_data(imageData);
+}
+
+Texture::~Texture() {
+    glDeleteTextures(1, &texture);
+}
+
+void Texture::loadImage(const Image &image) {
     glGenTextures(1, &texture);
 
     glBindTexture(GL_TEXTURE_2D, texture);

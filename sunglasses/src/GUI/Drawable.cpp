@@ -1,6 +1,6 @@
 #include <sunglasses/GUI/Drawable.h>
 
-#include <sunglasses/GUI/Renderer.h>
+#include <sunglasses/GUI/Renderer2D.h>
 
 namespace sunglasses {
 namespace GUI {
@@ -14,7 +14,7 @@ Drawable * DrawableSolidColor::copy() const {
 }
 
 void DrawableSolidColor::draw(glm::ivec2 position, glm::ivec2 size,
-        Renderer &renderer) {
+        Renderer2D &renderer) {
     renderer.draw(position, size, color);
 }
 
@@ -31,8 +31,8 @@ Drawable * DrawableImage::copy() const {
 }
 
 void DrawableImage::draw(glm::ivec2 position, glm::ivec2 size,
-        Renderer &renderer) {
-
+        Renderer2D &renderer) {
+    renderer.draw(position, size, texture);
 }
 
 } // namespace

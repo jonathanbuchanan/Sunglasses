@@ -14,6 +14,8 @@ public:
     GUIMainMenu(Window &window);
 private:
     View v;
+    Texture tex;
+    View image;
     Button button;
 };
 
