@@ -4,18 +4,18 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
-#include <sunglasses/GUI/View.h>
+#include <sunglasses/GUI/Panel.h>
 
 namespace sunglasses {
 namespace GUI {
 
 /// A button in the GUI
-class Button : public View {
-public:
+//class Button : public View {
+//public:
     /// Constructs a button with its various colors
-    Button(glm::ivec2 origin, glm::ivec2 size, const Drawable &drawable/*,
-        glm::vec4 _color, glm::vec4 _highlightedColor, glm::vec4 _selectedColor*/);
-protected:
+//    Button(glm::ivec2 origin, glm::ivec2 size, const Drawable &drawable/*,
+//        glm::vec4 _color, glm::vec4 _highlightedColor, glm::vec4 _selectedColor*/);
+//protected:
     /// Updates the button
 //    virtual void update(glm::ivec2 parentPosition, UpdateInfo info);
 /*private:
@@ -27,7 +27,7 @@ protected:
 
     /// The selected (clicked on) color of the button
     glm::vec4 selectedColor;*/
-};
+//};
 
 } // namespace
 } // namespace

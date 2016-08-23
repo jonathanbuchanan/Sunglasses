@@ -3,19 +3,19 @@
 // See LICENSE.md for details.
 #include <sunglasses/GUI/System.h>
 
-#include <sunglasses/GUI/View.h>
+#include <sunglasses/GUI/Panel.h>
 #include <sunglasses/GUI/ViewController.h>
 
 namespace sunglasses {
 namespace GUI {
 
-System::System(View *view, Window &_window) :
-    window(_window), renderer(window), contentView(view) {
+System::System(Panel *panel, Window &_window) :
+    window(_window), renderer(window), content(panel) {
 
 }
 
 System::System(ViewController &viewController, Window &_window) :
-    window(_window), renderer(window), contentView(&viewController.view) {
+    window(_window), renderer(window), content(&viewController.view) {
 
 }
 
@@ -24,10 +24,11 @@ void System::update() {
     window.updateViewport();
 
     // Force the size of the content view to equal the window size
-    contentView->size = window.size();
+    content->size = window.size();
 
     // Update the GUI
-    contentView->updateTree(glm::ivec2(0), window.updateInfo());
+    content->update(glm::ivec2(0), window.updateInfo());
+    content->updateChildren(glm::ivec2(0), window.updateInfo());
 }
 
 void System::draw() {
@@ -35,7 +36,8 @@ void System::draw() {
     window.clear();
 
     // Draw the GUI
-    contentView->drawTree(glm::ivec2(0), renderer);
+    content->draw(glm::ivec2(0), renderer);
+    content->drawChildren(glm::ivec2(0), renderer);
 
     // Swap the window's buffers
     window.swapBuffers();

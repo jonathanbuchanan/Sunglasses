@@ -5,7 +5,7 @@ add_sources(
     Drawable.cpp
     Label.cpp
     Renderer2D.cpp
-    View.cpp
+    Panel.cpp
     ViewController.cpp
     Window.cpp
 ) 

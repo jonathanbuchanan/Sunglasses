@@ -6,12 +6,12 @@
 namespace sunglasses {
 namespace GUI {
 
-Button::Button(glm::ivec2 origin, glm::ivec2 size, const Drawable &drawable/*,
-    glm::vec4 _color, glm::vec4 _highlightedColor, glm::vec4 _selectedColor*/) :
-    View(origin, size, drawable)/*,
-    color(_color), highlightedColor(_highlightedColor), selectedColor(_selectedColor)*/ {
+//Button::Button(glm::ivec2 origin, glm::ivec2 size, const Drawable &drawable/*,
+//   glm::vec4 _color, glm::vec4 _highlightedColor, glm::vec4 _selectedColor*/) :
+//    View(origin, size, drawable)/*,
+//    color(_color), highlightedColor(_highlightedColor), selectedColor(_selectedColor)*/ {
 
-}
+//}
 
 //void Button::update(glm::ivec2 parentPosition, UpdateInfo info) {
 //    View::update(parentPosition, info);

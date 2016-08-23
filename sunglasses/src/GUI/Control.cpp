@@ -7,12 +7,12 @@ namespace sunglasses {
 namespace GUI {
 
 Control::Control(glm::ivec2 _position, glm::ivec2 _size) :
-        position(_position), size(_size) {
+        position(_position), size(_size), state(State::Normal) {
 
 }
 
 Control::Control(glm::ivec2 _position, glm::ivec2 _size, std::initializer_list<Control *> _children) :
-        position(_position), size(_size) {
+        position(_position), size(_size), state(State::Normal) {
     children.reserve(_children.size());
     for (auto child : _children)
         children.emplace_back(child);

@@ -4,7 +4,7 @@
 #ifndef LABEL_H
 #define LABEL_H
 
-#include <sunglasses/GUI/View.h>
+#include <sunglasses/GUI/Panel.h>
 
 #include <string>
 
@@ -12,14 +12,14 @@ namespace sunglasses {
 namespace GUI {
 
 /// A label in the GUI toolkit
-class Label : public View {
+/*class Label : public View {
 public:
     std::string getText() const { return text; }
     void setText(std::string t) { text = t; }
 private:
     /// The text of the label
     std::string text;
-};
+};*/
 
 } // namespace
 } // namespace

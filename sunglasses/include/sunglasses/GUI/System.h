@@ -10,14 +10,14 @@
 namespace sunglasses {
 namespace GUI {
 
-class View;
+class Panel;
 class ViewController;
 
 /// A GUI containing a window and a content view
 class System {
 public:
     /// Constructs the GUI with a content view
-    System(View *view, Window &_window);
+    System(Panel *panel, Window &_window);
 
     /// Constructs the GUI with a content view from a view controller
     System(ViewController &viewController, Window &_window);
@@ -35,7 +35,7 @@ private:
     Renderer2D renderer;
 
     /// The main view
-    View *contentView;
+    Panel *content;
 };
 
 } // namespace

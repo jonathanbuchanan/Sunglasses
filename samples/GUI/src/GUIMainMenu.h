@@ -13,10 +13,10 @@ class GUIMainMenu : public ViewController {
 public:
     GUIMainMenu(Window &window);
 private:
-    View v;
+    Panel v;
     Texture tex;
-    View image;
-    Button button;
+    Panel image;
+    //Button button;
 };
 
 #endif

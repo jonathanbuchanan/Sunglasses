@@ -4,7 +4,7 @@
 #ifndef VIEWCONTROLLER_H
 #define VIEWCONTROLLER_H
 
-#include <sunglasses/GUI/View.h>
+#include <sunglasses/GUI/Panel.h>
 
 namespace sunglasses {
 namespace GUI {
@@ -25,7 +25,7 @@ public:
     ViewController(Window &window, const Drawable &drawable = DrawableSolidColor(glm::vec4(1.0f)));
 protected:
     /// The view managed by the controller
-    View view;
+    Panel view;
 };
 
 } // namespace
