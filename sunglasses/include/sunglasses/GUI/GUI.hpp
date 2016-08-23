@@ -8,5 +8,5 @@
 #include <sunglasses/GUI/Label.h>
 #include <sunglasses/GUI/Renderer2D.h>
 #include <sunglasses/GUI/Panel.h>
-#include <sunglasses/GUI/ViewController.h>
+#include <sunglasses/GUI/Controller.h>
 #include <sunglasses/GUI/Window.h>

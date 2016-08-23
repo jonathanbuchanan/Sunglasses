@@ -9,7 +9,7 @@ unsigned char imageData[] = {
 };
 
 GUIMainMenu::GUIMainMenu(Window &window) :
-        ViewController(window, DrawableSolidColor(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f))),
+        Controller(window, DrawableSolidColor(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f))),
         v(glm::ivec2(50, 50), glm::ivec2(100, 100), DrawableSolidColor(glm::vec4(1.0f))),
         tex(Image(glm::ivec2(2, 2), imageData), TextureMinification::Nearest, TextureMagnification::Nearest),
         image(glm::ivec2(150, 150), glm::ivec2(300, 300), DrawableImage(tex))//,

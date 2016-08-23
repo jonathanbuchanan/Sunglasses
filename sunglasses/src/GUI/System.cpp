@@ -4,7 +4,7 @@
 #include <sunglasses/GUI/System.h>
 
 #include <sunglasses/GUI/Panel.h>
-#include <sunglasses/GUI/ViewController.h>
+#include <sunglasses/GUI/Controller.h>
 
 namespace sunglasses {
 namespace GUI {
@@ -14,7 +14,7 @@ System::System(Panel *panel, Window &_window) :
 
 }
 
-System::System(ViewController &viewController, Window &_window) :
+System::System(Controller &viewController, Window &_window) :
     window(_window), renderer(window), content(&viewController.view) {
 
 }

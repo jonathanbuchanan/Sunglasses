@@ -11,7 +11,7 @@ namespace sunglasses {
 namespace GUI {
 
 class Panel;
-class ViewController;
+class Controller;
 
 /// A GUI containing a window and a content view
 class System {
@@ -20,7 +20,7 @@ public:
     System(Panel *panel, Window &_window);
 
     /// Constructs the GUI with a content view from a view controller
-    System(ViewController &viewController, Window &_window);
+    System(Controller &viewController, Window &_window);
 
     /// Updates the GUI elements
     void update();

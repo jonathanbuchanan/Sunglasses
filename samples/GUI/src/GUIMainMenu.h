@@ -9,7 +9,7 @@
 using namespace sunglasses;
 using namespace sunglasses::GUI;
 
-class GUIMainMenu : public ViewController {
+class GUIMainMenu : public Controller {
 public:
     GUIMainMenu(Window &window);
 private:

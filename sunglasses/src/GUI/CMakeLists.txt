@@ -6,7 +6,7 @@ add_sources(
     Label.cpp
     Renderer2D.cpp
     Panel.cpp
-    ViewController.cpp
+    Controller.cpp
     Window.cpp
 ) 
 
