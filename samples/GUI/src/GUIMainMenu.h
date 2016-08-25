@@ -16,7 +16,7 @@ private:
     BasicPanel v;
     Texture tex;
     ImagePanel image;
-    //Button button;
+    BasicButton button;
 };
 
 #endif

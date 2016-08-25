@@ -6,13 +6,8 @@
 namespace sunglasses {
 namespace GUI {
 
-Control::Control(glm::ivec2 _position, glm::ivec2 _size) :
-        position(_position), size(_size), state(State::Normal) {
-
-}
-
-Control::Control(glm::ivec2 _position, glm::ivec2 _size, std::initializer_list<Control *> _children) :
-        position(_position), size(_size), state(State::Normal) {
+Control::Control(glm::ivec2 _position, glm::ivec2 _size, bool _visible, std::initializer_list<Control *> _children) :
+        position(_position), size(_size), visible(_visible), state(State::Normal) {
     children.reserve(_children.size());
     for (auto child : _children)
         children.emplace_back(child);
@@ -20,20 +15,27 @@ Control::Control(glm::ivec2 _position, glm::ivec2 _size, std::initializer_list<C
 
 void Control::drawChildren(glm::ivec2 offset, Renderer2D &renderer) {
     for (auto &child : children) {
-        child->draw(offset + position, renderer);
-        child->drawChildren(offset + position, renderer);
+        child->drawAll(offset + position, renderer);
     }
 }
 
-void Control::update(glm::ivec2 offset, UpdateInfo updateInfo) {
-    updateState(offset, updateInfo);
+void Control::drawAll(glm::ivec2 offset, Renderer2D &renderer) {
+    if (visible) {
+        draw(offset, renderer);
+        drawChildren(offset, renderer);
+    }
 }
 
 void Control::updateChildren(glm::ivec2 offset, UpdateInfo updateInfo) {
     for (auto &child : children) {
-        child->update(offset + position, updateInfo);
-        child->updateChildren(offset + position, updateInfo);
+        child->updateAll(offset + position, updateInfo);
     }
+}
+
+void Control::updateAll(glm::ivec2 offset, UpdateInfo updateInfo) {
+    updateState(offset, updateInfo);
+    update(offset, updateInfo);
+    updateChildren(offset, updateInfo);
 }
 
 void Control::addChild(Control *control) {

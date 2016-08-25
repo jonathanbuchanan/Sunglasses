@@ -6,6 +6,7 @@
 
 #include <sunglasses/GUI/Panel.h>
 #include <sunglasses/GUI/Drawable.h>
+#include <sunglasses/GUI/Renderer2D.h>
 
 #include <memory>
 
@@ -13,32 +14,47 @@ namespace sunglasses {
 namespace GUI {
 
 /// A button in the GUI
+template<typename T, typename S, typename R>
 class Button : public Control {
 public:
+    /// Constructs the button with three different backgrounds
+    Button(glm::ivec2 _position, glm::ivec2 _size, const T &_normalBackground,
+            const S &_highlightedBackground, const R &_selectedBackground) :
+            Control(_position, _size), normalBackground(_normalBackground),
+            highlightedBackground(_highlightedBackground), selectedBackground(_selectedBackground) {
 
-private:
+    }
 
+    /// The background for the 'normal' state
+    T normalBackground;
+
+    /// The background for the 'highlighted' state
+    S highlightedBackground;
+
+    /// The background for the 'selected' state
+    R selectedBackground;
+protected:
+    virtual void draw(glm::ivec2 offset, Renderer2D &renderer) {
+        switch (state) {
+        case State::Normal:
+            normalBackground.draw(offset + position, size, renderer);
+            break;
+        case State::Highlighted:
+            highlightedBackground.draw(offset + position, size, renderer);
+            break;
+        case State::Selected:
+            selectedBackground.draw(offset + position, size, renderer);
+            break;
+        }
+    }
+
+    virtual void update(glm::ivec2 offset, UpdateInfo updateInfo) {
+
+    }
 };
 
-/// A button in the GUI
-//class Button : public View {
-//public:
-    /// Constructs a button with its various colors
-//    Button(glm::ivec2 origin, glm::ivec2 size, const Drawable &drawable/*,
-//        glm::vec4 _color, glm::vec4 _highlightedColor, glm::vec4 _selectedColor*/);
-//protected:
-    /// Updates the button
-//    virtual void update(glm::ivec2 parentPosition, UpdateInfo info);
-/*private:
-    /// The color of the button
-    glm::vec4 color;
-
-    /// The highlighted (moused over) color of the button
-    glm::vec4 highlightedColor;
-
-    /// The selected (clicked on) color of the button
-    glm::vec4 selectedColor;*/
-//};
+/// A 'basic' button
+using BasicButton = Button<Drawable::Color, Drawable::Color, Drawable::Color>;
 
 } // namespace
 } // namespace

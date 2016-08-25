@@ -12,10 +12,9 @@ GUIMainMenu::GUIMainMenu(Window &window) :
         Controller(window, glm::vec4(1.0f, 0.0f, 0.0f, 1.0f)),
         v(glm::ivec2(50, 50), glm::ivec2(100, 100), glm::vec4(1.0f)),
         tex(Image(glm::ivec2(2, 2), imageData), TextureMinification::Nearest, TextureMagnification::Nearest),
-        image(glm::ivec2(150, 150), glm::ivec2(300, 300), tex)//,
-        /*button(glm::ivec2(55, 55), glm::ivec2(50, 50), glm::vec4(1.0f, 0.0f, 1.0f, 1.0f), glm::vec4(0.0f), glm::vec4(glm::vec3(0.5f), 1.0f))*/
-        /*button(glm::ivec2(55, 55), glm::ivec2(50, 50), DrawableSolidColor(glm::vec4(1.0f, 0.0f, 1.0f, 1.0f)))*/ {
+        image(glm::ivec2(150, 150), glm::ivec2(300, 300), tex),
+        button(glm::ivec2(25, 200), glm::ivec2(30, 30), glm::vec4(1.0f), glm::vec4(0.5f), glm::vec4(0.0f)) {
     panel.addChild(&v);
     panel.addChild(&image);
-    //v.(&button);
+    panel.addChild(&button);
 }

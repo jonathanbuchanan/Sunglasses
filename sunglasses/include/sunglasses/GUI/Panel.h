@@ -36,37 +36,40 @@ template<typename T>
 class Panel : public Control {
 public:
     /// Constructs the panel
-    Panel(glm::ivec2 _position, glm::ivec2 _size,
-            const T &_background, bool _visible = true) :
-            Control(_position, _size), background(_background),
-            visible(_visible) {
+    Panel(glm::ivec2 _position, glm::ivec2 _size, const T &_background,
+            bool _visible = true, std::initializer_list<Control *> children = {}) :
+            Control(_position, _size, _visible, children), background(_background) {
 
     }
 
     /// Constructs the panel within the frame of the window
-    Panel(const Window &window, const T &_background, bool _visible = true) :
-            Control(glm::ivec2(0, 0), window.size()), background(_background),
-            visible(_visible) {
+    Panel(const Window &window, const T &_background, bool _visible = true,
+            std::initializer_list<Control *> children = {}) :
+            Control(glm::ivec2(0, 0), window.size(), _visible, children),
+            background(_background) {
 
     }
 
+    /// The background (must be a drawable)
+    T background;
+protected:
     /// Draws the panel
     /**
      * This method draws the drawable sized over
      * the entire panel.
      */
     virtual void draw(glm::ivec2 offset, Renderer2D &renderer) {
-        if (visible) {
-            glm::ivec2 absolute = offset + position;
-            background.draw(absolute, size, renderer);
-        }
+        glm::ivec2 absolute = offset + position;
+        background.draw(absolute, size, renderer);
     }
 
-    /// The background (must be a drawable)
-    T background;
+    /// Updates the panel
+    /**
+     * Panels are static, so this method does nothing
+     */
+    virtual void update(glm::ivec2 offset, UpdateInfo updateInfo) {
 
-    /// The visibility of the view
-    bool visible;
+    }
 };
 
 /// A 'basic' panel

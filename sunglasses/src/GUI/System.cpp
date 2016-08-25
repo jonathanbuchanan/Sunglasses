@@ -22,8 +22,7 @@ void System::update() {
     content->size = window.size();
 
     // Update the GUI
-    content->update(glm::ivec2(0), window.updateInfo());
-    content->updateChildren(glm::ivec2(0), window.updateInfo());
+    content->updateAll(glm::ivec2(0), window.updateInfo());
 }
 
 void System::draw() {
@@ -31,8 +30,7 @@ void System::draw() {
     window.clear();
 
     // Draw the GUI
-    content->draw(glm::ivec2(0), renderer);
-    content->drawChildren(glm::ivec2(0), renderer);
+    content->drawAll(glm::ivec2(0), renderer);
 
     // Swap the window's buffers
     window.swapBuffers();
