@@ -8,10 +8,5 @@
 namespace sunglasses {
 namespace GUI {
 
-Controller::Controller(Window &window, const Drawable &drawable) :
-    view(glm::ivec2(0, 0), glm::ivec2(window.size()), drawable, true) {
-
-}
-
 } // namespace
 } // namespace

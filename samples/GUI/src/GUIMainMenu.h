@@ -9,13 +9,13 @@
 using namespace sunglasses;
 using namespace sunglasses::GUI;
 
-class GUIMainMenu : public Controller {
+class GUIMainMenu : public BasicController {
 public:
     GUIMainMenu(Window &window);
 private:
-    Panel v;
+    BasicPanel v;
     Texture tex;
-    Panel image;
+    ImagePanel image;
     //Button button;
 };
 

@@ -68,7 +68,7 @@ UpdateInfo Window::updateInfo() {
     );
 }
 
-glm::ivec2 Window::size() {
+glm::ivec2 Window::size() const {
     glm::ivec2 size;
     glfwGetWindowSize(window, &size.x, &size.y);
     return size;

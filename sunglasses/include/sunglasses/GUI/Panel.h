@@ -32,26 +32,56 @@ enum class ControlState {
  * This is useful for displaying non-interactive images, but
  * also it is used as the root for displaying the GUI system.
  */
+template<typename T>
 class Panel : public Control {
-friend ViewController;
 public:
     /// Constructs the panel
     Panel(glm::ivec2 _position, glm::ivec2 _size,
-        const Drawable &_drawable, bool _visible = true);
+            const T &_background, bool _visible = true) :
+            Control(_position, _size), background(_background),
+            visible(_visible) {
+
+    }
+
+    /// Constructs the panel within the frame of the window
+    Panel(const Window &window, const T &_background, bool _visible = true) :
+            Control(glm::ivec2(0, 0), window.size()), background(_background),
+            visible(_visible) {
+
+    }
 
     /// Draws the panel
     /**
      * This method draws the drawable sized over
      * the entire panel.
      */
-    virtual void draw(glm::ivec2 offset, Renderer2D &renderer);
-protected:
-    /// The drawable (a solid color, image, etc.)
-    std::unique_ptr<Drawable> drawable;
+    virtual void draw(glm::ivec2 offset, Renderer2D &renderer) {
+        if (visible) {
+            glm::ivec2 absolute = offset + position;
+            background.draw(absolute, size, renderer);
+        }
+    }
+
+    /// The background (must be a drawable)
+    T background;
 
     /// The visibility of the view
     bool visible;
 };
+
+/// A 'basic' panel
+/**
+ * A 'basic' panel, which consists of a simple
+ * single-color only background.
+ */
+using BasicPanel = Panel<Drawable::Color>;
+
+/// An 'image' panel
+/**
+ * An 'image' panel, which consists of an image
+ * background.
+ */
+using ImagePanel = Panel<Drawable::Image>;
 
 } // namespace
 } // namespace

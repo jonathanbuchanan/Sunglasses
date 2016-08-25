@@ -9,13 +9,8 @@
 namespace sunglasses {
 namespace GUI {
 
-System::System(Panel *panel, Window &_window) :
+System::System(Control *panel, Window &_window) :
     window(_window), renderer(window), content(panel) {
-
-}
-
-System::System(Controller &viewController, Window &_window) :
-    window(_window), renderer(window), content(&viewController.view) {
 
 }
 

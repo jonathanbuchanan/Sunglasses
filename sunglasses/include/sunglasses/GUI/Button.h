@@ -5,9 +5,20 @@
 #define BUTTON_H
 
 #include <sunglasses/GUI/Panel.h>
+#include <sunglasses/GUI/Drawable.h>
+
+#include <memory>
 
 namespace sunglasses {
 namespace GUI {
+
+/// A button in the GUI
+class Button : public Control {
+public:
+
+private:
+
+};
 
 /// A button in the GUI
 //class Button : public View {

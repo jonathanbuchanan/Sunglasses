@@ -18,15 +18,21 @@ class Window;
  * takes up the entire window.
  * @see View
  */
+template<typename T>
 class Controller {
 friend System;
 public:
     /// Constructs a view controller from the dimensions of the window
-    Controller(Window &window, const Drawable &drawable = DrawableSolidColor(glm::vec4(1.0f)));
-protected:
-    /// The view managed by the controller
-    Panel view;
+    Controller(const Window &window, const T &background) : panel(window, background) {
+
+    }
+
+    /// The panel managed by the controller
+    Panel<T> panel;
 };
+
+/// A 'basic' controller
+using BasicController = Controller<Drawable::Color>;
 
 } // namespace
 } // namespace

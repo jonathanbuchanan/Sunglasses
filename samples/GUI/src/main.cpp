@@ -12,7 +12,7 @@ int main(int argc, char **argv) {
 
     GUIMainMenu mainMenu(window);
 
-    GUI::System gui(mainMenu, window);
+    GUI::System gui(&mainMenu.panel, window);
 
     while (true) {
         gui.update();

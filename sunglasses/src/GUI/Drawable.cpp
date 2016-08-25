@@ -7,16 +7,18 @@
 
 namespace sunglasses {
 namespace GUI {
+namespace Drawable {
 
-DrawableSolidColor::DrawableSolidColor(glm::vec4 _color) : color(_color) {
+Color::Color(glm::vec4 _color) : color(_color) {
 
 }
 
-Drawable * DrawableSolidColor::copy() const {
-    return new DrawableSolidColor(*this);
+Color & Color::operator=(glm::vec4 _color) {
+    color = _color;
+    return *this;
 }
 
-void DrawableSolidColor::draw(glm::ivec2 position, glm::ivec2 size,
+void Color::draw(glm::ivec2 position, glm::ivec2 size,
         Renderer2D &renderer) {
     renderer.draw(position, size, color);
 }
@@ -25,18 +27,15 @@ void DrawableSolidColor::draw(glm::ivec2 position, glm::ivec2 size,
 
 
 
-DrawableImage::DrawableImage(Texture &_texture) : texture(_texture) {
+Image::Image(Texture &_texture) : texture(_texture) {
 
 }
 
-Drawable * DrawableImage::copy() const {
-    return new DrawableImage(*this);
-}
-
-void DrawableImage::draw(glm::ivec2 position, glm::ivec2 size,
+void Image::draw(glm::ivec2 position, glm::ivec2 size,
         Renderer2D &renderer) {
     renderer.draw(position, size, texture);
 }
 
+} // namespace
 } // namespace
 } // namespace

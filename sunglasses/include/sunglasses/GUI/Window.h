@@ -66,7 +66,7 @@ public:
     UpdateInfo updateInfo();
 
     /// Returns the size of the window
-    glm::ivec2 size();
+    glm::ivec2 size() const;
 
     /// Updates the size of the viewport to match the framebuffer
     void updateViewport();
