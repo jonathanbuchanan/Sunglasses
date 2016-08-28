@@ -70,6 +70,14 @@ protected:
     virtual void update(glm::ivec2 offset, UpdateInfo updateInfo) {
 
     }
+
+    /// Called when the state changes
+    /**
+     * Panels are static, so this method does nothing
+     */
+    virtual void event(Event event) {
+
+    }
 };
 
 /// A 'basic' panel

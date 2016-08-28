@@ -40,7 +40,7 @@ Window::Window(int _width, int _height, std::string _title, bool resizeable)
     if (glewInit() != GLEW_OK) {
         // TODO: ERROR!
     }
-    
+
     // Update the viewport
     updateViewport();
 }

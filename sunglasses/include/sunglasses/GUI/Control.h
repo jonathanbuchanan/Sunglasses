@@ -29,6 +29,14 @@ public:
         Selected
     };
 
+    /// An enum that contains events (types of state change)
+    enum struct Event {
+        Highlight,
+        Unhighlight,
+        Select,
+        Deselect
+    };
+
     /// Draws the control and the children
     void drawAll(glm::ivec2 offset, Renderer2D &renderer);
 
@@ -55,9 +63,6 @@ public:
      * control are also not drawn.
      */
     bool visible;
-
-    /// Returns the state of the control
-    State getState() const { return state; }
 protected:
     /// Draws the control
     /**
@@ -82,6 +87,9 @@ protected:
 
     /// Updates all of the child controls
     void updateChildren(glm::ivec2 offset, UpdateInfo updateInfo);
+
+    /// Called when the state of the control changes
+    virtual void event(Event event) = 0;
 
     /// The state of the control
     State state;
