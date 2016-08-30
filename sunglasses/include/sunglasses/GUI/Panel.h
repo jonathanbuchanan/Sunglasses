@@ -75,7 +75,7 @@ protected:
     /**
      * Panels are static, so this method does nothing
      */
-    virtual void event(Event event) {
+    virtual void stateChange(State old) {
 
     }
 };

@@ -8,13 +8,16 @@
 using namespace sunglasses;
 
 int main(int argc, char **argv) {
+    bool running = true;
+
     GUI::Window window = GUI::Window(640, 480, "GUI Demo");
+    window.addCloseEvent([&running](){ running = false; });
 
     GUIMainMenu mainMenu(window);
 
     GUI::System gui(&mainMenu.panel, window);
 
-    while (true) {
+    while (running) {
         gui.update();
         gui.draw();
     }

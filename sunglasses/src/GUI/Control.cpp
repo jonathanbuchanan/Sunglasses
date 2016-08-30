@@ -36,14 +36,7 @@ void Control::updateAll(glm::ivec2 offset, UpdateInfo updateInfo) {
     State oldState = state;
     updateState(offset, updateInfo);
     if (oldState != state) {
-        if (oldState == State::Normal && state == State::Highlighted)
-            event(Event::Highlight);
-        else if (oldState == State::Highlighted && state == State::Normal)
-            event(Event::Unhighlight);
-        else if (oldState == State::Highlighted && state == State::Selected)
-            event(Event::Select);
-        else if (oldState == State::Selected && state == State::Highlighted)
-            event(Event::Deselect);
+        stateChange(oldState);
     }
     update(offset, updateInfo);
     updateChildren(offset, updateInfo);

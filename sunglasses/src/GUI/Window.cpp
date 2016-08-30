@@ -30,10 +30,12 @@ Window::Window(int _width, int _height, std::string _title, bool resizeable)
         // TODO: ERROR!
     }
     glfwMakeContextCurrent(window);
+    glfwSetWindowCloseCallback(window, Window::windowClose);
 
     glfwSetInputMode(window, GLFW_STICKY_MOUSE_BUTTONS, 1);
 
-
+    // Set the user pointer for the window (for callbacks)
+    glfwSetWindowUserPointer(window, this);
 
     // Initialize GLEW
     glewExperimental = GL_TRUE;
@@ -85,6 +87,17 @@ void Window::updateViewport() {
 glm::mat4 Window::projection() {
     glm::ivec2 windowSize = size();
     return glm::ortho(0.0f, (float)windowSize.x, (float)windowSize.y, 0.0f, -1.0f, 0.0f);
+}
+
+void Window::windowClose(GLFWwindow *_window) {
+    Window *window = static_cast<Window *>(glfwGetWindowUserPointer(_window));
+    for (auto &event : window->closeEvents) {
+        event();
+    }
+}
+
+void Window::addCloseEvent(Event &&event) {
+    closeEvents.emplace_back(event);
 }
 
 glm::ivec2 Window::cursor() {

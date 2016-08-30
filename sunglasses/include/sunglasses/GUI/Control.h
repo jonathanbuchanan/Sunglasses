@@ -9,7 +9,6 @@
 #include <sunglasses/GUI/Window.h>
 
 #include <vector>
-#include <memory>
 
 namespace sunglasses {
 namespace GUI {
@@ -27,14 +26,6 @@ public:
         Normal,
         Highlighted,
         Selected
-    };
-
-    /// An enum that contains events (types of state change)
-    enum struct Event {
-        Highlight,
-        Unhighlight,
-        Select,
-        Deselect
     };
 
     /// Draws the control and the children
@@ -88,14 +79,14 @@ protected:
     /// Updates all of the child controls
     void updateChildren(glm::ivec2 offset, UpdateInfo updateInfo);
 
-    /// Called when the state of the control changes
-    virtual void event(Event event) = 0;
+    /// Called when the control changes state
+    virtual void stateChange(State old) = 0;
 
     /// The state of the control
     State state;
 
     /// The vector of child controls
-    std::vector<std::unique_ptr<Control>> children;
+    std::vector<Control *> children;
 };
 
 } // namespace
