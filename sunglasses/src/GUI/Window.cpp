@@ -16,7 +16,7 @@ UpdateInfo::UpdateInfo(glm::ivec2 _cursor,
         middleMouseButton(_middleMouseButton) { }
 
 Window::Window(int _width, int _height, std::string _title, bool resizeable)
-    : width(_width), height(_height), title(_title) {
+    : slot_close(*this), width(_width), height(_height), title(_title) {
     // Initialize GLFW
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -89,11 +89,13 @@ glm::mat4 Window::projection() {
     return glm::ortho(0.0f, (float)windowSize.x, (float)windowSize.y, 0.0f, -1.0f, 0.0f);
 }
 
+void Window::close() {
+    glfwDestroyWindow(window);
+}
+
 void Window::windowClose(GLFWwindow *_window) {
     Window *window = static_cast<Window *>(glfwGetWindowUserPointer(_window));
-    /*for (auto &event : window->closeEvents) {
-        event();
-    }*/
+    window->signal_closebutton.emit();
 }
 
 /*void Window::addCloseEvent(Event &&event) {

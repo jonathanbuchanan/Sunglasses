@@ -13,6 +13,8 @@
 
 #include <GLFW/glfw3.h>
 
+#include <sunglasses/GUI/Signal.h>
+
 namespace sunglasses {
 namespace GUI {
 
@@ -80,8 +82,14 @@ public:
      */
     glm::mat4 projection();
 
-    /// Adds a window close event
-    //void addCloseEvent(Event &&event);
+    /// Closes the window
+    void close();
+
+    /// The signal called when the close button is pressed
+    Signal<void()> signal_closebutton;
+
+    /// The slot for closing the window
+    Slot<void(Window::*)(), &Window::close> slot_close;
 private:
     /// Gets the cursor position in integer coordinates
     glm::ivec2 cursor();
@@ -106,9 +114,6 @@ private:
 
     /// The GLFW window
     GLFWwindow *window;
-
-    /// The vector of events for the window closing
-    //std::vector<Event> closeEvents;
 
     static void windowClose(GLFWwindow *_window);
 };
