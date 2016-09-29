@@ -78,9 +78,7 @@ protected:
 };
 
 template<typename T, T function>
-class Slot {
-
-};
+class Slot;
 
 /// A class representing a slot (something that can receive an event)
 template<typename T, typename R, typename... A, R(T::*function)(A...)>
@@ -105,6 +103,34 @@ public:
 private:
     /// A reference to the object that the slot will notify
     T &object;
+};
+
+/// A class representing a slot with a lambda function
+template<typename F, typename T>
+class LSlot;
+
+template<typename R, typename... A, typename T>
+class LSlot<R(A...), T> : public ISlot<R(A...)> {
+public:
+    /// Constructs the slot with the lambda function
+    LSlot(T _function) : function(_function) {
+
+    }
+
+    LSlot & operator=(const LSlot &) = delete;
+
+    /// Activates the slot
+    virtual void activate(A &&... args) const {
+        function(std::forward<A>(args)...);
+    }
+    
+    /// Activates the slot
+    virtual void operator()(A &&... args) const {
+        activate(std::forward<A>(args)...);
+    }
+private:
+    /// The lambda function the slot contains
+    T function;
 };
 
 /// Connects a signal to a slot

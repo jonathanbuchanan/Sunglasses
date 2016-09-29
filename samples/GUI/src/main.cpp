@@ -12,6 +12,11 @@ int main(int argc, char **argv) {
 
     GUI::Window window = GUI::Window(640, 480, "GUI Demo");
 
+    auto slot_lambda = [&running]() { running = false; };
+    LSlot<void(), decltype(slot_lambda)> slot_close = LSlot<void(), decltype(slot_lambda)>(slot_lambda); 
+
+    connect(window.signal_closebutton, slot_close);
+
     GUIMainMenu mainMenu(window);
 
     GUI::System gui(&mainMenu.panel, window);
