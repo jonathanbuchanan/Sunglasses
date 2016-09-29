@@ -7,7 +7,7 @@
 #include <sunglasses/GUI/Panel.h>
 #include <sunglasses/GUI/Drawable.h>
 #include <sunglasses/GUI/Renderer2D.h>
-#include <sunglasses/GUI/Event.h>
+#include <sunglasses/GUI/Signal.h>
 
 #include <functional>
 #include <vector>
@@ -24,12 +24,7 @@ public:
             const S &_highlightedBackground, const R &_selectedBackground) :
             Control(_position, _size), normalBackground(_normalBackground),
             highlightedBackground(_highlightedBackground), selectedBackground(_selectedBackground) {
-        addEvent([](){std::cout<<"HI"<<std::endl;});
-    }
 
-    /// Adds an event to the button
-    void addEvent(Event event) {
-        events.push_back(event);
     }
 
     /// The background for the 'normal' state
@@ -63,13 +58,9 @@ protected:
 
     /// Called when the button's state changes
     virtual void stateChange(State old) {
-        if (state == State::Selected)
-            for (auto &event : events)
-                event();
+
     }
 private:
-    /// The list of events
-    std::vector<Event> events;
 };
 
 /// A 'basic' button

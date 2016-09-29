@@ -91,14 +91,14 @@ glm::mat4 Window::projection() {
 
 void Window::windowClose(GLFWwindow *_window) {
     Window *window = static_cast<Window *>(glfwGetWindowUserPointer(_window));
-    for (auto &event : window->closeEvents) {
+    /*for (auto &event : window->closeEvents) {
         event();
-    }
+    }*/
 }
 
-void Window::addCloseEvent(Event &&event) {
+/*void Window::addCloseEvent(Event &&event) {
     closeEvents.emplace_back(event);
-}
+}*/
 
 glm::ivec2 Window::cursor() {
     glm::dvec2 cursor;

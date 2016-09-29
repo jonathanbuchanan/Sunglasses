@@ -7,6 +7,7 @@
 #include <glm/glm.hpp>
 
 #include <sunglasses/GUI/Window.h>
+#include <sunglasses/GUI/Signal.h>
 
 #include <vector>
 
@@ -33,6 +34,18 @@ public:
 
     /// Updates the control and the children
     void updateAll(glm::ivec2 offset, UpdateInfo updateInfo);
+
+    /// The signal emitted when the control is highlighted
+    Signal<void()> signal_highlighted;
+
+    /// The signal emitted when the control is selected
+    Signal<void()> signal_selected;
+
+    /// The signal emitted when the control is unhighlighted
+    Signal<void()> signal_unhighlighted;
+
+    /// The signal emitted when the control is deselected
+    Signal<void()> signal_deselected;
 
     /// Adds a child node
     /**
@@ -79,14 +92,14 @@ protected:
     /// Updates all of the child controls
     void updateChildren(glm::ivec2 offset, UpdateInfo updateInfo);
 
-    /// Called when the control changes state
-    virtual void stateChange(State old) = 0;
-
     /// The state of the control
     State state;
 
     /// The vector of child controls
     std::vector<Control *> children;
+private:
+    /// Called when the control changes state
+    void stateChange(State oldState, State newState);
 };
 
 } // namespace

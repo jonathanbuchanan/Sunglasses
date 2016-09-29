@@ -7,9 +7,9 @@
 #include <sunglasses/Physics/PhysicsColliderMesh.h>
 #include <sunglasses/Physics/GJKAlgorithm.h>
 
-#include <glm/gtx/simd_vec4.hpp>
+//#include <glm/gtx/simd_vec4.hpp>
 #include <glm/gtx/string_cast.hpp>
-#include <glm/gtx/simd_quat.hpp>
+//#include <glm/gtx/simd_quat.hpp>
 
 #include <string>
 #include <iostream>

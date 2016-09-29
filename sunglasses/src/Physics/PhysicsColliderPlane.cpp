@@ -7,7 +7,7 @@
 #include <sunglasses/Physics/PhysicsColliderMesh.h>
 #include <sunglasses/Physics/GJKAlgorithm.h>
 
-#include <glm/gtx/simd_vec4.hpp>
+//#include <glm/gtx/simd_vec4.hpp>
 
 namespace sunglasses {
 

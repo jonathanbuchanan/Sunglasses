@@ -9,8 +9,6 @@
 #include <string>
 #include <vector>
 
-#include <sunglasses/GUI/Event.h>
-
 #include <glm/glm.hpp>
 
 #include <GLFW/glfw3.h>
@@ -83,7 +81,7 @@ public:
     glm::mat4 projection();
 
     /// Adds a window close event
-    void addCloseEvent(Event &&event);
+    //void addCloseEvent(Event &&event);
 private:
     /// Gets the cursor position in integer coordinates
     glm::ivec2 cursor();
@@ -110,7 +108,7 @@ private:
     GLFWwindow *window;
 
     /// The vector of events for the window closing
-    std::vector<Event> closeEvents;
+    //std::vector<Event> closeEvents;
 
     static void windowClose(GLFWwindow *_window);
 };

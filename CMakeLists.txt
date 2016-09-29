@@ -4,6 +4,6 @@ add_subdirectory(samples)
 
 add_subdirectory(sunglasses)
 
-add_subdirectory(tests)
+#add_subdirectory(tests)
 
 enable_testing() 

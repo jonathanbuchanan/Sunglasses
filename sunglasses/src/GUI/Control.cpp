@@ -36,7 +36,7 @@ void Control::updateAll(glm::ivec2 offset, UpdateInfo updateInfo) {
     State oldState = state;
     updateState(offset, updateInfo);
     if (oldState != state) {
-        stateChange(oldState);
+        stateChange(oldState, state);
     }
     update(offset, updateInfo);
     updateChildren(offset, updateInfo);
@@ -58,6 +58,13 @@ void Control::updateState(glm::ivec2 offset, UpdateInfo updateInfo) {
     } else {
         state = State::Normal;
     }
+}
+
+void Control::stateChange(State oldState, State newState) {
+    if (oldState != State::Selected && newState == State::Selected)
+        signal_selected();
+    if (oldState == State::Selected && newState != State::Selected)
+        signal_deselected();
 }
 
 } // sunglasses
