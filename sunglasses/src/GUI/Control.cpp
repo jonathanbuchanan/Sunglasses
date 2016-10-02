@@ -13,16 +13,23 @@ Control::Control(glm::ivec2 _position, glm::ivec2 _size, bool _visible, std::ini
         children.emplace_back(child);
 }
 
+void Control::drawAll(glm::ivec2 offset, Renderer2D &renderer) {
+    if (visible) {
+        draw(offset, renderer);
+        drawChildren(offset, renderer);
+    }
+}
+
 void Control::drawChildren(glm::ivec2 offset, Renderer2D &renderer) {
     for (auto &child : children) {
         child->drawAll(offset + position, renderer);
     }
 }
 
-void Control::drawAll(glm::ivec2 offset, Renderer2D &renderer) {
+void Control::updateAll(glm::ivec2 offset, UpdateInfo updateInfo) {
     if (visible) {
-        draw(offset, renderer);
-        drawChildren(offset, renderer);
+        update(offset, updateInfo);
+        updateChildren(offset, updateInfo);
     }
 }
 
@@ -32,21 +39,9 @@ void Control::updateChildren(glm::ivec2 offset, UpdateInfo updateInfo) {
     }
 }
 
-void Control::updateAll(glm::ivec2 offset, UpdateInfo updateInfo) {
+void Control::update(glm::ivec2 offset, UpdateInfo updateInfo) {
     State oldState = state;
-    updateState(offset, updateInfo);
-    if (oldState != state) {
-        stateChange(oldState, state);
-    }
-    update(offset, updateInfo);
-    updateChildren(offset, updateInfo);
-}
-
-void Control::addChild(Control *control) {
-    children.emplace_back(control);
-}
-
-void Control::updateState(glm::ivec2 offset, UpdateInfo updateInfo) {
+    // Update the state
     glm::ivec2 absolute = offset + (glm::ivec2)position;
     glm::ivec2 cursor = updateInfo.cursor;
     if ((absolute.x <= cursor.x && cursor.x <= absolute.x + size.x) &&
@@ -58,13 +53,52 @@ void Control::updateState(glm::ivec2 offset, UpdateInfo updateInfo) {
     } else {
         state = State::Normal;
     }
+    // Emit a signal depending on state change
+    switch (oldState) {
+    case State::Normal:
+        switch (state) {
+            case State::Normal:
+                // No Change
+                break;
+            case State::Highlighted:
+                signal_highlighted();
+                break;
+            case State::Selected:
+                signal_selected();
+                break;
+        }
+        break;
+    case State::Highlighted:
+        switch (state) {
+            case State::Normal:
+                signal_unhighlighted();
+                break;
+            case State::Highlighted:
+                // No Change
+                break;
+            case State::Selected:
+                signal_selected();
+                break;
+        }
+        break;
+    case State::Selected:
+        switch (state) {
+            case State::Normal:
+                signal_deselected();
+                break;
+            case State::Highlighted:
+                signal_highlighted();
+                break;
+            case State::Selected:
+                // No Change
+                break;
+        }
+        break;
+    }
 }
 
-void Control::stateChange(State oldState, State newState) {
-    if (oldState != State::Selected && newState == State::Selected)
-        signal_selected();
-    if (oldState == State::Selected && newState != State::Selected)
-        signal_deselected();
+void Control::addChild(Control *control) {
+    children.emplace_back(control);
 }
 
 } // sunglasses

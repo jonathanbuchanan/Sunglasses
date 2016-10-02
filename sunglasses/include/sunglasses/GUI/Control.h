@@ -78,16 +78,8 @@ protected:
     /// Draws all of the child controls
     void drawChildren(glm::ivec2 offset, Renderer2D &renderer);
 
-    /// Updates the state of the control
-    /**
-     * This method takes the position of the cursor and the position of
-     * the control to update the control's state. This is
-     * called by update() by default.
-     */
-    void updateState(glm::ivec2 offset, UpdateInfo updateInfo);
-
     /// Updates the control
-    virtual void update(glm::ivec2 offset, UpdateInfo updateInfo) = 0;
+    virtual void update(glm::ivec2 offset, UpdateInfo updateInfo);
 
     /// Updates all of the child controls
     void updateChildren(glm::ivec2 offset, UpdateInfo updateInfo);
@@ -97,9 +89,6 @@ protected:
 
     /// The vector of child controls
     std::vector<Control *> children;
-private:
-    /// Called when the control changes state
-    void stateChange(State oldState, State newState);
 };
 
 } // namespace

@@ -50,16 +50,6 @@ protected:
             break;
         }
     }
-
-    /// Updates the button
-    virtual void update(glm::ivec2 offset, UpdateInfo updateInfo) {
-
-    }
-
-    /// Called when the button's state changes
-    virtual void stateChange(State old) {
-
-    }
 private:
 };
 

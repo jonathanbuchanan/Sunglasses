@@ -62,22 +62,6 @@ protected:
         glm::ivec2 absolute = offset + position;
         background.draw(absolute, size, renderer);
     }
-
-    /// Updates the panel
-    /**
-     * Panels are static, so this method does nothing
-     */
-    virtual void update(glm::ivec2 offset, UpdateInfo updateInfo) {
-
-    }
-
-    /// Called when the state changes
-    /**
-     * Panels are static, so this method does nothing
-     */
-    virtual void stateChange(State old) {
-
-    }
 };
 
 /// A 'basic' panel

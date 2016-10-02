@@ -106,13 +106,14 @@ private:
 };
 
 /// A class representing a slot with a lambda function
-template<typename F, typename T>
+template<typename F>
 class LSlot;
 
-template<typename R, typename... A, typename T>
-class LSlot<R(A...), T> : public ISlot<R(A...)> {
+template<typename R, typename... A>
+class LSlot<R(A...)> : public ISlot<R(A...)> {
 public:
     /// Constructs the slot with the lambda function
+    template<typename T>
     LSlot(T _function) : function(_function) {
 
     }
@@ -130,7 +131,7 @@ public:
     }
 private:
     /// The lambda function the slot contains
-    T function;
+    std::function<R(A...)> function;
 };
 
 /// Connects a signal to a slot

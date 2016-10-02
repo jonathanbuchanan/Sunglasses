@@ -13,8 +13,11 @@ GUIMainMenu::GUIMainMenu(Window &window) :
         v(glm::ivec2(50, 50), glm::ivec2(100, 100), glm::vec4(1.0f)),
         tex(Image(glm::ivec2(2, 2), imageData), TextureMinification::Nearest, TextureMagnification::Nearest),
         image(glm::ivec2(150, 150), glm::ivec2(300, 300), tex),
-        button(glm::ivec2(25, 200), glm::ivec2(30, 30), glm::vec4(1.0f), glm::vec4(0.5f), glm::vec4(0.0f)) {
+        button(glm::ivec2(25, 200), glm::ivec2(30, 30), glm::vec4(1.0f), glm::vec4(0.5f), glm::vec4(0.0f)),
+        buttonpress([](){std::cout<<"pressed"<<std::endl;}) {
     panel.addChild(&v);
     panel.addChild(&image);
     panel.addChild(&button);
+
+    connect(button.signal_selected, buttonpress);
 }

@@ -17,6 +17,8 @@ private:
     Texture tex;
     ImagePanel image;
     BasicButton button;
+
+    LSlot<void()> buttonpress;
 };
 
 #endif
