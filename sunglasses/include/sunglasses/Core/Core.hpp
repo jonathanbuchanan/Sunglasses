@@ -8,3 +8,5 @@
 #include "Object.h"
 #include "Scene.h"
 #include "Service.h"
+#include "Library.h"
+#include "Resource.h"
