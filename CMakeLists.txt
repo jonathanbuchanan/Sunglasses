@@ -4,6 +4,7 @@ add_subdirectory(samples)
 
 add_subdirectory(sunglasses)
 
-#add_subdirectory(tests)
+enable_testing()
 
-enable_testing() 
+add_subdirectory(googlemock)
+add_subdirectory(tests)
