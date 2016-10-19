@@ -11,3 +11,4 @@
 #include <sunglasses/GUI/Controller.h>
 #include <sunglasses/GUI/Window.h>
 #include <sunglasses/GUI/Signal.h>
+#include <sunglasses/GUI/Font.h>

@@ -9,6 +9,7 @@ add_sources(
     Controller.cpp
     Window.cpp
     Signal.cpp
+    Font.cpp
 ) 
 
 add_sources_to_parent()

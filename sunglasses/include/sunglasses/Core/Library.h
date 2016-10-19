@@ -1,6 +1,7 @@
 #ifndef LIBRARY_H
 #define LIBRARY_H
 
+#include <type_traits>
 #include <set>
 #include <unordered_map>
 #include <memory>
@@ -15,11 +16,17 @@ namespace sunglasses {
  */
 template<typename K, typename R, typename P>
 class Library {
-private:
-    class ResourceHandle;
+static_assert(std::is_constructible<R, P>::value, "The resource must be constructible by its parameter object!");
 public:
+    class ResourceHandle;
+
+    /// Constructs the library with nothing
+    Library() {
+
+    }
+
     /// Constructs the library with a list of keys/values
-    Library(std::initializer_list<std::pair<const K, P>> _contents) : contents(_contents) {
+    Library(std::initializer_list<std::pair<const K, ResourceHandle>> _contents) : contents(_contents) {
 
     }
 
@@ -37,7 +44,18 @@ public:
     ResourceHandle & at(const K &key) {
         return contents.at(key);
     }
-private:
+
+    /// Loads all the resources inside the library
+    void loadAll() {
+        for (auto &handle : contents)
+            handle.load();
+    }
+
+    /// Loads all the resources inside the library
+    void operator()() {
+        loadAll();
+    }
+
     /// A handle to a resource
     class ResourceHandle {
     public:
@@ -52,20 +70,25 @@ private:
 
         }
 
-        /// Returns a reference to the managed resource
-        R & get() {
-            if (!*resource)
+        /// Loads the managed resource
+        void load() {
+            if (!resource)
                 resource = std::make_unique<R>(parameter);
+        }
+
+        /// Returns a reference to the managed resource
+        R * get() {
+            load();
             return resource.get();
         }
     private:
         /// The pointer to the resource it is handling
-        std::unique_ptr<R> resource;
+        std::shared_ptr<R> resource;
 
         /// The 'parameter' object for initializing the resource
         P parameter;
     };
-
+private:
     /// The map of contents
     std::unordered_map<K, ResourceHandle> contents;
 };

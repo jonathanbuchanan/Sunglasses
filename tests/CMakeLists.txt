@@ -16,7 +16,7 @@ set(SOURCES
     test_LuaTypeRegistrar.cpp
     test_ResourceManager.cpp
     test_ResourceService.cpp
-    test_Script.cpp
+    #test_Script.cpp
 )
 
 add_test(all Test-Sunglasses)
