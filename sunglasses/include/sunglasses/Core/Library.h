@@ -13,20 +13,21 @@ namespace sunglasses {
  * The first template parameter is the key type for the library.
  * The second template parameter is the resource type for the library.
  * The third template parameter is the resource 'parameter' type for the library.
+ * The fourth template parameter is the resource 'library' type.
  */
-template<typename K, typename R, typename P>
+template<typename K, typename R, typename P, typename L>
 class Library {
-static_assert(std::is_constructible<R, P>::value, "The resource must be constructible by its parameter object!");
+static_assert(std::is_constructible<R, P, L>::value, "The resource must be constructible by its parameter and library objects!");
 public:
     class ResourceHandle;
 
     /// Constructs the library with nothing
-    Library() {
+    Library(L &&_library = L()) : library(_library) {
 
     }
 
     /// Constructs the library with a list of keys/values
-    Library(std::initializer_list<std::pair<const K, ResourceHandle>> _contents) : contents(_contents) {
+    Library(std::initializer_list<std::pair<const K, ResourceHandle>> _contents, L &&_library = L()) : contents(_contents), library(_library) {
 
     }
 
@@ -88,6 +89,9 @@ public:
         /// The 'parameter' object for initializing the resource
         P parameter;
     };
+
+    /// The library object
+    L library;
 private:
     /// The map of contents
     std::unordered_map<K, ResourceHandle> contents;
