@@ -3,31 +3,6 @@
 namespace sunglasses {
 namespace GUI {
 
-Font::Parameter::Parameter(std::string _file) : file(_file) {
-
-}
-
-Font::LibraryParameter::LibraryParameter() {
-    FT_Error error = FT_Init_FreeType(&library);
-
-    // Throw an exception if the library failed
-    //if (error)
-}
-
-Font::Font(Parameter parameter, const LibraryParameter &library) {
-    FT_Error error = FT_New_Face(library.library, parameter.file.c_str(), 0, &face);
-
-    // Throw an exception if loading failed
-    //if (error)
-
-    // Set the pixel size
-    error = FT_Set_Pixel_Sizes(face, 0, 16);
-
-    // Throw an exception if sizing failed
-    //if (error)
-
-}
-
 Glyph::Parameter::Parameter(unsigned long _character) : character(_character) {
 
 }
@@ -52,7 +27,55 @@ Glyph::Glyph(Parameter parameter, const LibraryParameter &library) {
     // Throw an error if rendering failed
     //if (error)
 
+    // Set the size of the glyph
     size = glm::ivec2(library.face->glyph->bitmap.width, library.face->glyph->bitmap.rows);
+
+    // Load the bitmap
+    glGenTextures(1, &texture);
+
+    glBindTexture(texture, GL_TEXTURE_2D);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, size.x, size.y, 0, GL_RED, GL_UNSIGNED_BYTE, library.face->glyph->bitmap.buffer);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    glBindTexture(texture, 0);
+}
+
+Font::Parameter::Parameter(std::string _file) : file(_file) {
+
+}
+
+Font::LibraryParameter::LibraryParameter() {
+    FT_Error error = FT_Init_FreeType(&library);
+
+    // Throw an exception if the library failed
+    //if (error)
+}
+
+Font::Font(Parameter parameter, const LibraryParameter &library) :
+        face(loadFace(parameter.file, library.library)), glyphs(Glyph::LibraryParameter(face)) {
+
+}
+
+FT_Face Font::loadFace(std::string file, FT_Library library) {
+    FT_Face newFace;
+
+    FT_Error error = FT_New_Face(library, file.c_str(), 0, &newFace);
+
+    // Throw an exception if loading failed
+    //if (error)
+
+    // Set the pixel size
+    error = FT_Set_Pixel_Sizes(newFace, 0, 16);
+
+    // Throw an exception if sizing failed
+    //if (error)
+
+    return newFace;
 }
 
 } // namespace
