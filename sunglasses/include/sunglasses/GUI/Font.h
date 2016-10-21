@@ -8,6 +8,10 @@
 
 #include <sunglasses/Core/Library.h>
 
+#include <glm/glm.hpp>
+
+#include <sunglasses/Graphics/Texture.h>
+
 namespace sunglasses {
 namespace GUI {
 
@@ -40,6 +44,40 @@ public:
 private:
     /// The font face object
     FT_Face face;
+};
+
+/// A resource class that represents a single glyph in a font
+class Glyph {
+public:
+    /// The 'parameter' object for the glyph resource
+    struct Parameter {
+        /// Constructs the parameter object with a font face, and a character
+        Parameter(unsigned long _character);
+
+        /// The character to load as a glyph
+        unsigned long character;
+    };
+
+    /// The 'library' object for the glyph resource
+    struct LibraryParameter {
+        /// Constructs the library object with a font face reference
+        LibraryParameter(const FT_Face &_face);
+
+        /// A reference to the font face
+        const FT_Face &face;
+    };
+
+    /// Constructs the glyph
+    Glyph(Parameter p, const LibraryParameter &l);
+
+    /// The library type for this resource
+    typedef Library<unsigned long, Glyph, Parameter, LibraryParameter> LibraryT;
+private:
+    /// The size of the glyph
+    glm::ivec2 size;
+
+    /// The texture containing the glyph image
+    Texture texture;
 };
 
 } // namespace
