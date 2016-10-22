@@ -33,7 +33,7 @@ public:
 
     /// Inserts a key/value pair
     void insert(const std::pair<const K, P> &pair) {
-        contents.insert(std::forward(pair));
+        contents.insert(pair);
     }
 
     /// Inserts a list of keys/values
@@ -42,8 +42,19 @@ public:
     }
 
     /// Looks up a resource by a key
-    ResourceHandle & at(const K &key) {
-        return contents.at(key);
+    /**
+     * Only enabled if the parameter object is constructible by the key type
+     */
+    typename std::enable_if<std::is_constructible<P, K>::value, typename ResourceHandle::Returnable>::type
+    operator[](const K &key) {
+        if (contents.find(key) == contents.end())
+            insert({key, P(key)});
+        return contents.at(key).getReturnable(library);
+    }
+
+    /// Looks up a resource by a key
+    typename ResourceHandle::Returnable at(const K &key) {
+        return contents.at(key).getReturnable(library);
     }
 
     /// Loads all the resources inside the library
@@ -71,16 +82,35 @@ public:
 
         }
 
+        /// The object that can be implicitly converted to the resource itself
+        struct Returnable {
+            /// Constructs the returnable
+            Returnable(ResourceHandle &_handle, L &_library) : handle(_handle), library(_library) {
+
+            }
+
+            /// Implicitly converts the object to the resource
+            operator R& () {
+                return *handle.load(library);
+            }
+
+            /// A reference to the resource handle
+            ResourceHandle &handle;
+
+            /// A reference to the library parameter
+            L &library;
+        };
+
         /// Loads the managed resource
-        void load() {
+        R * load(L &library) {
             if (!resource)
-                resource = std::make_unique<R>(parameter);
+                resource = std::make_unique<R>(parameter, library);
+            return resource.get();
         }
 
         /// Returns a reference to the managed resource
-        R * get() {
-            load();
-            return resource.get();
+        Returnable getReturnable(L &library) {
+            return Returnable(*this, library);
         }
     private:
         /// The pointer to the resource it is handling

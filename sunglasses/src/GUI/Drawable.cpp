@@ -36,6 +36,18 @@ void Image::draw(glm::ivec2 position, glm::ivec2 size,
     renderer.draw(position, size, texture);
 }
 
+
+
+
+Text::Text(std::string _text, glm::vec4 _color, Font &_font) :
+        text(_text), color(_color), font(_font) {
+
+}
+
+void Text::draw(glm::ivec2 position, Renderer2D &renderer) {
+    renderer.draw(position, text, color, font);
+}
+
 } // namespace
 } // namespace
 } // namespace

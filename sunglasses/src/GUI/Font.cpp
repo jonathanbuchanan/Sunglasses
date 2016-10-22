@@ -4,45 +4,40 @@ namespace sunglasses {
 namespace GUI {
 
 Glyph::Parameter::Parameter(unsigned long _character) : character(_character) {
-
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 }
 
 Glyph::LibraryParameter::LibraryParameter(const FT_Face &_face) : face(_face) {
 
 }
 
-Glyph::Glyph(Parameter parameter, const LibraryParameter &library) {
-    unsigned int glyphIndex = FT_Get_Char_Index(library.face, parameter.character);
+Glyph::Glyph(Parameter parameter, const LibraryParameter &library) :
+        slot(loadGlyph(parameter.character, library.face)),
+        size(slot->bitmap.width, slot->bitmap.rows),
+        bearing(slot->bitmap_left, slot->bitmap_top),
+        advance(slot->advance.x, slot->advance.y),
+        texture(Image(size, slot->bitmap.buffer, Texture::InternalFormat::Red, Texture::Format::Red)) {
+
+}
+
+FT_GlyphSlot Glyph::loadGlyph(unsigned long character, const FT_Face &face) {
+    // Get the glyph index
+    unsigned int glyphIndex = FT_Get_Char_Index(face, character);
 
     // Throw an exception if character has no index
     //if (glyphIndex == 0)
 
-    FT_Error error = FT_Load_Glyph(library.face, glyphIndex, FT_LOAD_RENDER);
+    FT_Error error = FT_Load_Glyph(face, glyphIndex, FT_LOAD_DEFAULT);
     // Throw an exception if loading failed
     //if (error)
 
     // Convert the glyph to a bitmap
-    error = FT_Render_Glyph(library.face->glyph, FT_RENDER_MODE_NORMAL);
+    error = FT_Render_Glyph(face->glyph, FT_RENDER_MODE_NORMAL);
 
     // Throw an error if rendering failed
     //if (error)
 
-    // Set the size of the glyph
-    size = glm::ivec2(library.face->glyph->bitmap.width, library.face->glyph->bitmap.rows);
-
-    // Load the bitmap
-    glGenTextures(1, &texture);
-
-    glBindTexture(texture, GL_TEXTURE_2D);
-
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, size.x, size.y, 0, GL_RED, GL_UNSIGNED_BYTE, library.face->glyph->bitmap.buffer);
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-    glBindTexture(texture, 0);
+    return face->glyph;
 }
 
 Font::Parameter::Parameter(std::string _file) : file(_file) {

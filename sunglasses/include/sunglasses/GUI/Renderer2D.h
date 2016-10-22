@@ -13,6 +13,7 @@
 #include <sunglasses/Graphics/Texture.h>
 #include <sunglasses/Graphics/Shader.h>
 #include <sunglasses/GUI/Drawable.h>
+#include <sunglasses/GUI/Font.h>
 
 namespace sunglasses {
 namespace GUI {
@@ -30,15 +31,21 @@ public:
 
     /// Draws a rectangle with a texture
     void draw(glm::ivec2 position, glm::ivec2 size, Texture &texture);
+
+    /// Draws text
+    void draw(glm::ivec2 position, std::string text, glm::vec4 color, Font &font);
 private:
     /// The window
     Window &window;
 
     /// The fill shader
     sunglasses::Shader fillShader;
-    
+
     /// The texture shader
     sunglasses::Shader textureShader;
+
+    /// The text shader
+    sunglasses::Shader textShader;
 
     /// The rectangle data used to draw rectangles
     struct Rectangle {

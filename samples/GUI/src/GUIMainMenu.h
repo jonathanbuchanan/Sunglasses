@@ -11,9 +11,9 @@ using namespace sunglasses::GUI;
 
 class GUIMainMenu : public BasicController {
 public:
-    GUIMainMenu(Window &window);
+    GUIMainMenu(Window &window, Font::LibraryT &fontLibrary);
 private:
-    BasicPanel v;
+    Label label;
     Texture tex;
     ImagePanel image;
     BasicButton button;

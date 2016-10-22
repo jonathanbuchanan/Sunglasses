@@ -7,6 +7,7 @@
 #include <string>
 
 #include <sunglasses/Core/Library.h>
+#include <sunglasses/Graphics/Texture.h>
 
 #include <glm/glm.hpp>
 
@@ -41,12 +42,24 @@ public:
 
     /// The library type for this resource
     typedef Library<unsigned long, Glyph, Parameter, LibraryParameter> LibraryT;
-private:
+//private:
+    /// Loads a glyph
+    static FT_GlyphSlot loadGlyph(unsigned long character, const FT_Face &face);
+
+    /// The temporary glyph slot
+    FT_GlyphSlot slot;
+
     /// The size of the glyph
     glm::ivec2 size;
 
+    /// The bearing of the glyph
+    glm::ivec2 bearing;
+
+    /// The advance of the glyph
+    glm::ivec2 advance;
+
     /// The texture containing the glyph image
-    GLuint texture;
+    Texture texture;
 };
 
 /// A resource class that loads a font
@@ -75,15 +88,15 @@ public:
 
     /// The library type for this resource
     typedef Library<std::string, Font, Parameter, LibraryParameter> LibraryT;
+
+    /// The library of glyphs
+    Glyph::LibraryT glyphs;
 private:
     /// Loads a font face from a file
     static FT_Face loadFace(std::string file, FT_Library library);
 
     /// The font face object
     FT_Face face;
-
-    /// The library of glyphs
-    Glyph::LibraryT glyphs;
 };
 
 } // namespace

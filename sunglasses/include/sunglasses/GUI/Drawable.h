@@ -6,8 +6,10 @@
 
 #include <glm/glm.hpp>
 #include <GL/glew.h>
+#include <string>
 
 #include <sunglasses/Graphics/Texture.h>
+#include <sunglasses/GUI/Font.h>
 
 namespace sunglasses {
 
@@ -44,6 +46,25 @@ public:
 private:
     /// A reference to the texture
     Texture &texture;
+};
+
+/// A drawable string of text
+class Text {
+public:
+    /// Constructs the drawable with a string, color, and font
+    Text(std::string _text, glm::vec4 _color, Font &_font);
+
+    /// Draws the text at the given position
+    void draw(glm::ivec2 position, Renderer2D &renderer);
+private:
+    /// The string of text to draw
+    std::string text;
+
+    /// The color of the text to draw
+    glm::vec4 color;
+
+    /// The font to be used
+    Font &font;
 };
 
 } // namespace

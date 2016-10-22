@@ -10,13 +10,22 @@ using namespace sunglasses;
 int main(int argc, char **argv) {
     bool running = true;
 
+    GUI::Font::LibraryT fonts({
+        {"arial", GUI::Font::LibraryT::ResourceHandle(GUI::Font::Parameter("/usr/share/fonts/TTF/Hack-Regular.ttf"))}
+    });
+
+    Font &arial = fonts.at("arial");
+
     GUI::Window window = GUI::Window(640, 480, "GUI Demo");
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
 
     LSlot<void()> slot_close = LSlot<void()>([&running]() { running = false; });
 
     connect(window.signal_closebutton, slot_close);
 
-    GUIMainMenu mainMenu(window);
+    GUIMainMenu mainMenu(window, fonts);
 
     GUI::System gui(&mainMenu.panel, window);
 
