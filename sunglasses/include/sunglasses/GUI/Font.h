@@ -67,11 +67,17 @@ class Font {
 public:
     /// The 'parameter' object for the font resource
     struct Parameter {
-        /// Constructs the parameter object with a file path
-        Parameter(std::string _file);
+        /// Constructs the parameter object with a file path and size
+        Parameter(std::string _file, glm::ivec2 _size);
+
+        /// Constructs the parameter object with a file path and size
+        Parameter(std::string _file, glm::vec2 pointSize, glm::ivec2 resolution);
 
         /// The file path of the font
         std::string file;
+
+        /// The size of the font in pixels
+        glm::ivec2 size;
     };
 
     /// The 'library' object for the font resource

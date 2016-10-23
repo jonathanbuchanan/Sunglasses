@@ -42,19 +42,13 @@ public:
     }
 
     /// Looks up a resource by a key
-    /**
-     * Only enabled if the parameter object is constructible by the key type
-     */
-    typename std::enable_if<std::is_constructible<P, K>::value, typename ResourceHandle::Returnable>::type
-    operator[](const K &key) {
-        if (contents.find(key) == contents.end())
-            insert({key, P(key)});
-        return contents.at(key).getReturnable(library);
+    typename ResourceHandle::Returnable at(const K &key) {
+        return getResource(key);
     }
 
     /// Looks up a resource by a key
-    typename ResourceHandle::Returnable at(const K &key) {
-        return contents.at(key).getReturnable(library);
+    typename ResourceHandle::Returnable operator[](const K &key) {
+        return getResource(key);
     }
 
     /// Loads all the resources inside the library
@@ -123,6 +117,25 @@ public:
     /// The library object
     L library;
 private:
+    /// Returns a resource
+    /**
+     * If it is possible, a new resource will be constructed from
+     * the search key. Otherwise, a range exception will be thrown
+     */
+    template<typename T = P>
+    typename ResourceHandle::Returnable getResource(
+            typename std::enable_if<std::is_constructible<T, K>::value, const K &>::type key) {
+        if (contents.find(key) == contents.end())
+            insert({key, P(key)});
+        return contents.at(key).getReturnable(library);
+    }
+
+    template<typename T = P>
+    typename ResourceHandle::Returnable getResource(
+            typename std::enable_if<!std::is_constructible<T, K>::value, const K &>::type key) {
+        return contents.at(key).getReturnable(library);
+    }
+
     /// The map of contents
     std::unordered_map<K, ResourceHandle> contents;
 };
