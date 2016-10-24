@@ -99,7 +99,7 @@ public:
     Glyph::LibraryT glyphs;
 private:
     /// Loads a font face from a file
-    static FT_Face loadFace(std::string file, FT_Library library);
+    static FT_Face loadFace(std::string file, FT_Library library, glm::ivec2 size);
 
     /// The font face object
     FT_Face face;

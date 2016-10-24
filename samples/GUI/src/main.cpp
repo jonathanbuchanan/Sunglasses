@@ -11,7 +11,7 @@ int main(int argc, char **argv) {
     bool running = true;
 
     GUI::Font::LibraryT fonts({
-        {"arial", GUI::Font::LibraryT::ResourceHandle(GUI::Font::Parameter("/usr/share/fonts/TTF/Hack-Regular.ttf", glm::ivec2(48, 48)))}
+        {"arial", GUI::Font::LibraryT::ResourceHandle(GUI::Font::Parameter("/usr/share/fonts/TTF/Hack-Regular.ttf", glm::vec2(12, 12), glm::ivec2(220, 220)))}
     });
 
     Font &arial = fonts.at("arial");

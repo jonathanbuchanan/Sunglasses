@@ -46,7 +46,7 @@ Font::Parameter::Parameter(std::string _file, glm::ivec2 _size) :
 }
 
 Font::Parameter::Parameter(std::string _file, glm::vec2 pointSize, glm::ivec2 resolution) :
-        file(_file) {
+        file(_file), size((pointSize.x / 72) * resolution.x, (pointSize.y / 72) * resolution.y) {
 
 }
 Font::LibraryParameter::LibraryParameter() {
@@ -57,11 +57,11 @@ Font::LibraryParameter::LibraryParameter() {
 }
 
 Font::Font(Parameter parameter, const LibraryParameter &library) :
-        face(loadFace(parameter.file, library.library)), glyphs(Glyph::LibraryParameter(face)) {
+        face(loadFace(parameter.file, library.library, parameter.size)), glyphs(Glyph::LibraryParameter(face)) {
 
 }
 
-FT_Face Font::loadFace(std::string file, FT_Library library) {
+FT_Face Font::loadFace(std::string file, FT_Library library, glm::ivec2 size) {
     FT_Face newFace;
 
     FT_Error error = FT_New_Face(library, file.c_str(), 0, &newFace);
@@ -70,7 +70,7 @@ FT_Face Font::loadFace(std::string file, FT_Library library) {
     //if (error)
 
     // Set the pixel size
-    error = FT_Set_Pixel_Sizes(newFace, 0, 48);
+    error = FT_Set_Pixel_Sizes(newFace, size.x, size.y);
 
     // Throw an exception if sizing failed
     //if (error)
