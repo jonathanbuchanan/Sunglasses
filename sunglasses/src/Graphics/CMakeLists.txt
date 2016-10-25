@@ -8,6 +8,7 @@ add_sources(
     Texture.cpp
     TexturedQuad.cpp
     WindowManager.cpp
+    Vertex.cpp
 )
 
 add_subdirectory(Loaders)
