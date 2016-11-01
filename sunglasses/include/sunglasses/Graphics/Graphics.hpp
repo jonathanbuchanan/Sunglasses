@@ -12,3 +12,4 @@
 #include <sunglasses/Graphics/TexturedQuad.h>
 #include <sunglasses/Graphics/WindowManager.h>
 #include <sunglasses/Graphics/Vertex.h>
+#include <sunglasses/Graphics/GeometryBuffer.h>

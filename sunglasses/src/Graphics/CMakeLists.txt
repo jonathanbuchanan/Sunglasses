@@ -9,6 +9,7 @@ add_sources(
     TexturedQuad.cpp
     WindowManager.cpp
     Vertex.cpp
+    GeometryBuffer.cpp
 )
 
 add_subdirectory(Loaders)
