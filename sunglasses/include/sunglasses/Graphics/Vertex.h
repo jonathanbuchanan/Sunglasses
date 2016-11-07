@@ -28,7 +28,7 @@ struct Position1 : public VertexAttribute<N> {
 
     /// Registers the vertex attribute pointer
     static void vertexAttributePointer() {
-        glVertexAttribPointer(N, 1, GL_FLOAT, GL_FALSE, Stride, Offset);
+        glVertexAttribPointer(N, 1, GL_FLOAT, GL_FALSE, Stride, (GLvoid *)Offset);
     }
 };
 
@@ -40,7 +40,7 @@ struct Position2 : public VertexAttribute<N> {
 
     /// Registers the vertex attribute pointer
     static void vertexAttributePointer() {
-        glVertexAttribPointer(N, 2, GL_FLOAT, GL_FALSE, Stride, Offset);
+        glVertexAttribPointer(N, 2, GL_FLOAT, GL_FALSE, Stride, (GLvoid *)Offset);
     }
 };
 
@@ -52,7 +52,7 @@ struct Position3 : public VertexAttribute<N> {
 
     /// Registers the vertex attribute pointer
     static void vertexAttributePointer() {
-        glVertexAttribPointer(N, 3, GL_FLOAT, GL_FALSE, Stride, Offset);
+        glVertexAttribPointer(N, 3, GL_FLOAT, GL_FALSE, Stride, (GLvoid *)Offset);
     }
 };
 
@@ -64,7 +64,7 @@ struct Position4 : public VertexAttribute<N> {
 
     /// Registers the vertex attribute pointer
     static void vertexAttributePointer() {
-        glVertexAttribPointer(N, 4, GL_FLOAT, GL_FALSE, Stride, Offset);
+        glVertexAttribPointer(N, 4, GL_FLOAT, GL_FALSE, Stride, (GLvoid *)Offset);
     }
 };
 
@@ -77,7 +77,7 @@ struct TextureCoordinates : public VertexAttribute<N> {
 
     /// Registers the vertex attribute pointer
     static void vertexAttributePointer() {
-        glVertexAttribPointer(N, 2, GL_FLOAT, GL_FALSE, Stride, Offset);
+        glVertexAttribPointer(N, 2, GL_FLOAT, GL_FALSE, Stride, (GLvoid *)Offset);
     }
 };
 
@@ -90,7 +90,7 @@ struct Normal : public VertexAttribute<N> {
 
     /// Registers the vertex attribute pointer
     static void vertexAttributePointer() {
-        glVertexAttribPointer(N, 3, GL_FLOAT, GL_FALSE, Stride, Offset);
+        glVertexAttribPointer(N, 3, GL_FLOAT, GL_FALSE, Stride, (GLvoid *)Offset);
     }
 };
 
@@ -103,7 +103,7 @@ struct Tangent : public VertexAttribute<N> {
 
     /// Registers the vertex attribute pointer
     static void vertexAttributePointer() {
-        glVertexAttribPointer(N, 3, GL_FLOAT, GL_FALSE, Stride, Offset);
+        glVertexAttribPointer(N, 3, GL_FLOAT, GL_FALSE, Stride, (GLvoid *)Offset);
     }
 };
 
@@ -165,24 +165,73 @@ struct sum<A, Ns...> {
     static const int value = A + sum<Ns...>::value;
 };
 
+template<>
+struct sum<> {
+    static const int value = 0;
+};
+
+// Gets the Nth int
+template<size_t N, int A, int... Ns>
+struct nth_int : nth_int<N - 1, Ns...> {
+
+};
+
+template<int A, int... Ns>
+struct nth_int<0, A, Ns...> {
+    static const int value = A;
+};
+
+
+template<typename I, int... Ns>
+struct gen_sum_nth {
+
+};
+
+template<size_t... Is, int... Ns>
+struct gen_sum_nth<std::index_sequence<Is...>, Ns...> {
+    static const int value = sum<nth_int<Is, Ns...>::value...>::value;
+};
+
+template<size_t N, int... Ns>
+using sum_nth = gen_sum_nth<std::make_index_sequence<N>, Ns...>;
+
+
+template<int... Ns>
+struct offset_sequence {
+
+};
+
+template<typename I, int... Ns>
+struct gen_offset_sequence {
+
+};
+
+template<size_t... Is, int... Ns>
+struct gen_offset_sequence<std::index_sequence<Is...>, Ns...> {
+    using type = offset_sequence<sum_nth<Is, Ns...>::value...>;
+};
+
+template<int... Ns>
+using make_offset_sequence = typename gen_offset_sequence<std::make_index_sequence<sizeof...(Ns)>, Ns...>::type;
+
 }
 
 /// A class for the vertex list
-template<class T, size_t Stride, template<size_t, size_t, size_t> class... Ts>
+template<class I, class O, size_t Stride, template<size_t, size_t, size_t> class... Ts>
 struct VertexComponents {
 
 };
 
-template<size_t Stride, size_t... I, template<size_t, size_t, size_t> class... Ts>
-struct VertexComponents<std::index_sequence<I...>, Stride, Ts...> : Ts<I, Stride, 0>... {
+template<size_t Stride, size_t... I, int... O, template<size_t, size_t, size_t> class... Ts>
+struct VertexComponents<std::index_sequence<I...>, utility::offset_sequence<O...>, Stride, Ts...> : Ts<I, Stride, O>... {
     /// Enables its vertex attributes
     static void attribute() {
-        (void)std::initializer_list<int>{ (Ts<I, Stride, 0>::vertexAttribute(), 0)... };
+        (void)std::initializer_list<int>{ (Ts<I, Stride, O>::vertexAttribute(), 0)... };
     }
 
     /// Registers all the vertex attribute pointers
     static void attributePointers() {
-        (void)std::initializer_list<int>{ (Ts<I, Stride, 0>::vertexAttributePointer(), 0)... };
+        (void)std::initializer_list<int>{ (Ts<I, Stride, O>::vertexAttributePointer(), 0)... };
     }
 };
 
@@ -195,7 +244,7 @@ struct VertexComponents<std::index_sequence<I...>, Stride, Ts...> : Ts<I, Stride
  * in the shader code
  */
 template<template<size_t, size_t, size_t> class... T>
-using Vertex = VertexComponents<std::make_index_sequence<sizeof...(T)>, utility::sum<VertexAttributeSize<T>::size...>::value, T...>;
+using Vertex = VertexComponents<std::make_index_sequence<sizeof...(T)>, utility::make_offset_sequence<VertexAttributeSize<T>::size...>, utility::sum<VertexAttributeSize<T>::size...>::value, T...>;
 
 }
 } // namespace
