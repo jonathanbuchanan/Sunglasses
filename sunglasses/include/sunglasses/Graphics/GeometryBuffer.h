@@ -6,7 +6,7 @@
 namespace sunglasses {
 
 /// A object that contains a buffer of geometry data
-template<template<size_t, size_t, size_t> class... T>
+template<template<size_t, typename> class... T>
 class GeometryBuffer {
 public:
     GeometryBuffer() {
@@ -24,8 +24,18 @@ public:
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
 
+        // Generate the EBO
+        glGenBuffers(1, &EBO);
+
+        // Bind the EBO
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+
+
         // Enable vertex attributes
         Vertex_T::attribute();
+
+        // Set the vertex attribute pointer
+        Vertex_T::attributePointers();
 
 
         // Unbind the VBO
@@ -43,6 +53,9 @@ private:
 
     /// The vertex buffer object containing vertex data
     GLuint VBO;
+
+    /// The element buffer object containing index data
+    GLuint EBO;
 };
 
 } // namespace
