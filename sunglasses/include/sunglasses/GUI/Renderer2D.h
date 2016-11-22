@@ -12,6 +12,7 @@
 
 #include <sunglasses/Graphics/Texture.h>
 #include <sunglasses/Graphics/Shader.h>
+#include <sunglasses/Graphics/GeometryBuffer.h>
 #include <sunglasses/GUI/Drawable.h>
 #include <sunglasses/GUI/Font.h>
 
@@ -48,27 +49,12 @@ private:
     sunglasses::Shader textShader;
 
     /// The rectangle data used to draw rectangles
-    struct Rectangle {
-        /// Creates the OpenGL buffers
-        Rectangle();
-
-        /// The vertex data
-        const GLfloat vertices[16] = {
-            0.0f, 0.0f, 0.0f, 0.0f,
-            0.0f, 1.0f, 0.0f, 1.0f,
-            1.0f, 0.0f, 1.0f, 0.0f,
-            1.0f, 1.0f, 1.0f, 1.0f
-        };
-
-        /// The index data
-        const GLuint indices[6] = {
-            0, 1, 2,
-            1, 2, 3
-        };
-
-        /// The VBO, EBO, and VAO
-        GLuint VBO, EBO, VAO;
-    } rectangle;
+    GeometryBuffer<WIP::Position2, WIP::TextureCoordinates> rectangle = {{
+        {{0.0f, 0.0f}, {0.0f, 0.0f}},
+        {{0.0f, 1.0f}, {0.0f, 1.0f}},
+        {{1.0f, 0.0f}, {1.0f, 0.0f}},
+        {{1.0f, 1.0f}, {1.0f, 1.0f}}
+    }, {0, 1, 2, 1, 2, 3}};
 };
 
 } // namespace

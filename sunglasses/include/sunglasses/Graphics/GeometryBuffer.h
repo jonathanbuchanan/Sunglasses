@@ -6,6 +6,7 @@
 #include <initializer_list>
 #include <vector>
 #include <numeric>
+#include <iostream>
 
 namespace sunglasses {
 
@@ -17,7 +18,7 @@ public:
     typedef WIP::Vertex<T...> Vertex_T;
 
     /// Constructs the buffer from a set of vertices and indices
-    GeometryBuffer(std::initializer_list<Vertex_T> _vertices, std::initializer_list<size_t> _indices) :
+    GeometryBuffer(std::initializer_list<Vertex_T> _vertices, std::initializer_list<GLuint> _indices) :
             vertices(_vertices), indices(_indices) {
         createBuffers();
     }
@@ -30,7 +31,7 @@ public:
     }
 
     /// Constructs the buffer from another vector of vertices and indices
-    GeometryBuffer(const std::vector<Vertex_T> &_vertices, const std::vector<size_t> &_indices) :
+    GeometryBuffer(const std::vector<Vertex_T> &_vertices, const std::vector<GLuint> &_indices) :
             vertices(_vertices), indices(_indices) {
         createBuffers();
     }
@@ -40,6 +41,13 @@ public:
             vertices(_vertices), indices(vertices.size()) {
         std::iota(indices.begin(), indices.end(), 0);
         createBuffers();
+    }
+
+    /// Draws the contained elements as triangles
+    void draw() {
+        glBindVertexArray(VAO);
+        glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
     }
 private:
     /// Creates the OpenGL buffers
@@ -58,7 +66,7 @@ private:
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
         // Fill the VBO with data
-        glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex_T), vertices.data(), GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex_T) * vertices.size(), vertices.data(), GL_STATIC_DRAW);
 
 
         // Generate the EBO
@@ -68,31 +76,27 @@ private:
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 
         // Fill the EBO with data
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(size_t), indices.data(), GL_STATIC_DRAW);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint) * indices.size(), indices.data(), GL_STATIC_DRAW);
 
 
         // Enable vertex attributes
-        Vertex_T::attribute();
+        Vertex_T::attributes();
 
-        // Set the vertex attribute pointer
-        Vertex_T::attributePointers();
-
+        // Unbind the VAO
+        glBindVertexArray(0);
 
         // Unbind the VBO
         glBindBuffer(GL_ARRAY_BUFFER, 0);
 
         // Unbind the EBO
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-        // Unbind the VAO
-        glBindVertexArray(0);
-    }
+}
 
     /// The vector containing vertex data
     std::vector<Vertex_T> vertices;
 
     /// The vector containing index data
-    std::vector<size_t> indices;
+    std::vector<GLuint> indices;
 
     /// The vertex array object referencing vertex data
     GLuint VAO;

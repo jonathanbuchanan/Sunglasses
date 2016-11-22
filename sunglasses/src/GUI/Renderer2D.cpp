@@ -139,9 +139,8 @@ void Renderer2D::draw(glm::ivec2 origin, glm::ivec2 size, glm::vec4 color) {
     // Pass the uniforms of the drawable
     fillShader["fillColor"] = color;
 
-    glBindVertexArray(rectangle.VAO);
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-    glBindVertexArray(0);
+    // Draw the rectangle
+    rectangle.draw();
 }
 
 void Renderer2D::draw(glm::ivec2 origin, glm::ivec2 size, Texture &texture) {
@@ -161,9 +160,8 @@ void Renderer2D::draw(glm::ivec2 origin, glm::ivec2 size, Texture &texture) {
     // Pass the uniforms of the drawable
     textureShader.textures["sampler"] = texture;
 
-    glBindVertexArray(rectangle.VAO);
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-    glBindVertexArray(0);
+    // Draw the rectangle
+    rectangle.draw();
 }
 
 void Renderer2D::draw(glm::ivec2 origin, std::string text, glm::vec4 color, Font &font) {
@@ -192,43 +190,12 @@ void Renderer2D::draw(glm::ivec2 origin, std::string text, glm::vec4 color, Font
 
         textShader.textures["sampler"] = glyph.texture;
 
-        glBindVertexArray(rectangle.VAO);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0);
+        // Draw the rectangle
+        rectangle.draw();
 
         // Increase the pen position
         pen += (glyph.advance >> 6);
     }
-}
-
-Renderer2D::Rectangle::Rectangle() {
-    // Generate the VAO
-    glGenVertexArrays(1, &VAO);
-    glBindVertexArray(VAO);
-
-    // Generate the VBO and EBO
-    glGenBuffers(1, &VBO);
-    glGenBuffers(1, &EBO);
-
-    // Load the VBO
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (GLvoid *)0);
-    glEnableVertexAttribArray(0);
-
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (GLvoid *)(2 * sizeof(GLfloat)));
-    glEnableVertexAttribArray(1);
-
-    // Load the EBO
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-    // Unbind all buffers
-    glBindVertexArray(0);
-
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
 } // namespace

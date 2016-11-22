@@ -44,15 +44,19 @@ struct Position1 : public VertexAttribute<N> {
     static const int stride = sizeof(T);
 
     /// The offset of the attribute
-    static const int offset = utility::offset_of(&T::position);
+    static const int offset = utility::offset_of<T, float>(&T::position);
 
     /// Registers the vertex attribute pointer
-    static void vertexAttributePointer() {
+    static void vertexAttribute() {
         glVertexAttribPointer(N, 1, GL_FLOAT, GL_FALSE, stride, (GLvoid *)offset);
+        VertexAttribute<N>::vertexAttribute();
     }
 
     /// Constructs the attribute
     Position1(float _position) : position{_position} {}
+
+    /// Default constructor
+    constexpr Position1() {}
 
     /// The type of the attribute
     using Attribute_T = float;
@@ -68,15 +72,19 @@ struct Position2 : public VertexAttribute<N> {
     static const int stride = sizeof(T);
 
     /// The offset of the attribute
-    static const int offset = utility::offset_of(&T::position);
+    static const int offset = utility::offset_of<T, glm::vec2>(&T::position);
 
     /// Registers the vertex attribute pointer
-    static void vertexAttributePointer() {
+    static void vertexAttribute() {
         glVertexAttribPointer(N, 2, GL_FLOAT, GL_FALSE, stride, (GLvoid *)offset);
+        VertexAttribute<N>::vertexAttribute();
     }
 
     /// Constructs the attribute
     Position2(glm::vec2 _position) : position{_position} {}
+
+    /// Default constructor
+    constexpr Position2() {}
 
     /// The type of the attribute
     using Attribute_T = glm::vec2;
@@ -92,15 +100,19 @@ struct Position3 : public VertexAttribute<N> {
     static const int stride = sizeof(T);
 
     /// The offset of the attribute
-    static const int offset = utility::offset_of(&T::position);
+    static const int offset = utility::offset_of<T, glm::vec3>(&T::position);
 
     /// Registers the vertex attribute pointer
-    static void vertexAttributePointer() {
+    static void vertexAttribute() {
         glVertexAttribPointer(N, 3, GL_FLOAT, GL_FALSE, stride, (GLvoid *)offset);
+        VertexAttribute<N>::vertexAttribute();
     }
 
     /// Constructs the attribute
     Position3(glm::vec3 _position) : position{_position} {}
+
+    /// Default constructor
+    constexpr Position3() {}
 
     /// The type of the attribute
     using Attribute_T = glm::vec3;
@@ -116,15 +128,19 @@ struct Position4 : public VertexAttribute<N> {
     static const int stride = sizeof(T);
 
     /// The offset of the attribute
-    static const int offset = utility::offset_of(&T::position);
+    static const int offset = utility::offset_of<T, glm::vec4>(&T::position);
 
     /// Registers the vertex attribute pointer
-    static void vertexAttributePointer() {
+    static void vertexAttribute() {
         glVertexAttribPointer(N, 4, GL_FLOAT, GL_FALSE, stride, (GLvoid *)offset);
+        VertexAttribute<N>::vertexAttribute();
     }
 
     /// Constructs the attribute
     Position4(glm::vec4 _position) : position{_position} {}
+
+    /// Default constructor
+    constexpr Position4() {}
 
     /// The type of the attribute
     using Attribute_T = glm::vec4;
@@ -141,15 +157,19 @@ struct TextureCoordinates : public VertexAttribute<N> {
     static const int stride = sizeof(T);
 
     /// The offset of the attribute
-    static const int offset = utility::offset_of(&T::textureCoordinate);
+    static const int offset = utility::offset_of<T, glm::vec2>(&T::textureCoordinates);
 
     /// Registers the vertex attribute pointer
-    static void vertexAttributePointer() {
+    static void vertexAttribute() {
         glVertexAttribPointer(N, 2, GL_FLOAT, GL_FALSE, stride, (GLvoid *)offset);
+        VertexAttribute<N>::vertexAttribute();
     }
 
     /// Constructs the attribute
     TextureCoordinates(glm::vec2 _textureCoordinates) : textureCoordinates{_textureCoordinates} {}
+
+    /// Default constructor
+    constexpr TextureCoordinates() {}
 
     /// The type of the attribute
     using Attribute_T = glm::vec2;
@@ -166,15 +186,19 @@ struct Normal : public VertexAttribute<N> {
     static const int stride = sizeof(T);
 
     /// The offset of the attribute
-    static const int offset = utility::offset_of(&T::normal);
+    static const int offset = utility::offset_of<T, glm::vec3>(&T::normal);
 
     /// Registers the vertex attribute pointer
-    static void vertexAttributePointer() {
+    static void vertexAttribute() {
         glVertexAttribPointer(N, 3, GL_FLOAT, GL_FALSE, stride, (GLvoid *)offset);
+        VertexAttribute<N>::vertexAttribute();
     }
 
     /// Constructs the attribute
     Normal(glm::vec3 _normal) : normal{_normal} {}
+
+    /// Default constructor
+    constexpr Normal() {}
 
     /// The type of the attribute
     using Attribute_T = glm::vec3;
@@ -191,15 +215,19 @@ struct Tangent : public VertexAttribute<N> {
     static const int stride = sizeof(T);
 
     /// The offset of the attribute
-    static const int offset = utility::offset_of(&T::tangent);
+    static const int offset = utility::offset_of<T, glm::vec3>(&T::tangent);
 
     /// Registers the vertex attribute pointer
-    static void vertexAttributePointer() {
+    static void vertexAttribute() {
         glVertexAttribPointer(N, 3, GL_FLOAT, GL_FALSE, stride, (GLvoid *)offset);
+        VertexAttribute<N>::vertexAttribute();
     }
 
     /// Constructs the attribute
     Tangent(glm::vec3 _tangent) : tangent{_tangent} {}
+
+    /// Default constructor
+    constexpr Tangent() {}
 
     /// The type of the attribute
     using Attribute_T = glm::vec3;
@@ -217,14 +245,12 @@ struct VertexComponents<std::index_sequence<I...>, Ts...> : Ts<I, VertexComponen
     VertexComponents(utility::Attribute_T<Ts<I, VertexComponents<std::index_sequence<I...>, Ts...>>>... attributes) :
             Ts<I, VertexComponents<std::index_sequence<I...>, Ts...>>{attributes}... {}
 
-    /// Enables its vertex attributes
-    static void attribute() {
-        (void)std::initializer_list<int>{ (Ts<I, VertexComponents<std::index_sequence<I...>, Ts...>>::vertexAttribute(), 0)... };
-    }
+    /// Default constructor
+    constexpr VertexComponents() {}
 
-    /// Registers all the vertex attribute pointers
-    static void attributePointers() {
-        (void)std::initializer_list<int>{ (Ts<I, VertexComponents<std::index_sequence<I...>, Ts...>>::vertexAttributePointer(), 0)... };
+    /// Enables its vertex attributes
+    static void attributes() {
+        (void)std::initializer_list<int>{ (Ts<I, VertexComponents<std::index_sequence<I...>, Ts...>>::vertexAttribute(), 0)... };
     }
 };
 
