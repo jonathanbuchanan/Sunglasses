@@ -9,6 +9,7 @@ add_sources(
     Scene.cpp
     Service.cpp
     ServiceManager.cpp
+    Process.cpp
 )
 
 add_sources_to_parent() 

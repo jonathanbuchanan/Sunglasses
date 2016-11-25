@@ -9,3 +9,6 @@
 #include "Scene.h"
 #include "Service.h"
 #include "Library.h"
+#include "Entity.h"
+#include "Component.h"
+#include "Process.h"
