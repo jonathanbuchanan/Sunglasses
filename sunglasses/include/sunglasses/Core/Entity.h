@@ -4,6 +4,8 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
+#include <tuple>
+
 namespace sunglasses {
 
 /// An entity in the game engine that can be composed of several components
@@ -14,12 +16,17 @@ namespace sunglasses {
  * @see Component
  * @see Process
  */
-template<typename... T>
+template<typename... Cs>
 class Entity {
 public:
-
+    /// Returns references to the specified components
+    template<typename... Ts>
+    std::tuple<Ts &...> getComponents() {
+        return std::make_tuple(std::get<Ts &>(components)...);
+    }
 private:
-
+    /// The tuple of references to components
+    std::tuple<Cs &...> components;
 };
 
 } // namespace
