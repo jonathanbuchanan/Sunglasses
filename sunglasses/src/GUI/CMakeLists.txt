@@ -8,7 +8,6 @@ add_sources(
     Panel.cpp
     Controller.cpp
     Window.cpp
-    Signal.cpp
     Font.cpp
 ) 
 

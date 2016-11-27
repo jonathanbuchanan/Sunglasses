@@ -13,7 +13,7 @@
 
 #include <GLFW/glfw3.h>
 
-#include <sunglasses/GUI/Signal.h>
+#include <sunglasses/Core/Signal.h>
 
 namespace sunglasses {
 namespace GUI {

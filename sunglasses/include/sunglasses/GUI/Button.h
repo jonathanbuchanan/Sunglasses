@@ -7,7 +7,7 @@
 #include <sunglasses/GUI/Panel.h>
 #include <sunglasses/GUI/Drawable.h>
 #include <sunglasses/GUI/Renderer2D.h>
-#include <sunglasses/GUI/Signal.h>
+#include <sunglasses/Core/Signal.h>
 
 #include <functional>
 #include <vector>

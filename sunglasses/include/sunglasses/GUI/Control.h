@@ -7,7 +7,7 @@
 #include <glm/glm.hpp>
 
 #include <sunglasses/GUI/Window.h>
-#include <sunglasses/GUI/Signal.h>
+#include <sunglasses/Core/Signal.h>
 
 #include <vector>
 

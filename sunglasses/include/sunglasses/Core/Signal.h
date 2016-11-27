@@ -5,7 +5,6 @@
 #include <functional>
 
 namespace sunglasses {
-namespace GUI {
 
 template<typename T>
 class ISlot;
@@ -148,7 +147,6 @@ void disconnect(Signal<T...> &signal, ISlot<T...> &slot) {
     slot.removeSignal(&signal);
 }
 
-} // namespace
 } // namespace
 
 #endif

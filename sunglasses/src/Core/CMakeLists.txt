@@ -10,6 +10,7 @@ add_sources(
     Service.cpp
     ServiceManager.cpp
     Process.cpp
+    Signal.cpp
 )
 
-add_sources_to_parent() 
+add_sources_to_parent()
