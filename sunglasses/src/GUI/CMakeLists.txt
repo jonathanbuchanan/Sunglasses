@@ -9,6 +9,7 @@ add_sources(
     Controller.cpp
     Window.cpp
     Font.cpp
+    View3D.cpp
 ) 
 
 add_sources_to_parent()
