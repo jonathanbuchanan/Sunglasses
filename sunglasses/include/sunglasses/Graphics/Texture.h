@@ -12,6 +12,7 @@
 
 namespace sunglasses {
 
+template<typename T>
 class Image;
 
 class Shader;
@@ -137,10 +138,13 @@ public:
     };
 
     /// Constructs a texture from a bitmap image
-    Texture(const Image &image,
+    template<typename T>
+    Texture(const Image<T> &image,
         TextureMinification _minification = TextureMinification::NearestMipmapLinear,
         TextureMagnification _magnification = TextureMagnification::Linear,
-        TextureWrap _SWrap = TextureWrap::Repeat, TextureWrap _TWrap = TextureWrap::Repeat);
+        TextureWrap _SWrap = TextureWrap::Repeat, TextureWrap _TWrap = TextureWrap::Repeat) {
+        loadImage(image);
+    }
 
     /// Constructs a texture from an image file
     Texture(std::string path, Format format = Format::RGB,
@@ -158,7 +162,24 @@ public:
     ~Texture();
 private:
     /// Loads image data into a texture
-    void loadImage(const Image &image);
+    template<typename T>
+    void loadImage(const Image<T> &image) {
+        glGenTextures(1, &texture);
+
+        glBindTexture(GL_TEXTURE_2D, texture);
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, (GLint)minification);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, (GLint)magnification);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, (GLint)SWrap);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, (GLint)TWrap);
+
+
+        glTexImage2D(GL_TEXTURE_2D, 0, image.internalFormat, image.size.x, image.size.y, 0, image.format, image.type, image.data);
+
+        glGenerateMipmap(GL_TEXTURE_2D);
+
+        glBindTexture(GL_TEXTURE_2D, 0);
+    }
 
     /// The OpenGL texture object
     GLuint texture;
@@ -177,6 +198,7 @@ private:
 };
 
 /// A class that contains a bitmap image, which can be loaded into a texture
+template<typename T>
 class Image {
 public:
     /// Constructs an image with a pointer to a byte array and the image size
@@ -188,17 +210,21 @@ public:
      * @warning You are responsible for the memory of the image data.
      * It may be freed after it is used to create a texture.
      */
-    template<typename T>
     Image(glm::ivec2 _size, const T *_data, Texture::InternalFormat _internalFormat,
             Texture::Format _format) :
-            size(_size), data(_data), internalFormat((GLint)_internalFormat), format((GLenum)_format), type(dataType<T>()) {
+            size(_size), data(_data), internalFormat((GLint)_internalFormat), format((GLenum)_format), type(dataType()) {
 
     }
 
     /// Constructs an image by deducing the internal format
-    template<typename T>
     Image(glm::ivec2 _size, const T *_data, Texture::Format _format = Texture::Format::RGB) :
-            size(_size), data(_data), internalFormat(deduceInternalFormat(_format)), format((GLenum)_format), type(dataType<T>()) {
+            size(_size), data(_data), internalFormat(deduceInternalFormat(_format)), format((GLenum)_format), type(dataType()) {
+
+    }
+
+    /// Constructs a blank texture of a given size
+    Image(glm::ivec2 _size, Texture::Format _format = Texture::Format::RGB) :
+            size(_size), data(nullptr), internalFormat(deduceInternalFormat(_format)), format((GLenum)_format), type(dataType()) {
 
     }
 
@@ -218,33 +244,59 @@ public:
     const GLenum type;
 private:
     /// Deduces an internal format for a pixel format
-    static GLint deduceInternalFormat(Texture::Format format);
+    static GLint deduceInternalFormat(Texture::Format format) {
+        switch (format) {
+            case Texture::Format::Red:
+                return GL_RED;
+                break;
+            case Texture::Format::RG:
+                return GL_RG;
+                break;
+            case Texture::Format::RGB:
+                return GL_RGB;
+                break;
+            case Texture::Format::BGR:
+                return GL_RGB;
+                break;
+            case Texture::Format::RGBA:
+                return GL_RGBA;
+                break;
+            case Texture::Format::BGRA:
+                return GL_RGBA;
+                break;
+            case Texture::Format::DepthComponent:
+                return GL_DEPTH_COMPONENT;
+                break;
+            case Texture::Format::DepthStencil:
+                return GL_DEPTH_STENCIL;
+                break;
+        }
+    }
 
     /// Takes a template parameter and returns an OpenGL pixel type
-    template<typename T>
     static constexpr GLenum dataType();
 };
 
 template<>
-inline GLenum Image::dataType<unsigned char>() { return GL_UNSIGNED_BYTE; }
+constexpr GLenum Image<unsigned char>::dataType() { return GL_UNSIGNED_BYTE; }
 
 template<>
-inline GLenum Image::dataType<char>() { return GL_BYTE; }
+constexpr GLenum Image<char>::dataType() { return GL_BYTE; }
 
 template<>
-inline GLenum Image::dataType<unsigned short>() { return GL_UNSIGNED_SHORT; }
+constexpr GLenum Image<unsigned short>::dataType() { return GL_UNSIGNED_SHORT; }
 
 template<>
-inline GLenum Image::dataType<short>() { return GL_SHORT; }
+constexpr GLenum Image<short>::dataType() { return GL_SHORT; }
 
 template<>
-inline GLenum Image::dataType<unsigned int>() { return GL_UNSIGNED_INT; }
+constexpr GLenum Image<unsigned int>::dataType() { return GL_UNSIGNED_INT; }
 
 template<>
-inline GLenum Image::dataType<int>() { return GL_INT; }
+constexpr GLenum Image<int>::dataType() { return GL_INT; }
 
 template<>
-inline GLenum Image::dataType<float>() { return GL_FLOAT; }
+constexpr GLenum Image<float>::dataType() { return GL_FLOAT; }
 
 } // namespace
 

@@ -16,7 +16,7 @@ Glyph::Glyph(Parameter parameter, const LibraryParameter &library) :
         size(slot->bitmap.width, slot->bitmap.rows),
         bearing(slot->bitmap_left, slot->bitmap_top),
         advance(slot->advance.x, slot->advance.y),
-        texture(Image(size, slot->bitmap.buffer, Texture::InternalFormat::Red, Texture::Format::Red)) {
+        texture(Image<unsigned char>(size, slot->bitmap.buffer, Texture::InternalFormat::Red, Texture::Format::Red)) {
 
 }
 

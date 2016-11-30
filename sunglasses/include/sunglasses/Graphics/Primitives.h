@@ -136,13 +136,6 @@ typedef GLuint FramebufferObject;
 typedef GLuint FramebufferTextureObject;
 typedef GLuint FramebufferColorAttachmentObject;
 
-struct Framebuffer {
-    GLuint framebuffer;
-    GLuint renderbuffer;
-    std::vector<FramebufferColorAttachmentObject> colorAttachments;
-    std::map<std::string, FramebufferTextureObject> textures;
-};
-
 typedef std::map<std::string, FramebufferTextureObject>::iterator FramebufferTextureObjectIterator;
 
 extern void clear();

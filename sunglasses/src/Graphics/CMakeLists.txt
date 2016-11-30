@@ -10,6 +10,7 @@ add_sources(
     WindowManager.cpp
     Vertex.cpp
     GeometryBuffer.cpp
+    Framebuffer.cpp
 )
 
 add_subdirectory(Loaders)
