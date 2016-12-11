@@ -13,10 +13,11 @@ class GUIMainMenu : public BasicController {
 public:
     GUIMainMenu(Window &window, Font::LibraryT &fontLibrary);
 private:
-    Label label;
+    /*Label label;
     Texture tex;
     ImagePanel image;
-    BasicButton button;
+    BasicButton button;*/
+    View3D view;
 
     LSlot<void()> buttonpress;
 };

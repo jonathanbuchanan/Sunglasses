@@ -160,6 +160,9 @@ public:
 
     /// Destroys the texture
     ~Texture();
+
+    /// Gets the OpenGL texture
+    operator int() { return texture; }
 private:
     /// Loads image data into a texture
     template<typename T>

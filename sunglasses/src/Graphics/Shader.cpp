@@ -14,7 +14,7 @@ Shader::TextureUnit::TextureUnit(GLuint _unit, GLuint _program, std::string _nam
 
 }
 
-void Shader::TextureUnit::operator=(Texture &texture) {
+void Shader::TextureUnit::operator=(const Texture &texture) {
     // Activate this texture unit
     glActiveTexture(GL_TEXTURE0 + unit);
 

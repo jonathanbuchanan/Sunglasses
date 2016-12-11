@@ -27,7 +27,7 @@ void Color::draw(glm::ivec2 position, glm::ivec2 size,
 
 
 
-Image::Image(Texture &_texture) : texture(_texture) {
+Image::Image(const Texture &_texture) : texture(_texture) {
 
 }
 

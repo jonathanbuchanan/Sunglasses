@@ -48,7 +48,7 @@ class Shader {
         TextureUnit(GLuint _unit, GLuint _program, std::string _name);
 
         /// Assigns a texture to the unit (and sets a uniform)
-        void operator=(Texture &texture);
+        void operator=(const Texture &texture);
     private:
         /// The texture uniform number
         /**
