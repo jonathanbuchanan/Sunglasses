@@ -15,8 +15,8 @@ public:
 private:
     /*Label label;
     Texture tex;
-    ImagePanel image;
-    BasicButton button;*/
+    ImagePanel image;*/
+    BasicButton button;
     View3D view;
 
     LSlot<void()> buttonpress;

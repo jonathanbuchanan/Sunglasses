@@ -16,28 +16,23 @@ namespace sunglasses {
 class ColorAttachment {
 public:
     /// Constructs the attachment with a size
-    ColorAttachment(glm::ivec2 size) {
-        glGenTextures(1, &texture);
+    ColorAttachment(glm::ivec2 size) :
+            texture(Image<unsigned char>(size), TextureMinification::Linear, TextureMagnification::Linear) {
 
-        glBindTexture(GL_TEXTURE_2D, texture);
-
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, size.x, size.y, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
-
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     }
 
-    /// Attaches the attachment to a framebuffer
-    void attach(size_t index) {
-        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + index, GL_TEXTURE_2D, texture, 0);
+    operator Texture &() {
+        return texture;
     }
 private:
     /// The texture attatched to the framebuffer
-    GLuint texture;
+    Texture texture;
 };
 
 /// A framebuffer attachment for depth
 class DepthAttachment {
+template<typename... T>
+friend class Framebuffer;
 public:
     /// Constructs the attachment with a size
     DepthAttachment(glm::ivec2 size) {
@@ -52,21 +47,35 @@ public:
     }
 
     /// Attaches the attachment to a framebuffer
-    void attach(size_t index) {
+    /*void attach(size_t index) {
         glBindRenderbuffer(GL_RENDERBUFFER, rbo);
 
         glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, rbo);
 
         glBindRenderbuffer(GL_RENDERBUFFER, 0);
-    }
+    }*/
 private:
     /// The renderbuffer object
     GLuint rbo;
 };
 
+/// The interface for the Framebuffer class
+class IFramebuffer {
+public:
+    virtual void activate() = 0;
+
+    virtual void clear(glm::vec4 color) = 0;
+
+    virtual ~IFramebuffer() {
+
+    }
+private:
+
+};
+
 /// An object containing buffers to be rendered to
 template<typename... T>
-class Framebuffer {
+class Framebuffer : public IFramebuffer {
 public:
     /// Constructs the framebuffer
     Framebuffer(glm::ivec2 _size) :
@@ -75,25 +84,26 @@ public:
 
         glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 
+        // Attach the attachments
+        attach(std::index_sequence_for<T...>{});
+
         if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
             // ERROR!
         }
 
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-        // Attach the attachments
-        attach(std::index_sequence_for<T...>{});
     }
 
-    /// Prepares the framebuffer for rendering
-    void prepareForRendering() {
+    /// Binds the framebuffer for rendering
+    virtual void activate() {
         glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+    }
 
-        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+    /// Clears the framebuffer with a color
+    virtual void clear(glm::vec4 color = glm::vec4(1.0f)) {
+        glClearColor(color.r, color.g, color.b, color.a);
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-        glEnable(GL_DEPTH_TEST);
     }
 
     /// Returns the attachment at the given index
@@ -103,20 +113,26 @@ public:
     }
 
     /// Destroys the framebuffer
-    ~Framebuffer() {
+    virtual ~Framebuffer() {
         glDeleteFramebuffers(1, &framebuffer);
     }
 private:
     /// Attaches all the attachments
     template<size_t... I>
     void attach(std::index_sequence<I...>) {
-        auto a = {(attachElement(std::get<I>(attachments)), 0)...};
+        auto a = {(attachElement(std::get<I>(attachments), I), 0)...};
     }
 
     /// Attaches an attachment
     template<typename A>
-    void attachElement(A &element) {
-        element.attach(0);
+    void attachElement(A &element, size_t index);
+
+    void attachElement(ColorAttachment &element, size_t index) {
+        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + index, GL_TEXTURE_2D, ((Texture &)element).texture, 0);
+    }
+
+    void attachElement(DepthAttachment &element, size_t index) {
+
     }
 
     /// The OpenGL framebuffer object

@@ -40,6 +40,9 @@ enum struct TextureWrap : GLint {
 /// A class that contains an OpenGL texture
 class Texture {
 friend Shader;
+
+template<typename... T>
+friend class Framebuffer;
 public:
     /// An enum that holds all internal format types
     enum struct InternalFormat : GLint {

@@ -14,7 +14,7 @@ class View3D : public Control {
 public:
     /// Constructs the view
     View3D(glm::ivec2 position, glm::ivec2 size) : Control(position, size), framebuffer(size),
-        background(framebuffer.getAttachment<0>()) {
+        background((Texture &)(framebuffer.getAttachment<0>())) {
 
     }
 protected:
