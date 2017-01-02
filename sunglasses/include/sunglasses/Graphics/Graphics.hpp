@@ -14,3 +14,4 @@
 #include <sunglasses/Graphics/Vertex.h>
 #include <sunglasses/Graphics/GeometryBuffer.h>
 #include <sunglasses/Graphics/Framebuffer.h>
+#include <sunglasses/Graphics/FramebufferQueue.h>

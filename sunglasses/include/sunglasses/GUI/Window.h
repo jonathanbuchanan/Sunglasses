@@ -14,6 +14,7 @@
 #include <GLFW/glfw3.h>
 
 #include <sunglasses/Core/Signal.h>
+#include <sunglasses/Graphics/Framebuffer.h>
 
 namespace sunglasses {
 namespace GUI {
@@ -84,6 +85,24 @@ public:
 
     /// Closes the window
     void close();
+
+    /// The framebuffer that is attached to the window by default
+    class : public IFramebuffer {
+    public:
+        /// Binds the framebuffer
+        virtual void activate() {
+            glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        }
+
+        /// Clears the framebuffer with a certain color
+        virtual void clear(glm::vec4 color) {
+            glClearColor(color.r, color.g, color.b, color.a);
+
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        }
+    private:
+
+    } framebuffer;
 
     /// The signal called when the close button is pressed
     Signal<void()> signal_closebutton;
