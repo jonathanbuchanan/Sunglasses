@@ -19,8 +19,13 @@ struct aiMaterial;
 namespace sunglasses {
 
 class Object;
-class Shader;
 class TextureResource;
+
+namespace graphics {
+
+class Shader;
+
+}
 
 /// A Resource subclass representing loaded material data
 class MaterialResource : public Resource {
@@ -67,7 +72,7 @@ public:
      * @param shader The pointer to the shader
      * @param structName The name of the struct in the shader
      */
-    void pass(Shader *shader, std::string structName);
+    void pass(graphics::Shader *shader, std::string structName);
 
     /// Gets the diffuse color
     glm::vec3 getDiffuse() { return diffuse; }

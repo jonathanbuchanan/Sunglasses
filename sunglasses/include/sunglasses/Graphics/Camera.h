@@ -21,6 +21,8 @@
 
 namespace sunglasses {
 
+namespace graphics {
+
 class Shader;
 
 class Camera : public Node {
@@ -76,6 +78,7 @@ private:
     GLfloat FOV = 45.0f;
 };
 
+} // namespace
 } // namespace
 
 #endif

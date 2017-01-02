@@ -2,6 +2,8 @@
 
 namespace sunglasses {
 
+namespace graphics {
+
 void FramebufferQueue::push(IFramebuffer &framebuffer) {
     stack.push(framebuffer);
 
@@ -18,4 +20,5 @@ IFramebuffer & FramebufferQueue::top() {
     return stack.top();
 }
 
+}
 }

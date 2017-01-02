@@ -13,6 +13,8 @@
 
 namespace sunglasses {
 
+namespace graphics {
+
 /// An abstract class for defining rendering behavior.
 /**
  * This abstract class is used to define rendering behavior. To define render
@@ -49,6 +51,7 @@ public:
     virtual void bindOutputs(Action action) = 0;
 };
 
+} // namespace
 } // namespace
 
 #endif

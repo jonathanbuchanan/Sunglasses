@@ -26,7 +26,7 @@ void DirectionalLight::update(Action action) {
 
 
 void DirectionalLight::uniform(Action action) {
-    Shader *shader = action.getParameterPointer<Shader>("shader");
+    graphics::Shader *shader = action.getParameterPointer<graphics::Shader>("shader");
     int id = shader->getNextArrayIndex("directionalLights");
     (*shader)["directionalLights[" + std::to_string(id) + "].color"] = color;
 

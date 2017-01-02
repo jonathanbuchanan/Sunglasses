@@ -11,6 +11,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 namespace sunglasses {
+namespace graphics {
 
 Mesh::Mesh() {
 
@@ -58,4 +59,5 @@ void Mesh::render(Shader *shader) {
     glBindVertexArray(0);
 }
 
+} // graphics
 } // sunglasses

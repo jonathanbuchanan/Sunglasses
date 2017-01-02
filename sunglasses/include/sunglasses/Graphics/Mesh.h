@@ -13,9 +13,11 @@
 namespace sunglasses {
 
 class Object;
-
 class MeshResource;
 class MaterialResource;
+
+namespace graphics {
+
 
 /// A class that represents a 3D object to be rendered
 /**
@@ -72,6 +74,7 @@ private:
     glm::vec3 scale = glm::vec3(1.0f, 1.0f, 1.0f);
 };
 
+} // namespace
 } // namespace
 
 #endif

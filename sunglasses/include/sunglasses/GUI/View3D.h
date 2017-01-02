@@ -14,7 +14,7 @@ class View3D : public Control {
 public:
     /// Constructs the view
     View3D(glm::ivec2 position, glm::ivec2 size) : Control(position, size), framebuffer(size),
-        background((Texture &)(framebuffer.getAttachment<0>())) {
+        background((graphics::Texture &)(framebuffer.getAttachment<0>())) {
 
     }
 protected:
@@ -22,7 +22,7 @@ protected:
     virtual void draw(glm::ivec2 offset, Renderer2D &renderer);
 private:
     /// The framebuffer to be drawed on
-    Framebuffer<ColorAttachment> framebuffer;
+    graphics::Framebuffer<graphics::ColorAttachment> framebuffer;
 
     /// The background
     Drawable::Image background;   

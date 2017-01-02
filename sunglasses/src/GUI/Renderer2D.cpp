@@ -143,7 +143,7 @@ void Renderer2D::draw(glm::ivec2 origin, glm::ivec2 size, glm::vec4 color) {
     rectangle.draw();
 }
 
-void Renderer2D::draw(glm::ivec2 origin, glm::ivec2 size, const Texture &texture) {
+void Renderer2D::draw(glm::ivec2 origin, glm::ivec2 size, const graphics::Texture &texture) {
     textureShader.use();
 
     // Pass the projection matrix

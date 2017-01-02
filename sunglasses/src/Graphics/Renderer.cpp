@@ -6,6 +6,8 @@
 
 namespace sunglasses {
 
+namespace graphics {
+
 void Renderer::render() {
     Action renderAction("render");
     renderAction.setRecursive(true);
@@ -21,5 +23,7 @@ void Renderer::swapBuffers() {
 void Renderer::init() {
     root = new Node();
 }
+
+} // namespace
 
 } // namespace

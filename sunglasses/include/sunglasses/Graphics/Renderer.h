@@ -14,6 +14,8 @@
 
 namespace sunglasses {
 
+namespace graphics {
+
 class Scene;
 
 class Renderer : public Base {
@@ -33,6 +35,7 @@ protected:
     std::map<std::string, Node *> renderingNodeMap;
 };
 
+} // namespace
 } // namespace
 
 #endif

@@ -12,6 +12,8 @@
 
 namespace sunglasses {
 
+namespace graphics {
+
 template<typename T>
 class Image;
 
@@ -304,6 +306,7 @@ constexpr GLenum Image<int>::dataType() { return GL_INT; }
 template<>
 constexpr GLenum Image<float>::dataType() { return GL_FLOAT; }
 
+} // namespace
 } // namespace
 
 #endif

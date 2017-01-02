@@ -6,13 +6,15 @@
 #define SCENE_H
 
 #include "Base.h"
-#include "../Physics/PhysicsSimulator.h"
+//#include "../Physics/PhysicsSimulator.h"
 #include "../Graphics/Camera.h"
 #include "Object.h"
 
 namespace sunglasses {
 
+namespace graphics {
 class Renderer;
+}
 
 /// An abstract class that is responsible for game objects, rendering, etc.
 /**
@@ -54,10 +56,10 @@ protected:
     std::unique_ptr<Node> root;
 
     /// A pointer to the scene renderer
-    Renderer *renderer;
+    graphics::Renderer *renderer;
 
     /// The physics simulator
-    PhysicsSimulator physicsSimulator;
+    //PhysicsSimulator physicsSimulator;
 
     /// A pointer to the window (GLFWwindow)
     GLFWwindow *window;

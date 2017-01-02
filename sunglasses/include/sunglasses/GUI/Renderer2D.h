@@ -31,7 +31,7 @@ public:
     void draw(glm::ivec2 position, glm::ivec2 size, glm::vec4 color);
 
     /// Draws a rectangle with a texture
-    void draw(glm::ivec2 position, glm::ivec2 size, const Texture &texture);
+    void draw(glm::ivec2 position, glm::ivec2 size, const graphics::Texture &texture);
 
     /// Draws text
     void draw(glm::ivec2 position, std::string text, glm::vec4 color, Font &font);
@@ -40,16 +40,16 @@ private:
     Window &window;
 
     /// The fill shader
-    sunglasses::Shader fillShader;
+    sunglasses::graphics::Shader fillShader;
 
     /// The texture shader
-    sunglasses::Shader textureShader;
+    sunglasses::graphics::Shader textureShader;
 
     /// The text shader
-    sunglasses::Shader textShader;
+    sunglasses::graphics::Shader textShader;
 
     /// The rectangle data used to draw rectangles
-    GeometryBuffer<WIP::Position2, WIP::TextureCoordinates> rectangle = {{
+    graphics::GeometryBuffer<WIP::Position2, WIP::TextureCoordinates> rectangle = {{
         {{0.0f, 0.0f}, {0.0f, 0.0f}},
         {{0.0f, 1.0f}, {0.0f, 1.0f}},
         {{1.0f, 0.0f}, {1.0f, 0.0f}},

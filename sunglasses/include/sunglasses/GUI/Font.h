@@ -59,7 +59,7 @@ public:
     glm::ivec2 advance;
 
     /// The texture containing the glyph image
-    Texture texture;
+    graphics::Texture texture;
 };
 
 /// A resource class that loads a font

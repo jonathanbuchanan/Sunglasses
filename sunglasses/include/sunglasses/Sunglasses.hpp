@@ -8,6 +8,6 @@
 #include <sunglasses/GUI/GUI.hpp>
 #include <sunglasses/Input/Input.hpp>
 #include <sunglasses/Output/Output.hpp>
-#include <sunglasses/Physics/Physics.hpp>
+//#include <sunglasses/Physics/Physics.hpp>
 #include <sunglasses/Extern/Extern.hpp>
 #include <sunglasses/Scripting/Scripting.hpp>

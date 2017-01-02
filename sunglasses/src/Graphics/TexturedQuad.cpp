@@ -5,6 +5,8 @@
 
 namespace sunglasses {
 
+namespace graphics {
+
 void TexturedQuad::init() {
     addAction("render", &TexturedQuad::render);
 
@@ -49,4 +51,5 @@ void TexturedQuad::render(Action action) {
     glBindVertexArray(0);
 }
 
+} // namespace
 } // namespace

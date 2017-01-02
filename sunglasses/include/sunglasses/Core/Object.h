@@ -7,7 +7,7 @@
 
 #include <vector>
 
-#include <sunglasses/Physics/PhysicsObject.h>
+//#include <sunglasses/Physics/PhysicsObject.h>
 #include <sunglasses/Graphics/Mesh.h>
 #include <sunglasses/Scripting/Script.h>
 #include <sunglasses/Audio/AudioSource.h>
@@ -135,7 +135,7 @@ public:
     /// Gets the position vector member.
     glm::vec3 getPosition() { return position; }
     /// Sets the position vector member.
-    void setPosition(glm::vec3 _position) { position = _position; physicsObject.setPosition(position); }
+    //void setPosition(glm::vec3 _position) { position = _position; physicsObject.setPosition(position); }
 
     /// Gets the rotation vector member.
     glm::vec3 getRotation() { return rotation; }
@@ -160,13 +160,13 @@ private:
     glm::vec3 scale;
 
     /// The map of meshes
-    std::map<std::string, Mesh> meshes;
+    std::map<std::string, graphics::Mesh> meshes;
 
     /// The map of audio sources
     std::map<std::string, AudioSource> audioSources;
 
     /// The physics objects
-    PhysicsObject physicsObject;
+    //PhysicsObject physicsObject;
     /// Enables physics
     bool physicsEnabled;
 

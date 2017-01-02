@@ -41,13 +41,13 @@ public:
     int getIndicesSize() { return indices.size(); }
 
     /// Gets the vertex vector
-    std::vector<Vertex> getVertices() { return vertices; }
+    std::vector<graphics::Vertex> getVertices() { return vertices; }
 
     /// Gets the indices vector
     std::vector<GLuint> getIndices() { return indices; }
 private:
     /// The vector containing the vertex data
-    std::vector<Vertex> vertices;
+    std::vector<graphics::Vertex> vertices;
 
     /// The vector containing the index data
     std::vector<GLuint> indices;

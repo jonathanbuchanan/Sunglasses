@@ -9,6 +9,7 @@
 #include <iostream>
 
 namespace sunglasses {
+namespace graphics {
 
 /// A object that contains a buffer of geometry data
 template<template<size_t, typename> class... T>
@@ -108,6 +109,7 @@ private:
     GLuint EBO;
 };
 
+} // namespace
 } // namespace
 
 #endif

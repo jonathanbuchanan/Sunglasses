@@ -17,6 +17,8 @@
 
 namespace sunglasses {
 
+namespace graphics {
+
 class TexturedQuad : public Base {
 public:
     TexturedQuad() { }
@@ -43,6 +45,7 @@ private:
     GLuint VAO;
 };
 
+} // namespace
 } // namespace
 
 #endif

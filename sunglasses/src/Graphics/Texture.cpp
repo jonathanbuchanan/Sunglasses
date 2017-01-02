@@ -7,6 +7,8 @@
 
 namespace sunglasses {
 
+namespace graphics {
+
 Texture::Texture(std::string path, Format format,
         TextureMinification _minification,
         TextureMagnification _magnification,
@@ -37,4 +39,5 @@ Texture::~Texture() {
     glDeleteTextures(1, &texture);
 }
 
+} // sunglasses
 } // sunglasses

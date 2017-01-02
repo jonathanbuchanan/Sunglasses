@@ -73,7 +73,7 @@ int GlobalScriptingEnvironment::removeObject(Object *object) {
 }
 
 void GlobalScriptingEnvironment::registerServices(ServiceManager &services, Script &script) {
-    iterateTypes<CursorManager, KeyboardManager, MouseButtonManager, WindowManager>(services, script);
+    iterateTypes<CursorManager, KeyboardManager, MouseButtonManager, graphics::WindowManager>(services, script);
 }
 
 void GlobalScriptingEnvironment::registerGlobal(std::string key, _PrivateScripting::LuaPrimitive value) {

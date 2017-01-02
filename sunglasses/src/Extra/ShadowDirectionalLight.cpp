@@ -43,13 +43,13 @@ void ShadowDirectionalLight::init() {
 }
 
 void ShadowDirectionalLight::shadowMap(Action action) {
-    Shader *shader = action.getParameterPointer<Shader>("shader");
+    graphics::Shader *shader = action.getParameterPointer<graphics::Shader>("shader");
 
     glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
     glViewport(0, 0, resolution.x, resolution.y);
 
-    clear();
+    graphics::clear();
 
     // Create the light-space matrix
     glm::mat4 projection = glm::ortho(-size.x, size.x, -size.y, size.y, nearPlane, farPlane);
@@ -71,7 +71,7 @@ void ShadowDirectionalLight::update(Action action) {
 }
 
 void ShadowDirectionalLight::uniform(Action action) {
-    Shader *shader = action.getParameterPointer<Shader>("shader");
+    graphics::Shader *shader = action.getParameterPointer<graphics::Shader>("shader");
     int id = shader->getNextArrayIndex("shadowDirectionalLights");
     (*shader)["shadowDirectionlLights[" + std::to_string(id) + "].color"] = color;
 

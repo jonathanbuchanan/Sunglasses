@@ -21,6 +21,8 @@
 
 namespace sunglasses {
 
+namespace graphics {
+
 class Texture;
 
 enum ShaderSourceType {
@@ -242,6 +244,7 @@ private:
     GLuint program;
 };
 
+} // namespace
 } // namespace
 
 #endif

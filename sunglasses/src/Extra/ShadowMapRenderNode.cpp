@@ -26,11 +26,11 @@ void ShadowMapRenderNode::bindOutputs(Action action) {
 
 }
 
-void ShadowMapRenderNode::addShader(std::string tag, Shader shader) {
+void ShadowMapRenderNode::addShader(std::string tag, graphics::Shader shader) {
     shaders.push_back(std::make_pair(tag, shader));
 }
 
-void ShadowMapRenderNode::setShaders(std::vector<std::pair<std::string, Shader>> _shaders) {
+void ShadowMapRenderNode::setShaders(std::vector<std::pair<std::string, graphics::Shader>> _shaders) {
     shaders = _shaders;
 }
 

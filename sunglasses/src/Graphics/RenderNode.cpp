@@ -6,6 +6,8 @@
 
 namespace sunglasses {
 
+namespace graphics {
+
 RenderNode::RenderNode() {
 
 }
@@ -15,4 +17,5 @@ void RenderNode::init() {
     addAction("bindOutputs", &RenderNode::bindOutputs);
 }
 
+} // namespace
 } // namespace

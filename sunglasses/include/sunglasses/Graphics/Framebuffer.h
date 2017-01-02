@@ -12,6 +12,8 @@
 
 namespace sunglasses {
 
+namespace graphics {
+
 /// A framebuffer attachment for color
 class ColorAttachment {
 public:
@@ -145,6 +147,7 @@ private:
     glm::ivec2 size;
 };
 
+} // namespace
 } // namespace
 
 #endif

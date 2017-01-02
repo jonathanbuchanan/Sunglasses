@@ -16,7 +16,7 @@ MeshResource::MeshResource(aiMesh *_mesh) : mesh(_mesh) {
 void MeshResource::init() {
     // Loop through the vertices
     for (size_t i = 0; i < mesh->mNumVertices; ++i) {
-        Vertex vertex;
+        graphics::Vertex vertex;
 
         // Assign the position
         vertex.position.x = mesh->mVertices[i].x;
@@ -69,7 +69,7 @@ void MeshResource::init() {
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
     // Initialize and write the data for the VBO
-    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), &vertices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(graphics::Vertex), &vertices[0], GL_STATIC_DRAW);
 
     // Bind the EBO
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
@@ -79,22 +79,22 @@ void MeshResource::init() {
 
     // Initialize and set the vertex attributes
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid *) 0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(graphics::Vertex), (GLvoid *) 0);
 
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid *)offsetof(Vertex, normal));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(graphics::Vertex), (GLvoid *)offsetof(graphics::Vertex, normal));
 
     glEnableVertexAttribArray(2);
-    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid *)offsetof(Vertex, tangent));
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(graphics::Vertex), (GLvoid *)offsetof(graphics::Vertex, tangent));
 
     glEnableVertexAttribArray(3);
-    glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid *)offsetof(Vertex, textureCoordinates));
+    glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, sizeof(graphics::Vertex), (GLvoid *)offsetof(graphics::Vertex, textureCoordinates));
 
     glEnableVertexAttribArray(4);
-    glVertexAttribIPointer(4, 4, GL_INT, sizeof(Vertex), (GLvoid *)offsetof(Vertex, boneIDs));
+    glVertexAttribIPointer(4, 4, GL_INT, sizeof(graphics::Vertex), (GLvoid *)offsetof(graphics::Vertex, boneIDs));
 
     glEnableVertexAttribArray(5);
-    glVertexAttribPointer(5, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid *)offsetof(Vertex, boneWeights));
+    glVertexAttribPointer(5, 4, GL_FLOAT, GL_FALSE, sizeof(graphics::Vertex), (GLvoid *)offsetof(graphics::Vertex, boneWeights));
 
     // Unbind the buffers
     glBindVertexArray(0);

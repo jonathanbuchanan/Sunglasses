@@ -4,6 +4,7 @@
 #include <sunglasses/Graphics/Primitives.h>
 
 namespace sunglasses {
+namespace graphics {
 
 bool operator==(const Vertex &v1, const Vertex &v2) {
     return v1.position == v2.position;
@@ -16,4 +17,5 @@ void clear() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
+} // namespace
 } // namespace

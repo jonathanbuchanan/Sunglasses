@@ -26,7 +26,12 @@ using ServiceNamePair = std::string;
 class CursorManager;
 class KeyboardManager;
 class MouseButtonManager;
+
+namespace graphics {
+
 class WindowManager;
+
+}
 
 /// A variable template for the name of services in lua
 template<typename T>
@@ -35,7 +40,7 @@ const std::string luaServiceName;
 template<> const std::string luaServiceName<CursorManager> = "cursor_manager";
 template<> const std::string luaServiceName<KeyboardManager> = "keyboard_manager";
 template<> const std::string luaServiceName<MouseButtonManager> = "mouse_button_manager";
-template<> const std::string luaServiceName<WindowManager> = "window_manager";
+template<> const std::string luaServiceName<graphics::WindowManager> = "window_manager";
 
 class GlobalScriptingEnvironment : public Service {
 public:

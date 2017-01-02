@@ -39,13 +39,13 @@ private:
 class Image {
 public:
     /// Constructs the drawable with a texture reference
-    Image(const Texture &_texture);
+    Image(const graphics::Texture &_texture);
 
     /// Draws the rectangle as an image
     void draw(glm::ivec2 position, glm::ivec2 size, Renderer2D &renderer);
 private:
     /// A reference to the texture
-    const Texture &texture;
+    const graphics::Texture &texture;
 };
 
 /// A drawable string of text

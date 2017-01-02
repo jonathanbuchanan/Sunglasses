@@ -8,6 +8,8 @@
 
 namespace sunglasses {
 
+namespace graphics {
+
 /// A class that maintains a queue of framebuffers
 /**
  * This is used in order to maintain order in drawing to framebuffers.
@@ -29,6 +31,7 @@ private:
     std::stack<std::reference_wrapper<IFramebuffer>> stack;
 };
 
+} // namespace
 } // namespace
 
 #endif

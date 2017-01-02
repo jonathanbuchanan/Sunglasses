@@ -24,6 +24,7 @@ extern std::uniform_real_distribution<GLfloat> randomFloats;
 extern std::default_random_engine generator;
 
 namespace sunglasses {
+namespace graphics {
 
 // Vertex Declaration
 struct Vertex {
@@ -140,6 +141,7 @@ typedef std::map<std::string, FramebufferTextureObject>::iterator FramebufferTex
 
 extern void clear();
 
+} // namespace
 } // namespace
 
 #endif

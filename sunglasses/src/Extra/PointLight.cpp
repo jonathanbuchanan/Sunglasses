@@ -25,7 +25,7 @@ void PointLight::update(Action action) {
 }
 
 void PointLight::uniform(Action action) {
-    Shader *shader = action.getParameterPointer<Shader>("shader");
+    graphics::Shader *shader = action.getParameterPointer<graphics::Shader>("shader");
     int id = shader->getNextArrayIndex("pointLights");
 
     (*shader)["pointLights[" + std::to_string(id) + "].color"] = color;

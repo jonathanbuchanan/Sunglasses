@@ -76,15 +76,15 @@ void Object::init() {
 }
 
 void Object::update(Action action) {
-    float delta = services.get<WindowManager>()->getDelta();
+    float delta = services.get<graphics::WindowManager>()->getDelta();
     if (scriptingEnabled == true)
         script["update"](delta);
-    if (physicsEnabled == true)
-        position = physicsObject.getPosition();
+    //if (physicsEnabled == true)
+        //position = physicsObject.getPosition();
 }
 
 void Object::render(Action action) {
-    Shader *shader = action.getParameterPointer<Shader>("shader");
+    graphics::Shader *shader = action.getParameterPointer<graphics::Shader>("shader");
     for (auto &mesh : meshes)
         mesh.second.render(shader);
 }
@@ -97,14 +97,14 @@ void Object::newMesh(std::string name, std::string mesh, std::string material) {
     MeshResource *_mesh = (MeshResource *)services.get<ResourceService>()->getResourceManager("meshes")->getResource(mesh);
 
     MaterialResource *_material = (MaterialResource *)services.get<ResourceService>()->getResourceManager("materials")->getResource(material);
-    meshes[name] = Mesh(this, _mesh, _material);
+    meshes[name] = graphics::Mesh(this, _mesh, _material);
 }
 
 void Object::newMesh(std::string name, std::string mesh, std::string material, glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale) {
     MeshResource *_mesh = (MeshResource *)services.get<ResourceService>()->getResourceManager("meshes")->getResource(mesh);
 
     MaterialResource *_material = (MaterialResource *)services.get<ResourceService>()->getResourceManager("materials")->getResource(material);
-    meshes[name] = Mesh(this, _mesh, _material, _position, _rotation, _scale);
+    meshes[name] = graphics::Mesh(this, _mesh, _material, _position, _rotation, _scale);
 }
 
 void Object::newAudioSource(std::string name, std::string buffer,

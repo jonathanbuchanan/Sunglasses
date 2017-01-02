@@ -61,7 +61,7 @@ void MaterialResource::init() {
     }
 }
 
-void MaterialResource::pass(Shader *shader, std::string structName) {
+void MaterialResource::pass(graphics::Shader *shader, std::string structName) {
     if (!diffuseTextured)
         (*shader)[structName + ".diffuse"] = diffuse;
     else {

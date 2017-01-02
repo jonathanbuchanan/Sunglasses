@@ -53,7 +53,7 @@ private:
  * in most situations, such as forward shading, deferred shading, SSAO, etc.
  * different types of render nodes should be used for techniques like shadow mapping.
  */
-class RenderNodeScene : public RenderNode {
+class RenderNodeScene : public graphics::RenderNode {
 public:
     /// A constructor
     /**
@@ -95,10 +95,10 @@ public:
     virtual void bindOutputs(Action action);
 
     /// Adds a shader for the given tag.
-    void addShader(std::string tag, Shader shader);
+    void addShader(std::string tag, graphics::Shader shader);
 
     /// Sets the vector of shaders.
-    void setShaders(std::vector<std::pair<std::string, Shader>> _shaders);
+    void setShaders(std::vector<std::pair<std::string, graphics::Shader>> _shaders);
 
     /// Sets the target pointer.
     void setTarget(Base *_target);
@@ -118,7 +118,7 @@ private:
      * shader. This way, you can specify different shaders for different object by
      * choosing tags.
      */
-    std::vector<std::pair<std::string, Shader>> shaders;
+    std::vector<std::pair<std::string, graphics::Shader>> shaders;
 
     /// A pointer to the target to render
     Base *target;

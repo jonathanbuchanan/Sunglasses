@@ -8,7 +8,7 @@
 
 namespace sunglasses {
 
-class ShadowMapRenderNode : public RenderNode {
+class ShadowMapRenderNode : public graphics::RenderNode {
 public:
     /// A constructor
     /**
@@ -27,10 +27,10 @@ public:
     virtual void bindOutputs(Action action);
 
     /// Adds a shader for the given tag.
-    void addShader(std::string tag, Shader shader);
+    void addShader(std::string tag, graphics::Shader shader);
 
     /// Sets the vector of shaders.
-    void setShaders(std::vector<std::pair<std::string, Shader>> _shaders);
+    void setShaders(std::vector<std::pair<std::string, graphics::Shader>> _shaders);
 private:
     /// The shadow map target (usually the root node of the scene)
     Base *target;
@@ -41,7 +41,7 @@ private:
      * shader. This way, you can specify different shaders for different object by
      * choosing tags.
      */
-    std::vector<std::pair<std::string, Shader>> shaders;
+    std::vector<std::pair<std::string, graphics::Shader>> shaders;
 };
 
 } // namespace

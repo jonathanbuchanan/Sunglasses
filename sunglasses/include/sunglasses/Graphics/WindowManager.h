@@ -15,6 +15,8 @@
 
 namespace sunglasses {
 
+namespace graphics {
+
 class WindowManager : public Service {
 public:
     WindowManager();
@@ -53,6 +55,7 @@ private:
     double delta;
 };
 
+} // namespace
 } // namespace
 
 #endif

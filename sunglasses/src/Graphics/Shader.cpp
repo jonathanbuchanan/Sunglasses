@@ -9,6 +9,8 @@
 
 namespace sunglasses {
 
+namespace graphics {
+
 Shader::TextureUnit::TextureUnit(GLuint _unit, GLuint _program, std::string _name) :
     unit(_unit), program(_program), name(_name) {
 
@@ -272,8 +274,5 @@ void Shader::ShaderUniform::operator=(glm::mat4x3 value) {
     glUniformMatrix4x3fv(index, 1, GL_FALSE, glm::value_ptr(value));
 }
 
-
-
-
-
+} // namespace
 } // namespace

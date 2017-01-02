@@ -6,8 +6,10 @@
 
 namespace sunglasses {
 
-template<> const std::map<std::string, Scripting::LuaTypeDataMemberBase<WindowManager> *> LuaTypeRegistrar<WindowManager>::dataMembers = {
-    {"setWindowShouldClose", new LuaTypeMemberFunction<WindowManager, void>("setWindowShouldClose", &WindowManager::setWindowShouldClose)}
+namespace graphics {
+
+template<> const std::map<std::string, Scripting::LuaTypeDataMemberBase<graphics::WindowManager> *> LuaTypeRegistrar<graphics::WindowManager>::dataMembers = {
+    {"setWindowShouldClose", new LuaTypeMemberFunction<graphics::WindowManager, void>("setWindowShouldClose", &graphics::WindowManager::setWindowShouldClose)}
 };
 
 WindowManager::WindowManager() {
@@ -79,4 +81,5 @@ void WindowManager::calculateDelta() {
     lastFrame = currentFrame;
 }
 
+} // namespace
 } // namespace

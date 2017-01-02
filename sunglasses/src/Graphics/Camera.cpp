@@ -8,13 +8,15 @@
 
 namespace sunglasses {
 
+namespace graphics {
+
 template<> const std::string LuaTypeRegistrar<Camera>::typeName = "Camera";
 template<> const std::map<std::string, Scripting::LuaTypeDataMemberBase<Camera> *> LuaTypeRegistrar<Camera>::dataMembers = {
-    {"yaw", new LuaTypeDataMember<float, Camera>("yaw", &Camera::yaw)},
-    {"pitch", new LuaTypeDataMember<float, Camera>("pitch", &Camera::pitch)},
-    {"position", new LuaComplexDataMember<glm::vec3, Camera>("position", &Camera::position)},
-    {"direction", new LuaComplexDataMember<glm::vec3, Camera>("direction", &Camera::direction)},
-    {"up", new LuaComplexDataMember<glm::vec3, Camera>("up", &Camera::cameraUp)}
+    {"yaw", new LuaTypeDataMember<float, graphics::Camera>("yaw", &graphics::Camera::yaw)},
+    {"pitch", new LuaTypeDataMember<float, graphics::Camera>("pitch", &graphics::Camera::pitch)},
+    {"position", new LuaComplexDataMember<glm::vec3, graphics::Camera>("position", &graphics::Camera::position)},
+    {"direction", new LuaComplexDataMember<glm::vec3, graphics::Camera>("direction", &graphics::Camera::direction)},
+    {"up", new LuaComplexDataMember<glm::vec3, graphics::Camera>("up", &graphics::Camera::cameraUp)}
 };
 
 Camera::Camera() {
@@ -39,7 +41,7 @@ Camera::Camera(GLfloat _FOV, glm::vec3 _position, glm::vec3 _direction) {
 void Camera::init() {
     script.loadFile("../../Scripts/Camera.lua");
     script.registerType<glm::vec3>();
-    
+
     script.registerObject(this, "camera");
     services.get<GlobalScriptingEnvironment>()->registerScript(this, script);
 
@@ -94,4 +96,5 @@ void Camera::passPerFrameUniforms(Shader *_shader) {
     (*_shader)["camera.farPlane"] = 100.0f;
 }
 
+} // namespace
 } // namespace

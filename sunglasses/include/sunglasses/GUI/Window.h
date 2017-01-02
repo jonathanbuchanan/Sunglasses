@@ -87,7 +87,7 @@ public:
     void close();
 
     /// The framebuffer that is attached to the window by default
-    class : public IFramebuffer {
+    class : public graphics::IFramebuffer {
     public:
         /// Binds the framebuffer
         virtual void activate() {

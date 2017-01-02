@@ -60,7 +60,7 @@ void RenderNodeScene::init() {
 void RenderNodeScene::render(Action action) {
     glBindFramebuffer(GL_FRAMEBUFFER, fbo); // Bind the framebuffer
     glViewport(0, 0, size.x, size.y);
-    clear();
+    graphics::clear();
     for (size_t i = 0; i < shaders.size(); ++i) { // Iterate through shaders
         shaders[i].second.use();
 
@@ -85,7 +85,7 @@ void RenderNodeScene::render(Action action) {
 }
 
 void RenderNodeScene::bindOutputs(Action action) {
-    Shader *shader = action.getParameterPointer<Shader>("shader");
+    graphics::Shader *shader = action.getParameterPointer<graphics::Shader>("shader");
     for (size_t i = 0; i < textures.size(); ++i) {
         int textureUnit = shader->getNextTextureUnit();
         glActiveTexture(GL_TEXTURE0 + textureUnit);
@@ -94,11 +94,11 @@ void RenderNodeScene::bindOutputs(Action action) {
     }
 }
 
-void RenderNodeScene::addShader(std::string tag, Shader shader) {
+void RenderNodeScene::addShader(std::string tag, graphics::Shader shader) {
     shaders.push_back(std::make_pair(tag, shader));
 }
 
-void RenderNodeScene::setShaders(std::vector<std::pair<std::string, Shader>> _shaders) {
+void RenderNodeScene::setShaders(std::vector<std::pair<std::string, graphics::Shader>> _shaders) {
     shaders = _shaders;
 }
 

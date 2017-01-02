@@ -48,13 +48,13 @@ void ShadowPointLight::init() {
 }
 
 void ShadowPointLight::shadowMap(Action action) {
-    Shader *shader = action.getParameterPointer<Shader>("shader");
+    graphics::Shader *shader = action.getParameterPointer<graphics::Shader>("shader");
 
     glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
     glViewport(0, 0, resolution, resolution);
 
-    clear();
+    graphics::clear();
 
     glm::mat4 projection = glm::perspective(90.0f, 1.0f, nearPlane, farPlane); // FOV = 90 degrees, aspect ratio = resolution / resolution = 1
 
@@ -84,7 +84,7 @@ void ShadowPointLight::update(Action action) {
 }
 
 void ShadowPointLight::uniform(Action action) {
-    Shader *shader = action.getParameterPointer<Shader>("shader");
+    graphics::Shader *shader = action.getParameterPointer<graphics::Shader>("shader");
     int id = shader->getNextArrayIndex("shadowPointLights");
 
     (*shader)["shadowPointLights[" + std::to_string(id) + "].color"] = color;
