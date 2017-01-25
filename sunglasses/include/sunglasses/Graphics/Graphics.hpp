@@ -15,3 +15,4 @@
 #include <sunglasses/Graphics/GeometryBuffer.h>
 #include <sunglasses/Graphics/Framebuffer.h>
 #include <sunglasses/Graphics/FramebufferQueue.h>
+#include <sunglasses/Graphics/Window.h>

@@ -12,6 +12,7 @@ add_sources(
     GeometryBuffer.cpp
     Framebuffer.cpp
     FramebufferQueue.cpp
+    Window.cpp
 )
 
 add_subdirectory(Loaders)
