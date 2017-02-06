@@ -4,7 +4,6 @@
 #include <sunglasses/GUI/Panel.h>
 
 #include <sunglasses/GUI/Renderer2D.h>
-#include <sunglasses/GUI/Window.h>
 
 namespace sunglasses {
 namespace GUI {

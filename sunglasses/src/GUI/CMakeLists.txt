@@ -7,7 +7,6 @@ add_sources(
     Renderer2D.cpp
     Panel.cpp
     Controller.cpp
-    Window.cpp
     Font.cpp
     View3D.cpp
 ) 

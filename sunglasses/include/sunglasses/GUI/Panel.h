@@ -7,7 +7,6 @@
 #include <glm/glm.hpp>
 
 #include <sunglasses/GUI/Control.h>
-#include <sunglasses/GUI/Window.h>
 #include <sunglasses/GUI/Drawable.h>
 #include <sunglasses/GUI/System.h>
 

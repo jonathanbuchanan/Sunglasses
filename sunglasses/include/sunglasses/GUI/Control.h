@@ -6,7 +6,6 @@
 
 #include <glm/glm.hpp>
 
-#include <sunglasses/GUI/Window.h>
 #include <sunglasses/Core/Signal.h>
 
 #include <vector>
@@ -31,9 +30,6 @@ public:
 
     /// Draws the control and the children
     void drawAll(glm::ivec2 offset, Renderer2D &renderer);
-
-    /// Updates the control and the children
-    void updateAll(glm::ivec2 offset, UpdateInfo updateInfo);
 
     /// The signal emitted when the control is highlighted
     Signal<void()> signal_highlighted;
@@ -77,12 +73,6 @@ protected:
 
     /// Draws all of the child controls
     void drawChildren(glm::ivec2 offset, Renderer2D &renderer);
-
-    /// Updates the control
-    virtual void update(glm::ivec2 offset, UpdateInfo updateInfo);
-
-    /// Updates all of the child controls
-    void updateChildren(glm::ivec2 offset, UpdateInfo updateInfo);
 
     /// The state of the control
     State state;

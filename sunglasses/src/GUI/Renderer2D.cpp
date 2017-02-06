@@ -3,8 +3,6 @@
 // See LICENSE.md for details.
 #include <sunglasses/GUI/Renderer2D.h>
 
-#include <sunglasses/GUI/Window.h>
-
 #include <string>
 
 #include <glm/gtc/matrix_transform.hpp>

@@ -3,8 +3,6 @@
 // See LICENSE.md for details.
 #include <sunglasses/GUI/Controller.h>
 
-#include <sunglasses/GUI/Window.h>
-
 namespace sunglasses {
 namespace GUI {
 

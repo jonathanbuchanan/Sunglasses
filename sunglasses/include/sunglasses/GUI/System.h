@@ -4,7 +4,6 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
-#include <sunglasses/Graphics/Window.h>
 #include <sunglasses/GUI/Renderer2D.h>
 #include <sunglasses/GUI/Control.h>
 

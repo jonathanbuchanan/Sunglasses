@@ -9,6 +9,5 @@
 #include <sunglasses/GUI/Renderer2D.h>
 #include <sunglasses/GUI/Panel.h>
 #include <sunglasses/GUI/Controller.h>
-#include <sunglasses/GUI/Window.h>
 #include <sunglasses/GUI/Font.h>
 #include <sunglasses/GUI/View3D.h>
