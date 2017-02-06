@@ -20,6 +20,10 @@ Window::Window(glm::ivec2 size, std::string title) {
     glfwSetWindowCloseCallback(window, Window::windowClose);
     glfwSetWindowSizeCallback(window, Window::windowResize);
     glfwSetWindowPosCallback(window, Window::windowMove);
+    glfwSetCursorPosCallback(window, Window::Cursor::cursorMove);
+    glfwSetMouseButtonCallback(window, Window::Cursor::mouseButton);
+    glfwSetScrollCallback(window, Window::Cursor::mouseScroll);
+    glfwSetKeyCallback(window, Window::Keyboard::key);
 
 
     // Initialize GLEW
@@ -27,7 +31,7 @@ Window::Window(glm::ivec2 size, std::string title) {
     glewInit();
 
     // Size the viewport correctly
-    updateViewport();
+    sizeViewportToWindow();
 }
 
 Window::~Window() {
@@ -38,12 +42,75 @@ void Window::setTitle(std::string title) {
     glfwSetWindowTitle(window, title.c_str());
 }
 
-void Window::updateViewport() {
+void Window::setViewport(glm::ivec2 origin, glm::ivec2 size) {
+    glViewport(origin.x, origin.y, size.x, size.y);
+}
+
+void Window::sizeViewportToWindow() {
     glm::ivec2 size;
     glfwGetFramebufferSize(window, &size.x, &size.y);
 
-    glViewport(0, 0, size.x, size.y);
+    setViewport(glm::ivec2(0), size);
 }
+
+glm::ivec2 Window::getSize() {
+    glm::ivec2 size;
+    glfwGetFramebufferSize(window, &size.x, &size.y);
+
+    return size;
+}
+
+void Window::clear(glm::vec4 color) {
+    glClearColor(color.r, color.g, color.b, color.a);
+    glClear(GL_COLOR_BUFFER_BIT);
+}
+
+void Window::swapBuffers() {
+    glfwSwapBuffers(window);
+}
+
+void Window::update() {
+    glfwPollEvents();
+}
+
+
+
+void Window::Cursor::cursorMove(GLFWwindow *_window, double x, double y) {
+    Window *window = static_cast<Window *>(glfwGetWindowUserPointer(_window));
+    window->cursor.signal_move.emit(glm::vec2(x, y));
+}
+
+void Window::Cursor::mouseButton(GLFWwindow *_window, int button, int action, int mods) {
+    Window *window = static_cast<Window *>(glfwGetWindowUserPointer(_window));
+    if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+        window->cursor.signal_pressLeft.emit();
+    else if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE)
+        window->cursor.signal_releaseLeft.emit();
+    else if (button == GLFW_MOUSE_BUTTON_MIDDLE && action == GLFW_PRESS)
+        window->cursor.signal_pressMiddle.emit();
+    else if (button == GLFW_MOUSE_BUTTON_MIDDLE && action == GLFW_RELEASE)
+        window->cursor.signal_releaseMiddle.emit();
+    else if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
+        window->cursor.signal_pressRight.emit();
+    else if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_RELEASE)
+        window->cursor.signal_releaseRight.emit();
+}
+
+void Window::Cursor::mouseScroll(GLFWwindow *_window, double xOffset, double yOffset) {
+    Window *window = static_cast<Window *>(glfwGetWindowUserPointer(_window));
+    window->cursor.signal_scroll.emit(glm::vec2(xOffset, yOffset));
+}
+
+void Window::Keyboard::key(GLFWwindow *_window, int key, int scancode, int action, int mods) {
+    Window *window = static_cast<Window *>(glfwGetWindowUserPointer(_window));
+    if (action == GLFW_PRESS)
+        window->keyboard.signal_press.emit(key);
+    else if (action == GLFW_REPEAT)
+        window->keyboard.signal_repeat.emit(key);
+    else if (action == GLFW_RELEASE)
+        window->keyboard.signal_repeat.emit(key);
+}
+
 
 
 void Window::windowClose(GLFWwindow *_window) {

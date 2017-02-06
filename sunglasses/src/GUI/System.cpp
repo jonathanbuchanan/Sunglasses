@@ -9,20 +9,21 @@
 namespace sunglasses {
 namespace GUI {
 
-System::System(Control *panel, Window &_window) :
-    window(_window), renderer(window), content(panel) {
+System::System(graphics::Window &_window) :
+        root(_window), window(_window),
+        renderer(_window) {
 
 }
 
 void System::update() {
     // Update the size of the viewport to match the framebuffer
-    window.updateViewport();
+    window.sizeViewportToWindow();
 
     // Force the size of the content view to equal the window size
-    content->size = window.size();
+    //content->size = window.getSize();
 
     // Update the GUI
-    content->updateAll(glm::ivec2(0), window.updateInfo());
+    //content->updateAll(glm::ivec2(0), window.updateInfo());
 }
 
 void System::draw() {
@@ -30,10 +31,19 @@ void System::draw() {
     window.clear();
 
     // Draw the GUI
-    content->drawAll(glm::ivec2(0), renderer);
+    root.drawAll(glm::ivec2(0), renderer);
 
     // Swap the window's buffers
     window.swapBuffers();
+}
+
+void System::addChild(Control &control) {
+    root.addChild(&control);
+}
+
+
+glm::ivec2 System::getSize() const {
+    return window.getSize();
 }
 
 } // namespace

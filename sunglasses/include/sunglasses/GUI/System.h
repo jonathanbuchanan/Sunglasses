@@ -4,34 +4,49 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
-#include <sunglasses/GUI/Window.h>
+#include <sunglasses/Graphics/Window.h>
 #include <sunglasses/GUI/Renderer2D.h>
+#include <sunglasses/GUI/Control.h>
 
 namespace sunglasses {
 namespace GUI {
-
-class Control;
 
 /// A GUI containing a window and a content view
 class System {
 public:
     /// Constructs the GUI with a content view
-    System(Control *panel, Window &_window);
+    System(graphics::Window &_window);
 
     /// Updates the GUI elements
     void update();
 
     /// Draws the GUI and swaps the window's buffers
     void draw();
+
+    /// Adds a child to the root control
+    void addChild(Control &control);
+
+    /// Gets the dimensions of the GUI viewing window
+    glm::ivec2 getSize() const;
 private:
     /// The window
-    Window &window;
+    graphics::Window &window;
 
     /// The renderer
     Renderer2D renderer;
 
-    /// The main view
-    Control *content;
+    /// The root control
+    class Root : public Control {
+    public:
+        Root(graphics::Window &window) :
+            Control(glm::ivec2(0), window.getSize()) {
+
+        }
+    protected:
+        virtual void draw(glm::ivec2 offset, Renderer2D &renderer) {
+
+        }
+    } root;
 };
 
 } // namespace

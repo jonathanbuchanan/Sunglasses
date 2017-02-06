@@ -115,7 +115,7 @@ void main() {
 }
 )";
 
-Renderer2D::Renderer2D(Window &_window) :
+Renderer2D::Renderer2D(sunglasses::graphics::Window &_window) :
     window(_window), fillShader(fill_vertex, fill_fragment),
     textureShader(texture_vertex, texture_fragment, {"sampler"}),
     textShader(text_vertex, text_fragment, {"sampler"}) {
@@ -126,7 +126,9 @@ void Renderer2D::draw(glm::ivec2 origin, glm::ivec2 size, glm::vec4 color) {
     fillShader.use();
 
     // Pass the projection matrix
-    fillShader["projection"] = window.projection();
+    glm::ivec2 windowSize = window.getSize();
+    glm::mat4 projection = glm::ortho(0.0f, (float)windowSize.x, (float)windowSize.y, 0.0f);
+    fillShader["projection"] = projection;
 
     // Generate a model matrix
     glm::mat4 model;
@@ -147,7 +149,9 @@ void Renderer2D::draw(glm::ivec2 origin, glm::ivec2 size, const graphics::Textur
     textureShader.use();
 
     // Pass the projection matrix
-    textureShader["projection"] = window.projection();
+    glm::ivec2 windowSize = window.getSize();
+    glm::mat4 projection = glm::ortho(0.0f, (float)windowSize.x, (float)windowSize.y, 0.0f);
+    textureShader["projection"] = projection;
 
     // Generate a model matrix
     glm::mat4 model;
@@ -168,7 +172,9 @@ void Renderer2D::draw(glm::ivec2 origin, std::string text, glm::vec4 color, Font
     textShader.use();
 
     // Pass the projection matrix
-    textShader["projection"] = window.projection();
+    glm::ivec2 size = window.getSize();
+    glm::mat4 projection = glm::ortho(0.0f, (float)size.x, (float)size.y, 0.0f);
+    textShader["projection"] = projection;
 
     // Set the text color
     textShader["textColor"] = color;

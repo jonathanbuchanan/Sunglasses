@@ -10,7 +10,6 @@ namespace sunglasses {
 namespace GUI {
 
 class System;
-class Window;
 
 /// Manages a view.
 /**
@@ -23,8 +22,8 @@ class Controller {
 friend System;
 public:
     /// Constructs a view controller from the dimensions of the window
-    Controller(const Window &window, const T &background) : panel(window, background) {
-
+    Controller(System &system, const T &background) : panel(system, background) {
+        system.addChild(panel);
     }
 
     /// The panel managed by the controller

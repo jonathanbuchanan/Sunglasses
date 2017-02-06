@@ -16,20 +16,21 @@ int main(int argc, char **argv) {
 
     Font &arial = fonts.at("arial");
 
-    GUI::Window window = GUI::Window(640, 480, "GUI Demo");
+    graphics::Window window = graphics::Window(glm::ivec2(640, 480), "GUI Demo");
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     LSlot<void()> slot_close = LSlot<void()>([&running]() { running = false; });
 
-    connect(window.signal_closebutton, slot_close);
+    connect(window.signal_close, slot_close);
 
-    GUIMainMenu mainMenu(window, fonts);
+    GUI::System gui(window);
 
-    GUI::System gui(&mainMenu.panel, window);
+    GUIMainMenu mainMenu(gui, fonts);
 
     while (running) {
+        window.update();
         gui.update();
         gui.draw();
     }

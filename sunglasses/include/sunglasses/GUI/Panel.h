@@ -9,6 +9,7 @@
 #include <sunglasses/GUI/Control.h>
 #include <sunglasses/GUI/Window.h>
 #include <sunglasses/GUI/Drawable.h>
+#include <sunglasses/GUI/System.h>
 
 #include <vector>
 #include <memory>
@@ -18,6 +19,7 @@ namespace GUI {
 
 class ViewController;
 class Renderer2D;
+class System;
 
 /// The state of a control
 enum class ControlState {
@@ -43,9 +45,9 @@ public:
     }
 
     /// Constructs the panel within the frame of the window
-    Panel(const Window &window, const T &_background, bool _visible = true,
+    Panel(const System &system, const T &_background, bool _visible = true,
             std::initializer_list<Control *> children = {}) :
-            Control(glm::ivec2(0, 0), window.size(), _visible, children),
+            Control(glm::ivec2(0, 0), system.getSize(), _visible, children),
             background(_background) {
 
     }

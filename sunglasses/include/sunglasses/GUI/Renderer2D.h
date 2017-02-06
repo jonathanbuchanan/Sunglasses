@@ -13,6 +13,7 @@
 #include <sunglasses/Graphics/Texture.h>
 #include <sunglasses/Graphics/Shader.h>
 #include <sunglasses/Graphics/GeometryBuffer.h>
+#include <sunglasses/Graphics/Window.h>
 #include <sunglasses/GUI/Drawable.h>
 #include <sunglasses/GUI/Font.h>
 
@@ -25,7 +26,7 @@ class Window;
 class Renderer2D {
 public:
     /// Initializes the shaders
-    Renderer2D(Window &_window);
+    Renderer2D(sunglasses::graphics::Window &_window);
 
     /// Draws a rectangle with a solid color
     void draw(glm::ivec2 position, glm::ivec2 size, glm::vec4 color);
@@ -36,8 +37,8 @@ public:
     /// Draws text
     void draw(glm::ivec2 position, std::string text, glm::vec4 color, Font &font);
 private:
-    /// The window
-    Window &window;
+    /// A reference to the window
+    sunglasses::graphics::Window &window;
 
     /// The fill shader
     sunglasses::graphics::Shader fillShader;

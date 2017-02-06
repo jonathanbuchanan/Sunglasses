@@ -22,13 +22,13 @@ public:
     /**
      * Emits the signal by activating all the associated slots.
      */
-    void emit(T &&... args) {
+    void emit(T... args) {
         for (auto slot : slots)
             slot->activate(std::forward<T>(args)...);
     }
 
     /// Emits the signal
-    void operator()(T &&... args) {
+    void operator()(T... args) {
         emit(std::forward<T>(args)...);
     }
 
@@ -57,10 +57,10 @@ public:
     }*/
 
     /// Activates the slot
-    virtual void activate(T &&... args) const = 0;
+    virtual void activate(T... args) const = 0;
 
     /// Activates the slot
-    virtual void operator()(T &&... args) const = 0;
+    virtual void operator()(T... args) const = 0;
 
     /// Adds a signal to the set of signals
     void addSignal(const Signal<R(T...)> *signal) {
@@ -91,12 +91,12 @@ public:
     Slot & operator=(const Slot &) = delete;
 
     /// Activates the slot
-    virtual void activate(A &&... args) const {
+    virtual void activate(A... args) const {
         (object.*function)(std::forward<A>(args)...);
     }
 
     /// Activates the slot
-    virtual void operator()(A &&... args) const {
+    virtual void operator()(A... args) const {
         activate(std::forward<A>(args)...);
     }
 private:
@@ -120,12 +120,12 @@ public:
     LSlot & operator=(const LSlot &) = delete;
 
     /// Activates the slot
-    virtual void activate(A &&... args) const {
+    virtual void activate(A... args) const {
         function(std::forward<A>(args)...);
     }
-    
+
     /// Activates the slot
-    virtual void operator()(A &&... args) const {
+    virtual void operator()(A... args) const {
         activate(std::forward<A>(args)...);
     }
 private:

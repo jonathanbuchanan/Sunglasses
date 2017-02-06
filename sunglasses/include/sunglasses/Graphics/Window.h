@@ -31,6 +31,24 @@ public:
     /// Sets the title of the window
     void setTitle(std::string title);
 
+    /// Sets the viewport of the window
+    void setViewport(glm::ivec2 origin, glm::ivec2 size);
+
+    /// Sizes the viewport of the window to the size of the window
+    void sizeViewportToWindow();
+
+    /// Gets the size of the window
+    glm::ivec2 getSize();
+
+    /// Clears the window
+    void clear(glm::vec4 = glm::vec4(1.0f));
+
+    /// Swaps the buffers of the window
+    void swapBuffers();
+
+    /// Updates the window by polling for events
+    void update();
+
 
     /// Signal - Window close
     Signal<void()> signal_close;
@@ -40,11 +58,63 @@ public:
 
     /// Signal - Window move
     Signal<void(glm::ivec2)> signal_move;
+
+
+    /// An object representing the cursor
+    class Cursor {
+        friend Window;
+    public:
+        /// Signal - Cursor move
+        Signal<void(glm::ivec2)> signal_move;
+
+        /// Signal - Press left button
+        Signal<void()> signal_pressLeft;
+
+        /// Signal - Release left button
+        Signal<void()> signal_releaseLeft;
+
+        /// Signal - Press middle button
+        Signal<void()> signal_pressMiddle;
+
+        /// Signal - Release middle button
+        Signal<void()> signal_releaseMiddle;
+
+        /// Signal - Press right button
+        Signal<void()> signal_pressRight;
+
+        /// Signal - Release right button
+        Signal<void()> signal_releaseRight;
+
+        /// Signal - Scroll
+        Signal<void(glm::vec2)> signal_scroll;
+    private:
+        /// Called when the user moves the cursor
+        static void cursorMove(GLFWwindow *_window, double x, double y);
+
+        /// Called when the user presses/releases a mouse button
+        static void mouseButton(GLFWwindow *_window, int button, int action, int mods);
+
+        /// Called when the user scrolls the mouse
+        static void mouseScroll(GLFWwindow *_window, double xOffset, double yOffset);
+    } cursor;
+
+    /// An object representing the keyboard
+    class Keyboard {
+        friend Window;
+    public:
+        /// Signal - Key press
+        Signal<void(int)> signal_press;
+
+        /// Signal - Key repeat
+        Signal<void(int)> signal_repeat;
+
+        /// Signal - Key release
+        Signal<void(int)> signal_release;
+    private:
+        /// Called when the user presses/repeats/releases a key
+        static void key(GLFWwindow *_window, int key, int scancode, int action, int mods);
+    } keyboard;
 private:
-    /// Updates the viewport according to the size of the window
-    void updateViewport();
-
-
     /// Called when the user tries to close the window
     static void windowClose(GLFWwindow *_window);
 
