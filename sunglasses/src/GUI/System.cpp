@@ -12,21 +12,19 @@ namespace GUI {
 System::System(graphics::Window &_window) :
         root(_window), window(_window),
         renderer(_window) {
-
-}
-
-void System::update() {
-    // Update the size of the viewport to match the framebuffer
-    window.sizeViewportToWindow();
-
-    // Force the size of the content view to equal the window size
-    //content->size = window.getSize();
-
-    // Update the GUI
-    //content->updateAll(glm::ivec2(0), window.updateInfo());
+    connect(_window.cursor.signal_move, slot_move);
+    connect(_window.cursor.signal_pressLeft, slot_pressLeft);
+    connect(_window.cursor.signal_releaseLeft, slot_releaseLeft);
+    connect(_window.cursor.signal_pressMiddle, slot_pressMiddle);
+    connect(_window.cursor.signal_releaseMiddle, slot_releaseMiddle);
+    connect(_window.cursor.signal_pressRight, slot_pressRight);
+    connect(_window.cursor.signal_releaseRight, slot_releaseRight);
 }
 
 void System::draw() {
+    // Size the viewport
+    window.sizeViewportToWindow();
+
     // Clear the window
     window.clear();
 
@@ -44,6 +42,36 @@ void System::addChild(Control &control) {
 
 glm::ivec2 System::getSize() const {
     return window.getSize();
+}
+
+
+
+void System::mouse_move(glm::ivec2 location) {
+
+}
+
+void System::mouse_pressLeft() {
+
+}
+
+void System::mouse_releaseLeft() {
+
+}
+
+void System::mouse_pressMiddle() {
+
+}
+
+void System::mouse_releaseMiddle() {
+
+}
+
+void System::mouse_pressRight() {
+
+}
+
+void System::mouse_releaseRight() {
+
 }
 
 } // namespace

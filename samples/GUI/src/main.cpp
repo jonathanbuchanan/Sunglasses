@@ -31,7 +31,6 @@ int main(int argc, char **argv) {
 
     while (running) {
         window.update();
-        gui.update();
         gui.draw();
     }
 
