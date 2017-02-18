@@ -82,18 +82,20 @@ void Window::Cursor::cursorMove(GLFWwindow *_window, double x, double y) {
 
 void Window::Cursor::mouseButton(GLFWwindow *_window, int button, int action, int mods) {
     Window *window = static_cast<Window *>(glfwGetWindowUserPointer(_window));
+    glm::dvec2 position;
+    glfwGetCursorPos(_window, &position.x, &position.y);
     if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-        window->cursor.signal_pressLeft.emit();
+        window->cursor.signal_pressLeft.emit(position);
     else if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE)
-        window->cursor.signal_releaseLeft.emit();
+        window->cursor.signal_releaseLeft.emit(position);
     else if (button == GLFW_MOUSE_BUTTON_MIDDLE && action == GLFW_PRESS)
-        window->cursor.signal_pressMiddle.emit();
+        window->cursor.signal_pressMiddle.emit(position);
     else if (button == GLFW_MOUSE_BUTTON_MIDDLE && action == GLFW_RELEASE)
-        window->cursor.signal_releaseMiddle.emit();
+        window->cursor.signal_releaseMiddle.emit(position);
     else if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
-        window->cursor.signal_pressRight.emit();
+        window->cursor.signal_pressRight.emit(position);
     else if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_RELEASE)
-        window->cursor.signal_releaseRight.emit();
+        window->cursor.signal_releaseRight.emit(position);
 }
 
 void Window::Cursor::mouseScroll(GLFWwindow *_window, double xOffset, double yOffset) {

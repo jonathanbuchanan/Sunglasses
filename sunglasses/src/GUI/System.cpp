@@ -47,30 +47,30 @@ glm::ivec2 System::getSize() const {
 
 
 void System::mouse_move(glm::ivec2 location) {
+    root.mouseMoved(glm::ivec2(0), location);
+}
+
+void System::mouse_pressLeft(glm::ivec2 mouse) {
+    root.mouseLeftPressed(glm::ivec2(0), mouse);
+}
+
+void System::mouse_releaseLeft(glm::ivec2 mouse) {
+    root.mouseLeftReleased(glm::ivec2(0), mouse);
+}
+
+void System::mouse_pressMiddle(glm::ivec2 mouse) {
 
 }
 
-void System::mouse_pressLeft() {
+void System::mouse_releaseMiddle(glm::ivec2 mouse) {
 
 }
 
-void System::mouse_releaseLeft() {
+void System::mouse_pressRight(glm::ivec2 mouse) {
 
 }
 
-void System::mouse_pressMiddle() {
-
-}
-
-void System::mouse_releaseMiddle() {
-
-}
-
-void System::mouse_pressRight() {
-
-}
-
-void System::mouse_releaseRight() {
+void System::mouse_releaseRight(glm::ivec2 mouse) {
 
 }
 

@@ -31,6 +31,17 @@ public:
     /// Draws the control and the children
     void drawAll(glm::ivec2 offset, Renderer2D &renderer);
 
+
+    /// Called when the mouse moves
+    void mouseMoved(glm::ivec2 offset, glm::ivec2 mouse);
+
+    /// Called when the left mouse button is pressed
+    void mouseLeftPressed(glm::ivec2 offset, glm::ivec2 mouse);
+
+    /// Called when the left mouse button is released
+    void mouseLeftReleased(glm::ivec2 offset, glm::ivec2 mouse);
+
+
     /// The signal emitted when the control is highlighted
     Signal<void()> signal_highlighted;
 
@@ -50,6 +61,10 @@ public:
      * the parent control.
      */
     void addChild(Control *control);
+
+    /// Checks a point to see if the control contains it
+    bool contains(glm::ivec2 offset, glm::ivec2 point);
+
 
     /// The position of the control
     glm::ivec2 position;
@@ -79,6 +94,21 @@ protected:
 
     /// The vector of child controls
     std::vector<Control *> children;
+private:
+    /// Highlights the control
+    void highlight();
+
+    /// Unhighlights the control
+    void unhighlight();
+
+    /// Selects the control
+    void select();
+
+    /// Unselects the control
+    /**
+     * Unselects the control and returns it to the specified state.
+     */
+    void unselect(State next);
 };
 
 } // namespace

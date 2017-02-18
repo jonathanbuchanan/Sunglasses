@@ -30,28 +30,28 @@ private:
     Slot<void(System::*)(glm::ivec2), &System::mouse_move> slot_move = {*this};
 
     /// Called when the left mouse button is pressed
-    void mouse_pressLeft();
-    Slot<void(System::*)(), &System::mouse_pressLeft> slot_pressLeft = {*this};
+    void mouse_pressLeft(glm::ivec2 mouse);
+    Slot<void(System::*)(glm::ivec2), &System::mouse_pressLeft> slot_pressLeft = {*this};
 
     /// Called when the left mouse button is released
-    void mouse_releaseLeft();
-    Slot<void(System::*)(), &System::mouse_releaseLeft> slot_releaseLeft = {*this};
+    void mouse_releaseLeft(glm::ivec2 mouse);
+    Slot<void(System::*)(glm::ivec2), &System::mouse_releaseLeft> slot_releaseLeft = {*this};
 
     /// Called when the middle mouse button is pressed
-    void mouse_pressMiddle();
-    Slot<void(System::*)(), &System::mouse_pressMiddle> slot_pressMiddle = {*this};
+    void mouse_pressMiddle(glm::ivec2 mouse);
+    Slot<void(System::*)(glm::ivec2), &System::mouse_pressMiddle> slot_pressMiddle = {*this};
 
     /// Called when the middle mouse button is released
-    void mouse_releaseMiddle();
-    Slot<void(System::*)(), &System::mouse_releaseMiddle> slot_releaseMiddle = {*this};
+    void mouse_releaseMiddle(glm::ivec2 mouse);
+    Slot<void(System::*)(glm::ivec2), &System::mouse_releaseMiddle> slot_releaseMiddle = {*this};
 
     /// Called when the right mouse button is pressed
-    void mouse_pressRight();
-    Slot<void(System::*)(), &System::mouse_pressRight> slot_pressRight = {*this};
+    void mouse_pressRight(glm::ivec2 mouse);
+    Slot<void(System::*)(glm::ivec2), &System::mouse_pressRight> slot_pressRight = {*this};
 
     /// Called when the right mouse button is released
-    void mouse_releaseRight();
-    Slot<void(System::*)(), &System::mouse_releaseRight> slot_releaseRight = {*this};
+    void mouse_releaseRight(glm::ivec2 mouse);
+    Slot<void(System::*)(glm::ivec2), &System::mouse_releaseRight> slot_releaseRight = {*this};
 
     /// The window
     graphics::Window &window;

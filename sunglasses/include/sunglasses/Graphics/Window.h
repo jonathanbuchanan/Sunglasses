@@ -68,22 +68,22 @@ public:
         Signal<void(glm::ivec2)> signal_move;
 
         /// Signal - Press left button
-        Signal<void()> signal_pressLeft;
+        Signal<void(glm::ivec2)> signal_pressLeft;
 
         /// Signal - Release left button
-        Signal<void()> signal_releaseLeft;
+        Signal<void(glm::ivec2)> signal_releaseLeft;
 
         /// Signal - Press middle button
-        Signal<void()> signal_pressMiddle;
+        Signal<void(glm::ivec2)> signal_pressMiddle;
 
         /// Signal - Release middle button
-        Signal<void()> signal_releaseMiddle;
+        Signal<void(glm::ivec2)> signal_releaseMiddle;
 
         /// Signal - Press right button
-        Signal<void()> signal_pressRight;
+        Signal<void(glm::ivec2)> signal_pressRight;
 
         /// Signal - Release right button
-        Signal<void()> signal_releaseRight;
+        Signal<void(glm::ivec2)> signal_releaseRight;
 
         /// Signal - Scroll
         Signal<void(glm::vec2)> signal_scroll;

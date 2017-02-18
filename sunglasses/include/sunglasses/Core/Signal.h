@@ -140,6 +140,7 @@ void connect(Signal<R(A...)> &signal, ISlot<R(A...)> &slot) {
     slot.addSignal(&signal);
 }
 
+
 /// Disconnects a signal and a slot
 template<typename... T>
 void disconnect(Signal<T...> &signal, ISlot<T...> &slot) {
