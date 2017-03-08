@@ -32,7 +32,7 @@ public:
     void draw(glm::ivec2 position, glm::ivec2 size, glm::vec4 color);
 
     /// Draws a rectangle with a texture
-    void draw(glm::ivec2 position, glm::ivec2 size, const graphics::Texture &texture);
+    void draw(glm::ivec2 position, glm::ivec2 size, glm::ivec2 textureSize, const graphics::Texture &texture);
 
     /// Draws text
     void draw(glm::ivec2 position, std::string text, glm::vec4 color, Font &font);

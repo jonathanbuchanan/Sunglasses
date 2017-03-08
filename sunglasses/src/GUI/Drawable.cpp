@@ -27,13 +27,14 @@ void Color::draw(glm::ivec2 position, glm::ivec2 size,
 
 
 
-Image::Image(const graphics::Texture &_texture) : texture(_texture) {
+Image::Image(graphics::Texture &_texture, glm::ivec2 _textureSize)
+        : texture(_texture), textureSize(_textureSize) {
 
 }
 
 void Image::draw(glm::ivec2 position, glm::ivec2 size,
         Renderer2D &renderer) {
-    renderer.draw(position, size, texture);
+    renderer.draw(position, size, textureSize, texture);
 }
 
 

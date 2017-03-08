@@ -6,6 +6,7 @@
 #include <string>
 
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/matrix_transform_2d.hpp>
 #include <glm/gtx/string_cast.hpp>
 
 namespace sunglasses {
@@ -50,6 +51,7 @@ layout (location = 1) in vec2 texCoords;
 
 uniform mat4 model;
 uniform mat4 projection;
+uniform mat3 textureScale;
 
 out VertexOut {
     vec2 texCoords;
@@ -57,7 +59,7 @@ out VertexOut {
 
 void main() {
     gl_Position = projection * model * vec4(vertex, 0.0f, 1.0f);
-    vertexOut.texCoords = texCoords;
+    vertexOut.texCoords = (textureScale * vec3(texCoords, 1.0f)).xy;
 }
 )";
 
@@ -143,7 +145,7 @@ void Renderer2D::draw(glm::ivec2 origin, glm::ivec2 size, glm::vec4 color) {
     rectangle.draw();
 }
 
-void Renderer2D::draw(glm::ivec2 origin, glm::ivec2 size, const graphics::Texture &texture) {
+void Renderer2D::draw(glm::ivec2 origin, glm::ivec2 size, glm::ivec2 textureSize, const graphics::Texture &texture) {
     textureShader.use();
 
     // Pass the projection matrix
@@ -158,6 +160,19 @@ void Renderer2D::draw(glm::ivec2 origin, glm::ivec2 size, const graphics::Textur
     model = glm::scale(model, glm::vec3(size, 1.0f));
 
     textureShader["model"] = model;
+
+    // Create a texture scale matrix
+    glm::mat3 textureScale;
+
+    glm::vec2 scale;
+    if (textureSize != glm::ivec2(0))
+        scale = glm::vec2(size / textureSize);
+    else
+        scale = glm::vec2(1.0f);
+
+    textureScale = glm::scale(textureScale, scale);
+
+    textureShader["textureScale"] = textureScale;
 
     // Pass the uniforms of the drawable
     textureShader.textures["sampler"] = texture;

@@ -38,14 +38,22 @@ private:
 /// A drawable of a single image
 class Image {
 public:
-    /// Constructs the drawable with a texture reference
-    Image(const graphics::Texture &_texture);
+    /// Constructs the drawable with a texture reference and a size
+    Image(graphics::Texture &_texture, glm::ivec2 _textureSize = glm::ivec2(0));
 
     /// Draws the rectangle as an image
     void draw(glm::ivec2 position, glm::ivec2 size, Renderer2D &renderer);
 private:
     /// A reference to the texture
     const graphics::Texture &texture;
+
+    /// The size of the texture in pixels
+    /**
+     * If this value is set to glm::ivec2(0, 0), that means
+     * the texture be stretched to fit the size of what it
+     * is drawn on.
+     */
+    glm::ivec2 textureSize;
 };
 
 /// A drawable string of text
