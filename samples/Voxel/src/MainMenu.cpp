@@ -4,9 +4,9 @@ MainMenu::MainMenu(graphics::Window &window, graphics::Texture::LibraryT &textur
     GUI::Controller<GUI::Drawable::Image>(window, GUI::Drawable::Image(textures["stone"], glm::ivec2(128))),
     optionsMenu(window)
 {
-    panel.addChild(&play);
-    panel.addChild(&options);
-    panel.addChild(&quit);
+    panel.addChild(play);
+    panel.addChild(options);
+    panel.addChild(quit);
 
     connect(play.signal_selected, slot_playPressed);
     connect(options.signal_selected, slot_optionsPressed);

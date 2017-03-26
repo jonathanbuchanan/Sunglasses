@@ -67,8 +67,8 @@ void Control::drawChildren(glm::ivec2 offset, Renderer2D &renderer) {
     }
 }
 
-void Control::addChild(Control *control) {
-    children.emplace_back(control);
+void Control::addChild(Control &control) {
+    children.emplace_back(&control);
 }
 
 bool Control::contains(glm::ivec2 offset, glm::ivec2 point) {

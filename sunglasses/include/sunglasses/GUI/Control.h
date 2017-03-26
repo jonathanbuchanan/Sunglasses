@@ -60,7 +60,7 @@ public:
      * and it should be assumed that all control is given to
      * the parent control.
      */
-    void addChild(Control *control);
+    void addChild(Control &control);
 
     /// Checks a point to see if the control contains it
     bool contains(glm::ivec2 offset, glm::ivec2 point);

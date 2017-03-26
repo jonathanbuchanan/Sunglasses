@@ -16,10 +16,10 @@ GUIMainMenu::GUIMainMenu(graphics::Window &window, Font::LibraryT &fonts) :
         button(glm::ivec2(25, 250), glm::ivec2(30, 30), glm::vec4(1.0f), glm::vec4(0.5f), glm::vec4(0.0f)),
         buttonpress([](){std::cout<<"pressed"<<std::endl;}),
         view(glm::ivec2(0, 0), glm::ivec2(200, 200)) {
-    /*panel.addChild(&label);
-    panel.addChild(&image);*/
-    panel.addChild(&button);
+    /*panel.addChild(label);
+    panel.addChild(image);*/
+    panel.addChild(button);
 
     connect(button.signal_selected, buttonpress);
-    panel.addChild(&view);
+    panel.addChild(view);
 }
