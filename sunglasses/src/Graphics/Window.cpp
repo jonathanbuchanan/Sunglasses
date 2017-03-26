@@ -26,6 +26,9 @@ Window::Window(glm::ivec2 size, std::string title) {
     glfwSetKeyCallback(window, Window::Keyboard::key);
 
 
+    glfwSwapInterval(1);
+
+
     // Initialize GLEW
     glewExperimental = GL_TRUE;
     glewInit();
@@ -53,7 +56,7 @@ void Window::sizeViewportToWindow() {
     setViewport(glm::ivec2(0), size);
 }
 
-glm::ivec2 Window::getSize() {
+glm::ivec2 Window::getSize() const {
     glm::ivec2 size;
     glfwGetFramebufferSize(window, &size.x, &size.y);
 

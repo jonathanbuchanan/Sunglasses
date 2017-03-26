@@ -7,11 +7,17 @@ using namespace sunglasses;
 
 
 #include "MainMenu.h"
+#include "OptionsMenu.h"
 
 int main(int argc, char **argv) {
     bool running = true;
 
     graphics::Window window(glm::ivec2(1920, 1080), "Voxel");
+
+    graphics::Texture::LibraryT textures({
+        {"stone", graphics::Texture::LibraryT::ResourceHandle(graphics::Texture::Parameter(
+                "./res/Graphics/Textures/stone.png", graphics::Texture::Format::RGBA, graphics::TextureMinification::Nearest, graphics::TextureMagnification::Nearest))}
+    });
 
     LSlot<void()> slot_close([&running]() { running = false; });
 
@@ -19,7 +25,10 @@ int main(int argc, char **argv) {
 
     GUI::System GUI(window);
 
-    MainMenu main(GUI);
+    MainMenu main(window, textures);
+
+    GUI::NavigationController nav(GUI);
+    nav.push(main);
 
     while (running) {
         window.update();

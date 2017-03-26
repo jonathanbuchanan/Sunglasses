@@ -8,8 +8,8 @@ unsigned char imageData[] = {
     0, 255, 0, 0, 0, 255
 };
 
-GUIMainMenu::GUIMainMenu(System &system, Font::LibraryT &fonts) :
-        Controller(system, glm::vec4(0.0f, 1.0f, 0.0f, 1.0f)),
+GUIMainMenu::GUIMainMenu(graphics::Window &window, Font::LibraryT &fonts) :
+        Controller(window, glm::vec4(0.0f, 1.0f, 0.0f, 1.0f)),
         /*label(glm::ivec2(50, 0), glm::ivec2(100, 100), Drawable::Text("Hello, World!", glm::vec4(1.0f, 1.0f, 0.0f, 1.0f), fonts.at("arial"))),
         tex(Image<unsigned char>(glm::ivec2(2, 2), imageData), TextureMinification::Nearest, TextureMagnification::Nearest),
         image(glm::ivec2(150, 150), glm::ivec2(300, 300), tex),*/

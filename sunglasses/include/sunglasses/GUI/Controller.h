@@ -7,9 +7,27 @@
 #include <sunglasses/GUI/Panel.h>
 
 namespace sunglasses {
+namespace graphics {
+
+class Window;
+
+}
+
 namespace GUI {
 
 class System;
+class NavigationController;
+
+/// The interface for a controller
+class IController {
+friend NavigationController;
+public:
+    /// Presents the controller on the system
+    virtual void present(System &system) = 0;
+protected:
+    /// A pointer to the navigation controller currently using the controller
+    NavigationController *navigationController = nullptr;
+};
 
 /// Manages a view.
 /**
@@ -18,12 +36,18 @@ class System;
  * @see View
  */
 template<typename T>
-class Controller {
+class Controller : public IController {
 friend System;
 public:
     /// Constructs a view controller from the dimensions of the window
-    Controller(System &system, const T &background) : panel(system, background) {
-        system.addChild(panel);
+    Controller(const graphics::Window &window, const T &background) :
+        panel(window, background) {
+
+    }
+
+    /// Presents the controller on the system
+    virtual void present(System &system) {
+        system.present(panel);
     }
 
     /// The panel managed by the controller

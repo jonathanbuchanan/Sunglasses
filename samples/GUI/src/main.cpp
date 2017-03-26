@@ -27,7 +27,7 @@ int main(int argc, char **argv) {
 
     GUI::System gui(window);
 
-    GUIMainMenu mainMenu(gui, fonts);
+    GUIMainMenu mainMenu(window, fonts);
 
     while (running) {
         window.update();

@@ -9,6 +9,7 @@
 #include <sunglasses/GUI/Control.h>
 #include <sunglasses/GUI/Drawable.h>
 #include <sunglasses/GUI/System.h>
+#include <sunglasses/Graphics/Window.h>
 
 #include <vector>
 #include <memory>
@@ -44,9 +45,9 @@ public:
     }
 
     /// Constructs the panel within the frame of the window
-    Panel(const System &system, const T &_background, bool _visible = true,
+    Panel(const graphics::Window &window, const T &_background, bool _visible = true,
             std::initializer_list<Control *> children = {}) :
-            Control(glm::ivec2(0, 0), system.getSize(), _visible, children),
+            Control(glm::ivec2(0, 0), window.getSize(), _visible, children),
             background(_background) {
 
     }

@@ -4,6 +4,8 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
+#include <functional>
+
 #include <sunglasses/GUI/Renderer2D.h>
 #include <sunglasses/GUI/Control.h>
 
@@ -13,17 +15,14 @@ namespace GUI {
 /// A GUI containing a window and a content view
 class System {
 public:
-    /// Constructs the GUI with a content view
+    /// Constructs the GUI
     System(graphics::Window &_window);
+
+    /// Changes the root control
+    void present(Control &control);
 
     /// Draws the GUI and swaps the window's buffers
     void draw();
-
-    /// Adds a child to the root control
-    void addChild(Control &control);
-
-    /// Gets the dimensions of the GUI viewing window
-    glm::ivec2 getSize() const;
 private:
     /// Called when the mouse moves
     void mouse_move(glm::ivec2 location);
@@ -60,17 +59,7 @@ private:
     Renderer2D renderer;
 
     /// The root control
-    class Root : public Control {
-    public:
-        Root(graphics::Window &window) :
-            Control(glm::ivec2(0), window.getSize()) {
-
-        }
-    protected:
-        virtual void draw(glm::ivec2 offset, Renderer2D &renderer) {
-
-        }
-    } root;
+    Control *root;
 };
 
 } // namespace

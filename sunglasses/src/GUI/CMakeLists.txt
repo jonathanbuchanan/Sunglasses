@@ -9,6 +9,7 @@ add_sources(
     Controller.cpp
     Font.cpp
     View3D.cpp
-) 
+    NavigationController.cpp
+)
 
 add_sources_to_parent()

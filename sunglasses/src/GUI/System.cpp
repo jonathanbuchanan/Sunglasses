@@ -10,8 +10,7 @@ namespace sunglasses {
 namespace GUI {
 
 System::System(graphics::Window &_window) :
-        root(_window), window(_window),
-        renderer(_window) {
+        window(_window), renderer(_window), root(nullptr) {
     connect(_window.cursor.signal_move, slot_move);
     connect(_window.cursor.signal_pressLeft, slot_pressLeft);
     connect(_window.cursor.signal_releaseLeft, slot_releaseLeft);
@@ -19,6 +18,10 @@ System::System(graphics::Window &_window) :
     connect(_window.cursor.signal_releaseMiddle, slot_releaseMiddle);
     connect(_window.cursor.signal_pressRight, slot_pressRight);
     connect(_window.cursor.signal_releaseRight, slot_releaseRight);
+}
+
+void System::present(Control &control) {
+    root = &control;
 }
 
 void System::draw() {
@@ -29,33 +32,27 @@ void System::draw() {
     window.clear();
 
     // Draw the GUI
-    root.drawAll(glm::ivec2(0), renderer);
+    if (root != nullptr)
+        root->drawAll(glm::ivec2(0), renderer);
 
     // Swap the window's buffers
     window.swapBuffers();
 }
 
-void System::addChild(Control &control) {
-    root.addChild(&control);
-}
-
-
-glm::ivec2 System::getSize() const {
-    return window.getSize();
-}
-
-
 
 void System::mouse_move(glm::ivec2 location) {
-    root.mouseMoved(glm::ivec2(0), location);
+    if (root != nullptr)
+        root->mouseMoved(glm::ivec2(0), location);
 }
 
 void System::mouse_pressLeft(glm::ivec2 mouse) {
-    root.mouseLeftPressed(glm::ivec2(0), mouse);
+    if (root != nullptr)
+        root->mouseLeftPressed(glm::ivec2(0), mouse);
 }
 
 void System::mouse_releaseLeft(glm::ivec2 mouse) {
-    root.mouseLeftReleased(glm::ivec2(0), mouse);
+    if (root != nullptr)
+        root->mouseLeftReleased(glm::ivec2(0), mouse);
 }
 
 void System::mouse_pressMiddle(glm::ivec2 mouse) {

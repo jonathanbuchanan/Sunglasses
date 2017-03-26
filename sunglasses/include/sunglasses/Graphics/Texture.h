@@ -10,6 +10,8 @@
 
 #include <GL/glew.h>
 
+#include <sunglasses/Core/Library.h>
+
 namespace sunglasses {
 
 namespace graphics {
@@ -142,6 +144,40 @@ public:
         DepthStencil = GL_DEPTH_STENCIL
     };
 
+    /// The 'parameter' object for the texture resource
+    struct Parameter {
+        /// Constructs the parameter
+        Parameter(std::string _path,
+                Format _format = Format::RGB,
+                TextureMinification _minification = TextureMinification::NearestMipmapLinear,
+                TextureMagnification _magnifcation = TextureMagnification::Linear,
+                TextureWrap _SWrap = TextureWrap::Repeat,
+                TextureWrap _TWrap = TextureWrap::Repeat);
+
+        /// The path to the file
+        std::string path;
+
+        /// The format of the texture
+        Format format;
+
+        /// The minification mode
+        TextureMinification minification;
+
+        /// The magnification mode
+        TextureMagnification magnification;
+
+        /// The S-Wrapping
+        TextureWrap SWrap;
+
+        /// The T-Wrapping
+        TextureWrap TWrap;
+    };
+
+    /// The 'library' object for the texture resource
+    struct LibraryParameter {
+
+    };
+
     /// Constructs a texture from a bitmap image
     template<typename T>
     Texture(const Image<T> &image,
@@ -163,11 +199,17 @@ public:
         TextureMagnification _magnification = TextureMagnification::Linear,
         TextureWrap _SWrap = TextureWrap::Repeat, TextureWrap _TWrap = TextureWrap::Repeat);
 
+    /// Constructs a texture from its library parameters
+    Texture(Parameter p, const LibraryParameter &l);
+
     /// Destroys the texture
     ~Texture();
 
     /// Gets the OpenGL texture
     operator int() { return texture; }
+
+    /// The library type for this resource
+    typedef Library<std::string, Texture, Parameter, LibraryParameter> LibraryT;
 private:
     /// Loads image data into a texture
     template<typename T>

@@ -38,7 +38,7 @@ public:
     void sizeViewportToWindow();
 
     /// Gets the size of the window
-    glm::ivec2 getSize();
+    glm::ivec2 getSize() const;
 
     /// Clears the window
     void clear(glm::vec4 = glm::vec4(1.0f));

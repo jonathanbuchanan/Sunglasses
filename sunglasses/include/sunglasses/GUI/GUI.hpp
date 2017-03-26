@@ -11,3 +11,4 @@
 #include <sunglasses/GUI/Controller.h>
 #include <sunglasses/GUI/Font.h>
 #include <sunglasses/GUI/View3D.h>
+#include <sunglasses/GUI/NavigationController.h>
