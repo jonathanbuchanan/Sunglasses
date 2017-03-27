@@ -20,6 +20,15 @@ void Control::drawAll(glm::ivec2 offset, Renderer2D &renderer) {
     }
 }
 
+void Control::close() {
+    unselect(State::Normal);
+}
+
+void Control::closeAll() {
+    close();
+    closeChildren();
+}
+
 void Control::mouseMoved(glm::ivec2 offset, glm::ivec2 mouse) {
     // Check to see if the mouse is within the control
     if (contains(offset, mouse)) {
@@ -64,6 +73,12 @@ void Control::mouseLeftReleased(glm::ivec2 offset, glm::ivec2 mouse) {
 void Control::drawChildren(glm::ivec2 offset, Renderer2D &renderer) {
     for (auto &child : children) {
         child->drawAll(offset + position, renderer);
+    }
+}
+
+void Control::closeChildren() {
+    for (auto &child : children) {
+        child->closeAll();
     }
 }
 

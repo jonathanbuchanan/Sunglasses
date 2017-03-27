@@ -24,6 +24,9 @@ friend NavigationController;
 public:
     /// Presents the controller on the system
     virtual void present(System &system) = 0;
+
+    /// Performs any necessary actions when this controller is not being viewed
+    virtual void close() = 0;
 protected:
     /// A pointer to the navigation controller currently using the controller
     NavigationController *navigationController = nullptr;
@@ -48,6 +51,11 @@ public:
     /// Presents the controller on the system
     virtual void present(System &system) {
         system.present(panel);
+    }
+
+    /// Performs any necessary actions when this controller is not being viewed
+    virtual void close() {
+        panel.closeAll();
     }
 
     /// The panel managed by the controller

@@ -31,6 +31,12 @@ public:
     /// Draws the control and the children
     void drawAll(glm::ivec2 offset, Renderer2D &renderer);
 
+    /// Prepares the control to be hidden from view
+    virtual void close();
+
+    /// Closes the control and the children
+    void closeAll();
+
 
     /// Called when the mouse moves
     void mouseMoved(glm::ivec2 offset, glm::ivec2 mouse);
@@ -88,6 +94,9 @@ protected:
 
     /// Draws all of the child controls
     void drawChildren(glm::ivec2 offset, Renderer2D &renderer);
+
+    /// Closes all of the child controls
+    void closeChildren();
 
     /// The state of the control
     State state;

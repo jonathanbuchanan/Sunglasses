@@ -10,19 +10,28 @@ NavigationController::NavigationController(System &_system) : system(_system) {
 }
 
 void NavigationController::push(IController &controller) {
+    /// Close the current top controller
+    if (!stack.empty())
+        top().close();
+
+    /// Push the next controller
     stack.push(controller);
 
     controller.navigationController = this;
 
-    ((IController &)stack.top()).present(system);
+    top().present(system);
 }
 
 void NavigationController::pop() {
+    /// Close the top controller
+    top().close();
     top().navigationController = nullptr;
 
+    /// Pop the stack
     stack.pop();
 
-    ((IController &)stack.top()).present(system);
+    if (!stack.empty())
+        top().present(system);
 }
 
 IController & NavigationController::top() {
