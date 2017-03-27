@@ -95,21 +95,29 @@ bool Control::contains(glm::ivec2 offset, glm::ivec2 point) {
 }
 
 void Control::highlight() {
+    if (state == State::Highlighted)
+        return;
     state = State::Highlighted;
     signal_highlighted.emit();
 }
 
 void Control::unhighlight() {
+    if (state == State::Normal)
+        return;
     state = State::Normal;
     signal_unhighlighted.emit();
 }
 
 void Control::select() {
+    if (state == State::Selected)
+        return;
     state = State::Selected;
     signal_selected.emit();
 }
 
 void Control::unselect(State next) {
+    if (state == next)
+        return;
     state = next;
     signal_deselected.emit();
 }

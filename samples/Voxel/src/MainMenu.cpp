@@ -8,9 +8,9 @@ MainMenu::MainMenu(graphics::Window &window, graphics::Texture::LibraryT &textur
     panel.addChild(options);
     panel.addChild(quit);
 
-    connect(play.signal_selected, slot_playPressed);
-    connect(options.signal_selected, slot_optionsPressed);
-    connect(quit.signal_selected, slot_quitPressed);
+    connect(play.signal_deselected, slot_playPressed);
+    connect(options.signal_deselected, slot_optionsPressed);
+    connect(quit.signal_deselected, slot_quitPressed);
 }
 
 void MainMenu::playPressed() {
