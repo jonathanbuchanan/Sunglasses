@@ -5,35 +5,37 @@
 
 using namespace sunglasses;
 
-
 #include "MainMenu.h"
 #include "OptionsMenu.h"
 
-int main(int argc, char **argv) {
-    bool running = true;
-
-    graphics::Window window(glm::ivec2(1920, 1080), "Voxel");
-
-    graphics::Texture::LibraryT textures({
-        {"stone", graphics::Texture::LibraryT::ResourceHandle(graphics::Texture::Parameter(
-                "./res/Graphics/Textures/stone.png", graphics::Texture::Format::RGBA, graphics::TextureMinification::Nearest, graphics::TextureMagnification::Nearest))}
-    });
-
-    LSlot<void()> slot_close([&running]() { running = false; });
-
-    connect(window.signal_close, slot_close);
-
-    GUI::System GUI(window);
-
-    MainMenu main(window, textures);
-
-    GUI::NavigationController nav(GUI);
-    nav.push(main);
-
-    while (running) {
-        window.update();
-        GUI.draw();
+class VoxelProgram : public Program {
+public:
+    VoxelProgram() :
+            Program(glm::ivec2(1920, 1080), "Voxel", {}) {
+                
     }
+    
+    virtual void start() {
+        connect(window.signal_close, slot_stop);
 
+        graphics::Texture::LibraryT textures({
+            {"stone", graphics::Texture::LibraryT::ResourceHandle(graphics::Texture::Parameter(
+                "./res/Graphics/Textures/stone.png", graphics::Texture::Format::RGBA, graphics::TextureMinification::Nearest, graphics::TextureMagnification::Nearest))}
+        });
+
+        MainMenu main(GUI, textures);
+
+        GUI::NavigationController nav(GUI);
+        nav.push(main);
+
+        run();
+    }
+private:
+    
+};
+
+int main(int argc, char **argv) {
+    VoxelProgram program = VoxelProgram();
+    program.start();
     return 0;
 }

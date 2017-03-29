@@ -39,6 +39,9 @@ void System::draw() {
     window.swapBuffers();
 }
 
+const graphics::Window & System::getWindow() {
+    return window;
+}
 
 void System::mouse_move(glm::ivec2 location) {
     if (root != nullptr)

@@ -23,6 +23,9 @@ public:
 
     /// Draws the GUI and swaps the window's buffers
     void draw();
+    
+    /// Returns a reference to its window
+    const graphics::Window & getWindow();
 private:
     /// Called when the mouse moves
     void mouse_move(glm::ivec2 location);

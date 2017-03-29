@@ -11,7 +11,7 @@ using namespace sunglasses::GUI;
 
 class GUIMainMenu : public BasicController {
 public:
-    GUIMainMenu(graphics::Window &window, Font::LibraryT &fontLibrary);
+    GUIMainMenu(System &system, Font::LibraryT &fontLibrary);
 private:
     /*Label label;
     Texture tex;

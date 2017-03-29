@@ -9,7 +9,7 @@ using namespace sunglasses;
 
 class MainMenu : public GUI::Controller<GUI::Drawable::Image> {
 public:
-    MainMenu(graphics::Window &window, graphics::Texture::LibraryT &textures);
+    MainMenu(GUI::System &_system, graphics::Texture::LibraryT &textures);
 private:
     void playPressed();
     void optionsPressed();
@@ -21,7 +21,6 @@ private:
 
     Slot<void(MainMenu::*)(), &MainMenu::playPressed> slot_playPressed = Slot<void(MainMenu::*)(), &MainMenu::playPressed>(*this);
     Slot<void(MainMenu::*)(), &MainMenu::optionsPressed> slot_optionsPressed = Slot<void(MainMenu::*)(), &MainMenu::optionsPressed>(*this);
-    Slot<void(MainMenu::*)(), &MainMenu::quitPressed> slot_quitPressed = Slot<void(MainMenu::*)(), &MainMenu::quitPressed>(*this);
 
     OptionsMenu optionsMenu;
 };

@@ -23,7 +23,7 @@ class IController {
 friend NavigationController;
 public:
     /// Presents the controller on the system
-    virtual void present(System &system) = 0;
+    virtual void present() = 0;
 
     /// Performs any necessary actions when this controller is not being viewed
     virtual void close() = 0;
@@ -43,13 +43,13 @@ class Controller : public IController {
 friend System;
 public:
     /// Constructs a view controller from the dimensions of the window
-    Controller(const graphics::Window &window, const T &background) :
-        panel(window, background) {
+    Controller(System &_system, const T &background) :
+        panel(_system.getWindow(), background), system(_system) {
 
     }
 
     /// Presents the controller on the system
-    virtual void present(System &system) {
+    virtual void present() {
         system.present(panel);
     }
 
@@ -60,6 +60,9 @@ public:
 
     /// The panel managed by the controller
     Panel<T> panel;
+protected:
+    /// A reference to the system that contains it
+    System &system;
 };
 
 /// A 'basic' controller

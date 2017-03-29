@@ -7,32 +7,31 @@
 
 using namespace sunglasses;
 
-int main(int argc, char **argv) {
-    bool running = true;
+class GUIProgram : public Program {
+public:
+    GUIProgram() :
+            Program(glm::ivec2(640, 480), "GUI Demo", {}) {
 
-    GUI::Font::LibraryT fonts({
-        {"arial", GUI::Font::LibraryT::ResourceHandle(GUI::Font::Parameter("/usr/share/fonts/TTF/Hack-Regular.ttf", glm::vec2(12, 12), glm::ivec2(220, 220)))}
-    });
-
-    Font &arial = fonts.at("arial");
-
-    graphics::Window window = graphics::Window(glm::ivec2(640, 480), "GUI Demo");
-
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-    LSlot<void()> slot_close = LSlot<void()>([&running]() { running = false; });
-
-    connect(window.signal_close, slot_close);
-
-    GUI::System gui(window);
-
-    GUIMainMenu mainMenu(window, fonts);
-
-    while (running) {
-        window.update();
-        gui.draw();
     }
+
+    virtual void start() {
+        connect(window.signal_close, slot_stop);
+        
+        GUI::Font::LibraryT fonts({
+            {"arial", GUI::Font::LibraryT::ResourceHandle(GUI::Font::Parameter("/usr/share/fonts/TTF/Hack-Regular.ttf", glm::vec2(12, 12), glm::ivec2(220, 220)))}
+        });
+        GUIMainMenu mainMenu(GUI, fonts);
+        mainMenu.present();
+
+        run();
+    }
+private:
+};
+
+int main(int argc, char **argv) {
+    GUIProgram program = GUIProgram();
+
+    program.start();
 
     return 0;
 }

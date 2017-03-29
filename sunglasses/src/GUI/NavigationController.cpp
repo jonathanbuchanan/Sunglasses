@@ -5,7 +5,8 @@
 namespace sunglasses {
 namespace GUI {
 
-NavigationController::NavigationController(System &_system) : system(_system) {
+NavigationController::NavigationController(System &_system) :
+        system(_system) {
 
 }
 
@@ -19,7 +20,7 @@ void NavigationController::push(IController &controller) {
 
     controller.navigationController = this;
 
-    top().present(system);
+    top().present();
 }
 
 void NavigationController::pop() {
@@ -31,7 +32,7 @@ void NavigationController::pop() {
     stack.pop();
 
     if (!stack.empty())
-        top().present(system);
+        top().present();
 }
 
 IController & NavigationController::top() {

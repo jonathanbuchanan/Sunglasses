@@ -1,8 +1,8 @@
 #include "MainMenu.h"
 
-MainMenu::MainMenu(graphics::Window &window, graphics::Texture::LibraryT &textures) :
-    GUI::Controller<GUI::Drawable::Image>(window, GUI::Drawable::Image(textures["stone"], glm::ivec2(128))),
-    optionsMenu(window)
+MainMenu::MainMenu(GUI::System &_system, graphics::Texture::LibraryT &textures) :
+    GUI::Controller<GUI::Drawable::Image>(_system, GUI::Drawable::Image(textures["stone"], glm::ivec2(128))),
+    optionsMenu(system)
 {
     panel.addChild(play);
     panel.addChild(options);
@@ -10,7 +10,7 @@ MainMenu::MainMenu(graphics::Window &window, graphics::Texture::LibraryT &textur
 
     connect(play.signal_deselected, slot_playPressed);
     connect(options.signal_deselected, slot_optionsPressed);
-    connect(quit.signal_deselected, slot_quitPressed);
+    //connect(quit.signal_deselected, );
 }
 
 void MainMenu::playPressed() {
