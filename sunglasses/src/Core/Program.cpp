@@ -2,8 +2,8 @@
 
 namespace sunglasses {
 
-Program::Program(glm::ivec2 windowSize, std::string windowTitle, std::initializer_list<Module *> _modules) :
-        window(windowSize, windowTitle), GUI(window), modules(_modules) {
+Program::Program(std::initializer_list<Module *> _modules) :
+        modules(_modules) {
 
 }
 

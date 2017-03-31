@@ -9,7 +9,7 @@ using namespace sunglasses;
 
 class MainMenu : public GUI::Controller<GUI::Drawable::Image> {
 public:
-    MainMenu(GUI::System &_system, graphics::Texture::LibraryT &textures);
+    MainMenu(GUI::GUIModule &_system, graphics::Texture::LibraryT &textures);
 private:
     void playPressed();
     void optionsPressed();

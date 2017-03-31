@@ -1,13 +1,12 @@
 #ifndef PROGRAM_H
 #define PROGRAM_H
 
-#include <sunglasses/Graphics/Window.h>
-#include <sunglasses/GUI/System.h>
-
 #include <set>
 #include <functional>
 #include <initializer_list>
 #include <glm/glm.hpp>
+
+#include <sunglasses/Core/Signal.h>
 
 namespace sunglasses {
 
@@ -29,7 +28,7 @@ public:
 class Program {
 public:
     /// Constructs the program
-    Program(glm::ivec2 windowSize, std::string windowTitle, std::initializer_list<Module *> _modules);
+    Program(std::initializer_list<Module *> _modules);
 
     /// Starts the program and should call run()
     virtual void start() = 0;
@@ -46,12 +45,6 @@ public:
 protected:
     /// The code to be executed every game loop
     virtual void loop();
-
-    /// The window of the program
-    graphics::Window window;
-
-    /// The GUI System
-    GUI::System GUI;
 
     /// The set of modules in the program
     std::set<Module *> modules;

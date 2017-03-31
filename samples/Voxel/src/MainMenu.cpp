@@ -1,6 +1,6 @@
 #include "MainMenu.h"
 
-MainMenu::MainMenu(GUI::System &_system, graphics::Texture::LibraryT &textures) :
+MainMenu::MainMenu(GUI::GUIModule &_system, graphics::Texture::LibraryT &textures) :
     GUI::Controller<GUI::Drawable::Image>(_system, GUI::Drawable::Image(textures["stone"], glm::ivec2(128))),
     optionsMenu(system)
 {

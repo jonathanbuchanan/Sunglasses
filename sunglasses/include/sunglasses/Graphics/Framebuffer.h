@@ -6,6 +6,7 @@
 #include <GL/glew.h>
 
 #include <sunglasses/Graphics/Texture.h>
+#include <sunglasses/Graphics/Window.h>
 
 #include <tuple>
 #include <utility>
@@ -64,15 +65,50 @@ private:
 /// The interface for the Framebuffer class
 class IFramebuffer {
 public:
+    /// Activates (binds) the framebuffer
     virtual void activate() = 0;
 
+    /// Clears the framebuffer
     virtual void clear(glm::vec4 color) = 0;
+    
+    /// Returns the size of the framebuffer
+    virtual glm::ivec2 getSize() = 0;
 
+    /// Destroys the framebuffer
     virtual ~IFramebuffer() {
 
     }
 private:
 
+};
+
+/// A special framebuffer for the window
+class WindowFramebuffer : public IFramebuffer {
+public:
+    /// Constructs the framebuffer with a reference to the window
+    WindowFramebuffer(const Window &_window) : window(_window) {
+
+    }
+
+    /// Activates (binds) the framebuffer
+    virtual void activate() {
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    }
+
+    /// Clears the framebuffer
+    virtual void clear(glm::vec4 color) {
+        glClearColor(color.r, color.g, color.b, color.a);
+
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    }
+
+    /// Returns the size of the framebuffer
+    virtual glm::ivec2 getSize() {
+        return window.getSize();
+    }
+private:
+    /// A reference to the window
+    const Window &window;
 };
 
 /// An object containing buffers to be rendered to
@@ -81,7 +117,7 @@ class Framebuffer : public IFramebuffer {
 public:
     /// Constructs the framebuffer
     Framebuffer(glm::ivec2 _size) :
-            attachments(_size) {
+            attachments(_size), size(_size) {
         glGenFramebuffers(1, &framebuffer);
 
         glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
@@ -95,6 +131,11 @@ public:
 
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }
+    
+    /// Destroys the framebuffer
+    virtual ~Framebuffer() {
+        glDeleteFramebuffers(1, &framebuffer);
+    }
 
     /// Binds the framebuffer for rendering
     virtual void activate() {
@@ -107,16 +148,16 @@ public:
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
+    
+    /// Returns the size of the framebuffer
+    virtual glm::ivec2 getSize() {
+        return size;
+    }
 
     /// Returns the attachment at the given index
     template<int N>
     const typename std::tuple_element<N, std::tuple<T...>>::type & getAttachment() {
         return std::get<N>(attachments);
-    }
-
-    /// Destroys the framebuffer
-    virtual ~Framebuffer() {
-        glDeleteFramebuffers(1, &framebuffer);
     }
 private:
     /// Attaches all the attachments

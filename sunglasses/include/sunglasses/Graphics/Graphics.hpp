@@ -16,3 +16,4 @@
 #include <sunglasses/Graphics/Framebuffer.h>
 #include <sunglasses/Graphics/FramebufferQueue.h>
 #include <sunglasses/Graphics/Window.h>
+#include <sunglasses/Graphics/GraphicsModule.h>

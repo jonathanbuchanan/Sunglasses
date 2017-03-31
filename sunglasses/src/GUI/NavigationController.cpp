@@ -5,7 +5,7 @@
 namespace sunglasses {
 namespace GUI {
 
-NavigationController::NavigationController(System &_system) :
+NavigationController::NavigationController(GUIModule &_system) :
         system(_system) {
 
 }

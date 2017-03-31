@@ -13,6 +13,7 @@ add_sources(
     Framebuffer.cpp
     FramebufferQueue.cpp
     Window.cpp
+    GraphicsModule.cpp
 )
 
 add_subdirectory(Loaders)

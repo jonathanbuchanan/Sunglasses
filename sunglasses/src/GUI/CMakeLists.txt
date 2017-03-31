@@ -1,5 +1,5 @@
 add_sources(
-    System.cpp
+    GUIModule.cpp
     Button.cpp
     Control.cpp
     Drawable.cpp

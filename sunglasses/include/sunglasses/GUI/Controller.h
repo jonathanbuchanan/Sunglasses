@@ -4,7 +4,9 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
+#include <sunglasses/GUI/GUIModule.h>
 #include <sunglasses/GUI/Panel.h>
+#include <sunglasses/Graphics/GraphicsModule.h>
 
 namespace sunglasses {
 namespace graphics {
@@ -15,7 +17,6 @@ class Window;
 
 namespace GUI {
 
-class System;
 class NavigationController;
 
 /// The interface for a controller
@@ -40,11 +41,11 @@ protected:
  */
 template<typename T>
 class Controller : public IController {
-friend System;
+friend GUIModule;
 public:
     /// Constructs a view controller from the dimensions of the window
-    Controller(System &_system, const T &background) :
-        panel(_system.getWindow(), background), system(_system) {
+    Controller(GUIModule &_system, const T &background) :
+        panel(_system.getGraphicsModule().window, background), system(_system) {
 
     }
 
@@ -62,7 +63,7 @@ public:
     Panel<T> panel;
 protected:
     /// A reference to the system that contains it
-    System &system;
+    GUIModule &system;
 };
 
 /// A 'basic' controller

@@ -8,7 +8,6 @@
 
 #include <sunglasses/GUI/Control.h>
 #include <sunglasses/GUI/Drawable.h>
-#include <sunglasses/GUI/System.h>
 #include <sunglasses/Graphics/Window.h>
 
 #include <vector>
@@ -19,7 +18,6 @@ namespace GUI {
 
 class ViewController;
 class Renderer2D;
-class System;
 
 /// The state of a control
 enum class ControlState {

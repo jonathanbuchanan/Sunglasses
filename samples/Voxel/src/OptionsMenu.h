@@ -7,7 +7,7 @@ using namespace sunglasses;
 
 class OptionsMenu : public GUI::Controller<GUI::Drawable::Color> {
 public:
-    OptionsMenu(GUI::System &_system);
+    OptionsMenu(GUI::GUIModule &_system);
 private:
     void donePressed();
 

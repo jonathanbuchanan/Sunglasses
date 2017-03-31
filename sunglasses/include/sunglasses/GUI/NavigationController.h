@@ -8,13 +8,13 @@ namespace sunglasses {
 namespace GUI {
 
 class IController;
-class System;
+class GUIModule;
 
 /// A class that allows for the manipulation of Controllers in the GUI
 class NavigationController {
 public:
     /// Constructs a navigation controller
-    NavigationController(System &_system);
+    NavigationController(GUIModule &_system);
 
 
     /// Pushes a controller to the top and presents it
@@ -30,7 +30,7 @@ private:
     std::stack<std::reference_wrapper<IController>> stack;
 
     /// A reference to the system
-    System &system;
+    GUIModule &system;
 };
 
 }

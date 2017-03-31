@@ -10,15 +10,15 @@ using namespace sunglasses;
 
 class VoxelProgram : public Program {
 public:
-    VoxelProgram() :
-            Program(glm::ivec2(1920, 1080), "Voxel", {}) {
+    VoxelProgram(graphics::GraphicsModule &graphics) :
+            Program({&graphics}) {
                 
     }
     
     virtual void start() {
-        connect(window.signal_close, slot_stop);
+        //connect(window.signal_close, slot_stop);
 
-        graphics::Texture::LibraryT textures({
+        /*graphics::Texture::LibraryT textures({
             {"stone", graphics::Texture::LibraryT::ResourceHandle(graphics::Texture::Parameter(
                 "./res/Graphics/Textures/stone.png", graphics::Texture::Format::RGBA, graphics::TextureMinification::Nearest, graphics::TextureMagnification::Nearest))}
         });
@@ -26,16 +26,33 @@ public:
         MainMenu main(GUI, textures);
 
         GUI::NavigationController nav(GUI);
-        nav.push(main);
+        nav.push(main);*/
 
         run();
     }
-private:
-    
 };
 
 int main(int argc, char **argv) {
-    VoxelProgram program = VoxelProgram();
+    graphics::GraphicsModule graphics = graphics::GraphicsModule(glm::ivec2(1920, 1080), "Voxel", {});
+    graphics::WindowFramebuffer wbuf = graphics::WindowFramebuffer(graphics.window);
+    graphics::Pass<graphics::WindowFramebuffer> guipass =
+        graphics::Pass<graphics::WindowFramebuffer>(wbuf, glm::vec4(1.0f));
+    graphics.addPass(guipass);
+    
+    graphics::Texture::LibraryT textures({
+            {"stone", graphics::Texture::LibraryT::ResourceHandle(graphics::Texture::Parameter(
+                "./res/Graphics/Textures/stone.png", graphics::Texture::Format::RGBA, graphics::TextureMinification::Nearest, graphics::TextureMagnification::Nearest))}
+    });
+    
+    GUI::GUIModule gui = GUI::GUIModule(graphics);
+    
+    MainMenu menu(gui, textures);
+    
+    GUI::NavigationController nav(gui);
+    nav.push(menu);
+    
+    
+    VoxelProgram program = VoxelProgram(graphics);
     program.start();
     return 0;
 }
