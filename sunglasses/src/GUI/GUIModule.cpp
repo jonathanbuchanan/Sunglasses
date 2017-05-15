@@ -9,7 +9,7 @@ namespace sunglasses {
 namespace GUI {
 
 GUIModule::GUIModule(graphics::GraphicsModule &_graphicsModule) :
-        graphicsModule(_graphicsModule), renderer(graphicsModule.window), root(nullptr) {
+        graphicsModule(_graphicsModule), root(nullptr) {
     connect(graphicsModule.window.cursor.signal_move, slot_move);
     connect(graphicsModule.window.cursor.signal_pressLeft, slot_pressLeft);
     connect(graphicsModule.window.cursor.signal_releaseLeft, slot_releaseLeft);
@@ -22,23 +22,6 @@ GUIModule::GUIModule(graphics::GraphicsModule &_graphicsModule) :
 void GUIModule::present(Control &control) {
     root = &control;
 }
-
-/*
-void GUIModule::draw() {
-    // Size the viewport
-    graphicsModule.window.sizeViewportToWindow();
-
-    // Clear the window
-    window.clear();
-
-    // Draw the GUI
-    if (root != nullptr)
-        root->drawAll(glm::ivec2(0), renderer);
-
-    // Swap the window's buffers
-    window.swapBuffers();
-}
-*/
 
 void GUIModule::update() {
     

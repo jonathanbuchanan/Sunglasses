@@ -18,5 +18,6 @@ add_sources(
 
 add_subdirectory(Loaders)
 add_subdirectory(RenderNodes)
+add_subdirectory(2D)
 
 add_sources_to_parent()

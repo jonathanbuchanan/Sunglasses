@@ -7,7 +7,6 @@
 #include <functional>
 
 #include <sunglasses/Core/Program.h>
-#include <sunglasses/GUI/Renderer2D.h>
 #include <sunglasses/GUI/Control.h>
 
 namespace sunglasses {
@@ -67,9 +66,6 @@ private:
 
     /// A reference to the graphics module
     graphics::GraphicsModule &graphicsModule;
-
-    /// The renderer
-    Renderer2D renderer;
 
     /// The root control
     Control *root;

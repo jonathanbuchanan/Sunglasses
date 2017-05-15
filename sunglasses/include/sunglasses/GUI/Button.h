@@ -5,8 +5,6 @@
 #define BUTTON_H
 
 #include <sunglasses/GUI/Panel.h>
-#include <sunglasses/GUI/Drawable.h>
-#include <sunglasses/GUI/Renderer2D.h>
 #include <sunglasses/Core/Signal.h>
 
 #include <functional>
@@ -37,7 +35,7 @@ public:
     R selectedBackground;
 protected:
     /// Draws the button
-    virtual void draw(glm::ivec2 offset, Renderer2D &renderer) {
+    /*virtual void draw(glm::ivec2 offset, Renderer2D &renderer) {
         switch (state) {
         case State::Normal:
             normalBackground.draw(offset + position, size, renderer);
@@ -49,12 +47,12 @@ protected:
             selectedBackground.draw(offset + position, size, renderer);
             break;
         }
-    }
+    }*/
 private:
 };
 
 /// A 'basic' button
-using BasicButton = Button<Drawable::Color, Drawable::Color, Drawable::Color>;
+//using BasicButton = Button<Drawable::Color, Drawable::Color, Drawable::Color>;
 
 } // namespace
 } // namespace

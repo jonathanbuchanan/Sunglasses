@@ -3,6 +3,7 @@
 // See LICENSE.md for details.
 #include <sunglasses/Graphics/Loaders/Loaders.hpp>
 #include <sunglasses/Graphics/RenderNodes/RenderNodes.hpp>
+#include <sunglasses/Graphics/2D/2D.hpp>
 #include <sunglasses/Graphics/Camera.h>
 #include <sunglasses/Graphics/Mesh.h>
 #include <sunglasses/Graphics/Primitives.h>

@@ -7,7 +7,6 @@
 #include <glm/glm.hpp>
 
 #include <sunglasses/GUI/Control.h>
-#include <sunglasses/GUI/Drawable.h>
 #include <sunglasses/Graphics/Window.h>
 
 #include <vector>
@@ -69,14 +68,14 @@ protected:
  * A 'basic' panel, which consists of a simple
  * single-color only background.
  */
-using BasicPanel = Panel<Drawable::Color>;
+//using BasicPanel = Panel<Drawable::Color>;
 
 /// An 'image' panel
 /**
  * An 'image' panel, which consists of an image
  * background.
  */
-using ImagePanel = Panel<Drawable::Image>;
+//using ImagePanel = Panel<Drawable::Image>;
 
 } // namespace
 } // namespace

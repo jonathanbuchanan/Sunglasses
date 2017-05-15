@@ -1,11 +1,8 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-
 #ifndef RENDERER_H
 #define RENDERER_H
-
-#include <iostream>
 
 #include <sunglasses/Graphics/RenderNode.h>
 #include <sunglasses/Graphics/TexturedQuad.h>
@@ -13,7 +10,6 @@
 #include <sunglasses/Graphics/Camera.h>
 
 namespace sunglasses {
-
 namespace graphics {
 
 class Scene;

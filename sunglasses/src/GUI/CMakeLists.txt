@@ -2,9 +2,7 @@ add_sources(
     GUIModule.cpp
     Button.cpp
     Control.cpp
-    Drawable.cpp
     Label.cpp
-    Renderer2D.cpp
     Panel.cpp
     Controller.cpp
     Font.cpp

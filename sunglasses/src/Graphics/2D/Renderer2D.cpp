@@ -1,7 +1,7 @@
 // Copyright 2016 Jonathan Buchanan.
 // This file is part of Sunglasses, which is licensed under the MIT License.
 // See LICENSE.md for details.
-#include <sunglasses/GUI/Renderer2D.h>
+#include <sunglasses/Graphics/2D/Renderer2D.h>
 
 #include <string>
 
@@ -10,7 +10,7 @@
 #include <glm/gtx/string_cast.hpp>
 
 namespace sunglasses {
-namespace GUI {
+namespace graphics {
 
 const std::string fill_vertex = R"(
 #version 330 core
@@ -122,7 +122,21 @@ Renderer2D::Renderer2D(sunglasses::graphics::Window &_window) :
 
 }
 
-void Renderer2D::draw(glm::ivec2 origin, glm::ivec2 size, glm::vec4 color) {
+void Renderer2D::draw() {
+
+}
+
+void Renderer2D::drawItem(const ColoredRectangle &rectangle) {
+    glm::ivec2 position = rectangle.position;
+    glm::ivec2 size = rectangle.size;
+    glm::vec4 color = rectangle.color;
+}
+
+void Renderer2D::drawItem(const TexturedRectangle &rectangle) {
+
+}
+
+/*void Renderer2D::draw(glm::ivec2 origin, glm::ivec2 size, glm::vec4 color) {
     fillShader.use();
 
     // Pass the projection matrix
@@ -179,9 +193,9 @@ void Renderer2D::draw(glm::ivec2 origin, glm::ivec2 size, glm::ivec2 textureSize
 
     // Draw the rectangle
     rectangle.draw();
-}
+}*/
 
-void Renderer2D::draw(glm::ivec2 origin, std::string text, glm::vec4 color, Font &font) {
+/*void Renderer2D::draw(glm::ivec2 origin, std::string text, glm::vec4 color, Font &font) {
     textShader.use();
 
     // Pass the projection matrix
@@ -215,7 +229,7 @@ void Renderer2D::draw(glm::ivec2 origin, std::string text, glm::vec4 color, Font
         // Increase the pen position
         pen += (glyph.advance >> 6);
     }
-}
+}*/
 
 } // namespace
 } // namespace

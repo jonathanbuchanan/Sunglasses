@@ -3,8 +3,6 @@
 // See LICENSE.md for details.
 #include <sunglasses/GUI/Panel.h>
 
-#include <sunglasses/GUI/Renderer2D.h>
-
 namespace sunglasses {
 namespace GUI {
 

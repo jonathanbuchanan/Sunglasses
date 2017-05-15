@@ -45,7 +45,7 @@ private:
 };
 
 /// Represents a 'pass' in the rendering process
-template<typename F>
+template<typename F, typename R>
 class Pass : public IPass {
 public:
     /// Constructs the pass with a framebuffer and a clear color
@@ -67,12 +67,14 @@ public:
         framebuffer.clear(clearColor);
 
         // 4. draw
-        // a. shaders
-        // b. draw triangles
+        renderer.draw();
     }
 private:
     /// The framebuffer used in the pass
     F &framebuffer;
+    
+    /// The renderer used in the pass
+    R &renderer;
 
     /// The clear color
     glm::vec4 clearColor;

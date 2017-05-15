@@ -5,8 +5,6 @@
 #define LABEL_H
 
 #include <sunglasses/GUI/Control.h>
-#include <sunglasses/GUI/Drawable.h>
-#include <sunglasses/GUI/Renderer2D.h>
 
 #include <string>
 
@@ -17,13 +15,13 @@ namespace GUI {
 class Label : public Control {
 public:
     /// Constructs the label with a size, position, and text drawable
-    Label(glm::ivec2 _size, glm::ivec2 _position, const Drawable::Text &_text);
+    //Label(glm::ivec2 _size, glm::ivec2 _position, const Drawable::Text &_text);
 
     /// The text drawable
-    Drawable::Text text;
+    //Drawable::Text text;
 protected:
     /// Draws the label
-    virtual void draw(glm::ivec2 offset, Renderer2D &renderer);
+    //virtual void draw(glm::ivec2 offset, Renderer2D &renderer);
 private:
 
 };

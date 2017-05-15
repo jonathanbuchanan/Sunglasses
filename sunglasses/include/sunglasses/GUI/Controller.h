@@ -37,14 +37,12 @@ protected:
 /**
  * This class manages an instance of View. This view typically
  * takes up the entire window.
- * @see View
  */
-template<typename T>
 class Controller : public IController {
 friend GUIModule;
 public:
     /// Constructs a view controller from the dimensions of the window
-    Controller(GUIModule &_system, const T &background) :
+    Controller(GUIModule &_system, const BasicPanel &background) :
         panel(_system.getGraphicsModule().window, background), system(_system) {
 
     }
@@ -60,14 +58,14 @@ public:
     }
 
     /// The panel managed by the controller
-    Panel<T> panel;
+    BasicPanel panel;
 protected:
     /// A reference to the system that contains it
     GUIModule &system;
 };
 
 /// A 'basic' controller
-using BasicController = Controller<Drawable::Color>;
+//using BasicController = Controller<Drawable::Color>;
 
 } // namespace
 } // namespace
