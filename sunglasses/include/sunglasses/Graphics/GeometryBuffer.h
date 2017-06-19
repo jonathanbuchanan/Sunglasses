@@ -12,11 +12,11 @@ namespace sunglasses {
 namespace graphics {
 
 /// A object that contains a buffer of geometry data
-template<template<size_t, typename> class... T>
+template<typename T>
 class GeometryBuffer {
 public:
     /// The vertex type
-    typedef WIP::Vertex<T...> Vertex_T;
+    typedef T Vertex_T;
 
     /// Constructs the buffer from a set of vertices and indices
     GeometryBuffer(std::initializer_list<Vertex_T> _vertices, std::initializer_list<GLuint> _indices) :

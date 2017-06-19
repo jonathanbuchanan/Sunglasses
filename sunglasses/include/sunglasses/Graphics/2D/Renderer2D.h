@@ -59,7 +59,7 @@ private:
     sunglasses::graphics::Shader textShader;
 
     /// The rectangle data used to draw rectangles
-    graphics::GeometryBuffer<WIP::Position2, WIP::TextureCoordinates> rectangle = {{
+    graphics::GeometryBuffer<WIP::Vertex2D> rectangle = {{
         {{0.0f, 0.0f}, {0.0f, 0.0f}},
         {{0.0f, 1.0f}, {0.0f, 1.0f}},
         {{1.0f, 0.0f}, {1.0f, 0.0f}},

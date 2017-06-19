@@ -7,8 +7,9 @@ pkg_search_module(GLFW REQUIRED glfw3)
 
 add_executable(Voxel-Executable src/main.cpp src/MainMenu.cpp src/OptionsMenu.cpp)
 
-include_directories(/usr/include/freetype2
-    "../../sunglasses/include/")
+include_directories("/usr/local/include/freetype2"
+    "../../sunglasses/include/"
+    "/usr/local/include/")
 
 target_link_libraries(Voxel-Executable sunglasses freetype SOIL GLEW libGL.so assimp openal alut ${GLFW_LIBRARIES} X11 Xxf86vm pthread dl Xrandr Xinerama Xi Xcursor lua)
 set(CMAKE_CXX_FLAGS "-std=c++14 -g")

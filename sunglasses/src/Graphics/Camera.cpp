@@ -8,16 +8,16 @@
 
 namespace sunglasses {
 
-namespace graphics {
-
-template<> const std::string LuaTypeRegistrar<Camera>::typeName = "Camera";
-template<> const std::map<std::string, Scripting::LuaTypeDataMemberBase<Camera> *> LuaTypeRegistrar<Camera>::dataMembers = {
+template<> const std::string LuaTypeRegistrar<graphics::Camera>::typeName = "Camera";
+template<> const std::map<std::string, Scripting::LuaTypeDataMemberBase<graphics::Camera> *> LuaTypeRegistrar<graphics::Camera>::dataMembers = {
     {"yaw", new LuaTypeDataMember<float, graphics::Camera>("yaw", &graphics::Camera::yaw)},
     {"pitch", new LuaTypeDataMember<float, graphics::Camera>("pitch", &graphics::Camera::pitch)},
     {"position", new LuaComplexDataMember<glm::vec3, graphics::Camera>("position", &graphics::Camera::position)},
     {"direction", new LuaComplexDataMember<glm::vec3, graphics::Camera>("direction", &graphics::Camera::direction)},
     {"up", new LuaComplexDataMember<glm::vec3, graphics::Camera>("up", &graphics::Camera::cameraUp)}
 };
+
+namespace graphics {
 
 Camera::Camera() {
 

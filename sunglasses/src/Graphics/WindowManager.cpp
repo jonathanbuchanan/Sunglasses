@@ -6,11 +6,11 @@
 
 namespace sunglasses {
 
-namespace graphics {
-
 template<> const std::map<std::string, Scripting::LuaTypeDataMemberBase<graphics::WindowManager> *> LuaTypeRegistrar<graphics::WindowManager>::dataMembers = {
     {"setWindowShouldClose", new LuaTypeMemberFunction<graphics::WindowManager, void>("setWindowShouldClose", &graphics::WindowManager::setWindowShouldClose)}
 };
+
+namespace graphics {
 
 WindowManager::WindowManager() {
 

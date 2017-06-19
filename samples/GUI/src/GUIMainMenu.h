@@ -7,7 +7,7 @@
 #include <sunglasses/Sunglasses.hpp>
 
 using namespace sunglasses;
-using namespace sunglasses::GUI;
+using namespace GUI;
 
 class GUIMainMenu : public BasicController {
 public:

@@ -4,13 +4,19 @@ cmake_minimum_required(VERSION 2.8)
 
 find_package(PkgConfig REQUIRED)
 pkg_search_module(GLFW REQUIRED glfw3)
-
+    
 add_executable(GUI-Executable
     src/main.cpp
     src/GUIMainMenu.cpp)
-
-include_directories(/usr/include/freetype2
-    "../../sunglasses/include")
+    
+include_directories("/usr/local/include/freetype2/"
+    "../../sunglasses/include"
+    "/usr/local/include")
+    
+find_package(PkgConfig)
+pkg_search_module(FT2 REQUIRED freetype2)
+message(${FT2_CFLAGS})
+set(CMAKE_CXX_FLAGS "${FT2_CFLAGS} -std=c++14 -g -Wall -Wextra")
 
 #find_library(SUNGLASSES_LIB
 #    sunglasses
