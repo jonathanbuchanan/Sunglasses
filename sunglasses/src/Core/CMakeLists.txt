@@ -12,7 +12,6 @@ add_sources(
     Process.cpp
     Signal.cpp
     Program.cpp
-    Tree.cpp
 )
 
 add_sources_to_parent()
