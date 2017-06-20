@@ -25,7 +25,7 @@ namespace graphics {
 
 class Shader;
 
-class Camera : public Node {
+class Camera : public Node<Camera> {
 friend LuaTypeRegistrar<Camera>;
 public:
     Camera();

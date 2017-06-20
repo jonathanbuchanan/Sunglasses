@@ -21,7 +21,7 @@ namespace graphics {
  * behavior, override the render member function. You must also override the bindOutputs
  * member function, which prepares the outputs for the next render node.
  */
-class RenderNode : public Node {
+class RenderNode : public Node<RenderNode> {
 public:
     /// The default constructor
     RenderNode();

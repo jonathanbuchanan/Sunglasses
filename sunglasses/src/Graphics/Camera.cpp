@@ -45,7 +45,6 @@ void Camera::init() {
     script.registerObject(this, "camera");
     services.get<GlobalScriptingEnvironment>()->registerScript(this, script);
 
-    setIgnoreTags(true);
     addAction("update", &Camera::update);
     addAction("uniform", &Camera::uniform);
 }

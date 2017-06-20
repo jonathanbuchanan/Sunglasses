@@ -121,11 +121,11 @@ public:
      */
     TextureMapper textures;
 
-    void uniforms(Node *root);
+    void uniforms(INode *root);
 
     void use();
-    void use(std::string tag, float delta, Node *root);
-    void send(std::string tag, float delta, Node *root);
+    void use(std::string tag, float delta, INode *root);
+    void send(std::string tag, float delta, INode *root);
 
     /// Returns the next index of an array in the shader.
     /**

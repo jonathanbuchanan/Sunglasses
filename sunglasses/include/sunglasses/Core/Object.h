@@ -24,7 +24,7 @@ class GlobalScriptingEnvironment;
  * scene graph. It has built-in support for graphics, audio, physics, game logic
  * (coming), and AI (coming).
  */
-class Object : public Node {
+class Object : public Node<Object> {
     friend GlobalScriptingEnvironment;
     friend LuaTypeRegistrar<Object>;
 public:

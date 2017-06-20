@@ -5,7 +5,7 @@
 #ifndef POINTLIGHTOBJECT_H
 #define POINTLIGHTOBJECT_H
 
-#include "../Core/Node.h"
+#include <sunglasses/Core/Object.h>
 
 #include <glm/glm.hpp>
 #include <GL/glew.h>
@@ -18,7 +18,7 @@ namespace sunglasses {
  * point light has a color and position, and its light attenuates, meaning that
  * the light gets less intense as you go farther away.
  */
-class PointLight : public Node {
+class PointLight : public Object {
 public:
     /// A constructor
     PointLight();

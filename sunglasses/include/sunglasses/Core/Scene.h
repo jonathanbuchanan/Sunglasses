@@ -47,13 +47,13 @@ public:
     virtual void cycle();
 
     /// Gets the root member (Object pointer).
-    Node * getRoot() { return root.get(); }
+    INode * getRoot() { return root.get(); }
 
     /// Sets the window member (GLFWwindow pointer).
     void setWindow(GLFWwindow *_window) { window = _window; }
 protected:
     /// A pointer to the root object in the scene graph
-    std::unique_ptr<Node> root;
+    std::unique_ptr<INode> root;
 
     /// A pointer to the scene renderer
     graphics::Renderer *renderer;

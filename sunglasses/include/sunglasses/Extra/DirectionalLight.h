@@ -5,7 +5,7 @@
 #ifndef DIRECTIONALLIGHT_H
 #define DIRECTIONALLIGHT_H
 
-#include "../Core/Node.h"
+#include <sunglasses/Core/Object.h>
 
 #include <glm/glm.hpp>
 #include <GL/glew.h>
@@ -18,7 +18,7 @@ namespace sunglasses {
  * directional light has a color and a direction. All of its rays are parallel
  * so it has no position.
  */
-class DirectionalLight : public Node {
+class DirectionalLight : public Object {
 public:
     /// A constructor
     DirectionalLight();

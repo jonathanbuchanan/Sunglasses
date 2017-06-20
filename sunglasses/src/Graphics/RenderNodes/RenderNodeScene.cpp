@@ -67,8 +67,7 @@ void RenderNodeScene::render(Action action) {
         Action bind = Action("bindOutputs");
         bind.addParameter("shader", &shaders[i].second);
 
-        for (int i = 0; i < getParentsSize(); ++i)
-            sendAction(bind, getParentAtIndex(i));
+        sendAction(bind, parent);
 
         Action uniform("uniform");
         uniform.addParameter("shader", &shaders[i].second);

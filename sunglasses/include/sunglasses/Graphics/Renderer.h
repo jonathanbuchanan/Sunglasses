@@ -26,9 +26,9 @@ public:
 protected:
     // Scene Objects
     Scene *scene;
-    Node *root;
+    INode *root;
 
-    std::map<std::string, Node *> renderingNodeMap;
+    std::map<std::string, INode *> renderingNodeMap;
 };
 
 } // namespace

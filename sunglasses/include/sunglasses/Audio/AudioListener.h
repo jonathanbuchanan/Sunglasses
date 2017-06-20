@@ -14,7 +14,7 @@
 namespace sunglasses {
 
 /// A node that represents an audio listener
-class AudioListener : public Node {
+class AudioListener : public Node<AudioListener> {
 public:
     AudioListener(glm::vec3 _position = glm::vec3(0.0f, 0.0f, 0.0f));
 

@@ -21,7 +21,7 @@ void Renderer::swapBuffers() {
 }
 
 void Renderer::init() {
-    root = new Node();
+    root = new Node<RenderNode>();
 }
 
 } // namespace

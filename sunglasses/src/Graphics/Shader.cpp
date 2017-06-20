@@ -118,7 +118,7 @@ Shader::ShaderUniform Shader::operator[](std::string uniform) {
     return ShaderUniform(program, glGetUniformLocation(program, uniform.c_str()));
 }
 
-void Shader::uniforms(Node *root) {
+void Shader::uniforms(INode *root) {
     Action uniform("uniform");
     uniform.addParameter("shader", this);
     uniform.setRecursive(true);
@@ -133,7 +133,7 @@ void Shader::use() {
     glUseProgram(this->program);
 }
 
-void Shader::use(std::string tag, float delta, Node *root) {
+void Shader::use(std::string tag, float delta, INode *root) {
     use();
 
     uniforms(root);
@@ -146,7 +146,7 @@ void Shader::use(std::string tag, float delta, Node *root) {
     sendAction(render, root);
 }
 
-void Shader::send(std::string tag, float delta, Node *root) {
+void Shader::send(std::string tag, float delta, INode *root) {
     uniforms(root);
 
     Action render("render");
