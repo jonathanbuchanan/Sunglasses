@@ -16,6 +16,7 @@ set(SOURCES
     test_LuaTypeRegistrar.cpp
     test_ResourceManager.cpp
     test_ResourceService.cpp
+    test_Node.cpp
     #test_Script.cpp
 )
 

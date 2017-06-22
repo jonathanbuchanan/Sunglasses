@@ -8,6 +8,7 @@
 #include "Base.h"
 #include "Service.h"
 
+#include <iterator>
 #include <vector>
 #include <string>
 #include <functional>
@@ -15,6 +16,58 @@
 #include <memory>
 
 namespace sunglasses {
+
+template<typename T>
+class Node;
+
+/// Iterates through a network of nodes (depth first)
+template<typename T>
+class NodeIterator : std::iterator<std::bidirectional_iterator_tag,
+								   Node<T>,
+								   std::ptrdiff_t,
+								   Node<T> *,
+								   Node<T> &> {
+public:
+	/// Constructs the iterator from a pointer
+	NodeIterator(Node<T> *_node = nullptr) : node(_node) { }
+	NodeIterator(const NodeIterator<T> &other) = default;
+	
+	NodeIterator<T> & operator=(const NodeIterator<T> &other) = default;
+	NodeIterator<T> & operator=(Node<T> *_node) { node = _node; return *this; }
+	
+	/// Destroys the iterator
+	~NodeIterator() { }
+	
+	NodeIterator<T> & operator++() { next(); return *this; }
+	NodeIterator<T> & operator++(int) { NodeIterator<T> copy(*this); (*this)++; return copy; }
+	NodeIterator<T> & operator--() { previous(); return *this; }
+	NodeIterator<T> & operator--(int) { NodeIterator<T> copy(*this); (*this)--; return copy; }
+	
+	bool operator==(const NodeIterator<T> &other) const { return (node == other.node); }
+	bool operator!=(const NodeIterator<T> &other) const { return (node != other.node); }
+	
+	Node<T> & operator*() { return *node; }
+	const Node<T> & operator*() const { return *node; }
+	Node<T> * operator->() { return node; }
+private:			
+	void next() {
+		if (node->children.length() > 0) {
+			node = node->children[0].get();
+		} else {
+			// Node is end of a branch, go up
+			node = node->parent;
+			
+			// Keep going until a node is found with a child to the right
+			//while (node 
+		}
+	}
+	
+	void previous() {
+	
+	}
+	
+	Node<T> *node;
+};
 
 /// An abstract base class for Node
 class INode : public Base {
@@ -36,32 +89,39 @@ public:
 template<typename T>
 class Node : public INode {
 public:
-    /// The default constructor
-    /**
-     * This constructor initializes the node with empty parents, empty children,
-     * an empty list of tags, and ignore tags set to false.
-     */
-    Node() {
-    
+	/// The iterator type
+	typedef NodeIterator<T> iterator;
+	friend iterator;
+	
+	/// The const_iterator type
+	typedef NodeIterator<const T> const_iterator;
+	friend const_iterator;
+	
+    /// Constructs the node with a parent
+    Node(Node *_parent = nullptr, std::initializer_list<std::string> _tags = {}) :
+    		parent(_parent), tags(_tags) {
+    	if (parent != nullptr)
+			parent->addChild(this);
     }
-
-    /// Constructor for the tag list member (string)
-    /**
-     * This constructor initializes the node with empty parents, empty children,
-     * ignore tags set to false, and a single tag.
-     */
-    Node(std::string tag) : tags(1, tag) {
     
+    /// Destroys the node by deleting all of its children
+    virtual ~Node() {
+    	for (Node *child : children)
+    		delete child;
     }
-
-    /// Constructor for the tag list member (vector)
-    /**
-     * This constructor initializes the node with empty parents, empty children,
-     * ignore tags set to false, and a list of tags (strings).
-     */
-    Node(std::initializer_list<std::string> _tags) : tags(_tags) {
     
-    }
+    /// Returns the begin iterator
+    iterator begin() { return iterator(this); }
+    
+    /// Returns the begin const_iterator
+    const_iterator cbegin() { return const_iterator(this); }
+    
+    
+    /// Returns the end iterator
+    iterator end() { return iterator(parent); }
+    
+    /// Returns the end const_iterator
+    const_iterator cend() { return const_iterator(parent); }
 
     /// Initializes the object.
     /**
@@ -132,29 +192,59 @@ public:
      * @param _child The node to add as a sub node
      */
     void addChild(Node *_child) {
-    	if (find(children.begin(), children.end(), std::shared_ptr<Node>(_child)) == children.end()) {
-    	    children.push_back(std::shared_ptr<Node>(_child));
-    	    _child->parents.push_back(this);
+    	if (find(children.begin(), children.end(), _child) == children.end()) {
+    		if (children.size() > 0) {
+    			(*(--children.end()))->right = _child;
+    			_child->left = (*(--children.end()));
+    		}
+    	    children.push_back(_child);
+    	    _child->parent = this;
     	}
 	}
+	
+	/// Removes a Node from the vector of children
+	void removeChild(Node *_child) {
+		typename std::vector<Node *>::iterator point =
+			std::find(children.begin(), children.end(), _child);
+		
+		_child->parent = nullptr;
+		_child->left = nullptr;
+		_child->right = nullptr;
+		
+		typename std::vector<Node *>::iterator left = (point - 1);
+		typename std::vector<Node *>::iterator right = (left + 2);
+		
+		if (left >= children.begin())
+			(*left)->right = ((right >= children.end()) ? nullptr : *right);
+		if (right < children.end())
+			(*right)->left = ((left < children.begin())? nullptr : *left);
+		
+		children.erase(point);
+			
+	}
+	
+	/// Sets the parent of the node
+	/**
+	 * Set the parent of the node to nullptr to have a node with no parent
+	 */
+	void setParent(Node *_parent) {
+		// Remove from old parent
+		if (parent != nullptr)
+			parent->removeChild(this);
 
-
-    /// Appends a Node pointer to the subnode vector.
-    /**
-     * This member function adds the Node pointer (in the parameters) to the end
-     * of the vector of subnodes. This subnode will receive recursive actions from the
-     * parent node.
-     * @param _child The node to add as a sub node
-     */
-    void addChild(const std::shared_ptr<Node> &_child) {
-    	if (find(children.begin(), children.end(), _child) == children.end()) {
-    	    children.push_back(std::shared_ptr<Node>(_child));
-    	    _child->parents.push_back(this);
-    	}
+		// Add to new parent
+		if (_parent != nullptr)
+			_parent->addChild(this);
 	}
 
     /// Adds a tag (string) to the vector of tags.
     void addTag(std::string t) { tags.push_back(t); }
+    
+    const Node * getParent() { return parent; }
+    const Node * getLeft() { return left; }
+    const Node * getRight() { return right; }
+    
+    const std::vector<Node<T> *> & getChildren() { return children; }
 protected:
     /// Processes the action with control of recursion.
     /**
@@ -185,10 +275,13 @@ protected:
     }
 
     /// A vector containing pointers to the node's children
-    std::vector<std::shared_ptr<Node<T>>> children;
+    std::vector<Node<T> *> children;
 
-    /// A vector containing pointers to the node's parents
+    /// A pointer to the node's parent
     Node<T> *parent;
+    
+    /// Pointers to the node's left and right siblings
+    Node<T> *left, *right;
 
     /// A vector of tags
     /**
