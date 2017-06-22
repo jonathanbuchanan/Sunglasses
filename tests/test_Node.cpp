@@ -18,21 +18,21 @@ struct NodeTest : ::testing::Test {
 	Node<void> *AAA, *AAB, *BAA, *BAB, *BAC, *BAD;
 
 	NodeTest() {
-		root = new N();
+		root = new N(nullptr, {"root"});
 		
-		A = new N(root);
-		B = new N(root);
+		A = new N(root, {"A"});
+		B = new N(root, {"B"});
 		
-		AA = new N(A);
-		AB = new N(A);
-		BA = new N(B);
+		AA = new N(A, {"AA"});
+		AB = new N(A, {"AB"});
+		BA = new N(B, {"BA"});
 		
-		AAA = new N(AA);
-		AAB = new N(AA);
-		BAA = new N(BA);
-		BAB = new N(BA);
-		BAC = new N(BA);
-		BAD = new N(BA);
+		AAA = new N(AA, {"AAA"});
+		AAB = new N(AA, {"AAB"});
+		BAA = new N(BA, {"BAA"});
+		BAB = new N(BA, {"BAB"});
+		BAC = new N(BA, {"BAC"});
+		BAD = new N(BA, {"BAD"});
 	}
 	
 	~NodeTest() {
@@ -88,4 +88,28 @@ TEST_F(NodeTest, Structure) {
 	EXPECT_EQ(AAA->getLeft(), nullptr);
 	EXPECT_EQ(AAA->getRight(), nullptr);
 	EXPECT_EQ(AAB->getLeft(), nullptr);
+}
+
+TEST_F(NodeTest, DepthFirstIterator) {
+	std::vector<N *> correctOrder = {root, A, AA, AAA, AAB, AB, B, BA, BAA, BAB, BAC, BAD};
+	std::vector<N *> orderedTree;
+	std::transform(root->begin(), root->end(), std::back_inserter(orderedTree),
+			[](N &n) { return &n; });
+	
+	EXPECT_EQ(orderedTree, correctOrder);
+	
+	std::vector<N *> correctOrderA = {A, AA, AAA, AAB, AB};
+	std::vector<N *> orderedTreeA;
+	std::transform(A->begin(), A->end(), std::back_inserter(orderedTreeA),
+			[](N &n) { return &n; });
+			
+	EXPECT_EQ(orderedTreeA, correctOrderA);
+}
+
+TEST_F(NodeTest, BreadthFirstIterator) {
+	std::vector<N *> correctOrder = {root, A, B, AA, AB, BA, AAA, AAB, BAA, BAB, BAC, BAD};
+	std::vector<N *> orderedTree;
+	std::transform(root->begin(), root->end(), std::back_inserter(orderedTree),
+			[](N &n) { return &n; });
+	EXPECT_EQ(orderedTree, correctOrder);
 }

@@ -39,9 +39,9 @@ public:
 	~NodeIterator() { }
 	
 	NodeIterator<T> & operator++() { next(); return *this; }
-	NodeIterator<T> & operator++(int) { NodeIterator<T> copy(*this); (*this)++; return copy; }
+	NodeIterator<T> & operator++(int) { NodeIterator<T> copy(*this); ++(*this); return copy; }
 	NodeIterator<T> & operator--() { previous(); return *this; }
-	NodeIterator<T> & operator--(int) { NodeIterator<T> copy(*this); (*this)--; return copy; }
+	NodeIterator<T> & operator--(int) { NodeIterator<T> copy(*this); --(*this); return copy; }
 	
 	bool operator==(const NodeIterator<T> &other) const { return (node == other.node); }
 	bool operator!=(const NodeIterator<T> &other) const { return (node != other.node); }
@@ -51,14 +51,19 @@ public:
 	Node<T> * operator->() { return node; }
 private:			
 	void next() {
-		if (node->children.length() > 0) {
-			node = node->children[0].get();
+		// If node has children, go to first child
+		if (node->children.size() > 0) {
+			node = node->children[0];
+		// If node has no children, go to the right
 		} else {
-			// Node is end of a branch, go up
-			node = node->parent;
-			
-			// Keep going until a node is found with a child to the right
-			//while (node 
+			// Go up and to the right if node doesn't have right
+			while (node->right == nullptr) {
+				node = node->parent;
+				// Don't go any further if we get to nullptr
+				if (node == nullptr)
+					return;
+			}
+			node = node->right;
 		}
 	}
 	
@@ -118,10 +123,26 @@ public:
     
     
     /// Returns the end iterator
-    iterator end() { return iterator(parent); }
+    iterator end() {
+    	Node *node = this;
+    	while (node->right == nullptr) {
+			node = node->parent;
+			if (node == nullptr)
+				return iterator(node);
+		}
+		return iterator(node->right);
+    }
     
     /// Returns the end const_iterator
-    const_iterator cend() { return const_iterator(parent); }
+    const_iterator cend() {
+    	Node *node = this;
+    	while (node->right == nullptr) {
+			node = node->parent;
+			if (node == nullptr)
+				return const_iterator(node);
+		}
+		return const_iterator(node->right);
+	}
 
     /// Initializes the object.
     /**
@@ -281,7 +302,8 @@ protected:
     Node<T> *parent;
     
     /// Pointers to the node's left and right siblings
-    Node<T> *left, *right;
+    Node<T> *left = nullptr;
+    Node<T> *right = nullptr;
 
     /// A vector of tags
     /**
