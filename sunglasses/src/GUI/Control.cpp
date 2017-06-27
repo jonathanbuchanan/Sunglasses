@@ -6,27 +6,13 @@
 namespace sunglasses {
 namespace GUI {
 
-Control::Control(glm::ivec2 _position, glm::ivec2 _size, bool _visible, std::initializer_list<Control *> _children) :
+Control::Control(glm::ivec2 _position, glm::ivec2 _size, bool _visible) :
         position(_position), size(_size), visible(_visible), state(State::Normal) {
-    children.reserve(_children.size());
-    for (auto child : _children)
-        children.emplace_back(child);
-}
-
-void Control::drawAll(glm::ivec2 offset, Renderer2D &renderer) {
-    if (visible) {
-        draw(offset, renderer);
-        drawChildren(offset, renderer);
-    }
+    
 }
 
 void Control::close() {
     unselect(State::Normal);
-}
-
-void Control::closeAll() {
-    close();
-    closeChildren();
 }
 
 void Control::mouseMoved(glm::ivec2 offset, glm::ivec2 mouse) {
@@ -40,10 +26,6 @@ void Control::mouseMoved(glm::ivec2 offset, glm::ivec2 mouse) {
         if (state == State::Highlighted)
             unhighlight();
     }
-
-    for (auto &child : children) {
-        child->mouseMoved(offset + position, mouse);
-    }
 }
 
 void Control::mouseLeftPressed(glm::ivec2 offset, glm::ivec2 mouse) {
@@ -51,10 +33,6 @@ void Control::mouseLeftPressed(glm::ivec2 offset, glm::ivec2 mouse) {
     if (contains(offset, mouse)) {
         // Become selected
         select();
-    }
-
-    for (auto &child : children) {
-        child->mouseLeftPressed(offset + position, mouse);
     }
 }
 
@@ -64,26 +42,6 @@ void Control::mouseLeftReleased(glm::ivec2 offset, glm::ivec2 mouse) {
     } else {
         unselect(State::Normal);
     }
-
-    for (auto &child : children) {
-        child->mouseLeftReleased(offset + position, mouse);
-    }
-}
-
-void Control::drawChildren(glm::ivec2 offset, Renderer2D &renderer) {
-    for (auto &child : children) {
-        child->drawAll(offset + position, renderer);
-    }
-}
-
-void Control::closeChildren() {
-    for (auto &child : children) {
-        child->closeAll();
-    }
-}
-
-void Control::addChild(Control &control) {
-    children.emplace_back(&control);
 }
 
 bool Control::contains(glm::ivec2 offset, glm::ivec2 point) {

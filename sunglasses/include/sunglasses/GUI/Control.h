@@ -6,6 +6,7 @@
 
 #include <glm/glm.hpp>
 
+#include <sunglasses/Core/Node.h>
 #include <sunglasses/Core/Signal.h>
 
 #include <vector>
@@ -16,10 +17,10 @@ namespace GUI {
 class Renderer2D;
 
 /// The abstract base class for GUI controls
-class Control {
+class Control : public Node<Control> {
 public:
-    /// Constructs the control with a position, size, and initializer list of children
-    Control(glm::ivec2 _position, glm::ivec2 _size, bool _visible = true, std::initializer_list<Control *> _children = {});
+    /// Constructs the control with a position, size, and its visibility
+    Control(glm::ivec2 _position, glm::ivec2 _size, bool _visible = true);
 
     /// An enum representing the different possible states of the control
     enum struct State {
@@ -28,14 +29,8 @@ public:
         Selected
     };
 
-    /// Draws the control and the children
-    void drawAll(glm::ivec2 offset, Renderer2D &renderer);
-
     /// Prepares the control to be hidden from view
     virtual void close();
-
-    /// Closes the control and the children
-    void closeAll();
 
 
     /// Called when the mouse moves
@@ -59,14 +54,6 @@ public:
 
     /// The signal emitted when the control is deselected
     Signal<void()> signal_deselected;
-
-    /// Adds a child node
-    /**
-     * @warning This object should be allocated on the heap,
-     * and it should be assumed that all control is given to
-     * the parent control.
-     */
-    void addChild(Control &control);
 
     /// Checks a point to see if the control contains it
     bool contains(glm::ivec2 offset, glm::ivec2 point);
@@ -92,17 +79,8 @@ protected:
      */
     virtual void draw(glm::ivec2 offset, Renderer2D &renderer) = 0;
 
-    /// Draws all of the child controls
-    void drawChildren(glm::ivec2 offset, Renderer2D &renderer);
-
-    /// Closes all of the child controls
-    void closeChildren();
-
     /// The state of the control
     State state;
-
-    /// The vector of child controls
-    std::vector<Control *> children;
 private:
     /// Highlights the control
     void highlight();

@@ -36,15 +36,14 @@ class Panel : public Control {
 public:
     /// Constructs the panel
     Panel(glm::ivec2 _position, glm::ivec2 _size, const T &_background,
-            bool _visible = true, std::initializer_list<Control *> children = {}) :
-            Control(_position, _size, _visible, children), background(_background) {
+            bool _visible = true) :
+            Control(_position, _size, _visible), background(_background) {
 
     }
 
     /// Constructs the panel within the frame of the window
-    Panel(const graphics::Window &window, const T &_background, bool _visible = true,
-            std::initializer_list<Control *> children = {}) :
-            Control(glm::ivec2(0, 0), window.getSize(), _visible, children),
+    Panel(const graphics::Window &window, const T &_background, bool _visible = true) :
+            Control(glm::ivec2(0, 0), window.getSize(), _visible),
             background(_background) {
 
     }
