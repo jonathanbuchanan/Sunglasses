@@ -22,29 +22,27 @@ class Node;
 
 /// Iterates through a network of nodes (depth first)
 template<typename T>
-class NodeIterator : std::iterator<std::bidirectional_iterator_tag,
-								   Node<T>,
-								   std::ptrdiff_t,
-								   Node<T> *,
-								   Node<T> &> {
+class DepthFirstNodeIterator : std::iterator<std::forward_iterator_tag,
+								   			Node<T>,
+								   			std::ptrdiff_t,
+								   			Node<T> *,
+								   			Node<T> &> {
 public:
 	/// Constructs the iterator from a pointer
-	NodeIterator(Node<T> *_node = nullptr) : node(_node) { }
-	NodeIterator(const NodeIterator<T> &other) = default;
+	DepthFirstNodeIterator(Node<T> *_node = nullptr) : node(_node) { }
+	DepthFirstNodeIterator(const DepthFirstNodeIterator<T> &other) = default;
 	
-	NodeIterator<T> & operator=(const NodeIterator<T> &other) = default;
-	NodeIterator<T> & operator=(Node<T> *_node) { node = _node; return *this; }
+	DepthFirstNodeIterator<T> & operator=(const DepthFirstNodeIterator<T> &other) = default;
+	DepthFirstNodeIterator<T> & operator=(Node<T> *_node) { node = _node; return *this; }
 	
 	/// Destroys the iterator
-	~NodeIterator() { }
+	~DepthFirstNodeIterator() { }
 	
-	NodeIterator<T> & operator++() { next(); return *this; }
-	NodeIterator<T> & operator++(int) { NodeIterator<T> copy(*this); ++(*this); return copy; }
-	NodeIterator<T> & operator--() { previous(); return *this; }
-	NodeIterator<T> & operator--(int) { NodeIterator<T> copy(*this); --(*this); return copy; }
+	DepthFirstNodeIterator<T> & operator++() { next(); return *this; }
+	DepthFirstNodeIterator<T> & operator++(int) { DepthFirstNodeIterator<T> copy(*this); ++(*this); return copy; }
 	
-	bool operator==(const NodeIterator<T> &other) const { return (node == other.node); }
-	bool operator!=(const NodeIterator<T> &other) const { return (node != other.node); }
+	bool operator==(const DepthFirstNodeIterator<T> &other) const { return (node == other.node); }
+	bool operator!=(const DepthFirstNodeIterator<T> &other) const { return (node != other.node); }
 	
 	Node<T> & operator*() { return *node; }
 	const Node<T> & operator*() const { return *node; }
@@ -67,11 +65,46 @@ private:
 		}
 	}
 	
-	void previous() {
+	Node<T> *node;
+};
+
+/// Iterates through a network of nodes (breadth first)
+template<typename T>
+class BreadthFirstNodeIterator : std::iterator<std::forward_iterator_tag,
+											Node<T>,
+											std::ptrdiff_t,
+											Node<T> *,
+											Node<T> &> {
+public:
+	/// Constructs the iterator from a pointer
+	BreadthFirstNodeIterator(Node<T> *_root = nullptr, Node<T> *_node = nullptr)
+			: root(_root), node(_node) { }
+	BreadthFirstNodeIterator(const BreadthFirstNodeIterator<T> &other) = default;
+	
+	BreadthFirstNodeIterator<T> & operator=(const BreadthFirstNodeIterator<T> &other) = default;
+	BreadthFirstNodeIterator<T> & operator=(Node<T> *_node) { node = _node; return *this; }
+	
+	/// Destroys the iterator
+	~BreadthFirstNodeIterator() { }
+	
+	BreadthFirstNodeIterator<T> & operator++() { next(); return *this; }
+	BreadthFirstNodeIterator<T> & operator++(int) { DepthFirstNodeIterator<T> copy(*this); ++(*this); return copy; }
+	
+	bool operator==(const BreadthFirstNodeIterator<T> &other) const
+			{ return ((node == other.node) && (root == other.root)); }
+	bool operator!=(const BreadthFirstNodeIterator<T> &other) const
+			{ return ((node != other.node) || (root != other.root)); }
+	
+	Node<T> & operator*() { return *node; }
+	const Node<T> & operator*() const { return *node; }
+	Node<T> * operator->() { return node; }
+private:
+	void next() {
 	
 	}
 	
-	Node<T> *node;
+	Node<T> *root;
+	Node<T> *node;											
 };
 
 /// An abstract base class for Node
@@ -94,13 +127,21 @@ public:
 template<typename T>
 class Node : public INode {
 public:
-	/// The iterator type
-	typedef NodeIterator<T> iterator;
-	friend iterator;
+	/// The df_iterator type
+	typedef DepthFirstNodeIterator<T> df_iterator;
+	friend df_iterator;
 	
-	/// The const_iterator type
-	typedef NodeIterator<const T> const_iterator;
-	friend const_iterator;
+	/// The const_df_iterator type
+	typedef DepthFirstNodeIterator<const T> const_df_iterator;
+	friend const_df_iterator;
+	
+	/// The bf_iterator type
+	typedef BreadthFirstNodeIterator<T> bf_iterator;
+	friend bf_iterator;
+	
+	/// The const_bf_iterator type
+	typedef BreadthFirstNodeIterator<const T> const_bf_iterator;
+	friend const_bf_iterator;
 	
     /// Constructs the node with a parent
     Node(Node *_parent = nullptr, std::initializer_list<std::string> _tags = {}) :
@@ -116,33 +157,42 @@ public:
     }
     
     /// Returns the begin iterator
-    iterator begin() { return iterator(this); }
+    df_iterator dfbegin() { return df_iterator(this); }
     
     /// Returns the begin const_iterator
-    const_iterator cbegin() { return const_iterator(this); }
+    const_df_iterator cdfbegin() { return const_df_iterator(this); }
     
     
     /// Returns the end iterator
-    iterator end() {
+    df_iterator dfend() {
     	Node *node = this;
     	while (node->right == nullptr) {
 			node = node->parent;
 			if (node == nullptr)
-				return iterator(node);
+				return df_iterator(node);
 		}
-		return iterator(node->right);
+		return df_iterator(node->right);
     }
     
     /// Returns the end const_iterator
-    const_iterator cend() {
+    const_df_iterator cdfend() {
     	Node *node = this;
     	while (node->right == nullptr) {
 			node = node->parent;
 			if (node == nullptr)
-				return const_iterator(node);
+				return const_df_iterator(node);
 		}
-		return const_iterator(node->right);
+		return const_df_iterator(node->right);
 	}
+	
+	
+	bf_iterator bfbegin() { return bf_iterator(this, this); }
+	
+	const_bf_iterator cbfbegin() { return const_bf_iterator(this, this); }
+	
+	bf_iterator bfend() { return bf_iterator(this, nullptr); }
+	
+	const_bf_iterator cbfend() { return const_bf_iterator(this, nullptr); }
 
     /// Initializes the object.
     /**
