@@ -7,10 +7,13 @@ Window::Window(glm::ivec2 size, std::string title) {
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     // Create a window
     window = glfwCreateWindow(size.x, size.y, title.c_str(), nullptr, nullptr);
+    if (window == nullptr)
+    	throw std::runtime_error("could not create window");
     glfwMakeContextCurrent(window);
 
     // Set the user pointer and callbacks
@@ -30,7 +33,8 @@ Window::Window(glm::ivec2 size, std::string title) {
 
     // Initialize GLEW
     glewExperimental = GL_TRUE;
-    glewInit();
+    if (glewInit() != GLEW_OK)
+    	throw std::runtime_error("could not load OpenGL functions");
 
     // Size the viewport correctly
     sizeViewportToWindow();

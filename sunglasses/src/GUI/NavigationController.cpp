@@ -10,32 +10,32 @@ NavigationController::NavigationController(GUIModule &_system) :
 
 }
 
-void NavigationController::push(IController &controller) {
+void NavigationController::push(Controller *controller) {
     /// Close the current top controller
     if (!stack.empty())
-        top().close();
+        top()->close();
 
     /// Push the next controller
     stack.push(controller);
 
-    controller.navigationController = this;
+    controller->navigationController = this;
 
-    top().present();
+    top()->present();
 }
 
 void NavigationController::pop() {
     /// Close the top controller
-    top().close();
-    top().navigationController = nullptr;
+    top()->close();
+    top()->navigationController = nullptr;
 
     /// Pop the stack
     stack.pop();
 
     if (!stack.empty())
-        top().present();
+        top()->present();
 }
 
-IController & NavigationController::top() {
+Controller * NavigationController::top() {
     return stack.top();
 }
 

@@ -19,32 +19,14 @@ namespace GUI {
 
 class NavigationController;
 
-/// The interface for a controller
-class IController {
+/// Manages a panel
+class Controller {
+friend GUIModule;
 friend NavigationController;
 public:
-    /// Presents the controller on the system
-    virtual void present() = 0;
-
-    /// Performs any necessary actions when this controller is not being viewed
-    virtual void close() = 0;
-protected:
-    /// A pointer to the navigation controller currently using the controller
-    NavigationController *navigationController = nullptr;
-};
-
-/// Manages a view.
-/**
- * This class manages an instance of View. This view typically
- * takes up the entire window.
- */
-template<typename T>
-class Controller : public IController {
-friend GUIModule;
-public:
     /// Constructs a view controller from the dimensions of the window
-    Controller(GUIModule &_system, const /*BasicPanel*/ Panel<T> &background) :
-        panel(_system.getGraphicsModule().window, background), system(_system) {
+    Controller(GUIModule &_system) :
+        panel(_system.getGraphicsModule().window), system(_system) {
 
     }
 
@@ -55,18 +37,18 @@ public:
 
     /// Performs any necessary actions when this controller is not being viewed
     virtual void close() {
-        panel.closeAll();
+        //panel.closeAll();
     }
 
     /// The panel managed by the controller
-    /*BasicPanel*/ Panel<T> panel;
+    Panel panel;
 protected:
     /// A reference to the system that contains it
     GUIModule &system;
+    
+    /// A pointer to the navigation controller currently using the controller
+    NavigationController *navigationController = nullptr;
 };
-
-/// A 'basic' controller
-//using BasicController = Controller<Drawable::Color>;
 
 } // namespace
 } // namespace

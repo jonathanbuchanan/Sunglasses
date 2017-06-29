@@ -34,10 +34,6 @@ public:
 
 int main(int argc, char **argv) {
     graphics::GraphicsModule graphics = graphics::GraphicsModule(glm::ivec2(1920, 1080), "Voxel", {});
-    graphics::WindowFramebuffer wbuf = graphics::WindowFramebuffer(graphics.window);
-    graphics::Pass<graphics::WindowFramebuffer> guipass =
-        graphics::Pass<graphics::WindowFramebuffer>(wbuf, glm::vec4(1.0f));
-    graphics.addPass(guipass);
     
     graphics::Texture::LibraryT textures({
             {"stone", graphics::Texture::LibraryT::ResourceHandle(graphics::Texture::Parameter(
@@ -48,8 +44,9 @@ int main(int argc, char **argv) {
     
     MainMenu menu(gui, textures);
     
+    GUI::Controller *x = &menu;
     GUI::NavigationController nav(gui);
-    nav.push(menu);
+    nav.push(&menu);
     
     
     VoxelProgram program = VoxelProgram(graphics);

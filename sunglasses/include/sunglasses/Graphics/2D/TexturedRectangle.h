@@ -9,12 +9,16 @@ namespace graphics {
 
 /// A textured rectangle
 struct TexturedRectangle {
+	/// The underlying rendering data of the rectangle
+	struct Texture {
+		Texture(const graphics::Texture &_texture) : texture(_texture) { }
+		operator graphics::Texture() const { return texture; }
+		graphics::Texture texture;
+	} texture;
+
     /// Constructs the rectangle with a texture reference and size
     TexturedRectangle(Texture &_texture, glm::ivec2 _textureSize,
             const glm::ivec2 &_position, const glm::ivec2 &_size);
-    
-    /// A reference to the texture
-    Texture &texture;
     
     /// The size of the texture in pixels
     /**

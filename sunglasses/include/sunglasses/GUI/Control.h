@@ -72,13 +72,6 @@ public:
      */
     bool visible;
 protected:
-    /// Draws the control
-    /**
-     * @param offset The position offset of the control (globally)
-     * @param renderer A reference to the renderer
-     */
-    virtual void draw(glm::ivec2 offset, Renderer2D &renderer) = 0;
-
     /// The state of the control
     State state;
 private:

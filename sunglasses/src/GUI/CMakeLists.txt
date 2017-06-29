@@ -4,6 +4,7 @@ add_sources(
     Control.cpp
     Label.cpp
     Panel.cpp
+    ImagePanel.cpp
     Controller.cpp
     Font.cpp
     View3D.cpp

@@ -6,6 +6,7 @@
 #include <sunglasses/GUI/Control.h>
 #include <sunglasses/GUI/Label.h>
 #include <sunglasses/GUI/Panel.h>
+#include <sunglasses/GUI/ImagePanel.h>
 #include <sunglasses/GUI/Controller.h>
 #include <sunglasses/GUI/Font.h>
 #include <sunglasses/GUI/View3D.h>
