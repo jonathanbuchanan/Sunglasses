@@ -9,7 +9,9 @@ namespace sunglasses {
 namespace GUI {
 
 GUIModule::GUIModule(graphics::GraphicsModule &_graphicsModule) :
-        graphicsModule(_graphicsModule), root(nullptr) {
+        graphicsModule(_graphicsModule),
+        renderer(graphicsModule.window),
+        root(nullptr) {
     connect(graphicsModule.window.cursor.signal_move, slot_move);
     connect(graphicsModule.window.cursor.signal_pressLeft, slot_pressLeft);
     connect(graphicsModule.window.cursor.signal_releaseLeft, slot_releaseLeft);
@@ -33,6 +35,10 @@ void GUIModule::run() {
 
 const graphics::GraphicsModule & GUIModule::getGraphicsModule() {
     return graphicsModule;
+}
+
+const graphics::Renderer2D & GUIModule::getRenderer() {
+	return renderer;
 }
 
 void GUIModule::mouse_move(glm::ivec2 location) {

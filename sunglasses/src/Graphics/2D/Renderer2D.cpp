@@ -122,7 +122,7 @@ Renderer2D::Renderer2D(sunglasses::graphics::Window &_window) :
 
 }
 
-void Renderer2D::draw() {
+void Renderer2D::render() const {
 
 }
 

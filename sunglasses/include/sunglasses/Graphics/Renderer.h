@@ -4,31 +4,16 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-#include <sunglasses/Graphics/RenderNode.h>
-#include <sunglasses/Graphics/TexturedQuad.h>
-#include <sunglasses/Graphics/Primitives.h>
-#include <sunglasses/Graphics/Camera.h>
-
 namespace sunglasses {
 namespace graphics {
 
-class Scene;
-
-class Renderer : public Base {
+/// An abstract class representing a pass in the drawing pipeline to derive other renderers from
+class Renderer {
 public:
-    Renderer() { }
+	/// Renders a set of items known by the renderer into its framebuffer
+	virtual void render() const = 0;
+private:
 
-    void render();
-    void swapBuffers();
-    virtual void init();
-
-    void setSceneNode(Scene *s) { scene = s; }
-protected:
-    // Scene Objects
-    Scene *scene;
-    INode *root;
-
-    std::map<std::string, INode *> renderingNodeMap;
 };
 
 } // namespace

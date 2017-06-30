@@ -9,47 +9,39 @@ using namespace sunglasses;
 #include "OptionsMenu.h"
 
 class VoxelProgram : public Program {
+GUI::GUIModule *gui;
+graphics::GraphicsModule *graphics;
 public:
-    VoxelProgram(graphics::GraphicsModule &graphics) :
-            Program({&graphics}) {
-                
+    VoxelProgram() {
+    	graphics = new graphics::GraphicsModule(glm::ivec2(1920, 1080), "Voxel");
+    	gui = new GUI::GUIModule(*graphics);
+    	
+    	modules.insert(graphics);
+    	modules.insert(gui);
+    	
+    	graphics->pipeline = new graphics::RenderingPipeline({&gui->getRenderer()});
     }
-    
+
     virtual void start() {
         //connect(window.signal_close, slot_stop);
 
-        /*graphics::Texture::LibraryT textures({
+        graphics::Texture::LibraryT textures({
             {"stone", graphics::Texture::LibraryT::ResourceHandle(graphics::Texture::Parameter(
                 "./res/Graphics/Textures/stone.png", graphics::Texture::Format::RGBA, graphics::TextureMinification::Nearest, graphics::TextureMagnification::Nearest))}
         });
 
-        MainMenu main(GUI, textures);
+        MainMenu main(*gui, textures);
 
-        GUI::NavigationController nav(GUI);
-        nav.push(main);*/
+        GUI::NavigationController nav(*gui);
+        nav.push(&main);
 
         run();
     }
 };
 
 int main(int argc, char **argv) {
-    graphics::GraphicsModule graphics = graphics::GraphicsModule(glm::ivec2(1920, 1080), "Voxel", {});
-    
-    graphics::Texture::LibraryT textures({
-            {"stone", graphics::Texture::LibraryT::ResourceHandle(graphics::Texture::Parameter(
-                "./res/Graphics/Textures/stone.png", graphics::Texture::Format::RGBA, graphics::TextureMinification::Nearest, graphics::TextureMagnification::Nearest))}
-    });
-    
-    GUI::GUIModule gui = GUI::GUIModule(graphics);
-    
-    MainMenu menu(gui, textures);
-    
-    GUI::Controller *x = &menu;
-    GUI::NavigationController nav(gui);
-    nav.push(&menu);
-    
-    
-    VoxelProgram program = VoxelProgram(graphics);
+    VoxelProgram program = VoxelProgram();
     program.start();
+
     return 0;
 }

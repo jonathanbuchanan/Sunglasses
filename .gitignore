@@ -52,3 +52,6 @@ docs-latex
 # Google Test
 gmock/
 gtest/
+
+# Mac
+.DS_Store

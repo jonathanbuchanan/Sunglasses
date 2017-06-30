@@ -10,6 +10,7 @@
 
 #include <GL/glew.h>
 
+#include <sunglasses/Graphics/Renderer.h>
 #include <sunglasses/Graphics/Texture.h>
 #include <sunglasses/Graphics/Shader.h>
 #include <sunglasses/Graphics/GeometryBuffer.h>
@@ -23,13 +24,13 @@ namespace sunglasses {
 namespace graphics {
 
 /// A class used to store shaders for drawing the GUI
-class Renderer2D {
+class Renderer2D : public Renderer {
 public:
     /// Initializes the shaders
     Renderer2D(sunglasses::graphics::Window &_window);
 
     /// Draws all of the items in the tree
-    void draw();
+    virtual void render() const;
     
     /// Draws a rectangle with a solid color
     //void draw(glm::ivec2 position, glm::ivec2 size, glm::vec4 color);

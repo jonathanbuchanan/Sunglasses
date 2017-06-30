@@ -11,9 +11,9 @@ add_sources(
     Vertex.cpp
     GeometryBuffer.cpp
     Framebuffer.cpp
-    FramebufferQueue.cpp
     Window.cpp
     GraphicsModule.cpp
+    RenderingPipeline.cpp
 )
 
 add_subdirectory(Loaders)

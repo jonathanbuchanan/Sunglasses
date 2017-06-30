@@ -6,7 +6,6 @@
 #include <GL/glew.h>
 
 #include <sunglasses/Graphics/Texture.h>
-#include <sunglasses/Graphics/Window.h>
 
 #include <tuple>
 #include <utility>
@@ -82,7 +81,7 @@ private:
 
 };
 
-/// A special framebuffer for the window
+/*/// A special framebuffer for the window
 class WindowFramebuffer : public IFramebuffer {
 public:
     /// Constructs the framebuffer with a reference to the window
@@ -109,7 +108,7 @@ public:
 private:
     /// A reference to the window
     const Window &window;
-};
+};*/
 
 /// An object containing buffers to be rendered to
 template<typename... T>

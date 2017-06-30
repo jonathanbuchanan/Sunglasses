@@ -5,25 +5,7 @@
 #include <sunglasses/Core/Scene.h>
 
 namespace sunglasses {
-
 namespace graphics {
 
-void Renderer::render() {
-    Action renderAction("render");
-    renderAction.setRecursive(true);
-
-    sendAction(renderAction, root);
-}
-
-void Renderer::swapBuffers() {
-    // Swap the buffers
-    services.get<WindowManager>()->swapBuffers();
-}
-
-void Renderer::init() {
-    root = new Node<RenderNode>();
-}
-
 } // namespace
-
 } // namespace

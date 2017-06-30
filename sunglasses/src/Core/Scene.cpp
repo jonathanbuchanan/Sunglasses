@@ -19,8 +19,8 @@ void Scene::cycle() {
     Action update("update");
     update.setRecursive(true);
     sendAction(update, root.get());
-    renderer->render();
-    renderer->swapBuffers();
+    //renderer->render();
+    //renderer->swapBuffers();
 }
 
 } // namespace

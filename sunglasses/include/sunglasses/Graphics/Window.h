@@ -10,12 +10,40 @@
 #include <GLFW/glfw3.h>
 
 #include <sunglasses/Core/Signal.h>
+#include <sunglasses/Graphics/Framebuffer.h>
 
 namespace sunglasses {
 namespace graphics {
 
 /// An object managing the window and the graphics context
 class Window {
+private:
+	/// An object representing the framebuffer controlled by the window
+    class WindowFramebuffer: public IFramebuffer {
+    public:
+    	/// Constructs the framebuffer with a reference to the window
+    	WindowFramebuffer(Window &_window) : window(_window) { }
+
+		/// Activates (binds) the framebuffer
+		virtual void activate() {
+			glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		}
+
+		/// Clears the framebuffer
+		virtual void clear(glm::vec4 color) {
+			glClearColor(color.r, color.g, color.b, color.a);
+
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		}
+
+		/// Returns the size of the framebuffer
+		virtual glm::ivec2 getSize() {
+			return window.getSize();
+		}
+    private:
+    	/// The reference to the window
+    	Window &window;
+    };
 public:
     /// Creates a window and graphics context
     /**
@@ -114,6 +142,8 @@ public:
         /// Called when the user presses/repeats/releases a key
         static void key(GLFWwindow *_window, int key, int scancode, int action, int mods);
     } keyboard;
+    
+    WindowFramebuffer framebuffer;
 private:
     /// Called when the user tries to close the window
     static void windowClose(GLFWwindow *_window);

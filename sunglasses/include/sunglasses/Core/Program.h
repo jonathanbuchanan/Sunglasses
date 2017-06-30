@@ -28,7 +28,7 @@ public:
 class Program {
 public:
     /// Constructs the program
-    Program(std::initializer_list<Module *> _modules);
+    Program(std::initializer_list<Module *> _modules = {});
 
     /// Starts the program and should call run()
     virtual void start() = 0;

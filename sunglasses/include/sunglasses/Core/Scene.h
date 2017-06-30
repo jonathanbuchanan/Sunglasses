@@ -56,7 +56,7 @@ protected:
     std::unique_ptr<INode> root;
 
     /// A pointer to the scene renderer
-    graphics::Renderer *renderer;
+    //graphics::Renderer *renderer;
 
     /// The physics simulator
     //PhysicsSimulator physicsSimulator;

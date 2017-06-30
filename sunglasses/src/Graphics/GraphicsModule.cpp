@@ -3,8 +3,8 @@
 namespace sunglasses {
 namespace graphics {
 
-GraphicsModule::GraphicsModule(glm::ivec2 windowSize, std::string windowTitle, std::initializer_list<std::reference_wrapper<IPass>> _passes) :
-        window(windowSize, windowTitle), passes(_passes) {
+GraphicsModule::GraphicsModule(glm::ivec2 windowSize, std::string windowTitle, RenderingPipeline *_pipeline) :
+        window(windowSize, windowTitle), pipeline(_pipeline) {
             
 }
 
@@ -13,15 +13,8 @@ void GraphicsModule::update() {
 }
 
 void GraphicsModule::run() {
-    for (IPass &pass : passes) {
-        pass.render();
-    }
-    window.swapBuffers();
-
-}
-
-void GraphicsModule::addPass(IPass &pass) {
-    passes.push_back(std::ref(pass));
+	if (pipeline != nullptr)
+    	pipeline->render();
 }
 
 }

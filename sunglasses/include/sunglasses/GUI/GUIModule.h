@@ -8,6 +8,7 @@
 
 #include <sunglasses/Core/Program.h>
 #include <sunglasses/GUI/Control.h>
+#include <sunglasses/Graphics/2D/Renderer2D.h>
 
 namespace sunglasses {
 namespace graphics {
@@ -35,6 +36,9 @@ public:
 
     /// Returns a reference to the graphics module
     const graphics::GraphicsModule & getGraphicsModule();
+    
+    /// Returns a reference to the renderer
+    const graphics::Renderer2D & getRenderer();
 private:
     /// Called when the mouse moves
     void mouse_move(glm::ivec2 location);
@@ -66,7 +70,10 @@ private:
 
     /// A reference to the graphics module
     graphics::GraphicsModule &graphicsModule;
-
+    
+    /// The 2D renderer
+    graphics::Renderer2D renderer;
+    
     /// The root control
     Control *root;
 };
